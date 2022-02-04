@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@schuettc/cdk-chime-resources": {
+      "signature": "3817d39237ab745c9d26b5a4e7bf5928",
+      "file": true
+    }
+  }
+}
