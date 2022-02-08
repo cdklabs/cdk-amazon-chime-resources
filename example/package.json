@@ -20,8 +20,8 @@
     "typescript": "~4.5.4"
   },
   "dependencies": {
-    "@schuettc/cdk-chime-resources": "file:.yalc/@schuettc/cdk-chime-resources",
     "aws-cdk-lib": "^2.9.0",
+    "cdk-amazon-chime-resources": "file:.yalc/cdk-amazon-chime-resources",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }

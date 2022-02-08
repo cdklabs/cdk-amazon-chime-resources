@@ -17,9 +17,19 @@ ssm = boto3.client("ssm")
 
 def buildVoiceConnector(uid, region, name, encryption):
     logger.info("Creating a new Voice Connector")
+
+    if encryption == "false":
+        require_encryption = False
+    else:
+        require_encryption = True
+
+    logger.info(f"Name: {name}")
+    logger.info(f"AwsRegion: {region}")
+    logger.info(f"RequireEncrpytion: {require_encryption}")
+
     try:
         voice_connector_id = chime.create_voice_connector(
-            Name=name, AwsRegion=region, RequireEncryption=bool(encryption)
+            Name=name, AwsRegion=region, RequireEncryption=require_encryption
         )["VoiceConnector"]["VoiceConnectorId"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
@@ -90,10 +100,9 @@ def buildOrigination(voice_connector_id, origination):
                 transformed_route[key.capitalize()] = route[key]
             else:
                 transformed_route[key.capitalize()] = int(route[key])
-            logger.info(transformed_route)
         routes.append(transformed_route)
 
-    logger.info(routes)
+    logger.info(f"Routes: {routes}")
 
     try:
         chime.put_voice_connector_origination(
