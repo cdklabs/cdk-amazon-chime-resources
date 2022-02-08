@@ -2,7 +2,7 @@ import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import path = require('path');
 import { Construct } from 'constructs';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
-import * as chime from '@schuettc/cdk-chime-resources';
+import * as chime from 'cdk-amazon-chime-resources';
 
 export class ChimeExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -52,7 +52,7 @@ export class ChimeExample extends Stack {
       this,
       'voiceConnector',
       {
-        encryption: true,
+        encryption: false,
         region: 'us-east-1',
         termination: {
           terminationCidrs: ['198.51.100.0/27'],

@@ -26,19 +26,15 @@ def createSipRule(
 ):
     logger.info(f"Creating SIP media application rule: {uid}")
     target_applications = []
-    logger.info(f"targetApplications: {targetApplications}")
     for target_application in targetApplications:
-        logger.info(f"target_application: {target_application}")
         transformed_application = {}
         for key in target_application:
-            logger.info(f"key: {key}")
             if key == "sipMediaApplicationId":
                 transformed_application["SipMediaApplicationId"] = target_application[key]
             elif key == "priority":
                 transformed_application["Priority"] = int(target_application[key])
             elif key == "region":
                 transformed_application["AwsRegion"] = target_application[key]
-        logger.info(f"transformed_application: {transformed_application}")
         target_applications.append(transformed_application)
     logger.info(f"target_applications: {target_applications}")
 
