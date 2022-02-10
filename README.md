@@ -78,7 +78,7 @@ const voiceConnector = new chime.ChimeVoiceConnector(this, 'voiceConnector', {
     {
       host: '198.51.100.10',
       port: 5061,
-      protocol: 'TCP',
+      protocol: chime.Protocol.TCP,
       priority: 1,
       weight: 1,
     },
