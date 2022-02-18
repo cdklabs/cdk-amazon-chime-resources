@@ -1,4 +1,4 @@
-# cdk-chime-resources
+# cdk-amazon-chime-resources
 
 ![Experimental](https://img.shields.io/badge/experimental-important.svg?style=for-the-badge)
 
@@ -15,7 +15,7 @@ See [example/lib/cdk-chime-resources-example.ts](example/lib/cdk-chime-resources
 To add to your AWS CDK package.json file:
 
 ```
-yarn add cdk-chime-resources
+yarn add cdk-amazon-chime-resources
 ```
 
 Within your AWS CDK:
