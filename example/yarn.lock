@@ -1112,8 +1112,10 @@ case@1.6.3:
   resolved "https://registry.yarnpkg.com/case/-/case-1.6.3.tgz#0a4386e3e9825351ca2e6216c60467ff5f1ea1c9"
   integrity sha512-mzDSXIPaFwVDvZAHqZ9VlbyF4yyXRuX6IvB06WvPYkqJVO24kX1PPhv9bfpKNFZyxYFmmgo03HUiD8iklmJYRQ==
 
-"cdk-amazon-chime-resources@file:.yalc/cdk-amazon-chime-resources":
-  version "0.0.0"
+cdk-amazon-chime-resources@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/cdk-amazon-chime-resources/-/cdk-amazon-chime-resources-0.0.18.tgz#f225c434af39030a00b96a34daf9ab0d71ad4219"
+  integrity sha512-sCDMuNWAniBJadQvg1N+sTIFsAriqYRKlfpH3FC6/hBMpnbyT062M4rvhD05G81mjbwCD4pO1YAe2y9lJvdWzg==
 
 cdk-assets@2.9.0:
   version "2.9.0"

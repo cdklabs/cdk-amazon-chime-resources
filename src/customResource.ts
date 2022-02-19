@@ -136,6 +136,7 @@ export class PhoneAssociation extends Construct {
         onCreate: {
           service: 'Chime',
           action: 'associatePhoneNumbersWithVoiceConnector',
+          region: 'us-east-1',
           parameters: {
             E164PhoneNumbers: [props.e164PhoneNumber],
             VoiceConnectorId: props.voiceConnectorId,
@@ -146,6 +147,7 @@ export class PhoneAssociation extends Construct {
         onDelete: {
           service: 'Chime',
           action: 'disassociatePhoneNumbersFromVoiceConnector',
+          region: 'us-east-1',
           parameters: {
             E164PhoneNumbers: [props.e164PhoneNumber],
             VoiceConnectorId: props.voiceConnectorId,
