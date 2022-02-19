@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "aws-cdk-lib": "^2.9.0",
-    "cdk-amazon-chime-resources": "file:.yalc/cdk-amazon-chime-resources",
+    "cdk-amazon-chime-resources": "^0.0.18",
     "constructs": "^10.0.0",
     "source-map-support": "^0.5.16"
   }
