@@ -1,7 +1,7 @@
 import { PhoneNumberProps } from '.';
 
 var AREA_CODE = /^[^01][0-9]{2}$/;
-var TOLL_FREE = /^8(33|44|55|66|77|88)$/;
+var TOLL_FREE = /^8(00|33|44|55|66|77|88)$/;
 
 export function phoneNumberValidator(props: PhoneNumberProps) {
   if (props.phoneCity && !props.phoneState) {
