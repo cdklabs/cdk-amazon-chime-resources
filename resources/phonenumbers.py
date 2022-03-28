@@ -22,7 +22,7 @@ def getPhoneNumber(
     phoneAreaCode=None,
     phoneCity=None,
     phoneCountry=None,
-    phoneTollFreePrefix=None,
+    phoneNumberTollFreePrefix=None,
     phoneProductType=None,
     **kwargs,
 ):
@@ -38,8 +38,8 @@ def getPhoneNumber(
         params["City"] = phoneCity
     if phoneCountry:
         params["Country"] = phoneCountry
-    if phoneTollFreePrefix:
-        params["TollFreePrefix"] = phoneTollFreePrefix
+    if phoneNumberTollFreePrefix:
+        params["TollFreePrefix"] = phoneNumberTollFreePrefix
     logger.info(f"Params to use: {params}")
     try:
         search_response = chime.search_available_phone_numbers(**params)
