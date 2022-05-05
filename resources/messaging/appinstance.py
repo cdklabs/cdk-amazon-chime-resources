@@ -23,10 +23,16 @@ def create_messaging_app_instance(
     **kwargs,
 ):
     logger.info(f"Creating a new Amazon Chime SDK Messaging App Instance")
+
+    params = {}
+    params["Name"] = name
+    if metadata:
+        params["Metadata"] = metadata
+    if client_request_token:
+        params["ClientRequestToken"] = client_request_token
+    logger.info(f"Params to use: {params}")
     try:
-        app_instance_arn = chime.create_app_instance(
-            Name=name, Metadata=metadata, ClientRequestToken=client_request_token
-        )["AppInstanceArn"]
+        app_instance_arn = chime.create_app_instance(**params)["AppInstanceArn"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

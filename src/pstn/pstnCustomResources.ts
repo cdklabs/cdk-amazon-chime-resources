@@ -108,7 +108,7 @@ export class PSTNResources extends Construct {
     );
     const fn = new lambda.Function(stack, constructName, {
       runtime: lambda.Runtime.PYTHON_3_9,
-      code: lambda.Code.fromAsset(path.join(__dirname, '../pstn/resources')),
+      code: lambda.Code.fromAsset(path.join(__dirname, '../../resources/pstn')),
       handler: 'index.handler',
       architecture: lambda.Architecture.ARM_64,
       role: pstnCustomResourceRole,

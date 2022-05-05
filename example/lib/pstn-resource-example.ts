@@ -1,10 +1,9 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
-import path = require('path');
 import { Construct } from 'constructs';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as chime from 'cdk-amazon-chime-resources';
 
-export class ChimeExample extends Stack {
+export class PSTNExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
@@ -17,7 +16,7 @@ export class ChimeExample extends Stack {
     const smaHandler = new Function(this, 'smaHandler', {
       runtime: Runtime.PYTHON_3_9,
       handler: 'smaHandler.lambda_handler',
-      code: Code.fromAsset(path.join(__dirname, '../src')),
+      code: Code.fromAsset('../src'),
     });
 
     const sipMediaApp = new chime.ChimeSipMediaApp(this, 'sipMediaApp', {
