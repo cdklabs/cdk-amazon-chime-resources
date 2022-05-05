@@ -1,5 +1,6 @@
-export * from './phoneNumber';
-export * from './sipMediaApplication';
-export * from './sipRule';
-export * from './voiceConnector';
-export * from './customResource';
+export * from './pstn/phoneNumber';
+export * from './pstn/sipMediaApplication';
+export * from './pstn/sipRule';
+export * from './pstn/voiceConnector';
+// export * from './pstn/pstnCustomResources';
+// export * from './messaging/messagingCustomResources';

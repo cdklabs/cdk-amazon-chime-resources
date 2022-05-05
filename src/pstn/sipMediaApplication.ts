@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
-import { ChimeResources } from './customResource';
+import { PSTNResources } from './pstnCustomResources';
 import { sipMediaApplicationValidator } from './sipMediaApplicationValidator';
 
 /**
@@ -42,7 +42,7 @@ export class ChimeSipMediaApp extends Construct {
 
     sipMediaApplicationValidator(props);
 
-    const sipMediaAppRequest = new ChimeResources(this, 'sipMediaAppRequest', {
+    const sipMediaAppRequest = new PSTNResources(this, 'sipMediaAppRequest', {
       resourceType: 'SMA',
       uid: uid,
       properties: {
@@ -53,6 +53,6 @@ export class ChimeSipMediaApp extends Construct {
     });
 
     this.sipMediaAppId =
-      sipMediaAppRequest.chimeCustomResource.getAttString('sipMediaAppId');
+      sipMediaAppRequest.pstnCustomResource.getAttString('sipMediaAppId');
   }
 }
