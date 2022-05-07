@@ -1,4 +1,5 @@
 import appinstance
+import channel_flow
 
 
 def handler(event, context):
@@ -16,12 +17,28 @@ def handler(event, context):
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
                 raise Exception(error)
+        if resource_type == "ChannelFlow":
+            try:
+                responseData["channelFlowArn"] = channel_flow.create_channel_flow(uid, **properties)
+                return {"PhysicalResourceId": uid, "Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
 
     elif event["RequestType"] == "Delete":
         if resource_type == "AppInstance":
             try:
                 responseData["appInstanceArn"] = appinstance.delete_messaging_app_instance(uid)
                 return {"Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "ChannelFlow":
+            try:
+                responseData["channelFlowArn"] = channel_flow.delete_channel_flow(uid)
+                return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)

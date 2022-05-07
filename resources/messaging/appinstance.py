@@ -19,7 +19,7 @@ def create_messaging_app_instance(
     uid,
     name=None,
     metadata=None,
-    client_request_token=None,
+    clientRequestToken=None,
     **kwargs,
 ):
     logger.info(f"Creating a new Amazon Chime SDK Messaging App Instance")
@@ -28,8 +28,8 @@ def create_messaging_app_instance(
     params["Name"] = name
     if metadata:
         params["Metadata"] = metadata
-    if client_request_token:
-        params["ClientRequestToken"] = client_request_token
+    if clientRequestToken:
+        params["ClientRequestToken"] = clientRequestToken
     logger.info(f"Params to use: {params}")
     try:
         app_instance_arn = chime.create_app_instance(**params)["AppInstanceArn"]

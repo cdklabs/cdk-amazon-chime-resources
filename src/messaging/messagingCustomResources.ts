@@ -9,7 +9,7 @@ import { Construct } from 'constructs';
 
 export interface MessagingResourceProps extends cdk.ResourceProps {
   readonly properties: { [propname: string]: any };
-  readonly resourceType: 'AppInstance';
+  readonly resourceType: 'AppInstance' | 'ChannelFlow';
   readonly uid: string;
 }
 
@@ -60,6 +60,7 @@ export class MessagingResources extends Construct {
                 resources: ['*'],
                 actions: [
                   'chime:CreateAppInstance',
+                  'chime:CreateChannelFlow',
                   'chime:DescribeAppInstance',
                   'chime:ListAppInstances',
                   'chime:UpdateAppInstance',
