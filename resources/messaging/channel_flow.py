@@ -22,13 +22,13 @@ def modify_processor(d):
             d[f"{k[0].upper() +k[1:]}"] = v
             modify_processor(v)
         else:
-            print(f"k: {k}")
+            # print(f"k: {k}")
             if k == "executionOrder":
                 print(f"Converting {k}")
                 v = int(v)
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
-            print(f"{k}: {v}")
+            # print(f"{k}: {v}")
     return d
 
 
@@ -43,13 +43,13 @@ def create_channel_flow(
 ):
     logger.info(f"Creating a new Amazon Chime SDK Messaging Channel Flow")
 
-    print(processors)
+    # print(processors)
 
     # fixed_processors = dict((k[0].upper() + k[1:], v) for k, v in processors[0].items())
     fixed_proccessors = []
 
     for processor in processors:
-        print(processor)
+        # print(processor)
         fixed_proccessors.append(modify_processor(processor))
 
     print(fixed_proccessors)
@@ -63,6 +63,7 @@ def create_channel_flow(
     logger.info(f"Params to use: {params}")
     try:
         channel_flow_arn = chimemessaging.create_channel_flow(**params)["ChannelFlowArn"]
+        print(channel_flow_arn)
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)
@@ -95,7 +96,7 @@ def delete_channel_flow(uid):
         logger.error(error)
         raise RuntimeError(error)
     try:
-        chimemessaging.delete_app_instance(ChannelFlowArn=channel_flow_to_delete)
+        chimemessaging.delete_channel_flow(ChannelFlowArn=channel_flow_to_delete)
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

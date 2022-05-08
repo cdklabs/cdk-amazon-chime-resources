@@ -6,11 +6,39 @@ An AWS Cloud Development Kit (AWS CDK) construct library that allows you to prov
 
 ## Background
 
-Amazon Chime resources (Phone numbers, SIP media applications, and Voice Connectors) are not natively available in AWS CloudFormation or AWS CDK. Therefore, in order to create these resources with AWS CDK, an AWS Lambda backed custom resource must be used. In an effort to simplify that process, this AWS CDK construct has been created. This AWS CDK construct will create a custom resource and associated Lambda and expose constructs that can be used to create corresponding resources.
+Amazon Chime resources (Amazon Chime Messaging and Amazon Chime PSTN resources) are not natively available in AWS CloudFormation or AWS CDK. Therefore, in order to create these resources with AWS CDK, an AWS Lambda backed custom resource must be used. In an effort to simplify that process, this AWS CDK construct has been created. This AWS CDK construct will create a custom resource and associated Lambda and expose constructs that can be used to create corresponding resources. This construct includes resources for both Amazon Chime Messaging and Amazon Chime PSTN.
 
 ## Usage
 
-See [example/lib/cdk-chime-resources-example.ts](example/lib/cdk-chime-resources-example.ts) for a complete example.
+#### Amazon Chime PSTN Resources Example
+
+See [example/lib/pstn-resources-example.ts](example/lib/pstn-resource-example.ts) for an example of deploying Amazon Chime PSTN resources. To deploy: `yarn cdk deploy PSTNResources`
+
+This example includes
+
+- Amazon Chime [Phone Number](https://docs.aws.amazon.com/chime/latest/ag/phone-numbers.html)
+- Amazon Chime [SIP media application](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-apps.html)
+- Amazon Chime [SIP media application rule](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-rules.html)
+- Amazon Chime [Voice Connector](https://docs.aws.amazon.com/chime-sdk/latest/ag/voice-connectors.html)
+
+#### Amazon Chime Messaging Resources Example
+
+See [example/lib/messaging-resource-example.ts](example/lib/messaging-resource-example.ts) for an example of deploying Amazon Chime Messaging resources. To deploy: `yarn cdk deploy MessagingResources`
+
+This example includes
+
+- Amazon Chime [App Instance](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-app-instance.html)
+- Amazon Chime [Channel Flow](https://docs.aws.amazon.com/chime-sdk/latest/dg/using-channel-flows.html)
+
+To verify:
+
+```
+APP_INSTANCE=$(aws chime list-app-instances --query 'AppInstances[?Name==`MessagingAppInstanceExample`]| [0].AppInstanceArn' --output text)
+
+aws chime-sdk-messaging list-channel-flows --app-instance-arn $APP_INSTANCE
+```
+
+#### In your own CDK
 
 To add to your AWS CDK package.json file:
 
@@ -18,7 +46,7 @@ To add to your AWS CDK package.json file:
 yarn add cdk-amazon-chime-resources
 ```
 
-Within your AWS CDK:
+## Amazon Chime PSTN resources
 
 ### Phone Number Creation
 
@@ -98,6 +126,42 @@ voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 ```
 
 This will assocaite the previously created phone number with the voice connector.
+
+## Amazon Chime Messaging Resources
+
+### Amazon Chime Messaging App Instance
+
+```typescript
+const appInstance = new chime.MessagingAppInstance(this, 'appInstance', {
+  name: 'MessagingAppInstanceExample',
+});
+```
+
+This will create an Amazon Chime Messaging App Instance and will return the `AppInstanceArn`.
+
+### Amazon Chime Messaging Channel Flow
+
+```
+    const channelFlow = new chime.ChannelFlow(this, 'channelFlow', {
+      appInstanceArn: appInstance.appInstanceArn,
+      processors: [
+        {
+          name: 'channelFlowName',
+          configuration: {
+            lambda: {
+              resourceArn: channelFlowHandler.functionArn,
+              invocationType: chime.InvocationType.ASYNC,
+            },
+          },
+          executionOrder: 1,
+          fallbackAction: chime.FallbackAction.ABORT,
+        },
+      ],
+      clientRequestToken: uuidv4(),
+    });
+```
+
+Using the previously created Amazon Chime Messaging App Instance, this will create an Amazon Chime Messaging Channel Flow. This channel flow will be associated with an AWS Lambda. Take note of the [required permissions](https://docs.aws.amazon.com/chime-sdk/latest/dg/processor-setup.html) for the AWS Lambda in the example to allow the Amazon Chime service to invoke the associated Lambda.
 
 ## Not Supported Yet
 

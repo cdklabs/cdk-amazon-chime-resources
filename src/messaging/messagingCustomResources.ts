@@ -61,6 +61,7 @@ export class MessagingResources extends Construct {
                 actions: [
                   'chime:CreateAppInstance',
                   'chime:CreateChannelFlow',
+                  'chime:DeleteChannelFlow',
                   'chime:DescribeAppInstance',
                   'chime:ListAppInstances',
                   'chime:UpdateAppInstance',
