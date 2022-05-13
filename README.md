@@ -141,24 +141,24 @@ This will create an Amazon Chime Messaging App Instance and will return the `App
 
 ### Amazon Chime Messaging Channel Flow
 
-```
-    const channelFlow = new chime.ChannelFlow(this, 'channelFlow', {
-      appInstanceArn: appInstance.appInstanceArn,
-      processors: [
-        {
-          name: 'channelFlowName',
-          configuration: {
-            lambda: {
-              resourceArn: channelFlowHandler.functionArn,
-              invocationType: chime.InvocationType.ASYNC,
-            },
-          },
-          executionOrder: 1,
-          fallbackAction: chime.FallbackAction.ABORT,
+```typescript
+const channelFlow = new chime.ChannelFlow(this, 'channelFlow', {
+  appInstanceArn: appInstance.appInstanceArn,
+  processors: [
+    {
+      name: 'channelFlowName',
+      configuration: {
+        lambda: {
+          resourceArn: channelFlowHandler.functionArn,
+          invocationType: chime.InvocationType.ASYNC,
         },
-      ],
-      clientRequestToken: uuidv4(),
-    });
+      },
+      executionOrder: 1,
+      fallbackAction: chime.FallbackAction.ABORT,
+    },
+  ],
+  clientRequestToken: uuidv4(),
+});
 ```
 
 Using the previously created Amazon Chime Messaging App Instance, this will create an Amazon Chime Messaging Channel Flow. This channel flow will be associated with an AWS Lambda. Take note of the [required permissions](https://docs.aws.amazon.com/chime-sdk/latest/dg/processor-setup.html) for the AWS Lambda in the example to allow the Amazon Chime service to invoke the associated Lambda.

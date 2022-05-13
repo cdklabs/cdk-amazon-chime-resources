@@ -22,13 +22,11 @@ def modify_processor(d):
             d[f"{k[0].upper() +k[1:]}"] = v
             modify_processor(v)
         else:
-            # print(f"k: {k}")
             if k == "executionOrder":
                 print(f"Converting {k}")
                 v = int(v)
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
-            # print(f"{k}: {v}")
     return d
 
 
@@ -86,7 +84,7 @@ def create_channel_flow(
 
 
 def delete_channel_flow(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging App Instance")
+    logger.info(f"Deleting an Amazon Chime SDK Messaging Channel Flow")
     try:
         channel_flow_to_delete = ssm.get_parameter(Name="/chime/channelFlowArn/" + str(uid),)[
             "Parameter"
