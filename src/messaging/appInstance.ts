@@ -2,6 +2,17 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { MessagingResources } from './messagingCustomResources';
 
+export enum AppInstanceDataType {
+  CHANNEL = 'Channel',
+  CHANNELMESSAGE = 'ChannelMessage',
+}
+
+export interface StreamingConfig {
+  readonly appInstanceDataType: AppInstanceDataType;
+  readonly resourceArn: string;
+}
+export type StreamingConfigs = Array<StreamingConfig>;
+
 /**
  * Props for `AppInstance`.
  */
@@ -54,5 +65,22 @@ export class MessagingAppInstance extends Construct {
 
     this.appInstanceArn =
       appInstanceRequest.messagingCustomResource.getAttString('appInstanceArn');
+  }
+
+  streaming(streamingConfigs: StreamingConfigs) {
+    const uid: string = cdk.Names.uniqueId(this);
+    const result = new MessagingResources(
+      this,
+      'AppInstanceStreamingConfiguration',
+      {
+        resourceType: 'StreamingConfig',
+        uid: uid,
+        properties: {
+          streamingConfigs: streamingConfigs,
+          appInstanceArn: this.appInstanceArn,
+        },
+      },
+    );
+    return result;
   }
 }

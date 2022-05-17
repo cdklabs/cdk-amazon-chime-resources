@@ -23,7 +23,6 @@ def modify_processor(d):
             modify_processor(v)
         else:
             if k == "executionOrder":
-                print(f"Converting {k}")
                 v = int(v)
             d.pop(k)
             d[f"{k[0].upper() +k[1:]}"] = v
@@ -41,13 +40,9 @@ def create_channel_flow(
 ):
     logger.info(f"Creating a new Amazon Chime SDK Messaging Channel Flow")
 
-    # print(processors)
-
-    # fixed_processors = dict((k[0].upper() + k[1:], v) for k, v in processors[0].items())
     fixed_proccessors = []
 
     for processor in processors:
-        # print(processor)
         fixed_proccessors.append(modify_processor(processor))
 
     print(fixed_proccessors)

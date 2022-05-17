@@ -1,9 +1,11 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as chime from 'cdk-amazon-chime-resources';
+import * as kinesis from 'aws-cdk-lib/aws-kinesis';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { v4 as uuidv4 } from 'uuid';
+import { AppInstanceDataType } from 'cdk-amazon-chime-resources';
 
 export class MessagingExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -82,6 +84,19 @@ export class MessagingExample extends Stack {
       ],
       clientRequestToken: uuidv4(),
     });
+
+    const kinesisStream = new kinesis.Stream(this, 'kinesisStream', {
+      streamName: 'chime-messaging-channel-stream',
+      shardCount: 2,
+      encryption: kinesis.StreamEncryption.MANAGED,
+    });
+
+    appInstance.streaming([
+      {
+        appInstanceDataType: AppInstanceDataType.CHANNEL,
+        resourceArn: kinesisStream.streamArn,
+      },
+    ]);
 
     new CfnOutput(this, 'appInstanceArn', {
       value: appInstance.appInstanceArn,

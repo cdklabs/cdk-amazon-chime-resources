@@ -2,6 +2,7 @@ import app_instance
 import channel_flow
 import instance_admin
 import instance_user
+import streaming_config
 
 
 def handler(event, context):
@@ -45,6 +46,16 @@ def handler(event, context):
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
                 raise Exception(error)
+        if resource_type == "StreamingConfig":
+            try:
+                responseData["AppInstanceStreamingConfigurations"] = streaming_config.add_app_instance_streaming(
+                    uid, **properties
+                )
+                return {"PhysicalResourceId": uid, "Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
 
     elif event["RequestType"] == "Delete":
         if resource_type == "AppInstance":
@@ -82,6 +93,16 @@ def handler(event, context):
             #     print(error)
             #     raise Exception(error)
             responseData = {"Message": "Delete App Instance Admin is no-op. Returning success status."}
+            return {"PhysicalResourceId": uid, "Data": responseData}
+        if resource_type == "StreamingConfig":
+            # try:
+            #     responseData["AppInstanceAdmin"] = instance_admin.delete_app_instance_admin(uid, **properties)
+            #     return {"PhysicalResourceId": uid, "Data": responseData}
+            # except Exception as e:
+            #     error = {"error": f"Exception thrown: {e}"}
+            #     print(error)
+            #     raise Exception(error)
+            responseData = {"Message": "StreamingConfig is no-op. Returning success status."}
             return {"PhysicalResourceId": uid, "Data": responseData}
 
     else:

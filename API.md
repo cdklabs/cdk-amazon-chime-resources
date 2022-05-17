@@ -342,6 +342,25 @@ new MessagingAppInstance(scope: Construct, id: string, props: AppInstanceProps)
 
 ---
 
+#### Methods <a name="Methods" id="methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`streaming`](#cdkamazonchimeresourcesmessagingappinstancestreaming) | *No description.* |
+
+---
+
+##### `streaming` <a name="cdk-amazon-chime-resources.MessagingAppInstance.streaming" id="cdkamazonchimeresourcesmessagingappinstancestreaming"></a>
+
+```typescript
+public streaming(streamingConfigs: StreamingConfig[])
+```
+
+###### `streamingConfigs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstance.parameter.streamingConfigs" id="cdkamazonchimeresourcesmessagingappinstanceparameterstreamingconfigs"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.StreamingConfig`](#cdk-amazon-chime-resources.StreamingConfig)[]
+
+---
 
 
 #### Properties <a name="Properties" id="properties"></a>
@@ -1795,6 +1814,45 @@ Streaming data retention for VoiceConnector.
 
 ---
 
+### StreamingConfig <a name="cdk-amazon-chime-resources.StreamingConfig" id="cdkamazonchimeresourcesstreamingconfig"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { StreamingConfig } from 'cdk-amazon-chime-resources'
+
+const streamingConfig: StreamingConfig = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceDataType`](#cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType) | *No description.* |
+| [`resourceArn`](#cdkamazonchimeresourcesstreamingconfigpropertyresourcearn)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `appInstanceDataType`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfig.property.appInstanceDataType" id="cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype"></a>
+
+```typescript
+public readonly appInstanceDataType: AppInstanceDataType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType)
+
+---
+
+##### `resourceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfig.property.resourceArn" id="cdkamazonchimeresourcesstreamingconfigpropertyresourcearn"></a>
+
+```typescript
+public readonly resourceArn: string;
+```
+
+- *Type:* `string`
+
+---
+
 ### Tags <a name="cdk-amazon-chime-resources.Tags" id="cdkamazonchimeresourcestags"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -2035,6 +2093,25 @@ public readonly termination: Termination;
 
 
 ## Enums <a name="Enums" id="enums"></a>
+
+### AppInstanceDataType <a name="AppInstanceDataType" id="appinstancedatatype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`CHANNEL`](#cdkamazonchimeresourcesappinstancedatatypechannel) | *No description.* |
+| [`CHANNELMESSAGE`](#cdkamazonchimeresourcesappinstancedatatypechannelmessage) | *No description.* |
+
+---
+
+#### `CHANNEL` <a name="cdk-amazon-chime-resources.AppInstanceDataType.CHANNEL" id="cdkamazonchimeresourcesappinstancedatatypechannel"></a>
+
+---
+
+
+#### `CHANNELMESSAGE` <a name="cdk-amazon-chime-resources.AppInstanceDataType.CHANNELMESSAGE" id="cdkamazonchimeresourcesappinstancedatatypechannelmessage"></a>
+
+---
+
 
 ### FallbackAction <a name="FallbackAction" id="fallbackaction"></a>
 
