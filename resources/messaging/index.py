@@ -1,5 +1,7 @@
-import appinstance
+import app_instance
 import channel_flow
+import instance_admin
+import instance_user
 
 
 def handler(event, context):
@@ -11,7 +13,7 @@ def handler(event, context):
     if event["RequestType"] == "Create":
         if resource_type == "AppInstance":
             try:
-                responseData["appInstanceArn"] = appinstance.create_messaging_app_instance(uid, **properties)
+                responseData["appInstanceArn"] = app_instance.create_messaging_app_instance(uid, **properties)
                 return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -25,11 +27,29 @@ def handler(event, context):
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
                 raise Exception(error)
+        if resource_type == "AppInstanceUser":
+            try:
+                responseData["appInstanceUser"] = instance_user.create_app_instance_user(uid, **properties)
+                return {"PhysicalResourceId": uid, "Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "AppInstanceAdmin":
+            try:
+                app_instance_admin = instance_admin.create_app_instance_admin(uid, **properties)
+                responseData["AppInstanceAdminArn"] = app_instance_admin["Arn"]
+                responseData["AppInstanceAdminName"] = app_instance_admin["Name"]
+                return {"PhysicalResourceId": uid, "Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
 
     elif event["RequestType"] == "Delete":
         if resource_type == "AppInstance":
             try:
-                responseData["appInstanceArn"] = appinstance.delete_messaging_app_instance(uid)
+                responseData["appInstanceArn"] = app_instance.delete_messaging_app_instance(uid)
                 return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -43,6 +63,26 @@ def handler(event, context):
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
                 raise Exception(error)
+        if resource_type == "AppInstanceUser":
+            # try:
+            #     responseData["AppInstanceUser"] = instance_user.delete_app_instance_user(uid, **properties)
+            #     return {"PhysicalResourceId": uid, "Data": responseData}
+            # except Exception as e:
+            #     error = {"error": f"Exception thrown: {e}"}
+            #     print(error)
+            #     raise Exception(error)
+            responseData = {"Message": "Delete App Instance User is no-op. Returning success status."}
+            return {"PhysicalResourceId": uid, "Data": responseData}
+        if resource_type == "AppInstanceAdmin":
+            # try:
+            #     responseData["AppInstanceAdmin"] = instance_admin.delete_app_instance_admin(uid, **properties)
+            #     return {"PhysicalResourceId": uid, "Data": responseData}
+            # except Exception as e:
+            #     error = {"error": f"Exception thrown: {e}"}
+            #     print(error)
+            #     raise Exception(error)
+            responseData = {"Message": "Delete App Instance Admin is no-op. Returning success status."}
+            return {"PhysicalResourceId": uid, "Data": responseData}
 
     else:
         responseData = {"Message": "Update is no-op. Returning success status."}

@@ -11,39 +11,32 @@ except:
     log_level = "INFO"
 logger.setLevel(log_level)
 
-chime = boto3.client("chime")
+chime = boto3.client("chime-sdk-identity")
 ssm = boto3.client("ssm")
 
 
-def create_messaging_app_instance(
+def create_app_instance_admin(
     uid,
-    name=None,
-    metadata=None,
-    clientRequestToken=None,
+    appInstanceArn=None,
+    appInstanceAdminArn=None,
     **kwargs,
 ):
-    logger.info(f"Creating a new Amazon Chime SDK Messaging App Instance")
-
     params = {}
-    params["Name"] = name
-    if metadata:
-        params["Metadata"] = metadata
-    if clientRequestToken:
-        params["ClientRequestToken"] = clientRequestToken
+    params["AppInstanceAdminArn"] = appInstanceAdminArn
+    params["AppInstanceArn"] = appInstanceArn
     logger.info(f"Params to use: {params}")
     try:
-        app_instance_arn = chime.create_app_instance(**params)["AppInstanceArn"]
+        app_instance_admin = chime.create_app_instance_admin(**params)["AppInstanceAdmin"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)
         raise RuntimeError(error)
-
     try:
         ssm.put_parameter(
-            Name="/chime/appInstanceArn/" + uid,
-            Description="appInstanceArn",
+            Name="/chime/appInstanceAdminArn/" + uid,
+            Description="appInstanceAdminArn",
             Overwrite=True,
-            Value=app_instance_arn,
+            Value=app_instance_admin["Arn"],
             Type="String",
         )
     except Exception as e:
@@ -51,12 +44,15 @@ def create_messaging_app_instance(
         logger.error(error)
         raise RuntimeError(error)
 
-    return app_instance_arn
+    return app_instance_admin
 
 
-def delete_messaging_app_instance(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging App Instance")
+def delete_app_instance_admin(uid):
+    logger.info(f"Deleting an Amazon Chime SDK Messaging Admin")
     try:
+        app_instance_admin_to_delete = ssm.get_parameter(Name="/chime/appInstanceAdminArn/" + str(uid),)[
+            "Parameter"
+        ]["Value"]
         app_instance_to_delete = ssm.get_parameter(Name="/chime/appInstanceArn/" + str(uid),)[
             "Parameter"
         ]["Value"]
@@ -65,7 +61,9 @@ def delete_messaging_app_instance(uid):
         logger.error(error)
         raise RuntimeError(error)
     try:
-        chime.delete_app_instance(AppInstanceArn=app_instance_to_delete)
+        chime.delete_app_instance_admin(
+            AppInstanceAdminArn=app_instance_admin_to_delete, AppInstanceArn=app_instance_to_delete
+        )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

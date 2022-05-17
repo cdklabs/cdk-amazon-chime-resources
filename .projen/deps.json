@@ -25,7 +25,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.22.0",
+      "version": "2.24.1",
       "type": "build"
     },
     {
@@ -108,8 +108,12 @@
       "type": "build"
     },
     {
+      "name": "yalc",
+      "type": "build"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.22.0",
+      "version": "^2.24.1",
       "type": "peer"
     },
     {

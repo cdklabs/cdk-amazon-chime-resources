@@ -13,6 +13,24 @@ export class MessagingExample extends Stack {
       name: 'MessagingAppInstanceExample',
     });
 
+    const appInstanceUser = new chime.MessagingAppInstanceUser(
+      this,
+      'appInstanceUser',
+      {
+        appInstanceArn: appInstance.appInstanceArn,
+        appInstanceUserId: '1234',
+      },
+    );
+
+    const appinstanceAdmin = new chime.MessagingAppInstanceAdmin(
+      this,
+      'appInstanceAdmin',
+      {
+        appInstanceAdminArn: appInstanceUser.appInstanceUserArn,
+        appInstanceArn: appInstance.appInstanceArn,
+      },
+    );
+
     const channelFlowLambdaRole = new iam.Role(this, 'channelFlowLambdaRole', {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
       inlinePolicies: {
@@ -71,6 +89,10 @@ export class MessagingExample extends Stack {
 
     new CfnOutput(this, 'channelFlowArn', {
       value: channelFlow.channelFlowArn,
+    });
+
+    new CfnOutput(this, 'appInstanceAdminArn', {
+      value: appinstanceAdmin.appInstanceAdminArn,
     });
   }
 }

@@ -9,7 +9,11 @@ import { Construct } from 'constructs';
 
 export interface MessagingResourceProps extends cdk.ResourceProps {
   readonly properties: { [propname: string]: any };
-  readonly resourceType: 'AppInstance' | 'ChannelFlow';
+  readonly resourceType:
+    | 'AppInstance'
+    | 'ChannelFlow'
+    | 'AppInstanceUser'
+    | 'AppInstanceAdmin';
   readonly uid: string;
 }
 

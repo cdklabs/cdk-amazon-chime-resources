@@ -2,14 +2,14 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.22.0',
+  cdkVersion: '2.24.1',
   defaultReleaseBranch: 'main',
   releaseToNpm: true,
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
   workflowNodeVersion: '16.13.1',
-  devDeps: ['aws-cdk', 'ts-node'],
+  devDeps: ['aws-cdk', 'ts-node', 'yalc'],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {

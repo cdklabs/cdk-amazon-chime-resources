@@ -363,6 +363,131 @@ public readonly appInstanceArn: string;
 ---
 
 
+### MessagingAppInstanceAdmin <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin" id="cdkamazonchimeresourcesmessagingappinstanceadmin"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.Initializer" id="cdkamazonchimeresourcesmessagingappinstanceadmininitializer"></a>
+
+```typescript
+import { MessagingAppInstanceAdmin } from 'cdk-amazon-chime-resources'
+
+new MessagingAppInstanceAdmin(scope: Construct, id: string, props: AppInstanceAdminProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourcesmessagingappinstanceadminparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourcesmessagingappinstanceadminparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourcesmessagingappinstanceadminparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceAdminProps`](#cdk-amazon-chime-resources.AppInstanceAdminProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.parameter.scope" id="cdkamazonchimeresourcesmessagingappinstanceadminparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.parameter.id" id="cdkamazonchimeresourcesmessagingappinstanceadminparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.parameter.props" id="cdkamazonchimeresourcesmessagingappinstanceadminparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceAdminProps`](#cdk-amazon-chime-resources.AppInstanceAdminProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceAdminArn`](#cdkamazonchimeresourcesmessagingappinstanceadminpropertyappinstanceadminarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`appInstanceAdminName`](#cdkamazonchimeresourcesmessagingappinstanceadminpropertyappinstanceadminname)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `appInstanceAdminArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.property.appInstanceAdminArn" id="cdkamazonchimeresourcesmessagingappinstanceadminpropertyappinstanceadminarn"></a>
+
+```typescript
+public readonly appInstanceAdminArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `appInstanceAdminName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.property.appInstanceAdminName" id="cdkamazonchimeresourcesmessagingappinstanceadminpropertyappinstanceadminname"></a>
+
+```typescript
+public readonly appInstanceAdminName: string;
+```
+
+- *Type:* `string`
+
+---
+
+
+### MessagingAppInstanceUser <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser" id="cdkamazonchimeresourcesmessagingappinstanceuser"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.Initializer" id="cdkamazonchimeresourcesmessagingappinstanceuserinitializer"></a>
+
+```typescript
+import { MessagingAppInstanceUser } from 'cdk-amazon-chime-resources'
+
+new MessagingAppInstanceUser(scope: Construct, id: string, props: AppInstanceUserProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourcesmessagingappinstanceuserparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourcesmessagingappinstanceuserparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourcesmessagingappinstanceuserparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceUserProps`](#cdk-amazon-chime-resources.AppInstanceUserProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.parameter.scope" id="cdkamazonchimeresourcesmessagingappinstanceuserparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.parameter.id" id="cdkamazonchimeresourcesmessagingappinstanceuserparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.parameter.props" id="cdkamazonchimeresourcesmessagingappinstanceuserparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceUserProps`](#cdk-amazon-chime-resources.AppInstanceUserProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceUserArn`](#cdkamazonchimeresourcesmessagingappinstanceuserpropertyappinstanceuserarn)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `appInstanceUserArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.property.appInstanceUserArn" id="cdkamazonchimeresourcesmessagingappinstanceuserpropertyappinstanceuserarn"></a>
+
+```typescript
+public readonly appInstanceUserArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+
 ### MessagingResources <a name="cdk-amazon-chime-resources.MessagingResources" id="cdkamazonchimeresourcesmessagingresources"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.MessagingResources.Initializer" id="cdkamazonchimeresourcesmessagingresourcesinitializer"></a>
@@ -558,6 +683,53 @@ public readonly pstnCustomResource: CustomResource;
 
 ## Structs <a name="Structs" id="structs"></a>
 
+### AppInstanceAdminProps <a name="cdk-amazon-chime-resources.AppInstanceAdminProps" id="cdkamazonchimeresourcesappinstanceadminprops"></a>
+
+Props for `AppInstance`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceAdminProps } from 'cdk-amazon-chime-resources'
+
+const appInstanceAdminProps: AppInstanceAdminProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceAdminArn`](#cdkamazonchimeresourcesappinstanceadminpropspropertyappinstanceadminarn)<span title="Required">*</span> | `string` | The name of the app instance. |
+| [`appInstanceArn`](#cdkamazonchimeresourcesappinstanceadminpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The name of the app instance. |
+
+---
+
+##### `appInstanceAdminArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceAdminProps.property.appInstanceAdminArn" id="cdkamazonchimeresourcesappinstanceadminpropspropertyappinstanceadminarn"></a>
+
+```typescript
+public readonly appInstanceAdminArn: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+##### `appInstanceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceAdminProps.property.appInstanceArn" id="cdkamazonchimeresourcesappinstanceadminpropspropertyappinstancearn"></a>
+
+```typescript
+public readonly appInstanceArn: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
 ### AppInstanceProps <a name="cdk-amazon-chime-resources.AppInstanceProps" id="cdkamazonchimeresourcesappinstanceprops"></a>
 
 Props for `AppInstance`.
@@ -611,6 +783,99 @@ Limited to a 1KB string in UTF-8.
 ---
 
 ##### `name`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceProps.property.name" id="cdkamazonchimeresourcesappinstancepropspropertyname"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+### AppInstanceUserProps <a name="cdk-amazon-chime-resources.AppInstanceUserProps" id="cdkamazonchimeresourcesappinstanceuserprops"></a>
+
+Props for `AppInstance`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceUserProps } from 'cdk-amazon-chime-resources'
+
+const appInstanceUserProps: AppInstanceUserProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceArn`](#cdkamazonchimeresourcesappinstanceuserpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The name of the app instance. |
+| [`appInstanceUserId`](#cdkamazonchimeresourcesappinstanceuserpropspropertyappinstanceuserid)<span title="Required">*</span> | `string` | The name of the app instance. |
+| [`clientRequestToken`](#cdkamazonchimeresourcesappinstanceuserpropspropertyclientrequesttoken) | `string` | The ClientRequestToken of the app instance. |
+| [`metadata`](#cdkamazonchimeresourcesappinstanceuserpropspropertymetadata) | `string` | The metadata of the app instance. |
+| [`name`](#cdkamazonchimeresourcesappinstanceuserpropspropertyname) | `string` | The name of the app instance. |
+
+---
+
+##### `appInstanceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.appInstanceArn" id="cdkamazonchimeresourcesappinstanceuserpropspropertyappinstancearn"></a>
+
+```typescript
+public readonly appInstanceArn: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+##### `appInstanceUserId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.appInstanceUserId" id="cdkamazonchimeresourcesappinstanceuserpropspropertyappinstanceuserid"></a>
+
+```typescript
+public readonly appInstanceUserId: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+##### `clientRequestToken`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.clientRequestToken" id="cdkamazonchimeresourcesappinstanceuserpropspropertyclientrequesttoken"></a>
+
+```typescript
+public readonly clientRequestToken: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The ClientRequestToken of the app instance.
+
+This field is autopopulated if not provided.
+
+---
+
+##### `metadata`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.metadata" id="cdkamazonchimeresourcesappinstanceuserpropspropertymetadata"></a>
+
+```typescript
+public readonly metadata: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The metadata of the app instance.
+
+Limited to a 1KB string in UTF-8.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.name" id="cdkamazonchimeresourcesappinstanceuserpropspropertyname"></a>
 
 ```typescript
 public readonly name: string;
