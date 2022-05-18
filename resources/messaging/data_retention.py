@@ -23,15 +23,12 @@ def add_data_retention_policy(
 ):
     logger.info(f"Data Retention: {dataRetention}")
     params = {}
-    params["AppInstanceRetentionSettings"] = {
-        "AppInstanceRetentionSettings": {"ChannelRetentionSettings": {"RetentionDays": dataRetention}}
-    }
+    params["AppInstanceRetentionSettings"] = {"ChannelRetentionSettings": {"RetentionDays": int(dataRetention)}}
     params["AppInstanceArn"] = appInstanceArn
     logger.info(f"Params to use: {params}")
-    time.sleep(25)
     try:
         app_instance_streaming_configs = chime.put_app_instance_retention_settings(**params)[
-            "AppInstanceStreamingConfigurations"
+            "AppInstanceRetentionSettings"
         ]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}

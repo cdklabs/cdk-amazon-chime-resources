@@ -3,6 +3,7 @@ import channel_flow
 import instance_admin
 import instance_user
 import streaming_config
+import data_retention
 
 
 def handler(event, context):
@@ -48,10 +49,34 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "StreamingConfig":
             try:
-                responseData["AppInstanceStreamingConfigurations"] = streaming_config.add_app_instance_streaming(
-                    uid, **properties
-                )
-                return {"PhysicalResourceId": uid, "Data": responseData}
+                streaming_config.add_app_instance_streaming(uid, **properties)
+                return {"PhysicalResourceId": uid}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "DataRetention":
+            try:
+                data_retention.add_data_retention_policy(uid, **properties)
+                return {"PhysicalResourceId": uid}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+
+    elif event["RequestType"] == "Update":
+        if resource_type == "StreamingConfig":
+            try:
+                streaming_config.add_app_instance_streaming(uid, **properties)
+                return {"PhysicalResourceId": uid}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "DataRetention":
+            try:
+                data_retention.add_data_retention_policy(uid, **properties)
+                return {"PhysicalResourceId": uid}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
@@ -74,36 +99,6 @@ def handler(event, context):
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
                 raise Exception(error)
-        if resource_type == "AppInstanceUser":
-            # try:
-            #     responseData["AppInstanceUser"] = instance_user.delete_app_instance_user(uid, **properties)
-            #     return {"PhysicalResourceId": uid, "Data": responseData}
-            # except Exception as e:
-            #     error = {"error": f"Exception thrown: {e}"}
-            #     print(error)
-            #     raise Exception(error)
-            responseData = {"Message": "Delete App Instance User is no-op. Returning success status."}
-            return {"PhysicalResourceId": uid, "Data": responseData}
-        if resource_type == "AppInstanceAdmin":
-            # try:
-            #     responseData["AppInstanceAdmin"] = instance_admin.delete_app_instance_admin(uid, **properties)
-            #     return {"PhysicalResourceId": uid, "Data": responseData}
-            # except Exception as e:
-            #     error = {"error": f"Exception thrown: {e}"}
-            #     print(error)
-            #     raise Exception(error)
-            responseData = {"Message": "Delete App Instance Admin is no-op. Returning success status."}
-            return {"PhysicalResourceId": uid, "Data": responseData}
-        if resource_type == "StreamingConfig":
-            # try:
-            #     responseData["AppInstanceAdmin"] = instance_admin.delete_app_instance_admin(uid, **properties)
-            #     return {"PhysicalResourceId": uid, "Data": responseData}
-            # except Exception as e:
-            #     error = {"error": f"Exception thrown: {e}"}
-            #     print(error)
-            #     raise Exception(error)
-            responseData = {"Message": "StreamingConfig is no-op. Returning success status."}
-            return {"PhysicalResourceId": uid, "Data": responseData}
 
     else:
         responseData = {"Message": "Update is no-op. Returning success status."}

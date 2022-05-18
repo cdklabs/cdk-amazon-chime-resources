@@ -6,7 +6,6 @@ import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { v4 as uuidv4 } from 'uuid';
 import { AppInstanceDataType } from 'cdk-amazon-chime-resources';
-import { Duration } from 'aws-cdk-lib';
 
 export class MessagingExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -25,14 +24,10 @@ export class MessagingExample extends Stack {
       },
     );
 
-    const appinstanceAdmin = new chime.MessagingAppInstanceAdmin(
-      this,
-      'appInstanceAdmin',
-      {
-        appInstanceAdminArn: appInstanceUser.appInstanceUserArn,
-        appInstanceArn: appInstance.appInstanceArn,
-      },
-    );
+    new chime.MessagingAppInstanceAdmin(this, 'appInstanceAdmin', {
+      appInstanceAdminArn: appInstanceUser.appInstanceUserArn,
+      appInstanceArn: appInstance.appInstanceArn,
+    });
 
     const channelFlowLambdaRole = new iam.Role(this, 'channelFlowLambdaRole', {
       assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
@@ -68,7 +63,7 @@ export class MessagingExample extends Stack {
       sourceAccount: `${this.account}`,
     });
 
-    const channelFlow = new chime.ChannelFlow(this, 'channelFlow', {
+    new chime.ChannelFlow(this, 'channelFlow', {
       appInstanceArn: appInstance.appInstanceArn,
       processors: [
         {
@@ -99,18 +94,26 @@ export class MessagingExample extends Stack {
       },
     ]);
 
-    appInstance.retention({ dataRetention: Duration.days(2) });
+    appInstance.retention(2);
 
     new CfnOutput(this, 'appInstanceArn', {
-      value: appInstance.appInstanceArn,
+      value: `aws chime-sdk-identity describe-app-instance --app-instance-arn ${appInstance.appInstanceArn}`,
     });
 
     new CfnOutput(this, 'channelFlowArn', {
-      value: channelFlow.channelFlowArn,
+      value: `aws chime-sdk-messaging list-channel-flows --app-instance-arn ${appInstance.appInstanceArn}`,
     });
 
     new CfnOutput(this, 'appInstanceAdminArn', {
-      value: appinstanceAdmin.appInstanceAdminArn,
+      value: `aws chime-sdk-identity list-app-instance-admins --app-instance-arn ${appInstance.appInstanceArn}`,
+    });
+
+    new CfnOutput(this, 'streamingConfiguration', {
+      value: `aws chime get-app-instance-streaming-configurations --app-instance-arn ${appInstance.appInstanceArn}`,
+    });
+
+    new CfnOutput(this, 'dataRetentionConfig', {
+      value: `aws chime get-app-instance-retention-settings --app-instance-arn ${appInstance.appInstanceArn}`,
     });
   }
 }

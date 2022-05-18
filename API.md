@@ -354,12 +354,12 @@ new MessagingAppInstance(scope: Construct, id: string, props: AppInstanceProps)
 ##### `retention` <a name="cdk-amazon-chime-resources.MessagingAppInstance.retention" id="cdkamazonchimeresourcesmessagingappinstanceretention"></a>
 
 ```typescript
-public retention(dataRetention: DataRetentionConfig)
+public retention(days: number)
 ```
 
-###### `dataRetention`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstance.parameter.dataRetention" id="cdkamazonchimeresourcesmessagingappinstanceparameterdataretention"></a>
+###### `days`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstance.parameter.days" id="cdkamazonchimeresourcesmessagingappinstanceparameterdays"></a>
 
-- *Type:* [`cdk-amazon-chime-resources.DataRetentionConfig`](#cdk-amazon-chime-resources.DataRetentionConfig)
+- *Type:* `number`
 
 ---
 
@@ -1027,34 +1027,6 @@ public readonly lambda: Lambda;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Lambda`](#cdk-amazon-chime-resources.Lambda)
-
----
-
-### DataRetentionConfig <a name="cdk-amazon-chime-resources.DataRetentionConfig" id="cdkamazonchimeresourcesdataretentionconfig"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { DataRetentionConfig } from 'cdk-amazon-chime-resources'
-
-const dataRetentionConfig: DataRetentionConfig = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`dataRetention`](#cdkamazonchimeresourcesdataretentionconfigpropertydataretention)<span title="Required">*</span> | [`aws-cdk-lib.Duration`](#aws-cdk-lib.Duration) | *No description.* |
-
----
-
-##### `dataRetention`<sup>Required</sup> <a name="cdk-amazon-chime-resources.DataRetentionConfig.property.dataRetention" id="cdkamazonchimeresourcesdataretentionconfigpropertydataretention"></a>
-
-```typescript
-public readonly dataRetention: Duration;
-```
-
-- *Type:* [`aws-cdk-lib.Duration`](#aws-cdk-lib.Duration)
 
 ---
 
