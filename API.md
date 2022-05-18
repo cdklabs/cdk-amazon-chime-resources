@@ -924,6 +924,8 @@ The name of the app instance.
 
 Props for `AppInstance`.
 
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_messaging-chime_CreateChannelFlow.html
+
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
 
 ```typescript
@@ -936,11 +938,11 @@ const channelFlowProps: ChannelFlowProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`appInstanceArn`](#cdkamazonchimeresourceschannelflowpropspropertyappinstancearn)<span title="Required">*</span> | `string` | *No description.* |
-| [`clientRequestToken`](#cdkamazonchimeresourceschannelflowpropspropertyclientrequesttoken)<span title="Required">*</span> | `string` | The ClientRequestToken of the app instance. |
-| [`processors`](#cdkamazonchimeresourceschannelflowpropspropertyprocessors)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Processors`](#cdk-amazon-chime-resources.Processors)[] | *No description.* |
-| [`name`](#cdkamazonchimeresourceschannelflowpropspropertyname) | `string` | The name of the app instance. |
-| [`tags`](#cdkamazonchimeresourceschannelflowpropspropertytags) | [`cdk-amazon-chime-resources.Tags`](#cdk-amazon-chime-resources.Tags)[] | *No description.* |
+| [`appInstanceArn`](#cdkamazonchimeresourceschannelflowpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The ARN of the App Instance. |
+| [`clientRequestToken`](#cdkamazonchimeresourceschannelflowpropspropertyclientrequesttoken)<span title="Required">*</span> | `string` | The client token for the request. |
+| [`processors`](#cdkamazonchimeresourceschannelflowpropspropertyprocessors)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Processors`](#cdk-amazon-chime-resources.Processors)[] | Information about the processor Lambda functions. |
+| [`name`](#cdkamazonchimeresourceschannelflowpropspropertyname) | `string` | The name of the channel flow. |
+| [`tags`](#cdkamazonchimeresourceschannelflowpropspropertytags) | [`cdk-amazon-chime-resources.Tags`](#cdk-amazon-chime-resources.Tags)[] | The tags for the creation request. |
 
 ---
 
@@ -951,6 +953,9 @@ public readonly appInstanceArn: string;
 ```
 
 - *Type:* `string`
+- *Default:* None
+
+The ARN of the App Instance.
 
 ---
 
@@ -963,9 +968,9 @@ public readonly clientRequestToken: string;
 - *Type:* `string`
 - *Default:* None
 
-The ClientRequestToken of the app instance.
+The client token for the request.
 
-This field is autopopulated if not provided.
+An Idempotency token.
 
 ---
 
@@ -976,6 +981,9 @@ public readonly processors: Processors[];
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Processors`](#cdk-amazon-chime-resources.Processors)[]
+- *Default:* None
+
+Information about the processor Lambda functions.
 
 ---
 
@@ -988,7 +996,7 @@ public readonly name: string;
 - *Type:* `string`
 - *Default:* None
 
-The name of the app instance.
+The name of the channel flow.
 
 ---
 
@@ -999,10 +1007,17 @@ public readonly tags: Tags[];
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Tags`](#cdk-amazon-chime-resources.Tags)[]
+- *Default:* None
+
+The tags for the creation request.
 
 ---
 
 ### Configuration <a name="cdk-amazon-chime-resources.Configuration" id="cdkamazonchimeresourcesconfiguration"></a>
+
+Props for `Configuration`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_messaging-chime_ProcessorConfiguration.html
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
 
@@ -1016,7 +1031,7 @@ const configuration: Configuration = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`lambda`](#cdkamazonchimeresourcesconfigurationpropertylambda)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Lambda`](#cdk-amazon-chime-resources.Lambda) | *No description.* |
+| [`lambda`](#cdkamazonchimeresourcesconfigurationpropertylambda)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Lambda`](#cdk-amazon-chime-resources.Lambda) | Indicates that the processor is of type Lambda. |
 
 ---
 
@@ -1027,10 +1042,17 @@ public readonly lambda: Lambda;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Lambda`](#cdk-amazon-chime-resources.Lambda)
+- *Default:* None
+
+Indicates that the processor is of type Lambda.
 
 ---
 
 ### Lambda <a name="cdk-amazon-chime-resources.Lambda" id="cdkamazonchimeresourceslambda"></a>
+
+Props for `LambdaConfiguration`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_messaging-chime_LambdaConfiguration.html
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
 
@@ -1044,8 +1066,8 @@ const lambda: Lambda = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`invocationType`](#cdkamazonchimeresourceslambdapropertyinvocationtype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.InvocationType`](#cdk-amazon-chime-resources.InvocationType) | *No description.* |
-| [`resourceArn`](#cdkamazonchimeresourceslambdapropertyresourcearn)<span title="Required">*</span> | `string` | *No description.* |
+| [`invocationType`](#cdkamazonchimeresourceslambdapropertyinvocationtype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.InvocationType`](#cdk-amazon-chime-resources.InvocationType) | Controls how the Lambda function is invoked. |
+| [`resourceArn`](#cdkamazonchimeresourceslambdapropertyresourcearn)<span title="Required">*</span> | `string` | The ARN of the Lambda message processing function. |
 
 ---
 
@@ -1056,6 +1078,9 @@ public readonly invocationType: InvocationType;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.InvocationType`](#cdk-amazon-chime-resources.InvocationType)
+- *Default:* None
+
+Controls how the Lambda function is invoked.
 
 ---
 
@@ -1066,6 +1091,9 @@ public readonly resourceArn: string;
 ```
 
 - *Type:* `string`
+- *Default:* None
+
+The ARN of the Lambda message processing function.
 
 ---
 
@@ -1397,6 +1425,10 @@ State for phone number request (optional) - Usable only with US Country.
 
 ### Processors <a name="cdk-amazon-chime-resources.Processors" id="cdkamazonchimeresourcesprocessors"></a>
 
+Props for `Processors`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_messaging-chime_Processor.html
+
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
 
 ```typescript
@@ -1409,10 +1441,10 @@ const processors: Processors = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`configuration`](#cdkamazonchimeresourcesprocessorspropertyconfiguration)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Configuration`](#cdk-amazon-chime-resources.Configuration) | *No description.* |
-| [`executionOrder`](#cdkamazonchimeresourcesprocessorspropertyexecutionorder)<span title="Required">*</span> | `number` | *No description.* |
-| [`fallbackAction`](#cdkamazonchimeresourcesprocessorspropertyfallbackaction)<span title="Required">*</span> | [`cdk-amazon-chime-resources.FallbackAction`](#cdk-amazon-chime-resources.FallbackAction) | *No description.* |
-| [`name`](#cdkamazonchimeresourcesprocessorspropertyname)<span title="Required">*</span> | `string` | *No description.* |
+| [`configuration`](#cdkamazonchimeresourcesprocessorspropertyconfiguration)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Configuration`](#cdk-amazon-chime-resources.Configuration) | The information about the type of processor and its identifier. |
+| [`executionOrder`](#cdkamazonchimeresourcesprocessorspropertyexecutionorder)<span title="Required">*</span> | `number` | The sequence in which processors run. |
+| [`fallbackAction`](#cdkamazonchimeresourcesprocessorspropertyfallbackaction)<span title="Required">*</span> | [`cdk-amazon-chime-resources.FallbackAction`](#cdk-amazon-chime-resources.FallbackAction) | Determines whether to continue with message processing or stop it in cases where communication with a processor fails. |
+| [`name`](#cdkamazonchimeresourcesprocessorspropertyname)<span title="Required">*</span> | `string` | The name of the Channel Flow Processor. |
 
 ---
 
@@ -1423,6 +1455,9 @@ public readonly configuration: Configuration;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Configuration`](#cdk-amazon-chime-resources.Configuration)
+- *Default:* None
+
+The information about the type of processor and its identifier.
 
 ---
 
@@ -1433,6 +1468,11 @@ public readonly executionOrder: number;
 ```
 
 - *Type:* `number`
+- *Default:* None
+
+The sequence in which processors run.
+
+If you have multiple processors in a channel flow, message processing goes through each processor in the sequence. The value determines the sequence. At this point, we support only 1 processor within a flow.
 
 ---
 
@@ -1443,6 +1483,11 @@ public readonly fallbackAction: FallbackAction;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.FallbackAction`](#cdk-amazon-chime-resources.FallbackAction)
+- *Default:* None
+
+Determines whether to continue with message processing or stop it in cases where communication with a processor fails.
+
+If a processor has a fallback action of ABORT and communication with it fails, the processor sets the message status to FAILED and does not send the message to any recipients. Note that if the last processor in the channel flow sequence has a fallback action of CONTINUE and communication with the processor fails, then the message is considered processed and sent to recipients of the channel.
 
 ---
 
@@ -1453,6 +1498,9 @@ public readonly name: string;
 ```
 
 - *Type:* `string`
+- *Default:* None
+
+The name of the Channel Flow Processor.
 
 ---
 
@@ -1841,8 +1889,8 @@ const streamingConfig: StreamingConfig = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`appInstanceDataType`](#cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType) | *No description.* |
-| [`resourceArn`](#cdkamazonchimeresourcesstreamingconfigpropertyresourcearn)<span title="Required">*</span> | `string` | *No description.* |
+| [`appInstanceDataType`](#cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType) | The type of data to be streamed. |
+| [`resourceArn`](#cdkamazonchimeresourcesstreamingconfigpropertyresourcearn)<span title="Required">*</span> | `string` | The resource ARN of a Kinesis Stream. |
 
 ---
 
@@ -1854,6 +1902,8 @@ public readonly appInstanceDataType: AppInstanceDataType;
 
 - *Type:* [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType)
 
+The type of data to be streamed.
+
 ---
 
 ##### `resourceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfig.property.resourceArn" id="cdkamazonchimeresourcesstreamingconfigpropertyresourcearn"></a>
@@ -1863,6 +1913,8 @@ public readonly resourceArn: string;
 ```
 
 - *Type:* `string`
+
+The resource ARN of a Kinesis Stream.
 
 ---
 
