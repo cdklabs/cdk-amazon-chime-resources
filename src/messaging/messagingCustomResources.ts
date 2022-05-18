@@ -14,6 +14,7 @@ export interface MessagingResourceProps extends cdk.ResourceProps {
     | 'ChannelFlow'
     | 'AppInstanceUser'
     | 'AppInstanceAdmin'
+    | 'DataRetention'
     | 'StreamingConfig';
   readonly uid: string;
 }

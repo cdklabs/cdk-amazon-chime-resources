@@ -1,7 +1,11 @@
 import * as cdk from 'aws-cdk-lib';
+import { Duration } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { MessagingResources } from './messagingCustomResources';
 
+export interface DataRetentionConfig {
+  readonly dataRetention: Duration;
+}
 export enum AppInstanceDataType {
   CHANNEL = 'Channel',
   CHANNELMESSAGE = 'ChannelMessage',
@@ -77,6 +81,23 @@ export class MessagingAppInstance extends Construct {
         uid: uid,
         properties: {
           streamingConfigs: streamingConfigs,
+          appInstanceArn: this.appInstanceArn,
+        },
+      },
+    );
+    return result;
+  }
+
+  retention(dataRetention: DataRetentionConfig) {
+    const uid: string = cdk.Names.uniqueId(this);
+    const result = new MessagingResources(
+      this,
+      'AppInstanceDataRetentionConfig',
+      {
+        resourceType: 'DataRetention',
+        uid: uid,
+        properties: {
+          dataRetention: dataRetention,
           appInstanceArn: this.appInstanceArn,
         },
       },
