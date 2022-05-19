@@ -4,7 +4,7 @@ import {
   PhoneCountry,
   PhoneNumberType,
   PhoneProductType,
-} from '../src/phoneNumber';
+} from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {

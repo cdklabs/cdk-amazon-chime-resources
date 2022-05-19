@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { ChimeResources } from './customResource';
+import { PSTNResources } from './pstnCustomResources';
 import { voiceConnectorValidator } from './voiceConnectorValidator';
 
 export enum NotificationTargetType {
@@ -96,7 +96,7 @@ export class ChimeVoiceConnector extends Construct {
 
     voiceConnectorValidator(props);
 
-    const voiceConnectorRequest = new ChimeResources(
+    const voiceConnectorRequest = new PSTNResources(
       this,
       'voiceConnectorRequest',
       {
@@ -114,8 +114,6 @@ export class ChimeVoiceConnector extends Construct {
     );
 
     this.voiceConnectorId =
-      voiceConnectorRequest.chimeCustomResource.getAttString(
-        'voiceConnectorId',
-      );
+      voiceConnectorRequest.pstnCustomResource.getAttString('voiceConnectorId');
   }
 }

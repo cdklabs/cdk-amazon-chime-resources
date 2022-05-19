@@ -1,8 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { ChimeVoiceConnector } from '.';
-import { ChimeResources, PhoneAssociation } from './customResource';
 import { phoneNumberValidator } from './phoneNumberValidator';
+import { PSTNResources, PhoneAssociation } from './pstnCustomResources';
+import { ChimeVoiceConnector } from './voiceConnector';
 
 export enum PhoneNumberType {
   LOCAL = 'Local',
@@ -105,7 +105,7 @@ export class ChimePhoneNumber extends Construct {
     } = props;
 
     phoneNumberValidator(props);
-    const phoneNumberRequest = new ChimeResources(this, 'ChimePhoneNumber', {
+    const phoneNumberRequest = new PSTNResources(this, 'ChimePhoneNumber', {
       resourceType: 'PhoneNumber',
       uid: uid,
       properties: {
@@ -120,7 +120,7 @@ export class ChimePhoneNumber extends Construct {
     });
 
     this.phoneNumber =
-      phoneNumberRequest.chimeCustomResource.getAttString('phoneNumber');
+      phoneNumberRequest.pstnCustomResource.getAttString('phoneNumber');
   }
 
   associateWithVoiceConnector(voiceConnectorId: ChimeVoiceConnector) {

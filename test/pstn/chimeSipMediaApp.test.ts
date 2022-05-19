@@ -1,7 +1,7 @@
 import path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
-import { ChimeSipMediaApp } from '../src';
+import { ChimeSipMediaApp } from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {});
@@ -10,7 +10,7 @@ test('Normal', () => {
   const smaHandler = new Function(stack, 'NormalHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../example/src/')),
+    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
   });
 
   new ChimeSipMediaApp(stack, 'Normal', {
@@ -23,7 +23,7 @@ test('NoRegion', () => {
   const smaHandler = new Function(stack, 'NoRegionHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../example/src/')),
+    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
   });
 
   new ChimeSipMediaApp(stack, 'NoRegion', {
@@ -35,7 +35,7 @@ test('NormalWithName', () => {
   const smaHandler = new Function(stack, 'NormalWithNameHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../example/src/')),
+    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
   });
   new ChimeSipMediaApp(stack, 'NormalWithName', {
     region: 'us-west-2',
@@ -49,7 +49,7 @@ test('BadRegion', () => {
     const smaHandler = new Function(stack, 'BadRegionHandler', {
       runtime: Runtime.PYTHON_3_9,
       handler: 'index.handler',
-      code: Code.fromAsset(path.join(__dirname, '../example/src/')),
+      code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
     });
     new ChimeSipMediaApp(stack, 'BadRegion', {
       endpoint: smaHandler.functionArn,

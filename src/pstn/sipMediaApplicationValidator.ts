@@ -1,4 +1,4 @@
-import { SipMediaAppProps } from '.';
+import { SipMediaAppProps } from './sipMediaApplication';
 
 export function sipMediaApplicationValidator(props: SipMediaAppProps) {
   if (props.region) {
