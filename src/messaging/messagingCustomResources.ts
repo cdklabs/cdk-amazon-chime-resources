@@ -9,7 +9,13 @@ import { Construct } from 'constructs';
 
 export interface MessagingResourceProps extends cdk.ResourceProps {
   readonly properties: { [propname: string]: any };
-  readonly resourceType: 'AppInstance' | 'ChannelFlow';
+  readonly resourceType:
+    | 'AppInstance'
+    | 'ChannelFlow'
+    | 'AppInstanceUser'
+    | 'AppInstanceAdmin'
+    | 'DataRetention'
+    | 'StreamingConfig';
   readonly uid: string;
 }
 
@@ -89,6 +95,20 @@ export class MessagingResources extends Construct {
                   'iam:CreateServiceLinkedRole',
                 ],
               }),
+            ],
+          }),
+          ['kinesisPolicy']: new iam.PolicyDocument({
+            statements: [
+              new iam.PolicyStatement({
+                resources: [
+                  `arn:aws:kinesis:${stack.region}:${stack.account}:stream/chime-messaging-*`,
+                ],
+                actions: ['kinesis:DescribeStream'],
+              }),
+            ],
+          }),
+          ['ssmPolicy']: new iam.PolicyDocument({
+            statements: [
               new iam.PolicyStatement({
                 resources: [
                   `arn:aws:ssm:${stack.region}:${stack.account}:parameter/chime/*`,

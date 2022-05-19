@@ -1,6 +1,7 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as chime from 'cdk-amazon-chime-resources';
+import * as kinesis from 'aws-cdk-lib/aws-kinesis';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,6 +12,20 @@ export class MessagingExample extends Stack {
 
     const appInstance = new chime.MessagingAppInstance(this, 'appInstance', {
       name: 'MessagingAppInstanceExample',
+    });
+
+    const appInstanceUser = new chime.MessagingAppInstanceUser(
+      this,
+      'appInstanceUser',
+      {
+        appInstanceArn: appInstance.appInstanceArn,
+        appInstanceUserId: '1234',
+      },
+    );
+
+    new chime.MessagingAppInstanceAdmin(this, 'appInstanceAdmin', {
+      appInstanceAdminArn: appInstanceUser.appInstanceUserArn,
+      appInstanceArn: appInstance.appInstanceArn,
     });
 
     const channelFlowLambdaRole = new iam.Role(this, 'channelFlowLambdaRole', {
@@ -47,7 +62,7 @@ export class MessagingExample extends Stack {
       sourceAccount: `${this.account}`,
     });
 
-    const channelFlow = new chime.ChannelFlow(this, 'channelFlow', {
+    new chime.ChannelFlow(this, 'channelFlow', {
       appInstanceArn: appInstance.appInstanceArn,
       processors: [
         {
@@ -65,12 +80,39 @@ export class MessagingExample extends Stack {
       clientRequestToken: uuidv4(),
     });
 
+    const kinesisStream = new kinesis.Stream(this, 'kinesisStream', {
+      streamName: 'chime-messaging-channel-stream',
+      shardCount: 2,
+      encryption: kinesis.StreamEncryption.MANAGED,
+    });
+
+    appInstance.streaming([
+      {
+        appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
+        resourceArn: kinesisStream.streamArn,
+      },
+    ]);
+
+    appInstance.retention(2);
+
     new CfnOutput(this, 'appInstanceArn', {
-      value: appInstance.appInstanceArn,
+      value: `aws chime-sdk-identity describe-app-instance --app-instance-arn ${appInstance.appInstanceArn}`,
     });
 
     new CfnOutput(this, 'channelFlowArn', {
-      value: channelFlow.channelFlowArn,
+      value: `aws chime-sdk-messaging list-channel-flows --app-instance-arn ${appInstance.appInstanceArn}`,
+    });
+
+    new CfnOutput(this, 'appInstanceAdminArn', {
+      value: `aws chime-sdk-identity list-app-instance-admins --app-instance-arn ${appInstance.appInstanceArn}`,
+    });
+
+    new CfnOutput(this, 'streamingConfiguration', {
+      value: `aws chime get-app-instance-streaming-configurations --app-instance-arn ${appInstance.appInstanceArn}`,
+    });
+
+    new CfnOutput(this, 'dataRetentionConfig', {
+      value: `aws chime get-app-instance-retention-settings --app-instance-arn ${appInstance.appInstanceArn}`,
     });
   }
 }

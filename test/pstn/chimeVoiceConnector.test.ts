@@ -6,7 +6,7 @@ import {
   ChimePhoneNumber,
   PhoneProductType,
   Protocol,
-} from '../src';
+} from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {});
