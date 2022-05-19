@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { instanceUserValidator } from './instanceUserValidator';
 import { MessagingResources } from './messagingCustomResources';
-
 /**
  * Props for `AppInstance`.
  */
@@ -57,6 +57,7 @@ export class MessagingAppInstanceUser extends Construct {
       appInstanceUserId,
     } = props;
 
+    instanceUserValidator(props);
     const appInstanceRequest = new MessagingResources(
       this,
       'MessagingAppInstance',

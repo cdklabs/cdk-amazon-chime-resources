@@ -1,25 +1,18 @@
-import { AppInstanceProps } from './appInstance';
-
+import { AppInstanceUserProps } from './instanceUser';
 var NAME =
   /^[\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*$/;
 
 var CLIENTREQUESTTOKEN = /^[-_a-zA-Z0-9]*$/;
 
-export function appInstanceValidator(props: AppInstanceProps) {
+export function instanceUserValidator(props: AppInstanceUserProps) {
   if (props.name) {
-    if (props.name.length > 256) {
+    if (props.name.length < 1 || props.name.length > 256) {
       throw new Error('Name length must be >1 and <256');
     }
     if (!NAME.test(props.name)) {
       throw new Error(
         'Invalid name.  Must fit pattern: [\u0009\u000A\u000D\u0020-\u007E\u0085\u00A0-\uD7FF\uE000-\uFFFD\u10000-\u10FFFF]*',
       );
-    }
-  }
-
-  if (props.metadata) {
-    if (props.metadata.length > 1024) {
-      throw new Error('Metadata length cannote exceed 1024');
     }
   }
 

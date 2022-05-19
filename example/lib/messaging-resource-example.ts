@@ -5,7 +5,6 @@ import * as kinesis from 'aws-cdk-lib/aws-kinesis';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { v4 as uuidv4 } from 'uuid';
-import { AppInstanceDataType } from 'cdk-amazon-chime-resources';
 
 export class MessagingExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -89,7 +88,7 @@ export class MessagingExample extends Stack {
 
     appInstance.streaming([
       {
-        appInstanceDataType: AppInstanceDataType.CHANNEL,
+        appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
         resourceArn: kinesisStream.streamArn,
       },
     ]);

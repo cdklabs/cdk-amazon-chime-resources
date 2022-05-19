@@ -1,5 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
+import { channelFlowValidator } from './channelFlowValidator';
 import { MessagingResources } from './messagingCustomResources';
 
 export enum InvocationType {
@@ -123,6 +124,7 @@ export class ChannelFlow extends Construct {
     const { name, clientRequestToken, appInstanceArn, processors, tags } =
       props;
 
+    channelFlowValidator(props);
     const channelFlowRequest = new MessagingResources(
       this,
       'channelFlowRequest',

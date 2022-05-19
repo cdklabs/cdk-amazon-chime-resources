@@ -1,6 +1,5 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as chime from 'cdk-amazon-chime-resources';
 
 export class VoiceConnectorExample extends Stack {

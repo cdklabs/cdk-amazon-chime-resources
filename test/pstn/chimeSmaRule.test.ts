@@ -7,7 +7,7 @@ import {
   ChimeSipMediaApp,
   PhoneProductType,
   ChimePhoneNumber,
-} from '../src';
+} from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {});
@@ -15,7 +15,7 @@ const stack = new cdk.Stack(app, 'testing-stack', {});
 const smaHandler = new Function(stack, 'NormalHandler', {
   runtime: Runtime.PYTHON_3_9,
   handler: 'index.handler',
-  code: Code.fromAsset(path.join(__dirname, '../example/src/')),
+  code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
 });
 
 const sipMediaApp = new ChimeSipMediaApp(stack, 'SipMediaApp', {
