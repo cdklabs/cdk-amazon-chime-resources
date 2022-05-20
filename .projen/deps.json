@@ -10,6 +10,11 @@
       "type": "build"
     },
     {
+      "name": "@types/prettier",
+      "version": "2.6.0",
+      "type": "build"
+    },
+    {
       "name": "@typescript-eslint/eslint-plugin",
       "version": "^5",
       "type": "build"
@@ -20,12 +25,8 @@
       "type": "build"
     },
     {
-      "name": "aws-cdk",
-      "type": "build"
-    },
-    {
       "name": "aws-cdk-lib",
-      "version": "2.12.0",
+      "version": "2.24.0",
       "type": "build"
     },
     {
@@ -100,16 +101,16 @@
       "type": "build"
     },
     {
-      "name": "ts-node",
-      "type": "build"
-    },
-    {
       "name": "typescript",
       "type": "build"
     },
     {
+      "name": "yalc",
+      "type": "build"
+    },
+    {
       "name": "aws-cdk-lib",
-      "version": "^2.12.0",
+      "version": "^2.24.0",
       "type": "peer"
     },
     {

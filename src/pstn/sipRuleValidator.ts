@@ -1,4 +1,4 @@
-import { SipRuleProps } from '.';
+import { SipRuleProps } from './sipRule';
 
 var E164_NUMBER = /^\+[1-9]\d{10,14}$/;
 

@@ -1,4 +1,4 @@
-import { PhoneNumberProps } from '.';
+import { PhoneNumberProps } from './phoneNumber';
 
 var AREA_CODE = /^[^01][0-9]{2}$/;
 var TOLL_FREE = /^8(33|44|55|66|77|88)$/;

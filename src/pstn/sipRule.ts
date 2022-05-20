@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
-import { ChimeResources } from './customResource';
+import { PSTNResources } from './pstnCustomResources';
 import { sipRuleValidator } from './sipRuleValidator';
 
 export enum TriggerType {
@@ -66,7 +66,7 @@ export class ChimeSipRule extends Construct {
     const { name, triggerType, triggerValue, targetApplications } = props;
 
     sipRuleValidator(props);
-    const sipRuleRequest = new ChimeResources(this, 'sipRuleRequest', {
+    const sipRuleRequest = new PSTNResources(this, 'sipRuleRequest', {
       resourceType: 'SMARule',
       uid: uid,
       properties: {
@@ -78,6 +78,6 @@ export class ChimeSipRule extends Construct {
     });
 
     this.sipRuleId =
-      sipRuleRequest.chimeCustomResource.getAttString('sipRuleId');
+      sipRuleRequest.pstnCustomResource.getAttString('sipRuleId');
   }
 }
