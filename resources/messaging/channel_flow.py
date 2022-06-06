@@ -38,7 +38,7 @@ def create_channel_flow(
     appInstanceArn=None,
     **kwargs,
 ):
-    logger.info(f"Creating a new Amazon Chime SDK Messaging Channel Flow")
+    logger.info(f"Creating a new Amazon Chime SDK Messaging Channel Flow: {uid}")
 
     fixed_proccessors = []
 
@@ -79,7 +79,7 @@ def create_channel_flow(
 
 
 def delete_channel_flow(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging Channel Flow")
+    logger.info(f"Deleting an Amazon Chime SDK Messaging Channel Flow: {uid}")
     try:
         channel_flow_to_delete = ssm.get_parameter(Name="/chime/channelFlowArn/" + str(uid),)[
             "Parameter"
@@ -90,6 +90,15 @@ def delete_channel_flow(uid):
         raise RuntimeError(error)
     try:
         chimemessaging.delete_channel_flow(ChannelFlowArn=channel_flow_to_delete)
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        ssm.delete_parameter(
+            Name="/chime/channelFlowArn/" + str(uid),
+        )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

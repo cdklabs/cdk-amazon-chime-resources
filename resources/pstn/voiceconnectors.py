@@ -15,8 +15,7 @@ chime = boto3.client("chime")
 ssm = boto3.client("ssm")
 
 
-def buildVoiceConnector(uid, region, name, encryption):
-    logger.info("Creating a new Voice Connector")
+def build_voice_connector(uid, region, name, encryption):
 
     if encryption == "false":
         require_encryption = False
@@ -52,7 +51,7 @@ def buildVoiceConnector(uid, region, name, encryption):
     return voice_connector_id
 
 
-def buildStreaming(voice_connector_id, notificationTargets, dataRetention):
+def build_streaming(voice_connector_id, notificationTargets, dataRetention):
     streaming_notification_targets = []
     for notification_target in notificationTargets:
         streaming_notification_targets.append({"NotificationTarget": notification_target})
@@ -74,7 +73,7 @@ def buildStreaming(voice_connector_id, notificationTargets, dataRetention):
     return True
 
 
-def buildTermination(voice_connector_id, callingRegions, terminationCidrs):
+def build_termination(voice_connector_id, callingRegions, terminationCidrs):
     try:
         chime.put_voice_connector_termination(
             VoiceConnectorId=voice_connector_id,
@@ -91,7 +90,7 @@ def buildTermination(voice_connector_id, callingRegions, terminationCidrs):
     return True
 
 
-def buildOrigination(voice_connector_id, origination):
+def build_origination(voice_connector_id, origination):
     routes = []
     for route in origination:
         transformed_route = {}
@@ -118,7 +117,7 @@ def buildOrigination(voice_connector_id, origination):
         raise RuntimeError(error)
 
 
-def createVoiceConnector(
+def create_voice_connector(
     uid,
     region=None,
     name=None,
@@ -128,26 +127,26 @@ def createVoiceConnector(
     streaming=None,
     **kwargs,
 ):
-
-    voice_connector_id = buildVoiceConnector(uid, region, name, encryption)
+    logger.info(f"Creating a new Voice Connector: {uid}")
+    voice_connector_id = build_voice_connector(uid, region, name, encryption)
     logger.info(f"Voice Connector Id: {voice_connector_id}")
 
     if streaming:
         logger.info(f"Streaming: {streaming}")
-        buildStreaming(voice_connector_id, streaming["notificationTargets"], streaming["dataRetention"])
+        build_streaming(voice_connector_id, streaming["notificationTargets"], streaming["dataRetention"])
 
     if termination:
         logger.info(f"Termination CIDRs: {termination}")
-        buildTermination(voice_connector_id, termination["callingRegions"], termination["terminationCidrs"])
+        build_termination(voice_connector_id, termination["callingRegions"], termination["terminationCidrs"])
 
     if origination:
         logger.info(f"Origination IPs: {origination}")
-        buildOrigination(voice_connector_id, origination)
+        build_origination(voice_connector_id, origination)
 
     return voice_connector_id
 
 
-def deleteVoiceConnecytor(uid):
+def delete_voice_connector(uid):
     logger.info(f"Deleting Voice Connector: {uid}")
     try:
         voice_connector_to_delete = ssm.get_parameter(Name="/chime/voiceConnector/" + str(uid))["Parameter"]["Value"]
@@ -184,6 +183,15 @@ def deleteVoiceConnecytor(uid):
 
     try:
         chime.delete_voice_connector(VoiceConnectorId=voice_connector_to_delete)
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        ssm.delete_parameter(
+            Name="/chime/voiceConnector/" + str(uid),
+        )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

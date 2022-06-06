@@ -21,6 +21,7 @@ def create_app_instance_admin(
     appInstanceAdminArn=None,
     **kwargs,
 ):
+    logger.info(f"Creating App Instance Admin: {uid}")
     params = {}
     params["AppInstanceAdminArn"] = appInstanceAdminArn
     params["AppInstanceArn"] = appInstanceArn
@@ -48,21 +49,11 @@ def create_app_instance_admin(
 
 
 def delete_app_instance_admin(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging Admin")
+    logger.info(f"Deleting an Amazon Chime SDK Messaging Admin: {uid}")
+
     try:
-        app_instance_admin_to_delete = ssm.get_parameter(Name="/chime/appInstanceAdminArn/" + str(uid),)[
-            "Parameter"
-        ]["Value"]
-        app_instance_to_delete = ssm.get_parameter(Name="/chime/appInstanceArn/" + str(uid),)[
-            "Parameter"
-        ]["Value"]
-    except Exception as e:
-        error = {"error": f"Exception thrown: {e}"}
-        logger.error(error)
-        raise RuntimeError(error)
-    try:
-        chime.delete_app_instance_admin(
-            AppInstanceAdminArn=app_instance_admin_to_delete, AppInstanceArn=app_instance_to_delete
+        ssm.delete_parameter(
+            Name="/chime/appInstanceAdminArn/" + str(uid),
         )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}

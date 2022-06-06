@@ -16,7 +16,14 @@ chime = boto3.client("chime")
 ssm = boto3.client("ssm")
 
 
-def createSipRule(
+def check_sip_rule_status(sip_rule_id):
+    delete_sip_rule_status = chime.get_sip_rule(SipRuleId=sip_rule_id)["SipRule"]["Disabled"]
+    logger.info(f"Current SIP rule status : {delete_sip_rule_status}")
+
+    return delete_sip_rule_status
+
+
+def create_sip_rule(
     uid,
     name=None,
     triggerType=None,
@@ -63,18 +70,12 @@ def createSipRule(
     return sip_rule_id
 
 
-def deleteSipRule(
+def delete_sip_rule(
     uid,
-    region=None,
     name=None,
-    triggerType=None,
-    triggerValue=None,
-    sipMediaApplicationId=None,
-    priority=None,
     **kwargs,
 ):
-
-    logger.info(f"Deleting SIP media application: {uid}")
+    logger.info(f"Deleting SIP rule: {uid}")
     try:
         sip_rule_to_delete = ssm.get_parameter(Name="/chime/sipRule/" + str(uid),)[
             "Parameter"
@@ -91,19 +92,25 @@ def deleteSipRule(
         logger.error(error)
         raise RuntimeError(error)
 
-    time.sleep(10)
-    delete_sip_rule_status = chime.get_sip_rule(SipRuleId=sip_rule_to_delete)["SipRule"]["Disabled"]
-    logger.info(f"Current status - Disabled: {delete_sip_rule_status}")
-    timeout = 0
-    while not delete_sip_rule_status:
-        timeout += 1
-        time.sleep(5)
-        delete_sip_rule_status = chime.get_sip_rule(SipRuleId=sip_rule_to_delete)["SipRule"]["Disabled"]
-        logger.info(f"Current status - Disabled: {delete_sip_rule_status}")
-        if timeout == 15:
+    check_phone_number_order_count = 0
+    while not check_sip_rule_status(sip_rule_to_delete):
+        check_phone_number_order_count += 1
+        if check_phone_number_order_count == 15:
             raise RuntimeError("Could not disable Sip rule")
+        time.sleep(5)
 
     try:
+        logger.info(f"Deleting Parameter: {uid}")
+        ssm.delete_parameter(
+            Name="/chime/sipRule/" + str(uid),
+        )
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        logger.info(f"Deleting SIP media application: {uid}")
         chime.delete_sip_rule(SipRuleId=sip_rule_to_delete)
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
