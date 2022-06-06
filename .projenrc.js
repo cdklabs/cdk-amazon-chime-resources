@@ -4,6 +4,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'https://aws.amazon.com',
   cdkVersion: '2.24.0',
   defaultReleaseBranch: 'main',
+  keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
   eslintOptions: {
     ignorePatterns: ['example/**'],
