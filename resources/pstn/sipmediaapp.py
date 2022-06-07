@@ -15,7 +15,7 @@ chime = boto3.client("chime")
 ssm = boto3.client("ssm")
 
 
-def createSipMediaApp(uid, region=None, name=None, endpoint=None, **kwargs):
+def create_sip_media_app(uid, region=None, name=None, endpoint=None, **kwargs):
 
     logger.info(f"Creating SIP media application: {uid}")
     try:
@@ -43,8 +43,8 @@ def createSipMediaApp(uid, region=None, name=None, endpoint=None, **kwargs):
     return sip_media_app_id
 
 
-def deleteSipMediaApp(uid):
-    logger.info(f"Deleting SIP media application: {uid}")
+def delete_sip_media_app(uid):
+    logger.info(f"Deleting SIP media app: {uid}")
     try:
         sip_media_app_to_delete = ssm.get_parameter(Name="/chime/sipMediaApp/" + str(uid),)[
             "Parameter"
@@ -55,6 +55,17 @@ def deleteSipMediaApp(uid):
         raise RuntimeError(error)
 
     try:
+        logger.info(f"Deleting Parameter: {uid}")
+        ssm.delete_parameter(
+            Name="/chime/sipMediaApp/" + str(uid),
+        )
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        logger.info(f"Deleting SIP media application: {uid}")
         chime.delete_sip_media_application(SipMediaApplicationId=sip_media_app_to_delete)
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}

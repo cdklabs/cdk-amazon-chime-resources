@@ -16,7 +16,13 @@ chime = boto3.client("chime")
 ssm = boto3.client("ssm")
 
 
-def getPhoneNumber(
+def check_phone_number(phone_order_id):
+    phone_order_status = chime.get_phone_number_order(PhoneNumberOrderId=phone_order_id)["PhoneNumberOrder"]["Status"]
+    print(f"Phone Order Status: {phone_order_status}")
+    return phone_order_status
+
+
+def get_phone_number(
     uid,
     phoneState=None,
     phoneAreaCode=None,
@@ -61,17 +67,14 @@ def getPhoneNumber(
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)
         raise RuntimeError(error)
-    time.sleep(10)
-    order_status = chime.get_phone_number_order(PhoneNumberOrderId=phone_order_id)["PhoneNumberOrder"]["Status"]
-    logger.info(f"Current status: {order_status}")
-    timeout = 0
-    while not order_status == "Successful":
-        timeout += 1
-        time.sleep(5)
-        order_status = chime.get_phone_number_order(PhoneNumberOrderId=phone_order_id)["PhoneNumberOrder"]["Status"]
-        logger.info(f"Current status: {order_status}")
-        if timeout == 15:
+
+    check_phone_number_order_count = 0
+    while check_phone_number(phone_order_id) != "Successful":
+        check_phone_number_order_count += 1
+        if check_phone_number_order_count == 10:
             raise RuntimeError("Could not get phone number")
+        time.sleep(15)
+
     try:
         ssm.put_parameter(
             Name="/chime/phoneNumber/" + uid,
@@ -89,7 +92,7 @@ def getPhoneNumber(
     return phone_number_to_order
 
 
-def deletePhoneNumber(uid):
+def delete_phone_number(uid):
     logger.info(f"Deleting number for uid: " + str(uid))
     try:
         phone_number_to_delete = ssm.get_parameter(Name="/chime/phoneNumber/" + str(uid),)[

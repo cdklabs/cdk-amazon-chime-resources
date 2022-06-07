@@ -24,7 +24,7 @@ def create_app_instance_user(
     appInstanceUserId=None,
     **kwargs,
 ):
-
+    logger.info(f"Creating App Instance User: {uid}")
     params = {}
     params["Name"] = name
     params["AppInstanceArn"] = appInstanceArn
@@ -57,7 +57,7 @@ def create_app_instance_user(
 
 
 def delete_app_instance_user(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging User")
+    logger.info(f"Deleting an Amazon Chime SDK Messaging User: {uid}")
     try:
         app_instance_user_to_delete = ssm.get_parameter(Name="/chime/appInstanceUserId/" + str(uid),)[
             "Parameter"
@@ -68,6 +68,15 @@ def delete_app_instance_user(uid):
         raise RuntimeError(error)
     try:
         chime.delete_app_instance_user(AppInstanceUserArn=app_instance_user_to_delete)
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        ssm.delete_parameter(
+            Name="/chime/appInstanceUserId/" + str(uid),
+        )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

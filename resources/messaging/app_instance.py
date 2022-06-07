@@ -22,7 +22,7 @@ def create_messaging_app_instance(
     clientRequestToken=None,
     **kwargs,
 ):
-    logger.info(f"Creating a new Amazon Chime SDK Messaging App Instance")
+    logger.info(f"Creating a new Amazon Chime SDK Messaging App Instance: {uid}")
 
     params = {}
     params["Name"] = name
@@ -55,7 +55,7 @@ def create_messaging_app_instance(
 
 
 def delete_messaging_app_instance(uid):
-    logger.info(f"Deleting an Amazon Chime SDK Messaging App Instance")
+    logger.info(f"Deleting an Amazon Chime SDK Messaging App Instance: {uid}")
     try:
         app_instance_to_delete = ssm.get_parameter(Name="/chime/appInstanceArn/" + str(uid),)[
             "Parameter"
@@ -66,6 +66,15 @@ def delete_messaging_app_instance(uid):
         raise RuntimeError(error)
     try:
         chime.delete_app_instance(AppInstanceArn=app_instance_to_delete)
+    except Exception as e:
+        error = {"error": f"Exception thrown: {e}"}
+        logger.error(error)
+        raise RuntimeError(error)
+
+    try:
+        ssm.delete_parameter(
+            Name="/chime/appInstanceArn/" + str(uid),
+        )
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
         logger.error(error)

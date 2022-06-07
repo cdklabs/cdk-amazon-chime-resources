@@ -13,7 +13,7 @@ def handler(event, context):
     if event["RequestType"] == "Create":
         if resource_type == "PhoneNumber":
             try:
-                responseData["phoneNumber"] = phonenumbers.getPhoneNumber(uid, **properties)
+                responseData["phoneNumber"] = phonenumbers.get_phone_number(uid, **properties)
                 return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -21,7 +21,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "VoiceConnector":
             try:
-                responseData["voiceConnectorId"] = voiceconnectors.createVoiceConnector(uid, **properties)
+                responseData["voiceConnectorId"] = voiceconnectors.create_voice_connector(uid, **properties)
                 return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -29,7 +29,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "SMA":
             try:
-                responseData["sipMediaAppId"] = sipmediaapp.createSipMediaApp(uid, **properties)
+                responseData["sipMediaAppId"] = sipmediaapp.create_sip_media_app(uid, **properties)
                 return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -37,7 +37,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "SMARule":
             try:
-                responseData["sipRuleId"] = siprule.createSipRule(uid, **properties)
+                responseData["sipRuleId"] = siprule.create_sip_rule(uid, **properties)
                 return {"PhysicalResourceId": uid, "Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -47,7 +47,7 @@ def handler(event, context):
     elif event["RequestType"] == "Delete":
         if resource_type == "PhoneNumber":
             try:
-                responseData["phoneNumber"] = phonenumbers.deletePhoneNumber(uid)
+                responseData["phoneNumber"] = phonenumbers.delete_phone_number(uid)
                 return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -55,7 +55,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "VoiceConnector":
             try:
-                responseData = voiceconnectors.deleteVoiceConnecytor(uid)
+                responseData = voiceconnectors.delete_voice_connector(uid)
                 return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -63,7 +63,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "SMA":
             try:
-                responseData["sipMediaAppId"] = sipmediaapp.deleteSipMediaApp(uid)
+                responseData["sipMediaAppId"] = sipmediaapp.delete_sip_media_app(uid)
                 return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
@@ -71,7 +71,7 @@ def handler(event, context):
                 raise Exception(error)
         if resource_type == "SMARule":
             try:
-                responseData["sipRuleId"] = siprule.deleteSipRule(uid, **properties)
+                responseData["sipRuleId"] = siprule.delete_sip_rule(uid, **properties)
                 return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}

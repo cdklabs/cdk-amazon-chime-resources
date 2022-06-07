@@ -94,7 +94,25 @@ def handler(event, context):
         if resource_type == "ChannelFlow":
             try:
                 responseData["channelFlowArn"] = channel_flow.delete_channel_flow(uid)
-                return {"PhysicalResourceId": uid, "Data": responseData}
+                return {"Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "AppInstanceUser":
+            try:
+                instance_user.delete_app_instance_user(uid)
+                responseData["appInstanceUser"] = "Deleted"
+                return {"Data": responseData}
+            except Exception as e:
+                error = {"error": f"Exception thrown: {e}"}
+                print(error)
+                raise Exception(error)
+        if resource_type == "AppInstanceAdmin":
+            try:
+                instance_admin.delete_app_instance_admin(uid)
+                responseData["appInstanceAdmin"] = "Deleted"
+                return {"Data": responseData}
             except Exception as e:
                 error = {"error": f"Exception thrown: {e}"}
                 print(error)
