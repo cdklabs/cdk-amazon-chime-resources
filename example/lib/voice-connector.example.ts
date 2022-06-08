@@ -26,6 +26,7 @@ export class VoiceConnectorExample extends Stack {
         termination: {
           terminationCidrs: ['198.51.100.0/27'],
           callingRegions: ['US'],
+          cps: 1,
         },
         origination: [
           {
