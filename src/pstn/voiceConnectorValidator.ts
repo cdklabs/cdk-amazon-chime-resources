@@ -32,6 +32,14 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
   }
 
   if (props.termination) {
+    if ('cps' in props.termination) {
+      if (props.termination.cps! < 1 || props.termination.cps! > 256) {
+        throw new Error('CPS must be between 1 and 256');
+      }
+    }
+  }
+
+  if (props.termination) {
     for (var country of props.termination.callingRegions) {
       if (!ISO_3166_ALPHA_2.test(country)) {
         throw new Error(`Invalid Country: ${country}`);

@@ -2032,6 +2032,7 @@ const termination: Termination = { ... }
 | --- | --- | --- |
 | [`callingRegions`](#cdkamazonchimeresourcesterminationpropertycallingregions)<span title="Required">*</span> | `string`[] | Calling Regions for VoiceConnector (optional). |
 | [`terminationCidrs`](#cdkamazonchimeresourcesterminationpropertyterminationcidrs)<span title="Required">*</span> | `string`[] | termination IP for VoiceConnector (optional). |
+| [`cps`](#cdkamazonchimeresourcesterminationpropertycps) | `number` | CPS Limit. |
 
 ---
 
@@ -2058,6 +2059,19 @@ public readonly terminationCidrs: string[];
 - *Default:* none
 
 termination IP for VoiceConnector (optional).
+
+---
+
+##### `cps`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Termination.property.cps" id="cdkamazonchimeresourcesterminationpropertycps"></a>
+
+```typescript
+public readonly cps: number;
+```
+
+- *Type:* `number`
+- *Default:* 1
+
+CPS Limit.
 
 ---
 

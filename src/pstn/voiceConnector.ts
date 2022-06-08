@@ -22,6 +22,12 @@ export interface Termination {
    */
   readonly callingRegions: Array<string>;
   /**
+   * CPS Limit
+   *
+   * @default - 1
+   */
+  readonly cps?: number;
+  /**
    * termination IP for VoiceConnector (optional)
    *
    * @default - none

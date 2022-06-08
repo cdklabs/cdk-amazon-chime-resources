@@ -51,7 +51,10 @@ def build_voice_connector(uid, region, name, encryption):
     return voice_connector_id
 
 
-def build_streaming(voice_connector_id, notificationTargets, dataRetention):
+def build_streaming(voice_connector_id, streaming):
+
+    notificationTargets = streaming["notificationTargets"]
+    dataRetention = streaming["dataRetention"]
     streaming_notification_targets = []
     for notification_target in notificationTargets:
         streaming_notification_targets.append({"NotificationTarget": notification_target})
@@ -73,7 +76,14 @@ def build_streaming(voice_connector_id, notificationTargets, dataRetention):
     return True
 
 
-def build_termination(voice_connector_id, callingRegions, terminationCidrs):
+def build_termination(voice_connector_id, termination):
+    callingRegions = termination["callingRegions"]
+    terminationCidrs = termination["terminationCidrs"]
+
+    if "cps" in termination:
+        cps_limit = int(termination["cps"])
+    else:
+        cps_limit = 1
     try:
         chime.put_voice_connector_termination(
             VoiceConnectorId=voice_connector_id,
@@ -81,6 +91,7 @@ def build_termination(voice_connector_id, callingRegions, terminationCidrs):
                 "CallingRegions": callingRegions,
                 "CidrAllowedList": terminationCidrs,
                 "Disabled": False,
+                "CpsLimit": cps_limit,
             },
         )
     except Exception as e:
@@ -133,11 +144,11 @@ def create_voice_connector(
 
     if streaming:
         logger.info(f"Streaming: {streaming}")
-        build_streaming(voice_connector_id, streaming["notificationTargets"], streaming["dataRetention"])
+        build_streaming(voice_connector_id, streaming)
 
     if termination:
         logger.info(f"Termination CIDRs: {termination}")
-        build_termination(voice_connector_id, termination["callingRegions"], termination["terminationCidrs"])
+        build_termination(voice_connector_id, termination)
 
     if origination:
         logger.info(f"Origination IPs: {origination}")

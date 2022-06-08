@@ -38,6 +38,7 @@ test('ValidTerminationIPv4', () => {
     termination: {
       terminationCidrs: ['198.51.100.10/32'],
       callingRegions: ['US'],
+      cps: 1,
     },
   });
 });
@@ -143,6 +144,30 @@ test('BadTerminationIP', () => {
   }).toThrowError(
     'Termination CIDR must be a valid non-RFC1918 IPv4 CIDR block (/27-/32)',
   );
+});
+
+test('BadCpsLow', () => {
+  expect(() => {
+    new ChimeVoiceConnector(stack, 'BadCpsLow', {
+      termination: {
+        terminationCidrs: ['198.51.100.10/32'],
+        callingRegions: ['US'],
+        cps: 0,
+      },
+    });
+  }).toThrowError('CPS must be between 1 and 256');
+});
+
+test('BadCpsHigh', () => {
+  expect(() => {
+    new ChimeVoiceConnector(stack, 'BadCpsHigh', {
+      termination: {
+        terminationCidrs: ['198.51.100.10/32'],
+        callingRegions: ['US'],
+        cps: 257,
+      },
+    });
+  }).toThrowError('CPS must be between 1 and 256');
 });
 
 test('RFC1918OriginationIp', () => {
