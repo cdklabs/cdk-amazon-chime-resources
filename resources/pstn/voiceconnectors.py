@@ -55,7 +55,6 @@ def build_streaming(voice_connector_id, streaming):
 
     notificationTargets = streaming["notificationTargets"]
     dataRetention = streaming["dataRetention"]
-
     streaming_notification_targets = []
     for notification_target in notificationTargets:
         streaming_notification_targets.append({"NotificationTarget": notification_target})
@@ -85,7 +84,6 @@ def build_termination(voice_connector_id, termination):
         cps_limit = int(termination["cps"])
     else:
         cps_limit = 1
-
     try:
         chime.put_voice_connector_termination(
             VoiceConnectorId=voice_connector_id,
