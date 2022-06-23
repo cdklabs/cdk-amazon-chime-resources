@@ -52,6 +52,11 @@
       "type": "build"
     },
     {
+      "name": "got",
+      "version": "12.1.0",
+      "type": "build"
+    },
+    {
       "name": "jest-junit",
       "version": "^13",
       "type": "build"

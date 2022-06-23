@@ -10,7 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     ignorePatterns: ['example/**'],
   },
   workflowNodeVersion: '16.13.1',
-  devDeps: ['yalc', '@types/prettier@2.6.0'],
+  devDeps: ['yalc', '@types/prettier@2.6.0', 'got@12.1.0'],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
