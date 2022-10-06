@@ -2,6 +2,63 @@
 
 ## Constructs <a name="Constructs" id="constructs"></a>
 
+### AppInstanceStreamingConfigurations <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations" id="cdkamazonchimeresourcesappinstancestreamingconfigurations"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.Initializer" id="cdkamazonchimeresourcesappinstancestreamingconfigurationsinitializer"></a>
+
+```typescript
+import { AppInstanceStreamingConfigurations } from 'cdk-amazon-chime-resources'
+
+new AppInstanceStreamingConfigurations(scope: Construct, id: string, props: StreamingConfigurationProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.StreamingConfigurationProps`](#cdk-amazon-chime-resources.StreamingConfigurationProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.parameter.scope" id="cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.parameter.id" id="cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.parameter.props" id="cdkamazonchimeresourcesappinstancestreamingconfigurationsparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.StreamingConfigurationProps`](#cdk-amazon-chime-resources.StreamingConfigurationProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`streamingConfigs`](#cdkamazonchimeresourcesappinstancestreamingconfigurationspropertystreamingconfigs)<span title="Required">*</span> | [`cdk-amazon-chime-resources.StreamingConfig`](#cdk-amazon-chime-resources.StreamingConfig)[] | *No description.* |
+
+---
+
+##### `streamingConfigs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.property.streamingConfigs" id="cdkamazonchimeresourcesappinstancestreamingconfigurationspropertystreamingconfigs"></a>
+
+```typescript
+public readonly streamingConfigs: StreamingConfig[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.StreamingConfig`](#cdk-amazon-chime-resources.StreamingConfig)[]
+
+---
+
+
 ### ChannelFlow <a name="cdk-amazon-chime-resources.ChannelFlow" id="cdkamazonchimeresourceschannelflow"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.ChannelFlow.Initializer" id="cdkamazonchimeresourceschannelflowinitializer"></a>
@@ -1877,6 +1934,10 @@ Streaming data retention for VoiceConnector.
 
 ### StreamingConfig <a name="cdk-amazon-chime-resources.StreamingConfig" id="cdkamazonchimeresourcesstreamingconfig"></a>
 
+Props for `AppInstanceStreamingConfiguration`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_AppInstanceStreamingConfiguration.html
+
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
 
 ```typescript
@@ -1915,6 +1976,55 @@ public readonly resourceArn: string;
 - *Type:* `string`
 
 The resource ARN of a Kinesis Stream.
+
+---
+
+### StreamingConfigurationProps <a name="cdk-amazon-chime-resources.StreamingConfigurationProps" id="cdkamazonchimeresourcesstreamingconfigurationprops"></a>
+
+Props for `PutAppInstanceStreamingConfigurations`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_PutAppInstanceStreamingConfigurations.html
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { StreamingConfigurationProps } from 'cdk-amazon-chime-resources'
+
+const streamingConfigurationProps: StreamingConfigurationProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceArn`](#cdkamazonchimeresourcesstreamingconfigurationpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The ARN of the App Instance. |
+| [`streamingConfigs`](#cdkamazonchimeresourcesstreamingconfigurationpropspropertystreamingconfigs)<span title="Required">*</span> | [`cdk-amazon-chime-resources.StreamingConfig`](#cdk-amazon-chime-resources.StreamingConfig)[] | The AppInstanceStreamingConfigurations. |
+
+---
+
+##### `appInstanceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfigurationProps.property.appInstanceArn" id="cdkamazonchimeresourcesstreamingconfigurationpropspropertyappinstancearn"></a>
+
+```typescript
+public readonly appInstanceArn: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The ARN of the App Instance.
+
+---
+
+##### `streamingConfigs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfigurationProps.property.streamingConfigs" id="cdkamazonchimeresourcesstreamingconfigurationpropspropertystreamingconfigs"></a>
+
+```typescript
+public readonly streamingConfigs: StreamingConfig[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.StreamingConfig`](#cdk-amazon-chime-resources.StreamingConfig)[]
+- *Default:* None
+
+The AppInstanceStreamingConfigurations.
 
 ---
 
