@@ -86,12 +86,23 @@ export class MessagingExample extends Stack {
       encryption: kinesis.StreamEncryption.MANAGED,
     });
 
-    appInstance.streaming([
+    // both of the following add streaming config, but will override each other, can use either
+    new chime.AppInstanceStreamingConfigurations(this, 'streamingConfig',
       {
-        appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
-        resourceArn: kinesisStream.streamArn,
-      },
-    ]);
+          appInstanceArn: appInstance.appInstanceArn,
+          streamingConfigs: [{
+          appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
+          resourceArn: kinesisStream.streamArn,
+        }],
+      }
+    );
+
+    // appInstance.streaming([
+    //   {
+    //     appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
+    //     resourceArn: kinesisStream.streamArn,
+    //   },
+    // ]);
 
     appInstance.retention(2);
 

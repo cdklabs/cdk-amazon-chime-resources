@@ -8,6 +8,10 @@ export enum AppInstanceDataType {
   CHANNELMESSAGE = 'ChannelMessage',
 }
 
+/**
+ * Props for `AppInstanceStreamingConfiguration`.
+ * See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_AppInstanceStreamingConfiguration.html
+ */
 export interface StreamingConfig {
   /**
    * The type of data to be streamed.
