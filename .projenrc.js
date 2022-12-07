@@ -2,7 +2,7 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.27.0',
+  cdkVersion: '2.53.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,

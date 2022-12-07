@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { AppInstanceDataType, AppInstanceStreamingConfigurations } from '../../lib';
+import { AppInstanceDataType, AppInstanceStreamingConfigurations } from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {
