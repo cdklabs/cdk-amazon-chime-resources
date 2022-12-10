@@ -41,6 +41,33 @@
       ],
       "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
     },
+    "bundle": {
+      "name": "bundle",
+      "description": "Prepare assets",
+      "steps": [
+        {
+          "spawn": "bundle:pstn.lambda"
+        }
+      ]
+    },
+    "bundle:pstn.lambda": {
+      "name": "bundle:pstn.lambda",
+      "description": "Create a JavaScript bundle from src/pstn.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --sourcemap"
+        }
+      ]
+    },
+    "bundle:pstn.lambda:watch": {
+      "name": "bundle:pstn.lambda:watch",
+      "description": "Continuously update the JavaScript bundle from src/pstn.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --sourcemap --watch"
+        }
+      ]
+    },
     "clobber": {
       "name": "clobber",
       "description": "hard resets to HEAD of origin and cleans the local repo",
@@ -184,7 +211,12 @@
     },
     "pre-compile": {
       "name": "pre-compile",
-      "description": "Prepare the project for compilation"
+      "description": "Prepare the project for compilation",
+      "steps": [
+        {
+          "spawn": "bundle"
+        }
+      ]
     },
     "release": {
       "name": "release",
@@ -259,19 +291,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='@types/prettier,aws-cdk-lib,constructs,got'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='@types/prettier,aws-cdk-lib,constructs,got'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='@types/prettier,aws-cdk-lib,constructs,got'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='@types/prettier,aws-cdk-lib,constructs,got'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='@types/prettier,aws-cdk-lib,constructs,got'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs'"
         },
         {
           "exec": "yarn install --check-files"

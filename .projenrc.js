@@ -2,15 +2,32 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.27.0',
+  cdkVersion: '2.53.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
+  lambdaOptions: {
+    // target node.js runtime
+    runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+
+    bundlingOptions: {
+      // list of node modules to exclude from the bundle
+      externals: ['aws-sdk'],
+      sourcemap: true,
+    },
+  },
   workflowNodeVersion: '16.13.1',
-  devDeps: ['yalc', '@types/prettier@2.6.0', 'got@12.1.0'],
+  devDeps: [
+    'yalc',
+    'esbuild',
+    '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-ssm',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {

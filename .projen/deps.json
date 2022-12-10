@@ -1,6 +1,18 @@
 {
   "dependencies": [
     {
+      "name": "@aws-sdk/client-chime-sdk-voice",
+      "type": "build"
+    },
+    {
+      "name": "@aws-sdk/client-ssm",
+      "type": "build"
+    },
+    {
+      "name": "@types/aws-lambda",
+      "type": "build"
+    },
+    {
       "name": "@types/jest",
       "version": "^27",
       "type": "build"
@@ -8,11 +20,6 @@
     {
       "name": "@types/node",
       "version": "^14",
-      "type": "build"
-    },
-    {
-      "name": "@types/prettier",
-      "version": "2.6.0",
       "type": "build"
     },
     {
@@ -27,12 +34,20 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.27.0",
+      "version": "2.53.0",
+      "type": "build"
+    },
+    {
+      "name": "aws-lambda",
       "type": "build"
     },
     {
       "name": "constructs",
       "version": "10.0.5",
+      "type": "build"
+    },
+    {
+      "name": "esbuild",
       "type": "build"
     },
     {
@@ -50,11 +65,6 @@
     {
       "name": "eslint",
       "version": "^8",
-      "type": "build"
-    },
-    {
-      "name": "got",
-      "version": "12.1.0",
       "type": "build"
     },
     {
@@ -126,7 +136,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.27.0",
+      "version": "^2.53.0",
       "type": "peer"
     },
     {
