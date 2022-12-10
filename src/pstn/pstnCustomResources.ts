@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/indent */
-// import * as path from 'path';
 import {
   Duration,
   CustomResource,
@@ -14,15 +13,7 @@ import {
   PolicyDocument,
   PolicyStatement,
 } from 'aws-cdk-lib/aws-iam';
-import {
-  Architecture,
-  // Runtime,
-  IFunction,
-  Function,
-  // LayerVersion,
-  // Code,
-} from 'aws-cdk-lib/aws-lambda';
-// import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
+import { Architecture, IFunction, Function } from 'aws-cdk-lib/aws-lambda';
 import * as cr from 'aws-cdk-lib/custom-resources';
 import {
   AwsCustomResource,
@@ -122,62 +113,6 @@ export class PSTNResources extends Construct {
         ),
       ],
     });
-    // const fn = new lambda.Function(stack, constructName, {
-    //   runtime: lambda.Runtime.PYTHON_3_9,
-    //   code: lambda.Code.fromAsset(path.join(__dirname, '../../resources/pstn')),
-    //   handler: 'index.handler',
-    //   architecture: lambda.Architecture.ARM_64,
-    //   role: pstnCustomResourceRole,
-    //   timeout: cdk.Duration.minutes(1),
-    // });
-
-    // const awsSdkLayer = new LayerVersion(stack, 'awsSdkLayer', {
-    //   code: Code.fromAsset(path.join(__dirname, '../layers')),
-    //   compatibleRuntimes: [Runtime.NODEJS_18_X],
-    // });
-
-    // const awsSdkLayer = LayerVersion.fromLayerVersionArn(
-    //   this,
-    //   'awsSdkLayer',
-    //   `arn:aws:lambda:${
-    //     Stack.of(stack).region
-    //   }:104621577074:layer:cdk-amazon-chime-sdk-resources-layer:1`,
-    // );
-
-    // const fn = new NodejsFunction(stack, constructName, {
-    //   entry: path.join(__dirname, 'resources/'),
-    //   // bundling: {
-    //   //   externalModules: [
-    //   //     '@aws-sdk/client-chime-sdk-voice',
-    //   //     '@aws-sdk/client-ssm',
-    //   //   ],
-    //   // },
-    //   // bundling: {
-    //   //   nodeModules: ['@aws-sdk/client-chime-sdk-voice', '@aws-sdk/client-ssm'],
-    //   //   commandHooks: {
-    //   //     beforeBundling(): string[] {
-    //   //       return [];
-    //   //     },
-    //   //     beforeInstall(): string[] {
-    //   //       return [];
-    //   //     },
-    //   //     afterBundling(inputDir, outputDir): string[] {
-    //   //       return [
-    //   //         'echo afterBundling',
-    //   //         `cp ${inputDir}/src/pstn/resources/*.ts ${outputDir}`,
-    //   //         `cp ${inputDir}/src/pstn/resources/package.json ${outputDir}`,
-    //   //         `cp ${inputDir}/src/pstn/resources/yarn.lock ${outputDir}`,
-    //   //       ];
-    //   //     },
-    //   //   },
-    //   // },
-    //   // layers: [awsSdkLayer],
-    //   handler: 'lambdaHandler',
-    //   runtime: Runtime.NODEJS_18_X,
-    //   role: pstnCustomResourceRole,
-    //   architecture: Architecture.ARM_64,
-    //   timeout: Duration.seconds(60),
-    // });
 
     const fn = new PstnFunction(stack, constructName, {
       role: pstnCustomResourceRole,

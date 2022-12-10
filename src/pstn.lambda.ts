@@ -37,7 +37,7 @@ const response: CdkCustomResourceResponse = {};
 let resourcePropertiesUid: string;
 let requestProperties: {};
 
-export const lambdaHandler = async (
+export const handler = async (
   event: CdkCustomResourceEvent,
   context: Context,
 ): Promise<CdkCustomResourceResponse> => {
@@ -50,34 +50,51 @@ export const lambdaHandler = async (
   response.StackId = event.StackId;
   response.RequestId = event.RequestId;
   response.LogicalResourceId = event.LogicalResourceId;
-  response.PhysicalResourceId = context.logStreamName;
+  response.PhysicalResourceId = context.logGroupName;
 
   switch (resourceType) {
     case 'PhoneNumber':
       switch (requestType) {
         case 'Create':
-          response.Data = await CreatePhoneNumber(
-            resourcePropertiesUid,
-            requestProperties,
-          );
+          try {
+            response.Data = await CreatePhoneNumber(
+              resourcePropertiesUid,
+              requestProperties,
+            );
+            response.Status = 'SUCCESS';
+            response.Reason = 'CreatePhoneNumber successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
           break;
         case 'Update':
+          response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          await DeletePhoneNumber(resourcePropertiesUid);
+          try {
+            await DeletePhoneNumber(resourcePropertiesUid);
+            response.Status = 'SUCCESS';
+            response.Reason = 'DeletePhoneNumber successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
           break;
       }
-      response.Status = 'SUCCESS';
-      response.Data = {};
       break;
 
     case 'VoiceConnector':
       break;
   }
+  console.log(`Response: ${JSON.stringify(response)}`);
   return response;
 };
 
-let data: string;
 let searchAvailableNumbersParam: SearchAvailablePhoneNumbersCommandInput;
 let searchAvailablePhoneNumberResponse: SearchAvailablePhoneNumbersCommandOutput;
 let createPhoneNumberOrderResponse: CreatePhoneNumberOrderCommandOutput;
@@ -171,9 +188,16 @@ const CreatePhoneNumber = async (
         Type: 'String',
       }),
     );
-  } catch (error) {}
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error.message;
+    }
+  }
 
-  return { phoneNumber: data };
+  return {
+    phoneNumber: searchAvailablePhoneNumberResponse.E164PhoneNumbers![0],
+  };
 };
 
 const DeletePhoneNumber = async (uid: string) => {
