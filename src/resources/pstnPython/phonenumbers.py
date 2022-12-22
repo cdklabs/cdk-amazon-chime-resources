@@ -8,7 +8,7 @@ try:
     log_level = os.environ["LogLevel"]
     if log_level not in ["INFO", "DEBUG"]:
         log_level = "INFO"
-except:
+except BaseException:
     log_level = "INFO"
 logger.setLevel(log_level)
 

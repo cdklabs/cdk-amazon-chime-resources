@@ -10,16 +10,16 @@ export interface PstnFunctionProps extends lambda.FunctionOptions {
 }
 
 /**
- * An AWS Lambda function which executes src/pstn.
+ * An AWS Lambda function which executes src/resources/pstn/pstn.
  */
 export class PstnFunction extends lambda.Function {
   constructor(scope: Construct, id: string, props?: PstnFunctionProps) {
     super(scope, id, {
-      description: 'src/pstn.lambda.ts',
+      description: 'src/resources/pstn/pstn.lambda.ts',
       ...props,
       runtime: new lambda.Runtime('nodejs18.x', lambda.RuntimeFamily.NODEJS),
       handler: 'index.handler',
-      code: lambda.Code.fromAsset(path.join(__dirname, '../assets/pstn.lambda')),
+      code: lambda.Code.fromAsset(path.join(__dirname, '../../../assets/resources/pstn/pstn.lambda')),
     });
     this.addEnvironment('AWS_NODEJS_CONNECTION_REUSE_ENABLED', '1', { removeInEdge: true });
   }

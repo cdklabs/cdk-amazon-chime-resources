@@ -133,7 +133,7 @@ export class MessagingResources extends Construct {
     const fn = new lambda.Function(stack, constructName, {
       runtime: lambda.Runtime.PYTHON_3_9,
       code: lambda.Code.fromAsset(
-        path.join(__dirname, '../../resources/messaging'),
+        path.join(__dirname, '../resources/messaging/'),
       ),
       handler: 'index.handler',
       architecture: lambda.Architecture.ARM_64,

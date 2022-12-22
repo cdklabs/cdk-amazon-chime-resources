@@ -21,7 +21,7 @@ import {
   PhysicalResourceId,
 } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
-import { PstnFunction } from '../pstn-function';
+import { PstnFunction } from '../resources/pstn/pstn-function';
 
 export interface PSTNResourceProps extends ResourceProps {
   readonly properties: { [propname: string]: any };

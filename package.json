@@ -8,8 +8,8 @@
     "build": "npx projen build",
     "bump": "npx projen bump",
     "bundle": "npx projen bundle",
-    "bundle:pstn.lambda": "npx projen bundle:pstn.lambda",
-    "bundle:pstn.lambda:watch": "npx projen bundle:pstn.lambda:watch",
+    "bundle:resources/pstn/pstn.lambda": "npx projen bundle:resources/pstn/pstn.lambda",
+    "bundle:resources/pstn/pstn.lambda:watch": "npx projen bundle:resources/pstn/pstn.lambda:watch",
     "clobber": "npx projen clobber",
     "compat": "npx projen compat",
     "compile": "npx projen compile",
@@ -38,8 +38,8 @@
     "organization": false
   },
   "devDependencies": {
-    "@aws-sdk/client-chime-sdk-voice": "^3.226.0",
-    "@aws-sdk/client-ssm": "^3.226.0",
+    "@aws-sdk/client-chime-sdk-voice": "^3.236.0",
+    "@aws-sdk/client-ssm": "^3.236.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^27",
     "@types/node": "^14",

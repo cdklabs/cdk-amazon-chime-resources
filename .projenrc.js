@@ -1,4 +1,5 @@
 const { awscdk } = require('projen');
+
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
@@ -9,17 +10,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
-  lambdaOptions: {
-    // target node.js runtime
-    runtime: awscdk.LambdaRuntime.NODEJS_18_X,
-
-    bundlingOptions: {
-      // list of node modules to exclude from the bundle
-      externals: ['aws-sdk'],
-      sourcemap: true,
-    },
-  },
-  workflowNodeVersion: '16.13.1',
+  lambdaAutoDiscover: false,
   devDeps: [
     'yalc',
     'esbuild',
@@ -28,6 +19,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-lambda',
     '@types/aws-lambda',
   ],
+  // deps: ['@aws-sdk/client-chime-sdk-voice', '@aws-sdk/client-ssm'],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
@@ -46,6 +38,20 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
+});
+
+new awscdk.LambdaFunction(project, {
+  cdkVersion: '2.53.0',
+  cdkDeps: [
+    '@aws-sdk/client-ssm',
+    '@aws-sdk/client-chime-sdk-voice',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  entrypoint: 'src/resources/pstn/pstn.lambda.ts',
+  runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  target: 'node18',
+  platform: 'node',
 });
 
 const common_exclude = [
