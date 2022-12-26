@@ -1820,7 +1820,7 @@ const sipRuleProps: SipRuleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`targetApplications`](#cdkamazonchimeresourcessiprulepropspropertytargetapplications)<span title="Required">*</span> | [`cdk-amazon-chime-resources.TargetApplications`](#cdk-amazon-chime-resources.TargetApplications)[] | *No description.* |
+| [`targetApplications`](#cdkamazonchimeresourcessiprulepropspropertytargetapplications)<span title="Required">*</span> | [`cdk-amazon-chime-resources.SipRuleTargetApplication`](#cdk-amazon-chime-resources.SipRuleTargetApplication)[] | *No description.* |
 | [`triggerType`](#cdkamazonchimeresourcessiprulepropspropertytriggertype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.TriggerType`](#cdk-amazon-chime-resources.TriggerType) | Trigger Type for SipRule (required) - TO_PHONE_NUMBER or REQUEST_URI_HOSTNAME. |
 | [`triggerValue`](#cdkamazonchimeresourcessiprulepropspropertytriggervalue)<span title="Required">*</span> | `string` | Trigger Value for SipRule (required) - EE.164 Phone Number or Voice Connector URI. |
 | [`name`](#cdkamazonchimeresourcessiprulepropspropertyname) | `string` | name for SipRule (optional). |
@@ -1830,10 +1830,10 @@ const sipRuleProps: SipRuleProps = { ... }
 ##### `targetApplications`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleProps.property.targetApplications" id="cdkamazonchimeresourcessiprulepropspropertytargetapplications"></a>
 
 ```typescript
-public readonly targetApplications: TargetApplications[];
+public readonly targetApplications: SipRuleTargetApplication[];
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.TargetApplications`](#cdk-amazon-chime-resources.TargetApplications)[]
+- *Type:* [`cdk-amazon-chime-resources.SipRuleTargetApplication`](#cdk-amazon-chime-resources.SipRuleTargetApplication)[]
 
 ---
 
@@ -1873,6 +1873,65 @@ public readonly name: string;
 - *Default:* unique ID for resource
 
 name for SipRule (optional).
+
+---
+
+### SipRuleTargetApplication <a name="cdk-amazon-chime-resources.SipRuleTargetApplication" id="cdkamazonchimeresourcessipruletargetapplication"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SipRuleTargetApplication } from 'cdk-amazon-chime-resources'
+
+const sipRuleTargetApplication: SipRuleTargetApplication = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`priority`](#cdkamazonchimeresourcessipruletargetapplicationpropertypriority)<span title="Required">*</span> | `number` | Priority for SipRule (required) - 1 to 25. |
+| [`sipMediaApplicationId`](#cdkamazonchimeresourcessipruletargetapplicationpropertysipmediaapplicationid)<span title="Required">*</span> | `string` | SipMediaApplicationId for SipRule (required). |
+| [`awsRegion`](#cdkamazonchimeresourcessipruletargetapplicationpropertyawsregion) | `string` | Region for SipRule (optional). |
+
+---
+
+##### `priority`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.priority" id="cdkamazonchimeresourcessipruletargetapplicationpropertypriority"></a>
+
+```typescript
+public readonly priority: number;
+```
+
+- *Type:* `number`
+- *Default:* none
+
+Priority for SipRule (required) - 1 to 25.
+
+---
+
+##### `sipMediaApplicationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.sipMediaApplicationId" id="cdkamazonchimeresourcessipruletargetapplicationpropertysipmediaapplicationid"></a>
+
+```typescript
+public readonly sipMediaApplicationId: string;
+```
+
+- *Type:* `string`
+- *Default:* none
+
+SipMediaApplicationId for SipRule (required).
+
+---
+
+##### `awsRegion`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.awsRegion" id="cdkamazonchimeresourcessipruletargetapplicationpropertyawsregion"></a>
+
+```typescript
+public readonly awsRegion: string;
+```
+
+- *Type:* `string`
+- *Default:* same region as stack deployment
+
+Region for SipRule (optional).
 
 ---
 
@@ -2067,65 +2126,6 @@ public readonly value: string;
 
 ---
 
-### TargetApplications <a name="cdk-amazon-chime-resources.TargetApplications" id="cdkamazonchimeresourcestargetapplications"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { TargetApplications } from 'cdk-amazon-chime-resources'
-
-const targetApplications: TargetApplications = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`priority`](#cdkamazonchimeresourcestargetapplicationspropertypriority)<span title="Required">*</span> | `number` | Priority for SipRule (required) - 1 to 25. |
-| [`sipMediaApplicationId`](#cdkamazonchimeresourcestargetapplicationspropertysipmediaapplicationid)<span title="Required">*</span> | `string` | SipMediaApplicationId for SipRule (required). |
-| [`region`](#cdkamazonchimeresourcestargetapplicationspropertyregion) | `string` | Region for SipRule (optional). |
-
----
-
-##### `priority`<sup>Required</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.priority" id="cdkamazonchimeresourcestargetapplicationspropertypriority"></a>
-
-```typescript
-public readonly priority: number;
-```
-
-- *Type:* `number`
-- *Default:* none
-
-Priority for SipRule (required) - 1 to 25.
-
----
-
-##### `sipMediaApplicationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.sipMediaApplicationId" id="cdkamazonchimeresourcestargetapplicationspropertysipmediaapplicationid"></a>
-
-```typescript
-public readonly sipMediaApplicationId: string;
-```
-
-- *Type:* `string`
-- *Default:* none
-
-SipMediaApplicationId for SipRule (required).
-
----
-
-##### `region`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.region" id="cdkamazonchimeresourcestargetapplicationspropertyregion"></a>
-
-```typescript
-public readonly region: string;
-```
-
-- *Type:* `string`
-- *Default:* same region as stack deployment
-
-Region for SipRule (optional).
-
----
-
 ### Termination <a name="cdk-amazon-chime-resources.Termination" id="cdkamazonchimeresourcestermination"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -2141,8 +2141,8 @@ const termination: Termination = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`callingRegions`](#cdkamazonchimeresourcesterminationpropertycallingregions)<span title="Required">*</span> | `string`[] | Calling Regions for VoiceConnector (optional). |
-| [`terminationCidrs`](#cdkamazonchimeresourcesterminationpropertyterminationcidrs)<span title="Required">*</span> | `string`[] | termination IP for VoiceConnector (optional). |
-| [`cps`](#cdkamazonchimeresourcesterminationpropertycps) | `number` | CPS Limit. |
+| [`cidrAllowedList`](#cdkamazonchimeresourcesterminationpropertycidrallowedlist)<span title="Required">*</span> | `string`[] | termination IP for VoiceConnector (optional). |
+| [`cpsLimit`](#cdkamazonchimeresourcesterminationpropertycpslimit) | `number` | CPS Limit. |
 
 ---
 
@@ -2159,10 +2159,10 @@ Calling Regions for VoiceConnector (optional).
 
 ---
 
-##### `terminationCidrs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Termination.property.terminationCidrs" id="cdkamazonchimeresourcesterminationpropertyterminationcidrs"></a>
+##### `cidrAllowedList`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Termination.property.cidrAllowedList" id="cdkamazonchimeresourcesterminationpropertycidrallowedlist"></a>
 
 ```typescript
-public readonly terminationCidrs: string[];
+public readonly cidrAllowedList: string[];
 ```
 
 - *Type:* `string`[]
@@ -2172,10 +2172,10 @@ termination IP for VoiceConnector (optional).
 
 ---
 
-##### `cps`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Termination.property.cps" id="cdkamazonchimeresourcesterminationpropertycps"></a>
+##### `cpsLimit`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Termination.property.cpsLimit" id="cdkamazonchimeresourcesterminationpropertycpslimit"></a>
 
 ```typescript
-public readonly cps: number;
+public readonly cpsLimit: number;
 ```
 
 - *Type:* `number`

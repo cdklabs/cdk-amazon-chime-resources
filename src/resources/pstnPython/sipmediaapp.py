@@ -20,7 +20,7 @@ def create_sip_media_app(uid, region=None, name=None, endpoint=None, **kwargs):
     logger.info(f"Creating SIP media application: {uid}")
     try:
         sip_media_app_id = chime.create_sip_media_application(
-            AwsRegion=region, Name=name, Endpoints=[{"LambdaArn": endpoint}]
+            awsRegion=region, Name=name, Endpoints=[{"LambdaArn": endpoint}]
         )["SipMediaApplication"]["SipMediaApplicationId"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}

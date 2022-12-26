@@ -1,3 +1,4 @@
+// import { Termination } from '@aws-sdk/client-chime-sdk-voice';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { PSTNResources } from './pstnCustomResources';
@@ -26,13 +27,13 @@ export interface Termination {
    *
    * @default - 1
    */
-  readonly cps?: number;
+  readonly cpsLimit?: number;
   /**
    * termination IP for VoiceConnector (optional)
    *
    * @default - none
    */
-  readonly terminationCidrs: Array<string>;
+  readonly cidrAllowedList: Array<string>;
 }
 
 export interface Routes {

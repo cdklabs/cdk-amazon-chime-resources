@@ -24,9 +24,9 @@ export class VoiceConnectorExample extends Stack {
         encryption: false,
         region: 'us-east-1',
         termination: {
-          terminationCidrs: ['198.51.100.0/27'],
+          cidrAllowedList: ['198.51.100.0/27'],
           callingRegions: ['US'],
-          cps: 1,
+          cpsLimit: 1,
         },
         origination: [
           {

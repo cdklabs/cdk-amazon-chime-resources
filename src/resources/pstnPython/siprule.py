@@ -41,7 +41,7 @@ def create_sip_rule(
             elif key == "priority":
                 transformed_application["Priority"] = int(target_application[key])
             elif key == "region":
-                transformed_application["AwsRegion"] = target_application[key]
+                transformed_application["awsRegion"] = target_application[key]
         target_applications.append(transformed_application)
     logger.info(f"target_applications: {target_applications}")
 

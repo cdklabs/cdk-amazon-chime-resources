@@ -1,5 +1,4 @@
 const { awscdk } = require('projen');
-
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
@@ -11,15 +10,28 @@ const project = new awscdk.AwsCdkConstructLibrary({
     ignorePatterns: ['example/**'],
   },
   lambdaAutoDiscover: false,
-  devDeps: [
-    'yalc',
-    'esbuild',
+  // peerDeps: ['@aws-sdk/client-chime-sdk-voice'],
+  // peerDependencyOptions: { pinnedDevDependency: false },
+  deps: [
     '@aws-sdk/client-chime-sdk-voice',
     '@aws-sdk/client-ssm',
     'aws-lambda',
     '@types/aws-lambda',
   ],
-  // deps: ['@aws-sdk/client-chime-sdk-voice', '@aws-sdk/client-ssm'],
+  devDeps: [
+    'yalc',
+    'esbuild',
+    // '@aws-sdk/client-chime-sdk-voice',
+    // '@aws-sdk/client-ssm',
+    // 'aws-lambda',
+    // '@types/aws-lambda',
+  ],
+  bundledDeps: [
+    '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-ssm',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {

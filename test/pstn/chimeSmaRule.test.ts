@@ -3,10 +3,10 @@ import * as cdk from 'aws-cdk-lib';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
 import {
   ChimeSipRule,
-  TriggerType,
   ChimeSipMediaApp,
   PhoneProductType,
   ChimePhoneNumber,
+  TriggerType,
 } from '../../src';
 
 const app = new cdk.App();
@@ -35,7 +35,7 @@ test('Normal', () => {
     targetApplications: [
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-        region: 'us-east-1',
+        awsRegion: 'us-east-1',
         priority: 1,
       },
     ],
@@ -50,7 +50,7 @@ test('WithVoiceConnector', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        region: stack.region,
+        awsRegion: stack.region,
       },
     ],
   });
@@ -64,7 +64,7 @@ test('WithPhoneNumber', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        region: stack.region,
+        awsRegion: stack.region,
       },
     ],
   });
@@ -79,7 +79,7 @@ test('NormalWithName', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        region: stack.region,
+        awsRegion: stack.region,
       },
     ],
   });
@@ -95,7 +95,7 @@ test('BadRegion', () => {
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
             priority: 1,
-            region: 'us-west-1',
+            awsRegion: 'us-west-1',
           },
         ],
       }),
@@ -111,7 +111,7 @@ test('BadURI', () => {
         targetApplications: [
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-            region: 'us-east-1',
+            awsRegion: 'us-east-1',
             priority: 1,
           },
         ],
@@ -129,7 +129,7 @@ test('BadNumber', () => {
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
             priority: 1,
-            region: 'us-west-2',
+            awsRegion: 'us-west-2',
           },
         ],
       }),
@@ -146,26 +146,26 @@ test('BadSMAID', () => {
           {
             sipMediaApplicationId: '123456',
             priority: 1,
-            region: stack.region,
+            awsRegion: stack.region,
           },
         ],
       }),
   ).toThrowError('sipMediaApplicationId must be valid');
 });
 
-test('BadPriority', () => {
+test('Badpriority', () => {
   expect(
     () =>
-      new ChimeSipRule(stack, 'BadPriority', {
+      new ChimeSipRule(stack, 'Badpriority', {
         triggerType: TriggerType.REQUEST_URI_HOSTNAME,
         triggerValue: 'bl4jpdz2puqt55uhwjnzxi.voiceconnector.chime.aws',
         targetApplications: [
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-            region: 'us-east-1',
+            awsRegion: 'us-east-1',
             priority: 26,
           },
         ],
       }),
-  ).toThrowError('Priority should be between 1 and 25');
+  ).toThrowError('priority should be between 1 and 25');
 });

@@ -23,12 +23,12 @@ def build_voice_connector(uid, region, name, encryption):
         require_encryption = True
 
     logger.info(f"Name: {name}")
-    logger.info(f"AwsRegion: {region}")
+    logger.info(f"awsRegion: {region}")
     logger.info(f"RequireEncrpytion: {require_encryption}")
 
     try:
         voice_connector_id = chime.create_voice_connector(
-            Name=name, AwsRegion=region, RequireEncryption=require_encryption
+            Name=name, awsRegion=region, RequireEncryption=require_encryption
         )["VoiceConnector"]["VoiceConnectorId"]
     except Exception as e:
         error = {"error": f"Exception thrown: {e}"}
@@ -88,10 +88,10 @@ def build_termination(voice_connector_id, termination):
         chime.put_voice_connector_termination(
             VoiceConnectorId=voice_connector_id,
             Termination={
-                "CallingRegions": callingRegions,
-                "CidrAllowedList": terminationCidrs,
+                "callingRegions": callingRegions,
+                "cidrAllowedList": terminationCidrs,
                 "Disabled": False,
-                "CpsLimit": cps_limit,
+                "cpsLimit": cps_limit,
             },
         )
     except Exception as e:
