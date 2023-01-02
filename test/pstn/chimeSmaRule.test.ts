@@ -35,7 +35,7 @@ test('Normal', () => {
     targetApplications: [
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-        awsRegion: 'us-east-1',
+        region: 'us-east-1',
         priority: 1,
       },
     ],
@@ -50,7 +50,7 @@ test('WithVoiceConnector', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        awsRegion: stack.region,
+        region: stack.region,
       },
     ],
   });
@@ -64,7 +64,7 @@ test('WithPhoneNumber', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        awsRegion: stack.region,
+        region: stack.region,
       },
     ],
   });
@@ -79,7 +79,7 @@ test('NormalWithName', () => {
       {
         sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         priority: 1,
-        awsRegion: stack.region,
+        region: stack.region,
       },
     ],
   });
@@ -95,7 +95,7 @@ test('BadRegion', () => {
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
             priority: 1,
-            awsRegion: 'us-west-1',
+            region: 'us-west-1',
           },
         ],
       }),
@@ -111,7 +111,7 @@ test('BadURI', () => {
         targetApplications: [
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-            awsRegion: 'us-east-1',
+            region: 'us-east-1',
             priority: 1,
           },
         ],
@@ -129,7 +129,7 @@ test('BadNumber', () => {
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
             priority: 1,
-            awsRegion: 'us-west-2',
+            region: 'us-west-2',
           },
         ],
       }),
@@ -146,7 +146,7 @@ test('BadSMAID', () => {
           {
             sipMediaApplicationId: '123456',
             priority: 1,
-            awsRegion: stack.region,
+            region: stack.region,
           },
         ],
       }),
@@ -162,7 +162,7 @@ test('Badpriority', () => {
         targetApplications: [
           {
             sipMediaApplicationId: sipMediaApp.sipMediaAppId,
-            awsRegion: 'us-east-1',
+            region: 'us-east-1',
             priority: 26,
           },
         ],

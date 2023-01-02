@@ -24,9 +24,9 @@ export class VoiceConnectorExample extends Stack {
         encryption: false,
         region: 'us-east-1',
         termination: {
-          cidrAllowedList: ['198.51.100.0/27'],
+          terminationCidrs: ['198.51.100.0/27'],
           callingRegions: ['US'],
-          cpsLimit: 1,
+          cps: 1,
         },
         origination: [
           {
@@ -49,12 +49,13 @@ export class VoiceConnectorExample extends Stack {
           dataRetention: 0,
           notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
         },
+        loggingConfiguration: { enableSIPLogs: true },
       },
     );
 
     voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 
-    new CfnOutput(this, 'voiceConnectorPhoneNumberOutput', {
+    new CfnOutput(this, 'phoneNumber', {
       value: voiceConnectorPhone.phoneNumber,
     });
 

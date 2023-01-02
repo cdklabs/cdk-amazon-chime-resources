@@ -44,12 +44,12 @@ export function sipRuleValidator(props: SipRuleProps) {
       }
 
       for (var target of props.targetApplications) {
-        if (target.awsRegion) {
+        if (target.region) {
           if (
             !(
-              target.awsRegion.includes('Token[AWS.Region.') ||
-              target.awsRegion === 'us-east-1' ||
-              target.awsRegion === 'us-west-2'
+              target.region.includes('Token[AWS.Region.') ||
+              target.region === 'us-east-1' ||
+              target.region === 'us-west-2'
             )
           ) {
             throw new Error('Region must be us-east-1 or us-west-2');

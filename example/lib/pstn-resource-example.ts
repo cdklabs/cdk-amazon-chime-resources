@@ -36,7 +36,7 @@ export class PSTNExample extends Stack {
       triggerValue: phoneNumber.phoneNumber,
       targetApplications: [
         {
-          awsRegion: this.region,
+          region: this.region,
           priority: 1,
           sipMediaApplicationId: sipMediaApp.sipMediaAppId,
         },

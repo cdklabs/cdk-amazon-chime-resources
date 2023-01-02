@@ -31,12 +31,11 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination && props.termination.cpsLimit) {
-    console.log('CPS Limit: ', props.termination.cpsLimit);
-    if (props.termination.cpsLimit < 1) {
+  if (props.termination && props.termination.cps !== undefined) {
+    if (props.termination.cps < 1) {
       throw new Error('CPS must be between 1 and 256');
     }
-    if (props.termination.cpsLimit > 256) {
+    if (props.termination.cps > 256) {
       throw new Error('CPS must be between 1 and 256');
     }
   }
@@ -49,8 +48,8 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination && props.termination.cidrAllowedList) {
-    for (var terminationCidr of props.termination.cidrAllowedList) {
+  if (props.termination && props.termination.terminationCidrs) {
+    for (var terminationCidr of props.termination.terminationCidrs) {
       if (terminationCidr.includes('Token')) {
       } else if (!VALID_CIDR.test(terminationCidr)) {
         throw new Error(
@@ -60,8 +59,8 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination && props.termination.cidrAllowedList) {
-    for (var terminationCidr of props.termination.cidrAllowedList) {
+  if (props.termination && props.termination.terminationCidrs) {
+    for (var terminationCidr of props.termination.terminationCidrs) {
       if (RFC_1918_CIDR.test(terminationCidr)) {
         throw new Error(
           'Termination CIDR must not be RFC1918 CIDR block (/27-/32)',

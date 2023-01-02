@@ -30,7 +30,7 @@ export interface SipRuleTargetApplication {
    *
    * @default - same region as stack deployment
    */
-  readonly awsRegion?: string;
+  readonly region?: string;
 }
 /**
  * Props for `SipRule`.
@@ -41,7 +41,6 @@ export interface SipRuleProps {
    *
    * @default - none
    */
-  // readonly triggerType: TriggerType;
   readonly triggerType: TriggerType;
   /**
    * Trigger Value for SipRule (required) - EE.164 Phone Number or Voice Connector URI
@@ -58,7 +57,6 @@ export interface SipRuleProps {
    */
   readonly name?: string;
   readonly targetApplications: SipRuleTargetApplication[];
-  // readonly targetApplications: Array<TargetApplications>;
 }
 
 export class ChimeSipRule extends Construct {

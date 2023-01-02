@@ -36,7 +36,7 @@ export interface CreateSIPRuleProps {
   triggerType?: SipRuleTriggerType;
   triggerValue?: string;
   targetApplications?: [
-    { awsRegion: string; priority: string; sipMediaApplicationId: string },
+    { region: string; priority: string; sipMediaApplicationId: string },
   ];
 }
 
@@ -48,7 +48,7 @@ export const CreateSIPRule = async (uid: string, props: CreateSIPRuleProps) => {
   sipRuleTargetApplications = [];
   props.targetApplications?.forEach((targetApplication) => {
     sipRuleTargetApplications.push({
-      AwsRegion: targetApplication.awsRegion,
+      AwsRegion: targetApplication.region,
       SipMediaApplicationId: targetApplication.sipMediaApplicationId,
       Priority: parseInt(targetApplication.priority),
     });

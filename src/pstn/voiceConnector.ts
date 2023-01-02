@@ -27,13 +27,17 @@ export interface Termination {
    *
    * @default - 1
    */
-  readonly cpsLimit?: number;
+  readonly cps?: number;
   /**
    * termination IP for VoiceConnector (optional)
    *
    * @default - none
    */
-  readonly cidrAllowedList: Array<string>;
+  readonly terminationCidrs: Array<string>;
+}
+
+export interface LoggingConfiguration {
+  readonly enableSIPLogs: boolean;
 }
 
 export interface Routes {
@@ -88,6 +92,7 @@ export interface VoiceConnectorProps {
   readonly termination?: Termination;
   readonly origination?: Array<Routes>;
   readonly streaming?: Streaming;
+  readonly loggingConfiguration?: LoggingConfiguration;
 }
 
 export class ChimeVoiceConnector extends Construct {
@@ -98,8 +103,15 @@ export class ChimeVoiceConnector extends Construct {
 
     const uid: string = cdk.Names.uniqueId(this);
 
-    const { name, region, encryption, termination, origination, streaming } =
-      props;
+    const {
+      name,
+      region,
+      encryption,
+      termination,
+      origination,
+      streaming,
+      loggingConfiguration,
+    } = props;
 
     voiceConnectorValidator(props);
 
@@ -116,9 +128,27 @@ export class ChimeVoiceConnector extends Construct {
           termination: termination,
           origination: origination,
           streaming: streaming,
+          logging: loggingConfiguration,
         },
       },
     );
+
+    // if (
+    //   voiceConnectorRequest.pstnCustomResource.node.tryFindChild(
+    //     'voiceConnectorId',
+    //   )
+    // ) {
+    //   this.voiceConnectorId =
+    //     voiceConnectorRequest.pstnCustomResource.getAttString(
+    //       'voiceConnectorId',
+    //     );
+    // } else {
+    //   throw new Error(
+    //     `Voice Connector failed to create: ${voiceConnectorRequest.pstnCustomResource.getAttString(
+    //       'Reason',
+    //     )}`,
+    //   );
+    // }
 
     this.voiceConnectorId =
       voiceConnectorRequest.pstnCustomResource.getAttString('voiceConnectorId');

@@ -14,11 +14,11 @@ import {
   PolicyStatement,
 } from 'aws-cdk-lib/aws-iam';
 import { Architecture, IFunction, Function } from 'aws-cdk-lib/aws-lambda';
-import * as cr from 'aws-cdk-lib/custom-resources';
 import {
   AwsCustomResource,
   AwsCustomResourcePolicy,
   PhysicalResourceId,
+  Provider,
 } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 import { PstnFunction } from '../resources/pstn/pstn-function';
@@ -42,7 +42,7 @@ export class PSTNResources extends Construct {
     super(scope, id);
     this.lambda = this.ensureLambda();
 
-    const PSTNResourceProvider = new cr.Provider(this, 'PSTNResourceProvider', {
+    const PSTNResourceProvider = new Provider(this, 'PSTNResourceProvider', {
       onEventHandler: this.lambda,
     });
 
@@ -84,6 +84,7 @@ export class PSTNResources extends Construct {
                 'chime:PutVoiceConnectorStreamingConfiguration',
                 'chime:PutVoiceConnectorTermination',
                 'chime:PutVoiceConnectorOrigination',
+                'chime:PutVoiceConnectorLoggingConfiguration',
                 'chime:ListPhoneNumbers',
                 'chime:AssociatePhoneNumbersWithVoiceConnector',
                 'chime:DisassociatePhoneNumbersFromVoiceConnector',

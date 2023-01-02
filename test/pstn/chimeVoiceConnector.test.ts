@@ -36,9 +36,9 @@ test('Name', () => {
 test('ValidTerminationIPv4', () => {
   new ChimeVoiceConnector(stack, 'ValidTerminationIPv4', {
     termination: {
-      cidrAllowedList: ['198.51.100.10/32'],
+      terminationCidrs: ['198.51.100.10/32'],
       callingRegions: ['US'],
-      cpsLimit: 1,
+      cps: 1,
     },
   });
 });
@@ -99,7 +99,7 @@ test('ReferenceIPs', () => {
   new ChimeVoiceConnector(stack, 'ReferenceIPs', {
     termination: {
       callingRegions: ['US'],
-      cidrAllowedList: [`${asteriskEip.ref}/32`],
+      terminationCidrs: [`${asteriskEip.ref}/32`],
     },
     origination: [
       {
@@ -118,7 +118,7 @@ test('BadCountry', () => {
   expect(() => {
     new ChimeVoiceConnector(stack, 'BadCountry', {
       termination: {
-        cidrAllowedList: ['198.51.100.10/32'],
+        terminationCidrs: ['198.51.100.10/32'],
         callingRegions: ['XX'],
       },
     });
@@ -129,7 +129,7 @@ test('RFC1918terminationCidr', () => {
   expect(() => {
     new ChimeVoiceConnector(stack, 'RFC1918terminationCidr', {
       termination: {
-        cidrAllowedList: ['10.10.10.10/32'],
+        terminationCidrs: ['10.10.10.10/32'],
         callingRegions: ['US'],
       },
     });
@@ -139,32 +139,32 @@ test('RFC1918terminationCidr', () => {
 test('BadTerminationIP', () => {
   expect(() => {
     new ChimeVoiceConnector(stack, 'BadTerminationIP', {
-      termination: { cidrAllowedList: ['string'], callingRegions: ['US'] },
+      termination: { terminationCidrs: ['string'], callingRegions: ['US'] },
     });
   }).toThrowError(
     'Termination CIDR must be a valid non-RFC1918 IPv4 CIDR block (/27-/32)',
   );
 });
 
-// test('BadCpsLow', () => {
-//   expect(() => {
-//     new ChimeVoiceConnector(stack, 'BadCpsLow', {
-//       termination: {
-//         cidrAllowedList: ['198.51.100.10/32'],
-//         callingRegions: ['US'],
-//         cpsLimit: 0,
-//       },
-//     });
-//   }).toThrowError('CPS must be between 1 and 256');
-// });
+test('BadCpsLow', () => {
+  expect(() => {
+    new ChimeVoiceConnector(stack, 'BadCpsLow', {
+      termination: {
+        terminationCidrs: ['198.51.100.10/32'],
+        callingRegions: ['US'],
+        cps: 0,
+      },
+    });
+  }).toThrowError('CPS must be between 1 and 256');
+});
 
 test('BadCpsHigh', () => {
   expect(() => {
     new ChimeVoiceConnector(stack, 'BadCpsHigh', {
       termination: {
-        cidrAllowedList: ['198.51.100.10/32'],
+        terminationCidrs: ['198.51.100.10/32'],
         callingRegions: ['US'],
-        cpsLimit: 257,
+        cps: 257,
       },
     });
   }).toThrowError('CPS must be between 1 and 256');

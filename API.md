@@ -1154,6 +1154,34 @@ The ARN of the Lambda message processing function.
 
 ---
 
+### LoggingConfiguration <a name="cdk-amazon-chime-resources.LoggingConfiguration" id="cdkamazonchimeresourcesloggingconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { LoggingConfiguration } from 'cdk-amazon-chime-resources'
+
+const loggingConfiguration: LoggingConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`enableSIPLogs`](#cdkamazonchimeresourcesloggingconfigurationpropertyenablesiplogs)<span title="Required">*</span> | `boolean` | *No description.* |
+
+---
+
+##### `enableSIPLogs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.LoggingConfiguration.property.enableSIPLogs" id="cdkamazonchimeresourcesloggingconfigurationpropertyenablesiplogs"></a>
+
+```typescript
+public readonly enableSIPLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
 ### MessagingResourceProps <a name="cdk-amazon-chime-resources.MessagingResourceProps" id="cdkamazonchimeresourcesmessagingresourceprops"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -1892,7 +1920,7 @@ const sipRuleTargetApplication: SipRuleTargetApplication = { ... }
 | --- | --- | --- |
 | [`priority`](#cdkamazonchimeresourcessipruletargetapplicationpropertypriority)<span title="Required">*</span> | `number` | Priority for SipRule (required) - 1 to 25. |
 | [`sipMediaApplicationId`](#cdkamazonchimeresourcessipruletargetapplicationpropertysipmediaapplicationid)<span title="Required">*</span> | `string` | SipMediaApplicationId for SipRule (required). |
-| [`awsRegion`](#cdkamazonchimeresourcessipruletargetapplicationpropertyawsregion) | `string` | Region for SipRule (optional). |
+| [`region`](#cdkamazonchimeresourcessipruletargetapplicationpropertyregion) | `string` | Region for SipRule (optional). |
 
 ---
 
@@ -1922,10 +1950,10 @@ SipMediaApplicationId for SipRule (required).
 
 ---
 
-##### `awsRegion`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.awsRegion" id="cdkamazonchimeresourcessipruletargetapplicationpropertyawsregion"></a>
+##### `region`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.region" id="cdkamazonchimeresourcessipruletargetapplicationpropertyregion"></a>
 
 ```typescript
-public readonly awsRegion: string;
+public readonly region: string;
 ```
 
 - *Type:* `string`
@@ -2141,8 +2169,8 @@ const termination: Termination = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`callingRegions`](#cdkamazonchimeresourcesterminationpropertycallingregions)<span title="Required">*</span> | `string`[] | Calling Regions for VoiceConnector (optional). |
-| [`cidrAllowedList`](#cdkamazonchimeresourcesterminationpropertycidrallowedlist)<span title="Required">*</span> | `string`[] | termination IP for VoiceConnector (optional). |
-| [`cpsLimit`](#cdkamazonchimeresourcesterminationpropertycpslimit) | `number` | CPS Limit. |
+| [`terminationCidrs`](#cdkamazonchimeresourcesterminationpropertyterminationcidrs)<span title="Required">*</span> | `string`[] | termination IP for VoiceConnector (optional). |
+| [`cps`](#cdkamazonchimeresourcesterminationpropertycps) | `number` | CPS Limit. |
 
 ---
 
@@ -2159,10 +2187,10 @@ Calling Regions for VoiceConnector (optional).
 
 ---
 
-##### `cidrAllowedList`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Termination.property.cidrAllowedList" id="cdkamazonchimeresourcesterminationpropertycidrallowedlist"></a>
+##### `terminationCidrs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Termination.property.terminationCidrs" id="cdkamazonchimeresourcesterminationpropertyterminationcidrs"></a>
 
 ```typescript
-public readonly cidrAllowedList: string[];
+public readonly terminationCidrs: string[];
 ```
 
 - *Type:* `string`[]
@@ -2172,10 +2200,10 @@ termination IP for VoiceConnector (optional).
 
 ---
 
-##### `cpsLimit`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Termination.property.cpsLimit" id="cdkamazonchimeresourcesterminationpropertycpslimit"></a>
+##### `cps`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Termination.property.cps" id="cdkamazonchimeresourcesterminationpropertycps"></a>
 
 ```typescript
-public readonly cpsLimit: number;
+public readonly cps: number;
 ```
 
 - *Type:* `number`
@@ -2202,6 +2230,7 @@ const voiceConnectorProps: VoiceConnectorProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`encryption`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyencryption) | `boolean` | Encryption boolean for VoiceConnector. |
+| [`loggingConfiguration`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration) | [`cdk-amazon-chime-resources.LoggingConfiguration`](#cdk-amazon-chime-resources.LoggingConfiguration) | *No description.* |
 | [`name`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyname) | `string` | name for VoiceConnector. |
 | [`origination`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyorigination) | [`cdk-amazon-chime-resources.Routes`](#cdk-amazon-chime-resources.Routes)[] | *No description.* |
 | [`region`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyregion) | `string` | region for SipMediaApplication(required) - Must us-east-1 or us-west-2 and in the same region as the SipMediaApplication Lambda handler. |
@@ -2220,6 +2249,16 @@ public readonly encryption: boolean;
 - *Default:* False
 
 Encryption boolean for VoiceConnector.
+
+---
+
+##### `loggingConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorProps.property.loggingConfiguration" id="cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration"></a>
+
+```typescript
+public readonly loggingConfiguration: LoggingConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.LoggingConfiguration`](#cdk-amazon-chime-resources.LoggingConfiguration)
 
 ---
 
