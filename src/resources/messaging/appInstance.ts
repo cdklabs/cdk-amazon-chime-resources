@@ -1,21 +1,35 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// import { ChimeSDKMessagingClient } from '@aws-sdk/client-chime-sdk-messaging';
+import {
+  ChimeClient,
+  CreateAppInstanceCommand,
+  CreateAppInstanceCommandInput,
+  CreateAppInstanceCommandOutput,
+  DeleteAppInstanceCommand,
+} from '@aws-sdk/client-chime';
 
-// import {
-//   SSMClient,
-//   DeleteParameterCommand,
-//   GetParameterCommand,
-//   GetParameterCommandOutput,
-//   PutParameterCommand,
-// } from '@aws-sdk/client-ssm';
+import {
+  SSMClient,
+  DeleteParameterCommand,
+  GetParameterCommand,
+  GetParameterCommandOutput,
+  PutParameterCommand,
+} from '@aws-sdk/client-ssm';
 
-// const chimeSDKMessagingClient = new ChimeSDKMessagingClient({
-//   region: process.env.AWS_REGION,
-// });
+const chimeClient = new ChimeClient({
+  region: process.env.AWS_REGION,
+});
 
-// const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
+const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
-interface CreateAppInstanceProps {}
+let createAppInstanceCommandParams: CreateAppInstanceCommandInput;
+let createAppInstanceCommandResponse: CreateAppInstanceCommandOutput;
+let getParameterCommandOutput: GetParameterCommandOutput;
+
+interface CreateAppInstanceProps {
+  name?: string;
+  metadata?: string;
+  clientRequestToken?: string;
+}
 
 export const CreateAppInstance = async (
   uid: string,
@@ -23,11 +37,73 @@ export const CreateAppInstance = async (
 ) => {
   console.log(uid);
   console.log(props);
+
+  createAppInstanceCommandParams = {
+    Name: props.name,
+    ...(props.metadata && { Metadata: props.metadata }),
+    ...(props.clientRequestToken && {
+      ClientRequestToken: props.clientRequestToken,
+    }),
+  };
+
+  try {
+    createAppInstanceCommandResponse = await chimeClient.send(
+      new CreateAppInstanceCommand(createAppInstanceCommandParams),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  try {
+    await ssmClient.send(
+      new PutParameterCommand({
+        Name: `/chime/appInstanceArn/${uid}`,
+        Description: 'App Instance Arn',
+        Value: createAppInstanceCommandResponse.AppInstanceArn,
+        Overwrite: true,
+        Type: 'String',
+      }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   return {
-    appInstanceArn: 'string',
+    appInstanceArn: createAppInstanceCommandResponse.AppInstanceArn,
   };
 };
 
 export const DeleteAppInstance = async (uid: string) => {
-  console.log(uid);
+  try {
+    getParameterCommandOutput = await ssmClient.send(
+      new GetParameterCommand({ Name: `/chime/appInstanceArn/${uid}` }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  try {
+    await chimeClient.send(
+      new DeleteAppInstanceCommand({
+        AppInstanceArn: getParameterCommandOutput.Parameter!.Value,
+      }),
+    );
+    await ssmClient.send(
+      new DeleteParameterCommand({ Name: `/chime/appInstanceArn/${uid}` }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
 };

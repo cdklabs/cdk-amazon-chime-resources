@@ -5,16 +5,13 @@ import {
 } from 'aws-lambda';
 import { CreateAppInstance, DeleteAppInstance } from './appInstance';
 import { CreateChannelFlow, DeleteChannelFlow } from './channelFlow';
-import { CreateDataRetention, DeleteDataRetention } from './dataRetention';
+import { PutDataRetention } from './dataRetention';
 import {
   CreateAppInstanceAdmin,
   DeleteAppInstanceAdmin,
 } from './instanceAdmin';
 import { CreateAppInstanceUser, DeleteAppInstanceUser } from './instanceUser';
-import {
-  CreateStreamingConfig,
-  DeleteStreamingConfig,
-} from './streamingConfig';
+import { PutStreamingConfiguration } from './streamingConfig';
 
 const response: CdkCustomResourceResponse = {};
 let resourcePropertiesUid: string;
@@ -110,12 +107,9 @@ export const handler = async (
       switch (requestType) {
         case 'Create':
           try {
-            response.Data = await CreateDataRetention(
-              resourcePropertiesUid,
-              requestProperties,
-            );
+            response.Data = await PutDataRetention(requestProperties);
             response.Status = 'SUCCESS';
-            response.Reason = 'CreateDataRetention successful';
+            response.Reason = 'PutDataRetention successful';
           } catch (error) {
             if (error instanceof Error) {
               response.Status = 'FAILED';
@@ -124,13 +118,10 @@ export const handler = async (
           }
           break;
         case 'Update':
-          response.Status = 'SUCCESS';
-          break;
-        case 'Delete':
           try {
-            await DeleteDataRetention(resourcePropertiesUid);
+            response.Data = await PutDataRetention(requestProperties);
             response.Status = 'SUCCESS';
-            response.Reason = 'DeleteDataRetention successful';
+            response.Reason = 'PutDataRetention successful';
           } catch (error) {
             if (error instanceof Error) {
               response.Status = 'FAILED';
@@ -215,12 +206,9 @@ export const handler = async (
       switch (requestType) {
         case 'Create':
           try {
-            response.Data = await CreateStreamingConfig(
-              resourcePropertiesUid,
-              requestProperties,
-            );
+            response.Data = await PutStreamingConfiguration(requestProperties);
             response.Status = 'SUCCESS';
-            response.Reason = 'CreateStreamingConfig successful';
+            response.Reason = 'PutStreamingConfiguration successful';
           } catch (error) {
             if (error instanceof Error) {
               response.Status = 'FAILED';
@@ -229,13 +217,10 @@ export const handler = async (
           }
           break;
         case 'Update':
-          response.Status = 'SUCCESS';
-          break;
-        case 'Delete':
           try {
-            await DeleteStreamingConfig(resourcePropertiesUid);
+            response.Data = await PutStreamingConfiguration(requestProperties);
             response.Status = 'SUCCESS';
-            response.Reason = 'DeleteStreamingConfig successful';
+            response.Reason = 'PutStreamingConfiguration successful';
           } catch (error) {
             if (error instanceof Error) {
               response.Status = 'FAILED';

@@ -1,33 +1,45 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// import { ChimeSDKMessagingClient } from '@aws-sdk/client-chime-sdk-messaging';
+import {
+  ChimeClient,
+  PutAppInstanceRetentionSettingsCommand,
+  PutAppInstanceRetentionSettingsCommandOutput,
+  PutAppInstanceRetentionSettingsCommandInput,
+} from '@aws-sdk/client-chime';
 
-// import {
-//   SSMClient,
-//   DeleteParameterCommand,
-//   GetParameterCommand,
-//   GetParameterCommandOutput,
-//   PutParameterCommand,
-// } from '@aws-sdk/client-ssm';
+const chimeClient = new ChimeClient({
+  region: process.env.AWS_REGION,
+});
 
-// const chimeSDKMessagingClient = new ChimeSDKMessagingClient({
-//   region: process.env.AWS_REGION,
-// });
+interface DataRetentionProps {
+  dataRetention?: string;
+  appInstanceArn?: string;
+}
 
-// const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
+let putDataRetentionOutput: PutAppInstanceRetentionSettingsCommandOutput;
+let putDataRetentionInput: PutAppInstanceRetentionSettingsCommandInput;
 
-interface DataRetentionProps {}
-
-export const CreateDataRetention = async (
-  uid: string,
-  props: DataRetentionProps,
-) => {
-  console.log(uid);
-  console.log(props);
-  return {
-    appInstanceArn: 'string',
+export const PutDataRetention = async (props: DataRetentionProps) => {
+  putDataRetentionInput = {
+    AppInstanceArn: props.appInstanceArn,
+    AppInstanceRetentionSettings: {
+      ChannelRetentionSettings: {
+        RetentionDays: parseInt(props.dataRetention!),
+      },
+    },
   };
-};
 
-export const DeleteDataRetention = async (uid: string) => {
-  console.log(uid);
+  try {
+    putDataRetentionOutput = await chimeClient.send(
+      new PutAppInstanceRetentionSettingsCommand(putDataRetentionInput),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  return {
+    appInstanceRetentionSettings:
+      putDataRetentionOutput.AppInstanceRetentionSettings,
+  };
 };

@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/indent */
-import * as path from 'path';
-import * as cdk from 'aws-cdk-lib';
-import { CustomResource } from 'aws-cdk-lib';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as cr from 'aws-cdk-lib/custom-resources';
+import { Duration, CustomResource, ResourceProps, Stack } from 'aws-cdk-lib';
+import {
+  ServicePrincipal,
+  Role,
+  ManagedPolicy,
+  PolicyDocument,
+  PolicyStatement,
+} from 'aws-cdk-lib/aws-iam';
+import { Architecture, IFunction, Function } from 'aws-cdk-lib/aws-lambda';
+import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
+import { MessagingFunction } from '../resources/messaging/messaging-function';
 
-export interface MessagingResourceProps extends cdk.ResourceProps {
+export interface MessagingResourceProps extends ResourceProps {
   readonly properties: { [propname: string]: any };
   readonly resourceType:
     | 'AppInstance'
@@ -21,14 +26,14 @@ export interface MessagingResourceProps extends cdk.ResourceProps {
 }
 
 export class MessagingResources extends Construct {
-  public readonly lambda: lambda.IFunction;
+  public readonly lambda: IFunction;
   public readonly messagingCustomResource: CustomResource;
 
   constructor(scope: Construct, id: string, props: MessagingResourceProps) {
     super(scope, id);
     this.lambda = this.ensureLambda();
 
-    const MessagingResourceProvider = new cr.Provider(
+    const MessagingResourceProvider = new Provider(
       this,
       'MessagingResourceProvider',
       {
@@ -46,24 +51,24 @@ export class MessagingResources extends Construct {
     );
   }
 
-  private ensureLambda(): lambda.Function {
-    const stack = cdk.Stack.of(this);
+  private ensureLambda(): Function {
+    const stack = Stack.of(this);
     const constructName = 'MessagingResources';
     const existing = stack.node.tryFindChild(constructName);
     if (existing) {
-      return existing as lambda.Function;
+      return existing as Function;
     }
 
-    const messagingCustomResourceRole = new iam.Role(
+    const messagingCustomResourceRole = new Role(
       this,
       'messagingCustomResourceRole',
       {
         description: 'Amazon Chime SDK Messaging Resources',
-        assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
+        assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
         inlinePolicies: {
-          ['chimePolicy']: new iam.PolicyDocument({
+          ['chimePolicy']: new PolicyDocument({
             statements: [
-              new iam.PolicyStatement({
+              new PolicyStatement({
                 resources: ['*'],
                 actions: [
                   'chime:CreateAppInstance',
@@ -98,9 +103,9 @@ export class MessagingResources extends Construct {
               }),
             ],
           }),
-          ['kinesisPolicy']: new iam.PolicyDocument({
+          ['kinesisPolicy']: new PolicyDocument({
             statements: [
-              new iam.PolicyStatement({
+              new PolicyStatement({
                 resources: [
                   `arn:aws:kinesis:${stack.region}:${stack.account}:stream/chime-messaging-*`,
                 ],
@@ -108,9 +113,9 @@ export class MessagingResources extends Construct {
               }),
             ],
           }),
-          ['ssmPolicy']: new iam.PolicyDocument({
+          ['ssmPolicy']: new PolicyDocument({
             statements: [
-              new iam.PolicyStatement({
+              new PolicyStatement({
                 resources: [
                   `arn:aws:ssm:${stack.region}:${stack.account}:parameter/chime/*`,
                 ],
@@ -124,21 +129,16 @@ export class MessagingResources extends Construct {
           }),
         },
         managedPolicies: [
-          iam.ManagedPolicy.fromAwsManagedPolicyName(
+          ManagedPolicy.fromAwsManagedPolicyName(
             'service-role/AWSLambdaBasicExecutionRole',
           ),
         ],
       },
     );
-    const fn = new lambda.Function(stack, constructName, {
-      runtime: lambda.Runtime.PYTHON_3_9,
-      code: lambda.Code.fromAsset(
-        path.join(__dirname, '../resources/messaging/'),
-      ),
-      handler: 'index.handler',
-      architecture: lambda.Architecture.ARM_64,
+    const fn = new MessagingFunction(stack, constructName, {
       role: messagingCustomResourceRole,
-      timeout: cdk.Duration.minutes(1),
+      architecture: Architecture.ARM_64,
+      timeout: Duration.seconds(60),
     });
 
     return fn;

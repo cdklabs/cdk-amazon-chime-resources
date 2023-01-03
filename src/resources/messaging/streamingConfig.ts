@@ -1,33 +1,62 @@
 /* eslint-disable import/no-extraneous-dependencies */
-// import { ChimeSDKMessagingClient } from '@aws-sdk/client-chime-sdk-messaging';
+import {
+  AppInstanceStreamingConfiguration,
+  ChimeClient,
+  PutAppInstanceStreamingConfigurationsCommand,
+  PutAppInstanceStreamingConfigurationsCommandInput,
+  PutAppInstanceStreamingConfigurationsCommandOutput,
+} from '@aws-sdk/client-chime';
 
-// import {
-//   SSMClient,
-//   DeleteParameterCommand,
-//   GetParameterCommand,
-//   GetParameterCommandOutput,
-//   PutParameterCommand,
-// } from '@aws-sdk/client-ssm';
+const chimeClient = new ChimeClient({
+  region: process.env.AWS_REGION,
+});
 
-// const chimeSDKMessagingClient = new ChimeSDKMessagingClient({
-//   region: process.env.AWS_REGION,
-// });
+export enum AppInstanceDataType {
+  CHANNEL = 'Channel',
+  CHANNELMESSAGE = 'ChannelMessage',
+}
 
-// const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
+interface StreamingConfigsProps {
+  appInstanceDataType: AppInstanceDataType;
+  resourceArn: string;
+}
+interface DataRetentionProps {
+  streamingConfigs?: StreamingConfigsProps[];
+  appInstanceArn?: string;
+}
 
-interface StreamingConfigProps {}
+let putStreamingConfigurationOutput: PutAppInstanceStreamingConfigurationsCommandOutput;
+let putStreamingConfigurationInput: PutAppInstanceStreamingConfigurationsCommandInput;
+let updatedConfiguration: AppInstanceStreamingConfiguration[];
+export const PutStreamingConfiguration = async (props: DataRetentionProps) => {
+  updatedConfiguration = [];
 
-export const CreateStreamingConfig = async (
-  uid: string,
-  props: StreamingConfigProps,
-) => {
-  console.log(uid);
-  console.log(props);
-  return {
-    appInstanceArn: 'string',
+  props.streamingConfigs?.forEach((streamingConfig) => {
+    updatedConfiguration.push({
+      AppInstanceDataType: streamingConfig.appInstanceDataType,
+      ResourceArn: streamingConfig.resourceArn,
+    });
+  });
+
+  putStreamingConfigurationInput = {
+    AppInstanceArn: props.appInstanceArn,
+    AppInstanceStreamingConfigurations: updatedConfiguration,
   };
-};
 
-export const DeleteStreamingConfig = async (uid: string) => {
-  console.log(uid);
+  try {
+    putStreamingConfigurationOutput = await chimeClient.send(
+      new PutAppInstanceStreamingConfigurationsCommand(
+        putStreamingConfigurationInput,
+      ),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  return {
+    appInstanceStreamingConfiguration:
+      putStreamingConfigurationOutput.AppInstanceStreamingConfigurations,
+  };
 };

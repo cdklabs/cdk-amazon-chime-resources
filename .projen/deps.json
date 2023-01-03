@@ -109,6 +109,10 @@
       "type": "build"
     },
     {
+      "name": "@aws-sdk/client-chime",
+      "type": "bundled"
+    },
+    {
       "name": "@aws-sdk/client-chime-sdk-messaging",
       "type": "bundled"
     },
@@ -147,6 +151,10 @@
       "name": "constructs",
       "version": "^10.0.5",
       "type": "peer"
+    },
+    {
+      "name": "@aws-sdk/client-chime",
+      "type": "runtime"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-messaging",
