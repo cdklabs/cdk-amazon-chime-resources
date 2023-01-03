@@ -10,24 +10,17 @@ const project = new awscdk.AwsCdkConstructLibrary({
     ignorePatterns: ['example/**'],
   },
   lambdaAutoDiscover: false,
-  // peerDeps: ['@aws-sdk/client-chime-sdk-voice'],
-  // peerDependencyOptions: { pinnedDevDependency: false },
   deps: [
     '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-chime-sdk-messaging',
     '@aws-sdk/client-ssm',
     'aws-lambda',
     '@types/aws-lambda',
   ],
-  devDeps: [
-    'yalc',
-    'esbuild',
-    // '@aws-sdk/client-chime-sdk-voice',
-    // '@aws-sdk/client-ssm',
-    // 'aws-lambda',
-    // '@types/aws-lambda',
-  ],
+  devDeps: ['yalc', 'esbuild'],
   bundledDeps: [
     '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-chime-sdk-messaging',
     '@aws-sdk/client-ssm',
     'aws-lambda',
     '@types/aws-lambda',
@@ -61,6 +54,20 @@ new awscdk.LambdaFunction(project, {
     '@types/aws-lambda',
   ],
   entrypoint: 'src/resources/pstn/pstn.lambda.ts',
+  runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  target: 'node18',
+  platform: 'node',
+});
+
+new awscdk.LambdaFunction(project, {
+  cdkVersion: '2.53.0',
+  cdkDeps: [
+    '@aws-sdk/client-ssm',
+    '@aws-sdk/client-chime-sdk-messaging',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  entrypoint: 'src/resources/messaging/messaging.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   target: 'node18',
   platform: 'node',

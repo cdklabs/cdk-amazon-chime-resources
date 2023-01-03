@@ -68,7 +68,7 @@ export const CreatePhoneNumber = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -93,7 +93,7 @@ export const CreatePhoneNumber = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -124,7 +124,7 @@ export const CreatePhoneNumber = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -141,7 +141,7 @@ export const DeletePhoneNumber = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -154,7 +154,7 @@ export const DeletePhoneNumber = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -191,7 +191,7 @@ export const DeletePhoneNumber = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
   await sleep(10000);
@@ -220,7 +220,7 @@ async function checkPhoneNumber(phoneOrderId: string) {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
     return false;
   }

@@ -114,7 +114,7 @@ export const CreateVoiceConnector = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
   console.log(`Voice Connector Created: ${voiceConnectorId}`);
@@ -148,7 +148,7 @@ export const CreateVoiceConnector = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -193,7 +193,7 @@ const putOrigination = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };
@@ -225,7 +225,7 @@ const putTermination = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };
@@ -254,7 +254,7 @@ const putStreaming = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };
@@ -278,7 +278,7 @@ const putLogging = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };
@@ -297,7 +297,7 @@ export const DeleteVoiceConnector = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
   console.log(`voiceConnectorId to delete: ${voiceConnectorId}`);
@@ -331,7 +331,7 @@ export const DeleteVoiceConnector = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
   console.log(`Deleting Voice Connector: ${voiceConnectorId}`);
@@ -350,7 +350,7 @@ export const DeleteVoiceConnector = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };

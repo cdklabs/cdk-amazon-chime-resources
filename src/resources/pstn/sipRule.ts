@@ -72,7 +72,7 @@ export const CreateSIPRule = async (uid: string, props: CreateSIPRuleProps) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -89,7 +89,7 @@ export const CreateSIPRule = async (uid: string, props: CreateSIPRuleProps) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -112,7 +112,7 @@ export const DeleteSIPRule = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -127,7 +127,7 @@ export const DeleteSIPRule = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -156,7 +156,7 @@ export const DeleteSIPRule = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };

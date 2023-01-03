@@ -8,6 +8,8 @@
     "build": "npx projen build",
     "bump": "npx projen bump",
     "bundle": "npx projen bundle",
+    "bundle:resources/messaging/messaging.lambda": "npx projen bundle:resources/messaging/messaging.lambda",
+    "bundle:resources/messaging/messaging.lambda:watch": "npx projen bundle:resources/messaging/messaging.lambda:watch",
     "bundle:resources/pstn/pstn.lambda": "npx projen bundle:resources/pstn/pstn.lambda",
     "bundle:resources/pstn/pstn.lambda:watch": "npx projen bundle:resources/pstn/pstn.lambda:watch",
     "clobber": "npx projen clobber",
@@ -68,12 +70,14 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
+    "@aws-sdk/client-chime-sdk-messaging": "^3.241.0",
     "@aws-sdk/client-chime-sdk-voice": "^3.236.0",
     "@aws-sdk/client-ssm": "^3.236.0",
     "@types/aws-lambda": "^8.10.109",
     "aws-lambda": "^1.0.7"
   },
   "bundledDependencies": [
+    "@aws-sdk/client-chime-sdk-messaging",
     "@aws-sdk/client-chime-sdk-voice",
     "@aws-sdk/client-ssm",
     "@types/aws-lambda",

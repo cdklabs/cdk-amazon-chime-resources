@@ -47,6 +47,27 @@
       "steps": [
         {
           "spawn": "bundle:resources/pstn/pstn.lambda"
+        },
+        {
+          "spawn": "bundle:resources/messaging/messaging.lambda"
+        }
+      ]
+    },
+    "bundle:resources/messaging/messaging.lambda": {
+      "name": "bundle:resources/messaging/messaging.lambda",
+      "description": "Create a JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+        }
+      ]
+    },
+    "bundle:resources/messaging/messaging.lambda:watch": {
+      "name": "bundle:resources/messaging/messaging.lambda:watch",
+      "description": "Continuously update the JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
         }
       ]
     },

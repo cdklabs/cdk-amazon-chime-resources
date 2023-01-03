@@ -61,7 +61,7 @@ export const CreateSipMediaApplication = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -80,7 +80,7 @@ export const CreateSipMediaApplication = async (
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -104,7 +104,7 @@ export const DeleteSipMediaApplication = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 
@@ -120,7 +120,7 @@ export const DeleteSipMediaApplication = async (uid: string) => {
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
-      throw error.message;
+      throw error;
     }
   }
 };
