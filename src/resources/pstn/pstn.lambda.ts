@@ -8,6 +8,8 @@ import { CreatePhoneNumber, DeletePhoneNumber } from './phoneNumber';
 import {
   CreateSipMediaApplication,
   DeleteSipMediaApplication,
+  PutSipMediaApplicationAlexaSkill,
+  PutSipMediaApplicationLogging,
 } from './sipMediaApp';
 import { CreateSIPRule, DeleteSIPRule } from './sipRule';
 import { CreateVoiceConnector, DeleteVoiceConnector } from './voiceConnector';
@@ -133,6 +135,80 @@ export const handler = async (
               response.Reason = error.message;
             }
           }
+          break;
+      }
+      break;
+
+    case 'SMALogging':
+      switch (requestType) {
+        case 'Create':
+          try {
+            response.Data = await PutSipMediaApplicationLogging(
+              requestProperties,
+            );
+            response.Status = 'SUCCESS';
+            response.Reason = 'PutSipMediaApplicationLogging successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
+          break;
+        case 'Update':
+          try {
+            response.Data = await PutSipMediaApplicationLogging(
+              requestProperties,
+            );
+            response.Status = 'SUCCESS';
+            response.Reason = 'PutSipMediaApplicationLogging successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
+          break;
+        case 'Delete':
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationLogging Delete NoOP';
+          break;
+      }
+      break;
+
+    case 'SMAAlexaSkill':
+      switch (requestType) {
+        case 'Create':
+          try {
+            response.Data = await PutSipMediaApplicationAlexaSkill(
+              requestProperties,
+            );
+            response.Status = 'SUCCESS';
+            response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
+          break;
+        case 'Update':
+          try {
+            response.Data = await PutSipMediaApplicationAlexaSkill(
+              requestProperties,
+            );
+            response.Status = 'SUCCESS';
+            response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
+          } catch (error) {
+            if (error instanceof Error) {
+              response.Status = 'FAILED';
+              response.Reason = error.message;
+            }
+          }
+          break;
+        case 'Delete':
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationAlexaSkill Delete NoOP';
           break;
       }
       break;

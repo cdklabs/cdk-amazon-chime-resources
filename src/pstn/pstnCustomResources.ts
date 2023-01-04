@@ -29,6 +29,8 @@ export interface PSTNResourceProps extends ResourceProps {
     | 'PhoneNumber'
     | 'VoiceConnector'
     | 'SMA'
+    | 'SMALogging'
+    | 'SMAAlexaSkill'
     | 'SMARule'
     | 'PhoneAssociation';
   readonly uid: string;
@@ -89,6 +91,8 @@ export class PSTNResources extends Construct {
                 'chime:AssociatePhoneNumbersWithVoiceConnector',
                 'chime:DisassociatePhoneNumbersFromVoiceConnector',
                 'chime:DeleteVoiceConnector',
+                'chime:PutSipMediaApplicationAlexaSkillConfiguration',
+                'chime:PutSipMediaApplicationLoggingConfiguration',
                 'lambda:GetPolicy',
                 'lambda:AddPermission',
                 'iam:PutRolePolicy',

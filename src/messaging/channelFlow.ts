@@ -72,7 +72,7 @@ export interface Processors {
    */
   readonly fallbackAction: FallbackAction;
 }
-export interface Tags {
+export interface ChannelFlowTags {
   readonly key: string;
   readonly value: string;
 }
@@ -98,7 +98,7 @@ export interface ChannelFlowProps {
    *
    * @default - None
    */
-  readonly tags?: Array<Tags>;
+  readonly tags?: Array<ChannelFlowTags>;
   /**
    * The name of the channel flow.
    *

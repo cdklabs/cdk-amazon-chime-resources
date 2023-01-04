@@ -4,6 +4,7 @@ import {
   CreateAppInstanceUserCommand,
   CreateAppInstanceUserCommandInput,
   CreateAppInstanceUserCommandOutput,
+  Tag,
 } from '@aws-sdk/client-chime';
 
 import {
@@ -18,21 +19,35 @@ const chimeClient = new ChimeClient({
 
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
+interface Tags {
+  key: string;
+  value: string;
+}
+
 interface AppInstanceUserProps {
   name?: string;
   metadata?: string;
   clientRequestToken?: string;
   appInstanceArn?: string;
   appInstanceUserId?: string;
+  tags?: Tags[];
 }
 
 let createAppInstanceUserCommandInput: CreateAppInstanceUserCommandInput;
 let createAppInstanceUserCommandOutput: CreateAppInstanceUserCommandOutput;
+let updatedTags: Tag[];
 
 export const CreateAppInstanceUser = async (
   uid: string,
   props: AppInstanceUserProps,
 ) => {
+  updatedTags = [];
+  if (props.tags) {
+    props.tags.forEach((tag) => {
+      updatedTags.push({ Key: tag.key, Value: tag.value });
+    });
+  }
+
   createAppInstanceUserCommandInput = {
     Name: props.name,
     AppInstanceArn: props.appInstanceArn,
@@ -41,6 +56,7 @@ export const CreateAppInstanceUser = async (
     ...(props.clientRequestToken && {
       ClientRequestToken: props.clientRequestToken,
     }),
+    ...(updatedTags.length > 0 && { Tags: updatedTags }),
   };
 
   try {

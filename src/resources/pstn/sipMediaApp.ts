@@ -5,6 +5,12 @@ import {
   CreateSipMediaApplicationCommandInput,
   CreateSipMediaApplicationCommandOutput,
   DeleteSipMediaApplicationCommand,
+  PutSipMediaApplicationAlexaSkillConfigurationCommand,
+  PutSipMediaApplicationAlexaSkillConfigurationCommandInput,
+  PutSipMediaApplicationAlexaSkillConfigurationCommandOutput,
+  PutSipMediaApplicationLoggingConfigurationCommand,
+  PutSipMediaApplicationLoggingConfigurationCommandInput,
+  PutSipMediaApplicationLoggingConfigurationCommandOutput,
 } from '@aws-sdk/client-chime-sdk-voice';
 
 import {
@@ -24,6 +30,10 @@ const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 let createSipMediaApplicationResponse: CreateSipMediaApplicationCommandOutput;
 let createSipMediaApplicationParams: CreateSipMediaApplicationCommandInput;
 let getParameterCommandOutput: GetParameterCommandOutput;
+let putSipMediaApplicationAlexaSkillInput: PutSipMediaApplicationAlexaSkillConfigurationCommandInput;
+let putSipMediaApplicationLoggingInput: PutSipMediaApplicationLoggingConfigurationCommandInput;
+let putSipMediaApplicationAlexaSkillOutput: PutSipMediaApplicationAlexaSkillConfigurationCommandOutput;
+let putSipMediaApplicationLoggingOutput: PutSipMediaApplicationLoggingConfigurationCommandOutput;
 
 export interface CreateSIPMediaApplicationProps {
   name?: string;
@@ -123,4 +133,99 @@ export const DeleteSipMediaApplication = async (uid: string) => {
       throw error;
     }
   }
+};
+
+export interface PutSipMediaApplicationLoggingProps {
+  sipMediaAppId?: string;
+  sipMediaApplicationLoggingConfiguration?: {
+    sipMediaApplicationLoggingConfiguration: {
+      enableSipMediaApplicationMessageLogs: boolean;
+    };
+  };
+}
+
+export const PutSipMediaApplicationLogging = async (
+  props: PutSipMediaApplicationLoggingProps,
+) => {
+  console.log(
+    `Put SIP media application logging configuration: ${JSON.stringify(props)}`,
+  );
+
+  putSipMediaApplicationLoggingInput = {
+    SipMediaApplicationId: props.sipMediaAppId,
+    SipMediaApplicationLoggingConfiguration: {
+      EnableSipMediaApplicationMessageLogs:
+        props.sipMediaApplicationLoggingConfiguration
+          ?.sipMediaApplicationLoggingConfiguration
+          ?.enableSipMediaApplicationMessageLogs,
+    },
+  };
+  try {
+    putSipMediaApplicationLoggingOutput = await chimeSDKVoiceClient.send(
+      new PutSipMediaApplicationLoggingConfigurationCommand(
+        putSipMediaApplicationLoggingInput,
+      ),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  return {
+    putSipMediaApplicationLoggingConfiguration:
+      putSipMediaApplicationLoggingOutput.SipMediaApplicationLoggingConfiguration,
+  };
+};
+
+enum AlexaSkillStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
+export interface PutSipMediaApplicationAlexaSkillProps {
+  sipMediaApplicationAlexaSkillConfiguration?: {
+    alexaSkillIds: string[];
+    alexaSkillStatus: AlexaSkillStatus;
+  };
+  sipMediaAppId?: string;
+}
+
+export const PutSipMediaApplicationAlexaSkill = async (
+  props: PutSipMediaApplicationAlexaSkillProps,
+) => {
+  console.log(
+    `Put SIP media application Alexa skill configuration: ${JSON.stringify(
+      props,
+    )}`,
+  );
+
+  putSipMediaApplicationAlexaSkillInput = {
+    SipMediaApplicationId: props.sipMediaAppId,
+    SipMediaApplicationAlexaSkillConfiguration: {
+      AlexaSkillIds:
+        props.sipMediaApplicationAlexaSkillConfiguration?.alexaSkillIds,
+      AlexaSkillStatus:
+        props.sipMediaApplicationAlexaSkillConfiguration?.alexaSkillStatus,
+    },
+  };
+
+  try {
+    putSipMediaApplicationAlexaSkillOutput = await chimeSDKVoiceClient.send(
+      new PutSipMediaApplicationAlexaSkillConfigurationCommand(
+        putSipMediaApplicationAlexaSkillInput,
+      ),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  return {
+    putSipMediaApplicationAlexaSkillConfiguration:
+      putSipMediaApplicationAlexaSkillOutput.SipMediaApplicationAlexaSkillConfiguration,
+  };
 };

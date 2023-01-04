@@ -24,6 +24,11 @@ export interface StreamingConfig {
 }
 export type StreamingConfigs = Array<StreamingConfig>;
 
+export interface AppInstanceTags {
+  readonly key: string;
+  readonly value: string;
+}
+
 /**
  * Props for `AppInstance`.
  */
@@ -39,7 +44,12 @@ export interface AppInstanceProps {
    * @default - None
    */
   readonly metadata?: string;
-
+  /**
+   * The tags for the creation request.
+   *
+   * @default - None
+   */
+  readonly tags?: Array<AppInstanceTags>;
   /**
    * The ClientRequestToken of the app instance.  This field is autopopulated if not provided.
    * @default - None
@@ -55,7 +65,7 @@ export class MessagingAppInstance extends Construct {
 
     const uid: string = cdk.Names.uniqueId(this);
 
-    const { name, metadata, clientRequestToken } = props;
+    const { name, metadata, tags, clientRequestToken } = props;
 
     appInstanceValidator(props);
     const appInstanceRequest = new MessagingResources(
@@ -68,6 +78,7 @@ export class MessagingAppInstance extends Construct {
           name: name || uid,
           metadata: metadata,
           clientRequestToken: clientRequestToken,
+          tags: tags,
         },
       },
     );

@@ -2,6 +2,12 @@ import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { instanceUserValidator } from './instanceUserValidator';
 import { MessagingResources } from './messagingCustomResources';
+
+export interface InstanceUserTags {
+  readonly key: string;
+  readonly value: string;
+}
+
 /**
  * Props for `AppInstance`.
  */
@@ -25,7 +31,12 @@ export interface AppInstanceUserProps {
    * @default - None
    */
   readonly appInstanceUserId: string;
-
+  /**
+   * The tags for the creation request.
+   *
+   * @default - None
+   */
+  readonly tags?: Array<InstanceUserTags>;
   /**
    * The metadata of the app instance. Limited to a 1KB string in UTF-8.
    *
@@ -55,6 +66,7 @@ export class MessagingAppInstanceUser extends Construct {
       clientRequestToken,
       appInstanceArn,
       appInstanceUserId,
+      tags,
     } = props;
 
     instanceUserValidator(props);
@@ -70,6 +82,7 @@ export class MessagingAppInstanceUser extends Construct {
           clientRequestToken: clientRequestToken,
           appInstanceArn: appInstanceArn,
           appInstanceUserId: appInstanceUserId,
+          tags: tags,
         },
       },
     );

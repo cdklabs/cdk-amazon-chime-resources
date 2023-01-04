@@ -2,7 +2,11 @@ import * as cdk from 'aws-cdk-lib';
 import { Function } from 'aws-cdk-lib/aws-lambda';
 import { Construct } from 'constructs';
 import { PSTNResources } from './pstnCustomResources';
-import { sipMediaApplicationValidator } from './sipMediaApplicationValidator';
+import {
+  sipMediaApplicationValidator,
+  loggingValidator,
+  alexaSkillConfigurationValidator,
+} from './sipMediaApplicationValidator';
 
 /**
  * Props for `SipMediaApplication`.
@@ -30,6 +34,27 @@ export interface SipMediaAppProps {
   readonly name?: string;
 }
 
+/**
+ * Props for `AppInstanceStreamingConfiguration`.
+ * See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_AppInstanceStreamingConfiguration.html
+ */
+export interface SipMediaApplicationLoggingConfiguration {
+  /**
+   * Enables message logging for the specified SIP media application.
+   */
+  readonly enableSipMediaApplicationMessageLogs: boolean;
+}
+
+export enum AlexaSkillStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+
+export interface SipMediaApplicationAlexaSkillConfiguration {
+  readonly alexaSkillIds: string[];
+  readonly alexaSkillStatus: AlexaSkillStatus;
+}
+
 export class ChimeSipMediaApp extends Construct {
   public readonly sipMediaAppId: string;
 
@@ -54,5 +79,42 @@ export class ChimeSipMediaApp extends Construct {
 
     this.sipMediaAppId =
       sipMediaAppRequest.pstnCustomResource.getAttString('sipMediaAppId');
+  }
+  logging(
+    sipMediaApplicationLoggingConfiguration: SipMediaApplicationLoggingConfiguration,
+  ) {
+    const uid: string = cdk.Names.uniqueId(this);
+    loggingValidator(sipMediaApplicationLoggingConfiguration);
+    const result = new PSTNResources(this, 'SMALogging', {
+      resourceType: 'SMALogging',
+      uid: uid,
+      properties: {
+        sipMediaApplicationLoggingConfiguration:
+          sipMediaApplicationLoggingConfiguration,
+        sipMediaAppId: this.sipMediaAppId,
+      },
+    });
+    return result;
+  }
+  alexaSkill(
+    sipMediaApplicationAlexaSkillConfiguration: SipMediaApplicationAlexaSkillConfiguration,
+  ) {
+    const uid: string = cdk.Names.uniqueId(this);
+
+    alexaSkillConfigurationValidator(
+      sipMediaApplicationAlexaSkillConfiguration,
+    );
+    const result = new PSTNResources(this, 'SMAAlexaSkill', {
+      resourceType: 'SMAAlexaSkill',
+      uid: uid,
+      properties: {
+        sipMediaAppId: this.sipMediaAppId,
+        sipMediaApplicationAlexaSkillConfiguration:
+          sipMediaApplicationAlexaSkillConfiguration,
+      },
+    });
+    return result.pstnCustomResource.getAtt(
+      'putSipMediaApplicationAlexaSkillConfiguration',
+    );
   }
 }
