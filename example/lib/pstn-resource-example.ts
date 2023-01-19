@@ -8,7 +8,7 @@ import {
   PhoneNumberType,
   PhoneProductType,
   ChimePhoneNumber,
-  AlexaSkillStatus,
+  // AlexaSkillStatus,
 } from 'cdk-amazon-chime-resources';
 
 export class PSTNExample extends Stack {
@@ -45,12 +45,12 @@ export class PSTNExample extends Stack {
     });
 
     sipMediaApp.logging({ enableSipMediaApplicationMessageLogs: true });
-    sipMediaApp.alexaSkill({
-      alexaSkillIds: [
-        'amzn1.application-oa2-client.11223344556677889900112233445566',
-      ],
-      alexaSkillStatus: AlexaSkillStatus.ACTIVE,
-    });
+    // sipMediaApp.alexaSkill({
+    //   alexaSkillIds: [
+    //     'amzn1.application-oa2-client.11223344556677889900112233445566',
+    //   ],
+    //   alexaSkillStatus: AlexaSkillStatus.ACTIVE,
+    // });
     new CfnOutput(this, 'phoneNumberOutput', {
       value: phoneNumber.phoneNumber,
     });
