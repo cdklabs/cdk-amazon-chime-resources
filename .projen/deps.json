@@ -22,7 +22,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.53.0",
+      "version": "2.68.0",
       "type": "build"
     },
     {
@@ -75,10 +75,6 @@
     },
     {
       "name": "jsii-pacmak",
-      "type": "build"
-    },
-    {
-      "name": "json-schema",
       "type": "build"
     },
     {
@@ -144,7 +140,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.53.0",
+      "version": "^2.68.0",
       "type": "peer"
     },
     {

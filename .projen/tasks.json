@@ -58,7 +58,7 @@
       "description": "Create a JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -67,7 +67,7 @@
       "description": "Continuously update the JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },
@@ -76,7 +76,7 @@
       "description": "Create a JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk"
+          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/*"
         }
       ]
     },
@@ -85,7 +85,7 @@
       "description": "Continuously update the JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:aws-sdk --watch"
+          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:@aws-sdk/* --watch"
         }
       ]
     },
@@ -175,6 +175,24 @@
       "steps": [
         {
           "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+        }
+      ]
+    },
+    "install": {
+      "name": "install",
+      "description": "Install project dependencies and update lockfile (non-frozen)",
+      "steps": [
+        {
+          "exec": "yarn install --check-files"
+        }
+      ]
+    },
+    "install:ci": {
+      "name": "install:ci",
+      "description": "Install project dependencies using frozen lockfile",
+      "steps": [
+        {
+          "exec": "yarn install --check-files --frozen-lockfile"
         }
       ]
     },

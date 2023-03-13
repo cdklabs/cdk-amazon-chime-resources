@@ -36,34 +36,20 @@ export const handler = async (
     case 'AppInstance':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateAppInstance(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreateAppInstance successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateAppInstance(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateAppInstance successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteAppInstance(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeleteAppInstance successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteAppInstance(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteAppInstance successful';
           break;
       }
       break;
@@ -71,34 +57,20 @@ export const handler = async (
     case 'ChannelFlow':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateChannelFlow(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreateChannelFlow successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateChannelFlow(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateChannelFlow successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteChannelFlow(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeleteChannelFlow successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteChannelFlow(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteChannelFlow successful';
           break;
       }
       break;
@@ -106,28 +78,14 @@ export const handler = async (
     case 'DataRetention':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await PutDataRetention(requestProperties);
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutDataRetention successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutDataRetention(requestProperties);
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutDataRetention successful';
           break;
         case 'Update':
-          try {
-            response.Data = await PutDataRetention(requestProperties);
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutDataRetention successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutDataRetention(requestProperties);
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutDataRetention successful';
           break;
       }
       break;
@@ -135,34 +93,20 @@ export const handler = async (
     case 'AppInstanceAdmin':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateAppInstanceAdmin(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreateAppInstanceAdmin successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateAppInstanceAdmin(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateAppInstanceAdmin successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteAppInstanceAdmin(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeleteAppInstanceAdmin successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteAppInstanceAdmin(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteAppInstanceAdmin successful';
           break;
       }
       break;
@@ -170,34 +114,20 @@ export const handler = async (
     case 'AppInstanceUser':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateAppInstanceUser(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreateAppInstanceUser successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateAppInstanceUser(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateAppInstanceUser successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteAppInstanceUser(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeleteAppInstanceUser successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteAppInstanceUser(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteAppInstanceUser successful';
           break;
       }
       break;
@@ -205,28 +135,14 @@ export const handler = async (
     case 'StreamingConfig':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await PutStreamingConfiguration(requestProperties);
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutStreamingConfiguration successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutStreamingConfiguration(requestProperties);
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutStreamingConfiguration successful';
           break;
         case 'Update':
-          try {
-            response.Data = await PutStreamingConfiguration(requestProperties);
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutStreamingConfiguration successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutStreamingConfiguration(requestProperties);
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutStreamingConfiguration successful';
           break;
       }
       break;

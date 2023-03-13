@@ -12,7 +12,11 @@ import {
   PutSipMediaApplicationLogging,
 } from './sipMediaApp';
 import { CreateSIPRule, DeleteSIPRule } from './sipRule';
-import { CreateVoiceConnector, DeleteVoiceConnector } from './voiceConnector';
+import {
+  CreateVoiceConnector,
+  UpdateVoiceConnector,
+  DeleteVoiceConnector,
+} from './voiceConnector';
 
 const response: CdkCustomResourceResponse = {};
 let resourcePropertiesUid: string;
@@ -37,34 +41,21 @@ export const handler = async (
     case 'PhoneNumber':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreatePhoneNumber(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreatePhoneNumber successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreatePhoneNumber(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreatePhoneNumber successful';
+
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeletePhoneNumber(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeletePhoneNumber successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeletePhoneNumber(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeletePhoneNumber successful';
           break;
       }
       break;
@@ -72,34 +63,20 @@ export const handler = async (
     case 'SMARule':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateSIPRule(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'CreateSMARule successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateSIPRule(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateSMARule successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteSIPRule(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'DeleteSMARule successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteSIPRule(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteSMARule successful';
           break;
       }
       break;
@@ -107,34 +84,20 @@ export const handler = async (
     case 'SMA':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateSipMediaApplication(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'Create SMA successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateSipMediaApplication(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'Create SMA successful';
           break;
         case 'Update':
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteSipMediaApplication(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'Delete SMA successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteSipMediaApplication(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'Delete SMA successful';
           break;
       }
       break;
@@ -142,32 +105,18 @@ export const handler = async (
     case 'SMALogging':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await PutSipMediaApplicationLogging(
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutSipMediaApplicationLogging successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutSipMediaApplicationLogging(
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationLogging successful';
           break;
         case 'Update':
-          try {
-            response.Data = await PutSipMediaApplicationLogging(
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutSipMediaApplicationLogging successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutSipMediaApplicationLogging(
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationLogging successful';
           break;
         case 'Delete':
           response.Status = 'SUCCESS';
@@ -179,32 +128,18 @@ export const handler = async (
     case 'SMAAlexaSkill':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await PutSipMediaApplicationAlexaSkill(
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutSipMediaApplicationAlexaSkill(
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
           break;
         case 'Update':
-          try {
-            response.Data = await PutSipMediaApplicationAlexaSkill(
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await PutSipMediaApplicationAlexaSkill(
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'PutSipMediaApplicationAlexaSkill successful';
           break;
         case 'Delete':
           response.Status = 'SUCCESS';
@@ -216,34 +151,21 @@ export const handler = async (
     case 'VoiceConnector':
       switch (requestType) {
         case 'Create':
-          try {
-            response.Data = await CreateVoiceConnector(
-              resourcePropertiesUid,
-              requestProperties,
-            );
-            response.Status = 'SUCCESS';
-            response.Reason = 'Create VC successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          response.Data = await CreateVoiceConnector(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'Create VC successful';
           break;
         case 'Update':
+          await UpdateVoiceConnector(resourcePropertiesUid, requestProperties);
           response.Status = 'SUCCESS';
           break;
         case 'Delete':
-          try {
-            await DeleteVoiceConnector(resourcePropertiesUid);
-            response.Status = 'SUCCESS';
-            response.Reason = 'Delete VC successful';
-          } catch (error) {
-            if (error instanceof Error) {
-              response.Status = 'FAILED';
-              response.Reason = error.message;
-            }
-          }
+          await DeleteVoiceConnector(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'Delete VC successful';
           break;
       }
       break;

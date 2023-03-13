@@ -49,7 +49,10 @@ export class VoiceConnectorExample extends Stack {
           dataRetention: 0,
           notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
         },
-        loggingConfiguration: { enableSIPLogs: false },
+        loggingConfiguration: {
+          enableSIPLogs: false,
+          enableMediaMetricLogs: true,
+        },
       },
     );
 

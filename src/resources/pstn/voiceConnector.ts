@@ -65,7 +65,8 @@ interface StreamingProps {
 }
 
 interface LoggingProps {
-  enabledSIPLogs: boolean;
+  enableSIPLogs: boolean;
+  enableMediaMetricLogs: boolean;
 }
 
 export interface CreateVoiceConnectorProps {
@@ -155,6 +156,137 @@ export const CreateVoiceConnector = async (
   return {
     voiceConnectorId: voiceConnectorId,
   };
+};
+
+export interface UpdateVoiceConnectorProps {
+  name?: string;
+  region?: string;
+  encryption?: boolean;
+  termination?: TerminationProps;
+  origination?: Routes[];
+  logging?: LoggingProps;
+  streaming?: StreamingProps;
+}
+
+export const UpdateVoiceConnector = async (
+  uid: string,
+  props: CreateVoiceConnectorProps,
+) => {
+  console.log(`Creating Voice Connector: ${uid}`);
+  console.log(`Create Voice Connector Props: ${JSON.stringify(props)}`);
+  createVoiceConnectorParams = {
+    Name: props.name,
+    RequireEncryption: props.encryption,
+    AwsRegion: props.region,
+  };
+  console.log(
+    `updateVoiceConnectorParams: ${JSON.stringify(createVoiceConnectorParams)}`,
+  );
+
+  try {
+    getParameterCommandOutput = await ssmClient.send(
+      new GetParameterCommand({ Name: '/chime/voiceConnector' + uid }),
+    );
+    if (
+      getParameterCommandOutput.Parameter &&
+      getParameterCommandOutput.Parameter.Value
+    ) {
+      voiceConnectorId = getParameterCommandOutput.Parameter.Value;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
+  if (props.origination) {
+    await putOrigination(voiceConnectorId, props.origination);
+  }
+
+  if (props.termination) {
+    await putTermination(voiceConnectorId, props.termination);
+  }
+
+  if (props.streaming) {
+    await putStreaming(voiceConnectorId, props.streaming);
+  }
+
+  if (props.logging) {
+    await putLogging(voiceConnectorId, props.logging);
+  }
+};
+
+export const DeleteVoiceConnector = async (uid: string) => {
+  try {
+    getParameterCommandOutput = await ssmClient.send(
+      new GetParameterCommand({ Name: '/chime/voiceConnector' + uid }),
+    );
+    if (
+      getParameterCommandOutput.Parameter &&
+      getParameterCommandOutput.Parameter.Value
+    ) {
+      voiceConnectorId = getParameterCommandOutput.Parameter.Value;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  console.log(`voiceConnectorId to delete: ${voiceConnectorId}`);
+  try {
+    const phoneNumbersAssociated = await chimeSDKVoiceClient.send(
+      new ListPhoneNumbersCommand({
+        FilterName: 'VoiceConnectorId',
+        FilterValue: voiceConnectorId,
+      }),
+    );
+    console.log(
+      `phoneNumbers to disassociate:  ${JSON.stringify(
+        phoneNumbersAssociated,
+      )}`,
+    );
+    if (
+      phoneNumbersAssociated.PhoneNumbers &&
+      phoneNumbersAssociated.PhoneNumbers.length > 0
+    ) {
+      phoneNumbersAssociated.PhoneNumbers.forEach(async (phoneNumber) => {
+        phoneNumbersToDisassociate.push(phoneNumber.PhoneNumberId!);
+      });
+      console.log(`Disassociate Phone Numbers: ${phoneNumbersToDisassociate}`);
+      await chimeSDKVoiceClient.send(
+        new DisassociatePhoneNumbersFromVoiceConnectorCommand({
+          VoiceConnectorId: voiceConnectorId,
+          E164PhoneNumbers: phoneNumbersToDisassociate,
+        }),
+      );
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  console.log(`Deleting Voice Connector: ${voiceConnectorId}`);
+  try {
+    deleteVoiceConnectorResponse = await chimeSDKVoiceClient.send(
+      new DeleteVoiceConnectorCommand({
+        VoiceConnectorId: voiceConnectorId,
+      }),
+    );
+    console.log(
+      `Delete Voice Connector Response: ${deleteVoiceConnectorResponse}`,
+    );
+    await ssmClient.send(
+      new DeleteParameterCommand({ Name: '/chime/voiceConnector' + uid }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
 };
 
 const putOrigination = async (
@@ -265,87 +397,18 @@ const putLogging = async (
 ) => {
   console.log(`logging:  ${JSON.stringify(logging)}`);
   loggingConfiguration = {
-    EnableSIPLogs: logging.enabledSIPLogs,
+    ...(logging.enableSIPLogs && { EnableSIPLogs: logging.enableSIPLogs }),
+    ...(logging.enableMediaMetricLogs && {
+      EnableMediaMetricLogs: logging.enableMediaMetricLogs,
+    }),
   };
   console.log(`loggingConfiguration:  ${JSON.stringify(loggingConfiguration)}`);
   try {
     await chimeSDKVoiceClient.send(
       new PutVoiceConnectorLoggingConfigurationCommand({
         VoiceConnectorId: loggingVoiceConnectorId,
-        LoggingConfiguration: { EnableSIPLogs: logging.enabledSIPLogs },
+        LoggingConfiguration: loggingConfiguration,
       }),
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-
-export const DeleteVoiceConnector = async (uid: string) => {
-  try {
-    getParameterCommandOutput = await ssmClient.send(
-      new GetParameterCommand({ Name: '/chime/voiceConnector' + uid }),
-    );
-    if (
-      getParameterCommandOutput.Parameter &&
-      getParameterCommandOutput.Parameter.Value
-    ) {
-      voiceConnectorId = getParameterCommandOutput.Parameter.Value;
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  console.log(`voiceConnectorId to delete: ${voiceConnectorId}`);
-  try {
-    const phoneNumbersAssociated = await chimeSDKVoiceClient.send(
-      new ListPhoneNumbersCommand({
-        FilterName: 'VoiceConnectorId',
-        FilterValue: voiceConnectorId,
-      }),
-    );
-    console.log(
-      `phoneNumbers to disassociate:  ${JSON.stringify(
-        phoneNumbersAssociated,
-      )}`,
-    );
-    if (
-      phoneNumbersAssociated.PhoneNumbers &&
-      phoneNumbersAssociated.PhoneNumbers.length > 0
-    ) {
-      phoneNumbersAssociated.PhoneNumbers.forEach(async (phoneNumber) => {
-        phoneNumbersToDisassociate.push(phoneNumber.PhoneNumberId!);
-      });
-      console.log(`Disassociate Phone Numbers: ${phoneNumbersToDisassociate}`);
-      await chimeSDKVoiceClient.send(
-        new DisassociatePhoneNumbersFromVoiceConnectorCommand({
-          VoiceConnectorId: voiceConnectorId,
-          E164PhoneNumbers: phoneNumbersToDisassociate,
-        }),
-      );
-    }
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  console.log(`Deleting Voice Connector: ${voiceConnectorId}`);
-  try {
-    deleteVoiceConnectorResponse = await chimeSDKVoiceClient.send(
-      new DeleteVoiceConnectorCommand({
-        VoiceConnectorId: voiceConnectorId,
-      }),
-    );
-    console.log(
-      `Delete Voice Connector Response: ${deleteVoiceConnectorResponse}`,
-    );
-    await ssmClient.send(
-      new DeleteParameterCommand({ Name: '/chime/voiceConnector' + uid }),
     );
   } catch (error) {
     if (error instanceof Error) {

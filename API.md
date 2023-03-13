@@ -1331,34 +1331,6 @@ The ARN of the Lambda message processing function.
 
 ---
 
-### LoggingConfiguration <a name="cdk-amazon-chime-resources.LoggingConfiguration" id="cdkamazonchimeresourcesloggingconfiguration"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { LoggingConfiguration } from 'cdk-amazon-chime-resources'
-
-const loggingConfiguration: LoggingConfiguration = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`enableSIPLogs`](#cdkamazonchimeresourcesloggingconfigurationpropertyenablesiplogs)<span title="Required">*</span> | `boolean` | *No description.* |
-
----
-
-##### `enableSIPLogs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.LoggingConfiguration.property.enableSIPLogs" id="cdkamazonchimeresourcesloggingconfigurationpropertyenablesiplogs"></a>
-
-```typescript
-public readonly enableSIPLogs: boolean;
-```
-
-- *Type:* `boolean`
-
----
-
 ### MessagingResourceProps <a name="cdk-amazon-chime-resources.MessagingResourceProps" id="cdkamazonchimeresourcesmessagingresourceprops"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -2424,6 +2396,45 @@ CPS Limit.
 
 ---
 
+### VoiceConnectorLoggingConfiguration <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration" id="cdkamazonchimeresourcesvoiceconnectorloggingconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { VoiceConnectorLoggingConfiguration } from 'cdk-amazon-chime-resources'
+
+const voiceConnectorLoggingConfiguration: VoiceConnectorLoggingConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`enableMediaMetricLogs`](#cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablemediametriclogs) | `boolean` | *No description.* |
+| [`enableSIPLogs`](#cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablesiplogs) | `boolean` | *No description.* |
+
+---
+
+##### `enableMediaMetricLogs`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration.property.enableMediaMetricLogs" id="cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablemediametriclogs"></a>
+
+```typescript
+public readonly enableMediaMetricLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `enableSIPLogs`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration.property.enableSIPLogs" id="cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablesiplogs"></a>
+
+```typescript
+public readonly enableSIPLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
 ### VoiceConnectorProps <a name="cdk-amazon-chime-resources.VoiceConnectorProps" id="cdkamazonchimeresourcesvoiceconnectorprops"></a>
 
 Props for `SipMediaApplication`.
@@ -2441,7 +2452,7 @@ const voiceConnectorProps: VoiceConnectorProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`encryption`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyencryption) | `boolean` | Encryption boolean for VoiceConnector. |
-| [`loggingConfiguration`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration) | [`cdk-amazon-chime-resources.LoggingConfiguration`](#cdk-amazon-chime-resources.LoggingConfiguration) | *No description.* |
+| [`loggingConfiguration`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration) | [`cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration`](#cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration) | *No description.* |
 | [`name`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyname) | `string` | name for VoiceConnector. |
 | [`origination`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyorigination) | [`cdk-amazon-chime-resources.Routes`](#cdk-amazon-chime-resources.Routes)[] | *No description.* |
 | [`region`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyregion) | `string` | region for SipMediaApplication(required) - Must us-east-1 or us-west-2 and in the same region as the SipMediaApplication Lambda handler. |
@@ -2466,10 +2477,10 @@ Encryption boolean for VoiceConnector.
 ##### `loggingConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorProps.property.loggingConfiguration" id="cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration"></a>
 
 ```typescript
-public readonly loggingConfiguration: LoggingConfiguration;
+public readonly loggingConfiguration: VoiceConnectorLoggingConfiguration;
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.LoggingConfiguration`](#cdk-amazon-chime-resources.LoggingConfiguration)
+- *Type:* [`cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration`](#cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration)
 
 ---
 

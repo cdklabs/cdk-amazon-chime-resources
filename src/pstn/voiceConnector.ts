@@ -36,8 +36,9 @@ export interface Termination {
   readonly terminationCidrs: Array<string>;
 }
 
-export interface LoggingConfiguration {
-  readonly enableSIPLogs: boolean;
+export interface VoiceConnectorLoggingConfiguration {
+  readonly enableSIPLogs?: boolean;
+  readonly enableMediaMetricLogs?: boolean;
 }
 
 export interface Routes {
@@ -92,7 +93,7 @@ export interface VoiceConnectorProps {
   readonly termination?: Termination;
   readonly origination?: Array<Routes>;
   readonly streaming?: Streaming;
-  readonly loggingConfiguration?: LoggingConfiguration;
+  readonly loggingConfiguration?: VoiceConnectorLoggingConfiguration;
 }
 
 export class ChimeVoiceConnector extends Construct {
@@ -132,23 +133,6 @@ export class ChimeVoiceConnector extends Construct {
         },
       },
     );
-
-    // if (
-    //   voiceConnectorRequest.pstnCustomResource.node.tryFindChild(
-    //     'voiceConnectorId',
-    //   )
-    // ) {
-    //   this.voiceConnectorId =
-    //     voiceConnectorRequest.pstnCustomResource.getAttString(
-    //       'voiceConnectorId',
-    //     );
-    // } else {
-    //   throw new Error(
-    //     `Voice Connector failed to create: ${voiceConnectorRequest.pstnCustomResource.getAttString(
-    //       'Reason',
-    //     )}`,
-    //   );
-    // }
 
     this.voiceConnectorId =
       voiceConnectorRequest.pstnCustomResource.getAttString('voiceConnectorId');

@@ -2,7 +2,7 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.53.0',
+  cdkVersion: '2.68.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
@@ -48,7 +48,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.53.0',
+  cdkVersion: '2.68.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
     '@aws-sdk/client-chime-sdk-voice',
@@ -62,7 +62,7 @@ new awscdk.LambdaFunction(project, {
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.53.0',
+  cdkVersion: '2.68.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
     '@aws-sdk/client-chime-sdk-messaging',
