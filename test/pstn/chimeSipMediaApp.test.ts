@@ -55,7 +55,9 @@ test('BadRegion', () => {
       endpoint: smaHandler.functionArn,
       region: 'us-west-1',
     });
-  }).toThrowError('Region must be us-east-1 or us-west-2');
+  }).toThrowError(
+    'Region must be a valid region: https://docs.aws.amazon.com/chime-sdk/latest/dg/sdk-available-regions.html#sdk-pstn-regions',
+  );
 });
 
 test('Logging', () => {

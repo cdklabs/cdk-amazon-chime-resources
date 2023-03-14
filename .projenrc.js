@@ -6,6 +6,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
+  majorVersion: 2,
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
@@ -55,6 +56,16 @@ new awscdk.LambdaFunction(project, {
     'aws-lambda',
     '@types/aws-lambda',
   ],
+  bundlingOptions: {
+    externals: [''],
+    minify: true,
+    nodeModules: [
+      '@aws-sdk/client-ssm',
+      '@aws-sdk/client-chime-sdk-voice',
+      'aws-lambda',
+      '@types/aws-lambda',
+    ],
+  },
   entrypoint: 'src/resources/pstn/pstn.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   target: 'node18',
@@ -71,6 +82,16 @@ new awscdk.LambdaFunction(project, {
   ],
   entrypoint: 'src/resources/messaging/messaging.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  bundlingOptions: {
+    externals: [''],
+    minify: true,
+    nodeModules: [
+      '@aws-sdk/client-ssm',
+      '@aws-sdk/client-chime-sdk-messaging',
+      'aws-lambda',
+      '@types/aws-lambda',
+    ],
+  },
   target: 'node18',
   platform: 'node',
 });

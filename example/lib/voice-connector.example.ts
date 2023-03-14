@@ -6,16 +6,16 @@ export class VoiceConnectorExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    // const voiceConnectorPhone = new chime.ChimePhoneNumber(
-    //   this,
-    //   'voiceConnectorPhoneNumber',
-    //   {
-    //     phoneState: 'IL',
-    //     phoneCountry: chime.PhoneCountry.US,
-    //     phoneProductType: chime.PhoneProductType.VC,
-    //     phoneNumberType: chime.PhoneNumberType.LOCAL,
-    //   },
-    // );
+    const voiceConnectorPhone = new chime.ChimePhoneNumber(
+      this,
+      'voiceConnectorPhoneNumber',
+      {
+        phoneState: 'IL',
+        phoneCountry: chime.PhoneCountry.US,
+        phoneProductType: chime.PhoneProductType.VC,
+        phoneNumberType: chime.PhoneNumberType.LOCAL,
+      },
+    );
 
     const voiceConnector = new chime.ChimeVoiceConnector(
       this,
@@ -50,17 +50,17 @@ export class VoiceConnectorExample extends Stack {
           notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
         },
         loggingConfiguration: {
-          enableSIPLogs: false,
+          enableSIPLogs: true,
           enableMediaMetricLogs: true,
         },
       },
     );
 
-    // voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
+    voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 
-    // new CfnOutput(this, 'phoneNumber', {
-    //   value: voiceConnectorPhone.phoneNumber,
-    // });
+    new CfnOutput(this, 'phoneNumber', {
+      value: voiceConnectorPhone.phoneNumber,
+    });
 
     new CfnOutput(this, 'voiceConnectorId', {
       value: voiceConnector.voiceConnectorId,

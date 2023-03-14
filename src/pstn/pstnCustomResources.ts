@@ -13,7 +13,13 @@ import {
   PolicyDocument,
   PolicyStatement,
 } from 'aws-cdk-lib/aws-iam';
-import { Architecture, IFunction, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+  // Architecture,
+  // Runtime,
+  IFunction,
+  Function,
+  // Code,
+} from 'aws-cdk-lib/aws-lambda';
 import {
   AwsCustomResource,
   AwsCustomResourcePolicy,
@@ -127,11 +133,18 @@ export class PSTNResources extends Construct {
       ],
     });
 
-    const fn = new PstnFunction(stack, constructName, {
+    const fn = new PstnFunction(this, 'pstnResourcesFunction', {
       role: pstnCustomResourceRole,
-      architecture: Architecture.ARM_64,
       timeout: Duration.seconds(60),
     });
+    // const fn = new Function(this, 'pstnResourcesFunction', {
+    //   runtime: Runtime.NODEJS_18_X,
+    //   architecture: Architecture.ARM_64,
+    //   role: pstnCustomResourceRole,
+    //   timeout: Duration.seconds(60),
+    //   handler: 'index.handler',
+    //   code: Code.fromAsset(path.join(__dirname, '../../src/resources/pstn')),
+    // });
 
     return fn;
   }

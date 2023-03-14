@@ -7,7 +7,12 @@ import {
   PolicyDocument,
   PolicyStatement,
 } from 'aws-cdk-lib/aws-iam';
-import { Architecture, IFunction, Function } from 'aws-cdk-lib/aws-lambda';
+import {
+  // Architecture,
+  IFunction,
+  Function,
+  // Runtime,
+} from 'aws-cdk-lib/aws-lambda';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 import { MessagingFunction } from '../resources/messaging/messaging-function';
@@ -135,11 +140,19 @@ export class MessagingResources extends Construct {
         ],
       },
     );
-    const fn = new MessagingFunction(stack, constructName, {
+
+    const fn = new MessagingFunction(this, 'messagingResourcesFunction', {
       role: messagingCustomResourceRole,
-      architecture: Architecture.ARM_64,
       timeout: Duration.seconds(60),
     });
+    // const fn = new NodejsFunction(this, 'messagingResourcesFunction', {
+    //   entry: 'src/resources/messaging/index.ts',
+    //   handler: 'handler',
+    //   runtime: Runtime.NODEJS_18_X,
+    //   architecture: Architecture.ARM_64,
+    //   role: messagingCustomResourceRole,
+    //   timeout: Duration.seconds(60),
+    // });
 
     return fn;
   }
