@@ -49,12 +49,16 @@ export class VoiceConnectorExample extends Stack {
           dataRetention: 0,
           notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
         },
+        loggingConfiguration: {
+          enableSIPLogs: true,
+          enableMediaMetricLogs: true,
+        },
       },
     );
 
     voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 
-    new CfnOutput(this, 'voiceConnectorPhoneNumberOutput', {
+    new CfnOutput(this, 'phoneNumber', {
       value: voiceConnectorPhone.phoneNumber,
     });
 

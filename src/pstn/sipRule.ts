@@ -1,3 +1,7 @@
+// import {
+//   SipRuleTargetApplication,
+//   TriggerType,
+// } from '@aws-sdk/client-chime-sdk-voice';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { PSTNResources } from './pstnCustomResources';
@@ -8,7 +12,7 @@ export enum TriggerType {
   REQUEST_URI_HOSTNAME = 'RequestUriHostname',
 }
 
-export interface TargetApplications {
+export interface SipRuleTargetApplication {
   /**
    * SipMediaApplicationId for SipRule (required)
    *
@@ -38,12 +42,12 @@ export interface SipRuleProps {
    * @default - none
    */
   readonly triggerType: TriggerType;
-
   /**
    * Trigger Value for SipRule (required) - EE.164 Phone Number or Voice Connector URI
    *
    * @default - none
    */
+  // readonly triggerValue: string;
   readonly triggerValue: string;
 
   /**
@@ -52,7 +56,7 @@ export interface SipRuleProps {
    * @default - unique ID for resource
    */
   readonly name?: string;
-  readonly targetApplications: Array<TargetApplications>;
+  readonly targetApplications: SipRuleTargetApplication[];
 }
 
 export class ChimeSipRule extends Construct {

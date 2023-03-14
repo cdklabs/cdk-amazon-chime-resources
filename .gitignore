@@ -51,6 +51,9 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
+/assets/
+!/src/resources/pstn/pstn-function.ts
+!/src/resources/messaging/messaging-function.ts
 cdk.out
 cdk.context.json
 yarn-error.log

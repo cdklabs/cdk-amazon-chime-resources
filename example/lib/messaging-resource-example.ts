@@ -87,15 +87,15 @@ export class MessagingExample extends Stack {
     });
 
     // both of the following add streaming config, but will override each other, can use either
-    new chime.AppInstanceStreamingConfigurations(this, 'streamingConfig',
-      {
-          appInstanceArn: appInstance.appInstanceArn,
-          streamingConfigs: [{
+    new chime.AppInstanceStreamingConfigurations(this, 'streamingConfig', {
+      appInstanceArn: appInstance.appInstanceArn,
+      streamingConfigs: [
+        {
           appInstanceDataType: chime.AppInstanceDataType.CHANNEL,
           resourceArn: kinesisStream.streamArn,
-        }],
-      }
-    );
+        },
+      ],
+    });
 
     // appInstance.streaming([
     //   {

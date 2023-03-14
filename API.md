@@ -228,6 +228,38 @@ new ChimeSipMediaApp(scope: Construct, id: string, props: SipMediaAppProps)
 
 ---
 
+#### Methods <a name="Methods" id="methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`alexaSkill`](#cdkamazonchimeresourceschimesipmediaappalexaskill) | *No description.* |
+| [`logging`](#cdkamazonchimeresourceschimesipmediaapplogging) | *No description.* |
+
+---
+
+##### `alexaSkill` <a name="cdk-amazon-chime-resources.ChimeSipMediaApp.alexaSkill" id="cdkamazonchimeresourceschimesipmediaappalexaskill"></a>
+
+```typescript
+public alexaSkill(sipMediaApplicationAlexaSkillConfiguration: SipMediaApplicationAlexaSkillConfiguration)
+```
+
+###### `sipMediaApplicationAlexaSkillConfiguration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeSipMediaApp.parameter.sipMediaApplicationAlexaSkillConfiguration" id="cdkamazonchimeresourceschimesipmediaappparametersipmediaapplicationalexaskillconfiguration"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration`](#cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration)
+
+---
+
+##### `logging` <a name="cdk-amazon-chime-resources.ChimeSipMediaApp.logging" id="cdkamazonchimeresourceschimesipmediaapplogging"></a>
+
+```typescript
+public logging(sipMediaApplicationLoggingConfiguration: SipMediaApplicationLoggingConfiguration)
+```
+
+###### `sipMediaApplicationLoggingConfiguration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeSipMediaApp.parameter.sipMediaApplicationLoggingConfiguration" id="cdkamazonchimeresourceschimesipmediaappparametersipmediaapplicationloggingconfiguration"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.SipMediaApplicationLoggingConfiguration`](#cdk-amazon-chime-resources.SipMediaApplicationLoggingConfiguration)
+
+---
 
 
 #### Properties <a name="Properties" id="properties"></a>
@@ -838,6 +870,7 @@ const appInstanceProps: AppInstanceProps = { ... }
 | [`clientRequestToken`](#cdkamazonchimeresourcesappinstancepropspropertyclientrequesttoken) | `string` | The ClientRequestToken of the app instance. |
 | [`metadata`](#cdkamazonchimeresourcesappinstancepropspropertymetadata) | `string` | The metadata of the app instance. |
 | [`name`](#cdkamazonchimeresourcesappinstancepropspropertyname) | `string` | The name of the app instance. |
+| [`tags`](#cdkamazonchimeresourcesappinstancepropspropertytags) | [`cdk-amazon-chime-resources.AppInstanceTags`](#cdk-amazon-chime-resources.AppInstanceTags)[] | The tags for the creation request. |
 
 ---
 
@@ -884,6 +917,58 @@ The name of the app instance.
 
 ---
 
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceProps.property.tags" id="cdkamazonchimeresourcesappinstancepropspropertytags"></a>
+
+```typescript
+public readonly tags: AppInstanceTags[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceTags`](#cdk-amazon-chime-resources.AppInstanceTags)[]
+- *Default:* None
+
+The tags for the creation request.
+
+---
+
+### AppInstanceTags <a name="cdk-amazon-chime-resources.AppInstanceTags" id="cdkamazonchimeresourcesappinstancetags"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceTags } from 'cdk-amazon-chime-resources'
+
+const appInstanceTags: AppInstanceTags = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesappinstancetagspropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesappinstancetagspropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceTags.property.key" id="cdkamazonchimeresourcesappinstancetagspropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceTags.property.value" id="cdkamazonchimeresourcesappinstancetagspropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
+
+---
+
 ### AppInstanceUserProps <a name="cdk-amazon-chime-resources.AppInstanceUserProps" id="cdkamazonchimeresourcesappinstanceuserprops"></a>
 
 Props for `AppInstance`.
@@ -905,6 +990,7 @@ const appInstanceUserProps: AppInstanceUserProps = { ... }
 | [`clientRequestToken`](#cdkamazonchimeresourcesappinstanceuserpropspropertyclientrequesttoken) | `string` | The ClientRequestToken of the app instance. |
 | [`metadata`](#cdkamazonchimeresourcesappinstanceuserpropspropertymetadata) | `string` | The metadata of the app instance. |
 | [`name`](#cdkamazonchimeresourcesappinstanceuserpropspropertyname) | `string` | The name of the app instance. |
+| [`tags`](#cdkamazonchimeresourcesappinstanceuserpropspropertytags) | [`cdk-amazon-chime-resources.InstanceUserTags`](#cdk-amazon-chime-resources.InstanceUserTags)[] | The tags for the creation request. |
 
 ---
 
@@ -977,6 +1063,19 @@ The name of the app instance.
 
 ---
 
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceUserProps.property.tags" id="cdkamazonchimeresourcesappinstanceuserpropspropertytags"></a>
+
+```typescript
+public readonly tags: InstanceUserTags[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.InstanceUserTags`](#cdk-amazon-chime-resources.InstanceUserTags)[]
+- *Default:* None
+
+The tags for the creation request.
+
+---
+
 ### ChannelFlowProps <a name="cdk-amazon-chime-resources.ChannelFlowProps" id="cdkamazonchimeresourceschannelflowprops"></a>
 
 Props for `AppInstance`.
@@ -999,7 +1098,7 @@ const channelFlowProps: ChannelFlowProps = { ... }
 | [`clientRequestToken`](#cdkamazonchimeresourceschannelflowpropspropertyclientrequesttoken)<span title="Required">*</span> | `string` | The client token for the request. |
 | [`processors`](#cdkamazonchimeresourceschannelflowpropspropertyprocessors)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Processors`](#cdk-amazon-chime-resources.Processors)[] | Information about the processor Lambda functions. |
 | [`name`](#cdkamazonchimeresourceschannelflowpropspropertyname) | `string` | The name of the channel flow. |
-| [`tags`](#cdkamazonchimeresourceschannelflowpropspropertytags) | [`cdk-amazon-chime-resources.Tags`](#cdk-amazon-chime-resources.Tags)[] | The tags for the creation request. |
+| [`tags`](#cdkamazonchimeresourceschannelflowpropspropertytags) | [`cdk-amazon-chime-resources.ChannelFlowTags`](#cdk-amazon-chime-resources.ChannelFlowTags)[] | The tags for the creation request. |
 
 ---
 
@@ -1060,13 +1159,52 @@ The name of the channel flow.
 ##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.ChannelFlowProps.property.tags" id="cdkamazonchimeresourceschannelflowpropspropertytags"></a>
 
 ```typescript
-public readonly tags: Tags[];
+public readonly tags: ChannelFlowTags[];
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.Tags`](#cdk-amazon-chime-resources.Tags)[]
+- *Type:* [`cdk-amazon-chime-resources.ChannelFlowTags`](#cdk-amazon-chime-resources.ChannelFlowTags)[]
 - *Default:* None
 
 The tags for the creation request.
+
+---
+
+### ChannelFlowTags <a name="cdk-amazon-chime-resources.ChannelFlowTags" id="cdkamazonchimeresourceschannelflowtags"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { ChannelFlowTags } from 'cdk-amazon-chime-resources'
+
+const channelFlowTags: ChannelFlowTags = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourceschannelflowtagspropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourceschannelflowtagspropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChannelFlowTags.property.key" id="cdkamazonchimeresourceschannelflowtagspropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChannelFlowTags.property.value" id="cdkamazonchimeresourceschannelflowtagspropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 
@@ -1102,6 +1240,45 @@ public readonly lambda: Lambda;
 - *Default:* None
 
 Indicates that the processor is of type Lambda.
+
+---
+
+### InstanceUserTags <a name="cdk-amazon-chime-resources.InstanceUserTags" id="cdkamazonchimeresourcesinstanceusertags"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { InstanceUserTags } from 'cdk-amazon-chime-resources'
+
+const instanceUserTags: InstanceUserTags = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesinstanceusertagspropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesinstanceusertagspropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.InstanceUserTags.property.key" id="cdkamazonchimeresourcesinstanceusertagspropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.InstanceUserTags.property.value" id="cdkamazonchimeresourcesinstanceusertagspropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 
@@ -1743,6 +1920,79 @@ public readonly weight: number;
 
 ---
 
+### SipMediaApplicationAlexaSkillConfiguration <a name="cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration" id="cdkamazonchimeresourcessipmediaapplicationalexaskillconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SipMediaApplicationAlexaSkillConfiguration } from 'cdk-amazon-chime-resources'
+
+const sipMediaApplicationAlexaSkillConfiguration: SipMediaApplicationAlexaSkillConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`alexaSkillIds`](#cdkamazonchimeresourcessipmediaapplicationalexaskillconfigurationpropertyalexaskillids)<span title="Required">*</span> | `string`[] | *No description.* |
+| [`alexaSkillStatus`](#cdkamazonchimeresourcessipmediaapplicationalexaskillconfigurationpropertyalexaskillstatus)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AlexaSkillStatus`](#cdk-amazon-chime-resources.AlexaSkillStatus) | *No description.* |
+
+---
+
+##### `alexaSkillIds`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration.property.alexaSkillIds" id="cdkamazonchimeresourcessipmediaapplicationalexaskillconfigurationpropertyalexaskillids"></a>
+
+```typescript
+public readonly alexaSkillIds: string[];
+```
+
+- *Type:* `string`[]
+
+---
+
+##### `alexaSkillStatus`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration.property.alexaSkillStatus" id="cdkamazonchimeresourcessipmediaapplicationalexaskillconfigurationpropertyalexaskillstatus"></a>
+
+```typescript
+public readonly alexaSkillStatus: AlexaSkillStatus;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AlexaSkillStatus`](#cdk-amazon-chime-resources.AlexaSkillStatus)
+
+---
+
+### SipMediaApplicationLoggingConfiguration <a name="cdk-amazon-chime-resources.SipMediaApplicationLoggingConfiguration" id="cdkamazonchimeresourcessipmediaapplicationloggingconfiguration"></a>
+
+Props for `AppInstanceStreamingConfiguration`.
+
+See: https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_AppInstanceStreamingConfiguration.html
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SipMediaApplicationLoggingConfiguration } from 'cdk-amazon-chime-resources'
+
+const sipMediaApplicationLoggingConfiguration: SipMediaApplicationLoggingConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`enableSipMediaApplicationMessageLogs`](#cdkamazonchimeresourcessipmediaapplicationloggingconfigurationpropertyenablesipmediaapplicationmessagelogs)<span title="Required">*</span> | `boolean` | Enables message logging for the specified SIP media application. |
+
+---
+
+##### `enableSipMediaApplicationMessageLogs`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipMediaApplicationLoggingConfiguration.property.enableSipMediaApplicationMessageLogs" id="cdkamazonchimeresourcessipmediaapplicationloggingconfigurationpropertyenablesipmediaapplicationmessagelogs"></a>
+
+```typescript
+public readonly enableSipMediaApplicationMessageLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+Enables message logging for the specified SIP media application.
+
+---
+
 ### SipMediaAppProps <a name="cdk-amazon-chime-resources.SipMediaAppProps" id="cdkamazonchimeresourcessipmediaappprops"></a>
 
 Props for `SipMediaApplication`.
@@ -1820,7 +2070,7 @@ const sipRuleProps: SipRuleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`targetApplications`](#cdkamazonchimeresourcessiprulepropspropertytargetapplications)<span title="Required">*</span> | [`cdk-amazon-chime-resources.TargetApplications`](#cdk-amazon-chime-resources.TargetApplications)[] | *No description.* |
+| [`targetApplications`](#cdkamazonchimeresourcessiprulepropspropertytargetapplications)<span title="Required">*</span> | [`cdk-amazon-chime-resources.SipRuleTargetApplication`](#cdk-amazon-chime-resources.SipRuleTargetApplication)[] | *No description.* |
 | [`triggerType`](#cdkamazonchimeresourcessiprulepropspropertytriggertype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.TriggerType`](#cdk-amazon-chime-resources.TriggerType) | Trigger Type for SipRule (required) - TO_PHONE_NUMBER or REQUEST_URI_HOSTNAME. |
 | [`triggerValue`](#cdkamazonchimeresourcessiprulepropspropertytriggervalue)<span title="Required">*</span> | `string` | Trigger Value for SipRule (required) - EE.164 Phone Number or Voice Connector URI. |
 | [`name`](#cdkamazonchimeresourcessiprulepropspropertyname) | `string` | name for SipRule (optional). |
@@ -1830,10 +2080,10 @@ const sipRuleProps: SipRuleProps = { ... }
 ##### `targetApplications`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleProps.property.targetApplications" id="cdkamazonchimeresourcessiprulepropspropertytargetapplications"></a>
 
 ```typescript
-public readonly targetApplications: TargetApplications[];
+public readonly targetApplications: SipRuleTargetApplication[];
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.TargetApplications`](#cdk-amazon-chime-resources.TargetApplications)[]
+- *Type:* [`cdk-amazon-chime-resources.SipRuleTargetApplication`](#cdk-amazon-chime-resources.SipRuleTargetApplication)[]
 
 ---
 
@@ -1873,6 +2123,65 @@ public readonly name: string;
 - *Default:* unique ID for resource
 
 name for SipRule (optional).
+
+---
+
+### SipRuleTargetApplication <a name="cdk-amazon-chime-resources.SipRuleTargetApplication" id="cdkamazonchimeresourcessipruletargetapplication"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SipRuleTargetApplication } from 'cdk-amazon-chime-resources'
+
+const sipRuleTargetApplication: SipRuleTargetApplication = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`priority`](#cdkamazonchimeresourcessipruletargetapplicationpropertypriority)<span title="Required">*</span> | `number` | Priority for SipRule (required) - 1 to 25. |
+| [`sipMediaApplicationId`](#cdkamazonchimeresourcessipruletargetapplicationpropertysipmediaapplicationid)<span title="Required">*</span> | `string` | SipMediaApplicationId for SipRule (required). |
+| [`region`](#cdkamazonchimeresourcessipruletargetapplicationpropertyregion) | `string` | Region for SipRule (optional). |
+
+---
+
+##### `priority`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.priority" id="cdkamazonchimeresourcessipruletargetapplicationpropertypriority"></a>
+
+```typescript
+public readonly priority: number;
+```
+
+- *Type:* `number`
+- *Default:* none
+
+Priority for SipRule (required) - 1 to 25.
+
+---
+
+##### `sipMediaApplicationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.sipMediaApplicationId" id="cdkamazonchimeresourcessipruletargetapplicationpropertysipmediaapplicationid"></a>
+
+```typescript
+public readonly sipMediaApplicationId: string;
+```
+
+- *Type:* `string`
+- *Default:* none
+
+SipMediaApplicationId for SipRule (required).
+
+---
+
+##### `region`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.SipRuleTargetApplication.property.region" id="cdkamazonchimeresourcessipruletargetapplicationpropertyregion"></a>
+
+```typescript
+public readonly region: string;
+```
+
+- *Type:* `string`
+- *Default:* same region as stack deployment
+
+Region for SipRule (optional).
 
 ---
 
@@ -2028,104 +2337,6 @@ The AppInstanceStreamingConfigurations.
 
 ---
 
-### Tags <a name="cdk-amazon-chime-resources.Tags" id="cdkamazonchimeresourcestags"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { Tags } from 'cdk-amazon-chime-resources'
-
-const tags: Tags = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`key`](#cdkamazonchimeresourcestagspropertykey)<span title="Required">*</span> | `string` | *No description.* |
-| [`value`](#cdkamazonchimeresourcestagspropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
-
----
-
-##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Tags.property.key" id="cdkamazonchimeresourcestagspropertykey"></a>
-
-```typescript
-public readonly key: string;
-```
-
-- *Type:* `string`
-
----
-
-##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Tags.property.value" id="cdkamazonchimeresourcestagspropertyvalue"></a>
-
-```typescript
-public readonly value: string;
-```
-
-- *Type:* `string`
-
----
-
-### TargetApplications <a name="cdk-amazon-chime-resources.TargetApplications" id="cdkamazonchimeresourcestargetapplications"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { TargetApplications } from 'cdk-amazon-chime-resources'
-
-const targetApplications: TargetApplications = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`priority`](#cdkamazonchimeresourcestargetapplicationspropertypriority)<span title="Required">*</span> | `number` | Priority for SipRule (required) - 1 to 25. |
-| [`sipMediaApplicationId`](#cdkamazonchimeresourcestargetapplicationspropertysipmediaapplicationid)<span title="Required">*</span> | `string` | SipMediaApplicationId for SipRule (required). |
-| [`region`](#cdkamazonchimeresourcestargetapplicationspropertyregion) | `string` | Region for SipRule (optional). |
-
----
-
-##### `priority`<sup>Required</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.priority" id="cdkamazonchimeresourcestargetapplicationspropertypriority"></a>
-
-```typescript
-public readonly priority: number;
-```
-
-- *Type:* `number`
-- *Default:* none
-
-Priority for SipRule (required) - 1 to 25.
-
----
-
-##### `sipMediaApplicationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.sipMediaApplicationId" id="cdkamazonchimeresourcestargetapplicationspropertysipmediaapplicationid"></a>
-
-```typescript
-public readonly sipMediaApplicationId: string;
-```
-
-- *Type:* `string`
-- *Default:* none
-
-SipMediaApplicationId for SipRule (required).
-
----
-
-##### `region`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.TargetApplications.property.region" id="cdkamazonchimeresourcestargetapplicationspropertyregion"></a>
-
-```typescript
-public readonly region: string;
-```
-
-- *Type:* `string`
-- *Default:* same region as stack deployment
-
-Region for SipRule (optional).
-
----
-
 ### Termination <a name="cdk-amazon-chime-resources.Termination" id="cdkamazonchimeresourcestermination"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -2185,6 +2396,45 @@ CPS Limit.
 
 ---
 
+### VoiceConnectorLoggingConfiguration <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration" id="cdkamazonchimeresourcesvoiceconnectorloggingconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { VoiceConnectorLoggingConfiguration } from 'cdk-amazon-chime-resources'
+
+const voiceConnectorLoggingConfiguration: VoiceConnectorLoggingConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`enableMediaMetricLogs`](#cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablemediametriclogs) | `boolean` | *No description.* |
+| [`enableSIPLogs`](#cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablesiplogs) | `boolean` | *No description.* |
+
+---
+
+##### `enableMediaMetricLogs`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration.property.enableMediaMetricLogs" id="cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablemediametriclogs"></a>
+
+```typescript
+public readonly enableMediaMetricLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `enableSIPLogs`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration.property.enableSIPLogs" id="cdkamazonchimeresourcesvoiceconnectorloggingconfigurationpropertyenablesiplogs"></a>
+
+```typescript
+public readonly enableSIPLogs: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
 ### VoiceConnectorProps <a name="cdk-amazon-chime-resources.VoiceConnectorProps" id="cdkamazonchimeresourcesvoiceconnectorprops"></a>
 
 Props for `SipMediaApplication`.
@@ -2202,6 +2452,7 @@ const voiceConnectorProps: VoiceConnectorProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`encryption`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyencryption) | `boolean` | Encryption boolean for VoiceConnector. |
+| [`loggingConfiguration`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration) | [`cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration`](#cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration) | *No description.* |
 | [`name`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyname) | `string` | name for VoiceConnector. |
 | [`origination`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyorigination) | [`cdk-amazon-chime-resources.Routes`](#cdk-amazon-chime-resources.Routes)[] | *No description.* |
 | [`region`](#cdkamazonchimeresourcesvoiceconnectorpropspropertyregion) | `string` | region for SipMediaApplication(required) - Must us-east-1 or us-west-2 and in the same region as the SipMediaApplication Lambda handler. |
@@ -2220,6 +2471,16 @@ public readonly encryption: boolean;
 - *Default:* False
 
 Encryption boolean for VoiceConnector.
+
+---
+
+##### `loggingConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceConnectorProps.property.loggingConfiguration" id="cdkamazonchimeresourcesvoiceconnectorpropspropertyloggingconfiguration"></a>
+
+```typescript
+public readonly loggingConfiguration: VoiceConnectorLoggingConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration`](#cdk-amazon-chime-resources.VoiceConnectorLoggingConfiguration)
 
 ---
 
@@ -2282,6 +2543,25 @@ public readonly termination: Termination;
 
 
 ## Enums <a name="Enums" id="enums"></a>
+
+### AlexaSkillStatus <a name="AlexaSkillStatus" id="alexaskillstatus"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`ACTIVE`](#cdkamazonchimeresourcesalexaskillstatusactive) | *No description.* |
+| [`INACTIVE`](#cdkamazonchimeresourcesalexaskillstatusinactive) | *No description.* |
+
+---
+
+#### `ACTIVE` <a name="cdk-amazon-chime-resources.AlexaSkillStatus.ACTIVE" id="cdkamazonchimeresourcesalexaskillstatusactive"></a>
+
+---
+
+
+#### `INACTIVE` <a name="cdk-amazon-chime-resources.AlexaSkillStatus.INACTIVE" id="cdkamazonchimeresourcesalexaskillstatusinactive"></a>
+
+---
+
 
 ### AppInstanceDataType <a name="AppInstanceDataType" id="appinstancedatatype"></a>
 

@@ -1,3 +1,4 @@
+// import { PhoneNumberType } from '@aws-sdk/client-chime-sdk-voice';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { phoneNumberValidator } from './phoneNumberValidator';

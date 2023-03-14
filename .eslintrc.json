@@ -141,7 +141,9 @@
       {
         "devDependencies": [
           "**/test/**",
-          "**/build-tools/**"
+          "**/build-tools/**",
+          "src/resources/pstn/pstn.lambda.ts",
+          "src/resources/messaging/messaging.lambda.ts"
         ],
         "optionalDependencies": false,
         "peerDependencies": true

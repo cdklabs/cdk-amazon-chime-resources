@@ -41,15 +41,16 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination) {
-    if ('cps' in props.termination) {
-      if (props.termination.cps! < 1 || props.termination.cps! > 256) {
-        throw new Error('CPS must be between 1 and 256');
-      }
+  if (props.termination && props.termination.cps !== undefined) {
+    if (props.termination.cps < 1) {
+      throw new Error('CPS must be between 1 and 256');
+    }
+    if (props.termination.cps > 256) {
+      throw new Error('CPS must be between 1 and 256');
     }
   }
 
-  if (props.termination) {
+  if (props.termination && props.termination.callingRegions) {
     for (var country of props.termination.callingRegions) {
       if (!ISO_3166_ALPHA_2.test(country)) {
         throw new Error(`Invalid Country: ${country}`);
@@ -57,7 +58,7 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination) {
+  if (props.termination && props.termination.terminationCidrs) {
     for (var terminationCidr of props.termination.terminationCidrs) {
       if (terminationCidr.includes('Token')) {
       } else if (!VALID_CIDR.test(terminationCidr)) {
@@ -68,11 +69,11 @@ export function voiceConnectorValidator(props: VoiceConnectorProps) {
     }
   }
 
-  if (props.termination) {
+  if (props.termination && props.termination.terminationCidrs) {
     for (var terminationCidr of props.termination.terminationCidrs) {
       if (RFC_1918_CIDR.test(terminationCidr)) {
         throw new Error(
-          'Termination CDIR must not be RFC1918 CIDR block (/27-/32)',
+          'Termination CIDR must not be RFC1918 CIDR block (/27-/32)',
         );
       }
     }

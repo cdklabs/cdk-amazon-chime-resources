@@ -2,15 +2,32 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.53.0',
+  cdkVersion: '2.68.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
+  majorVersion: 2,
   eslintOptions: {
     ignorePatterns: ['example/**'],
   },
-  workflowNodeVersion: '16.13.1',
-  devDeps: ['yalc', '@types/prettier@2.6.0', 'got@12.1.0'],
+  lambdaAutoDiscover: false,
+  deps: [
+    '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-chime-sdk-messaging',
+    '@aws-sdk/client-chime',
+    '@aws-sdk/client-ssm',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  devDeps: ['yalc', 'esbuild'],
+  bundledDeps: [
+    '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-chime-sdk-messaging',
+    '@aws-sdk/client-chime',
+    '@aws-sdk/client-ssm',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
@@ -29,6 +46,54 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
+});
+
+new awscdk.LambdaFunction(project, {
+  cdkVersion: '2.68.0',
+  cdkDeps: [
+    '@aws-sdk/client-ssm',
+    '@aws-sdk/client-chime-sdk-voice',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  bundlingOptions: {
+    externals: [''],
+    minify: true,
+    nodeModules: [
+      '@aws-sdk/client-ssm',
+      '@aws-sdk/client-chime-sdk-voice',
+      'aws-lambda',
+      '@types/aws-lambda',
+    ],
+  },
+  entrypoint: 'src/resources/pstn/pstn.lambda.ts',
+  runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  target: 'node18',
+  platform: 'node',
+});
+
+new awscdk.LambdaFunction(project, {
+  cdkVersion: '2.68.0',
+  cdkDeps: [
+    '@aws-sdk/client-ssm',
+    '@aws-sdk/client-chime-sdk-messaging',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  entrypoint: 'src/resources/messaging/messaging.lambda.ts',
+  runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  bundlingOptions: {
+    externals: [''],
+    minify: true,
+    nodeModules: [
+      '@aws-sdk/client-ssm',
+      '@aws-sdk/client-chime-sdk-messaging',
+      'aws-lambda',
+      '@types/aws-lambda',
+    ],
+  },
+  target: 'node18',
+  platform: 'node',
 });
 
 const common_exclude = [

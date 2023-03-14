@@ -135,7 +135,7 @@ test('RFC1918terminationCidr', () => {
         callingRegions: ['US'],
       },
     });
-  }).toThrowError('Termination CDIR must not be RFC1918 CIDR block (/27-/32)');
+  }).toThrowError('Termination CIDR must not be RFC1918 CIDR block (/27-/32)');
 });
 
 test('BadTerminationIP', () => {

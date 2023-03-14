@@ -3,10 +3,10 @@ import * as cdk from 'aws-cdk-lib';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
 import {
   ChimeSipRule,
-  TriggerType,
   ChimeSipMediaApp,
   PhoneProductType,
   ChimePhoneNumber,
+  TriggerType,
 } from '../../src';
 
 const app = new cdk.App();
@@ -153,10 +153,10 @@ test('BadSMAID', () => {
   ).toThrowError('sipMediaApplicationId must be valid');
 });
 
-test('BadPriority', () => {
+test('Badpriority', () => {
   expect(
     () =>
-      new ChimeSipRule(stack, 'BadPriority', {
+      new ChimeSipRule(stack, 'Badpriority', {
         triggerType: TriggerType.REQUEST_URI_HOSTNAME,
         triggerValue: 'bl4jpdz2puqt55uhwjnzxi.voiceconnector.chime.aws',
         targetApplications: [
@@ -167,5 +167,5 @@ test('BadPriority', () => {
           },
         ],
       }),
-  ).toThrowError('Priority should be between 1 and 25');
+  ).toThrowError('priority should be between 1 and 25');
 });

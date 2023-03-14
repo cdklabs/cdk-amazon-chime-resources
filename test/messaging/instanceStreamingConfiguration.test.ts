@@ -1,5 +1,8 @@
 import * as cdk from 'aws-cdk-lib';
-import { AppInstanceDataType, AppInstanceStreamingConfigurations } from '../../src';
+import {
+  AppInstanceDataType,
+  AppInstanceStreamingConfigurations,
+} from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {
@@ -12,10 +15,11 @@ const stack = new cdk.Stack(app, 'testing-stack', {
 test('InstanceStreamingConfig', () => {
   new AppInstanceStreamingConfigurations(stack, 'BasicStreamingConfig', {
     appInstanceArn: 'appInstanceArn',
-    streamingConfigs: [{
-      appInstanceDataType: AppInstanceDataType.CHANNEL,
-      resourceArn: 'resourceArn',
-    }],
+    streamingConfigs: [
+      {
+        appInstanceDataType: AppInstanceDataType.CHANNEL,
+        resourceArn: 'resourceArn',
+      },
+    ],
   });
 });
-

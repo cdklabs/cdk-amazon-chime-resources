@@ -1,3 +1,4 @@
+// import { Termination } from '@aws-sdk/client-chime-sdk-voice';
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { PSTNResources } from './pstnCustomResources';
@@ -33,6 +34,11 @@ export interface Termination {
    * @default - none
    */
   readonly terminationCidrs: Array<string>;
+}
+
+export interface VoiceConnectorLoggingConfiguration {
+  readonly enableSIPLogs?: boolean;
+  readonly enableMediaMetricLogs?: boolean;
 }
 
 export interface Routes {
@@ -87,6 +93,7 @@ export interface VoiceConnectorProps {
   readonly termination?: Termination;
   readonly origination?: Array<Routes>;
   readonly streaming?: Streaming;
+  readonly loggingConfiguration?: VoiceConnectorLoggingConfiguration;
 }
 
 export class ChimeVoiceConnector extends Construct {
@@ -97,8 +104,15 @@ export class ChimeVoiceConnector extends Construct {
 
     const uid: string = cdk.Names.uniqueId(this);
 
-    const { name, region, encryption, termination, origination, streaming } =
-      props;
+    const {
+      name,
+      region,
+      encryption,
+      termination,
+      origination,
+      streaming,
+      loggingConfiguration,
+    } = props;
 
     voiceConnectorValidator(props);
 
@@ -115,6 +129,7 @@ export class ChimeVoiceConnector extends Construct {
           termination: termination,
           origination: origination,
           streaming: streaming,
+          logging: loggingConfiguration,
         },
       },
     );

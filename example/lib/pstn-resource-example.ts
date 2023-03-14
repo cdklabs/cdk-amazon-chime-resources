@@ -1,16 +1,24 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
-import * as chime from 'cdk-amazon-chime-resources';
+import {
+  TriggerType,
+  ChimeSipRule,
+  ChimeSipMediaApp,
+  PhoneNumberType,
+  PhoneProductType,
+  ChimePhoneNumber,
+  // AlexaSkillStatus,
+} from 'cdk-amazon-chime-resources';
 
 export class PSTNExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const phoneNumber = new chime.ChimePhoneNumber(this, 'phoneNumber', {
+    const phoneNumber = new ChimePhoneNumber(this, 'phoneNumber', {
       phoneState: 'IL',
-      phoneNumberType: chime.PhoneNumberType.LOCAL,
-      phoneProductType: chime.PhoneProductType.SMA,
+      phoneNumberType: PhoneNumberType.LOCAL,
+      phoneProductType: PhoneProductType.SMA,
     });
 
     const smaHandler = new Function(this, 'smaHandler', {
@@ -19,13 +27,13 @@ export class PSTNExample extends Stack {
       code: Code.fromAsset('../src'),
     });
 
-    const sipMediaApp = new chime.ChimeSipMediaApp(this, 'sipMediaApp', {
+    const sipMediaApp = new ChimeSipMediaApp(this, 'sipMediaApp', {
       region: this.region,
       endpoint: smaHandler.functionArn,
     });
 
-    const sipRule = new chime.ChimeSipRule(this, 'sipRule', {
-      triggerType: chime.TriggerType.TO_PHONE_NUMBER,
+    const sipRule = new ChimeSipRule(this, 'sipRule', {
+      triggerType: TriggerType.TO_PHONE_NUMBER,
       triggerValue: phoneNumber.phoneNumber,
       targetApplications: [
         {
@@ -36,6 +44,13 @@ export class PSTNExample extends Stack {
       ],
     });
 
+    sipMediaApp.logging({ enableSipMediaApplicationMessageLogs: true });
+    // sipMediaApp.alexaSkill({
+    //   alexaSkillIds: [
+    //     'amzn1.application-oa2-client.11223344556677889900112233445566',
+    //   ],
+    //   alexaSkillStatus: AlexaSkillStatus.ACTIVE,
+    // });
     new CfnOutput(this, 'phoneNumberOutput', {
       value: phoneNumber.phoneNumber,
     });

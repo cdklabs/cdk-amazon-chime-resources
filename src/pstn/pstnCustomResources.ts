@@ -1,37 +1,56 @@
 /* eslint-disable @typescript-eslint/indent */
-import * as path from 'path';
-import * as cdk from 'aws-cdk-lib';
-import { CustomResource } from 'aws-cdk-lib';
-import * as iam from 'aws-cdk-lib/aws-iam';
-import * as lambda from 'aws-cdk-lib/aws-lambda';
-import * as cr from 'aws-cdk-lib/custom-resources';
+import {
+  Duration,
+  CustomResource,
+  ResourceProps,
+  Stack,
+  Names,
+} from 'aws-cdk-lib';
+import {
+  ServicePrincipal,
+  Role,
+  ManagedPolicy,
+  PolicyDocument,
+  PolicyStatement,
+} from 'aws-cdk-lib/aws-iam';
+import {
+  // Architecture,
+  // Runtime,
+  IFunction,
+  Function,
+  // Code,
+} from 'aws-cdk-lib/aws-lambda';
 import {
   AwsCustomResource,
   AwsCustomResourcePolicy,
   PhysicalResourceId,
+  Provider,
 } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
+import { PstnFunction } from '../resources/pstn/pstn-function';
 
-export interface PSTNResourceProps extends cdk.ResourceProps {
+export interface PSTNResourceProps extends ResourceProps {
   readonly properties: { [propname: string]: any };
   readonly resourceType:
     | 'PhoneNumber'
     | 'VoiceConnector'
     | 'SMA'
+    | 'SMALogging'
+    | 'SMAAlexaSkill'
     | 'SMARule'
     | 'PhoneAssociation';
   readonly uid: string;
 }
 
 export class PSTNResources extends Construct {
-  public readonly lambda: lambda.IFunction;
+  public readonly lambda: IFunction;
   public readonly pstnCustomResource: CustomResource;
 
   constructor(scope: Construct, id: string, props: PSTNResourceProps) {
     super(scope, id);
     this.lambda = this.ensureLambda();
 
-    const PSTNResourceProvider = new cr.Provider(this, 'PSTNResourceProvider', {
+    const PSTNResourceProvider = new Provider(this, 'PSTNResourceProvider', {
       onEventHandler: this.lambda,
     });
 
@@ -41,85 +60,97 @@ export class PSTNResources extends Construct {
     });
   }
 
-  private ensureLambda(): lambda.Function {
-    const stack = cdk.Stack.of(this);
+  private ensureLambda(): Function {
+    const stack = Stack.of(this);
     const constructName = 'PSTNResources';
     const existing = stack.node.tryFindChild(constructName);
     if (existing) {
-      return existing as lambda.Function;
+      return existing as Function;
     }
 
-    const pstnCustomResourceRole = new iam.Role(
-      this,
-      'pstnCustomResourceRole',
-      {
-        description: 'Amazon Chime PSTN Resources',
-        assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com'),
-        inlinePolicies: {
-          ['chimePolicy']: new iam.PolicyDocument({
-            statements: [
-              new iam.PolicyStatement({
-                resources: ['*'],
-                actions: [
-                  'chime:CreateSipRule',
-                  'chime:DeleteSipRule',
-                  'chime:UpdateSipRule',
-                  'chime:GetSipRule',
-                  'chime:CreateSipMediaApplication',
-                  'chime:DeleteSipMediaApplication',
-                  'chime:GetPhoneNumberOrder',
-                  'chime:SearchAvailablePhoneNumbers',
-                  'chime:CreatePhoneNumberOrder',
-                  'chime:DeletePhoneNumber',
-                  'chime:GetPhoneNumber',
-                  'chime:CreateVoiceConnector',
-                  'chime:PutVoiceConnectorStreamingConfiguration',
-                  'chime:PutVoiceConnectorTermination',
-                  'chime:PutVoiceConnectorOrigination',
-                  'chime:ListPhoneNumbers',
-                  'chime:AssociatePhoneNumbersWithVoiceConnector',
-                  'chime:DisassociatePhoneNumbersFromVoiceConnector',
-                  'chime:DeleteVoiceConnector',
-                  'lambda:GetPolicy',
-                  'lambda:AddPermission',
-                  'iam:PutRolePolicy',
-                  'iam:CreateServiceLinkedRole',
-                ],
-              }),
-              new iam.PolicyStatement({
-                resources: [
-                  `arn:aws:ssm:${stack.region}:${stack.account}:parameter/chime/*`,
-                ],
-                actions: [
-                  'ssm:PutParameter',
-                  'ssm:GetParameter',
-                  'ssm:DeleteParameter',
-                ],
-              }),
-            ],
-          }),
-        },
-        managedPolicies: [
-          iam.ManagedPolicy.fromAwsManagedPolicyName(
-            'service-role/AWSLambdaBasicExecutionRole',
-          ),
-        ],
+    const pstnCustomResourceRole = new Role(this, 'pstnCustomResourceRole', {
+      description: 'Amazon Chime PSTN Resources',
+      assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
+      inlinePolicies: {
+        ['chimePolicy']: new PolicyDocument({
+          statements: [
+            new PolicyStatement({
+              resources: ['*'],
+              actions: [
+                'chime:CreateSipRule',
+                'chime:DeleteSipRule',
+                'chime:UpdateSipRule',
+                'chime:GetSipRule',
+                'chime:CreateSipMediaApplication',
+                'chime:DeleteSipMediaApplication',
+                'chime:GetPhoneNumberOrder',
+                'chime:SearchAvailablePhoneNumbers',
+                'chime:CreatePhoneNumberOrder',
+                'chime:DeletePhoneNumber',
+                'chime:GetPhoneNumber',
+                'chime:CreateVoiceConnector',
+                'chime:PutVoiceConnectorStreamingConfiguration',
+                'chime:PutVoiceConnectorTermination',
+                'chime:PutVoiceConnectorOrigination',
+                'chime:PutVoiceConnectorLoggingConfiguration',
+                'chime:ListPhoneNumbers',
+                'chime:AssociatePhoneNumbersWithVoiceConnector',
+                'chime:DisassociatePhoneNumbersFromVoiceConnector',
+                'chime:DeleteVoiceConnector',
+                'chime:PutSipMediaApplicationAlexaSkillConfiguration',
+                'chime:PutSipMediaApplicationLoggingConfiguration',
+                'logs:GetLogDelivery',
+                'logs:DeleteLogDelivery',
+                'logs:ListLogDeliveries',
+                'logs:CreateLogGroup',
+                'logs:DescribeResourcePolicies',
+                'logs:PutResourcePolicy',
+                'logs:DescribeLogGroups',
+                'logs:CreateLogDelivery',
+                'lambda:GetPolicy',
+                'lambda:AddPermission',
+                'iam:PutRolePolicy',
+                'iam:CreateServiceLinkedRole',
+              ],
+            }),
+            new PolicyStatement({
+              resources: [
+                `arn:aws:ssm:${stack.region}:${stack.account}:parameter/chime/*`,
+              ],
+              actions: [
+                'ssm:PutParameter',
+                'ssm:GetParameter',
+                'ssm:DeleteParameter',
+              ],
+            }),
+          ],
+        }),
       },
-    );
-    const fn = new lambda.Function(stack, constructName, {
-      runtime: lambda.Runtime.PYTHON_3_9,
-      code: lambda.Code.fromAsset(path.join(__dirname, '../../resources/pstn')),
-      handler: 'index.handler',
-      architecture: lambda.Architecture.ARM_64,
-      role: pstnCustomResourceRole,
-      timeout: cdk.Duration.minutes(1),
+      managedPolicies: [
+        ManagedPolicy.fromAwsManagedPolicyName(
+          'service-role/AWSLambdaBasicExecutionRole',
+        ),
+      ],
     });
+
+    const fn = new PstnFunction(this, 'pstnResourcesFunction', {
+      role: pstnCustomResourceRole,
+      timeout: Duration.seconds(60),
+    });
+    // const fn = new Function(this, 'pstnResourcesFunction', {
+    //   runtime: Runtime.NODEJS_18_X,
+    //   architecture: Architecture.ARM_64,
+    //   role: pstnCustomResourceRole,
+    //   timeout: Duration.seconds(60),
+    //   handler: 'index.handler',
+    //   code: Code.fromAsset(path.join(__dirname, '../../src/resources/pstn')),
+    // });
 
     return fn;
   }
 }
 
-export interface PhoneAssociationProps extends cdk.ResourceProps {
+export interface PhoneAssociationProps extends ResourceProps {
   readonly voiceConnectorId: string;
   readonly e164PhoneNumber: string;
 }
@@ -142,7 +173,7 @@ export class PhoneAssociation extends Construct {
             VoiceConnectorId: props.voiceConnectorId,
             ForceAssociate: true,
           },
-          physicalResourceId: PhysicalResourceId.of(cdk.Names.uniqueId(this)),
+          physicalResourceId: PhysicalResourceId.of(Names.uniqueId(this)),
         },
         onDelete: {
           service: 'Chime',
@@ -152,7 +183,7 @@ export class PhoneAssociation extends Construct {
             E164PhoneNumbers: [props.e164PhoneNumber],
             VoiceConnectorId: props.voiceConnectorId,
           },
-          physicalResourceId: PhysicalResourceId.of(cdk.Names.uniqueId(this)),
+          physicalResourceId: PhysicalResourceId.of(Names.uniqueId(this)),
         },
         policy: AwsCustomResourcePolicy.fromSdkCalls({
           resources: AwsCustomResourcePolicy.ANY_RESOURCE,
