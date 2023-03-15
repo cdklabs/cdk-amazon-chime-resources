@@ -23,7 +23,7 @@ import {
 } from '@aws-sdk/client-ssm';
 
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
-  region: process.env.AWS_REGION,
+  region: 'us-east-1',
 });
 
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });

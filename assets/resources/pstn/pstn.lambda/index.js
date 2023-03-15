@@ -59344,7 +59344,7 @@ module.exports = __toCommonJS(pstn_lambda_exports);
 var import_client_chime_sdk_voice = __toESM(require_dist_cjs50());
 var import_client_ssm = __toESM(require_dist_cjs52());
 var chimeSDKVoiceClient = new import_client_chime_sdk_voice.ChimeSDKVoiceClient({
-  region: process.env.AWS_REGION
+  region: "us-east-1"
 });
 var ssmClient = new import_client_ssm.SSMClient({ region: process.env.AWS_REGION });
 var searchAvailableNumbersParam;
@@ -59593,7 +59593,7 @@ var DeleteSipMediaApplication = async (uid) => {
       })
     );
     await ssmClient2.send(
-      new import_client_ssm2.DeleteParameterCommand({ Name: "/chime/sipRule" + uid })
+      new import_client_ssm2.DeleteParameterCommand({ Name: "/chime/sipMediaApp" + uid })
     );
   } catch (error) {
     if (error instanceof Error) {

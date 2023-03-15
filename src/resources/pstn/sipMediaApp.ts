@@ -125,7 +125,7 @@ export const DeleteSipMediaApplication = async (uid: string) => {
       }),
     );
     await ssmClient.send(
-      new DeleteParameterCommand({ Name: '/chime/sipRule' + uid }),
+      new DeleteParameterCommand({ Name: '/chime/sipMediaApp' + uid }),
     );
   } catch (error) {
     if (error instanceof Error) {
