@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^5",
     "aws-cdk-lib": "2.68.0",
     "constructs": "10.0.5",
-    "esbuild": "^0.17.11",
+    "esbuild": "^0.17.12",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -58,7 +58,7 @@
     "jsii-docgen": "^4.2.44",
     "jsii-pacmak": "^1.78.1",
     "npm-check-updates": "^16",
-    "projen": "^0.68.5",
+    "projen": "^0.68.10",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "^4.9.5",
@@ -69,11 +69,11 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-chime": "^3.293.0",
-    "@aws-sdk/client-chime-sdk-messaging": "^3.293.0",
-    "@aws-sdk/client-chime-sdk-voice": "^3.293.0",
-    "@aws-sdk/client-ssm": "^3.293.0",
-    "@types/aws-lambda": "^8.10.113",
+    "@aws-sdk/client-chime": "^3.294.0",
+    "@aws-sdk/client-chime-sdk-messaging": "^3.294.0",
+    "@aws-sdk/client-chime-sdk-voice": "^3.294.0",
+    "@aws-sdk/client-ssm": "^3.294.0",
+    "@types/aws-lambda": "^8.10.114",
     "aws-lambda": "^1.0.7"
   },
   "bundledDependencies": [
