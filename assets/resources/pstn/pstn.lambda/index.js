@@ -6659,7 +6659,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.294.0",
+      version: "3.295.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6678,49 +6678,49 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.294.0",
-        "@aws-sdk/config-resolver": "3.292.0",
-        "@aws-sdk/credential-provider-node": "3.294.0",
-        "@aws-sdk/fetch-http-handler": "3.292.0",
-        "@aws-sdk/hash-node": "3.292.0",
-        "@aws-sdk/invalid-dependency": "3.292.0",
-        "@aws-sdk/middleware-content-length": "3.292.0",
-        "@aws-sdk/middleware-endpoint": "3.292.0",
-        "@aws-sdk/middleware-host-header": "3.292.0",
-        "@aws-sdk/middleware-logger": "3.292.0",
-        "@aws-sdk/middleware-recursion-detection": "3.292.0",
-        "@aws-sdk/middleware-retry": "3.293.0",
-        "@aws-sdk/middleware-serde": "3.292.0",
-        "@aws-sdk/middleware-signing": "3.292.0",
-        "@aws-sdk/middleware-stack": "3.292.0",
-        "@aws-sdk/middleware-user-agent": "3.293.0",
-        "@aws-sdk/node-config-provider": "3.292.0",
-        "@aws-sdk/node-http-handler": "3.292.0",
-        "@aws-sdk/protocol-http": "3.292.0",
-        "@aws-sdk/smithy-client": "3.292.0",
-        "@aws-sdk/types": "3.292.0",
-        "@aws-sdk/url-parser": "3.292.0",
-        "@aws-sdk/util-base64": "3.292.0",
-        "@aws-sdk/util-body-length-browser": "3.292.0",
-        "@aws-sdk/util-body-length-node": "3.292.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.292.0",
-        "@aws-sdk/util-defaults-mode-node": "3.292.0",
-        "@aws-sdk/util-endpoints": "3.293.0",
-        "@aws-sdk/util-retry": "3.292.0",
-        "@aws-sdk/util-user-agent-browser": "3.292.0",
-        "@aws-sdk/util-user-agent-node": "3.292.0",
-        "@aws-sdk/util-utf8": "3.292.0",
-        tslib: "^2.3.1"
+        "@aws-sdk/client-sts": "3.295.0",
+        "@aws-sdk/config-resolver": "3.295.0",
+        "@aws-sdk/credential-provider-node": "3.295.0",
+        "@aws-sdk/fetch-http-handler": "3.295.0",
+        "@aws-sdk/hash-node": "3.295.0",
+        "@aws-sdk/invalid-dependency": "3.295.0",
+        "@aws-sdk/middleware-content-length": "3.295.0",
+        "@aws-sdk/middleware-endpoint": "3.295.0",
+        "@aws-sdk/middleware-host-header": "3.295.0",
+        "@aws-sdk/middleware-logger": "3.295.0",
+        "@aws-sdk/middleware-recursion-detection": "3.295.0",
+        "@aws-sdk/middleware-retry": "3.295.0",
+        "@aws-sdk/middleware-serde": "3.295.0",
+        "@aws-sdk/middleware-signing": "3.295.0",
+        "@aws-sdk/middleware-stack": "3.295.0",
+        "@aws-sdk/middleware-user-agent": "3.295.0",
+        "@aws-sdk/node-config-provider": "3.295.0",
+        "@aws-sdk/node-http-handler": "3.295.0",
+        "@aws-sdk/protocol-http": "3.295.0",
+        "@aws-sdk/smithy-client": "3.295.0",
+        "@aws-sdk/types": "3.295.0",
+        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/util-base64": "3.295.0",
+        "@aws-sdk/util-body-length-browser": "3.295.0",
+        "@aws-sdk/util-body-length-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
+        "@aws-sdk/util-defaults-mode-node": "3.295.0",
+        "@aws-sdk/util-endpoints": "3.295.0",
+        "@aws-sdk/util-retry": "3.295.0",
+        "@aws-sdk/util-user-agent-browser": "3.295.0",
+        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-utf8": "3.295.0",
+        tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.293.0",
+        "@aws-sdk/service-client-documentation-generator": "3.295.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
         "downlevel-dts": "0.10.1",
         rimraf: "3.0.2",
         typedoc: "0.23.23",
-        typescript: "~4.6.2"
+        typescript: "~4.9.5"
       },
       engines: {
         node: ">=14.0.0"
@@ -9674,10 +9674,6 @@ var require_AssumeRoleCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9686,6 +9682,10 @@ var require_AssumeRoleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -9728,10 +9728,6 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithSAMLCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9740,6 +9736,10 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -9781,10 +9781,6 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithWebIdentityCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9793,6 +9789,10 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -9835,10 +9835,6 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var DecodeAuthorizationMessageCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9847,6 +9843,10 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -9890,10 +9890,6 @@ var require_GetAccessKeyInfoCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetAccessKeyInfoCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9902,6 +9898,10 @@ var require_GetAccessKeyInfoCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -9945,10 +9945,6 @@ var require_GetCallerIdentityCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetCallerIdentityCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -9957,6 +9953,10 @@ var require_GetCallerIdentityCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -10000,10 +10000,6 @@ var require_GetFederationTokenCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetFederationTokenCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -10012,6 +10008,10 @@ var require_GetFederationTokenCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -10055,10 +10055,6 @@ var require_GetSessionTokenCommand = __commonJS({
     var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetSessionTokenCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseGlobalEndpoint: { type: "builtInParams", name: "useGlobalEndpoint" },
@@ -10067,6 +10063,10 @@ var require_GetSessionTokenCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -10137,7 +10137,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.294.0",
+      version: "3.295.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10158,50 +10158,50 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.292.0",
-        "@aws-sdk/credential-provider-node": "3.294.0",
-        "@aws-sdk/fetch-http-handler": "3.292.0",
-        "@aws-sdk/hash-node": "3.292.0",
-        "@aws-sdk/invalid-dependency": "3.292.0",
-        "@aws-sdk/middleware-content-length": "3.292.0",
-        "@aws-sdk/middleware-endpoint": "3.292.0",
-        "@aws-sdk/middleware-host-header": "3.292.0",
-        "@aws-sdk/middleware-logger": "3.292.0",
-        "@aws-sdk/middleware-recursion-detection": "3.292.0",
-        "@aws-sdk/middleware-retry": "3.293.0",
-        "@aws-sdk/middleware-sdk-sts": "3.292.0",
-        "@aws-sdk/middleware-serde": "3.292.0",
-        "@aws-sdk/middleware-signing": "3.292.0",
-        "@aws-sdk/middleware-stack": "3.292.0",
-        "@aws-sdk/middleware-user-agent": "3.293.0",
-        "@aws-sdk/node-config-provider": "3.292.0",
-        "@aws-sdk/node-http-handler": "3.292.0",
-        "@aws-sdk/protocol-http": "3.292.0",
-        "@aws-sdk/smithy-client": "3.292.0",
-        "@aws-sdk/types": "3.292.0",
-        "@aws-sdk/url-parser": "3.292.0",
-        "@aws-sdk/util-base64": "3.292.0",
-        "@aws-sdk/util-body-length-browser": "3.292.0",
-        "@aws-sdk/util-body-length-node": "3.292.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.292.0",
-        "@aws-sdk/util-defaults-mode-node": "3.292.0",
-        "@aws-sdk/util-endpoints": "3.293.0",
-        "@aws-sdk/util-retry": "3.292.0",
-        "@aws-sdk/util-user-agent-browser": "3.292.0",
-        "@aws-sdk/util-user-agent-node": "3.292.0",
-        "@aws-sdk/util-utf8": "3.292.0",
+        "@aws-sdk/config-resolver": "3.295.0",
+        "@aws-sdk/credential-provider-node": "3.295.0",
+        "@aws-sdk/fetch-http-handler": "3.295.0",
+        "@aws-sdk/hash-node": "3.295.0",
+        "@aws-sdk/invalid-dependency": "3.295.0",
+        "@aws-sdk/middleware-content-length": "3.295.0",
+        "@aws-sdk/middleware-endpoint": "3.295.0",
+        "@aws-sdk/middleware-host-header": "3.295.0",
+        "@aws-sdk/middleware-logger": "3.295.0",
+        "@aws-sdk/middleware-recursion-detection": "3.295.0",
+        "@aws-sdk/middleware-retry": "3.295.0",
+        "@aws-sdk/middleware-sdk-sts": "3.295.0",
+        "@aws-sdk/middleware-serde": "3.295.0",
+        "@aws-sdk/middleware-signing": "3.295.0",
+        "@aws-sdk/middleware-stack": "3.295.0",
+        "@aws-sdk/middleware-user-agent": "3.295.0",
+        "@aws-sdk/node-config-provider": "3.295.0",
+        "@aws-sdk/node-http-handler": "3.295.0",
+        "@aws-sdk/protocol-http": "3.295.0",
+        "@aws-sdk/smithy-client": "3.295.0",
+        "@aws-sdk/types": "3.295.0",
+        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/util-base64": "3.295.0",
+        "@aws-sdk/util-body-length-browser": "3.295.0",
+        "@aws-sdk/util-body-length-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
+        "@aws-sdk/util-defaults-mode-node": "3.295.0",
+        "@aws-sdk/util-endpoints": "3.295.0",
+        "@aws-sdk/util-retry": "3.295.0",
+        "@aws-sdk/util-user-agent-browser": "3.295.0",
+        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-utf8": "3.295.0",
         "fast-xml-parser": "4.1.2",
-        tslib: "^2.3.1"
+        tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.293.0",
+        "@aws-sdk/service-client-documentation-generator": "3.295.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
         "downlevel-dts": "0.10.1",
         rimraf: "3.0.2",
         typedoc: "0.23.23",
-        typescript: "~4.6.2"
+        typescript: "~4.9.5"
       },
       engines: {
         node: ">=14.0.0"
@@ -11915,10 +11915,6 @@ var require_GetRoleCredentialsCommand = __commonJS({
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var GetRoleCredentialsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -11926,6 +11922,10 @@ var require_GetRoleCredentialsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -11967,10 +11967,6 @@ var require_ListAccountRolesCommand = __commonJS({
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var ListAccountRolesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -11978,6 +11974,10 @@ var require_ListAccountRolesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -12019,10 +12019,6 @@ var require_ListAccountsCommand = __commonJS({
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var ListAccountsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -12030,6 +12026,10 @@ var require_ListAccountsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -12071,10 +12071,6 @@ var require_LogoutCommand = __commonJS({
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var LogoutCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -12082,6 +12078,10 @@ var require_LogoutCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -12135,7 +12135,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.294.0",
+      version: "3.295.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12154,46 +12154,46 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.292.0",
-        "@aws-sdk/fetch-http-handler": "3.292.0",
-        "@aws-sdk/hash-node": "3.292.0",
-        "@aws-sdk/invalid-dependency": "3.292.0",
-        "@aws-sdk/middleware-content-length": "3.292.0",
-        "@aws-sdk/middleware-endpoint": "3.292.0",
-        "@aws-sdk/middleware-host-header": "3.292.0",
-        "@aws-sdk/middleware-logger": "3.292.0",
-        "@aws-sdk/middleware-recursion-detection": "3.292.0",
-        "@aws-sdk/middleware-retry": "3.293.0",
-        "@aws-sdk/middleware-serde": "3.292.0",
-        "@aws-sdk/middleware-stack": "3.292.0",
-        "@aws-sdk/middleware-user-agent": "3.293.0",
-        "@aws-sdk/node-config-provider": "3.292.0",
-        "@aws-sdk/node-http-handler": "3.292.0",
-        "@aws-sdk/protocol-http": "3.292.0",
-        "@aws-sdk/smithy-client": "3.292.0",
-        "@aws-sdk/types": "3.292.0",
-        "@aws-sdk/url-parser": "3.292.0",
-        "@aws-sdk/util-base64": "3.292.0",
-        "@aws-sdk/util-body-length-browser": "3.292.0",
-        "@aws-sdk/util-body-length-node": "3.292.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.292.0",
-        "@aws-sdk/util-defaults-mode-node": "3.292.0",
-        "@aws-sdk/util-endpoints": "3.293.0",
-        "@aws-sdk/util-retry": "3.292.0",
-        "@aws-sdk/util-user-agent-browser": "3.292.0",
-        "@aws-sdk/util-user-agent-node": "3.292.0",
-        "@aws-sdk/util-utf8": "3.292.0",
-        tslib: "^2.3.1"
+        "@aws-sdk/config-resolver": "3.295.0",
+        "@aws-sdk/fetch-http-handler": "3.295.0",
+        "@aws-sdk/hash-node": "3.295.0",
+        "@aws-sdk/invalid-dependency": "3.295.0",
+        "@aws-sdk/middleware-content-length": "3.295.0",
+        "@aws-sdk/middleware-endpoint": "3.295.0",
+        "@aws-sdk/middleware-host-header": "3.295.0",
+        "@aws-sdk/middleware-logger": "3.295.0",
+        "@aws-sdk/middleware-recursion-detection": "3.295.0",
+        "@aws-sdk/middleware-retry": "3.295.0",
+        "@aws-sdk/middleware-serde": "3.295.0",
+        "@aws-sdk/middleware-stack": "3.295.0",
+        "@aws-sdk/middleware-user-agent": "3.295.0",
+        "@aws-sdk/node-config-provider": "3.295.0",
+        "@aws-sdk/node-http-handler": "3.295.0",
+        "@aws-sdk/protocol-http": "3.295.0",
+        "@aws-sdk/smithy-client": "3.295.0",
+        "@aws-sdk/types": "3.295.0",
+        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/util-base64": "3.295.0",
+        "@aws-sdk/util-body-length-browser": "3.295.0",
+        "@aws-sdk/util-body-length-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
+        "@aws-sdk/util-defaults-mode-node": "3.295.0",
+        "@aws-sdk/util-endpoints": "3.295.0",
+        "@aws-sdk/util-retry": "3.295.0",
+        "@aws-sdk/util-user-agent-browser": "3.295.0",
+        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-utf8": "3.295.0",
+        tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.293.0",
+        "@aws-sdk/service-client-documentation-generator": "3.295.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
         "downlevel-dts": "0.10.1",
         rimraf: "3.0.2",
         typedoc: "0.23.23",
-        typescript: "~4.6.2"
+        typescript: "~4.9.5"
       },
       engines: {
         node: ">=14.0.0"
@@ -12758,7 +12758,7 @@ var require_is_crt_available = __commonJS({
     exports.isCrtAvailable = void 0;
     var isCrtAvailable = () => {
       try {
-        if (typeof require === "function" && typeof module2 !== "undefined" && module2.require && require("aws-crt")) {
+        if (typeof require === "function" && typeof module2 !== "undefined" && require("aws-crt")) {
           return ["md/crt-avail"];
         }
         return null;
@@ -14105,10 +14105,6 @@ var require_CreateTokenCommand = __commonJS({
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var CreateTokenCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -14116,6 +14112,10 @@ var require_CreateTokenCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -14157,10 +14157,6 @@ var require_RegisterClientCommand = __commonJS({
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var RegisterClientCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -14168,6 +14164,10 @@ var require_RegisterClientCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -14209,10 +14209,6 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var StartDeviceAuthorizationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -14220,6 +14216,10 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -14273,7 +14273,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.294.0",
+      version: "3.295.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14292,46 +14292,46 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.292.0",
-        "@aws-sdk/fetch-http-handler": "3.292.0",
-        "@aws-sdk/hash-node": "3.292.0",
-        "@aws-sdk/invalid-dependency": "3.292.0",
-        "@aws-sdk/middleware-content-length": "3.292.0",
-        "@aws-sdk/middleware-endpoint": "3.292.0",
-        "@aws-sdk/middleware-host-header": "3.292.0",
-        "@aws-sdk/middleware-logger": "3.292.0",
-        "@aws-sdk/middleware-recursion-detection": "3.292.0",
-        "@aws-sdk/middleware-retry": "3.293.0",
-        "@aws-sdk/middleware-serde": "3.292.0",
-        "@aws-sdk/middleware-stack": "3.292.0",
-        "@aws-sdk/middleware-user-agent": "3.293.0",
-        "@aws-sdk/node-config-provider": "3.292.0",
-        "@aws-sdk/node-http-handler": "3.292.0",
-        "@aws-sdk/protocol-http": "3.292.0",
-        "@aws-sdk/smithy-client": "3.292.0",
-        "@aws-sdk/types": "3.292.0",
-        "@aws-sdk/url-parser": "3.292.0",
-        "@aws-sdk/util-base64": "3.292.0",
-        "@aws-sdk/util-body-length-browser": "3.292.0",
-        "@aws-sdk/util-body-length-node": "3.292.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.292.0",
-        "@aws-sdk/util-defaults-mode-node": "3.292.0",
-        "@aws-sdk/util-endpoints": "3.293.0",
-        "@aws-sdk/util-retry": "3.292.0",
-        "@aws-sdk/util-user-agent-browser": "3.292.0",
-        "@aws-sdk/util-user-agent-node": "3.292.0",
-        "@aws-sdk/util-utf8": "3.292.0",
-        tslib: "^2.3.1"
+        "@aws-sdk/config-resolver": "3.295.0",
+        "@aws-sdk/fetch-http-handler": "3.295.0",
+        "@aws-sdk/hash-node": "3.295.0",
+        "@aws-sdk/invalid-dependency": "3.295.0",
+        "@aws-sdk/middleware-content-length": "3.295.0",
+        "@aws-sdk/middleware-endpoint": "3.295.0",
+        "@aws-sdk/middleware-host-header": "3.295.0",
+        "@aws-sdk/middleware-logger": "3.295.0",
+        "@aws-sdk/middleware-recursion-detection": "3.295.0",
+        "@aws-sdk/middleware-retry": "3.295.0",
+        "@aws-sdk/middleware-serde": "3.295.0",
+        "@aws-sdk/middleware-stack": "3.295.0",
+        "@aws-sdk/middleware-user-agent": "3.295.0",
+        "@aws-sdk/node-config-provider": "3.295.0",
+        "@aws-sdk/node-http-handler": "3.295.0",
+        "@aws-sdk/protocol-http": "3.295.0",
+        "@aws-sdk/smithy-client": "3.295.0",
+        "@aws-sdk/types": "3.295.0",
+        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/util-base64": "3.295.0",
+        "@aws-sdk/util-body-length-browser": "3.295.0",
+        "@aws-sdk/util-body-length-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
+        "@aws-sdk/util-defaults-mode-node": "3.295.0",
+        "@aws-sdk/util-endpoints": "3.295.0",
+        "@aws-sdk/util-retry": "3.295.0",
+        "@aws-sdk/util-user-agent-browser": "3.295.0",
+        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-utf8": "3.295.0",
+        tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.293.0",
+        "@aws-sdk/service-client-documentation-generator": "3.295.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
         "downlevel-dts": "0.10.1",
         rimraf: "3.0.2",
         typedoc: "0.23.23",
-        typescript: "~4.6.2"
+        typescript: "~4.9.5"
       },
       engines: {
         node: ">=14.0.0"
@@ -23389,10 +23389,6 @@ var require_AssociatePhoneNumbersWithVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var AssociatePhoneNumbersWithVoiceConnectorCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23400,6 +23396,10 @@ var require_AssociatePhoneNumbersWithVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23441,10 +23441,6 @@ var require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var AssociatePhoneNumbersWithVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23452,6 +23448,10 @@ var require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23493,10 +23493,6 @@ var require_BatchDeletePhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var BatchDeletePhoneNumberCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23504,6 +23500,10 @@ var require_BatchDeletePhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23545,10 +23545,6 @@ var require_BatchUpdatePhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var BatchUpdatePhoneNumberCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23556,6 +23552,10 @@ var require_BatchUpdatePhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23597,10 +23597,6 @@ var require_CreatePhoneNumberOrderCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreatePhoneNumberOrderCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23608,6 +23604,10 @@ var require_CreatePhoneNumberOrderCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23649,10 +23649,6 @@ var require_CreateProxySessionCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateProxySessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23660,6 +23656,10 @@ var require_CreateProxySessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23701,10 +23701,6 @@ var require_CreateSipMediaApplicationCallCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipMediaApplicationCallCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23712,6 +23708,10 @@ var require_CreateSipMediaApplicationCallCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23753,10 +23753,6 @@ var require_CreateSipMediaApplicationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipMediaApplicationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23764,6 +23760,10 @@ var require_CreateSipMediaApplicationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23805,10 +23805,6 @@ var require_CreateSipRuleCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipRuleCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23816,6 +23812,10 @@ var require_CreateSipRuleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23857,10 +23857,6 @@ var require_CreateVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23868,6 +23864,10 @@ var require_CreateVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23909,10 +23909,6 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23920,6 +23916,10 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -23961,10 +23961,6 @@ var require_DeletePhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeletePhoneNumberCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -23972,6 +23968,10 @@ var require_DeletePhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24013,10 +24013,6 @@ var require_DeleteProxySessionCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteProxySessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24024,6 +24020,10 @@ var require_DeleteProxySessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24065,10 +24065,6 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipMediaApplicationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24076,6 +24072,10 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24117,10 +24117,6 @@ var require_DeleteSipRuleCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipRuleCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24128,6 +24124,10 @@ var require_DeleteSipRuleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24169,10 +24169,6 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24180,6 +24176,10 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24221,10 +24221,6 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24232,6 +24228,10 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24273,10 +24273,6 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24284,6 +24280,10 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24325,10 +24325,6 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24336,6 +24332,10 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24377,10 +24377,6 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24388,6 +24384,10 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24429,10 +24429,6 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorStreamingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24440,6 +24436,10 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24481,10 +24481,6 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorTerminationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24492,6 +24488,10 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24533,10 +24533,6 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24544,6 +24540,10 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24585,10 +24585,6 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DisassociatePhoneNumbersFromVoiceConnectorCommand3 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24596,6 +24592,10 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24637,10 +24637,6 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = __commonJS(
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24648,6 +24644,10 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = __commonJS(
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24689,10 +24689,6 @@ var require_GetGlobalSettingsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetGlobalSettingsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24700,6 +24696,10 @@ var require_GetGlobalSettingsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24741,10 +24741,6 @@ var require_GetPhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24752,6 +24748,10 @@ var require_GetPhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24793,10 +24793,6 @@ var require_GetPhoneNumberOrderCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberOrderCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24804,6 +24800,10 @@ var require_GetPhoneNumberOrderCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24845,10 +24845,6 @@ var require_GetPhoneNumberSettingsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberSettingsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24856,6 +24852,10 @@ var require_GetPhoneNumberSettingsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24897,10 +24897,6 @@ var require_GetProxySessionCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetProxySessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24908,6 +24904,10 @@ var require_GetProxySessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -24949,10 +24949,6 @@ var require_GetSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationAlexaSkillConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -24960,6 +24956,10 @@ var require_GetSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25001,10 +25001,6 @@ var require_GetSipMediaApplicationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25012,6 +25008,10 @@ var require_GetSipMediaApplicationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25053,10 +25053,6 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationLoggingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25064,6 +25060,10 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25105,10 +25105,6 @@ var require_GetSipRuleCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipRuleCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25116,6 +25112,10 @@ var require_GetSipRuleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25157,10 +25157,6 @@ var require_GetVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25168,6 +25164,10 @@ var require_GetVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25209,10 +25209,6 @@ var require_GetVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25220,6 +25216,10 @@ var require_GetVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25261,10 +25261,6 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25272,6 +25268,10 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25313,10 +25313,6 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorLoggingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25324,6 +25320,10 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25365,10 +25365,6 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25376,6 +25372,10 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25417,10 +25417,6 @@ var require_GetVoiceConnectorProxyCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25428,6 +25424,10 @@ var require_GetVoiceConnectorProxyCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25469,10 +25469,6 @@ var require_GetVoiceConnectorStreamingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorStreamingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25480,6 +25476,10 @@ var require_GetVoiceConnectorStreamingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25521,10 +25521,6 @@ var require_GetVoiceConnectorTerminationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorTerminationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25532,6 +25528,10 @@ var require_GetVoiceConnectorTerminationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25573,10 +25573,6 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorTerminationHealthCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25584,6 +25580,10 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25625,10 +25625,6 @@ var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListAvailableVoiceConnectorRegionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25636,6 +25632,10 @@ var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25677,10 +25677,6 @@ var require_ListPhoneNumberOrdersCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListPhoneNumberOrdersCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25688,6 +25684,10 @@ var require_ListPhoneNumberOrdersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25729,10 +25729,6 @@ var require_ListPhoneNumbersCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListPhoneNumbersCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25740,6 +25736,10 @@ var require_ListPhoneNumbersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25781,10 +25781,6 @@ var require_ListProxySessionsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListProxySessionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25792,6 +25788,10 @@ var require_ListProxySessionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25833,10 +25833,6 @@ var require_ListSipMediaApplicationsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSipMediaApplicationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25844,6 +25840,10 @@ var require_ListSipMediaApplicationsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25885,10 +25885,6 @@ var require_ListSipRulesCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSipRulesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25896,6 +25892,10 @@ var require_ListSipRulesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25937,10 +25937,6 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSupportedPhoneNumberCountriesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25948,6 +25944,10 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -25989,10 +25989,6 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorGroupsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26000,6 +25996,10 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26041,10 +26041,6 @@ var require_ListVoiceConnectorsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26052,6 +26048,10 @@ var require_ListVoiceConnectorsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26093,10 +26093,6 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26104,6 +26100,10 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26145,10 +26145,6 @@ var require_PutSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutSipMediaApplicationAlexaSkillConfigurationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26156,6 +26152,10 @@ var require_PutSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26197,10 +26197,6 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutSipMediaApplicationLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26208,6 +26204,10 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26249,10 +26249,6 @@ var require_PutVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26260,6 +26256,10 @@ var require_PutVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26301,10 +26301,6 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26312,6 +26308,10 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26353,10 +26353,6 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorOriginationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26364,6 +26360,10 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26405,10 +26405,6 @@ var require_PutVoiceConnectorProxyCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26416,6 +26412,10 @@ var require_PutVoiceConnectorProxyCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26457,10 +26457,6 @@ var require_PutVoiceConnectorStreamingConfigurationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorStreamingConfigurationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26468,6 +26464,10 @@ var require_PutVoiceConnectorStreamingConfigurationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26509,10 +26509,6 @@ var require_PutVoiceConnectorTerminationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorTerminationCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26520,6 +26516,10 @@ var require_PutVoiceConnectorTerminationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26561,10 +26561,6 @@ var require_PutVoiceConnectorTerminationCredentialsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26572,6 +26568,10 @@ var require_PutVoiceConnectorTerminationCredentialsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26613,10 +26613,6 @@ var require_RestorePhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var RestorePhoneNumberCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26624,6 +26620,10 @@ var require_RestorePhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26665,10 +26665,6 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var SearchAvailablePhoneNumbersCommand2 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26676,6 +26672,10 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26717,10 +26717,6 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateGlobalSettingsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26728,6 +26724,10 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26769,10 +26769,6 @@ var require_UpdatePhoneNumberCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdatePhoneNumberCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26780,6 +26776,10 @@ var require_UpdatePhoneNumberCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26821,10 +26821,6 @@ var require_UpdatePhoneNumberSettingsCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdatePhoneNumberSettingsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26832,6 +26828,10 @@ var require_UpdatePhoneNumberSettingsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26873,10 +26873,6 @@ var require_UpdateProxySessionCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateProxySessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26884,6 +26880,10 @@ var require_UpdateProxySessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26925,10 +26925,6 @@ var require_UpdateSipMediaApplicationCallCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipMediaApplicationCallCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26936,6 +26932,10 @@ var require_UpdateSipMediaApplicationCallCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -26977,10 +26977,6 @@ var require_UpdateSipMediaApplicationCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipMediaApplicationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26988,6 +26984,10 @@ var require_UpdateSipMediaApplicationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -27029,10 +27029,6 @@ var require_UpdateSipRuleCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipRuleCommand3 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -27040,6 +27036,10 @@ var require_UpdateSipRuleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -27081,10 +27081,6 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -27092,6 +27088,10 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -27133,10 +27133,6 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -27144,6 +27140,10 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -27185,10 +27185,6 @@ var require_ValidateE911AddressCommand = __commonJS({
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ValidateE911AddressCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -27196,6 +27192,10 @@ var require_ValidateE911AddressCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47687,10 +47687,6 @@ var require_AddTagsToResourceCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AddTagsToResourceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47698,6 +47694,10 @@ var require_AddTagsToResourceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47739,10 +47739,6 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AssociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47750,6 +47746,10 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47791,10 +47791,6 @@ var require_CancelCommandCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelCommandCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47802,6 +47798,10 @@ var require_CancelCommandCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47843,10 +47843,6 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47854,6 +47850,10 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47895,10 +47895,6 @@ var require_CreateActivationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateActivationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47906,6 +47902,10 @@ var require_CreateActivationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47947,10 +47947,6 @@ var require_CreateAssociationBatchCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateAssociationBatchCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -47958,6 +47954,10 @@ var require_CreateAssociationBatchCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -47999,10 +47999,6 @@ var require_CreateAssociationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateAssociationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48010,6 +48006,10 @@ var require_CreateAssociationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48051,10 +48051,6 @@ var require_CreateDocumentCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateDocumentCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48062,6 +48058,10 @@ var require_CreateDocumentCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48103,10 +48103,6 @@ var require_CreateMaintenanceWindowCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48114,6 +48110,10 @@ var require_CreateMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48155,10 +48155,6 @@ var require_CreateOpsItemCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsItemCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48166,6 +48162,10 @@ var require_CreateOpsItemCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48207,10 +48207,6 @@ var require_CreateOpsMetadataCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48218,6 +48214,10 @@ var require_CreateOpsMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48259,10 +48259,6 @@ var require_CreatePatchBaselineCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreatePatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48270,6 +48266,10 @@ var require_CreatePatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48311,10 +48311,6 @@ var require_CreateResourceDataSyncCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateResourceDataSyncCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48322,6 +48318,10 @@ var require_CreateResourceDataSyncCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48363,10 +48363,6 @@ var require_DeleteActivationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteActivationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48374,6 +48370,10 @@ var require_DeleteActivationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48415,10 +48415,6 @@ var require_DeleteAssociationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteAssociationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48426,6 +48422,10 @@ var require_DeleteAssociationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48467,10 +48467,6 @@ var require_DeleteDocumentCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteDocumentCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48478,6 +48474,10 @@ var require_DeleteDocumentCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48519,10 +48519,6 @@ var require_DeleteInventoryCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteInventoryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48530,6 +48526,10 @@ var require_DeleteInventoryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48571,10 +48571,6 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48582,6 +48578,10 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48623,10 +48623,6 @@ var require_DeleteOpsMetadataCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteOpsMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48634,6 +48630,10 @@ var require_DeleteOpsMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48675,10 +48675,6 @@ var require_DeleteParameterCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParameterCommand5 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48686,6 +48682,10 @@ var require_DeleteParameterCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48727,10 +48727,6 @@ var require_DeleteParametersCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParametersCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48738,6 +48734,10 @@ var require_DeleteParametersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48779,10 +48779,6 @@ var require_DeletePatchBaselineCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeletePatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48790,6 +48786,10 @@ var require_DeletePatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48831,10 +48831,6 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourceDataSyncCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48842,6 +48838,10 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48883,10 +48883,6 @@ var require_DeleteResourcePolicyCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourcePolicyCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48894,6 +48890,10 @@ var require_DeleteResourcePolicyCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48935,10 +48935,6 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterManagedInstanceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48946,6 +48942,10 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -48987,10 +48987,6 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -48998,6 +48994,10 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49039,10 +49039,6 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTargetFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49050,6 +49046,10 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49091,10 +49091,6 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTaskFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49102,6 +49098,10 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49143,10 +49143,6 @@ var require_DescribeActivationsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeActivationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49154,6 +49150,10 @@ var require_DescribeActivationsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49195,10 +49195,6 @@ var require_DescribeAssociationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49206,6 +49202,10 @@ var require_DescribeAssociationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49247,10 +49247,6 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49258,6 +49254,10 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49299,10 +49299,6 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionTargetsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49310,6 +49306,10 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49351,10 +49351,6 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationExecutionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49362,6 +49358,10 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49403,10 +49403,6 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationStepExecutionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49414,6 +49410,10 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49455,10 +49455,6 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAvailablePatchesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49466,6 +49462,10 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49507,10 +49507,6 @@ var require_DescribeDocumentCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49518,6 +49514,10 @@ var require_DescribeDocumentCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49559,10 +49559,6 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentPermissionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49570,6 +49566,10 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49611,10 +49611,6 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectiveInstanceAssociationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49622,6 +49618,10 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49663,10 +49663,6 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectivePatchesForPatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49674,6 +49670,10 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49715,10 +49715,6 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceAssociationsStatusCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49726,6 +49722,10 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49767,10 +49767,6 @@ var require_DescribeInstanceInformationCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceInformationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49778,6 +49774,10 @@ var require_DescribeInstanceInformationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49819,10 +49819,6 @@ var require_DescribeInstancePatchesCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49830,6 +49826,10 @@ var require_DescribeInstancePatchesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49871,10 +49871,6 @@ var require_DescribeInstancePatchStatesCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchStatesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49882,6 +49878,10 @@ var require_DescribeInstancePatchStatesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49923,10 +49923,6 @@ var require_DescribeInstancePatchStatesForPatchGroupCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchStatesForPatchGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49934,6 +49930,10 @@ var require_DescribeInstancePatchStatesForPatchGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -49975,10 +49975,6 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInventoryDeletionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49986,6 +49982,10 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50027,10 +50027,6 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50038,6 +50034,10 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50079,10 +50079,6 @@ var require_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = __commonJ
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionTaskInvocationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50090,6 +50086,10 @@ var require_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = __commonJ
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50131,10 +50131,6 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionTasksCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50142,6 +50138,10 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50183,10 +50183,6 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowScheduleCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50194,6 +50190,10 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50235,10 +50235,6 @@ var require_DescribeMaintenanceWindowsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50246,6 +50242,10 @@ var require_DescribeMaintenanceWindowsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50287,10 +50287,6 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowsForTargetCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50298,6 +50294,10 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50339,10 +50339,6 @@ var require_DescribeMaintenanceWindowTargetsCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowTargetsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50350,6 +50346,10 @@ var require_DescribeMaintenanceWindowTargetsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50391,10 +50391,6 @@ var require_DescribeMaintenanceWindowTasksCommand = __commonJS({
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowTasksCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50402,6 +50398,10 @@ var require_DescribeMaintenanceWindowTasksCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50443,10 +50443,6 @@ var require_DescribeOpsItemsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeOpsItemsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50454,6 +50450,10 @@ var require_DescribeOpsItemsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50495,10 +50495,6 @@ var require_DescribeParametersCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeParametersCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50506,6 +50502,10 @@ var require_DescribeParametersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50547,10 +50547,6 @@ var require_DescribePatchBaselinesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchBaselinesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50558,6 +50554,10 @@ var require_DescribePatchBaselinesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50599,10 +50599,6 @@ var require_DescribePatchGroupsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50610,6 +50606,10 @@ var require_DescribePatchGroupsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50651,10 +50651,6 @@ var require_DescribePatchGroupStateCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupStateCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50662,6 +50658,10 @@ var require_DescribePatchGroupStateCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50703,10 +50703,6 @@ var require_DescribePatchPropertiesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchPropertiesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50714,6 +50710,10 @@ var require_DescribePatchPropertiesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50755,10 +50755,6 @@ var require_DescribeSessionsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeSessionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50766,6 +50762,10 @@ var require_DescribeSessionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50807,10 +50807,6 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DisassociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50818,6 +50814,10 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50859,10 +50859,6 @@ var require_GetAutomationExecutionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetAutomationExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50870,6 +50866,10 @@ var require_GetAutomationExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50911,10 +50911,6 @@ var require_GetCalendarStateCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCalendarStateCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50922,6 +50918,10 @@ var require_GetCalendarStateCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -50963,10 +50963,6 @@ var require_GetCommandInvocationCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCommandInvocationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -50974,6 +50970,10 @@ var require_GetCommandInvocationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51015,10 +51015,6 @@ var require_GetConnectionStatusCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetConnectionStatusCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51026,6 +51022,10 @@ var require_GetConnectionStatusCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51067,10 +51067,6 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51078,6 +51074,10 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51119,10 +51119,6 @@ var require_GetDeployablePatchSnapshotForInstanceCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDeployablePatchSnapshotForInstanceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51130,6 +51126,10 @@ var require_GetDeployablePatchSnapshotForInstanceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51171,10 +51171,6 @@ var require_GetDocumentCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDocumentCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51182,6 +51178,10 @@ var require_GetDocumentCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51224,10 +51224,6 @@ var require_GetInventoryCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventoryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51235,6 +51231,10 @@ var require_GetInventoryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51276,10 +51276,6 @@ var require_GetInventorySchemaCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventorySchemaCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51287,6 +51283,10 @@ var require_GetInventorySchemaCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51328,10 +51328,6 @@ var require_GetMaintenanceWindowCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51339,6 +51335,10 @@ var require_GetMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51380,10 +51380,6 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51391,6 +51387,10 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51432,10 +51432,6 @@ var require_GetMaintenanceWindowExecutionTaskCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionTaskCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51443,6 +51439,10 @@ var require_GetMaintenanceWindowExecutionTaskCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51484,10 +51484,6 @@ var require_GetMaintenanceWindowExecutionTaskInvocationCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionTaskInvocationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51495,6 +51491,10 @@ var require_GetMaintenanceWindowExecutionTaskInvocationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51536,10 +51536,6 @@ var require_GetMaintenanceWindowTaskCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowTaskCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51547,6 +51543,10 @@ var require_GetMaintenanceWindowTaskCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51588,10 +51588,6 @@ var require_GetOpsItemCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsItemCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51599,6 +51595,10 @@ var require_GetOpsItemCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51640,10 +51640,6 @@ var require_GetOpsMetadataCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51651,6 +51647,10 @@ var require_GetOpsMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51693,10 +51693,6 @@ var require_GetOpsSummaryCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsSummaryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51704,6 +51700,10 @@ var require_GetOpsSummaryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51745,10 +51745,6 @@ var require_GetParameterCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParameterCommand5 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51756,6 +51752,10 @@ var require_GetParameterCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51797,10 +51797,6 @@ var require_GetParameterHistoryCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParameterHistoryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51808,6 +51804,10 @@ var require_GetParameterHistoryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51849,10 +51849,6 @@ var require_GetParametersByPathCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParametersByPathCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51860,6 +51856,10 @@ var require_GetParametersByPathCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51901,10 +51901,6 @@ var require_GetParametersCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParametersCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51912,6 +51908,10 @@ var require_GetParametersCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -51953,10 +51953,6 @@ var require_GetPatchBaselineCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetPatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -51964,6 +51960,10 @@ var require_GetPatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52005,10 +52005,6 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52016,6 +52012,10 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52057,10 +52057,6 @@ var require_GetResourcePoliciesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetResourcePoliciesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52068,6 +52064,10 @@ var require_GetResourcePoliciesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52109,10 +52109,6 @@ var require_GetServiceSettingCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetServiceSettingCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52120,6 +52116,10 @@ var require_GetServiceSettingCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52161,10 +52161,6 @@ var require_LabelParameterVersionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var LabelParameterVersionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52172,6 +52168,10 @@ var require_LabelParameterVersionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52213,10 +52213,6 @@ var require_ListAssociationsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListAssociationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52224,6 +52220,10 @@ var require_ListAssociationsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52265,10 +52265,6 @@ var require_ListAssociationVersionsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListAssociationVersionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52276,6 +52272,10 @@ var require_ListAssociationVersionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52317,10 +52317,6 @@ var require_ListCommandInvocationsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListCommandInvocationsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52328,6 +52324,10 @@ var require_ListCommandInvocationsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52369,10 +52369,6 @@ var require_ListCommandsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListCommandsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52380,6 +52376,10 @@ var require_ListCommandsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52421,10 +52421,6 @@ var require_ListComplianceItemsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceItemsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52432,6 +52428,10 @@ var require_ListComplianceItemsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52473,10 +52473,6 @@ var require_ListComplianceSummariesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceSummariesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52484,6 +52480,10 @@ var require_ListComplianceSummariesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52525,10 +52525,6 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentMetadataHistoryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52536,6 +52532,10 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52577,10 +52577,6 @@ var require_ListDocumentsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52588,6 +52584,10 @@ var require_ListDocumentsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52629,10 +52629,6 @@ var require_ListDocumentVersionsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentVersionsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52640,6 +52636,10 @@ var require_ListDocumentVersionsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52681,10 +52681,6 @@ var require_ListInventoryEntriesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListInventoryEntriesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52692,6 +52688,10 @@ var require_ListInventoryEntriesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52733,10 +52733,6 @@ var require_ListOpsItemEventsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemEventsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52744,6 +52740,10 @@ var require_ListOpsItemEventsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52785,10 +52785,6 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemRelatedItemsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52796,6 +52792,10 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52837,10 +52837,6 @@ var require_ListOpsMetadataCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52848,6 +52844,10 @@ var require_ListOpsMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52889,10 +52889,6 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceComplianceSummariesCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52900,6 +52896,10 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52941,10 +52941,6 @@ var require_ListResourceDataSyncCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceDataSyncCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52952,6 +52948,10 @@ var require_ListResourceDataSyncCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -52993,10 +52993,6 @@ var require_ListTagsForResourceCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListTagsForResourceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53004,6 +53000,10 @@ var require_ListTagsForResourceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53045,10 +53045,6 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ModifyDocumentPermissionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53056,6 +53052,10 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53097,10 +53097,6 @@ var require_PutComplianceItemsCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutComplianceItemsCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53108,6 +53104,10 @@ var require_PutComplianceItemsCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53149,10 +53149,6 @@ var require_PutInventoryCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutInventoryCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53160,6 +53156,10 @@ var require_PutInventoryCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53201,10 +53201,6 @@ var require_PutParameterCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutParameterCommand5 = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53212,6 +53208,10 @@ var require_PutParameterCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53253,10 +53253,6 @@ var require_PutResourcePolicyCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutResourcePolicyCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53264,6 +53260,10 @@ var require_PutResourcePolicyCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53305,10 +53305,6 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53316,6 +53312,10 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53357,10 +53357,6 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53368,6 +53364,10 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53409,10 +53409,6 @@ var require_RegisterTargetWithMaintenanceWindowCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterTargetWithMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53420,6 +53416,10 @@ var require_RegisterTargetWithMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53461,10 +53461,6 @@ var require_RegisterTaskWithMaintenanceWindowCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterTaskWithMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53472,6 +53468,10 @@ var require_RegisterTaskWithMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53513,10 +53513,6 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RemoveTagsFromResourceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53524,6 +53520,10 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53565,10 +53565,6 @@ var require_ResetServiceSettingCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResetServiceSettingCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53576,6 +53572,10 @@ var require_ResetServiceSettingCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53617,10 +53617,6 @@ var require_ResumeSessionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResumeSessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53628,6 +53624,10 @@ var require_ResumeSessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53669,10 +53669,6 @@ var require_SendAutomationSignalCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var SendAutomationSignalCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53680,6 +53676,10 @@ var require_SendAutomationSignalCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53721,10 +53721,6 @@ var require_SendCommandCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var SendCommandCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53732,6 +53728,10 @@ var require_SendCommandCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53773,10 +53773,6 @@ var require_StartAssociationsOnceCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAssociationsOnceCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53784,6 +53780,10 @@ var require_StartAssociationsOnceCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53825,10 +53825,6 @@ var require_StartAutomationExecutionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAutomationExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53836,6 +53832,10 @@ var require_StartAutomationExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53877,10 +53877,6 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartChangeRequestExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53888,6 +53884,10 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53929,10 +53929,6 @@ var require_StartSessionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartSessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53940,6 +53936,10 @@ var require_StartSessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -53981,10 +53981,6 @@ var require_StopAutomationExecutionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StopAutomationExecutionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -53992,6 +53988,10 @@ var require_StopAutomationExecutionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54033,10 +54033,6 @@ var require_TerminateSessionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var TerminateSessionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54044,6 +54040,10 @@ var require_TerminateSessionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54085,10 +54085,6 @@ var require_UnlabelParameterVersionCommand = __commonJS({
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UnlabelParameterVersionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54096,6 +54092,10 @@ var require_UnlabelParameterVersionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54137,10 +54137,6 @@ var require_UpdateAssociationCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateAssociationCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54148,6 +54144,10 @@ var require_UpdateAssociationCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54189,10 +54189,6 @@ var require_UpdateAssociationStatusCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateAssociationStatusCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54200,6 +54196,10 @@ var require_UpdateAssociationStatusCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54241,10 +54241,6 @@ var require_UpdateDocumentCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54252,6 +54248,10 @@ var require_UpdateDocumentCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54293,10 +54293,6 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentDefaultVersionCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54304,6 +54300,10 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54345,10 +54345,6 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54356,6 +54352,10 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54397,10 +54397,6 @@ var require_UpdateMaintenanceWindowCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54408,6 +54404,10 @@ var require_UpdateMaintenanceWindowCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54449,10 +54449,6 @@ var require_UpdateMaintenanceWindowTargetCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowTargetCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54460,6 +54456,10 @@ var require_UpdateMaintenanceWindowTargetCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54501,10 +54501,6 @@ var require_UpdateMaintenanceWindowTaskCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowTaskCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54512,6 +54508,10 @@ var require_UpdateMaintenanceWindowTaskCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54553,10 +54553,6 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateManagedInstanceRoleCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54564,6 +54560,10 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54605,10 +54605,6 @@ var require_UpdateOpsItemCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsItemCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54616,6 +54612,10 @@ var require_UpdateOpsItemCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54657,10 +54657,6 @@ var require_UpdateOpsMetadataCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsMetadataCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54668,6 +54664,10 @@ var require_UpdateOpsMetadataCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54709,10 +54709,6 @@ var require_UpdatePatchBaselineCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdatePatchBaselineCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54720,6 +54716,10 @@ var require_UpdatePatchBaselineCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54761,10 +54761,6 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateResourceDataSyncCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54772,6 +54768,10 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54813,10 +54813,6 @@ var require_UpdateServiceSettingCommand = __commonJS({
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateServiceSettingCommand = class extends smithy_client_1.Command {
-      constructor(input) {
-        super();
-        this.input = input;
-      }
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54824,6 +54820,10 @@ var require_UpdateServiceSettingCommand = __commonJS({
           Region: { type: "builtInParams", name: "region" },
           UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
         };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
@@ -54877,7 +54877,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.294.0",
+      version: "3.295.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -54896,44 +54896,44 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.294.0",
-        "@aws-sdk/config-resolver": "3.292.0",
-        "@aws-sdk/credential-provider-node": "3.294.0",
-        "@aws-sdk/fetch-http-handler": "3.292.0",
-        "@aws-sdk/hash-node": "3.292.0",
-        "@aws-sdk/invalid-dependency": "3.292.0",
-        "@aws-sdk/middleware-content-length": "3.292.0",
-        "@aws-sdk/middleware-endpoint": "3.292.0",
-        "@aws-sdk/middleware-host-header": "3.292.0",
-        "@aws-sdk/middleware-logger": "3.292.0",
-        "@aws-sdk/middleware-recursion-detection": "3.292.0",
-        "@aws-sdk/middleware-retry": "3.293.0",
-        "@aws-sdk/middleware-serde": "3.292.0",
-        "@aws-sdk/middleware-signing": "3.292.0",
-        "@aws-sdk/middleware-stack": "3.292.0",
-        "@aws-sdk/middleware-user-agent": "3.293.0",
-        "@aws-sdk/node-config-provider": "3.292.0",
-        "@aws-sdk/node-http-handler": "3.292.0",
-        "@aws-sdk/protocol-http": "3.292.0",
-        "@aws-sdk/smithy-client": "3.292.0",
-        "@aws-sdk/types": "3.292.0",
-        "@aws-sdk/url-parser": "3.292.0",
-        "@aws-sdk/util-base64": "3.292.0",
-        "@aws-sdk/util-body-length-browser": "3.292.0",
-        "@aws-sdk/util-body-length-node": "3.292.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.292.0",
-        "@aws-sdk/util-defaults-mode-node": "3.292.0",
-        "@aws-sdk/util-endpoints": "3.293.0",
-        "@aws-sdk/util-retry": "3.292.0",
-        "@aws-sdk/util-user-agent-browser": "3.292.0",
-        "@aws-sdk/util-user-agent-node": "3.292.0",
-        "@aws-sdk/util-utf8": "3.292.0",
-        "@aws-sdk/util-waiter": "3.292.0",
-        tslib: "^2.3.1",
+        "@aws-sdk/client-sts": "3.295.0",
+        "@aws-sdk/config-resolver": "3.295.0",
+        "@aws-sdk/credential-provider-node": "3.295.0",
+        "@aws-sdk/fetch-http-handler": "3.295.0",
+        "@aws-sdk/hash-node": "3.295.0",
+        "@aws-sdk/invalid-dependency": "3.295.0",
+        "@aws-sdk/middleware-content-length": "3.295.0",
+        "@aws-sdk/middleware-endpoint": "3.295.0",
+        "@aws-sdk/middleware-host-header": "3.295.0",
+        "@aws-sdk/middleware-logger": "3.295.0",
+        "@aws-sdk/middleware-recursion-detection": "3.295.0",
+        "@aws-sdk/middleware-retry": "3.295.0",
+        "@aws-sdk/middleware-serde": "3.295.0",
+        "@aws-sdk/middleware-signing": "3.295.0",
+        "@aws-sdk/middleware-stack": "3.295.0",
+        "@aws-sdk/middleware-user-agent": "3.295.0",
+        "@aws-sdk/node-config-provider": "3.295.0",
+        "@aws-sdk/node-http-handler": "3.295.0",
+        "@aws-sdk/protocol-http": "3.295.0",
+        "@aws-sdk/smithy-client": "3.295.0",
+        "@aws-sdk/types": "3.295.0",
+        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/util-base64": "3.295.0",
+        "@aws-sdk/util-body-length-browser": "3.295.0",
+        "@aws-sdk/util-body-length-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
+        "@aws-sdk/util-defaults-mode-node": "3.295.0",
+        "@aws-sdk/util-endpoints": "3.295.0",
+        "@aws-sdk/util-retry": "3.295.0",
+        "@aws-sdk/util-user-agent-browser": "3.295.0",
+        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-utf8": "3.295.0",
+        "@aws-sdk/util-waiter": "3.295.0",
+        tslib: "^2.5.0",
         uuid: "^8.3.2"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.293.0",
+        "@aws-sdk/service-client-documentation-generator": "3.295.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         "@types/uuid": "^8.3.0",
@@ -54941,7 +54941,7 @@ var require_package5 = __commonJS({
         "downlevel-dts": "0.10.1",
         rimraf: "3.0.2",
         typedoc: "0.23.23",
-        typescript: "~4.6.2"
+        typescript: "~4.9.5"
       },
       engines: {
         node: ">=14.0.0"
