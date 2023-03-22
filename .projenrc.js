@@ -28,6 +28,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'aws-lambda',
     '@types/aws-lambda',
   ],
+  workflowNodeVersion: '16.x',
   depsUpgradeOptions: {
     ignoreProjen: false,
     workflowOptions: {
