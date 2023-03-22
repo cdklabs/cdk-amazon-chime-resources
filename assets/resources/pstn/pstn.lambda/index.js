@@ -4790,6 +4790,13 @@ var require_transfer = __commonJS({
   "node_modules/@aws-sdk/types/dist-cjs/transfer.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
+    exports.RequestHandlerProtocol = void 0;
+    var RequestHandlerProtocol;
+    (function(RequestHandlerProtocol2) {
+      RequestHandlerProtocol2["HTTP_0_9"] = "http/0.9";
+      RequestHandlerProtocol2["HTTP_1_0"] = "http/1.0";
+      RequestHandlerProtocol2["TDS_8_0"] = "tds/8.0";
+    })(RequestHandlerProtocol = exports.RequestHandlerProtocol || (exports.RequestHandlerProtocol = {}));
   }
 });
 
@@ -6659,7 +6666,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.295.0",
+      version: "3.296.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6678,37 +6685,37 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.295.0",
-        "@aws-sdk/config-resolver": "3.295.0",
-        "@aws-sdk/credential-provider-node": "3.295.0",
-        "@aws-sdk/fetch-http-handler": "3.295.0",
-        "@aws-sdk/hash-node": "3.295.0",
-        "@aws-sdk/invalid-dependency": "3.295.0",
-        "@aws-sdk/middleware-content-length": "3.295.0",
-        "@aws-sdk/middleware-endpoint": "3.295.0",
-        "@aws-sdk/middleware-host-header": "3.295.0",
-        "@aws-sdk/middleware-logger": "3.295.0",
-        "@aws-sdk/middleware-recursion-detection": "3.295.0",
-        "@aws-sdk/middleware-retry": "3.295.0",
-        "@aws-sdk/middleware-serde": "3.295.0",
-        "@aws-sdk/middleware-signing": "3.295.0",
-        "@aws-sdk/middleware-stack": "3.295.0",
-        "@aws-sdk/middleware-user-agent": "3.295.0",
-        "@aws-sdk/node-config-provider": "3.295.0",
-        "@aws-sdk/node-http-handler": "3.295.0",
-        "@aws-sdk/protocol-http": "3.295.0",
-        "@aws-sdk/smithy-client": "3.295.0",
-        "@aws-sdk/types": "3.295.0",
-        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/client-sts": "3.296.0",
+        "@aws-sdk/config-resolver": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/fetch-http-handler": "3.296.0",
+        "@aws-sdk/hash-node": "3.296.0",
+        "@aws-sdk/invalid-dependency": "3.296.0",
+        "@aws-sdk/middleware-content-length": "3.296.0",
+        "@aws-sdk/middleware-endpoint": "3.296.0",
+        "@aws-sdk/middleware-host-header": "3.296.0",
+        "@aws-sdk/middleware-logger": "3.296.0",
+        "@aws-sdk/middleware-recursion-detection": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-serde": "3.296.0",
+        "@aws-sdk/middleware-signing": "3.296.0",
+        "@aws-sdk/middleware-stack": "3.296.0",
+        "@aws-sdk/middleware-user-agent": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-http-handler": "3.296.0",
+        "@aws-sdk/protocol-http": "3.296.0",
+        "@aws-sdk/smithy-client": "3.296.0",
+        "@aws-sdk/types": "3.296.0",
+        "@aws-sdk/url-parser": "3.296.0",
         "@aws-sdk/util-base64": "3.295.0",
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
-        "@aws-sdk/util-defaults-mode-node": "3.295.0",
-        "@aws-sdk/util-endpoints": "3.295.0",
-        "@aws-sdk/util-retry": "3.295.0",
-        "@aws-sdk/util-user-agent-browser": "3.295.0",
-        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
+        "@aws-sdk/util-defaults-mode-node": "3.296.0",
+        "@aws-sdk/util-endpoints": "3.296.0",
+        "@aws-sdk/util-retry": "3.296.0",
+        "@aws-sdk/util-user-agent-browser": "3.296.0",
+        "@aws-sdk/util-user-agent-node": "3.296.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -10137,7 +10144,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.295.0",
+      version: "3.296.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10158,37 +10165,37 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.295.0",
-        "@aws-sdk/credential-provider-node": "3.295.0",
-        "@aws-sdk/fetch-http-handler": "3.295.0",
-        "@aws-sdk/hash-node": "3.295.0",
-        "@aws-sdk/invalid-dependency": "3.295.0",
-        "@aws-sdk/middleware-content-length": "3.295.0",
-        "@aws-sdk/middleware-endpoint": "3.295.0",
-        "@aws-sdk/middleware-host-header": "3.295.0",
-        "@aws-sdk/middleware-logger": "3.295.0",
-        "@aws-sdk/middleware-recursion-detection": "3.295.0",
-        "@aws-sdk/middleware-retry": "3.295.0",
-        "@aws-sdk/middleware-sdk-sts": "3.295.0",
-        "@aws-sdk/middleware-serde": "3.295.0",
-        "@aws-sdk/middleware-signing": "3.295.0",
-        "@aws-sdk/middleware-stack": "3.295.0",
-        "@aws-sdk/middleware-user-agent": "3.295.0",
-        "@aws-sdk/node-config-provider": "3.295.0",
-        "@aws-sdk/node-http-handler": "3.295.0",
-        "@aws-sdk/protocol-http": "3.295.0",
-        "@aws-sdk/smithy-client": "3.295.0",
-        "@aws-sdk/types": "3.295.0",
-        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/config-resolver": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/fetch-http-handler": "3.296.0",
+        "@aws-sdk/hash-node": "3.296.0",
+        "@aws-sdk/invalid-dependency": "3.296.0",
+        "@aws-sdk/middleware-content-length": "3.296.0",
+        "@aws-sdk/middleware-endpoint": "3.296.0",
+        "@aws-sdk/middleware-host-header": "3.296.0",
+        "@aws-sdk/middleware-logger": "3.296.0",
+        "@aws-sdk/middleware-recursion-detection": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-sdk-sts": "3.296.0",
+        "@aws-sdk/middleware-serde": "3.296.0",
+        "@aws-sdk/middleware-signing": "3.296.0",
+        "@aws-sdk/middleware-stack": "3.296.0",
+        "@aws-sdk/middleware-user-agent": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-http-handler": "3.296.0",
+        "@aws-sdk/protocol-http": "3.296.0",
+        "@aws-sdk/smithy-client": "3.296.0",
+        "@aws-sdk/types": "3.296.0",
+        "@aws-sdk/url-parser": "3.296.0",
         "@aws-sdk/util-base64": "3.295.0",
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
-        "@aws-sdk/util-defaults-mode-node": "3.295.0",
-        "@aws-sdk/util-endpoints": "3.295.0",
-        "@aws-sdk/util-retry": "3.295.0",
-        "@aws-sdk/util-user-agent-browser": "3.295.0",
-        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
+        "@aws-sdk/util-defaults-mode-node": "3.296.0",
+        "@aws-sdk/util-endpoints": "3.296.0",
+        "@aws-sdk/util-retry": "3.296.0",
+        "@aws-sdk/util-user-agent-browser": "3.296.0",
+        "@aws-sdk/util-user-agent-node": "3.296.0",
         "@aws-sdk/util-utf8": "3.295.0",
         "fast-xml-parser": "4.1.2",
         tslib: "^2.5.0"
@@ -12135,7 +12142,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.295.0",
+      version: "3.296.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12154,34 +12161,34 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.295.0",
-        "@aws-sdk/fetch-http-handler": "3.295.0",
-        "@aws-sdk/hash-node": "3.295.0",
-        "@aws-sdk/invalid-dependency": "3.295.0",
-        "@aws-sdk/middleware-content-length": "3.295.0",
-        "@aws-sdk/middleware-endpoint": "3.295.0",
-        "@aws-sdk/middleware-host-header": "3.295.0",
-        "@aws-sdk/middleware-logger": "3.295.0",
-        "@aws-sdk/middleware-recursion-detection": "3.295.0",
-        "@aws-sdk/middleware-retry": "3.295.0",
-        "@aws-sdk/middleware-serde": "3.295.0",
-        "@aws-sdk/middleware-stack": "3.295.0",
-        "@aws-sdk/middleware-user-agent": "3.295.0",
-        "@aws-sdk/node-config-provider": "3.295.0",
-        "@aws-sdk/node-http-handler": "3.295.0",
-        "@aws-sdk/protocol-http": "3.295.0",
-        "@aws-sdk/smithy-client": "3.295.0",
-        "@aws-sdk/types": "3.295.0",
-        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/config-resolver": "3.296.0",
+        "@aws-sdk/fetch-http-handler": "3.296.0",
+        "@aws-sdk/hash-node": "3.296.0",
+        "@aws-sdk/invalid-dependency": "3.296.0",
+        "@aws-sdk/middleware-content-length": "3.296.0",
+        "@aws-sdk/middleware-endpoint": "3.296.0",
+        "@aws-sdk/middleware-host-header": "3.296.0",
+        "@aws-sdk/middleware-logger": "3.296.0",
+        "@aws-sdk/middleware-recursion-detection": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-serde": "3.296.0",
+        "@aws-sdk/middleware-stack": "3.296.0",
+        "@aws-sdk/middleware-user-agent": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-http-handler": "3.296.0",
+        "@aws-sdk/protocol-http": "3.296.0",
+        "@aws-sdk/smithy-client": "3.296.0",
+        "@aws-sdk/types": "3.296.0",
+        "@aws-sdk/url-parser": "3.296.0",
         "@aws-sdk/util-base64": "3.295.0",
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
-        "@aws-sdk/util-defaults-mode-node": "3.295.0",
-        "@aws-sdk/util-endpoints": "3.295.0",
-        "@aws-sdk/util-retry": "3.295.0",
-        "@aws-sdk/util-user-agent-browser": "3.295.0",
-        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
+        "@aws-sdk/util-defaults-mode-node": "3.296.0",
+        "@aws-sdk/util-endpoints": "3.296.0",
+        "@aws-sdk/util-retry": "3.296.0",
+        "@aws-sdk/util-user-agent-browser": "3.296.0",
+        "@aws-sdk/util-user-agent-node": "3.296.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -12329,50 +12336,6 @@ var require_get_transformed_headers = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js
-var require_set_connection_timeout = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setConnectionTimeout = void 0;
-    var setConnectionTimeout = (request, reject, timeoutInMs = 0) => {
-      if (!timeoutInMs) {
-        return;
-      }
-      request.on("socket", (socket) => {
-        if (socket.connecting) {
-          const timeoutId = setTimeout(() => {
-            request.destroy();
-            reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
-              name: "TimeoutError"
-            }));
-          }, timeoutInMs);
-          socket.on("connect", () => {
-            clearTimeout(timeoutId);
-          });
-        }
-      });
-    };
-    exports.setConnectionTimeout = setConnectionTimeout;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js
-var require_set_socket_timeout = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setSocketTimeout = void 0;
-    var setSocketTimeout = (request, reject, timeoutInMs = 0) => {
-      request.setTimeout(timeoutInMs, () => {
-        request.destroy();
-        reject(Object.assign(new Error(`Connection timed out after ${timeoutInMs} ms`), { name: "TimeoutError" }));
-      });
-    };
-    exports.setSocketTimeout = setSocketTimeout;
-  }
-});
-
 // node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js
 var require_write_request_body = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js"(exports) {
@@ -12408,16 +12371,15 @@ var require_node_http_handler = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http-handler.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeHttpHandler = void 0;
+    exports.NodeHttpHandler = exports.DEFAULT_REQUEST_TIMEOUT = void 0;
     var protocol_http_1 = require_dist_cjs4();
     var querystring_builder_1 = require_dist_cjs36();
     var http_1 = require("http");
     var https_1 = require("https");
     var constants_1 = require_constants6();
     var get_transformed_headers_1 = require_get_transformed_headers();
-    var set_connection_timeout_1 = require_set_connection_timeout();
-    var set_socket_timeout_1 = require_set_socket_timeout();
     var write_request_body_1 = require_write_request_body();
+    exports.DEFAULT_REQUEST_TIMEOUT = 0;
     var NodeHttpHandler = class {
       constructor(options) {
         this.metadata = { handlerProtocol: "http/1.1" };
@@ -12432,12 +12394,14 @@ var require_node_http_handler = __commonJS({
         });
       }
       resolveDefaultConfig(options) {
-        const { connectionTimeout, socketTimeout, httpAgent, httpsAgent } = options || {};
+        var _a, _b;
+        const { requestTimeout, connectionTimeout, socketTimeout, httpAgent, httpsAgent } = options || {};
         const keepAlive = true;
         const maxSockets = 50;
         return {
           connectionTimeout,
           socketTimeout,
+          requestTimeout: (_b = (_a = requestTimeout !== null && requestTimeout !== void 0 ? requestTimeout : connectionTimeout) !== null && _a !== void 0 ? _a : socketTimeout) !== null && _b !== void 0 ? _b : exports.DEFAULT_REQUEST_TIMEOUT,
           httpAgent: httpAgent || new http_1.Agent({ keepAlive, maxSockets }),
           httpsAgent: httpsAgent || new https_1.Agent({ keepAlive, maxSockets })
         };
@@ -12452,6 +12416,7 @@ var require_node_http_handler = __commonJS({
           this.config = await this.configProvider;
         }
         return new Promise((resolve, reject) => {
+          var _a, _b;
           if (!this.config) {
             throw new Error("Node HTTP request handler config is not resolved");
           }
@@ -12487,8 +12452,11 @@ var require_node_http_handler = __commonJS({
               reject(err);
             }
           });
-          (0, set_connection_timeout_1.setConnectionTimeout)(req, reject, this.config.connectionTimeout);
-          (0, set_socket_timeout_1.setSocketTimeout)(req, reject, this.config.socketTimeout);
+          const timeout = (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.requestTimeout) !== null && _b !== void 0 ? _b : exports.DEFAULT_REQUEST_TIMEOUT;
+          req.setTimeout(timeout, () => {
+            req.destroy();
+            reject(Object.assign(new Error(`Connection timed out after ${timeout} ms`), { name: "TimeoutError" }));
+          });
           if (abortSignal) {
             abortSignal.onabort = () => {
               req.abort();
@@ -12505,6 +12473,143 @@ var require_node_http_handler = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js
+var require_node_http2_connection_pool = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttp2ConnectionPool = void 0;
+    var NodeHttp2ConnectionPool = class {
+      constructor(sessions) {
+        this.sessions = [];
+        this.sessions = sessions !== null && sessions !== void 0 ? sessions : [];
+      }
+      poll() {
+        if (this.sessions.length > 0) {
+          return this.sessions.shift();
+        }
+      }
+      offerLast(session) {
+        this.sessions.push(session);
+      }
+      contains(session) {
+        return this.sessions.includes(session);
+      }
+      remove(session) {
+        this.sessions = this.sessions.filter((s) => s !== session);
+      }
+      [Symbol.iterator]() {
+        return this.sessions[Symbol.iterator]();
+      }
+      destroy(connection) {
+        for (const session of this.sessions) {
+          if (session === connection) {
+            if (!session.destroyed) {
+              session.destroy();
+            }
+          }
+        }
+      }
+    };
+    exports.NodeHttp2ConnectionPool = NodeHttp2ConnectionPool;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js
+var require_node_http2_connection_manager = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttp2ConnectionManager = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    var http2_1 = tslib_1.__importDefault(require("http2"));
+    var node_http2_connection_pool_1 = require_node_http2_connection_pool();
+    var NodeHttp2ConnectionManager = class {
+      constructor(config) {
+        this.sessionCache = /* @__PURE__ */ new Map();
+        this.config = config;
+        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
+          throw new RangeError("maxConcurrency must be greater than zero.");
+        }
+      }
+      lease(requestContext, connectionConfiguration) {
+        const url = this.getUrlString(requestContext);
+        const existingPool = this.sessionCache.get(url);
+        if (existingPool) {
+          const existingSession = existingPool.poll();
+          if (existingSession && !this.config.disableConcurrency) {
+            return existingSession;
+          }
+        }
+        const session = http2_1.default.connect(url);
+        if (this.config.maxConcurrency) {
+          session.settings({ maxConcurrentStreams: this.config.maxConcurrency }, (err) => {
+            if (err) {
+              throw new Error("Fail to set maxConcurrentStreams to " + this.config.maxConcurrency + "when creating new session for " + requestContext.destination.toString());
+            }
+          });
+        }
+        session.unref();
+        const destroySessionCb = () => {
+          session.destroy();
+          this.deleteSession(url, session);
+        };
+        session.on("goaway", destroySessionCb);
+        session.on("error", destroySessionCb);
+        session.on("frameError", destroySessionCb);
+        session.on("close", () => this.deleteSession(url, session));
+        if (connectionConfiguration.requestTimeout) {
+          session.setTimeout(connectionConfiguration.requestTimeout, destroySessionCb);
+        }
+        const connectionPool = this.sessionCache.get(url) || new node_http2_connection_pool_1.NodeHttp2ConnectionPool();
+        connectionPool.offerLast(session);
+        this.sessionCache.set(url, connectionPool);
+        return session;
+      }
+      deleteSession(authority, session) {
+        const existingConnectionPool = this.sessionCache.get(authority);
+        if (!existingConnectionPool) {
+          return;
+        }
+        if (!existingConnectionPool.contains(session)) {
+          return;
+        }
+        existingConnectionPool.remove(session);
+        this.sessionCache.set(authority, existingConnectionPool);
+      }
+      release(requestContext, session) {
+        var _a;
+        const cacheKey = this.getUrlString(requestContext);
+        (_a = this.sessionCache.get(cacheKey)) === null || _a === void 0 ? void 0 : _a.offerLast(session);
+      }
+      destroy() {
+        for (const [key, connectionPool] of this.sessionCache) {
+          for (const session of connectionPool) {
+            if (!session.destroyed) {
+              session.destroy();
+            }
+            connectionPool.remove(session);
+          }
+          this.sessionCache.delete(key);
+        }
+      }
+      setMaxConcurrentStreams(maxConcurrentStreams) {
+        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
+          throw new RangeError("maxConcurrentStreams must be greater than zero.");
+        }
+        this.config.maxConcurrency = maxConcurrentStreams;
+      }
+      setDisableConcurrentStreams(disableConcurrentStreams) {
+        this.config.disableConcurrency = disableConcurrentStreams;
+      }
+      getUrlString(request) {
+        return request.destination.toString();
+      }
+    };
+    exports.NodeHttp2ConnectionManager = NodeHttp2ConnectionManager;
+  }
+});
+
 // node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js
 var require_node_http2_handler = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js"(exports) {
@@ -12515,10 +12620,12 @@ var require_node_http2_handler = __commonJS({
     var querystring_builder_1 = require_dist_cjs36();
     var http2_1 = require("http2");
     var get_transformed_headers_1 = require_get_transformed_headers();
+    var node_http2_connection_manager_1 = require_node_http2_connection_manager();
     var write_request_body_1 = require_write_request_body();
     var NodeHttp2Handler = class {
       constructor(options) {
         this.metadata = { handlerProtocol: "h2" };
+        this.connectionManager = new node_http2_connection_manager_1.NodeHttp2ConnectionManager({});
         this.configProvider = new Promise((resolve, reject) => {
           if (typeof options === "function") {
             options().then((opts) => {
@@ -12528,20 +12635,21 @@ var require_node_http2_handler = __commonJS({
             resolve(options || {});
           }
         });
-        this.sessionCache = /* @__PURE__ */ new Map();
       }
       destroy() {
-        for (const sessions of this.sessionCache.values()) {
-          sessions.forEach((session) => this.destroySession(session));
-        }
-        this.sessionCache.clear();
+        this.connectionManager.destroy();
       }
       async handle(request, { abortSignal } = {}) {
         if (!this.config) {
           this.config = await this.configProvider;
+          this.connectionManager.setDisableConcurrentStreams(this.config.disableConcurrentStreams || false);
+          if (this.config.maxConcurrentStreams) {
+            this.connectionManager.setMaxConcurrentStreams(this.config.maxConcurrentStreams);
+          }
         }
         const { requestTimeout, disableConcurrentStreams } = this.config;
         return new Promise((resolve, rejectOriginal) => {
+          var _a;
           let fulfilled = false;
           if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
             fulfilled = true;
@@ -12552,7 +12660,11 @@ var require_node_http2_handler = __commonJS({
           }
           const { hostname, method, port, protocol, path, query } = request;
           const authority = `${protocol}//${hostname}${port ? `:${port}` : ""}`;
-          const session = this.getSession(authority, disableConcurrentStreams || false);
+          const requestContext = { destination: new URL(authority) };
+          const session = this.connectionManager.lease(requestContext, {
+            requestTimeout: (_a = this.config) === null || _a === void 0 ? void 0 : _a.sessionTimeout,
+            disableConcurrentStreams: disableConcurrentStreams || false
+          });
           const reject = (err) => {
             if (disableConcurrentStreams) {
               this.destroySession(session);
@@ -12577,7 +12689,7 @@ var require_node_http2_handler = __commonJS({
             resolve({ response: httpResponse });
             if (disableConcurrentStreams) {
               session.close();
-              this.deleteSessionFromCache(authority, session);
+              this.connectionManager.deleteSession(authority, session);
             }
           });
           if (requestTimeout) {
@@ -12615,40 +12727,10 @@ var require_node_http2_handler = __commonJS({
           (0, write_request_body_1.writeRequestBody)(req, request);
         });
       }
-      getSession(authority, disableConcurrentStreams) {
-        var _a;
-        const sessionCache = this.sessionCache;
-        const existingSessions = sessionCache.get(authority) || [];
-        if (existingSessions.length > 0 && !disableConcurrentStreams)
-          return existingSessions[0];
-        const newSession = (0, http2_1.connect)(authority);
-        newSession.unref();
-        const destroySessionCb = () => {
-          this.destroySession(newSession);
-          this.deleteSessionFromCache(authority, newSession);
-        };
-        newSession.on("goaway", destroySessionCb);
-        newSession.on("error", destroySessionCb);
-        newSession.on("frameError", destroySessionCb);
-        newSession.on("close", () => this.deleteSessionFromCache(authority, newSession));
-        if ((_a = this.config) === null || _a === void 0 ? void 0 : _a.sessionTimeout) {
-          newSession.setTimeout(this.config.sessionTimeout, destroySessionCb);
-        }
-        existingSessions.push(newSession);
-        sessionCache.set(authority, existingSessions);
-        return newSession;
-      }
       destroySession(session) {
         if (!session.destroyed) {
           session.destroy();
         }
-      }
-      deleteSessionFromCache(authority, session) {
-        const existingSessions = this.sessionCache.get(authority) || [];
-        if (!existingSessions.includes(session)) {
-          return;
-        }
-        this.sessionCache.set(authority, existingSessions.filter((s) => s !== session));
       }
     };
     exports.NodeHttp2Handler = NodeHttp2Handler;
@@ -14273,7 +14355,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.295.0",
+      version: "3.296.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14292,34 +14374,34 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.295.0",
-        "@aws-sdk/fetch-http-handler": "3.295.0",
-        "@aws-sdk/hash-node": "3.295.0",
-        "@aws-sdk/invalid-dependency": "3.295.0",
-        "@aws-sdk/middleware-content-length": "3.295.0",
-        "@aws-sdk/middleware-endpoint": "3.295.0",
-        "@aws-sdk/middleware-host-header": "3.295.0",
-        "@aws-sdk/middleware-logger": "3.295.0",
-        "@aws-sdk/middleware-recursion-detection": "3.295.0",
-        "@aws-sdk/middleware-retry": "3.295.0",
-        "@aws-sdk/middleware-serde": "3.295.0",
-        "@aws-sdk/middleware-stack": "3.295.0",
-        "@aws-sdk/middleware-user-agent": "3.295.0",
-        "@aws-sdk/node-config-provider": "3.295.0",
-        "@aws-sdk/node-http-handler": "3.295.0",
-        "@aws-sdk/protocol-http": "3.295.0",
-        "@aws-sdk/smithy-client": "3.295.0",
-        "@aws-sdk/types": "3.295.0",
-        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/config-resolver": "3.296.0",
+        "@aws-sdk/fetch-http-handler": "3.296.0",
+        "@aws-sdk/hash-node": "3.296.0",
+        "@aws-sdk/invalid-dependency": "3.296.0",
+        "@aws-sdk/middleware-content-length": "3.296.0",
+        "@aws-sdk/middleware-endpoint": "3.296.0",
+        "@aws-sdk/middleware-host-header": "3.296.0",
+        "@aws-sdk/middleware-logger": "3.296.0",
+        "@aws-sdk/middleware-recursion-detection": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-serde": "3.296.0",
+        "@aws-sdk/middleware-stack": "3.296.0",
+        "@aws-sdk/middleware-user-agent": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-http-handler": "3.296.0",
+        "@aws-sdk/protocol-http": "3.296.0",
+        "@aws-sdk/smithy-client": "3.296.0",
+        "@aws-sdk/types": "3.296.0",
+        "@aws-sdk/url-parser": "3.296.0",
         "@aws-sdk/util-base64": "3.295.0",
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
-        "@aws-sdk/util-defaults-mode-node": "3.295.0",
-        "@aws-sdk/util-endpoints": "3.295.0",
-        "@aws-sdk/util-retry": "3.295.0",
-        "@aws-sdk/util-user-agent-browser": "3.295.0",
-        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
+        "@aws-sdk/util-defaults-mode-node": "3.296.0",
+        "@aws-sdk/util-endpoints": "3.296.0",
+        "@aws-sdk/util-retry": "3.296.0",
+        "@aws-sdk/util-user-agent-browser": "3.296.0",
+        "@aws-sdk/util-user-agent-node": "3.296.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -54877,7 +54959,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.295.0",
+      version: "3.296.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -54896,39 +54978,39 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.295.0",
-        "@aws-sdk/config-resolver": "3.295.0",
-        "@aws-sdk/credential-provider-node": "3.295.0",
-        "@aws-sdk/fetch-http-handler": "3.295.0",
-        "@aws-sdk/hash-node": "3.295.0",
-        "@aws-sdk/invalid-dependency": "3.295.0",
-        "@aws-sdk/middleware-content-length": "3.295.0",
-        "@aws-sdk/middleware-endpoint": "3.295.0",
-        "@aws-sdk/middleware-host-header": "3.295.0",
-        "@aws-sdk/middleware-logger": "3.295.0",
-        "@aws-sdk/middleware-recursion-detection": "3.295.0",
-        "@aws-sdk/middleware-retry": "3.295.0",
-        "@aws-sdk/middleware-serde": "3.295.0",
-        "@aws-sdk/middleware-signing": "3.295.0",
-        "@aws-sdk/middleware-stack": "3.295.0",
-        "@aws-sdk/middleware-user-agent": "3.295.0",
-        "@aws-sdk/node-config-provider": "3.295.0",
-        "@aws-sdk/node-http-handler": "3.295.0",
-        "@aws-sdk/protocol-http": "3.295.0",
-        "@aws-sdk/smithy-client": "3.295.0",
-        "@aws-sdk/types": "3.295.0",
-        "@aws-sdk/url-parser": "3.295.0",
+        "@aws-sdk/client-sts": "3.296.0",
+        "@aws-sdk/config-resolver": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/fetch-http-handler": "3.296.0",
+        "@aws-sdk/hash-node": "3.296.0",
+        "@aws-sdk/invalid-dependency": "3.296.0",
+        "@aws-sdk/middleware-content-length": "3.296.0",
+        "@aws-sdk/middleware-endpoint": "3.296.0",
+        "@aws-sdk/middleware-host-header": "3.296.0",
+        "@aws-sdk/middleware-logger": "3.296.0",
+        "@aws-sdk/middleware-recursion-detection": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-serde": "3.296.0",
+        "@aws-sdk/middleware-signing": "3.296.0",
+        "@aws-sdk/middleware-stack": "3.296.0",
+        "@aws-sdk/middleware-user-agent": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-http-handler": "3.296.0",
+        "@aws-sdk/protocol-http": "3.296.0",
+        "@aws-sdk/smithy-client": "3.296.0",
+        "@aws-sdk/types": "3.296.0",
+        "@aws-sdk/url-parser": "3.296.0",
         "@aws-sdk/util-base64": "3.295.0",
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.295.0",
-        "@aws-sdk/util-defaults-mode-node": "3.295.0",
-        "@aws-sdk/util-endpoints": "3.295.0",
-        "@aws-sdk/util-retry": "3.295.0",
-        "@aws-sdk/util-user-agent-browser": "3.295.0",
-        "@aws-sdk/util-user-agent-node": "3.295.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
+        "@aws-sdk/util-defaults-mode-node": "3.296.0",
+        "@aws-sdk/util-endpoints": "3.296.0",
+        "@aws-sdk/util-retry": "3.296.0",
+        "@aws-sdk/util-user-agent-browser": "3.296.0",
+        "@aws-sdk/util-user-agent-node": "3.296.0",
         "@aws-sdk/util-utf8": "3.295.0",
-        "@aws-sdk/util-waiter": "3.295.0",
+        "@aws-sdk/util-waiter": "3.296.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
       },
