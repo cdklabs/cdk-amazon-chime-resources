@@ -6666,7 +6666,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.296.0",
+      version: "3.297.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6685,9 +6685,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.296.0",
+        "@aws-sdk/client-sts": "3.297.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.297.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -9319,10 +9319,7 @@ var require_Aws_query = __commonJS({
       return entries;
     };
     var deserializeAws_queryAssumedRoleUser = (output, context) => {
-      const contents = {
-        AssumedRoleId: void 0,
-        Arn: void 0
-      };
+      const contents = {};
       if (output["AssumedRoleId"] !== void 0) {
         contents.AssumedRoleId = (0, smithy_client_1.expectString)(output["AssumedRoleId"]);
       }
@@ -9332,12 +9329,7 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryAssumeRoleResponse = (output, context) => {
-      const contents = {
-        Credentials: void 0,
-        AssumedRoleUser: void 0,
-        PackedPolicySize: void 0,
-        SourceIdentity: void 0
-      };
+      const contents = {};
       if (output["Credentials"] !== void 0) {
         contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
       }
@@ -9353,17 +9345,7 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryAssumeRoleWithSAMLResponse = (output, context) => {
-      const contents = {
-        Credentials: void 0,
-        AssumedRoleUser: void 0,
-        PackedPolicySize: void 0,
-        Subject: void 0,
-        SubjectType: void 0,
-        Issuer: void 0,
-        Audience: void 0,
-        NameQualifier: void 0,
-        SourceIdentity: void 0
-      };
+      const contents = {};
       if (output["Credentials"] !== void 0) {
         contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
       }
@@ -9394,15 +9376,7 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryAssumeRoleWithWebIdentityResponse = (output, context) => {
-      const contents = {
-        Credentials: void 0,
-        SubjectFromWebIdentityToken: void 0,
-        AssumedRoleUser: void 0,
-        PackedPolicySize: void 0,
-        Provider: void 0,
-        Audience: void 0,
-        SourceIdentity: void 0
-      };
+      const contents = {};
       if (output["Credentials"] !== void 0) {
         contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
       }
@@ -9427,12 +9401,7 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryCredentials = (output, context) => {
-      const contents = {
-        AccessKeyId: void 0,
-        SecretAccessKey: void 0,
-        SessionToken: void 0,
-        Expiration: void 0
-      };
+      const contents = {};
       if (output["AccessKeyId"] !== void 0) {
         contents.AccessKeyId = (0, smithy_client_1.expectString)(output["AccessKeyId"]);
       }
@@ -9448,28 +9417,21 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryDecodeAuthorizationMessageResponse = (output, context) => {
-      const contents = {
-        DecodedMessage: void 0
-      };
+      const contents = {};
       if (output["DecodedMessage"] !== void 0) {
         contents.DecodedMessage = (0, smithy_client_1.expectString)(output["DecodedMessage"]);
       }
       return contents;
     };
     var deserializeAws_queryExpiredTokenException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryFederatedUser = (output, context) => {
-      const contents = {
-        FederatedUserId: void 0,
-        Arn: void 0
-      };
+      const contents = {};
       if (output["FederatedUserId"] !== void 0) {
         contents.FederatedUserId = (0, smithy_client_1.expectString)(output["FederatedUserId"]);
       }
@@ -9479,20 +9441,14 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryGetAccessKeyInfoResponse = (output, context) => {
-      const contents = {
-        Account: void 0
-      };
+      const contents = {};
       if (output["Account"] !== void 0) {
         contents.Account = (0, smithy_client_1.expectString)(output["Account"]);
       }
       return contents;
     };
     var deserializeAws_queryGetCallerIdentityResponse = (output, context) => {
-      const contents = {
-        UserId: void 0,
-        Account: void 0,
-        Arn: void 0
-      };
+      const contents = {};
       if (output["UserId"] !== void 0) {
         contents.UserId = (0, smithy_client_1.expectString)(output["UserId"]);
       }
@@ -9505,11 +9461,7 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryGetFederationTokenResponse = (output, context) => {
-      const contents = {
-        Credentials: void 0,
-        FederatedUser: void 0,
-        PackedPolicySize: void 0
-      };
+      const contents = {};
       if (output["Credentials"] !== void 0) {
         contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
       }
@@ -9522,72 +9474,56 @@ var require_Aws_query = __commonJS({
       return contents;
     };
     var deserializeAws_queryGetSessionTokenResponse = (output, context) => {
-      const contents = {
-        Credentials: void 0
-      };
+      const contents = {};
       if (output["Credentials"] !== void 0) {
         contents.Credentials = deserializeAws_queryCredentials(output["Credentials"], context);
       }
       return contents;
     };
     var deserializeAws_queryIDPCommunicationErrorException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryIDPRejectedClaimException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryInvalidAuthorizationMessageException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryInvalidIdentityTokenException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryMalformedPolicyDocumentException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryPackedPolicyTooLargeException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
       return contents;
     };
     var deserializeAws_queryRegionDisabledException = (output, context) => {
-      const contents = {
-        message: void 0
-      };
+      const contents = {};
       if (output["message"] !== void 0) {
         contents.message = (0, smithy_client_1.expectString)(output["message"]);
       }
@@ -10144,7 +10080,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.296.0",
+      version: "3.297.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10166,7 +10102,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.297.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -12142,7 +12078,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.296.0",
+      version: "3.297.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14355,7 +14291,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.296.0",
+      version: "3.297.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -29390,9 +29326,11 @@ var require_models_05 = __commonJS({
     })(PatchFilterKey = exports.PatchFilterKey || (exports.PatchFilterKey = {}));
     var OperatingSystem;
     (function(OperatingSystem2) {
+      OperatingSystem2["AlmaLinux"] = "ALMA_LINUX";
       OperatingSystem2["AmazonLinux"] = "AMAZON_LINUX";
       OperatingSystem2["AmazonLinux2"] = "AMAZON_LINUX_2";
       OperatingSystem2["AmazonLinux2022"] = "AMAZON_LINUX_2022";
+      OperatingSystem2["AmazonLinux2023"] = "AMAZON_LINUX_2023";
       OperatingSystem2["CentOS"] = "CENTOS";
       OperatingSystem2["Debian"] = "DEBIAN";
       OperatingSystem2["MacOS"] = "MACOS";
@@ -54959,7 +54897,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.296.0",
+      version: "3.297.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -54978,9 +54916,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.296.0",
+        "@aws-sdk/client-sts": "3.297.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.296.0",
+        "@aws-sdk/credential-provider-node": "3.297.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
