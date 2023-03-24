@@ -6666,7 +6666,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.297.0",
+      version: "3.298.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6676,6 +6676,7 @@ var require_package = __commonJS({
         "build:types": "tsc -p tsconfig.types.json",
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
+        "extract:docs": "api-extractor run --local",
         "generate:client": "node ../../scripts/generate-clients/single-service --solo chime-sdk-voice"
       },
       main: "./dist-cjs/index.js",
@@ -6685,9 +6686,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.297.0",
+        "@aws-sdk/client-sts": "3.298.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.297.0",
+        "@aws-sdk/credential-provider-node": "3.298.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -6760,221 +6761,6 @@ var require_package = __commonJS({
         directory: "clients/client-chime-sdk-voice"
       }
     };
-  }
-});
-
-// node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js
-var require_STSServiceException = __commonJS({
-  "node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.STSServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var STSServiceException = class extends smithy_client_1.ServiceException {
-      constructor(options) {
-        super(options);
-        Object.setPrototypeOf(this, STSServiceException.prototype);
-      }
-    };
-    exports.STSServiceException = STSServiceException;
-  }
-});
-
-// node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js
-var require_models_0 = __commonJS({
-  "node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetSessionTokenResponseFilterSensitiveLog = exports.GetSessionTokenRequestFilterSensitiveLog = exports.GetFederationTokenResponseFilterSensitiveLog = exports.FederatedUserFilterSensitiveLog = exports.GetFederationTokenRequestFilterSensitiveLog = exports.GetCallerIdentityResponseFilterSensitiveLog = exports.GetCallerIdentityRequestFilterSensitiveLog = exports.GetAccessKeyInfoResponseFilterSensitiveLog = exports.GetAccessKeyInfoRequestFilterSensitiveLog = exports.DecodeAuthorizationMessageResponseFilterSensitiveLog = exports.DecodeAuthorizationMessageRequestFilterSensitiveLog = exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = exports.AssumeRoleResponseFilterSensitiveLog = exports.CredentialsFilterSensitiveLog = exports.AssumeRoleRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.PolicyDescriptorTypeFilterSensitiveLog = exports.AssumedRoleUserFilterSensitiveLog = exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
-    var STSServiceException_1 = require_STSServiceException();
-    var ExpiredTokenException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "ExpiredTokenException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ExpiredTokenException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, ExpiredTokenException.prototype);
-      }
-    };
-    exports.ExpiredTokenException = ExpiredTokenException;
-    var MalformedPolicyDocumentException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "MalformedPolicyDocumentException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "MalformedPolicyDocumentException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, MalformedPolicyDocumentException.prototype);
-      }
-    };
-    exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
-    var PackedPolicyTooLargeException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "PackedPolicyTooLargeException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "PackedPolicyTooLargeException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, PackedPolicyTooLargeException.prototype);
-      }
-    };
-    exports.PackedPolicyTooLargeException = PackedPolicyTooLargeException;
-    var RegionDisabledException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "RegionDisabledException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "RegionDisabledException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, RegionDisabledException.prototype);
-      }
-    };
-    exports.RegionDisabledException = RegionDisabledException;
-    var IDPRejectedClaimException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "IDPRejectedClaimException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "IDPRejectedClaimException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, IDPRejectedClaimException.prototype);
-      }
-    };
-    exports.IDPRejectedClaimException = IDPRejectedClaimException;
-    var InvalidIdentityTokenException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "InvalidIdentityTokenException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "InvalidIdentityTokenException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, InvalidIdentityTokenException.prototype);
-      }
-    };
-    exports.InvalidIdentityTokenException = InvalidIdentityTokenException;
-    var IDPCommunicationErrorException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "IDPCommunicationErrorException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "IDPCommunicationErrorException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, IDPCommunicationErrorException.prototype);
-      }
-    };
-    exports.IDPCommunicationErrorException = IDPCommunicationErrorException;
-    var InvalidAuthorizationMessageException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "InvalidAuthorizationMessageException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "InvalidAuthorizationMessageException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, InvalidAuthorizationMessageException.prototype);
-      }
-    };
-    exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageException;
-    var AssumedRoleUserFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumedRoleUserFilterSensitiveLog = AssumedRoleUserFilterSensitiveLog;
-    var PolicyDescriptorTypeFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PolicyDescriptorTypeFilterSensitiveLog = PolicyDescriptorTypeFilterSensitiveLog;
-    var TagFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
-    var AssumeRoleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleRequestFilterSensitiveLog = AssumeRoleRequestFilterSensitiveLog;
-    var CredentialsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CredentialsFilterSensitiveLog = CredentialsFilterSensitiveLog;
-    var AssumeRoleResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleResponseFilterSensitiveLog = AssumeRoleResponseFilterSensitiveLog;
-    var AssumeRoleWithSAMLRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = AssumeRoleWithSAMLRequestFilterSensitiveLog;
-    var AssumeRoleWithSAMLResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = AssumeRoleWithSAMLResponseFilterSensitiveLog;
-    var AssumeRoleWithWebIdentityRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = AssumeRoleWithWebIdentityRequestFilterSensitiveLog;
-    var AssumeRoleWithWebIdentityResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = AssumeRoleWithWebIdentityResponseFilterSensitiveLog;
-    var DecodeAuthorizationMessageRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DecodeAuthorizationMessageRequestFilterSensitiveLog = DecodeAuthorizationMessageRequestFilterSensitiveLog;
-    var DecodeAuthorizationMessageResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DecodeAuthorizationMessageResponseFilterSensitiveLog = DecodeAuthorizationMessageResponseFilterSensitiveLog;
-    var GetAccessKeyInfoRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetAccessKeyInfoRequestFilterSensitiveLog = GetAccessKeyInfoRequestFilterSensitiveLog;
-    var GetAccessKeyInfoResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetAccessKeyInfoResponseFilterSensitiveLog = GetAccessKeyInfoResponseFilterSensitiveLog;
-    var GetCallerIdentityRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCallerIdentityRequestFilterSensitiveLog = GetCallerIdentityRequestFilterSensitiveLog;
-    var GetCallerIdentityResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCallerIdentityResponseFilterSensitiveLog = GetCallerIdentityResponseFilterSensitiveLog;
-    var GetFederationTokenRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetFederationTokenRequestFilterSensitiveLog = GetFederationTokenRequestFilterSensitiveLog;
-    var FederatedUserFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.FederatedUserFilterSensitiveLog = FederatedUserFilterSensitiveLog;
-    var GetFederationTokenResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetFederationTokenResponseFilterSensitiveLog = GetFederationTokenResponseFilterSensitiveLog;
-    var GetSessionTokenRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSessionTokenRequestFilterSensitiveLog = GetSessionTokenRequestFilterSensitiveLog;
-    var GetSessionTokenResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSessionTokenResponseFilterSensitiveLog = GetSessionTokenResponseFilterSensitiveLog;
   }
 });
 
@@ -8581,6 +8367,137 @@ var require_fxp = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js
+var require_STSServiceException = __commonJS({
+  "node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.STSServiceException = void 0;
+    var smithy_client_1 = require_dist_cjs28();
+    var STSServiceException = class extends smithy_client_1.ServiceException {
+      constructor(options) {
+        super(options);
+        Object.setPrototypeOf(this, STSServiceException.prototype);
+      }
+    };
+    exports.STSServiceException = STSServiceException;
+  }
+});
+
+// node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js
+var require_models_0 = __commonJS({
+  "node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
+    var STSServiceException_1 = require_STSServiceException();
+    var ExpiredTokenException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "ExpiredTokenException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "ExpiredTokenException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, ExpiredTokenException.prototype);
+      }
+    };
+    exports.ExpiredTokenException = ExpiredTokenException;
+    var MalformedPolicyDocumentException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "MalformedPolicyDocumentException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "MalformedPolicyDocumentException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, MalformedPolicyDocumentException.prototype);
+      }
+    };
+    exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
+    var PackedPolicyTooLargeException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "PackedPolicyTooLargeException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "PackedPolicyTooLargeException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, PackedPolicyTooLargeException.prototype);
+      }
+    };
+    exports.PackedPolicyTooLargeException = PackedPolicyTooLargeException;
+    var RegionDisabledException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "RegionDisabledException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "RegionDisabledException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, RegionDisabledException.prototype);
+      }
+    };
+    exports.RegionDisabledException = RegionDisabledException;
+    var IDPRejectedClaimException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "IDPRejectedClaimException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "IDPRejectedClaimException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, IDPRejectedClaimException.prototype);
+      }
+    };
+    exports.IDPRejectedClaimException = IDPRejectedClaimException;
+    var InvalidIdentityTokenException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "InvalidIdentityTokenException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "InvalidIdentityTokenException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, InvalidIdentityTokenException.prototype);
+      }
+    };
+    exports.InvalidIdentityTokenException = InvalidIdentityTokenException;
+    var IDPCommunicationErrorException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "IDPCommunicationErrorException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "IDPCommunicationErrorException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, IDPCommunicationErrorException.prototype);
+      }
+    };
+    exports.IDPCommunicationErrorException = IDPCommunicationErrorException;
+    var InvalidAuthorizationMessageException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "InvalidAuthorizationMessageException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "InvalidAuthorizationMessageException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, InvalidAuthorizationMessageException.prototype);
+      }
+    };
+    exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageException;
+  }
+});
+
 // node_modules/@aws-sdk/client-sts/dist-cjs/protocols/Aws_query.js
 var require_Aws_query = __commonJS({
   "node_modules/@aws-sdk/client-sts/dist-cjs/protocols/Aws_query.js"(exports) {
@@ -9614,7 +9531,6 @@ var require_AssumeRoleCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9642,8 +9558,8 @@ var require_AssumeRoleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.AssumeRoleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.AssumeRoleResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9668,7 +9584,6 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithSAMLCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9695,8 +9610,8 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9721,7 +9636,6 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithWebIdentityCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9748,8 +9662,8 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9775,7 +9689,6 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var DecodeAuthorizationMessageCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9803,8 +9716,8 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DecodeAuthorizationMessageResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9830,7 +9743,6 @@ var require_GetAccessKeyInfoCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetAccessKeyInfoCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9858,8 +9770,8 @@ var require_GetAccessKeyInfoCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetAccessKeyInfoRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetAccessKeyInfoResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9885,7 +9797,6 @@ var require_GetCallerIdentityCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetCallerIdentityCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9913,8 +9824,8 @@ var require_GetCallerIdentityCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetCallerIdentityRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetCallerIdentityResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9940,7 +9851,6 @@ var require_GetFederationTokenCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetFederationTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9968,8 +9878,8 @@ var require_GetFederationTokenCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetFederationTokenRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetFederationTokenResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9995,7 +9905,6 @@ var require_GetSessionTokenCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs23();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetSessionTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -10023,8 +9932,8 @@ var require_GetSessionTokenCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetSessionTokenRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetSessionTokenResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10080,7 +9989,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.297.0",
+      version: "3.298.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10090,6 +9999,7 @@ var require_package2 = __commonJS({
         "build:types": "tsc -p tsconfig.types.json",
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
+        "extract:docs": "api-extractor run --local",
         "generate:client": "node ../../scripts/generate-clients/single-service --solo sts",
         test: "yarn test:unit",
         "test:unit": "jest"
@@ -10102,7 +10012,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.297.0",
+        "@aws-sdk/credential-provider-node": "3.298.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -11326,7 +11236,7 @@ var require_models_02 = __commonJS({
   "node_modules/@aws-sdk/client-sso/dist-cjs/models/models_0.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LogoutRequestFilterSensitiveLog = exports.ListAccountsResponseFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.ListAccountRolesResponseFilterSensitiveLog = exports.RoleInfoFilterSensitiveLog = exports.ListAccountRolesRequestFilterSensitiveLog = exports.GetRoleCredentialsResponseFilterSensitiveLog = exports.RoleCredentialsFilterSensitiveLog = exports.GetRoleCredentialsRequestFilterSensitiveLog = exports.AccountInfoFilterSensitiveLog = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
+    exports.LogoutRequestFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.ListAccountRolesRequestFilterSensitiveLog = exports.GetRoleCredentialsResponseFilterSensitiveLog = exports.RoleCredentialsFilterSensitiveLog = exports.GetRoleCredentialsRequestFilterSensitiveLog = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var SSOServiceException_1 = require_SSOServiceException();
     var InvalidRequestException = class extends SSOServiceException_1.SSOServiceException {
@@ -11381,10 +11291,6 @@ var require_models_02 = __commonJS({
       }
     };
     exports.UnauthorizedException = UnauthorizedException;
-    var AccountInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AccountInfoFilterSensitiveLog = AccountInfoFilterSensitiveLog;
     var GetRoleCredentialsRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }
@@ -11406,23 +11312,11 @@ var require_models_02 = __commonJS({
       ...obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }
     });
     exports.ListAccountRolesRequestFilterSensitiveLog = ListAccountRolesRequestFilterSensitiveLog;
-    var RoleInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RoleInfoFilterSensitiveLog = RoleInfoFilterSensitiveLog;
-    var ListAccountRolesResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAccountRolesResponseFilterSensitiveLog = ListAccountRolesResponseFilterSensitiveLog;
     var ListAccountsRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }
     });
     exports.ListAccountsRequestFilterSensitiveLog = ListAccountsRequestFilterSensitiveLog;
-    var ListAccountsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAccountsResponseFilterSensitiveLog = ListAccountsResponseFilterSensitiveLog;
     var LogoutRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.accessToken && { accessToken: smithy_client_1.SENSITIVE_STRING }
@@ -11934,7 +11828,7 @@ var require_ListAccountRolesCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.ListAccountRolesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAccountRolesResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -11986,7 +11880,7 @@ var require_ListAccountsCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.ListAccountsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAccountsResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -12038,7 +11932,7 @@ var require_LogoutCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.LogoutRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -12078,7 +11972,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.297.0",
+      version: "3.298.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12088,6 +11982,7 @@ var require_package3 = __commonJS({
         "build:types": "tsc -p tsconfig.types.json",
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
+        "extract:docs": "api-extractor run --local",
         "generate:client": "node ../../scripts/generate-clients/single-service --solo sso"
       },
       main: "./dist-cjs/index.js",
@@ -13381,7 +13276,7 @@ var require_models_03 = __commonJS({
   "node_modules/@aws-sdk/client-sso-oidc/dist-cjs/models/models_0.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.StartDeviceAuthorizationResponseFilterSensitiveLog = exports.StartDeviceAuthorizationRequestFilterSensitiveLog = exports.RegisterClientResponseFilterSensitiveLog = exports.RegisterClientRequestFilterSensitiveLog = exports.CreateTokenResponseFilterSensitiveLog = exports.CreateTokenRequestFilterSensitiveLog = exports.InvalidClientMetadataException = exports.UnsupportedGrantTypeException = exports.UnauthorizedClientException = exports.SlowDownException = exports.InvalidScopeException = exports.InvalidRequestException = exports.InvalidGrantException = exports.InvalidClientException = exports.InternalServerException = exports.ExpiredTokenException = exports.AuthorizationPendingException = exports.AccessDeniedException = void 0;
+    exports.InvalidClientMetadataException = exports.UnsupportedGrantTypeException = exports.UnauthorizedClientException = exports.SlowDownException = exports.InvalidScopeException = exports.InvalidRequestException = exports.InvalidGrantException = exports.InvalidClientException = exports.InternalServerException = exports.ExpiredTokenException = exports.AuthorizationPendingException = exports.AccessDeniedException = void 0;
     var SSOOIDCServiceException_1 = require_SSOOIDCServiceException();
     var AccessDeniedException = class extends SSOOIDCServiceException_1.SSOOIDCServiceException {
       constructor(opts) {
@@ -13563,30 +13458,6 @@ var require_models_03 = __commonJS({
       }
     };
     exports.InvalidClientMetadataException = InvalidClientMetadataException;
-    var CreateTokenRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateTokenRequestFilterSensitiveLog = CreateTokenRequestFilterSensitiveLog;
-    var CreateTokenResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateTokenResponseFilterSensitiveLog = CreateTokenResponseFilterSensitiveLog;
-    var RegisterClientRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterClientRequestFilterSensitiveLog = RegisterClientRequestFilterSensitiveLog;
-    var RegisterClientResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterClientResponseFilterSensitiveLog = RegisterClientResponseFilterSensitiveLog;
-    var StartDeviceAuthorizationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartDeviceAuthorizationRequestFilterSensitiveLog = StartDeviceAuthorizationRequestFilterSensitiveLog;
-    var StartDeviceAuthorizationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartDeviceAuthorizationResponseFilterSensitiveLog = StartDeviceAuthorizationResponseFilterSensitiveLog;
   }
 });
 
@@ -14120,7 +13991,6 @@ var require_CreateTokenCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var CreateTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14146,8 +14016,8 @@ var require_CreateTokenCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateTokenRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateTokenResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -14172,7 +14042,6 @@ var require_RegisterClientCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var RegisterClientCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14198,8 +14067,8 @@ var require_RegisterClientCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.RegisterClientRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.RegisterClientResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -14224,7 +14093,6 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var StartDeviceAuthorizationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14250,8 +14118,8 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.StartDeviceAuthorizationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.StartDeviceAuthorizationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -14291,7 +14159,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.297.0",
+      version: "3.298.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14301,6 +14169,7 @@ var require_package4 = __commonJS({
         "build:types": "tsc -p tsconfig.types.json",
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
+        "extract:docs": "api-extractor run --local",
         "generate:client": "node ../../scripts/generate-clients/single-service --solo sso-oidc"
       },
       main: "./dist-cjs/index.js",
@@ -15862,10 +15731,9 @@ var require_models_04 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/models/models_0.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.SipMediaApplicationEndpointFilterSensitiveLog = exports.CreateProxySessionResponseFilterSensitiveLog = exports.ProxySessionFilterSensitiveLog = exports.ParticipantFilterSensitiveLog = exports.CreateProxySessionRequestFilterSensitiveLog = exports.GeoMatchParamsFilterSensitiveLog = exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = exports.PhoneNumberOrderFilterSensitiveLog = exports.OrderedPhoneNumberFilterSensitiveLog = exports.CreatePhoneNumberOrderRequestFilterSensitiveLog = exports.CandidateAddressFilterSensitiveLog = exports.BatchUpdatePhoneNumberResponseFilterSensitiveLog = exports.BatchUpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdatePhoneNumberRequestItemFilterSensitiveLog = exports.BatchDeletePhoneNumberResponseFilterSensitiveLog = exports.BatchDeletePhoneNumberRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorResponseFilterSensitiveLog = exports.PhoneNumberErrorFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorRequestFilterSensitiveLog = exports.AddressFilterSensitiveLog = exports.NotificationTarget = exports.OriginationRouteProtocol = exports.PhoneNumberType = exports.PhoneNumberStatus = exports.PhoneNumberAssociationName = exports.VoiceConnectorAwsRegion = exports.SipRuleTriggerType = exports.ConflictException = exports.ProxySessionStatus = exports.NumberSelectionBehavior = exports.GeoMatchLevel = exports.ResourceLimitExceededException = exports.PhoneNumberOrderStatus = exports.PhoneNumberOrderType = exports.OrderedPhoneNumberStatus = exports.Capability = exports.CallingNameStatus = exports.PhoneNumberProductType = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.BadRequestException = exports.AlexaSkillStatus = exports.AccessDeniedException = exports.ErrorCode = void 0;
-    exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetSipMediaApplicationRequestFilterSensitiveLog = exports.GetProxySessionResponseFilterSensitiveLog = exports.GetProxySessionRequestFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberOrderRequestFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.PhoneNumberCapabilitiesFilterSensitiveLog = exports.PhoneNumberAssociationFilterSensitiveLog = exports.GetPhoneNumberRequestFilterSensitiveLog = exports.GetGlobalSettingsResponseFilterSensitiveLog = exports.VoiceConnectorSettingsFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationRequestFilterSensitiveLog = exports.DeleteVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.DeleteVoiceConnectorProxyRequestFilterSensitiveLog = exports.DeleteVoiceConnectorOriginationRequestFilterSensitiveLog = exports.DeleteVoiceConnectorGroupRequestFilterSensitiveLog = exports.DeleteVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.DeleteVoiceConnectorRequestFilterSensitiveLog = exports.DeleteSipRuleRequestFilterSensitiveLog = exports.DeleteSipMediaApplicationRequestFilterSensitiveLog = exports.DeleteProxySessionRequestFilterSensitiveLog = exports.DeletePhoneNumberRequestFilterSensitiveLog = exports.CreateVoiceConnectorGroupResponseFilterSensitiveLog = exports.VoiceConnectorGroupFilterSensitiveLog = exports.CreateVoiceConnectorGroupRequestFilterSensitiveLog = exports.VoiceConnectorItemFilterSensitiveLog = exports.CreateVoiceConnectorResponseFilterSensitiveLog = exports.VoiceConnectorFilterSensitiveLog = exports.CreateVoiceConnectorRequestFilterSensitiveLog = exports.CreateSipRuleResponseFilterSensitiveLog = exports.SipRuleFilterSensitiveLog = exports.CreateSipRuleRequestFilterSensitiveLog = exports.SipRuleTargetApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationCallResponseFilterSensitiveLog = exports.SipMediaApplicationCallFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = void 0;
-    exports.ListVoiceConnectorsRequestFilterSensitiveLog = exports.ListVoiceConnectorGroupsResponseFilterSensitiveLog = exports.ListVoiceConnectorGroupsRequestFilterSensitiveLog = exports.ListSupportedPhoneNumberCountriesResponseFilterSensitiveLog = exports.PhoneNumberCountryFilterSensitiveLog = exports.ListSupportedPhoneNumberCountriesRequestFilterSensitiveLog = exports.ListSipRulesResponseFilterSensitiveLog = exports.ListSipRulesRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListSipMediaApplicationsRequestFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListProxySessionsRequestFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumbersRequestFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersRequestFilterSensitiveLog = exports.ListAvailableVoiceConnectorRegionsResponseFilterSensitiveLog = exports.GetVoiceConnectorTerminationHealthResponseFilterSensitiveLog = exports.TerminationHealthFilterSensitiveLog = exports.GetVoiceConnectorTerminationHealthRequestFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorTerminationRequestFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.StreamingConfigurationFilterSensitiveLog = exports.StreamingNotificationTargetFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorProxyRequestFilterSensitiveLog = exports.GetVoiceConnectorOriginationResponseFilterSensitiveLog = exports.OriginationFilterSensitiveLog = exports.OriginationRouteFilterSensitiveLog = exports.GetVoiceConnectorOriginationRequestFilterSensitiveLog = exports.GetVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = exports.LoggingConfigurationFilterSensitiveLog = exports.GetVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = exports.GetVoiceConnectorGroupResponseFilterSensitiveLog = exports.GetVoiceConnectorGroupRequestFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.GetVoiceConnectorResponseFilterSensitiveLog = exports.GetVoiceConnectorRequestFilterSensitiveLog = exports.GetSipRuleResponseFilterSensitiveLog = exports.GetSipRuleRequestFilterSensitiveLog = exports.GetSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationLoggingConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = void 0;
-    exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceConnectorGroupResponseFilterSensitiveLog = exports.UpdateVoiceConnectorGroupRequestFilterSensitiveLog = exports.UpdateVoiceConnectorResponseFilterSensitiveLog = exports.UpdateVoiceConnectorRequestFilterSensitiveLog = exports.UpdateSipRuleResponseFilterSensitiveLog = exports.UpdateSipRuleRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationCallResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdateProxySessionRequestFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdateGlobalSettingsRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.SearchAvailablePhoneNumbersRequestFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorOriginationResponseFilterSensitiveLog = exports.PutVoiceConnectorOriginationRequestFilterSensitiveLog = exports.PutVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.ListVoiceConnectorsResponseFilterSensitiveLog = void 0;
+    exports.CreateProxySessionResponseFilterSensitiveLog = exports.ProxySessionFilterSensitiveLog = exports.ParticipantFilterSensitiveLog = exports.CreateProxySessionRequestFilterSensitiveLog = exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = exports.PhoneNumberOrderFilterSensitiveLog = exports.OrderedPhoneNumberFilterSensitiveLog = exports.CreatePhoneNumberOrderRequestFilterSensitiveLog = exports.CandidateAddressFilterSensitiveLog = exports.BatchUpdatePhoneNumberResponseFilterSensitiveLog = exports.BatchUpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdatePhoneNumberRequestItemFilterSensitiveLog = exports.BatchDeletePhoneNumberResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorResponseFilterSensitiveLog = exports.PhoneNumberErrorFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorRequestFilterSensitiveLog = exports.AddressFilterSensitiveLog = exports.LanguageCode = exports.UnprocessableEntityException = exports.NotificationTarget = exports.OriginationRouteProtocol = exports.PhoneNumberType = exports.PhoneNumberStatus = exports.PhoneNumberAssociationName = exports.GoneException = exports.VoiceConnectorAwsRegion = exports.SipRuleTriggerType = exports.ConflictException = exports.ProxySessionStatus = exports.NumberSelectionBehavior = exports.GeoMatchLevel = exports.ResourceLimitExceededException = exports.PhoneNumberOrderStatus = exports.PhoneNumberOrderType = exports.OrderedPhoneNumberStatus = exports.Capability = exports.CallingNameStatus = exports.PhoneNumberProductType = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.BadRequestException = exports.AlexaSkillStatus = exports.AccessDeniedException = exports.ErrorCode = void 0;
+    exports.ListVoiceProfilesResponseFilterSensitiveLog = exports.VoiceProfileSummaryFilterSensitiveLog = exports.ListVoiceProfileDomainsResponseFilterSensitiveLog = exports.VoiceProfileDomainSummaryFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.GetVoiceProfileDomainResponseFilterSensitiveLog = exports.GetVoiceProfileResponseFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.StreamingConfigurationFilterSensitiveLog = exports.MediaInsightsConfigurationFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetProxySessionResponseFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.GetPhoneNumberRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.DeletePhoneNumberRequestFilterSensitiveLog = exports.CreateVoiceProfileDomainResponseFilterSensitiveLog = exports.VoiceProfileDomainFilterSensitiveLog = exports.CreateVoiceProfileDomainRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.ServerSideEncryptionConfigurationFilterSensitiveLog = exports.CreateVoiceProfileResponseFilterSensitiveLog = exports.VoiceProfileFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = exports.SipMediaApplicationEndpointFilterSensitiveLog = void 0;
+    exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = exports.UpdateVoiceProfileResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
     var ErrorCode;
@@ -16118,6 +15986,21 @@ var require_models_04 = __commonJS({
       VoiceConnectorAwsRegion2["US_EAST_1"] = "us-east-1";
       VoiceConnectorAwsRegion2["US_WEST_2"] = "us-west-2";
     })(VoiceConnectorAwsRegion = exports.VoiceConnectorAwsRegion || (exports.VoiceConnectorAwsRegion = {}));
+    var GoneException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
+      constructor(opts) {
+        super({
+          name: "GoneException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "GoneException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, GoneException.prototype);
+        this.Code = opts.Code;
+        this.Message = opts.Message;
+      }
+    };
+    exports.GoneException = GoneException;
     var PhoneNumberAssociationName;
     (function(PhoneNumberAssociationName2) {
       PhoneNumberAssociationName2["SipRuleId"] = "SipRuleId";
@@ -16154,6 +16037,25 @@ var require_models_04 = __commonJS({
       NotificationTarget2["SNS"] = "SNS";
       NotificationTarget2["SQS"] = "SQS";
     })(NotificationTarget = exports.NotificationTarget || (exports.NotificationTarget = {}));
+    var UnprocessableEntityException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
+      constructor(opts) {
+        super({
+          name: "UnprocessableEntityException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "UnprocessableEntityException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, UnprocessableEntityException.prototype);
+        this.Code = opts.Code;
+        this.Message = opts.Message;
+      }
+    };
+    exports.UnprocessableEntityException = UnprocessableEntityException;
+    var LanguageCode;
+    (function(LanguageCode2) {
+      LanguageCode2["EN_US"] = "en-US";
+    })(LanguageCode = exports.LanguageCode || (exports.LanguageCode = {}));
     var AddressFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.streetName && { streetName: smithy_client_1.SENSITIVE_STRING },
@@ -16197,10 +16099,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog = AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog;
-    var BatchDeletePhoneNumberRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.BatchDeletePhoneNumberRequestFilterSensitiveLog = BatchDeletePhoneNumberRequestFilterSensitiveLog;
     var BatchDeletePhoneNumberResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberErrors && {
@@ -16261,10 +16159,6 @@ var require_models_04 = __commonJS({
       ...obj.PhoneNumberOrder && { PhoneNumberOrder: (0, exports.PhoneNumberOrderFilterSensitiveLog)(obj.PhoneNumberOrder) }
     });
     exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = CreatePhoneNumberOrderResponseFilterSensitiveLog;
-    var GeoMatchParamsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GeoMatchParamsFilterSensitiveLog = GeoMatchParamsFilterSensitiveLog;
     var CreateProxySessionRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.ParticipantPhoneNumbers && { ParticipantPhoneNumbers: smithy_client_1.SENSITIVE_STRING },
@@ -16317,103 +16211,53 @@ var require_models_04 = __commonJS({
       ...obj.ArgumentsMap && { ArgumentsMap: smithy_client_1.SENSITIVE_STRING }
     });
     exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = CreateSipMediaApplicationCallRequestFilterSensitiveLog;
-    var SipMediaApplicationCallFilterSensitiveLog = (obj) => ({
-      ...obj
+    var VoiceProfileFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileArn && { VoiceProfileArn: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.SipMediaApplicationCallFilterSensitiveLog = SipMediaApplicationCallFilterSensitiveLog;
-    var CreateSipMediaApplicationCallResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.VoiceProfileFilterSensitiveLog = VoiceProfileFilterSensitiveLog;
+    var CreateVoiceProfileResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfile && { VoiceProfile: (0, exports.VoiceProfileFilterSensitiveLog)(obj.VoiceProfile) }
     });
-    exports.CreateSipMediaApplicationCallResponseFilterSensitiveLog = CreateSipMediaApplicationCallResponseFilterSensitiveLog;
-    var SipRuleTargetApplicationFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.CreateVoiceProfileResponseFilterSensitiveLog = CreateVoiceProfileResponseFilterSensitiveLog;
+    var ServerSideEncryptionConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.KmsKeyArn && { KmsKeyArn: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.SipRuleTargetApplicationFilterSensitiveLog = SipRuleTargetApplicationFilterSensitiveLog;
-    var CreateSipRuleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.ServerSideEncryptionConfigurationFilterSensitiveLog = ServerSideEncryptionConfigurationFilterSensitiveLog;
+    var TagFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Key && { Key: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.CreateSipRuleRequestFilterSensitiveLog = CreateSipRuleRequestFilterSensitiveLog;
-    var SipRuleFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
+    var CreateVoiceProfileDomainRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ServerSideEncryptionConfiguration && {
+        ServerSideEncryptionConfiguration: (0, exports.ServerSideEncryptionConfigurationFilterSensitiveLog)(obj.ServerSideEncryptionConfiguration)
+      },
+      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
     });
-    exports.SipRuleFilterSensitiveLog = SipRuleFilterSensitiveLog;
-    var CreateSipRuleResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.CreateVoiceProfileDomainRequestFilterSensitiveLog = CreateVoiceProfileDomainRequestFilterSensitiveLog;
+    var VoiceProfileDomainFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomainArn && { VoiceProfileDomainArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.ServerSideEncryptionConfiguration && {
+        ServerSideEncryptionConfiguration: (0, exports.ServerSideEncryptionConfigurationFilterSensitiveLog)(obj.ServerSideEncryptionConfiguration)
+      }
     });
-    exports.CreateSipRuleResponseFilterSensitiveLog = CreateSipRuleResponseFilterSensitiveLog;
-    var CreateVoiceConnectorRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.VoiceProfileDomainFilterSensitiveLog = VoiceProfileDomainFilterSensitiveLog;
+    var CreateVoiceProfileDomainResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomain && { VoiceProfileDomain: (0, exports.VoiceProfileDomainFilterSensitiveLog)(obj.VoiceProfileDomain) }
     });
-    exports.CreateVoiceConnectorRequestFilterSensitiveLog = CreateVoiceConnectorRequestFilterSensitiveLog;
-    var VoiceConnectorFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.VoiceConnectorFilterSensitiveLog = VoiceConnectorFilterSensitiveLog;
-    var CreateVoiceConnectorResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateVoiceConnectorResponseFilterSensitiveLog = CreateVoiceConnectorResponseFilterSensitiveLog;
-    var VoiceConnectorItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.VoiceConnectorItemFilterSensitiveLog = VoiceConnectorItemFilterSensitiveLog;
-    var CreateVoiceConnectorGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateVoiceConnectorGroupRequestFilterSensitiveLog = CreateVoiceConnectorGroupRequestFilterSensitiveLog;
-    var VoiceConnectorGroupFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.VoiceConnectorGroupFilterSensitiveLog = VoiceConnectorGroupFilterSensitiveLog;
-    var CreateVoiceConnectorGroupResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateVoiceConnectorGroupResponseFilterSensitiveLog = CreateVoiceConnectorGroupResponseFilterSensitiveLog;
+    exports.CreateVoiceProfileDomainResponseFilterSensitiveLog = CreateVoiceProfileDomainResponseFilterSensitiveLog;
     var DeletePhoneNumberRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberId && { PhoneNumberId: smithy_client_1.SENSITIVE_STRING }
     });
     exports.DeletePhoneNumberRequestFilterSensitiveLog = DeletePhoneNumberRequestFilterSensitiveLog;
-    var DeleteProxySessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteProxySessionRequestFilterSensitiveLog = DeleteProxySessionRequestFilterSensitiveLog;
-    var DeleteSipMediaApplicationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteSipMediaApplicationRequestFilterSensitiveLog = DeleteSipMediaApplicationRequestFilterSensitiveLog;
-    var DeleteSipRuleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteSipRuleRequestFilterSensitiveLog = DeleteSipRuleRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorRequestFilterSensitiveLog = DeleteVoiceConnectorRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = DeleteVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorGroupRequestFilterSensitiveLog = DeleteVoiceConnectorGroupRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorOriginationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorOriginationRequestFilterSensitiveLog = DeleteVoiceConnectorOriginationRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorProxyRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorProxyRequestFilterSensitiveLog = DeleteVoiceConnectorProxyRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = DeleteVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog;
-    var DeleteVoiceConnectorTerminationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteVoiceConnectorTerminationRequestFilterSensitiveLog = DeleteVoiceConnectorTerminationRequestFilterSensitiveLog;
     var DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Usernames && { Usernames: smithy_client_1.SENSITIVE_STRING }
@@ -16443,27 +16287,11 @@ var require_models_04 = __commonJS({
       }
     });
     exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog;
-    var VoiceConnectorSettingsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.VoiceConnectorSettingsFilterSensitiveLog = VoiceConnectorSettingsFilterSensitiveLog;
-    var GetGlobalSettingsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetGlobalSettingsResponseFilterSensitiveLog = GetGlobalSettingsResponseFilterSensitiveLog;
     var GetPhoneNumberRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberId && { PhoneNumberId: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetPhoneNumberRequestFilterSensitiveLog = GetPhoneNumberRequestFilterSensitiveLog;
-    var PhoneNumberAssociationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PhoneNumberAssociationFilterSensitiveLog = PhoneNumberAssociationFilterSensitiveLog;
-    var PhoneNumberCapabilitiesFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PhoneNumberCapabilitiesFilterSensitiveLog = PhoneNumberCapabilitiesFilterSensitiveLog;
     var PhoneNumberFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberId && { PhoneNumberId: smithy_client_1.SENSITIVE_STRING },
@@ -16476,10 +16304,6 @@ var require_models_04 = __commonJS({
       ...obj.PhoneNumber && { PhoneNumber: (0, exports.PhoneNumberFilterSensitiveLog)(obj.PhoneNumber) }
     });
     exports.GetPhoneNumberResponseFilterSensitiveLog = GetPhoneNumberResponseFilterSensitiveLog;
-    var GetPhoneNumberOrderRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetPhoneNumberOrderRequestFilterSensitiveLog = GetPhoneNumberOrderRequestFilterSensitiveLog;
     var GetPhoneNumberOrderResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberOrder && { PhoneNumberOrder: (0, exports.PhoneNumberOrderFilterSensitiveLog)(obj.PhoneNumberOrder) }
@@ -16490,19 +16314,11 @@ var require_models_04 = __commonJS({
       ...obj.CallingName && { CallingName: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = GetPhoneNumberSettingsResponseFilterSensitiveLog;
-    var GetProxySessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetProxySessionRequestFilterSensitiveLog = GetProxySessionRequestFilterSensitiveLog;
     var GetProxySessionResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.ProxySession && { ProxySession: (0, exports.ProxySessionFilterSensitiveLog)(obj.ProxySession) }
     });
     exports.GetProxySessionResponseFilterSensitiveLog = GetProxySessionResponseFilterSensitiveLog;
-    var GetSipMediaApplicationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipMediaApplicationRequestFilterSensitiveLog = GetSipMediaApplicationRequestFilterSensitiveLog;
     var GetSipMediaApplicationResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.SipMediaApplication && {
@@ -16510,10 +16326,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.GetSipMediaApplicationResponseFilterSensitiveLog = GetSipMediaApplicationResponseFilterSensitiveLog;
-    var GetSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = GetSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog;
     var SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.AlexaSkillIds && { AlexaSkillIds: smithy_client_1.SENSITIVE_STRING }
@@ -16526,38 +16338,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog;
-    var GetSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = GetSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog;
-    var SipMediaApplicationLoggingConfigurationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SipMediaApplicationLoggingConfigurationFilterSensitiveLog = SipMediaApplicationLoggingConfigurationFilterSensitiveLog;
-    var GetSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = GetSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog;
-    var GetSipRuleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipRuleRequestFilterSensitiveLog = GetSipRuleRequestFilterSensitiveLog;
-    var GetSipRuleResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetSipRuleResponseFilterSensitiveLog = GetSipRuleResponseFilterSensitiveLog;
-    var GetVoiceConnectorRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorRequestFilterSensitiveLog = GetVoiceConnectorRequestFilterSensitiveLog;
-    var GetVoiceConnectorResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorResponseFilterSensitiveLog = GetVoiceConnectorResponseFilterSensitiveLog;
-    var GetVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = GetVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog;
     var DNISEmergencyCallingConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.EmergencyPhoneNumber && { EmergencyPhoneNumber: smithy_client_1.SENSITIVE_STRING },
@@ -16576,46 +16356,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog;
-    var GetVoiceConnectorGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorGroupRequestFilterSensitiveLog = GetVoiceConnectorGroupRequestFilterSensitiveLog;
-    var GetVoiceConnectorGroupResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorGroupResponseFilterSensitiveLog = GetVoiceConnectorGroupResponseFilterSensitiveLog;
-    var GetVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = GetVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog;
-    var LoggingConfigurationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.LoggingConfigurationFilterSensitiveLog = LoggingConfigurationFilterSensitiveLog;
-    var GetVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = GetVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog;
-    var GetVoiceConnectorOriginationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorOriginationRequestFilterSensitiveLog = GetVoiceConnectorOriginationRequestFilterSensitiveLog;
-    var OriginationRouteFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OriginationRouteFilterSensitiveLog = OriginationRouteFilterSensitiveLog;
-    var OriginationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OriginationFilterSensitiveLog = OriginationFilterSensitiveLog;
-    var GetVoiceConnectorOriginationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorOriginationResponseFilterSensitiveLog = GetVoiceConnectorOriginationResponseFilterSensitiveLog;
-    var GetVoiceConnectorProxyRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorProxyRequestFilterSensitiveLog = GetVoiceConnectorProxyRequestFilterSensitiveLog;
     var ProxyFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.FallBackPhoneNumber && { FallBackPhoneNumber: smithy_client_1.SENSITIVE_STRING }
@@ -16626,26 +16366,25 @@ var require_models_04 = __commonJS({
       ...obj.Proxy && { Proxy: (0, exports.ProxyFilterSensitiveLog)(obj.Proxy) }
     });
     exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = GetVoiceConnectorProxyResponseFilterSensitiveLog;
-    var GetVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    var MediaInsightsConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ConfigurationArn && { ConfigurationArn: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.GetVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = GetVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog;
-    var StreamingNotificationTargetFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StreamingNotificationTargetFilterSensitiveLog = StreamingNotificationTargetFilterSensitiveLog;
+    exports.MediaInsightsConfigurationFilterSensitiveLog = MediaInsightsConfigurationFilterSensitiveLog;
     var StreamingConfigurationFilterSensitiveLog = (obj) => ({
-      ...obj
+      ...obj,
+      ...obj.MediaInsightsConfiguration && {
+        MediaInsightsConfiguration: (0, exports.MediaInsightsConfigurationFilterSensitiveLog)(obj.MediaInsightsConfiguration)
+      }
     });
     exports.StreamingConfigurationFilterSensitiveLog = StreamingConfigurationFilterSensitiveLog;
     var GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+      ...obj,
+      ...obj.StreamingConfiguration && {
+        StreamingConfiguration: (0, exports.StreamingConfigurationFilterSensitiveLog)(obj.StreamingConfiguration)
+      }
     });
     exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog;
-    var GetVoiceConnectorTerminationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorTerminationRequestFilterSensitiveLog = GetVoiceConnectorTerminationRequestFilterSensitiveLog;
     var TerminationFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.DefaultPhoneNumber && { DefaultPhoneNumber: smithy_client_1.SENSITIVE_STRING }
@@ -16656,100 +16395,72 @@ var require_models_04 = __commonJS({
       ...obj.Termination && { Termination: (0, exports.TerminationFilterSensitiveLog)(obj.Termination) }
     });
     exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = GetVoiceConnectorTerminationResponseFilterSensitiveLog;
-    var GetVoiceConnectorTerminationHealthRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    var GetVoiceProfileResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfile && { VoiceProfile: (0, exports.VoiceProfileFilterSensitiveLog)(obj.VoiceProfile) }
     });
-    exports.GetVoiceConnectorTerminationHealthRequestFilterSensitiveLog = GetVoiceConnectorTerminationHealthRequestFilterSensitiveLog;
-    var TerminationHealthFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.GetVoiceProfileResponseFilterSensitiveLog = GetVoiceProfileResponseFilterSensitiveLog;
+    var GetVoiceProfileDomainResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomain && { VoiceProfileDomain: (0, exports.VoiceProfileDomainFilterSensitiveLog)(obj.VoiceProfileDomain) }
     });
-    exports.TerminationHealthFilterSensitiveLog = TerminationHealthFilterSensitiveLog;
-    var GetVoiceConnectorTerminationHealthResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetVoiceConnectorTerminationHealthResponseFilterSensitiveLog = GetVoiceConnectorTerminationHealthResponseFilterSensitiveLog;
-    var ListAvailableVoiceConnectorRegionsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAvailableVoiceConnectorRegionsResponseFilterSensitiveLog = ListAvailableVoiceConnectorRegionsResponseFilterSensitiveLog;
-    var ListPhoneNumberOrdersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListPhoneNumberOrdersRequestFilterSensitiveLog = ListPhoneNumberOrdersRequestFilterSensitiveLog;
+    exports.GetVoiceProfileDomainResponseFilterSensitiveLog = GetVoiceProfileDomainResponseFilterSensitiveLog;
     var ListPhoneNumberOrdersResponseFilterSensitiveLog = (obj) => ({
       ...obj
     });
     exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = ListPhoneNumberOrdersResponseFilterSensitiveLog;
-    var ListPhoneNumbersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListPhoneNumbersRequestFilterSensitiveLog = ListPhoneNumbersRequestFilterSensitiveLog;
     var ListPhoneNumbersResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumbers && { PhoneNumbers: obj.PhoneNumbers.map((item) => (0, exports.PhoneNumberFilterSensitiveLog)(item)) }
     });
     exports.ListPhoneNumbersResponseFilterSensitiveLog = ListPhoneNumbersResponseFilterSensitiveLog;
-    var ListProxySessionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListProxySessionsRequestFilterSensitiveLog = ListProxySessionsRequestFilterSensitiveLog;
     var ListProxySessionsResponseFilterSensitiveLog = (obj) => ({
       ...obj
     });
     exports.ListProxySessionsResponseFilterSensitiveLog = ListProxySessionsResponseFilterSensitiveLog;
-    var ListSipMediaApplicationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListSipMediaApplicationsRequestFilterSensitiveLog = ListSipMediaApplicationsRequestFilterSensitiveLog;
     var ListSipMediaApplicationsResponseFilterSensitiveLog = (obj) => ({
       ...obj
     });
     exports.ListSipMediaApplicationsResponseFilterSensitiveLog = ListSipMediaApplicationsResponseFilterSensitiveLog;
-    var ListSipRulesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    var ListTagsForResourceRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ResourceARN && { ResourceARN: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.ListSipRulesRequestFilterSensitiveLog = ListSipRulesRequestFilterSensitiveLog;
-    var ListSipRulesResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.ListTagsForResourceRequestFilterSensitiveLog = ListTagsForResourceRequestFilterSensitiveLog;
+    var ListTagsForResourceResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
     });
-    exports.ListSipRulesResponseFilterSensitiveLog = ListSipRulesResponseFilterSensitiveLog;
-    var ListSupportedPhoneNumberCountriesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListSupportedPhoneNumberCountriesRequestFilterSensitiveLog = ListSupportedPhoneNumberCountriesRequestFilterSensitiveLog;
-    var PhoneNumberCountryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PhoneNumberCountryFilterSensitiveLog = PhoneNumberCountryFilterSensitiveLog;
-    var ListSupportedPhoneNumberCountriesResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListSupportedPhoneNumberCountriesResponseFilterSensitiveLog = ListSupportedPhoneNumberCountriesResponseFilterSensitiveLog;
-    var ListVoiceConnectorGroupsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListVoiceConnectorGroupsRequestFilterSensitiveLog = ListVoiceConnectorGroupsRequestFilterSensitiveLog;
-    var ListVoiceConnectorGroupsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListVoiceConnectorGroupsResponseFilterSensitiveLog = ListVoiceConnectorGroupsResponseFilterSensitiveLog;
-    var ListVoiceConnectorsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListVoiceConnectorsRequestFilterSensitiveLog = ListVoiceConnectorsRequestFilterSensitiveLog;
-    var ListVoiceConnectorsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListVoiceConnectorsResponseFilterSensitiveLog = ListVoiceConnectorsResponseFilterSensitiveLog;
-    var ListVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = ListVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog;
+    exports.ListTagsForResourceResponseFilterSensitiveLog = ListTagsForResourceResponseFilterSensitiveLog;
     var ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Usernames && { Usernames: smithy_client_1.SENSITIVE_STRING }
     });
     exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog;
+    var VoiceProfileDomainSummaryFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomainArn && { VoiceProfileDomainArn: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.VoiceProfileDomainSummaryFilterSensitiveLog = VoiceProfileDomainSummaryFilterSensitiveLog;
+    var ListVoiceProfileDomainsResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomains && {
+        VoiceProfileDomains: obj.VoiceProfileDomains.map((item) => (0, exports.VoiceProfileDomainSummaryFilterSensitiveLog)(item))
+      }
+    });
+    exports.ListVoiceProfileDomainsResponseFilterSensitiveLog = ListVoiceProfileDomainsResponseFilterSensitiveLog;
+    var VoiceProfileSummaryFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileArn && { VoiceProfileArn: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.VoiceProfileSummaryFilterSensitiveLog = VoiceProfileSummaryFilterSensitiveLog;
+    var ListVoiceProfilesResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfiles && {
+        VoiceProfiles: obj.VoiceProfiles.map((item) => (0, exports.VoiceProfileSummaryFilterSensitiveLog)(item))
+      }
+    });
+    exports.ListVoiceProfilesResponseFilterSensitiveLog = ListVoiceProfilesResponseFilterSensitiveLog;
     var PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.SipMediaApplicationAlexaSkillConfiguration && {
@@ -16764,14 +16475,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog;
-    var PutSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog = PutSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog;
-    var PutSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog = PutSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog;
     var PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.EmergencyCallingConfiguration && {
@@ -16786,22 +16489,6 @@ var require_models_04 = __commonJS({
       }
     });
     exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog;
-    var PutVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog = PutVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog;
-    var PutVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog = PutVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog;
-    var PutVoiceConnectorOriginationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutVoiceConnectorOriginationRequestFilterSensitiveLog = PutVoiceConnectorOriginationRequestFilterSensitiveLog;
-    var PutVoiceConnectorOriginationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutVoiceConnectorOriginationResponseFilterSensitiveLog = PutVoiceConnectorOriginationResponseFilterSensitiveLog;
     var PutVoiceConnectorProxyRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.FallBackPhoneNumber && { FallBackPhoneNumber: smithy_client_1.SENSITIVE_STRING }
@@ -16813,11 +16500,17 @@ var require_models_04 = __commonJS({
     });
     exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = PutVoiceConnectorProxyResponseFilterSensitiveLog;
     var PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+      ...obj,
+      ...obj.StreamingConfiguration && {
+        StreamingConfiguration: (0, exports.StreamingConfigurationFilterSensitiveLog)(obj.StreamingConfiguration)
+      }
     });
     exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog;
     var PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+      ...obj,
+      ...obj.StreamingConfiguration && {
+        StreamingConfiguration: (0, exports.StreamingConfigurationFilterSensitiveLog)(obj.StreamingConfiguration)
+      }
     });
     exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog;
     var PutVoiceConnectorTerminationRequestFilterSensitiveLog = (obj) => ({
@@ -16851,19 +16544,23 @@ var require_models_04 = __commonJS({
       ...obj.PhoneNumber && { PhoneNumber: (0, exports.PhoneNumberFilterSensitiveLog)(obj.PhoneNumber) }
     });
     exports.RestorePhoneNumberResponseFilterSensitiveLog = RestorePhoneNumberResponseFilterSensitiveLog;
-    var SearchAvailablePhoneNumbersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SearchAvailablePhoneNumbersRequestFilterSensitiveLog = SearchAvailablePhoneNumbersRequestFilterSensitiveLog;
     var SearchAvailablePhoneNumbersResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.E164PhoneNumbers && { E164PhoneNumbers: smithy_client_1.SENSITIVE_STRING }
     });
     exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = SearchAvailablePhoneNumbersResponseFilterSensitiveLog;
-    var UpdateGlobalSettingsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    var TagResourceRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ResourceARN && { ResourceARN: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
     });
-    exports.UpdateGlobalSettingsRequestFilterSensitiveLog = UpdateGlobalSettingsRequestFilterSensitiveLog;
+    exports.TagResourceRequestFilterSensitiveLog = TagResourceRequestFilterSensitiveLog;
+    var UntagResourceRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ResourceARN && { ResourceARN: smithy_client_1.SENSITIVE_STRING },
+      ...obj.TagKeys && { TagKeys: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.UntagResourceRequestFilterSensitiveLog = UntagResourceRequestFilterSensitiveLog;
     var UpdatePhoneNumberRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.PhoneNumberId && { PhoneNumberId: smithy_client_1.SENSITIVE_STRING },
@@ -16880,10 +16577,6 @@ var require_models_04 = __commonJS({
       ...obj.CallingName && { CallingName: smithy_client_1.SENSITIVE_STRING }
     });
     exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = UpdatePhoneNumberSettingsRequestFilterSensitiveLog;
-    var UpdateProxySessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateProxySessionRequestFilterSensitiveLog = UpdateProxySessionRequestFilterSensitiveLog;
     var UpdateProxySessionResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.ProxySession && { ProxySession: (0, exports.ProxySessionFilterSensitiveLog)(obj.ProxySession) }
@@ -16906,34 +16599,16 @@ var require_models_04 = __commonJS({
       ...obj.Arguments && { Arguments: smithy_client_1.SENSITIVE_STRING }
     });
     exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = UpdateSipMediaApplicationCallRequestFilterSensitiveLog;
-    var UpdateSipMediaApplicationCallResponseFilterSensitiveLog = (obj) => ({
-      ...obj
+    var UpdateVoiceProfileResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfile && { VoiceProfile: (0, exports.VoiceProfileFilterSensitiveLog)(obj.VoiceProfile) }
     });
-    exports.UpdateSipMediaApplicationCallResponseFilterSensitiveLog = UpdateSipMediaApplicationCallResponseFilterSensitiveLog;
-    var UpdateSipRuleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
+    exports.UpdateVoiceProfileResponseFilterSensitiveLog = UpdateVoiceProfileResponseFilterSensitiveLog;
+    var UpdateVoiceProfileDomainResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.VoiceProfileDomain && { VoiceProfileDomain: (0, exports.VoiceProfileDomainFilterSensitiveLog)(obj.VoiceProfileDomain) }
     });
-    exports.UpdateSipRuleRequestFilterSensitiveLog = UpdateSipRuleRequestFilterSensitiveLog;
-    var UpdateSipRuleResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateSipRuleResponseFilterSensitiveLog = UpdateSipRuleResponseFilterSensitiveLog;
-    var UpdateVoiceConnectorRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateVoiceConnectorRequestFilterSensitiveLog = UpdateVoiceConnectorRequestFilterSensitiveLog;
-    var UpdateVoiceConnectorResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateVoiceConnectorResponseFilterSensitiveLog = UpdateVoiceConnectorResponseFilterSensitiveLog;
-    var UpdateVoiceConnectorGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateVoiceConnectorGroupRequestFilterSensitiveLog = UpdateVoiceConnectorGroupRequestFilterSensitiveLog;
-    var UpdateVoiceConnectorGroupResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateVoiceConnectorGroupResponseFilterSensitiveLog = UpdateVoiceConnectorGroupResponseFilterSensitiveLog;
+    exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = UpdateVoiceProfileDomainResponseFilterSensitiveLog;
     var ValidateE911AddressRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.StreetNumber && { StreetNumber: smithy_client_1.SENSITIVE_STRING },
@@ -16960,9 +16635,10 @@ var require_Aws_restJson13 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/protocols/Aws_restJson1.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.serializeAws_restJson1ListSupportedPhoneNumberCountriesCommand = exports.serializeAws_restJson1ListSipRulesCommand = exports.serializeAws_restJson1ListSipMediaApplicationsCommand = exports.serializeAws_restJson1ListProxySessionsCommand = exports.serializeAws_restJson1ListPhoneNumbersCommand = exports.serializeAws_restJson1ListPhoneNumberOrdersCommand = exports.serializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = exports.serializeAws_restJson1GetVoiceConnectorTerminationHealthCommand = exports.serializeAws_restJson1GetVoiceConnectorTerminationCommand = exports.serializeAws_restJson1GetVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorProxyCommand = exports.serializeAws_restJson1GetVoiceConnectorOriginationCommand = exports.serializeAws_restJson1GetVoiceConnectorLoggingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorGroupCommand = exports.serializeAws_restJson1GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorCommand = exports.serializeAws_restJson1GetSipRuleCommand = exports.serializeAws_restJson1GetSipMediaApplicationLoggingConfigurationCommand = exports.serializeAws_restJson1GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.serializeAws_restJson1GetSipMediaApplicationCommand = exports.serializeAws_restJson1GetProxySessionCommand = exports.serializeAws_restJson1GetPhoneNumberSettingsCommand = exports.serializeAws_restJson1GetPhoneNumberOrderCommand = exports.serializeAws_restJson1GetPhoneNumberCommand = exports.serializeAws_restJson1GetGlobalSettingsCommand = exports.serializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.serializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.serializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1DeleteVoiceConnectorTerminationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorProxyCommand = exports.serializeAws_restJson1DeleteVoiceConnectorOriginationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorGroupCommand = exports.serializeAws_restJson1DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorCommand = exports.serializeAws_restJson1DeleteSipRuleCommand = exports.serializeAws_restJson1DeleteSipMediaApplicationCommand = exports.serializeAws_restJson1DeleteProxySessionCommand = exports.serializeAws_restJson1DeletePhoneNumberCommand = exports.serializeAws_restJson1CreateVoiceConnectorGroupCommand = exports.serializeAws_restJson1CreateVoiceConnectorCommand = exports.serializeAws_restJson1CreateSipRuleCommand = exports.serializeAws_restJson1CreateSipMediaApplicationCallCommand = exports.serializeAws_restJson1CreateSipMediaApplicationCommand = exports.serializeAws_restJson1CreateProxySessionCommand = exports.serializeAws_restJson1CreatePhoneNumberOrderCommand = exports.serializeAws_restJson1BatchUpdatePhoneNumberCommand = exports.serializeAws_restJson1BatchDeletePhoneNumberCommand = exports.serializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.serializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorCommand = void 0;
-    exports.deserializeAws_restJson1GetGlobalSettingsCommand = exports.deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorProxyCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorGroupCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorCommand = exports.deserializeAws_restJson1DeleteSipRuleCommand = exports.deserializeAws_restJson1DeleteSipMediaApplicationCommand = exports.deserializeAws_restJson1DeleteProxySessionCommand = exports.deserializeAws_restJson1DeletePhoneNumberCommand = exports.deserializeAws_restJson1CreateVoiceConnectorGroupCommand = exports.deserializeAws_restJson1CreateVoiceConnectorCommand = exports.deserializeAws_restJson1CreateSipRuleCommand = exports.deserializeAws_restJson1CreateSipMediaApplicationCallCommand = exports.deserializeAws_restJson1CreateSipMediaApplicationCommand = exports.deserializeAws_restJson1CreateProxySessionCommand = exports.deserializeAws_restJson1CreatePhoneNumberOrderCommand = exports.deserializeAws_restJson1BatchUpdatePhoneNumberCommand = exports.deserializeAws_restJson1BatchDeletePhoneNumberCommand = exports.deserializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.deserializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorCommand = exports.serializeAws_restJson1ValidateE911AddressCommand = exports.serializeAws_restJson1UpdateVoiceConnectorGroupCommand = exports.serializeAws_restJson1UpdateVoiceConnectorCommand = exports.serializeAws_restJson1UpdateSipRuleCommand = exports.serializeAws_restJson1UpdateSipMediaApplicationCallCommand = exports.serializeAws_restJson1UpdateSipMediaApplicationCommand = exports.serializeAws_restJson1UpdateProxySessionCommand = exports.serializeAws_restJson1UpdatePhoneNumberSettingsCommand = exports.serializeAws_restJson1UpdatePhoneNumberCommand = exports.serializeAws_restJson1UpdateGlobalSettingsCommand = exports.serializeAws_restJson1SearchAvailablePhoneNumbersCommand = exports.serializeAws_restJson1RestorePhoneNumberCommand = exports.serializeAws_restJson1PutVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1PutVoiceConnectorTerminationCommand = exports.serializeAws_restJson1PutVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1PutVoiceConnectorProxyCommand = exports.serializeAws_restJson1PutVoiceConnectorOriginationCommand = exports.serializeAws_restJson1PutVoiceConnectorLoggingConfigurationCommand = exports.serializeAws_restJson1PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1PutSipMediaApplicationLoggingConfigurationCommand = exports.serializeAws_restJson1PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.serializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1ListVoiceConnectorsCommand = exports.serializeAws_restJson1ListVoiceConnectorGroupsCommand = void 0;
-    exports.deserializeAws_restJson1ValidateE911AddressCommand = exports.deserializeAws_restJson1UpdateVoiceConnectorGroupCommand = exports.deserializeAws_restJson1UpdateVoiceConnectorCommand = exports.deserializeAws_restJson1UpdateSipRuleCommand = exports.deserializeAws_restJson1UpdateSipMediaApplicationCallCommand = exports.deserializeAws_restJson1UpdateSipMediaApplicationCommand = exports.deserializeAws_restJson1UpdateProxySessionCommand = exports.deserializeAws_restJson1UpdatePhoneNumberSettingsCommand = exports.deserializeAws_restJson1UpdatePhoneNumberCommand = exports.deserializeAws_restJson1UpdateGlobalSettingsCommand = exports.deserializeAws_restJson1SearchAvailablePhoneNumbersCommand = exports.deserializeAws_restJson1RestorePhoneNumberCommand = exports.deserializeAws_restJson1PutVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1PutVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1PutVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1PutVoiceConnectorProxyCommand = exports.deserializeAws_restJson1PutVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1PutVoiceConnectorLoggingConfigurationCommand = exports.deserializeAws_restJson1PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1PutSipMediaApplicationLoggingConfigurationCommand = exports.deserializeAws_restJson1PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.deserializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1ListVoiceConnectorsCommand = exports.deserializeAws_restJson1ListVoiceConnectorGroupsCommand = exports.deserializeAws_restJson1ListSupportedPhoneNumberCountriesCommand = exports.deserializeAws_restJson1ListSipRulesCommand = exports.deserializeAws_restJson1ListSipMediaApplicationsCommand = exports.deserializeAws_restJson1ListProxySessionsCommand = exports.deserializeAws_restJson1ListPhoneNumbersCommand = exports.deserializeAws_restJson1ListPhoneNumberOrdersCommand = exports.deserializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = exports.deserializeAws_restJson1GetVoiceConnectorTerminationHealthCommand = exports.deserializeAws_restJson1GetVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1GetVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorProxyCommand = exports.deserializeAws_restJson1GetVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1GetVoiceConnectorLoggingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorGroupCommand = exports.deserializeAws_restJson1GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorCommand = exports.deserializeAws_restJson1GetSipRuleCommand = exports.deserializeAws_restJson1GetSipMediaApplicationLoggingConfigurationCommand = exports.deserializeAws_restJson1GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.deserializeAws_restJson1GetSipMediaApplicationCommand = exports.deserializeAws_restJson1GetProxySessionCommand = exports.deserializeAws_restJson1GetPhoneNumberSettingsCommand = exports.deserializeAws_restJson1GetPhoneNumberOrderCommand = exports.deserializeAws_restJson1GetPhoneNumberCommand = void 0;
+    exports.serializeAws_restJson1GetVoiceProfileDomainCommand = exports.serializeAws_restJson1GetVoiceProfileCommand = exports.serializeAws_restJson1GetVoiceConnectorTerminationHealthCommand = exports.serializeAws_restJson1GetVoiceConnectorTerminationCommand = exports.serializeAws_restJson1GetVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorProxyCommand = exports.serializeAws_restJson1GetVoiceConnectorOriginationCommand = exports.serializeAws_restJson1GetVoiceConnectorLoggingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorGroupCommand = exports.serializeAws_restJson1GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1GetVoiceConnectorCommand = exports.serializeAws_restJson1GetSpeakerSearchTaskCommand = exports.serializeAws_restJson1GetSipRuleCommand = exports.serializeAws_restJson1GetSipMediaApplicationLoggingConfigurationCommand = exports.serializeAws_restJson1GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.serializeAws_restJson1GetSipMediaApplicationCommand = exports.serializeAws_restJson1GetProxySessionCommand = exports.serializeAws_restJson1GetPhoneNumberSettingsCommand = exports.serializeAws_restJson1GetPhoneNumberOrderCommand = exports.serializeAws_restJson1GetPhoneNumberCommand = exports.serializeAws_restJson1GetGlobalSettingsCommand = exports.serializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.serializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.serializeAws_restJson1DeleteVoiceProfileDomainCommand = exports.serializeAws_restJson1DeleteVoiceProfileCommand = exports.serializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1DeleteVoiceConnectorTerminationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorProxyCommand = exports.serializeAws_restJson1DeleteVoiceConnectorOriginationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorGroupCommand = exports.serializeAws_restJson1DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1DeleteVoiceConnectorCommand = exports.serializeAws_restJson1DeleteSipRuleCommand = exports.serializeAws_restJson1DeleteSipMediaApplicationCommand = exports.serializeAws_restJson1DeleteProxySessionCommand = exports.serializeAws_restJson1DeletePhoneNumberCommand = exports.serializeAws_restJson1CreateVoiceProfileDomainCommand = exports.serializeAws_restJson1CreateVoiceProfileCommand = exports.serializeAws_restJson1CreateVoiceConnectorGroupCommand = exports.serializeAws_restJson1CreateVoiceConnectorCommand = exports.serializeAws_restJson1CreateSipRuleCommand = exports.serializeAws_restJson1CreateSipMediaApplicationCallCommand = exports.serializeAws_restJson1CreateSipMediaApplicationCommand = exports.serializeAws_restJson1CreateProxySessionCommand = exports.serializeAws_restJson1CreatePhoneNumberOrderCommand = exports.serializeAws_restJson1BatchUpdatePhoneNumberCommand = exports.serializeAws_restJson1BatchDeletePhoneNumberCommand = exports.serializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.serializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorCommand = void 0;
+    exports.deserializeAws_restJson1CreateSipMediaApplicationCommand = exports.deserializeAws_restJson1CreateProxySessionCommand = exports.deserializeAws_restJson1CreatePhoneNumberOrderCommand = exports.deserializeAws_restJson1BatchUpdatePhoneNumberCommand = exports.deserializeAws_restJson1BatchDeletePhoneNumberCommand = exports.deserializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.deserializeAws_restJson1AssociatePhoneNumbersWithVoiceConnectorCommand = exports.serializeAws_restJson1ValidateE911AddressCommand = exports.serializeAws_restJson1UpdateVoiceProfileDomainCommand = exports.serializeAws_restJson1UpdateVoiceProfileCommand = exports.serializeAws_restJson1UpdateVoiceConnectorGroupCommand = exports.serializeAws_restJson1UpdateVoiceConnectorCommand = exports.serializeAws_restJson1UpdateSipRuleCommand = exports.serializeAws_restJson1UpdateSipMediaApplicationCallCommand = exports.serializeAws_restJson1UpdateSipMediaApplicationCommand = exports.serializeAws_restJson1UpdateProxySessionCommand = exports.serializeAws_restJson1UpdatePhoneNumberSettingsCommand = exports.serializeAws_restJson1UpdatePhoneNumberCommand = exports.serializeAws_restJson1UpdateGlobalSettingsCommand = exports.serializeAws_restJson1UntagResourceCommand = exports.serializeAws_restJson1TagResourceCommand = exports.serializeAws_restJson1StopVoiceToneAnalysisTaskCommand = exports.serializeAws_restJson1StopSpeakerSearchTaskCommand = exports.serializeAws_restJson1StartVoiceToneAnalysisTaskCommand = exports.serializeAws_restJson1StartSpeakerSearchTaskCommand = exports.serializeAws_restJson1SearchAvailablePhoneNumbersCommand = exports.serializeAws_restJson1RestorePhoneNumberCommand = exports.serializeAws_restJson1PutVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1PutVoiceConnectorTerminationCommand = exports.serializeAws_restJson1PutVoiceConnectorStreamingConfigurationCommand = exports.serializeAws_restJson1PutVoiceConnectorProxyCommand = exports.serializeAws_restJson1PutVoiceConnectorOriginationCommand = exports.serializeAws_restJson1PutVoiceConnectorLoggingConfigurationCommand = exports.serializeAws_restJson1PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.serializeAws_restJson1PutSipMediaApplicationLoggingConfigurationCommand = exports.serializeAws_restJson1PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.serializeAws_restJson1ListVoiceProfilesCommand = exports.serializeAws_restJson1ListVoiceProfileDomainsCommand = exports.serializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = exports.serializeAws_restJson1ListVoiceConnectorsCommand = exports.serializeAws_restJson1ListVoiceConnectorGroupsCommand = exports.serializeAws_restJson1ListTagsForResourceCommand = exports.serializeAws_restJson1ListSupportedPhoneNumberCountriesCommand = exports.serializeAws_restJson1ListSipRulesCommand = exports.serializeAws_restJson1ListSipMediaApplicationsCommand = exports.serializeAws_restJson1ListProxySessionsCommand = exports.serializeAws_restJson1ListPhoneNumbersCommand = exports.serializeAws_restJson1ListPhoneNumberOrdersCommand = exports.serializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = exports.serializeAws_restJson1GetVoiceToneAnalysisTaskCommand = void 0;
+    exports.deserializeAws_restJson1ListSipRulesCommand = exports.deserializeAws_restJson1ListSipMediaApplicationsCommand = exports.deserializeAws_restJson1ListProxySessionsCommand = exports.deserializeAws_restJson1ListPhoneNumbersCommand = exports.deserializeAws_restJson1ListPhoneNumberOrdersCommand = exports.deserializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = exports.deserializeAws_restJson1GetVoiceToneAnalysisTaskCommand = exports.deserializeAws_restJson1GetVoiceProfileDomainCommand = exports.deserializeAws_restJson1GetVoiceProfileCommand = exports.deserializeAws_restJson1GetVoiceConnectorTerminationHealthCommand = exports.deserializeAws_restJson1GetVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1GetVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorProxyCommand = exports.deserializeAws_restJson1GetVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1GetVoiceConnectorLoggingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorGroupCommand = exports.deserializeAws_restJson1GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1GetVoiceConnectorCommand = exports.deserializeAws_restJson1GetSpeakerSearchTaskCommand = exports.deserializeAws_restJson1GetSipRuleCommand = exports.deserializeAws_restJson1GetSipMediaApplicationLoggingConfigurationCommand = exports.deserializeAws_restJson1GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.deserializeAws_restJson1GetSipMediaApplicationCommand = exports.deserializeAws_restJson1GetProxySessionCommand = exports.deserializeAws_restJson1GetPhoneNumberSettingsCommand = exports.deserializeAws_restJson1GetPhoneNumberOrderCommand = exports.deserializeAws_restJson1GetPhoneNumberCommand = exports.deserializeAws_restJson1GetGlobalSettingsCommand = exports.deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.deserializeAws_restJson1DeleteVoiceProfileDomainCommand = exports.deserializeAws_restJson1DeleteVoiceProfileCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorProxyCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorGroupCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1DeleteVoiceConnectorCommand = exports.deserializeAws_restJson1DeleteSipRuleCommand = exports.deserializeAws_restJson1DeleteSipMediaApplicationCommand = exports.deserializeAws_restJson1DeleteProxySessionCommand = exports.deserializeAws_restJson1DeletePhoneNumberCommand = exports.deserializeAws_restJson1CreateVoiceProfileDomainCommand = exports.deserializeAws_restJson1CreateVoiceProfileCommand = exports.deserializeAws_restJson1CreateVoiceConnectorGroupCommand = exports.deserializeAws_restJson1CreateVoiceConnectorCommand = exports.deserializeAws_restJson1CreateSipRuleCommand = exports.deserializeAws_restJson1CreateSipMediaApplicationCallCommand = void 0;
+    exports.deserializeAws_restJson1ValidateE911AddressCommand = exports.deserializeAws_restJson1UpdateVoiceProfileDomainCommand = exports.deserializeAws_restJson1UpdateVoiceProfileCommand = exports.deserializeAws_restJson1UpdateVoiceConnectorGroupCommand = exports.deserializeAws_restJson1UpdateVoiceConnectorCommand = exports.deserializeAws_restJson1UpdateSipRuleCommand = exports.deserializeAws_restJson1UpdateSipMediaApplicationCallCommand = exports.deserializeAws_restJson1UpdateSipMediaApplicationCommand = exports.deserializeAws_restJson1UpdateProxySessionCommand = exports.deserializeAws_restJson1UpdatePhoneNumberSettingsCommand = exports.deserializeAws_restJson1UpdatePhoneNumberCommand = exports.deserializeAws_restJson1UpdateGlobalSettingsCommand = exports.deserializeAws_restJson1UntagResourceCommand = exports.deserializeAws_restJson1TagResourceCommand = exports.deserializeAws_restJson1StopVoiceToneAnalysisTaskCommand = exports.deserializeAws_restJson1StopSpeakerSearchTaskCommand = exports.deserializeAws_restJson1StartVoiceToneAnalysisTaskCommand = exports.deserializeAws_restJson1StartSpeakerSearchTaskCommand = exports.deserializeAws_restJson1SearchAvailablePhoneNumbersCommand = exports.deserializeAws_restJson1RestorePhoneNumberCommand = exports.deserializeAws_restJson1PutVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1PutVoiceConnectorTerminationCommand = exports.deserializeAws_restJson1PutVoiceConnectorStreamingConfigurationCommand = exports.deserializeAws_restJson1PutVoiceConnectorProxyCommand = exports.deserializeAws_restJson1PutVoiceConnectorOriginationCommand = exports.deserializeAws_restJson1PutVoiceConnectorLoggingConfigurationCommand = exports.deserializeAws_restJson1PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.deserializeAws_restJson1PutSipMediaApplicationLoggingConfigurationCommand = exports.deserializeAws_restJson1PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.deserializeAws_restJson1ListVoiceProfilesCommand = exports.deserializeAws_restJson1ListVoiceProfileDomainsCommand = exports.deserializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = exports.deserializeAws_restJson1ListVoiceConnectorsCommand = exports.deserializeAws_restJson1ListVoiceConnectorGroupsCommand = exports.deserializeAws_restJson1ListTagsForResourceCommand = exports.deserializeAws_restJson1ListSupportedPhoneNumberCountriesCommand = void 0;
     var protocol_http_1 = require_dist_cjs4();
     var smithy_client_1 = require_dist_cjs28();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
@@ -17263,6 +16939,54 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1CreateVoiceConnectorGroupCommand = serializeAws_restJson1CreateVoiceConnectorGroupCommand;
+    var serializeAws_restJson1CreateVoiceProfileCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles`;
+      let body;
+      body = JSON.stringify({
+        ...input.SpeakerSearchTaskId != null && { SpeakerSearchTaskId: input.SpeakerSearchTaskId }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1CreateVoiceProfileCommand = serializeAws_restJson1CreateVoiceProfileCommand;
+    var serializeAws_restJson1CreateVoiceProfileDomainCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains`;
+      let body;
+      body = JSON.stringify({
+        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
+        ...input.Description != null && { Description: input.Description },
+        ...input.Name != null && { Name: input.Name },
+        ...input.ServerSideEncryptionConfiguration != null && {
+          ServerSideEncryptionConfiguration: serializeAws_restJson1ServerSideEncryptionConfiguration(input.ServerSideEncryptionConfiguration, context)
+        },
+        ...input.Tags != null && { Tags: serializeAws_restJson1TagList(input.Tags, context) }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1CreateVoiceProfileDomainCommand = serializeAws_restJson1CreateVoiceProfileDomainCommand;
     var serializeAws_restJson1DeletePhoneNumberCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
@@ -17477,6 +17201,40 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand = serializeAws_restJson1DeleteVoiceConnectorTerminationCredentialsCommand;
+    var serializeAws_restJson1DeleteVoiceProfileCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles/{VoiceProfileId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileId", () => input.VoiceProfileId, "{VoiceProfileId}", false);
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "DELETE",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1DeleteVoiceProfileCommand = serializeAws_restJson1DeleteVoiceProfileCommand;
+    var serializeAws_restJson1DeleteVoiceProfileDomainCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains/{VoiceProfileDomainId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileDomainId", () => input.VoiceProfileDomainId, "{VoiceProfileDomainId}", false);
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "DELETE",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1DeleteVoiceProfileDomainCommand = serializeAws_restJson1DeleteVoiceProfileDomainCommand;
     var serializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -17691,6 +17449,24 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1GetSipRuleCommand = serializeAws_restJson1GetSipRuleCommand;
+    var serializeAws_restJson1GetSpeakerSearchTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SpeakerSearchTaskId", () => input.SpeakerSearchTaskId, "{SpeakerSearchTaskId}", false);
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1GetSpeakerSearchTaskCommand = serializeAws_restJson1GetSpeakerSearchTaskCommand;
     var serializeAws_restJson1GetVoiceConnectorCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
@@ -17844,6 +17620,62 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1GetVoiceConnectorTerminationHealthCommand = serializeAws_restJson1GetVoiceConnectorTerminationHealthCommand;
+    var serializeAws_restJson1GetVoiceProfileCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles/{VoiceProfileId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileId", () => input.VoiceProfileId, "{VoiceProfileId}", false);
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1GetVoiceProfileCommand = serializeAws_restJson1GetVoiceProfileCommand;
+    var serializeAws_restJson1GetVoiceProfileDomainCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains/{VoiceProfileDomainId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileDomainId", () => input.VoiceProfileDomainId, "{VoiceProfileDomainId}", false);
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1GetVoiceProfileDomainCommand = serializeAws_restJson1GetVoiceProfileDomainCommand;
+    var serializeAws_restJson1GetVoiceToneAnalysisTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceToneAnalysisTaskId", () => input.VoiceToneAnalysisTaskId, "{VoiceToneAnalysisTaskId}", false);
+      const query = map({
+        isCaller: [(0, smithy_client_1.expectNonNull)(input.IsCaller, `IsCaller`) != null, () => input.IsCaller.toString()]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1GetVoiceToneAnalysisTaskCommand = serializeAws_restJson1GetVoiceToneAnalysisTaskCommand;
     var serializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -17995,6 +17827,26 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1ListSupportedPhoneNumberCountriesCommand = serializeAws_restJson1ListSupportedPhoneNumberCountriesCommand;
+    var serializeAws_restJson1ListTagsForResourceCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
+      const query = map({
+        arn: [, (0, smithy_client_1.expectNonNull)(input.ResourceARN, `ResourceARN`)]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1ListTagsForResourceCommand = serializeAws_restJson1ListTagsForResourceCommand;
     var serializeAws_restJson1ListVoiceConnectorGroupsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
@@ -18054,6 +17906,49 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = serializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand;
+    var serializeAws_restJson1ListVoiceProfileDomainsCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains`;
+      const query = map({
+        "next-token": [, input.NextToken],
+        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1ListVoiceProfileDomainsCommand = serializeAws_restJson1ListVoiceProfileDomainsCommand;
+    var serializeAws_restJson1ListVoiceProfilesCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles`;
+      const query = map({
+        "voice-profile-domain-id": [, (0, smithy_client_1.expectNonNull)(input.VoiceProfileDomainId, `VoiceProfileDomainId`)],
+        "next-token": [, input.NextToken],
+        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "GET",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1ListVoiceProfilesCommand = serializeAws_restJson1ListVoiceProfilesCommand;
     var serializeAws_restJson1PutSipMediaApplicationAlexaSkillConfigurationCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -18322,6 +18217,150 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1SearchAvailablePhoneNumbersCommand = serializeAws_restJson1SearchAvailablePhoneNumbersCommand;
+    var serializeAws_restJson1StartSpeakerSearchTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/speaker-search-tasks`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      let body;
+      body = JSON.stringify({
+        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
+        ...input.TransactionId != null && { TransactionId: input.TransactionId },
+        ...input.VoiceProfileDomainId != null && { VoiceProfileDomainId: input.VoiceProfileDomainId }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1StartSpeakerSearchTaskCommand = serializeAws_restJson1StartSpeakerSearchTaskCommand;
+    var serializeAws_restJson1StartVoiceToneAnalysisTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      let body;
+      body = JSON.stringify({
+        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
+        ...input.LanguageCode != null && { LanguageCode: input.LanguageCode },
+        ...input.TransactionId != null && { TransactionId: input.TransactionId }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1StartVoiceToneAnalysisTaskCommand = serializeAws_restJson1StartVoiceToneAnalysisTaskCommand;
+    var serializeAws_restJson1StopSpeakerSearchTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SpeakerSearchTaskId", () => input.SpeakerSearchTaskId, "{SpeakerSearchTaskId}", false);
+      const query = map({
+        operation: [, "stop"]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1StopSpeakerSearchTaskCommand = serializeAws_restJson1StopSpeakerSearchTaskCommand;
+    var serializeAws_restJson1StopVoiceToneAnalysisTaskCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {};
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceToneAnalysisTaskId", () => input.VoiceToneAnalysisTaskId, "{VoiceToneAnalysisTaskId}", false);
+      const query = map({
+        operation: [, "stop"]
+      });
+      let body;
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1StopVoiceToneAnalysisTaskCommand = serializeAws_restJson1StopVoiceToneAnalysisTaskCommand;
+    var serializeAws_restJson1TagResourceCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
+      const query = map({
+        operation: [, "tag-resource"]
+      });
+      let body;
+      body = JSON.stringify({
+        ...input.ResourceARN != null && { ResourceARN: input.ResourceARN },
+        ...input.Tags != null && { Tags: serializeAws_restJson1TagList(input.Tags, context) }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1TagResourceCommand = serializeAws_restJson1TagResourceCommand;
+    var serializeAws_restJson1UntagResourceCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
+      const query = map({
+        operation: [, "untag-resource"]
+      });
+      let body;
+      body = JSON.stringify({
+        ...input.ResourceARN != null && { ResourceARN: input.ResourceARN },
+        ...input.TagKeys != null && { TagKeys: serializeAws_restJson1TagKeyList(input.TagKeys, context) }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        query,
+        body
+      });
+    };
+    exports.serializeAws_restJson1UntagResourceCommand = serializeAws_restJson1UntagResourceCommand;
     var serializeAws_restJson1UpdateGlobalSettingsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -18539,6 +18578,51 @@ var require_Aws_restJson13 = __commonJS({
       });
     };
     exports.serializeAws_restJson1UpdateVoiceConnectorGroupCommand = serializeAws_restJson1UpdateVoiceConnectorGroupCommand;
+    var serializeAws_restJson1UpdateVoiceProfileCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles/{VoiceProfileId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileId", () => input.VoiceProfileId, "{VoiceProfileId}", false);
+      let body;
+      body = JSON.stringify({
+        ...input.SpeakerSearchTaskId != null && { SpeakerSearchTaskId: input.SpeakerSearchTaskId }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "PUT",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1UpdateVoiceProfileCommand = serializeAws_restJson1UpdateVoiceProfileCommand;
+    var serializeAws_restJson1UpdateVoiceProfileDomainCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains/{VoiceProfileDomainId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileDomainId", () => input.VoiceProfileDomainId, "{VoiceProfileDomainId}", false);
+      let body;
+      body = JSON.stringify({
+        ...input.Description != null && { Description: input.Description },
+        ...input.Name != null && { Name: input.Name }
+      });
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "PUT",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.serializeAws_restJson1UpdateVoiceProfileDomainCommand = serializeAws_restJson1UpdateVoiceProfileDomainCommand;
     var serializeAws_restJson1ValidateE911AddressCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -19168,6 +19252,128 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1CreateVoiceProfileCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return deserializeAws_restJson1CreateVoiceProfileCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfile != null) {
+        contents.VoiceProfile = deserializeAws_restJson1VoiceProfile(data.VoiceProfile, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1CreateVoiceProfileCommand = deserializeAws_restJson1CreateVoiceProfileCommand;
+    var deserializeAws_restJson1CreateVoiceProfileCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "GoneException":
+        case "com.amazonaws.chimesdkvoice#GoneException":
+          throw await deserializeAws_restJson1GoneExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkvoice#ResourceLimitExceededException":
+          throw await deserializeAws_restJson1ResourceLimitExceededExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1CreateVoiceProfileDomainCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return deserializeAws_restJson1CreateVoiceProfileDomainCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfileDomain != null) {
+        contents.VoiceProfileDomain = deserializeAws_restJson1VoiceProfileDomain(data.VoiceProfileDomain, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1CreateVoiceProfileDomainCommand = deserializeAws_restJson1CreateVoiceProfileDomainCommand;
+    var deserializeAws_restJson1CreateVoiceProfileDomainCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkvoice#ResourceLimitExceededException":
+          throw await deserializeAws_restJson1ResourceLimitExceededExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1DeletePhoneNumberCommand = async (output, context) => {
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return deserializeAws_restJson1DeletePhoneNumberCommandError(output, context);
@@ -19768,6 +19974,116 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1DeleteVoiceProfileCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1DeleteVoiceProfileCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1DeleteVoiceProfileCommand = deserializeAws_restJson1DeleteVoiceProfileCommand;
+    var deserializeAws_restJson1DeleteVoiceProfileCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1DeleteVoiceProfileDomainCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1DeleteVoiceProfileDomainCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1DeleteVoiceProfileDomainCommand = deserializeAws_restJson1DeleteVoiceProfileDomainCommand;
+    var deserializeAws_restJson1DeleteVoiceProfileDomainCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return deserializeAws_restJson1DisassociatePhoneNumbersFromVoiceConnectorCommandError(output, context);
@@ -20337,6 +20653,64 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1GetSpeakerSearchTaskCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1GetSpeakerSearchTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.SpeakerSearchTask != null) {
+        contents.SpeakerSearchTask = deserializeAws_restJson1SpeakerSearchTask(data.SpeakerSearchTask, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1GetSpeakerSearchTaskCommand = deserializeAws_restJson1GetSpeakerSearchTaskCommand;
+    var deserializeAws_restJson1GetSpeakerSearchTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1GetVoiceConnectorCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return deserializeAws_restJson1GetVoiceConnectorCommandError(output, context);
@@ -20805,6 +21179,174 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1GetVoiceProfileCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1GetVoiceProfileCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfile != null) {
+        contents.VoiceProfile = deserializeAws_restJson1VoiceProfile(data.VoiceProfile, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1GetVoiceProfileCommand = deserializeAws_restJson1GetVoiceProfileCommand;
+    var deserializeAws_restJson1GetVoiceProfileCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1GetVoiceProfileDomainCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1GetVoiceProfileDomainCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfileDomain != null) {
+        contents.VoiceProfileDomain = deserializeAws_restJson1VoiceProfileDomain(data.VoiceProfileDomain, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1GetVoiceProfileDomainCommand = deserializeAws_restJson1GetVoiceProfileDomainCommand;
+    var deserializeAws_restJson1GetVoiceProfileDomainCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1GetVoiceToneAnalysisTaskCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1GetVoiceToneAnalysisTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceToneAnalysisTask != null) {
+        contents.VoiceToneAnalysisTask = deserializeAws_restJson1VoiceToneAnalysisTask(data.VoiceToneAnalysisTask, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1GetVoiceToneAnalysisTaskCommand = deserializeAws_restJson1GetVoiceToneAnalysisTaskCommand;
+    var deserializeAws_restJson1GetVoiceToneAnalysisTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1ListAvailableVoiceConnectorRegionsCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return deserializeAws_restJson1ListAvailableVoiceConnectorRegionsCommandError(output, context);
@@ -21172,6 +21714,55 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1ListTagsForResourceCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1ListTagsForResourceCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.Tags != null) {
+        contents.Tags = deserializeAws_restJson1TagList(data.Tags, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1ListTagsForResourceCommand = deserializeAws_restJson1ListTagsForResourceCommand;
+    var deserializeAws_restJson1ListTagsForResourceCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1ListVoiceConnectorGroupsCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return deserializeAws_restJson1ListVoiceConnectorGroupsCommandError(output, context);
@@ -21291,6 +21882,116 @@ var require_Aws_restJson13 = __commonJS({
     };
     exports.deserializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand = deserializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommand;
     var deserializeAws_restJson1ListVoiceConnectorTerminationCredentialsCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1ListVoiceProfileDomainsCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1ListVoiceProfileDomainsCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.NextToken != null) {
+        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
+      }
+      if (data.VoiceProfileDomains != null) {
+        contents.VoiceProfileDomains = deserializeAws_restJson1VoiceProfileDomainSummaryList(data.VoiceProfileDomains, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1ListVoiceProfileDomainsCommand = deserializeAws_restJson1ListVoiceProfileDomainsCommand;
+    var deserializeAws_restJson1ListVoiceProfileDomainsCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1ListVoiceProfilesCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1ListVoiceProfilesCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.NextToken != null) {
+        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
+      }
+      if (data.VoiceProfiles != null) {
+        contents.VoiceProfiles = deserializeAws_restJson1VoiceProfileSummaryList(data.VoiceProfiles, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1ListVoiceProfilesCommand = deserializeAws_restJson1ListVoiceProfilesCommand;
+    var deserializeAws_restJson1ListVoiceProfilesCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -21909,6 +22610,351 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1StartSpeakerSearchTaskCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return deserializeAws_restJson1StartSpeakerSearchTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.SpeakerSearchTask != null) {
+        contents.SpeakerSearchTask = deserializeAws_restJson1SpeakerSearchTask(data.SpeakerSearchTask, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1StartSpeakerSearchTaskCommand = deserializeAws_restJson1StartSpeakerSearchTaskCommand;
+    var deserializeAws_restJson1StartSpeakerSearchTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "GoneException":
+        case "com.amazonaws.chimesdkvoice#GoneException":
+          throw await deserializeAws_restJson1GoneExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkvoice#ResourceLimitExceededException":
+          throw await deserializeAws_restJson1ResourceLimitExceededExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        case "UnprocessableEntityException":
+        case "com.amazonaws.chimesdkvoice#UnprocessableEntityException":
+          throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1StartVoiceToneAnalysisTaskCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return deserializeAws_restJson1StartVoiceToneAnalysisTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceToneAnalysisTask != null) {
+        contents.VoiceToneAnalysisTask = deserializeAws_restJson1VoiceToneAnalysisTask(data.VoiceToneAnalysisTask, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1StartVoiceToneAnalysisTaskCommand = deserializeAws_restJson1StartVoiceToneAnalysisTaskCommand;
+    var deserializeAws_restJson1StartVoiceToneAnalysisTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "GoneException":
+        case "com.amazonaws.chimesdkvoice#GoneException":
+          throw await deserializeAws_restJson1GoneExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkvoice#ResourceLimitExceededException":
+          throw await deserializeAws_restJson1ResourceLimitExceededExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        case "UnprocessableEntityException":
+        case "com.amazonaws.chimesdkvoice#UnprocessableEntityException":
+          throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1StopSpeakerSearchTaskCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1StopSpeakerSearchTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1StopSpeakerSearchTaskCommand = deserializeAws_restJson1StopSpeakerSearchTaskCommand;
+    var deserializeAws_restJson1StopSpeakerSearchTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        case "UnprocessableEntityException":
+        case "com.amazonaws.chimesdkvoice#UnprocessableEntityException":
+          throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1StopVoiceToneAnalysisTaskCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1StopVoiceToneAnalysisTaskCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1StopVoiceToneAnalysisTaskCommand = deserializeAws_restJson1StopVoiceToneAnalysisTaskCommand;
+    var deserializeAws_restJson1StopVoiceToneAnalysisTaskCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        case "UnprocessableEntityException":
+        case "com.amazonaws.chimesdkvoice#UnprocessableEntityException":
+          throw await deserializeAws_restJson1UnprocessableEntityExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1TagResourceCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1TagResourceCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1TagResourceCommand = deserializeAws_restJson1TagResourceCommand;
+    var deserializeAws_restJson1TagResourceCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkvoice#ResourceLimitExceededException":
+          throw await deserializeAws_restJson1ResourceLimitExceededExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1UntagResourceCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return deserializeAws_restJson1UntagResourceCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      await collectBody(output.body, context);
+      return contents;
+    };
+    exports.deserializeAws_restJson1UntagResourceCommand = deserializeAws_restJson1UntagResourceCommand;
+    var deserializeAws_restJson1UntagResourceCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1UpdateGlobalSettingsCommand = async (output, context) => {
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return deserializeAws_restJson1UpdateGlobalSettingsCommandError(output, context);
@@ -22383,6 +23429,122 @@ var require_Aws_restJson13 = __commonJS({
           });
       }
     };
+    var deserializeAws_restJson1UpdateVoiceProfileCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1UpdateVoiceProfileCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfile != null) {
+        contents.VoiceProfile = deserializeAws_restJson1VoiceProfile(data.VoiceProfile, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1UpdateVoiceProfileCommand = deserializeAws_restJson1UpdateVoiceProfileCommand;
+    var deserializeAws_restJson1UpdateVoiceProfileCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkvoice#ConflictException":
+          throw await deserializeAws_restJson1ConflictExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "GoneException":
+        case "com.amazonaws.chimesdkvoice#GoneException":
+          throw await deserializeAws_restJson1GoneExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
+    var deserializeAws_restJson1UpdateVoiceProfileDomainCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return deserializeAws_restJson1UpdateVoiceProfileDomainCommandError(output, context);
+      }
+      const contents = map({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      if (data.VoiceProfileDomain != null) {
+        contents.VoiceProfileDomain = deserializeAws_restJson1VoiceProfileDomain(data.VoiceProfileDomain, context);
+      }
+      return contents;
+    };
+    exports.deserializeAws_restJson1UpdateVoiceProfileDomainCommand = deserializeAws_restJson1UpdateVoiceProfileDomainCommand;
+    var deserializeAws_restJson1UpdateVoiceProfileDomainCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "AccessDeniedException":
+        case "com.amazonaws.chimesdkvoice#AccessDeniedException":
+          throw await deserializeAws_restJson1AccessDeniedExceptionResponse(parsedOutput, context);
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkvoice#BadRequestException":
+          throw await deserializeAws_restJson1BadRequestExceptionResponse(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkvoice#ForbiddenException":
+          throw await deserializeAws_restJson1ForbiddenExceptionResponse(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkvoice#NotFoundException":
+          throw await deserializeAws_restJson1NotFoundExceptionResponse(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkvoice#ServiceFailureException":
+          throw await deserializeAws_restJson1ServiceFailureExceptionResponse(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkvoice#ServiceUnavailableException":
+          throw await deserializeAws_restJson1ServiceUnavailableExceptionResponse(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkvoice#ThrottledClientException":
+          throw await deserializeAws_restJson1ThrottledClientExceptionResponse(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkvoice#UnauthorizedClientException":
+          throw await deserializeAws_restJson1UnauthorizedClientExceptionResponse(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          (0, smithy_client_1.throwDefaultError)({
+            output,
+            parsedBody,
+            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
+            errorCode
+          });
+      }
+    };
     var deserializeAws_restJson1ValidateE911AddressCommand = async (output, context) => {
       if (output.statusCode !== 202 && output.statusCode >= 300) {
         return deserializeAws_restJson1ValidateE911AddressCommandError(output, context);
@@ -22505,6 +23667,21 @@ var require_Aws_restJson13 = __commonJS({
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
+    var deserializeAws_restJson1GoneExceptionResponse = async (parsedOutput, context) => {
+      const contents = map({});
+      const data = parsedOutput.body;
+      if (data.Code != null) {
+        contents.Code = (0, smithy_client_1.expectString)(data.Code);
+      }
+      if (data.Message != null) {
+        contents.Message = (0, smithy_client_1.expectString)(data.Message);
+      }
+      const exception = new models_0_1.GoneException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...contents
+      });
+      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
+    };
     var deserializeAws_restJson1NotFoundExceptionResponse = async (parsedOutput, context) => {
       const contents = map({});
       const data = parsedOutput.body;
@@ -22595,6 +23772,21 @@ var require_Aws_restJson13 = __commonJS({
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
+    var deserializeAws_restJson1UnprocessableEntityExceptionResponse = async (parsedOutput, context) => {
+      const contents = map({});
+      const data = parsedOutput.body;
+      if (data.Code != null) {
+        contents.Code = (0, smithy_client_1.expectString)(data.Code);
+      }
+      if (data.Message != null) {
+        contents.Message = (0, smithy_client_1.expectString)(data.Message);
+      }
+      const exception = new models_0_1.UnprocessableEntityException({
+        $metadata: deserializeMetadata(parsedOutput),
+        ...contents
+      });
+      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
+    };
     var serializeAws_restJson1AlexaSkillIdList = (input, context) => {
       return input.filter((e) => e != null).map((entry) => {
         return entry;
@@ -22662,6 +23854,12 @@ var require_Aws_restJson13 = __commonJS({
         ...input.EnableSIPLogs != null && { EnableSIPLogs: input.EnableSIPLogs }
       };
     };
+    var serializeAws_restJson1MediaInsightsConfiguration = (input, context) => {
+      return {
+        ...input.ConfigurationArn != null && { ConfigurationArn: input.ConfigurationArn },
+        ...input.Disabled != null && { Disabled: input.Disabled }
+      };
+    };
     var serializeAws_restJson1NonEmptyStringList = (input, context) => {
       return input.filter((e) => e != null).map((entry) => {
         return entry;
@@ -22696,6 +23894,11 @@ var require_Aws_restJson13 = __commonJS({
       return input.filter((e) => e != null).map((entry) => {
         return entry;
       });
+    };
+    var serializeAws_restJson1ServerSideEncryptionConfiguration = (input, context) => {
+      return {
+        ...input.KmsKeyArn != null && { KmsKeyArn: input.KmsKeyArn }
+      };
     };
     var serializeAws_restJson1SipHeadersMap = (input, context) => {
       return Object.entries(input).reduce((acc, [key, value]) => {
@@ -22765,6 +23968,9 @@ var require_Aws_restJson13 = __commonJS({
       return {
         ...input.DataRetentionInHours != null && { DataRetentionInHours: input.DataRetentionInHours },
         ...input.Disabled != null && { Disabled: input.Disabled },
+        ...input.MediaInsightsConfiguration != null && {
+          MediaInsightsConfiguration: serializeAws_restJson1MediaInsightsConfiguration(input.MediaInsightsConfiguration, context)
+        },
         ...input.StreamingNotificationTargets != null && {
           StreamingNotificationTargets: serializeAws_restJson1StreamingNotificationTargetList(input.StreamingNotificationTargets, context)
         }
@@ -22783,6 +23989,22 @@ var require_Aws_restJson13 = __commonJS({
     var serializeAws_restJson1StringList = (input, context) => {
       return input.filter((e) => e != null).map((entry) => {
         return entry;
+      });
+    };
+    var serializeAws_restJson1Tag = (input, context) => {
+      return {
+        ...input.Key != null && { Key: input.Key },
+        ...input.Value != null && { Value: input.Value }
+      };
+    };
+    var serializeAws_restJson1TagKeyList = (input, context) => {
+      return input.filter((e) => e != null).map((entry) => {
+        return entry;
+      });
+    };
+    var serializeAws_restJson1TagList = (input, context) => {
+      return input.filter((e) => e != null).map((entry) => {
+        return serializeAws_restJson1Tag(entry, context);
       });
     };
     var serializeAws_restJson1Termination = (input, context) => {
@@ -22848,6 +24070,13 @@ var require_Aws_restJson13 = __commonJS({
         return (0, smithy_client_1.expectString)(entry);
       });
       return retVal;
+    };
+    var deserializeAws_restJson1CallDetails = (output, context) => {
+      return {
+        IsCaller: (0, smithy_client_1.expectBoolean)(output.IsCaller),
+        TransactionId: (0, smithy_client_1.expectString)(output.TransactionId),
+        VoiceConnectorId: (0, smithy_client_1.expectString)(output.VoiceConnectorId)
+      };
     };
     var deserializeAws_restJson1CallingRegionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
@@ -22927,6 +24156,12 @@ var require_Aws_restJson13 = __commonJS({
       return {
         EnableMediaMetricLogs: (0, smithy_client_1.expectBoolean)(output.EnableMediaMetricLogs),
         EnableSIPLogs: (0, smithy_client_1.expectBoolean)(output.EnableSIPLogs)
+      };
+    };
+    var deserializeAws_restJson1MediaInsightsConfiguration = (output, context) => {
+      return {
+        ConfigurationArn: (0, smithy_client_1.expectString)(output.ConfigurationArn),
+        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled)
       };
     };
     var deserializeAws_restJson1OrderedPhoneNumber = (output, context) => {
@@ -23139,6 +24374,11 @@ var require_Aws_restJson13 = __commonJS({
       });
       return retVal;
     };
+    var deserializeAws_restJson1ServerSideEncryptionConfiguration = (output, context) => {
+      return {
+        KmsKeyArn: (0, smithy_client_1.expectString)(output.KmsKeyArn)
+      };
+    };
     var deserializeAws_restJson1SipMediaApplication = (output, context) => {
       return {
         AwsRegion: (0, smithy_client_1.expectString)(output.AwsRegion),
@@ -23225,10 +24465,44 @@ var require_Aws_restJson13 = __commonJS({
       });
       return retVal;
     };
+    var deserializeAws_restJson1SpeakerSearchDetails = (output, context) => {
+      return {
+        Results: output.Results != null ? deserializeAws_restJson1SpeakerSearchResultList(output.Results, context) : void 0,
+        VoiceprintGenerationStatus: (0, smithy_client_1.expectString)(output.VoiceprintGenerationStatus)
+      };
+    };
+    var deserializeAws_restJson1SpeakerSearchResult = (output, context) => {
+      return {
+        ConfidenceScore: (0, smithy_client_1.limitedParseFloat32)(output.ConfidenceScore),
+        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
+      };
+    };
+    var deserializeAws_restJson1SpeakerSearchResultList = (output, context) => {
+      const retVal = (output || []).filter((e) => e != null).map((entry) => {
+        if (entry === null) {
+          return null;
+        }
+        return deserializeAws_restJson1SpeakerSearchResult(entry, context);
+      });
+      return retVal;
+    };
+    var deserializeAws_restJson1SpeakerSearchTask = (output, context) => {
+      return {
+        CallDetails: output.CallDetails != null ? deserializeAws_restJson1CallDetails(output.CallDetails, context) : void 0,
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        SpeakerSearchDetails: output.SpeakerSearchDetails != null ? deserializeAws_restJson1SpeakerSearchDetails(output.SpeakerSearchDetails, context) : void 0,
+        SpeakerSearchTaskId: (0, smithy_client_1.expectString)(output.SpeakerSearchTaskId),
+        SpeakerSearchTaskStatus: (0, smithy_client_1.expectString)(output.SpeakerSearchTaskStatus),
+        StartedTimestamp: output.StartedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.StartedTimestamp)) : void 0,
+        StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
+      };
+    };
     var deserializeAws_restJson1StreamingConfiguration = (output, context) => {
       return {
         DataRetentionInHours: (0, smithy_client_1.expectInt32)(output.DataRetentionInHours),
         Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled),
+        MediaInsightsConfiguration: output.MediaInsightsConfiguration != null ? deserializeAws_restJson1MediaInsightsConfiguration(output.MediaInsightsConfiguration, context) : void 0,
         StreamingNotificationTargets: output.StreamingNotificationTargets != null ? deserializeAws_restJson1StreamingNotificationTargetList(output.StreamingNotificationTargets, context) : void 0
       };
     };
@@ -23252,6 +24526,21 @@ var require_Aws_restJson13 = __commonJS({
           return null;
         }
         return (0, smithy_client_1.expectString)(entry);
+      });
+      return retVal;
+    };
+    var deserializeAws_restJson1Tag = (output, context) => {
+      return {
+        Key: (0, smithy_client_1.expectString)(output.Key),
+        Value: (0, smithy_client_1.expectString)(output.Value)
+      };
+    };
+    var deserializeAws_restJson1TagList = (output, context) => {
+      const retVal = (output || []).filter((e) => e != null).map((entry) => {
+        if (entry === null) {
+          return null;
+        }
+        return deserializeAws_restJson1Tag(entry, context);
       });
       return retVal;
     };
@@ -23337,6 +24626,76 @@ var require_Aws_restJson13 = __commonJS({
     var deserializeAws_restJson1VoiceConnectorSettings = (output, context) => {
       return {
         CdrBucket: (0, smithy_client_1.expectString)(output.CdrBucket)
+      };
+    };
+    var deserializeAws_restJson1VoiceProfile = (output, context) => {
+      return {
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        ExpirationTimestamp: output.ExpirationTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.ExpirationTimestamp)) : void 0,
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
+        VoiceProfileArn: (0, smithy_client_1.expectString)(output.VoiceProfileArn),
+        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId),
+        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
+      };
+    };
+    var deserializeAws_restJson1VoiceProfileDomain = (output, context) => {
+      return {
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        Description: (0, smithy_client_1.expectString)(output.Description),
+        Name: (0, smithy_client_1.expectString)(output.Name),
+        ServerSideEncryptionConfiguration: output.ServerSideEncryptionConfiguration != null ? deserializeAws_restJson1ServerSideEncryptionConfiguration(output.ServerSideEncryptionConfiguration, context) : void 0,
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
+        VoiceProfileDomainArn: (0, smithy_client_1.expectString)(output.VoiceProfileDomainArn),
+        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId)
+      };
+    };
+    var deserializeAws_restJson1VoiceProfileDomainSummary = (output, context) => {
+      return {
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        Description: (0, smithy_client_1.expectString)(output.Description),
+        Name: (0, smithy_client_1.expectString)(output.Name),
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
+        VoiceProfileDomainArn: (0, smithy_client_1.expectString)(output.VoiceProfileDomainArn),
+        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId)
+      };
+    };
+    var deserializeAws_restJson1VoiceProfileDomainSummaryList = (output, context) => {
+      const retVal = (output || []).filter((e) => e != null).map((entry) => {
+        if (entry === null) {
+          return null;
+        }
+        return deserializeAws_restJson1VoiceProfileDomainSummary(entry, context);
+      });
+      return retVal;
+    };
+    var deserializeAws_restJson1VoiceProfileSummary = (output, context) => {
+      return {
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        ExpirationTimestamp: output.ExpirationTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.ExpirationTimestamp)) : void 0,
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
+        VoiceProfileArn: (0, smithy_client_1.expectString)(output.VoiceProfileArn),
+        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId),
+        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
+      };
+    };
+    var deserializeAws_restJson1VoiceProfileSummaryList = (output, context) => {
+      const retVal = (output || []).filter((e) => e != null).map((entry) => {
+        if (entry === null) {
+          return null;
+        }
+        return deserializeAws_restJson1VoiceProfileSummary(entry, context);
+      });
+      return retVal;
+    };
+    var deserializeAws_restJson1VoiceToneAnalysisTask = (output, context) => {
+      return {
+        CallDetails: output.CallDetails != null ? deserializeAws_restJson1CallDetails(output.CallDetails, context) : void 0,
+        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
+        StartedTimestamp: output.StartedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.StartedTimestamp)) : void 0,
+        StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
+        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
+        VoiceToneAnalysisTaskId: (0, smithy_client_1.expectString)(output.VoiceToneAnalysisTaskId),
+        VoiceToneAnalysisTaskStatus: (0, smithy_client_1.expectString)(output.VoiceToneAnalysisTaskStatus)
       };
     };
     var deserializeMetadata = (output) => ({
@@ -23534,7 +24893,7 @@ var require_BatchDeletePhoneNumberCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.BatchDeletePhoneNumberRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.BatchDeletePhoneNumberResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -23743,7 +25102,7 @@ var require_CreateSipMediaApplicationCallCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.CreateSipMediaApplicationCallRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateSipMediaApplicationCallResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -23820,7 +25179,6 @@ var require_CreateSipRuleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -23846,8 +25204,8 @@ var require_CreateSipRuleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateSipRuleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateSipRuleResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -23872,7 +25230,6 @@ var require_CreateVoiceConnectorCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -23898,8 +25255,8 @@ var require_CreateVoiceConnectorCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateVoiceConnectorRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateVoiceConnectorResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -23924,7 +25281,6 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -23950,8 +25306,8 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateVoiceConnectorGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateVoiceConnectorGroupResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -23964,6 +25320,110 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
       }
     };
     exports.CreateVoiceConnectorGroupCommand = CreateVoiceConnectorGroupCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/CreateVoiceProfileCommand.js
+var require_CreateVoiceProfileCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/CreateVoiceProfileCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.CreateVoiceProfileCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var CreateVoiceProfileCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, CreateVoiceProfileCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "CreateVoiceProfileCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.CreateVoiceProfileResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1CreateVoiceProfileCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1CreateVoiceProfileCommand)(output, context);
+      }
+    };
+    exports.CreateVoiceProfileCommand = CreateVoiceProfileCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/CreateVoiceProfileDomainCommand.js
+var require_CreateVoiceProfileDomainCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/CreateVoiceProfileDomainCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.CreateVoiceProfileDomainCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var CreateVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, CreateVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "CreateVoiceProfileDomainCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: models_0_1.CreateVoiceProfileDomainRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateVoiceProfileDomainResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1CreateVoiceProfileDomainCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1CreateVoiceProfileDomainCommand)(output, context);
+      }
+    };
+    exports.CreateVoiceProfileDomainCommand = CreateVoiceProfileDomainCommand;
   }
 });
 
@@ -24003,7 +25463,7 @@ var require_DeletePhoneNumberCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.DeletePhoneNumberRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24028,7 +25488,6 @@ var require_DeleteProxySessionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteProxySessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24054,8 +25513,8 @@ var require_DeleteProxySessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteProxySessionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24080,7 +25539,6 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipMediaApplicationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24106,8 +25564,8 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteSipMediaApplicationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24132,7 +25590,6 @@ var require_DeleteSipRuleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24158,8 +25615,8 @@ var require_DeleteSipRuleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteSipRuleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24184,7 +25641,6 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24210,8 +25666,8 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24236,7 +25692,6 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24262,8 +25717,8 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24288,7 +25743,6 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24314,8 +25768,8 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24340,7 +25794,6 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24366,8 +25819,8 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorOriginationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24392,7 +25845,6 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24418,8 +25870,8 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorProxyRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24444,7 +25896,6 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorStreamingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24470,8 +25921,8 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24496,7 +25947,6 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorTerminationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24522,8 +25972,8 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorTerminationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24575,7 +26025,7 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24588,6 +26038,108 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
       }
     };
     exports.DeleteVoiceConnectorTerminationCredentialsCommand = DeleteVoiceConnectorTerminationCredentialsCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/DeleteVoiceProfileCommand.js
+var require_DeleteVoiceProfileCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/DeleteVoiceProfileCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.DeleteVoiceProfileCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var DeleteVoiceProfileCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteVoiceProfileCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "DeleteVoiceProfileCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1DeleteVoiceProfileCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1DeleteVoiceProfileCommand)(output, context);
+      }
+    };
+    exports.DeleteVoiceProfileCommand = DeleteVoiceProfileCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/DeleteVoiceProfileDomainCommand.js
+var require_DeleteVoiceProfileDomainCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/DeleteVoiceProfileDomainCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.DeleteVoiceProfileDomainCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var DeleteVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "DeleteVoiceProfileDomainCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1DeleteVoiceProfileDomainCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1DeleteVoiceProfileDomainCommand)(output, context);
+      }
+    };
+    exports.DeleteVoiceProfileDomainCommand = DeleteVoiceProfileDomainCommand;
   }
 });
 
@@ -24704,7 +26256,6 @@ var require_GetGlobalSettingsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetGlobalSettingsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24730,8 +26281,8 @@ var require_GetGlobalSettingsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (input) => input,
-          outputFilterSensitiveLog: models_0_1.GetGlobalSettingsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -24834,7 +26385,7 @@ var require_GetPhoneNumberOrderCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetPhoneNumberOrderRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetPhoneNumberOrderResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -24886,7 +26437,7 @@ var require_GetPhoneNumberSettingsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (input) => input,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetPhoneNumberSettingsResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -24938,7 +26489,7 @@ var require_GetProxySessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetProxySessionRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetProxySessionResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -24990,7 +26541,7 @@ var require_GetSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25042,7 +26593,7 @@ var require_GetSipMediaApplicationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetSipMediaApplicationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetSipMediaApplicationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25068,7 +26619,6 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationLoggingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25094,8 +26644,8 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25120,7 +26670,6 @@ var require_GetSipRuleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25146,8 +26695,8 @@ var require_GetSipRuleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetSipRuleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetSipRuleResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25163,6 +26712,57 @@ var require_GetSipRuleCommand = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetSpeakerSearchTaskCommand.js
+var require_GetSpeakerSearchTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetSpeakerSearchTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.GetSpeakerSearchTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var GetSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetSpeakerSearchTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "GetSpeakerSearchTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1GetSpeakerSearchTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1GetSpeakerSearchTaskCommand)(output, context);
+      }
+    };
+    exports.GetSpeakerSearchTaskCommand = GetSpeakerSearchTaskCommand;
+  }
+});
+
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceConnectorCommand.js
 var require_GetVoiceConnectorCommand = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceConnectorCommand.js"(exports) {
@@ -25172,7 +26772,6 @@ var require_GetVoiceConnectorCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25198,8 +26797,8 @@ var require_GetVoiceConnectorCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetVoiceConnectorResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25250,7 +26849,7 @@ var require_GetVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25276,7 +26875,6 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25302,8 +26900,8 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetVoiceConnectorGroupResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25328,7 +26926,6 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorLoggingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25354,8 +26951,8 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25380,7 +26977,6 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25406,8 +27002,8 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorOriginationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetVoiceConnectorOriginationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25458,7 +27054,7 @@ var require_GetVoiceConnectorProxyCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorProxyRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetVoiceConnectorProxyResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25510,7 +27106,7 @@ var require_GetVoiceConnectorStreamingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25562,7 +27158,7 @@ var require_GetVoiceConnectorTerminationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorTerminationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.GetVoiceConnectorTerminationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25588,7 +27184,6 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorTerminationHealthCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25614,8 +27209,8 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.GetVoiceConnectorTerminationHealthRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.GetVoiceConnectorTerminationHealthResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25631,6 +27226,161 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceProfileCommand.js
+var require_GetVoiceProfileCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceProfileCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.GetVoiceProfileCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var GetVoiceProfileCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetVoiceProfileCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "GetVoiceProfileCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.GetVoiceProfileResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1GetVoiceProfileCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1GetVoiceProfileCommand)(output, context);
+      }
+    };
+    exports.GetVoiceProfileCommand = GetVoiceProfileCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceProfileDomainCommand.js
+var require_GetVoiceProfileDomainCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceProfileDomainCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.GetVoiceProfileDomainCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var GetVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "GetVoiceProfileDomainCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.GetVoiceProfileDomainResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1GetVoiceProfileDomainCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1GetVoiceProfileDomainCommand)(output, context);
+      }
+    };
+    exports.GetVoiceProfileDomainCommand = GetVoiceProfileDomainCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceToneAnalysisTaskCommand.js
+var require_GetVoiceToneAnalysisTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/GetVoiceToneAnalysisTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.GetVoiceToneAnalysisTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var GetVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetVoiceToneAnalysisTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "GetVoiceToneAnalysisTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1GetVoiceToneAnalysisTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1GetVoiceToneAnalysisTaskCommand)(output, context);
+      }
+    };
+    exports.GetVoiceToneAnalysisTaskCommand = GetVoiceToneAnalysisTaskCommand;
+  }
+});
+
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListAvailableVoiceConnectorRegionsCommand.js
 var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListAvailableVoiceConnectorRegionsCommand.js"(exports) {
@@ -25640,7 +27390,6 @@ var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListAvailableVoiceConnectorRegionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25666,8 +27415,8 @@ var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (input) => input,
-          outputFilterSensitiveLog: models_0_1.ListAvailableVoiceConnectorRegionsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25718,7 +27467,7 @@ var require_ListPhoneNumberOrdersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListPhoneNumberOrdersRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.ListPhoneNumberOrdersResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25770,7 +27519,7 @@ var require_ListPhoneNumbersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListPhoneNumbersRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.ListPhoneNumbersResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25822,7 +27571,7 @@ var require_ListProxySessionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListProxySessionsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.ListProxySessionsResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25874,7 +27623,7 @@ var require_ListSipMediaApplicationsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListSipMediaApplicationsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.ListSipMediaApplicationsResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -25900,7 +27649,6 @@ var require_ListSipRulesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSipRulesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25926,8 +27674,8 @@ var require_ListSipRulesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListSipRulesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListSipRulesResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25952,7 +27700,6 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSupportedPhoneNumberCountriesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25978,8 +27725,8 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListSupportedPhoneNumberCountriesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListSupportedPhoneNumberCountriesResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -25995,6 +27742,58 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListTagsForResourceCommand.js
+var require_ListTagsForResourceCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListTagsForResourceCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ListTagsForResourceCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var ListTagsForResourceCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, ListTagsForResourceCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "ListTagsForResourceCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: models_0_1.ListTagsForResourceRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.ListTagsForResourceResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1ListTagsForResourceCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1ListTagsForResourceCommand)(output, context);
+      }
+    };
+    exports.ListTagsForResourceCommand = ListTagsForResourceCommand;
+  }
+});
+
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceConnectorGroupsCommand.js
 var require_ListVoiceConnectorGroupsCommand = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceConnectorGroupsCommand.js"(exports) {
@@ -26004,7 +27803,6 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorGroupsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26030,8 +27828,8 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListVoiceConnectorGroupsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListVoiceConnectorGroupsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26056,7 +27854,6 @@ var require_ListVoiceConnectorsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26082,8 +27879,8 @@ var require_ListVoiceConnectorsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListVoiceConnectorsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListVoiceConnectorsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26134,7 +27931,7 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -26148,6 +27945,110 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
       }
     };
     exports.ListVoiceConnectorTerminationCredentialsCommand = ListVoiceConnectorTerminationCredentialsCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceProfileDomainsCommand.js
+var require_ListVoiceProfileDomainsCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceProfileDomainsCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ListVoiceProfileDomainsCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var ListVoiceProfileDomainsCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, ListVoiceProfileDomainsCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "ListVoiceProfileDomainsCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.ListVoiceProfileDomainsResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1ListVoiceProfileDomainsCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1ListVoiceProfileDomainsCommand)(output, context);
+      }
+    };
+    exports.ListVoiceProfileDomainsCommand = ListVoiceProfileDomainsCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceProfilesCommand.js
+var require_ListVoiceProfilesCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/ListVoiceProfilesCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ListVoiceProfilesCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var ListVoiceProfilesCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, ListVoiceProfilesCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "ListVoiceProfilesCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.ListVoiceProfilesResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1ListVoiceProfilesCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1ListVoiceProfilesCommand)(output, context);
+      }
+    };
+    exports.ListVoiceProfilesCommand = ListVoiceProfilesCommand;
   }
 });
 
@@ -26212,7 +28113,6 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutSipMediaApplicationLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26238,8 +28138,8 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.PutSipMediaApplicationLoggingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.PutSipMediaApplicationLoggingConfigurationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26316,7 +28216,6 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26342,8 +28241,8 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.PutVoiceConnectorLoggingConfigurationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.PutVoiceConnectorLoggingConfigurationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26368,7 +28267,6 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorOriginationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26394,8 +28292,8 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.PutVoiceConnectorOriginationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.PutVoiceConnectorOriginationResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26603,7 +28501,7 @@ var require_PutVoiceConnectorTerminationCredentialsCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26706,7 +28604,7 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.SearchAvailablePhoneNumbersRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.SearchAvailablePhoneNumbersResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -26723,6 +28621,314 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StartSpeakerSearchTaskCommand.js
+var require_StartSpeakerSearchTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StartSpeakerSearchTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StartSpeakerSearchTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var StartSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, StartSpeakerSearchTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "StartSpeakerSearchTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1StartSpeakerSearchTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1StartSpeakerSearchTaskCommand)(output, context);
+      }
+    };
+    exports.StartSpeakerSearchTaskCommand = StartSpeakerSearchTaskCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StartVoiceToneAnalysisTaskCommand.js
+var require_StartVoiceToneAnalysisTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StartVoiceToneAnalysisTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StartVoiceToneAnalysisTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var StartVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, StartVoiceToneAnalysisTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "StartVoiceToneAnalysisTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1StartVoiceToneAnalysisTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1StartVoiceToneAnalysisTaskCommand)(output, context);
+      }
+    };
+    exports.StartVoiceToneAnalysisTaskCommand = StartVoiceToneAnalysisTaskCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StopSpeakerSearchTaskCommand.js
+var require_StopSpeakerSearchTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StopSpeakerSearchTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StopSpeakerSearchTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var StopSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, StopSpeakerSearchTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "StopSpeakerSearchTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1StopSpeakerSearchTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1StopSpeakerSearchTaskCommand)(output, context);
+      }
+    };
+    exports.StopSpeakerSearchTaskCommand = StopSpeakerSearchTaskCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StopVoiceToneAnalysisTaskCommand.js
+var require_StopVoiceToneAnalysisTaskCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/StopVoiceToneAnalysisTaskCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StopVoiceToneAnalysisTaskCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var StopVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, StopVoiceToneAnalysisTaskCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "StopVoiceToneAnalysisTaskCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1StopVoiceToneAnalysisTaskCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1StopVoiceToneAnalysisTaskCommand)(output, context);
+      }
+    };
+    exports.StopVoiceToneAnalysisTaskCommand = StopVoiceToneAnalysisTaskCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/TagResourceCommand.js
+var require_TagResourceCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/TagResourceCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.TagResourceCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var TagResourceCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, TagResourceCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "TagResourceCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: models_0_1.TagResourceRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1TagResourceCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1TagResourceCommand)(output, context);
+      }
+    };
+    exports.TagResourceCommand = TagResourceCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UntagResourceCommand.js
+var require_UntagResourceCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UntagResourceCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.UntagResourceCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var UntagResourceCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UntagResourceCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "UntagResourceCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: models_0_1.UntagResourceRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: (_) => _
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1UntagResourceCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1UntagResourceCommand)(output, context);
+      }
+    };
+    exports.UntagResourceCommand = UntagResourceCommand;
+  }
+});
+
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateGlobalSettingsCommand.js
 var require_UpdateGlobalSettingsCommand = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateGlobalSettingsCommand.js"(exports) {
@@ -26732,7 +28938,6 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateGlobalSettingsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26758,8 +28963,8 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateGlobalSettingsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26863,7 +29068,7 @@ var require_UpdatePhoneNumberSettingsCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.UpdatePhoneNumberSettingsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (output) => output
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -26914,7 +29119,7 @@ var require_UpdateProxySessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateProxySessionRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.UpdateProxySessionResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -26967,7 +29172,7 @@ var require_UpdateSipMediaApplicationCallCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.UpdateSipMediaApplicationCallRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.UpdateSipMediaApplicationCallResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -27044,7 +29249,6 @@ var require_UpdateSipRuleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipRuleCommand3 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27070,8 +29274,8 @@ var require_UpdateSipRuleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateSipRuleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.UpdateSipRuleResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -27096,7 +29300,6 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27122,8 +29325,8 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateVoiceConnectorRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.UpdateVoiceConnectorResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -27148,7 +29351,6 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27174,8 +29376,8 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateVoiceConnectorGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.UpdateVoiceConnectorGroupResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -27188,6 +29390,110 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
       }
     };
     exports.UpdateVoiceConnectorGroupCommand = UpdateVoiceConnectorGroupCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateVoiceProfileCommand.js
+var require_UpdateVoiceProfileCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateVoiceProfileCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.UpdateVoiceProfileCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var UpdateVoiceProfileCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateVoiceProfileCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "UpdateVoiceProfileCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.UpdateVoiceProfileResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1UpdateVoiceProfileCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1UpdateVoiceProfileCommand)(output, context);
+      }
+    };
+    exports.UpdateVoiceProfileCommand = UpdateVoiceProfileCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateVoiceProfileDomainCommand.js
+var require_UpdateVoiceProfileDomainCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/commands/UpdateVoiceProfileDomainCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.UpdateVoiceProfileDomainCommand = void 0;
+    var middleware_endpoint_1 = require_dist_cjs9();
+    var middleware_serde_1 = require_dist_cjs8();
+    var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
+    var Aws_restJson1_1 = require_Aws_restJson13();
+    var UpdateVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKVoiceClient";
+        const commandName = "UpdateVoiceProfileDomainCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.UpdateVoiceProfileDomainResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.serializeAws_restJson1UpdateVoiceProfileDomainCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.deserializeAws_restJson1UpdateVoiceProfileDomainCommand)(output, context);
+      }
+    };
+    exports.UpdateVoiceProfileDomainCommand = UpdateVoiceProfileDomainCommand;
   }
 });
 
@@ -27261,6 +29567,8 @@ var require_ChimeSDKVoice = __commonJS({
     var CreateSipRuleCommand_1 = require_CreateSipRuleCommand();
     var CreateVoiceConnectorCommand_1 = require_CreateVoiceConnectorCommand();
     var CreateVoiceConnectorGroupCommand_1 = require_CreateVoiceConnectorGroupCommand();
+    var CreateVoiceProfileCommand_1 = require_CreateVoiceProfileCommand();
+    var CreateVoiceProfileDomainCommand_1 = require_CreateVoiceProfileDomainCommand();
     var DeletePhoneNumberCommand_1 = require_DeletePhoneNumberCommand();
     var DeleteProxySessionCommand_1 = require_DeleteProxySessionCommand();
     var DeleteSipMediaApplicationCommand_1 = require_DeleteSipMediaApplicationCommand();
@@ -27273,6 +29581,8 @@ var require_ChimeSDKVoice = __commonJS({
     var DeleteVoiceConnectorStreamingConfigurationCommand_1 = require_DeleteVoiceConnectorStreamingConfigurationCommand();
     var DeleteVoiceConnectorTerminationCommand_1 = require_DeleteVoiceConnectorTerminationCommand();
     var DeleteVoiceConnectorTerminationCredentialsCommand_1 = require_DeleteVoiceConnectorTerminationCredentialsCommand();
+    var DeleteVoiceProfileCommand_1 = require_DeleteVoiceProfileCommand();
+    var DeleteVoiceProfileDomainCommand_1 = require_DeleteVoiceProfileDomainCommand();
     var DisassociatePhoneNumbersFromVoiceConnectorCommand_1 = require_DisassociatePhoneNumbersFromVoiceConnectorCommand();
     var DisassociatePhoneNumbersFromVoiceConnectorGroupCommand_1 = require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand();
     var GetGlobalSettingsCommand_1 = require_GetGlobalSettingsCommand();
@@ -27284,6 +29594,7 @@ var require_ChimeSDKVoice = __commonJS({
     var GetSipMediaApplicationCommand_1 = require_GetSipMediaApplicationCommand();
     var GetSipMediaApplicationLoggingConfigurationCommand_1 = require_GetSipMediaApplicationLoggingConfigurationCommand();
     var GetSipRuleCommand_1 = require_GetSipRuleCommand();
+    var GetSpeakerSearchTaskCommand_1 = require_GetSpeakerSearchTaskCommand();
     var GetVoiceConnectorCommand_1 = require_GetVoiceConnectorCommand();
     var GetVoiceConnectorEmergencyCallingConfigurationCommand_1 = require_GetVoiceConnectorEmergencyCallingConfigurationCommand();
     var GetVoiceConnectorGroupCommand_1 = require_GetVoiceConnectorGroupCommand();
@@ -27293,6 +29604,9 @@ var require_ChimeSDKVoice = __commonJS({
     var GetVoiceConnectorStreamingConfigurationCommand_1 = require_GetVoiceConnectorStreamingConfigurationCommand();
     var GetVoiceConnectorTerminationCommand_1 = require_GetVoiceConnectorTerminationCommand();
     var GetVoiceConnectorTerminationHealthCommand_1 = require_GetVoiceConnectorTerminationHealthCommand();
+    var GetVoiceProfileCommand_1 = require_GetVoiceProfileCommand();
+    var GetVoiceProfileDomainCommand_1 = require_GetVoiceProfileDomainCommand();
+    var GetVoiceToneAnalysisTaskCommand_1 = require_GetVoiceToneAnalysisTaskCommand();
     var ListAvailableVoiceConnectorRegionsCommand_1 = require_ListAvailableVoiceConnectorRegionsCommand();
     var ListPhoneNumberOrdersCommand_1 = require_ListPhoneNumberOrdersCommand();
     var ListPhoneNumbersCommand_1 = require_ListPhoneNumbersCommand();
@@ -27300,9 +29614,12 @@ var require_ChimeSDKVoice = __commonJS({
     var ListSipMediaApplicationsCommand_1 = require_ListSipMediaApplicationsCommand();
     var ListSipRulesCommand_1 = require_ListSipRulesCommand();
     var ListSupportedPhoneNumberCountriesCommand_1 = require_ListSupportedPhoneNumberCountriesCommand();
+    var ListTagsForResourceCommand_1 = require_ListTagsForResourceCommand();
     var ListVoiceConnectorGroupsCommand_1 = require_ListVoiceConnectorGroupsCommand();
     var ListVoiceConnectorsCommand_1 = require_ListVoiceConnectorsCommand();
     var ListVoiceConnectorTerminationCredentialsCommand_1 = require_ListVoiceConnectorTerminationCredentialsCommand();
+    var ListVoiceProfileDomainsCommand_1 = require_ListVoiceProfileDomainsCommand();
+    var ListVoiceProfilesCommand_1 = require_ListVoiceProfilesCommand();
     var PutSipMediaApplicationAlexaSkillConfigurationCommand_1 = require_PutSipMediaApplicationAlexaSkillConfigurationCommand();
     var PutSipMediaApplicationLoggingConfigurationCommand_1 = require_PutSipMediaApplicationLoggingConfigurationCommand();
     var PutVoiceConnectorEmergencyCallingConfigurationCommand_1 = require_PutVoiceConnectorEmergencyCallingConfigurationCommand();
@@ -27314,6 +29631,12 @@ var require_ChimeSDKVoice = __commonJS({
     var PutVoiceConnectorTerminationCredentialsCommand_1 = require_PutVoiceConnectorTerminationCredentialsCommand();
     var RestorePhoneNumberCommand_1 = require_RestorePhoneNumberCommand();
     var SearchAvailablePhoneNumbersCommand_1 = require_SearchAvailablePhoneNumbersCommand();
+    var StartSpeakerSearchTaskCommand_1 = require_StartSpeakerSearchTaskCommand();
+    var StartVoiceToneAnalysisTaskCommand_1 = require_StartVoiceToneAnalysisTaskCommand();
+    var StopSpeakerSearchTaskCommand_1 = require_StopSpeakerSearchTaskCommand();
+    var StopVoiceToneAnalysisTaskCommand_1 = require_StopVoiceToneAnalysisTaskCommand();
+    var TagResourceCommand_1 = require_TagResourceCommand();
+    var UntagResourceCommand_1 = require_UntagResourceCommand();
     var UpdateGlobalSettingsCommand_1 = require_UpdateGlobalSettingsCommand();
     var UpdatePhoneNumberCommand_1 = require_UpdatePhoneNumberCommand();
     var UpdatePhoneNumberSettingsCommand_1 = require_UpdatePhoneNumberSettingsCommand();
@@ -27323,6 +29646,8 @@ var require_ChimeSDKVoice = __commonJS({
     var UpdateSipRuleCommand_1 = require_UpdateSipRuleCommand();
     var UpdateVoiceConnectorCommand_1 = require_UpdateVoiceConnectorCommand();
     var UpdateVoiceConnectorGroupCommand_1 = require_UpdateVoiceConnectorGroupCommand();
+    var UpdateVoiceProfileCommand_1 = require_UpdateVoiceProfileCommand();
+    var UpdateVoiceProfileDomainCommand_1 = require_UpdateVoiceProfileDomainCommand();
     var ValidateE911AddressCommand_1 = require_ValidateE911AddressCommand();
     var ChimeSDKVoice = class extends ChimeSDKVoiceClient_1.ChimeSDKVoiceClient {
       associatePhoneNumbersWithVoiceConnector(args, optionsOrCb, cb) {
@@ -27447,6 +29772,30 @@ var require_ChimeSDKVoice = __commonJS({
       }
       createVoiceConnectorGroup(args, optionsOrCb, cb) {
         const command = new CreateVoiceConnectorGroupCommand_1.CreateVoiceConnectorGroupCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      createVoiceProfile(args, optionsOrCb, cb) {
+        const command = new CreateVoiceProfileCommand_1.CreateVoiceProfileCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      createVoiceProfileDomain(args, optionsOrCb, cb) {
+        const command = new CreateVoiceProfileDomainCommand_1.CreateVoiceProfileDomainCommand(args);
         if (typeof optionsOrCb === "function") {
           this.send(command, optionsOrCb);
         } else if (typeof cb === "function") {
@@ -27601,6 +29950,30 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      deleteVoiceProfile(args, optionsOrCb, cb) {
+        const command = new DeleteVoiceProfileCommand_1.DeleteVoiceProfileCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      deleteVoiceProfileDomain(args, optionsOrCb, cb) {
+        const command = new DeleteVoiceProfileDomainCommand_1.DeleteVoiceProfileDomainCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       disassociatePhoneNumbersFromVoiceConnector(args, optionsOrCb, cb) {
         const command = new DisassociatePhoneNumbersFromVoiceConnectorCommand_1.DisassociatePhoneNumbersFromVoiceConnectorCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -27733,6 +30106,18 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      getSpeakerSearchTask(args, optionsOrCb, cb) {
+        const command = new GetSpeakerSearchTaskCommand_1.GetSpeakerSearchTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       getVoiceConnector(args, optionsOrCb, cb) {
         const command = new GetVoiceConnectorCommand_1.GetVoiceConnectorCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -27841,6 +30226,42 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      getVoiceProfile(args, optionsOrCb, cb) {
+        const command = new GetVoiceProfileCommand_1.GetVoiceProfileCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      getVoiceProfileDomain(args, optionsOrCb, cb) {
+        const command = new GetVoiceProfileDomainCommand_1.GetVoiceProfileDomainCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      getVoiceToneAnalysisTask(args, optionsOrCb, cb) {
+        const command = new GetVoiceToneAnalysisTaskCommand_1.GetVoiceToneAnalysisTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       listAvailableVoiceConnectorRegions(args, optionsOrCb, cb) {
         const command = new ListAvailableVoiceConnectorRegionsCommand_1.ListAvailableVoiceConnectorRegionsCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -27925,6 +30346,18 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      listTagsForResource(args, optionsOrCb, cb) {
+        const command = new ListTagsForResourceCommand_1.ListTagsForResourceCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       listVoiceConnectorGroups(args, optionsOrCb, cb) {
         const command = new ListVoiceConnectorGroupsCommand_1.ListVoiceConnectorGroupsCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -27951,6 +30384,30 @@ var require_ChimeSDKVoice = __commonJS({
       }
       listVoiceConnectorTerminationCredentials(args, optionsOrCb, cb) {
         const command = new ListVoiceConnectorTerminationCredentialsCommand_1.ListVoiceConnectorTerminationCredentialsCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      listVoiceProfileDomains(args, optionsOrCb, cb) {
+        const command = new ListVoiceProfileDomainsCommand_1.ListVoiceProfileDomainsCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      listVoiceProfiles(args, optionsOrCb, cb) {
+        const command = new ListVoiceProfilesCommand_1.ListVoiceProfilesCommand(args);
         if (typeof optionsOrCb === "function") {
           this.send(command, optionsOrCb);
         } else if (typeof cb === "function") {
@@ -28093,6 +30550,78 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      startSpeakerSearchTask(args, optionsOrCb, cb) {
+        const command = new StartSpeakerSearchTaskCommand_1.StartSpeakerSearchTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      startVoiceToneAnalysisTask(args, optionsOrCb, cb) {
+        const command = new StartVoiceToneAnalysisTaskCommand_1.StartVoiceToneAnalysisTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      stopSpeakerSearchTask(args, optionsOrCb, cb) {
+        const command = new StopSpeakerSearchTaskCommand_1.StopSpeakerSearchTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      stopVoiceToneAnalysisTask(args, optionsOrCb, cb) {
+        const command = new StopVoiceToneAnalysisTaskCommand_1.StopVoiceToneAnalysisTaskCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      tagResource(args, optionsOrCb, cb) {
+        const command = new TagResourceCommand_1.TagResourceCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      untagResource(args, optionsOrCb, cb) {
+        const command = new UntagResourceCommand_1.UntagResourceCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       updateGlobalSettings(args, optionsOrCb, cb) {
         const command = new UpdateGlobalSettingsCommand_1.UpdateGlobalSettingsCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -28201,6 +30730,30 @@ var require_ChimeSDKVoice = __commonJS({
           return this.send(command, optionsOrCb);
         }
       }
+      updateVoiceProfile(args, optionsOrCb, cb) {
+        const command = new UpdateVoiceProfileCommand_1.UpdateVoiceProfileCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
+      updateVoiceProfileDomain(args, optionsOrCb, cb) {
+        const command = new UpdateVoiceProfileDomainCommand_1.UpdateVoiceProfileDomainCommand(args);
+        if (typeof optionsOrCb === "function") {
+          this.send(command, optionsOrCb);
+        } else if (typeof cb === "function") {
+          if (typeof optionsOrCb !== "object")
+            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
+          this.send(command, optionsOrCb || {}, cb);
+        } else {
+          return this.send(command, optionsOrCb);
+        }
+      }
       validateE911Address(args, optionsOrCb, cb) {
         const command = new ValidateE911AddressCommand_1.ValidateE911AddressCommand(args);
         if (typeof optionsOrCb === "function") {
@@ -28235,6 +30788,8 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_CreateSipRuleCommand(), exports);
     tslib_1.__exportStar(require_CreateVoiceConnectorCommand(), exports);
     tslib_1.__exportStar(require_CreateVoiceConnectorGroupCommand(), exports);
+    tslib_1.__exportStar(require_CreateVoiceProfileCommand(), exports);
+    tslib_1.__exportStar(require_CreateVoiceProfileDomainCommand(), exports);
     tslib_1.__exportStar(require_DeletePhoneNumberCommand(), exports);
     tslib_1.__exportStar(require_DeleteProxySessionCommand(), exports);
     tslib_1.__exportStar(require_DeleteSipMediaApplicationCommand(), exports);
@@ -28247,6 +30802,8 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_DeleteVoiceConnectorStreamingConfigurationCommand(), exports);
     tslib_1.__exportStar(require_DeleteVoiceConnectorTerminationCommand(), exports);
     tslib_1.__exportStar(require_DeleteVoiceConnectorTerminationCredentialsCommand(), exports);
+    tslib_1.__exportStar(require_DeleteVoiceProfileCommand(), exports);
+    tslib_1.__exportStar(require_DeleteVoiceProfileDomainCommand(), exports);
     tslib_1.__exportStar(require_DisassociatePhoneNumbersFromVoiceConnectorCommand(), exports);
     tslib_1.__exportStar(require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand(), exports);
     tslib_1.__exportStar(require_GetGlobalSettingsCommand(), exports);
@@ -28258,6 +30815,7 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_GetSipMediaApplicationCommand(), exports);
     tslib_1.__exportStar(require_GetSipMediaApplicationLoggingConfigurationCommand(), exports);
     tslib_1.__exportStar(require_GetSipRuleCommand(), exports);
+    tslib_1.__exportStar(require_GetSpeakerSearchTaskCommand(), exports);
     tslib_1.__exportStar(require_GetVoiceConnectorCommand(), exports);
     tslib_1.__exportStar(require_GetVoiceConnectorEmergencyCallingConfigurationCommand(), exports);
     tslib_1.__exportStar(require_GetVoiceConnectorGroupCommand(), exports);
@@ -28267,6 +30825,9 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_GetVoiceConnectorStreamingConfigurationCommand(), exports);
     tslib_1.__exportStar(require_GetVoiceConnectorTerminationCommand(), exports);
     tslib_1.__exportStar(require_GetVoiceConnectorTerminationHealthCommand(), exports);
+    tslib_1.__exportStar(require_GetVoiceProfileCommand(), exports);
+    tslib_1.__exportStar(require_GetVoiceProfileDomainCommand(), exports);
+    tslib_1.__exportStar(require_GetVoiceToneAnalysisTaskCommand(), exports);
     tslib_1.__exportStar(require_ListAvailableVoiceConnectorRegionsCommand(), exports);
     tslib_1.__exportStar(require_ListPhoneNumberOrdersCommand(), exports);
     tslib_1.__exportStar(require_ListPhoneNumbersCommand(), exports);
@@ -28274,9 +30835,12 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_ListSipMediaApplicationsCommand(), exports);
     tslib_1.__exportStar(require_ListSipRulesCommand(), exports);
     tslib_1.__exportStar(require_ListSupportedPhoneNumberCountriesCommand(), exports);
+    tslib_1.__exportStar(require_ListTagsForResourceCommand(), exports);
     tslib_1.__exportStar(require_ListVoiceConnectorGroupsCommand(), exports);
     tslib_1.__exportStar(require_ListVoiceConnectorTerminationCredentialsCommand(), exports);
     tslib_1.__exportStar(require_ListVoiceConnectorsCommand(), exports);
+    tslib_1.__exportStar(require_ListVoiceProfileDomainsCommand(), exports);
+    tslib_1.__exportStar(require_ListVoiceProfilesCommand(), exports);
     tslib_1.__exportStar(require_PutSipMediaApplicationAlexaSkillConfigurationCommand(), exports);
     tslib_1.__exportStar(require_PutSipMediaApplicationLoggingConfigurationCommand(), exports);
     tslib_1.__exportStar(require_PutVoiceConnectorEmergencyCallingConfigurationCommand(), exports);
@@ -28288,6 +30852,12 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_PutVoiceConnectorTerminationCredentialsCommand(), exports);
     tslib_1.__exportStar(require_RestorePhoneNumberCommand(), exports);
     tslib_1.__exportStar(require_SearchAvailablePhoneNumbersCommand(), exports);
+    tslib_1.__exportStar(require_StartSpeakerSearchTaskCommand(), exports);
+    tslib_1.__exportStar(require_StartVoiceToneAnalysisTaskCommand(), exports);
+    tslib_1.__exportStar(require_StopSpeakerSearchTaskCommand(), exports);
+    tslib_1.__exportStar(require_StopVoiceToneAnalysisTaskCommand(), exports);
+    tslib_1.__exportStar(require_TagResourceCommand(), exports);
+    tslib_1.__exportStar(require_UntagResourceCommand(), exports);
     tslib_1.__exportStar(require_UpdateGlobalSettingsCommand(), exports);
     tslib_1.__exportStar(require_UpdatePhoneNumberCommand(), exports);
     tslib_1.__exportStar(require_UpdatePhoneNumberSettingsCommand(), exports);
@@ -28297,6 +30867,8 @@ var require_commands4 = __commonJS({
     tslib_1.__exportStar(require_UpdateSipRuleCommand(), exports);
     tslib_1.__exportStar(require_UpdateVoiceConnectorCommand(), exports);
     tslib_1.__exportStar(require_UpdateVoiceConnectorGroupCommand(), exports);
+    tslib_1.__exportStar(require_UpdateVoiceProfileCommand(), exports);
+    tslib_1.__exportStar(require_UpdateVoiceProfileDomainCommand(), exports);
     tslib_1.__exportStar(require_ValidateE911AddressCommand(), exports);
   }
 });
@@ -28557,6 +31129,74 @@ var require_ListVoiceConnectorsPaginator = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/ListVoiceProfileDomainsPaginator.js
+var require_ListVoiceProfileDomainsPaginator = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/ListVoiceProfileDomainsPaginator.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.paginateListVoiceProfileDomains = void 0;
+    var ChimeSDKVoiceClient_1 = require_ChimeSDKVoiceClient();
+    var ListVoiceProfileDomainsCommand_1 = require_ListVoiceProfileDomainsCommand();
+    var makePagedClientRequest = async (client, input, ...args) => {
+      return await client.send(new ListVoiceProfileDomainsCommand_1.ListVoiceProfileDomainsCommand(input), ...args);
+    };
+    async function* paginateListVoiceProfileDomains(config, input, ...additionalArguments) {
+      let token = config.startingToken || void 0;
+      let hasNext = true;
+      let page;
+      while (hasNext) {
+        input.NextToken = token;
+        input["MaxResults"] = config.pageSize;
+        if (config.client instanceof ChimeSDKVoiceClient_1.ChimeSDKVoiceClient) {
+          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
+        } else {
+          throw new Error("Invalid client, expected ChimeSDKVoice | ChimeSDKVoiceClient");
+        }
+        yield page;
+        const prevToken = token;
+        token = page.NextToken;
+        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
+      }
+      return void 0;
+    }
+    exports.paginateListVoiceProfileDomains = paginateListVoiceProfileDomains;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/ListVoiceProfilesPaginator.js
+var require_ListVoiceProfilesPaginator = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/ListVoiceProfilesPaginator.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.paginateListVoiceProfiles = void 0;
+    var ChimeSDKVoiceClient_1 = require_ChimeSDKVoiceClient();
+    var ListVoiceProfilesCommand_1 = require_ListVoiceProfilesCommand();
+    var makePagedClientRequest = async (client, input, ...args) => {
+      return await client.send(new ListVoiceProfilesCommand_1.ListVoiceProfilesCommand(input), ...args);
+    };
+    async function* paginateListVoiceProfiles(config, input, ...additionalArguments) {
+      let token = config.startingToken || void 0;
+      let hasNext = true;
+      let page;
+      while (hasNext) {
+        input.NextToken = token;
+        input["MaxResults"] = config.pageSize;
+        if (config.client instanceof ChimeSDKVoiceClient_1.ChimeSDKVoiceClient) {
+          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
+        } else {
+          throw new Error("Invalid client, expected ChimeSDKVoice | ChimeSDKVoiceClient");
+        }
+        yield page;
+        const prevToken = token;
+        token = page.NextToken;
+        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
+      }
+      return void 0;
+    }
+    exports.paginateListVoiceProfiles = paginateListVoiceProfiles;
+  }
+});
+
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/SearchAvailablePhoneNumbersPaginator.js
 var require_SearchAvailablePhoneNumbersPaginator = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/pagination/SearchAvailablePhoneNumbersPaginator.js"(exports) {
@@ -28605,6 +31245,8 @@ var require_pagination3 = __commonJS({
     tslib_1.__exportStar(require_ListSipRulesPaginator(), exports);
     tslib_1.__exportStar(require_ListVoiceConnectorGroupsPaginator(), exports);
     tslib_1.__exportStar(require_ListVoiceConnectorsPaginator(), exports);
+    tslib_1.__exportStar(require_ListVoiceProfileDomainsPaginator(), exports);
+    tslib_1.__exportStar(require_ListVoiceProfilesPaginator(), exports);
     tslib_1.__exportStar(require_SearchAvailablePhoneNumbersPaginator(), exports);
   }
 });
@@ -28652,10 +31294,7 @@ var require_models_05 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OpsMetadataAlreadyExistsException = exports.OpsItemAlreadyExistsException = exports.OpsItemAccessDeniedException = exports.OpsItemDataType = exports.ResourceLimitExceededException = exports.IdempotentParameterMismatch = exports.MaxDocumentSizeExceeded = exports.InvalidDocumentSchemaVersion = exports.InvalidDocumentContent = exports.DocumentLimitExceeded = exports.DocumentAlreadyExists = exports.DocumentStatus = exports.ReviewStatus = exports.PlatformType = exports.DocumentParameterType = exports.DocumentHashType = exports.DocumentType = exports.DocumentFormat = exports.AttachmentsSourceKey = exports.Fault = exports.UnsupportedPlatformType = exports.InvalidTargetMaps = exports.InvalidTarget = exports.InvalidTag = exports.InvalidSchedule = exports.InvalidOutputLocation = exports.InvalidDocumentVersion = exports.InvalidDocument = exports.AssociationStatusName = exports.AssociationSyncCompliance = exports.AssociationComplianceSeverity = exports.AssociationLimitExceeded = exports.AssociationAlreadyExists = exports.InvalidParameters = exports.DoesNotExistException = exports.InvalidInstanceId = exports.InvalidCommandId = exports.DuplicateInstanceId = exports.OpsItemRelatedItemAlreadyExistsException = exports.OpsItemNotFoundException = exports.OpsItemLimitExceededException = exports.OpsItemInvalidParameterException = exports.AlreadyExistsException = exports.ExternalAlarmState = exports.TooManyUpdates = exports.TooManyTagsError = exports.InvalidResourceType = exports.InvalidResourceId = exports.InternalServerError = exports.ResourceTypeForTagging = void 0;
     exports.InstanceInformationFilterKey = exports.UnsupportedOperatingSystem = exports.PatchDeploymentStatus = exports.InvalidPermissionType = exports.DocumentPermissionType = exports.StepExecutionFilterKey = exports.AutomationExecutionNotFoundException = exports.InvalidFilterValue = exports.InvalidFilterKey = exports.ExecutionMode = exports.AutomationType = exports.AutomationSubtype = exports.AutomationExecutionStatus = exports.AutomationExecutionFilterKey = exports.AssociationExecutionTargetsFilterKey = exports.AssociationExecutionDoesNotExist = exports.AssociationFilterOperatorType = exports.AssociationExecutionFilterKey = exports.InvalidAssociationVersion = exports.InvalidNextToken = exports.InvalidFilter = exports.DescribeActivationsFilterKeys = exports.TargetInUseException = exports.ResourcePolicyInvalidParameterException = exports.ResourcePolicyConflictException = exports.ResourceDataSyncNotFoundException = exports.ResourceInUseException = exports.ParameterNotFound = exports.OpsMetadataNotFoundException = exports.InvalidTypeNameException = exports.InvalidOptionException = exports.InvalidInventoryRequestException = exports.InvalidDeleteInventoryParametersException = exports.InventorySchemaDeleteOption = exports.InvalidDocumentOperation = exports.AssociatedInstances = exports.AssociationDoesNotExist = exports.InvalidActivationId = exports.InvalidActivation = exports.ResourceDataSyncInvalidConfigurationException = exports.ResourceDataSyncCountExceededException = exports.ResourceDataSyncAlreadyExistsException = exports.ResourceDataSyncS3Format = exports.PatchAction = exports.OperatingSystem = exports.PatchFilterKey = exports.PatchComplianceLevel = exports.OpsMetadataTooManyUpdatesException = exports.OpsMetadataLimitExceededException = exports.OpsMetadataInvalidArgumentException = void 0;
-    exports.AttachmentInformationFilterSensitiveLog = exports.CreateDocumentRequestFilterSensitiveLog = exports.DocumentRequiresFilterSensitiveLog = exports.AttachmentsSourceFilterSensitiveLog = exports.CreateAssociationBatchResultFilterSensitiveLog = exports.FailedCreateAssociationFilterSensitiveLog = exports.CreateAssociationBatchRequestFilterSensitiveLog = exports.CreateAssociationBatchRequestEntryFilterSensitiveLog = exports.CreateAssociationResultFilterSensitiveLog = exports.AssociationDescriptionFilterSensitiveLog = exports.AssociationStatusFilterSensitiveLog = exports.AssociationOverviewFilterSensitiveLog = exports.CreateAssociationRequestFilterSensitiveLog = exports.TargetFilterSensitiveLog = exports.TargetLocationFilterSensitiveLog = exports.InstanceAssociationOutputLocationFilterSensitiveLog = exports.S3OutputLocationFilterSensitiveLog = exports.CreateActivationResultFilterSensitiveLog = exports.CreateActivationRequestFilterSensitiveLog = exports.RegistrationMetadataItemFilterSensitiveLog = exports.CancelMaintenanceWindowExecutionResultFilterSensitiveLog = exports.CancelMaintenanceWindowExecutionRequestFilterSensitiveLog = exports.CancelCommandResultFilterSensitiveLog = exports.CancelCommandRequestFilterSensitiveLog = exports.AssociateOpsItemRelatedItemResponseFilterSensitiveLog = exports.AssociateOpsItemRelatedItemRequestFilterSensitiveLog = exports.AlarmStateInformationFilterSensitiveLog = exports.AlarmConfigurationFilterSensitiveLog = exports.AlarmFilterSensitiveLog = exports.AddTagsToResourceResultFilterSensitiveLog = exports.AddTagsToResourceRequestFilterSensitiveLog = exports.ActivationFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AccountSharingInfoFilterSensitiveLog = exports.OpsItemFilterOperator = exports.OpsItemFilterKey = exports.MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowResourceType = exports.MaintenanceWindowTaskType = exports.MaintenanceWindowExecutionStatus = exports.InvalidDeletionIdException = exports.InventoryDeletionStatus = exports.InstancePatchStateOperatorType = exports.RebootOption = exports.PatchOperationType = exports.PatchComplianceDataState = exports.InvalidInstanceInformationFilterValue = exports.SourceType = exports.ResourceType = exports.PingStatus = void 0;
-    exports.DeleteResourceDataSyncResultFilterSensitiveLog = exports.DeleteResourceDataSyncRequestFilterSensitiveLog = exports.DeletePatchBaselineResultFilterSensitiveLog = exports.DeletePatchBaselineRequestFilterSensitiveLog = exports.DeleteParametersResultFilterSensitiveLog = exports.DeleteParametersRequestFilterSensitiveLog = exports.DeleteParameterResultFilterSensitiveLog = exports.DeleteParameterRequestFilterSensitiveLog = exports.DeleteOpsMetadataResultFilterSensitiveLog = exports.DeleteOpsMetadataRequestFilterSensitiveLog = exports.DeleteMaintenanceWindowResultFilterSensitiveLog = exports.DeleteMaintenanceWindowRequestFilterSensitiveLog = exports.DeleteInventoryResultFilterSensitiveLog = exports.InventoryDeletionSummaryFilterSensitiveLog = exports.InventoryDeletionSummaryItemFilterSensitiveLog = exports.DeleteInventoryRequestFilterSensitiveLog = exports.DeleteDocumentResultFilterSensitiveLog = exports.DeleteDocumentRequestFilterSensitiveLog = exports.DeleteAssociationResultFilterSensitiveLog = exports.DeleteAssociationRequestFilterSensitiveLog = exports.DeleteActivationResultFilterSensitiveLog = exports.DeleteActivationRequestFilterSensitiveLog = exports.CreateResourceDataSyncResultFilterSensitiveLog = exports.CreateResourceDataSyncRequestFilterSensitiveLog = exports.ResourceDataSyncSourceFilterSensitiveLog = exports.ResourceDataSyncAwsOrganizationsSourceFilterSensitiveLog = exports.ResourceDataSyncOrganizationalUnitFilterSensitiveLog = exports.ResourceDataSyncS3DestinationFilterSensitiveLog = exports.ResourceDataSyncDestinationDataSharingFilterSensitiveLog = exports.CreatePatchBaselineResultFilterSensitiveLog = exports.CreatePatchBaselineRequestFilterSensitiveLog = exports.PatchSourceFilterSensitiveLog = exports.PatchRuleGroupFilterSensitiveLog = exports.PatchRuleFilterSensitiveLog = exports.PatchFilterGroupFilterSensitiveLog = exports.PatchFilterFilterSensitiveLog = exports.CreateOpsMetadataResultFilterSensitiveLog = exports.CreateOpsMetadataRequestFilterSensitiveLog = exports.MetadataValueFilterSensitiveLog = exports.CreateOpsItemResponseFilterSensitiveLog = exports.CreateOpsItemRequestFilterSensitiveLog = exports.RelatedOpsItemFilterSensitiveLog = exports.OpsItemDataValueFilterSensitiveLog = exports.OpsItemNotificationFilterSensitiveLog = exports.CreateMaintenanceWindowResultFilterSensitiveLog = exports.CreateMaintenanceWindowRequestFilterSensitiveLog = exports.CreateDocumentResultFilterSensitiveLog = exports.DocumentDescriptionFilterSensitiveLog = exports.ReviewInformationFilterSensitiveLog = exports.DocumentParameterFilterSensitiveLog = void 0;
-    exports.DescribeEffectivePatchesForPatchBaselineResultFilterSensitiveLog = exports.EffectivePatchFilterSensitiveLog = exports.PatchStatusFilterSensitiveLog = exports.DescribeEffectivePatchesForPatchBaselineRequestFilterSensitiveLog = exports.DescribeEffectiveInstanceAssociationsResultFilterSensitiveLog = exports.InstanceAssociationFilterSensitiveLog = exports.DescribeEffectiveInstanceAssociationsRequestFilterSensitiveLog = exports.DescribeDocumentPermissionResponseFilterSensitiveLog = exports.DescribeDocumentPermissionRequestFilterSensitiveLog = exports.DescribeDocumentResultFilterSensitiveLog = exports.DescribeDocumentRequestFilterSensitiveLog = exports.DescribeAvailablePatchesResultFilterSensitiveLog = exports.PatchFilterSensitiveLog = exports.DescribeAvailablePatchesRequestFilterSensitiveLog = exports.PatchOrchestratorFilterFilterSensitiveLog = exports.DescribeAutomationStepExecutionsResultFilterSensitiveLog = exports.StepExecutionFilterSensitiveLog = exports.FailureDetailsFilterSensitiveLog = exports.DescribeAutomationStepExecutionsRequestFilterSensitiveLog = exports.StepExecutionFilterFilterSensitiveLog = exports.DescribeAutomationExecutionsResultFilterSensitiveLog = exports.AutomationExecutionMetadataFilterSensitiveLog = exports.RunbookFilterSensitiveLog = exports.ResolvedTargetsFilterSensitiveLog = exports.DescribeAutomationExecutionsRequestFilterSensitiveLog = exports.AutomationExecutionFilterFilterSensitiveLog = exports.DescribeAssociationExecutionTargetsResultFilterSensitiveLog = exports.AssociationExecutionTargetFilterSensitiveLog = exports.OutputSourceFilterSensitiveLog = exports.DescribeAssociationExecutionTargetsRequestFilterSensitiveLog = exports.AssociationExecutionTargetsFilterFilterSensitiveLog = exports.DescribeAssociationExecutionsResultFilterSensitiveLog = exports.AssociationExecutionFilterSensitiveLog = exports.DescribeAssociationExecutionsRequestFilterSensitiveLog = exports.AssociationExecutionFilterFilterSensitiveLog = exports.DescribeAssociationResultFilterSensitiveLog = exports.DescribeAssociationRequestFilterSensitiveLog = exports.DescribeActivationsResultFilterSensitiveLog = exports.DescribeActivationsRequestFilterSensitiveLog = exports.DescribeActivationsFilterFilterSensitiveLog = exports.DeregisterTaskFromMaintenanceWindowResultFilterSensitiveLog = exports.DeregisterTaskFromMaintenanceWindowRequestFilterSensitiveLog = exports.DeregisterTargetFromMaintenanceWindowResultFilterSensitiveLog = exports.DeregisterTargetFromMaintenanceWindowRequestFilterSensitiveLog = exports.DeregisterPatchBaselineForPatchGroupResultFilterSensitiveLog = exports.DeregisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = exports.DeregisterManagedInstanceResultFilterSensitiveLog = exports.DeregisterManagedInstanceRequestFilterSensitiveLog = exports.DeleteResourcePolicyResponseFilterSensitiveLog = exports.DeleteResourcePolicyRequestFilterSensitiveLog = void 0;
-    exports.DescribeMaintenanceWindowTasksResultFilterSensitiveLog = exports.MaintenanceWindowTaskFilterSensitiveLog = exports.MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = exports.LoggingInfoFilterSensitiveLog = exports.DescribeMaintenanceWindowTasksRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = exports.MaintenanceWindowTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowsForTargetResultFilterSensitiveLog = exports.MaintenanceWindowIdentityForTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowsForTargetRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowScheduleResultFilterSensitiveLog = exports.ScheduledWindowExecutionFilterSensitiveLog = exports.DescribeMaintenanceWindowScheduleRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = exports.MaintenanceWindowIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowsRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTasksResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTasksRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsRequestFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionsRequestFilterSensitiveLog = exports.MaintenanceWindowFilterFilterSensitiveLog = exports.DescribeInventoryDeletionsResultFilterSensitiveLog = exports.InventoryDeletionStatusItemFilterSensitiveLog = exports.DescribeInventoryDeletionsRequestFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupRequestFilterSensitiveLog = exports.InstancePatchStateFilterFilterSensitiveLog = exports.DescribeInstancePatchStatesResultFilterSensitiveLog = exports.InstancePatchStateFilterSensitiveLog = exports.DescribeInstancePatchStatesRequestFilterSensitiveLog = exports.DescribeInstancePatchesResultFilterSensitiveLog = exports.PatchComplianceDataFilterSensitiveLog = exports.DescribeInstancePatchesRequestFilterSensitiveLog = exports.DescribeInstanceInformationResultFilterSensitiveLog = exports.InstanceInformationFilterSensitiveLog = exports.InstanceAggregatedAssociationOverviewFilterSensitiveLog = exports.DescribeInstanceInformationRequestFilterSensitiveLog = exports.InstanceInformationFilterFilterSensitiveLog = exports.InstanceInformationStringFilterFilterSensitiveLog = exports.DescribeInstanceAssociationsStatusResultFilterSensitiveLog = exports.InstanceAssociationStatusInfoFilterSensitiveLog = exports.InstanceAssociationOutputUrlFilterSensitiveLog = exports.S3OutputUrlFilterSensitiveLog = exports.DescribeInstanceAssociationsStatusRequestFilterSensitiveLog = void 0;
+    exports.DescribeMaintenanceWindowTasksResultFilterSensitiveLog = exports.MaintenanceWindowTaskFilterSensitiveLog = exports.MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = exports.MaintenanceWindowTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = exports.MaintenanceWindowIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = exports.DescribeInstancePatchStatesResultFilterSensitiveLog = exports.InstancePatchStateFilterSensitiveLog = exports.DescribeAssociationResultFilterSensitiveLog = exports.CreatePatchBaselineRequestFilterSensitiveLog = exports.PatchSourceFilterSensitiveLog = exports.CreateMaintenanceWindowRequestFilterSensitiveLog = exports.CreateAssociationBatchResultFilterSensitiveLog = exports.FailedCreateAssociationFilterSensitiveLog = exports.CreateAssociationBatchRequestFilterSensitiveLog = exports.CreateAssociationBatchRequestEntryFilterSensitiveLog = exports.CreateAssociationResultFilterSensitiveLog = exports.AssociationDescriptionFilterSensitiveLog = exports.CreateAssociationRequestFilterSensitiveLog = exports.OpsItemFilterOperator = exports.OpsItemFilterKey = exports.MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowResourceType = exports.MaintenanceWindowTaskType = exports.MaintenanceWindowExecutionStatus = exports.InvalidDeletionIdException = exports.InventoryDeletionStatus = exports.InstancePatchStateOperatorType = exports.RebootOption = exports.PatchOperationType = exports.PatchComplianceDataState = exports.InvalidInstanceInformationFilterValue = exports.SourceType = exports.ResourceType = exports.PingStatus = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var SSMServiceException_1 = require_SSMServiceException();
     var ResourceTypeForTagging;
@@ -29995,103 +32634,11 @@ var require_models_05 = __commonJS({
       OpsItemFilterOperator2["GREATER_THAN"] = "GreaterThan";
       OpsItemFilterOperator2["LESS_THAN"] = "LessThan";
     })(OpsItemFilterOperator = exports.OpsItemFilterOperator || (exports.OpsItemFilterOperator = {}));
-    var AccountSharingInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AccountSharingInfoFilterSensitiveLog = AccountSharingInfoFilterSensitiveLog;
-    var TagFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
-    var ActivationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ActivationFilterSensitiveLog = ActivationFilterSensitiveLog;
-    var AddTagsToResourceRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AddTagsToResourceRequestFilterSensitiveLog = AddTagsToResourceRequestFilterSensitiveLog;
-    var AddTagsToResourceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AddTagsToResourceResultFilterSensitiveLog = AddTagsToResourceResultFilterSensitiveLog;
-    var AlarmFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AlarmFilterSensitiveLog = AlarmFilterSensitiveLog;
-    var AlarmConfigurationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AlarmConfigurationFilterSensitiveLog = AlarmConfigurationFilterSensitiveLog;
-    var AlarmStateInformationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AlarmStateInformationFilterSensitiveLog = AlarmStateInformationFilterSensitiveLog;
-    var AssociateOpsItemRelatedItemRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociateOpsItemRelatedItemRequestFilterSensitiveLog = AssociateOpsItemRelatedItemRequestFilterSensitiveLog;
-    var AssociateOpsItemRelatedItemResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociateOpsItemRelatedItemResponseFilterSensitiveLog = AssociateOpsItemRelatedItemResponseFilterSensitiveLog;
-    var CancelCommandRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CancelCommandRequestFilterSensitiveLog = CancelCommandRequestFilterSensitiveLog;
-    var CancelCommandResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CancelCommandResultFilterSensitiveLog = CancelCommandResultFilterSensitiveLog;
-    var CancelMaintenanceWindowExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CancelMaintenanceWindowExecutionRequestFilterSensitiveLog = CancelMaintenanceWindowExecutionRequestFilterSensitiveLog;
-    var CancelMaintenanceWindowExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CancelMaintenanceWindowExecutionResultFilterSensitiveLog = CancelMaintenanceWindowExecutionResultFilterSensitiveLog;
-    var RegistrationMetadataItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegistrationMetadataItemFilterSensitiveLog = RegistrationMetadataItemFilterSensitiveLog;
-    var CreateActivationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateActivationRequestFilterSensitiveLog = CreateActivationRequestFilterSensitiveLog;
-    var CreateActivationResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateActivationResultFilterSensitiveLog = CreateActivationResultFilterSensitiveLog;
-    var S3OutputLocationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.S3OutputLocationFilterSensitiveLog = S3OutputLocationFilterSensitiveLog;
-    var InstanceAssociationOutputLocationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceAssociationOutputLocationFilterSensitiveLog = InstanceAssociationOutputLocationFilterSensitiveLog;
-    var TargetLocationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TargetLocationFilterSensitiveLog = TargetLocationFilterSensitiveLog;
-    var TargetFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TargetFilterSensitiveLog = TargetFilterSensitiveLog;
     var CreateAssociationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
     });
     exports.CreateAssociationRequestFilterSensitiveLog = CreateAssociationRequestFilterSensitiveLog;
-    var AssociationOverviewFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationOverviewFilterSensitiveLog = AssociationOverviewFilterSensitiveLog;
-    var AssociationStatusFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationStatusFilterSensitiveLog = AssociationStatusFilterSensitiveLog;
     var AssociationDescriptionFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -30127,95 +32674,11 @@ var require_models_05 = __commonJS({
       ...obj.Failed && { Failed: obj.Failed.map((item) => (0, exports.FailedCreateAssociationFilterSensitiveLog)(item)) }
     });
     exports.CreateAssociationBatchResultFilterSensitiveLog = CreateAssociationBatchResultFilterSensitiveLog;
-    var AttachmentsSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AttachmentsSourceFilterSensitiveLog = AttachmentsSourceFilterSensitiveLog;
-    var DocumentRequiresFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentRequiresFilterSensitiveLog = DocumentRequiresFilterSensitiveLog;
-    var CreateDocumentRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateDocumentRequestFilterSensitiveLog = CreateDocumentRequestFilterSensitiveLog;
-    var AttachmentInformationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AttachmentInformationFilterSensitiveLog = AttachmentInformationFilterSensitiveLog;
-    var DocumentParameterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentParameterFilterSensitiveLog = DocumentParameterFilterSensitiveLog;
-    var ReviewInformationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ReviewInformationFilterSensitiveLog = ReviewInformationFilterSensitiveLog;
-    var DocumentDescriptionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentDescriptionFilterSensitiveLog = DocumentDescriptionFilterSensitiveLog;
-    var CreateDocumentResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateDocumentResultFilterSensitiveLog = CreateDocumentResultFilterSensitiveLog;
     var CreateMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.CreateMaintenanceWindowRequestFilterSensitiveLog = CreateMaintenanceWindowRequestFilterSensitiveLog;
-    var CreateMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateMaintenanceWindowResultFilterSensitiveLog = CreateMaintenanceWindowResultFilterSensitiveLog;
-    var OpsItemNotificationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemNotificationFilterSensitiveLog = OpsItemNotificationFilterSensitiveLog;
-    var OpsItemDataValueFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemDataValueFilterSensitiveLog = OpsItemDataValueFilterSensitiveLog;
-    var RelatedOpsItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RelatedOpsItemFilterSensitiveLog = RelatedOpsItemFilterSensitiveLog;
-    var CreateOpsItemRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateOpsItemRequestFilterSensitiveLog = CreateOpsItemRequestFilterSensitiveLog;
-    var CreateOpsItemResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateOpsItemResponseFilterSensitiveLog = CreateOpsItemResponseFilterSensitiveLog;
-    var MetadataValueFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MetadataValueFilterSensitiveLog = MetadataValueFilterSensitiveLog;
-    var CreateOpsMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateOpsMetadataRequestFilterSensitiveLog = CreateOpsMetadataRequestFilterSensitiveLog;
-    var CreateOpsMetadataResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateOpsMetadataResultFilterSensitiveLog = CreateOpsMetadataResultFilterSensitiveLog;
-    var PatchFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchFilterFilterSensitiveLog = PatchFilterFilterSensitiveLog;
-    var PatchFilterGroupFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchFilterGroupFilterSensitiveLog = PatchFilterGroupFilterSensitiveLog;
-    var PatchRuleFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchRuleFilterSensitiveLog = PatchRuleFilterSensitiveLog;
-    var PatchRuleGroupFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchRuleGroupFilterSensitiveLog = PatchRuleGroupFilterSensitiveLog;
     var PatchSourceFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Configuration && { Configuration: smithy_client_1.SENSITIVE_STRING }
@@ -30226,182 +32689,6 @@ var require_models_05 = __commonJS({
       ...obj.Sources && { Sources: obj.Sources.map((item) => (0, exports.PatchSourceFilterSensitiveLog)(item)) }
     });
     exports.CreatePatchBaselineRequestFilterSensitiveLog = CreatePatchBaselineRequestFilterSensitiveLog;
-    var CreatePatchBaselineResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreatePatchBaselineResultFilterSensitiveLog = CreatePatchBaselineResultFilterSensitiveLog;
-    var ResourceDataSyncDestinationDataSharingFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncDestinationDataSharingFilterSensitiveLog = ResourceDataSyncDestinationDataSharingFilterSensitiveLog;
-    var ResourceDataSyncS3DestinationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncS3DestinationFilterSensitiveLog = ResourceDataSyncS3DestinationFilterSensitiveLog;
-    var ResourceDataSyncOrganizationalUnitFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncOrganizationalUnitFilterSensitiveLog = ResourceDataSyncOrganizationalUnitFilterSensitiveLog;
-    var ResourceDataSyncAwsOrganizationsSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncAwsOrganizationsSourceFilterSensitiveLog = ResourceDataSyncAwsOrganizationsSourceFilterSensitiveLog;
-    var ResourceDataSyncSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncSourceFilterSensitiveLog = ResourceDataSyncSourceFilterSensitiveLog;
-    var CreateResourceDataSyncRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateResourceDataSyncRequestFilterSensitiveLog = CreateResourceDataSyncRequestFilterSensitiveLog;
-    var CreateResourceDataSyncResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CreateResourceDataSyncResultFilterSensitiveLog = CreateResourceDataSyncResultFilterSensitiveLog;
-    var DeleteActivationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteActivationRequestFilterSensitiveLog = DeleteActivationRequestFilterSensitiveLog;
-    var DeleteActivationResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteActivationResultFilterSensitiveLog = DeleteActivationResultFilterSensitiveLog;
-    var DeleteAssociationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteAssociationRequestFilterSensitiveLog = DeleteAssociationRequestFilterSensitiveLog;
-    var DeleteAssociationResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteAssociationResultFilterSensitiveLog = DeleteAssociationResultFilterSensitiveLog;
-    var DeleteDocumentRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteDocumentRequestFilterSensitiveLog = DeleteDocumentRequestFilterSensitiveLog;
-    var DeleteDocumentResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteDocumentResultFilterSensitiveLog = DeleteDocumentResultFilterSensitiveLog;
-    var DeleteInventoryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteInventoryRequestFilterSensitiveLog = DeleteInventoryRequestFilterSensitiveLog;
-    var InventoryDeletionSummaryItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryDeletionSummaryItemFilterSensitiveLog = InventoryDeletionSummaryItemFilterSensitiveLog;
-    var InventoryDeletionSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryDeletionSummaryFilterSensitiveLog = InventoryDeletionSummaryFilterSensitiveLog;
-    var DeleteInventoryResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteInventoryResultFilterSensitiveLog = DeleteInventoryResultFilterSensitiveLog;
-    var DeleteMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteMaintenanceWindowRequestFilterSensitiveLog = DeleteMaintenanceWindowRequestFilterSensitiveLog;
-    var DeleteMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteMaintenanceWindowResultFilterSensitiveLog = DeleteMaintenanceWindowResultFilterSensitiveLog;
-    var DeleteOpsMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteOpsMetadataRequestFilterSensitiveLog = DeleteOpsMetadataRequestFilterSensitiveLog;
-    var DeleteOpsMetadataResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteOpsMetadataResultFilterSensitiveLog = DeleteOpsMetadataResultFilterSensitiveLog;
-    var DeleteParameterRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteParameterRequestFilterSensitiveLog = DeleteParameterRequestFilterSensitiveLog;
-    var DeleteParameterResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteParameterResultFilterSensitiveLog = DeleteParameterResultFilterSensitiveLog;
-    var DeleteParametersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteParametersRequestFilterSensitiveLog = DeleteParametersRequestFilterSensitiveLog;
-    var DeleteParametersResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteParametersResultFilterSensitiveLog = DeleteParametersResultFilterSensitiveLog;
-    var DeletePatchBaselineRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeletePatchBaselineRequestFilterSensitiveLog = DeletePatchBaselineRequestFilterSensitiveLog;
-    var DeletePatchBaselineResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeletePatchBaselineResultFilterSensitiveLog = DeletePatchBaselineResultFilterSensitiveLog;
-    var DeleteResourceDataSyncRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteResourceDataSyncRequestFilterSensitiveLog = DeleteResourceDataSyncRequestFilterSensitiveLog;
-    var DeleteResourceDataSyncResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteResourceDataSyncResultFilterSensitiveLog = DeleteResourceDataSyncResultFilterSensitiveLog;
-    var DeleteResourcePolicyRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteResourcePolicyRequestFilterSensitiveLog = DeleteResourcePolicyRequestFilterSensitiveLog;
-    var DeleteResourcePolicyResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeleteResourcePolicyResponseFilterSensitiveLog = DeleteResourcePolicyResponseFilterSensitiveLog;
-    var DeregisterManagedInstanceRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterManagedInstanceRequestFilterSensitiveLog = DeregisterManagedInstanceRequestFilterSensitiveLog;
-    var DeregisterManagedInstanceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterManagedInstanceResultFilterSensitiveLog = DeregisterManagedInstanceResultFilterSensitiveLog;
-    var DeregisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = DeregisterPatchBaselineForPatchGroupRequestFilterSensitiveLog;
-    var DeregisterPatchBaselineForPatchGroupResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterPatchBaselineForPatchGroupResultFilterSensitiveLog = DeregisterPatchBaselineForPatchGroupResultFilterSensitiveLog;
-    var DeregisterTargetFromMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterTargetFromMaintenanceWindowRequestFilterSensitiveLog = DeregisterTargetFromMaintenanceWindowRequestFilterSensitiveLog;
-    var DeregisterTargetFromMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterTargetFromMaintenanceWindowResultFilterSensitiveLog = DeregisterTargetFromMaintenanceWindowResultFilterSensitiveLog;
-    var DeregisterTaskFromMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterTaskFromMaintenanceWindowRequestFilterSensitiveLog = DeregisterTaskFromMaintenanceWindowRequestFilterSensitiveLog;
-    var DeregisterTaskFromMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DeregisterTaskFromMaintenanceWindowResultFilterSensitiveLog = DeregisterTaskFromMaintenanceWindowResultFilterSensitiveLog;
-    var DescribeActivationsFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeActivationsFilterFilterSensitiveLog = DescribeActivationsFilterFilterSensitiveLog;
-    var DescribeActivationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeActivationsRequestFilterSensitiveLog = DescribeActivationsRequestFilterSensitiveLog;
-    var DescribeActivationsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeActivationsResultFilterSensitiveLog = DescribeActivationsResultFilterSensitiveLog;
-    var DescribeAssociationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAssociationRequestFilterSensitiveLog = DescribeAssociationRequestFilterSensitiveLog;
     var DescribeAssociationResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.AssociationDescription && {
@@ -30409,206 +32696,6 @@ var require_models_05 = __commonJS({
       }
     });
     exports.DescribeAssociationResultFilterSensitiveLog = DescribeAssociationResultFilterSensitiveLog;
-    var AssociationExecutionFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationExecutionFilterFilterSensitiveLog = AssociationExecutionFilterFilterSensitiveLog;
-    var DescribeAssociationExecutionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAssociationExecutionsRequestFilterSensitiveLog = DescribeAssociationExecutionsRequestFilterSensitiveLog;
-    var AssociationExecutionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationExecutionFilterSensitiveLog = AssociationExecutionFilterSensitiveLog;
-    var DescribeAssociationExecutionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAssociationExecutionsResultFilterSensitiveLog = DescribeAssociationExecutionsResultFilterSensitiveLog;
-    var AssociationExecutionTargetsFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationExecutionTargetsFilterFilterSensitiveLog = AssociationExecutionTargetsFilterFilterSensitiveLog;
-    var DescribeAssociationExecutionTargetsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAssociationExecutionTargetsRequestFilterSensitiveLog = DescribeAssociationExecutionTargetsRequestFilterSensitiveLog;
-    var OutputSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OutputSourceFilterSensitiveLog = OutputSourceFilterSensitiveLog;
-    var AssociationExecutionTargetFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationExecutionTargetFilterSensitiveLog = AssociationExecutionTargetFilterSensitiveLog;
-    var DescribeAssociationExecutionTargetsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAssociationExecutionTargetsResultFilterSensitiveLog = DescribeAssociationExecutionTargetsResultFilterSensitiveLog;
-    var AutomationExecutionFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AutomationExecutionFilterFilterSensitiveLog = AutomationExecutionFilterFilterSensitiveLog;
-    var DescribeAutomationExecutionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAutomationExecutionsRequestFilterSensitiveLog = DescribeAutomationExecutionsRequestFilterSensitiveLog;
-    var ResolvedTargetsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResolvedTargetsFilterSensitiveLog = ResolvedTargetsFilterSensitiveLog;
-    var RunbookFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RunbookFilterSensitiveLog = RunbookFilterSensitiveLog;
-    var AutomationExecutionMetadataFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AutomationExecutionMetadataFilterSensitiveLog = AutomationExecutionMetadataFilterSensitiveLog;
-    var DescribeAutomationExecutionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAutomationExecutionsResultFilterSensitiveLog = DescribeAutomationExecutionsResultFilterSensitiveLog;
-    var StepExecutionFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StepExecutionFilterFilterSensitiveLog = StepExecutionFilterFilterSensitiveLog;
-    var DescribeAutomationStepExecutionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAutomationStepExecutionsRequestFilterSensitiveLog = DescribeAutomationStepExecutionsRequestFilterSensitiveLog;
-    var FailureDetailsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.FailureDetailsFilterSensitiveLog = FailureDetailsFilterSensitiveLog;
-    var StepExecutionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StepExecutionFilterSensitiveLog = StepExecutionFilterSensitiveLog;
-    var DescribeAutomationStepExecutionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAutomationStepExecutionsResultFilterSensitiveLog = DescribeAutomationStepExecutionsResultFilterSensitiveLog;
-    var PatchOrchestratorFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchOrchestratorFilterFilterSensitiveLog = PatchOrchestratorFilterFilterSensitiveLog;
-    var DescribeAvailablePatchesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAvailablePatchesRequestFilterSensitiveLog = DescribeAvailablePatchesRequestFilterSensitiveLog;
-    var PatchFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchFilterSensitiveLog = PatchFilterSensitiveLog;
-    var DescribeAvailablePatchesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeAvailablePatchesResultFilterSensitiveLog = DescribeAvailablePatchesResultFilterSensitiveLog;
-    var DescribeDocumentRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeDocumentRequestFilterSensitiveLog = DescribeDocumentRequestFilterSensitiveLog;
-    var DescribeDocumentResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeDocumentResultFilterSensitiveLog = DescribeDocumentResultFilterSensitiveLog;
-    var DescribeDocumentPermissionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeDocumentPermissionRequestFilterSensitiveLog = DescribeDocumentPermissionRequestFilterSensitiveLog;
-    var DescribeDocumentPermissionResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeDocumentPermissionResponseFilterSensitiveLog = DescribeDocumentPermissionResponseFilterSensitiveLog;
-    var DescribeEffectiveInstanceAssociationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeEffectiveInstanceAssociationsRequestFilterSensitiveLog = DescribeEffectiveInstanceAssociationsRequestFilterSensitiveLog;
-    var InstanceAssociationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceAssociationFilterSensitiveLog = InstanceAssociationFilterSensitiveLog;
-    var DescribeEffectiveInstanceAssociationsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeEffectiveInstanceAssociationsResultFilterSensitiveLog = DescribeEffectiveInstanceAssociationsResultFilterSensitiveLog;
-    var DescribeEffectivePatchesForPatchBaselineRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeEffectivePatchesForPatchBaselineRequestFilterSensitiveLog = DescribeEffectivePatchesForPatchBaselineRequestFilterSensitiveLog;
-    var PatchStatusFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchStatusFilterSensitiveLog = PatchStatusFilterSensitiveLog;
-    var EffectivePatchFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.EffectivePatchFilterSensitiveLog = EffectivePatchFilterSensitiveLog;
-    var DescribeEffectivePatchesForPatchBaselineResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeEffectivePatchesForPatchBaselineResultFilterSensitiveLog = DescribeEffectivePatchesForPatchBaselineResultFilterSensitiveLog;
-    var DescribeInstanceAssociationsStatusRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstanceAssociationsStatusRequestFilterSensitiveLog = DescribeInstanceAssociationsStatusRequestFilterSensitiveLog;
-    var S3OutputUrlFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.S3OutputUrlFilterSensitiveLog = S3OutputUrlFilterSensitiveLog;
-    var InstanceAssociationOutputUrlFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceAssociationOutputUrlFilterSensitiveLog = InstanceAssociationOutputUrlFilterSensitiveLog;
-    var InstanceAssociationStatusInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceAssociationStatusInfoFilterSensitiveLog = InstanceAssociationStatusInfoFilterSensitiveLog;
-    var DescribeInstanceAssociationsStatusResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstanceAssociationsStatusResultFilterSensitiveLog = DescribeInstanceAssociationsStatusResultFilterSensitiveLog;
-    var InstanceInformationStringFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceInformationStringFilterFilterSensitiveLog = InstanceInformationStringFilterFilterSensitiveLog;
-    var InstanceInformationFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceInformationFilterFilterSensitiveLog = InstanceInformationFilterFilterSensitiveLog;
-    var DescribeInstanceInformationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstanceInformationRequestFilterSensitiveLog = DescribeInstanceInformationRequestFilterSensitiveLog;
-    var InstanceAggregatedAssociationOverviewFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceAggregatedAssociationOverviewFilterSensitiveLog = InstanceAggregatedAssociationOverviewFilterSensitiveLog;
-    var InstanceInformationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstanceInformationFilterSensitiveLog = InstanceInformationFilterSensitiveLog;
-    var DescribeInstanceInformationResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstanceInformationResultFilterSensitiveLog = DescribeInstanceInformationResultFilterSensitiveLog;
-    var DescribeInstancePatchesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstancePatchesRequestFilterSensitiveLog = DescribeInstancePatchesRequestFilterSensitiveLog;
-    var PatchComplianceDataFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchComplianceDataFilterSensitiveLog = PatchComplianceDataFilterSensitiveLog;
-    var DescribeInstancePatchesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstancePatchesResultFilterSensitiveLog = DescribeInstancePatchesResultFilterSensitiveLog;
-    var DescribeInstancePatchStatesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstancePatchStatesRequestFilterSensitiveLog = DescribeInstancePatchStatesRequestFilterSensitiveLog;
     var InstancePatchStateFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.OwnerInformation && { OwnerInformation: smithy_client_1.SENSITIVE_STRING }
@@ -30621,14 +32708,6 @@ var require_models_05 = __commonJS({
       }
     });
     exports.DescribeInstancePatchStatesResultFilterSensitiveLog = DescribeInstancePatchStatesResultFilterSensitiveLog;
-    var InstancePatchStateFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InstancePatchStateFilterFilterSensitiveLog = InstancePatchStateFilterFilterSensitiveLog;
-    var DescribeInstancePatchStatesForPatchGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInstancePatchStatesForPatchGroupRequestFilterSensitiveLog = DescribeInstancePatchStatesForPatchGroupRequestFilterSensitiveLog;
     var DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.InstancePatchStates && {
@@ -30636,38 +32715,6 @@ var require_models_05 = __commonJS({
       }
     });
     exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog;
-    var DescribeInventoryDeletionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInventoryDeletionsRequestFilterSensitiveLog = DescribeInventoryDeletionsRequestFilterSensitiveLog;
-    var InventoryDeletionStatusItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryDeletionStatusItemFilterSensitiveLog = InventoryDeletionStatusItemFilterSensitiveLog;
-    var DescribeInventoryDeletionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeInventoryDeletionsResultFilterSensitiveLog = DescribeInventoryDeletionsResultFilterSensitiveLog;
-    var MaintenanceWindowFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MaintenanceWindowFilterFilterSensitiveLog = MaintenanceWindowFilterFilterSensitiveLog;
-    var DescribeMaintenanceWindowExecutionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowExecutionsRequestFilterSensitiveLog = DescribeMaintenanceWindowExecutionsRequestFilterSensitiveLog;
-    var MaintenanceWindowExecutionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MaintenanceWindowExecutionFilterSensitiveLog = MaintenanceWindowExecutionFilterSensitiveLog;
-    var DescribeMaintenanceWindowExecutionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowExecutionsResultFilterSensitiveLog = DescribeMaintenanceWindowExecutionsResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowExecutionTaskInvocationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowExecutionTaskInvocationsRequestFilterSensitiveLog = DescribeMaintenanceWindowExecutionTaskInvocationsRequestFilterSensitiveLog;
     var MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING },
@@ -30681,22 +32728,6 @@ var require_models_05 = __commonJS({
       }
     });
     exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowExecutionTasksRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowExecutionTasksRequestFilterSensitiveLog = DescribeMaintenanceWindowExecutionTasksRequestFilterSensitiveLog;
-    var MaintenanceWindowExecutionTaskIdentityFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MaintenanceWindowExecutionTaskIdentityFilterSensitiveLog = MaintenanceWindowExecutionTaskIdentityFilterSensitiveLog;
-    var DescribeMaintenanceWindowExecutionTasksResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowExecutionTasksResultFilterSensitiveLog = DescribeMaintenanceWindowExecutionTasksResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowsRequestFilterSensitiveLog = DescribeMaintenanceWindowsRequestFilterSensitiveLog;
     var MaintenanceWindowIdentityFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
@@ -30709,34 +32740,6 @@ var require_models_05 = __commonJS({
       }
     });
     exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = DescribeMaintenanceWindowsResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowScheduleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowScheduleRequestFilterSensitiveLog = DescribeMaintenanceWindowScheduleRequestFilterSensitiveLog;
-    var ScheduledWindowExecutionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ScheduledWindowExecutionFilterSensitiveLog = ScheduledWindowExecutionFilterSensitiveLog;
-    var DescribeMaintenanceWindowScheduleResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowScheduleResultFilterSensitiveLog = DescribeMaintenanceWindowScheduleResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowsForTargetRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowsForTargetRequestFilterSensitiveLog = DescribeMaintenanceWindowsForTargetRequestFilterSensitiveLog;
-    var MaintenanceWindowIdentityForTargetFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MaintenanceWindowIdentityForTargetFilterSensitiveLog = MaintenanceWindowIdentityForTargetFilterSensitiveLog;
-    var DescribeMaintenanceWindowsForTargetResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowsForTargetResultFilterSensitiveLog = DescribeMaintenanceWindowsForTargetResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowTargetsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowTargetsRequestFilterSensitiveLog = DescribeMaintenanceWindowTargetsRequestFilterSensitiveLog;
     var MaintenanceWindowTargetFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.OwnerInformation && { OwnerInformation: smithy_client_1.SENSITIVE_STRING },
@@ -30748,14 +32751,6 @@ var require_models_05 = __commonJS({
       ...obj.Targets && { Targets: obj.Targets.map((item) => (0, exports.MaintenanceWindowTargetFilterSensitiveLog)(item)) }
     });
     exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = DescribeMaintenanceWindowTargetsResultFilterSensitiveLog;
-    var DescribeMaintenanceWindowTasksRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeMaintenanceWindowTasksRequestFilterSensitiveLog = DescribeMaintenanceWindowTasksRequestFilterSensitiveLog;
-    var LoggingInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.LoggingInfoFilterSensitiveLog = LoggingInfoFilterSensitiveLog;
     var MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Values && { Values: smithy_client_1.SENSITIVE_STRING }
@@ -30781,11 +32776,8 @@ var require_models_1 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.InvalidItemContentException = exports.ComplianceTypeCountLimitExceededException = exports.DocumentPermissionLimit = exports.LastResourceDataSyncStatus = exports.OpsItemRelatedItemsFilterOperator = exports.OpsItemRelatedItemsFilterKey = exports.OpsItemEventFilterOperator = exports.OpsItemEventFilterKey = exports.DocumentFilterKey = exports.DocumentReviewCommentType = exports.DocumentMetadataEnum = exports.ComplianceStatus = exports.ComplianceSeverity = exports.ComplianceQueryOperatorType = exports.CommandStatus = exports.CommandPluginStatus = exports.CommandFilterKey = exports.AssociationFilterKey = exports.ParameterVersionLabelLimitExceeded = exports.ServiceSettingNotFound = exports.ParameterVersionNotFound = exports.InvalidKeyId = exports.OpsFilterOperatorType = exports.NotificationType = exports.NotificationEvent = exports.InventoryAttributeDataType = exports.InvalidResultAttributeException = exports.InvalidInventoryGroupException = exports.InvalidAggregatorException = exports.InventoryQueryOperatorType = exports.AttachmentHashType = exports.UnsupportedFeatureRequiredException = exports.ConnectionStatus = exports.InvocationDoesNotExist = exports.InvalidPluginName = exports.CommandInvocationStatus = exports.UnsupportedCalendarException = exports.InvalidDocumentType = exports.CalendarState = exports.OpsItemRelatedItemAssociationNotFoundException = exports.SessionStatus = exports.SessionState = exports.SessionFilterKey = exports.PatchProperty = exports.PatchSet = exports.InvalidFilterOption = exports.ParameterType = exports.ParameterTier = exports.ParametersFilterKey = exports.OpsItemStatus = void 0;
-    exports.DescribePatchBaselinesRequestFilterSensitiveLog = exports.DescribeParametersResultFilterSensitiveLog = exports.ParameterMetadataFilterSensitiveLog = exports.ParameterInlinePolicyFilterSensitiveLog = exports.DescribeParametersRequestFilterSensitiveLog = exports.ParameterStringFilterFilterSensitiveLog = exports.ParametersFilterFilterSensitiveLog = exports.DescribeOpsItemsResponseFilterSensitiveLog = exports.OpsItemSummaryFilterSensitiveLog = exports.DescribeOpsItemsRequestFilterSensitiveLog = exports.OpsItemFilterFilterSensitiveLog = exports.AssociationVersionLimitExceeded = exports.StopType = exports.InvalidAutomationStatusUpdateException = exports.TargetNotConnected = exports.AutomationDefinitionNotApprovedException = exports.InvalidAutomationExecutionParametersException = exports.AutomationExecutionLimitExceededException = exports.AutomationDefinitionVersionNotFoundException = exports.AutomationDefinitionNotFoundException = exports.InvalidAssociation = exports.InvalidRole = exports.InvalidOutputFolder = exports.InvalidNotificationConfig = exports.SignalType = exports.InvalidAutomationSignalException = exports.AutomationStepNotFoundException = exports.FeatureNotAvailableException = exports.ResourcePolicyLimitExceededException = exports.UnsupportedParameterType = exports.PoliciesLimitExceededException = exports.ParameterPatternMismatchException = exports.ParameterMaxVersionLimitExceeded = exports.ParameterLimitExceeded = exports.ParameterAlreadyExists = exports.InvalidPolicyTypeException = exports.InvalidPolicyAttributeException = exports.InvalidAllowedPatternException = exports.IncompatiblePolicyException = exports.HierarchyTypeMismatchException = exports.HierarchyLevelLimitExceededException = exports.UnsupportedInventorySchemaVersionException = exports.UnsupportedInventoryItemContextException = exports.SubTypeCountLimitExceededException = exports.ItemContentMismatchException = exports.InvalidInventoryItemContextException = exports.CustomSchemaCountLimitExceededException = exports.TotalSizeLimitExceededException = exports.ComplianceUploadType = exports.ItemSizeLimitExceededException = void 0;
-    exports.GetMaintenanceWindowExecutionTaskRequestFilterSensitiveLog = exports.GetMaintenanceWindowExecutionResultFilterSensitiveLog = exports.GetMaintenanceWindowExecutionRequestFilterSensitiveLog = exports.GetMaintenanceWindowResultFilterSensitiveLog = exports.GetMaintenanceWindowRequestFilterSensitiveLog = exports.GetInventorySchemaResultFilterSensitiveLog = exports.InventoryItemSchemaFilterSensitiveLog = exports.InventoryItemAttributeFilterSensitiveLog = exports.GetInventorySchemaRequestFilterSensitiveLog = exports.GetInventoryResultFilterSensitiveLog = exports.InventoryResultEntityFilterSensitiveLog = exports.InventoryResultItemFilterSensitiveLog = exports.ResultAttributeFilterSensitiveLog = exports.InventoryGroupFilterSensitiveLog = exports.InventoryFilterFilterSensitiveLog = exports.GetDocumentResultFilterSensitiveLog = exports.AttachmentContentFilterSensitiveLog = exports.GetDocumentRequestFilterSensitiveLog = exports.GetDeployablePatchSnapshotForInstanceResultFilterSensitiveLog = exports.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog = exports.BaselineOverrideFilterSensitiveLog = exports.GetDefaultPatchBaselineResultFilterSensitiveLog = exports.GetDefaultPatchBaselineRequestFilterSensitiveLog = exports.GetConnectionStatusResponseFilterSensitiveLog = exports.GetConnectionStatusRequestFilterSensitiveLog = exports.GetCommandInvocationResultFilterSensitiveLog = exports.CloudWatchOutputConfigFilterSensitiveLog = exports.GetCommandInvocationRequestFilterSensitiveLog = exports.GetCalendarStateResponseFilterSensitiveLog = exports.GetCalendarStateRequestFilterSensitiveLog = exports.GetAutomationExecutionResultFilterSensitiveLog = exports.AutomationExecutionFilterSensitiveLog = exports.ProgressCountersFilterSensitiveLog = exports.GetAutomationExecutionRequestFilterSensitiveLog = exports.DisassociateOpsItemRelatedItemResponseFilterSensitiveLog = exports.DisassociateOpsItemRelatedItemRequestFilterSensitiveLog = exports.DescribeSessionsResponseFilterSensitiveLog = exports.SessionFilterSensitiveLog = exports.SessionManagerOutputUrlFilterSensitiveLog = exports.DescribeSessionsRequestFilterSensitiveLog = exports.SessionFilterFilterSensitiveLog = exports.DescribePatchPropertiesResultFilterSensitiveLog = exports.DescribePatchPropertiesRequestFilterSensitiveLog = exports.DescribePatchGroupStateResultFilterSensitiveLog = exports.DescribePatchGroupStateRequestFilterSensitiveLog = exports.DescribePatchGroupsResultFilterSensitiveLog = exports.PatchGroupPatchBaselineMappingFilterSensitiveLog = exports.DescribePatchGroupsRequestFilterSensitiveLog = exports.DescribePatchBaselinesResultFilterSensitiveLog = exports.PatchBaselineIdentityFilterSensitiveLog = void 0;
-    exports.ListAssociationVersionsResultFilterSensitiveLog = exports.AssociationVersionInfoFilterSensitiveLog = exports.ListAssociationVersionsRequestFilterSensitiveLog = exports.ListAssociationsResultFilterSensitiveLog = exports.AssociationFilterSensitiveLog = exports.ListAssociationsRequestFilterSensitiveLog = exports.AssociationFilterFilterSensitiveLog = exports.LabelParameterVersionResultFilterSensitiveLog = exports.LabelParameterVersionRequestFilterSensitiveLog = exports.GetServiceSettingResultFilterSensitiveLog = exports.ServiceSettingFilterSensitiveLog = exports.GetServiceSettingRequestFilterSensitiveLog = exports.GetResourcePoliciesResponseFilterSensitiveLog = exports.GetResourcePoliciesResponseEntryFilterSensitiveLog = exports.GetResourcePoliciesRequestFilterSensitiveLog = exports.GetPatchBaselineForPatchGroupResultFilterSensitiveLog = exports.GetPatchBaselineForPatchGroupRequestFilterSensitiveLog = exports.GetPatchBaselineResultFilterSensitiveLog = exports.GetPatchBaselineRequestFilterSensitiveLog = exports.GetParametersByPathResultFilterSensitiveLog = exports.GetParametersByPathRequestFilterSensitiveLog = exports.GetParametersResultFilterSensitiveLog = exports.GetParametersRequestFilterSensitiveLog = exports.GetParameterHistoryResultFilterSensitiveLog = exports.ParameterHistoryFilterSensitiveLog = exports.GetParameterHistoryRequestFilterSensitiveLog = exports.GetParameterResultFilterSensitiveLog = exports.ParameterFilterSensitiveLog = exports.GetParameterRequestFilterSensitiveLog = exports.GetOpsSummaryResultFilterSensitiveLog = exports.OpsEntityFilterSensitiveLog = exports.OpsEntityItemFilterSensitiveLog = exports.OpsResultAttributeFilterSensitiveLog = exports.OpsFilterFilterSensitiveLog = exports.GetOpsMetadataResultFilterSensitiveLog = exports.GetOpsMetadataRequestFilterSensitiveLog = exports.GetOpsItemResponseFilterSensitiveLog = exports.OpsItemFilterSensitiveLog = exports.GetOpsItemRequestFilterSensitiveLog = exports.GetMaintenanceWindowTaskResultFilterSensitiveLog = exports.MaintenanceWindowTaskInvocationParametersFilterSensitiveLog = exports.MaintenanceWindowStepFunctionsParametersFilterSensitiveLog = exports.MaintenanceWindowRunCommandParametersFilterSensitiveLog = exports.NotificationConfigFilterSensitiveLog = exports.MaintenanceWindowLambdaParametersFilterSensitiveLog = exports.MaintenanceWindowAutomationParametersFilterSensitiveLog = exports.GetMaintenanceWindowTaskRequestFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskInvocationRequestFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = void 0;
-    exports.ListResourceComplianceSummariesResultFilterSensitiveLog = exports.ResourceComplianceSummaryItemFilterSensitiveLog = exports.ListResourceComplianceSummariesRequestFilterSensitiveLog = exports.ListOpsMetadataResultFilterSensitiveLog = exports.OpsMetadataFilterSensitiveLog = exports.ListOpsMetadataRequestFilterSensitiveLog = exports.OpsMetadataFilterFilterSensitiveLog = exports.ListOpsItemRelatedItemsResponseFilterSensitiveLog = exports.OpsItemRelatedItemSummaryFilterSensitiveLog = exports.ListOpsItemRelatedItemsRequestFilterSensitiveLog = exports.OpsItemRelatedItemsFilterFilterSensitiveLog = exports.ListOpsItemEventsResponseFilterSensitiveLog = exports.OpsItemEventSummaryFilterSensitiveLog = exports.OpsItemIdentityFilterSensitiveLog = exports.ListOpsItemEventsRequestFilterSensitiveLog = exports.OpsItemEventFilterFilterSensitiveLog = exports.ListInventoryEntriesResultFilterSensitiveLog = exports.ListInventoryEntriesRequestFilterSensitiveLog = exports.ListDocumentVersionsResultFilterSensitiveLog = exports.DocumentVersionInfoFilterSensitiveLog = exports.ListDocumentVersionsRequestFilterSensitiveLog = exports.ListDocumentsResultFilterSensitiveLog = exports.DocumentIdentifierFilterSensitiveLog = exports.ListDocumentsRequestFilterSensitiveLog = exports.DocumentKeyValuesFilterFilterSensitiveLog = exports.DocumentFilterFilterSensitiveLog = exports.ListDocumentMetadataHistoryResponseFilterSensitiveLog = exports.DocumentMetadataResponseInfoFilterSensitiveLog = exports.DocumentReviewerResponseSourceFilterSensitiveLog = exports.DocumentReviewCommentSourceFilterSensitiveLog = exports.ListDocumentMetadataHistoryRequestFilterSensitiveLog = exports.ListComplianceSummariesResultFilterSensitiveLog = exports.ComplianceSummaryItemFilterSensitiveLog = exports.NonCompliantSummaryFilterSensitiveLog = exports.CompliantSummaryFilterSensitiveLog = exports.SeveritySummaryFilterSensitiveLog = exports.ListComplianceSummariesRequestFilterSensitiveLog = exports.ListComplianceItemsResultFilterSensitiveLog = exports.ComplianceItemFilterSensitiveLog = exports.ComplianceExecutionSummaryFilterSensitiveLog = exports.ListComplianceItemsRequestFilterSensitiveLog = exports.ComplianceStringFilterFilterSensitiveLog = exports.ListCommandsResultFilterSensitiveLog = exports.CommandFilterSensitiveLog = exports.ListCommandsRequestFilterSensitiveLog = exports.ListCommandInvocationsResultFilterSensitiveLog = exports.CommandInvocationFilterSensitiveLog = exports.CommandPluginFilterSensitiveLog = exports.ListCommandInvocationsRequestFilterSensitiveLog = exports.CommandFilterFilterSensitiveLog = void 0;
-    exports.UnlabelParameterVersionResultFilterSensitiveLog = exports.UnlabelParameterVersionRequestFilterSensitiveLog = exports.TerminateSessionResponseFilterSensitiveLog = exports.TerminateSessionRequestFilterSensitiveLog = exports.StopAutomationExecutionResultFilterSensitiveLog = exports.StopAutomationExecutionRequestFilterSensitiveLog = exports.StartSessionResponseFilterSensitiveLog = exports.StartSessionRequestFilterSensitiveLog = exports.StartChangeRequestExecutionResultFilterSensitiveLog = exports.StartChangeRequestExecutionRequestFilterSensitiveLog = exports.StartAutomationExecutionResultFilterSensitiveLog = exports.StartAutomationExecutionRequestFilterSensitiveLog = exports.StartAssociationsOnceResultFilterSensitiveLog = exports.StartAssociationsOnceRequestFilterSensitiveLog = exports.SendCommandResultFilterSensitiveLog = exports.SendCommandRequestFilterSensitiveLog = exports.SendAutomationSignalResultFilterSensitiveLog = exports.SendAutomationSignalRequestFilterSensitiveLog = exports.ResumeSessionResponseFilterSensitiveLog = exports.ResumeSessionRequestFilterSensitiveLog = exports.ResetServiceSettingResultFilterSensitiveLog = exports.ResetServiceSettingRequestFilterSensitiveLog = exports.RemoveTagsFromResourceResultFilterSensitiveLog = exports.RemoveTagsFromResourceRequestFilterSensitiveLog = exports.RegisterTaskWithMaintenanceWindowResultFilterSensitiveLog = exports.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = exports.RegisterTargetWithMaintenanceWindowResultFilterSensitiveLog = exports.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = exports.RegisterPatchBaselineForPatchGroupResultFilterSensitiveLog = exports.RegisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = exports.RegisterDefaultPatchBaselineResultFilterSensitiveLog = exports.RegisterDefaultPatchBaselineRequestFilterSensitiveLog = exports.PutResourcePolicyResponseFilterSensitiveLog = exports.PutResourcePolicyRequestFilterSensitiveLog = exports.PutParameterResultFilterSensitiveLog = exports.PutParameterRequestFilterSensitiveLog = exports.PutInventoryResultFilterSensitiveLog = exports.PutInventoryRequestFilterSensitiveLog = exports.InventoryItemFilterSensitiveLog = exports.PutComplianceItemsResultFilterSensitiveLog = exports.PutComplianceItemsRequestFilterSensitiveLog = exports.ComplianceItemEntryFilterSensitiveLog = exports.ModifyDocumentPermissionResponseFilterSensitiveLog = exports.ModifyDocumentPermissionRequestFilterSensitiveLog = exports.ListTagsForResourceResultFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListResourceDataSyncResultFilterSensitiveLog = exports.ResourceDataSyncItemFilterSensitiveLog = exports.ResourceDataSyncSourceWithStateFilterSensitiveLog = exports.ListResourceDataSyncRequestFilterSensitiveLog = void 0;
+    exports.ParameterFilterSensitiveLog = exports.GetMaintenanceWindowTaskResultFilterSensitiveLog = exports.MaintenanceWindowTaskInvocationParametersFilterSensitiveLog = exports.MaintenanceWindowStepFunctionsParametersFilterSensitiveLog = exports.MaintenanceWindowRunCommandParametersFilterSensitiveLog = exports.MaintenanceWindowLambdaParametersFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = exports.GetMaintenanceWindowResultFilterSensitiveLog = exports.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog = exports.BaselineOverrideFilterSensitiveLog = exports.AssociationVersionLimitExceeded = exports.StopType = exports.InvalidAutomationStatusUpdateException = exports.TargetNotConnected = exports.AutomationDefinitionNotApprovedException = exports.InvalidAutomationExecutionParametersException = exports.AutomationExecutionLimitExceededException = exports.AutomationDefinitionVersionNotFoundException = exports.AutomationDefinitionNotFoundException = exports.InvalidAssociation = exports.InvalidRole = exports.InvalidOutputFolder = exports.InvalidNotificationConfig = exports.SignalType = exports.InvalidAutomationSignalException = exports.AutomationStepNotFoundException = exports.FeatureNotAvailableException = exports.ResourcePolicyLimitExceededException = exports.UnsupportedParameterType = exports.PoliciesLimitExceededException = exports.ParameterPatternMismatchException = exports.ParameterMaxVersionLimitExceeded = exports.ParameterLimitExceeded = exports.ParameterAlreadyExists = exports.InvalidPolicyTypeException = exports.InvalidPolicyAttributeException = exports.InvalidAllowedPatternException = exports.IncompatiblePolicyException = exports.HierarchyTypeMismatchException = exports.HierarchyLevelLimitExceededException = exports.UnsupportedInventorySchemaVersionException = exports.UnsupportedInventoryItemContextException = exports.SubTypeCountLimitExceededException = exports.ItemContentMismatchException = exports.InvalidInventoryItemContextException = exports.CustomSchemaCountLimitExceededException = exports.TotalSizeLimitExceededException = exports.ComplianceUploadType = exports.ItemSizeLimitExceededException = void 0;
+    exports.SendCommandResultFilterSensitiveLog = exports.SendCommandRequestFilterSensitiveLog = exports.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = exports.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = exports.PutParameterRequestFilterSensitiveLog = exports.ListCommandsResultFilterSensitiveLog = exports.CommandFilterSensitiveLog = exports.ListAssociationVersionsResultFilterSensitiveLog = exports.AssociationVersionInfoFilterSensitiveLog = exports.GetPatchBaselineResultFilterSensitiveLog = exports.GetParametersByPathResultFilterSensitiveLog = exports.GetParametersResultFilterSensitiveLog = exports.GetParameterHistoryResultFilterSensitiveLog = exports.ParameterHistoryFilterSensitiveLog = exports.GetParameterResultFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var models_0_1 = require_models_05();
     var SSMServiceException_1 = require_SSMServiceException();
@@ -31774,166 +33766,6 @@ var require_models_1 = __commonJS({
       }
     };
     exports.AssociationVersionLimitExceeded = AssociationVersionLimitExceeded;
-    var OpsItemFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemFilterFilterSensitiveLog = OpsItemFilterFilterSensitiveLog;
-    var DescribeOpsItemsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeOpsItemsRequestFilterSensitiveLog = DescribeOpsItemsRequestFilterSensitiveLog;
-    var OpsItemSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemSummaryFilterSensitiveLog = OpsItemSummaryFilterSensitiveLog;
-    var DescribeOpsItemsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeOpsItemsResponseFilterSensitiveLog = DescribeOpsItemsResponseFilterSensitiveLog;
-    var ParametersFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ParametersFilterFilterSensitiveLog = ParametersFilterFilterSensitiveLog;
-    var ParameterStringFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ParameterStringFilterFilterSensitiveLog = ParameterStringFilterFilterSensitiveLog;
-    var DescribeParametersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeParametersRequestFilterSensitiveLog = DescribeParametersRequestFilterSensitiveLog;
-    var ParameterInlinePolicyFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ParameterInlinePolicyFilterSensitiveLog = ParameterInlinePolicyFilterSensitiveLog;
-    var ParameterMetadataFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ParameterMetadataFilterSensitiveLog = ParameterMetadataFilterSensitiveLog;
-    var DescribeParametersResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeParametersResultFilterSensitiveLog = DescribeParametersResultFilterSensitiveLog;
-    var DescribePatchBaselinesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchBaselinesRequestFilterSensitiveLog = DescribePatchBaselinesRequestFilterSensitiveLog;
-    var PatchBaselineIdentityFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchBaselineIdentityFilterSensitiveLog = PatchBaselineIdentityFilterSensitiveLog;
-    var DescribePatchBaselinesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchBaselinesResultFilterSensitiveLog = DescribePatchBaselinesResultFilterSensitiveLog;
-    var DescribePatchGroupsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchGroupsRequestFilterSensitiveLog = DescribePatchGroupsRequestFilterSensitiveLog;
-    var PatchGroupPatchBaselineMappingFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PatchGroupPatchBaselineMappingFilterSensitiveLog = PatchGroupPatchBaselineMappingFilterSensitiveLog;
-    var DescribePatchGroupsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchGroupsResultFilterSensitiveLog = DescribePatchGroupsResultFilterSensitiveLog;
-    var DescribePatchGroupStateRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchGroupStateRequestFilterSensitiveLog = DescribePatchGroupStateRequestFilterSensitiveLog;
-    var DescribePatchGroupStateResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchGroupStateResultFilterSensitiveLog = DescribePatchGroupStateResultFilterSensitiveLog;
-    var DescribePatchPropertiesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchPropertiesRequestFilterSensitiveLog = DescribePatchPropertiesRequestFilterSensitiveLog;
-    var DescribePatchPropertiesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribePatchPropertiesResultFilterSensitiveLog = DescribePatchPropertiesResultFilterSensitiveLog;
-    var SessionFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SessionFilterFilterSensitiveLog = SessionFilterFilterSensitiveLog;
-    var DescribeSessionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeSessionsRequestFilterSensitiveLog = DescribeSessionsRequestFilterSensitiveLog;
-    var SessionManagerOutputUrlFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SessionManagerOutputUrlFilterSensitiveLog = SessionManagerOutputUrlFilterSensitiveLog;
-    var SessionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SessionFilterSensitiveLog = SessionFilterSensitiveLog;
-    var DescribeSessionsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DescribeSessionsResponseFilterSensitiveLog = DescribeSessionsResponseFilterSensitiveLog;
-    var DisassociateOpsItemRelatedItemRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DisassociateOpsItemRelatedItemRequestFilterSensitiveLog = DisassociateOpsItemRelatedItemRequestFilterSensitiveLog;
-    var DisassociateOpsItemRelatedItemResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DisassociateOpsItemRelatedItemResponseFilterSensitiveLog = DisassociateOpsItemRelatedItemResponseFilterSensitiveLog;
-    var GetAutomationExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetAutomationExecutionRequestFilterSensitiveLog = GetAutomationExecutionRequestFilterSensitiveLog;
-    var ProgressCountersFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ProgressCountersFilterSensitiveLog = ProgressCountersFilterSensitiveLog;
-    var AutomationExecutionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AutomationExecutionFilterSensitiveLog = AutomationExecutionFilterSensitiveLog;
-    var GetAutomationExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetAutomationExecutionResultFilterSensitiveLog = GetAutomationExecutionResultFilterSensitiveLog;
-    var GetCalendarStateRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCalendarStateRequestFilterSensitiveLog = GetCalendarStateRequestFilterSensitiveLog;
-    var GetCalendarStateResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCalendarStateResponseFilterSensitiveLog = GetCalendarStateResponseFilterSensitiveLog;
-    var GetCommandInvocationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCommandInvocationRequestFilterSensitiveLog = GetCommandInvocationRequestFilterSensitiveLog;
-    var CloudWatchOutputConfigFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CloudWatchOutputConfigFilterSensitiveLog = CloudWatchOutputConfigFilterSensitiveLog;
-    var GetCommandInvocationResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetCommandInvocationResultFilterSensitiveLog = GetCommandInvocationResultFilterSensitiveLog;
-    var GetConnectionStatusRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetConnectionStatusRequestFilterSensitiveLog = GetConnectionStatusRequestFilterSensitiveLog;
-    var GetConnectionStatusResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetConnectionStatusResponseFilterSensitiveLog = GetConnectionStatusResponseFilterSensitiveLog;
-    var GetDefaultPatchBaselineRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetDefaultPatchBaselineRequestFilterSensitiveLog = GetDefaultPatchBaselineRequestFilterSensitiveLog;
-    var GetDefaultPatchBaselineResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetDefaultPatchBaselineResultFilterSensitiveLog = GetDefaultPatchBaselineResultFilterSensitiveLog;
     var BaselineOverrideFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Sources && { Sources: obj.Sources.map((item) => (0, models_0_1.PatchSourceFilterSensitiveLog)(item)) }
@@ -31943,115 +33775,27 @@ var require_models_1 = __commonJS({
       ...obj
     });
     exports.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog = GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog;
-    var GetDeployablePatchSnapshotForInstanceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetDeployablePatchSnapshotForInstanceResultFilterSensitiveLog = GetDeployablePatchSnapshotForInstanceResultFilterSensitiveLog;
-    var GetDocumentRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetDocumentRequestFilterSensitiveLog = GetDocumentRequestFilterSensitiveLog;
-    var AttachmentContentFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AttachmentContentFilterSensitiveLog = AttachmentContentFilterSensitiveLog;
-    var GetDocumentResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetDocumentResultFilterSensitiveLog = GetDocumentResultFilterSensitiveLog;
-    var InventoryFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryFilterFilterSensitiveLog = InventoryFilterFilterSensitiveLog;
-    var InventoryGroupFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryGroupFilterSensitiveLog = InventoryGroupFilterSensitiveLog;
-    var ResultAttributeFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResultAttributeFilterSensitiveLog = ResultAttributeFilterSensitiveLog;
-    var InventoryResultItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryResultItemFilterSensitiveLog = InventoryResultItemFilterSensitiveLog;
-    var InventoryResultEntityFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryResultEntityFilterSensitiveLog = InventoryResultEntityFilterSensitiveLog;
-    var GetInventoryResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetInventoryResultFilterSensitiveLog = GetInventoryResultFilterSensitiveLog;
-    var GetInventorySchemaRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetInventorySchemaRequestFilterSensitiveLog = GetInventorySchemaRequestFilterSensitiveLog;
-    var InventoryItemAttributeFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryItemAttributeFilterSensitiveLog = InventoryItemAttributeFilterSensitiveLog;
-    var InventoryItemSchemaFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryItemSchemaFilterSensitiveLog = InventoryItemSchemaFilterSensitiveLog;
-    var GetInventorySchemaResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetInventorySchemaResultFilterSensitiveLog = GetInventorySchemaResultFilterSensitiveLog;
-    var GetMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowRequestFilterSensitiveLog = GetMaintenanceWindowRequestFilterSensitiveLog;
     var GetMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetMaintenanceWindowResultFilterSensitiveLog = GetMaintenanceWindowResultFilterSensitiveLog;
-    var GetMaintenanceWindowExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowExecutionRequestFilterSensitiveLog = GetMaintenanceWindowExecutionRequestFilterSensitiveLog;
-    var GetMaintenanceWindowExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowExecutionResultFilterSensitiveLog = GetMaintenanceWindowExecutionResultFilterSensitiveLog;
-    var GetMaintenanceWindowExecutionTaskRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowExecutionTaskRequestFilterSensitiveLog = GetMaintenanceWindowExecutionTaskRequestFilterSensitiveLog;
     var GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.TaskParameters && { TaskParameters: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog;
-    var GetMaintenanceWindowExecutionTaskInvocationRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowExecutionTaskInvocationRequestFilterSensitiveLog = GetMaintenanceWindowExecutionTaskInvocationRequestFilterSensitiveLog;
     var GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING },
       ...obj.OwnerInformation && { OwnerInformation: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog;
-    var GetMaintenanceWindowTaskRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetMaintenanceWindowTaskRequestFilterSensitiveLog = GetMaintenanceWindowTaskRequestFilterSensitiveLog;
-    var MaintenanceWindowAutomationParametersFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.MaintenanceWindowAutomationParametersFilterSensitiveLog = MaintenanceWindowAutomationParametersFilterSensitiveLog;
     var MaintenanceWindowLambdaParametersFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Payload && { Payload: smithy_client_1.SENSITIVE_STRING }
     });
     exports.MaintenanceWindowLambdaParametersFilterSensitiveLog = MaintenanceWindowLambdaParametersFilterSensitiveLog;
-    var NotificationConfigFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.NotificationConfigFilterSensitiveLog = NotificationConfigFilterSensitiveLog;
     var MaintenanceWindowRunCommandParametersFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -32080,50 +33824,6 @@ var require_models_1 = __commonJS({
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.GetMaintenanceWindowTaskResultFilterSensitiveLog = GetMaintenanceWindowTaskResultFilterSensitiveLog;
-    var GetOpsItemRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsItemRequestFilterSensitiveLog = GetOpsItemRequestFilterSensitiveLog;
-    var OpsItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemFilterSensitiveLog = OpsItemFilterSensitiveLog;
-    var GetOpsItemResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsItemResponseFilterSensitiveLog = GetOpsItemResponseFilterSensitiveLog;
-    var GetOpsMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsMetadataRequestFilterSensitiveLog = GetOpsMetadataRequestFilterSensitiveLog;
-    var GetOpsMetadataResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsMetadataResultFilterSensitiveLog = GetOpsMetadataResultFilterSensitiveLog;
-    var OpsFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsFilterFilterSensitiveLog = OpsFilterFilterSensitiveLog;
-    var OpsResultAttributeFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsResultAttributeFilterSensitiveLog = OpsResultAttributeFilterSensitiveLog;
-    var OpsEntityItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsEntityItemFilterSensitiveLog = OpsEntityItemFilterSensitiveLog;
-    var OpsEntityFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsEntityFilterSensitiveLog = OpsEntityFilterSensitiveLog;
-    var GetOpsSummaryResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsSummaryResultFilterSensitiveLog = GetOpsSummaryResultFilterSensitiveLog;
-    var GetParameterRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetParameterRequestFilterSensitiveLog = GetParameterRequestFilterSensitiveLog;
     var ParameterFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
@@ -32134,10 +33834,6 @@ var require_models_1 = __commonJS({
       ...obj.Parameter && { Parameter: (0, exports.ParameterFilterSensitiveLog)(obj.Parameter) }
     });
     exports.GetParameterResultFilterSensitiveLog = GetParameterResultFilterSensitiveLog;
-    var GetParameterHistoryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetParameterHistoryRequestFilterSensitiveLog = GetParameterHistoryRequestFilterSensitiveLog;
     var ParameterHistoryFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
@@ -32148,93 +33844,21 @@ var require_models_1 = __commonJS({
       ...obj.Parameters && { Parameters: obj.Parameters.map((item) => (0, exports.ParameterHistoryFilterSensitiveLog)(item)) }
     });
     exports.GetParameterHistoryResultFilterSensitiveLog = GetParameterHistoryResultFilterSensitiveLog;
-    var GetParametersRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetParametersRequestFilterSensitiveLog = GetParametersRequestFilterSensitiveLog;
     var GetParametersResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: obj.Parameters.map((item) => (0, exports.ParameterFilterSensitiveLog)(item)) }
     });
     exports.GetParametersResultFilterSensitiveLog = GetParametersResultFilterSensitiveLog;
-    var GetParametersByPathRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetParametersByPathRequestFilterSensitiveLog = GetParametersByPathRequestFilterSensitiveLog;
     var GetParametersByPathResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: obj.Parameters.map((item) => (0, exports.ParameterFilterSensitiveLog)(item)) }
     });
     exports.GetParametersByPathResultFilterSensitiveLog = GetParametersByPathResultFilterSensitiveLog;
-    var GetPatchBaselineRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetPatchBaselineRequestFilterSensitiveLog = GetPatchBaselineRequestFilterSensitiveLog;
     var GetPatchBaselineResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Sources && { Sources: obj.Sources.map((item) => (0, models_0_1.PatchSourceFilterSensitiveLog)(item)) }
     });
     exports.GetPatchBaselineResultFilterSensitiveLog = GetPatchBaselineResultFilterSensitiveLog;
-    var GetPatchBaselineForPatchGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetPatchBaselineForPatchGroupRequestFilterSensitiveLog = GetPatchBaselineForPatchGroupRequestFilterSensitiveLog;
-    var GetPatchBaselineForPatchGroupResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetPatchBaselineForPatchGroupResultFilterSensitiveLog = GetPatchBaselineForPatchGroupResultFilterSensitiveLog;
-    var GetResourcePoliciesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetResourcePoliciesRequestFilterSensitiveLog = GetResourcePoliciesRequestFilterSensitiveLog;
-    var GetResourcePoliciesResponseEntryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetResourcePoliciesResponseEntryFilterSensitiveLog = GetResourcePoliciesResponseEntryFilterSensitiveLog;
-    var GetResourcePoliciesResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetResourcePoliciesResponseFilterSensitiveLog = GetResourcePoliciesResponseFilterSensitiveLog;
-    var GetServiceSettingRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetServiceSettingRequestFilterSensitiveLog = GetServiceSettingRequestFilterSensitiveLog;
-    var ServiceSettingFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ServiceSettingFilterSensitiveLog = ServiceSettingFilterSensitiveLog;
-    var GetServiceSettingResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetServiceSettingResultFilterSensitiveLog = GetServiceSettingResultFilterSensitiveLog;
-    var LabelParameterVersionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.LabelParameterVersionRequestFilterSensitiveLog = LabelParameterVersionRequestFilterSensitiveLog;
-    var LabelParameterVersionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.LabelParameterVersionResultFilterSensitiveLog = LabelParameterVersionResultFilterSensitiveLog;
-    var AssociationFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationFilterFilterSensitiveLog = AssociationFilterFilterSensitiveLog;
-    var ListAssociationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAssociationsRequestFilterSensitiveLog = ListAssociationsRequestFilterSensitiveLog;
-    var AssociationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.AssociationFilterSensitiveLog = AssociationFilterSensitiveLog;
-    var ListAssociationsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAssociationsResultFilterSensitiveLog = ListAssociationsResultFilterSensitiveLog;
-    var ListAssociationVersionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListAssociationVersionsRequestFilterSensitiveLog = ListAssociationVersionsRequestFilterSensitiveLog;
     var AssociationVersionInfoFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -32247,30 +33871,6 @@ var require_models_1 = __commonJS({
       }
     });
     exports.ListAssociationVersionsResultFilterSensitiveLog = ListAssociationVersionsResultFilterSensitiveLog;
-    var CommandFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CommandFilterFilterSensitiveLog = CommandFilterFilterSensitiveLog;
-    var ListCommandInvocationsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListCommandInvocationsRequestFilterSensitiveLog = ListCommandInvocationsRequestFilterSensitiveLog;
-    var CommandPluginFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CommandPluginFilterSensitiveLog = CommandPluginFilterSensitiveLog;
-    var CommandInvocationFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CommandInvocationFilterSensitiveLog = CommandInvocationFilterSensitiveLog;
-    var ListCommandInvocationsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListCommandInvocationsResultFilterSensitiveLog = ListCommandInvocationsResultFilterSensitiveLog;
-    var ListCommandsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListCommandsRequestFilterSensitiveLog = ListCommandsRequestFilterSensitiveLog;
     var CommandFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -32281,273 +33881,17 @@ var require_models_1 = __commonJS({
       ...obj.Commands && { Commands: obj.Commands.map((item) => (0, exports.CommandFilterSensitiveLog)(item)) }
     });
     exports.ListCommandsResultFilterSensitiveLog = ListCommandsResultFilterSensitiveLog;
-    var ComplianceStringFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ComplianceStringFilterFilterSensitiveLog = ComplianceStringFilterFilterSensitiveLog;
-    var ListComplianceItemsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListComplianceItemsRequestFilterSensitiveLog = ListComplianceItemsRequestFilterSensitiveLog;
-    var ComplianceExecutionSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ComplianceExecutionSummaryFilterSensitiveLog = ComplianceExecutionSummaryFilterSensitiveLog;
-    var ComplianceItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ComplianceItemFilterSensitiveLog = ComplianceItemFilterSensitiveLog;
-    var ListComplianceItemsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListComplianceItemsResultFilterSensitiveLog = ListComplianceItemsResultFilterSensitiveLog;
-    var ListComplianceSummariesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListComplianceSummariesRequestFilterSensitiveLog = ListComplianceSummariesRequestFilterSensitiveLog;
-    var SeveritySummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SeveritySummaryFilterSensitiveLog = SeveritySummaryFilterSensitiveLog;
-    var CompliantSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.CompliantSummaryFilterSensitiveLog = CompliantSummaryFilterSensitiveLog;
-    var NonCompliantSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.NonCompliantSummaryFilterSensitiveLog = NonCompliantSummaryFilterSensitiveLog;
-    var ComplianceSummaryItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ComplianceSummaryItemFilterSensitiveLog = ComplianceSummaryItemFilterSensitiveLog;
-    var ListComplianceSummariesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListComplianceSummariesResultFilterSensitiveLog = ListComplianceSummariesResultFilterSensitiveLog;
-    var ListDocumentMetadataHistoryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentMetadataHistoryRequestFilterSensitiveLog = ListDocumentMetadataHistoryRequestFilterSensitiveLog;
-    var DocumentReviewCommentSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentReviewCommentSourceFilterSensitiveLog = DocumentReviewCommentSourceFilterSensitiveLog;
-    var DocumentReviewerResponseSourceFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentReviewerResponseSourceFilterSensitiveLog = DocumentReviewerResponseSourceFilterSensitiveLog;
-    var DocumentMetadataResponseInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentMetadataResponseInfoFilterSensitiveLog = DocumentMetadataResponseInfoFilterSensitiveLog;
-    var ListDocumentMetadataHistoryResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentMetadataHistoryResponseFilterSensitiveLog = ListDocumentMetadataHistoryResponseFilterSensitiveLog;
-    var DocumentFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentFilterFilterSensitiveLog = DocumentFilterFilterSensitiveLog;
-    var DocumentKeyValuesFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentKeyValuesFilterFilterSensitiveLog = DocumentKeyValuesFilterFilterSensitiveLog;
-    var ListDocumentsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentsRequestFilterSensitiveLog = ListDocumentsRequestFilterSensitiveLog;
-    var DocumentIdentifierFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentIdentifierFilterSensitiveLog = DocumentIdentifierFilterSensitiveLog;
-    var ListDocumentsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentsResultFilterSensitiveLog = ListDocumentsResultFilterSensitiveLog;
-    var ListDocumentVersionsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentVersionsRequestFilterSensitiveLog = ListDocumentVersionsRequestFilterSensitiveLog;
-    var DocumentVersionInfoFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentVersionInfoFilterSensitiveLog = DocumentVersionInfoFilterSensitiveLog;
-    var ListDocumentVersionsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListDocumentVersionsResultFilterSensitiveLog = ListDocumentVersionsResultFilterSensitiveLog;
-    var ListInventoryEntriesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListInventoryEntriesRequestFilterSensitiveLog = ListInventoryEntriesRequestFilterSensitiveLog;
-    var ListInventoryEntriesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListInventoryEntriesResultFilterSensitiveLog = ListInventoryEntriesResultFilterSensitiveLog;
-    var OpsItemEventFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemEventFilterFilterSensitiveLog = OpsItemEventFilterFilterSensitiveLog;
-    var ListOpsItemEventsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsItemEventsRequestFilterSensitiveLog = ListOpsItemEventsRequestFilterSensitiveLog;
-    var OpsItemIdentityFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemIdentityFilterSensitiveLog = OpsItemIdentityFilterSensitiveLog;
-    var OpsItemEventSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemEventSummaryFilterSensitiveLog = OpsItemEventSummaryFilterSensitiveLog;
-    var ListOpsItemEventsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsItemEventsResponseFilterSensitiveLog = ListOpsItemEventsResponseFilterSensitiveLog;
-    var OpsItemRelatedItemsFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemRelatedItemsFilterFilterSensitiveLog = OpsItemRelatedItemsFilterFilterSensitiveLog;
-    var ListOpsItemRelatedItemsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsItemRelatedItemsRequestFilterSensitiveLog = ListOpsItemRelatedItemsRequestFilterSensitiveLog;
-    var OpsItemRelatedItemSummaryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsItemRelatedItemSummaryFilterSensitiveLog = OpsItemRelatedItemSummaryFilterSensitiveLog;
-    var ListOpsItemRelatedItemsResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsItemRelatedItemsResponseFilterSensitiveLog = ListOpsItemRelatedItemsResponseFilterSensitiveLog;
-    var OpsMetadataFilterFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsMetadataFilterFilterSensitiveLog = OpsMetadataFilterFilterSensitiveLog;
-    var ListOpsMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsMetadataRequestFilterSensitiveLog = ListOpsMetadataRequestFilterSensitiveLog;
-    var OpsMetadataFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsMetadataFilterSensitiveLog = OpsMetadataFilterSensitiveLog;
-    var ListOpsMetadataResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListOpsMetadataResultFilterSensitiveLog = ListOpsMetadataResultFilterSensitiveLog;
-    var ListResourceComplianceSummariesRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListResourceComplianceSummariesRequestFilterSensitiveLog = ListResourceComplianceSummariesRequestFilterSensitiveLog;
-    var ResourceComplianceSummaryItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceComplianceSummaryItemFilterSensitiveLog = ResourceComplianceSummaryItemFilterSensitiveLog;
-    var ListResourceComplianceSummariesResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListResourceComplianceSummariesResultFilterSensitiveLog = ListResourceComplianceSummariesResultFilterSensitiveLog;
-    var ListResourceDataSyncRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListResourceDataSyncRequestFilterSensitiveLog = ListResourceDataSyncRequestFilterSensitiveLog;
-    var ResourceDataSyncSourceWithStateFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncSourceWithStateFilterSensitiveLog = ResourceDataSyncSourceWithStateFilterSensitiveLog;
-    var ResourceDataSyncItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResourceDataSyncItemFilterSensitiveLog = ResourceDataSyncItemFilterSensitiveLog;
-    var ListResourceDataSyncResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListResourceDataSyncResultFilterSensitiveLog = ListResourceDataSyncResultFilterSensitiveLog;
-    var ListTagsForResourceRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListTagsForResourceRequestFilterSensitiveLog = ListTagsForResourceRequestFilterSensitiveLog;
-    var ListTagsForResourceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ListTagsForResourceResultFilterSensitiveLog = ListTagsForResourceResultFilterSensitiveLog;
-    var ModifyDocumentPermissionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ModifyDocumentPermissionRequestFilterSensitiveLog = ModifyDocumentPermissionRequestFilterSensitiveLog;
-    var ModifyDocumentPermissionResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ModifyDocumentPermissionResponseFilterSensitiveLog = ModifyDocumentPermissionResponseFilterSensitiveLog;
-    var ComplianceItemEntryFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ComplianceItemEntryFilterSensitiveLog = ComplianceItemEntryFilterSensitiveLog;
-    var PutComplianceItemsRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutComplianceItemsRequestFilterSensitiveLog = PutComplianceItemsRequestFilterSensitiveLog;
-    var PutComplianceItemsResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutComplianceItemsResultFilterSensitiveLog = PutComplianceItemsResultFilterSensitiveLog;
-    var InventoryItemFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryItemFilterSensitiveLog = InventoryItemFilterSensitiveLog;
-    var PutInventoryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutInventoryRequestFilterSensitiveLog = PutInventoryRequestFilterSensitiveLog;
-    var PutInventoryResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutInventoryResultFilterSensitiveLog = PutInventoryResultFilterSensitiveLog;
     var PutParameterRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
     });
     exports.PutParameterRequestFilterSensitiveLog = PutParameterRequestFilterSensitiveLog;
-    var PutParameterResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutParameterResultFilterSensitiveLog = PutParameterResultFilterSensitiveLog;
-    var PutResourcePolicyRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutResourcePolicyRequestFilterSensitiveLog = PutResourcePolicyRequestFilterSensitiveLog;
-    var PutResourcePolicyResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.PutResourcePolicyResponseFilterSensitiveLog = PutResourcePolicyResponseFilterSensitiveLog;
-    var RegisterDefaultPatchBaselineRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterDefaultPatchBaselineRequestFilterSensitiveLog = RegisterDefaultPatchBaselineRequestFilterSensitiveLog;
-    var RegisterDefaultPatchBaselineResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterDefaultPatchBaselineResultFilterSensitiveLog = RegisterDefaultPatchBaselineResultFilterSensitiveLog;
-    var RegisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterPatchBaselineForPatchGroupRequestFilterSensitiveLog = RegisterPatchBaselineForPatchGroupRequestFilterSensitiveLog;
-    var RegisterPatchBaselineForPatchGroupResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterPatchBaselineForPatchGroupResultFilterSensitiveLog = RegisterPatchBaselineForPatchGroupResultFilterSensitiveLog;
     var RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.OwnerInformation && { OwnerInformation: smithy_client_1.SENSITIVE_STRING },
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog;
-    var RegisterTargetWithMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterTargetWithMaintenanceWindowResultFilterSensitiveLog = RegisterTargetWithMaintenanceWindowResultFilterSensitiveLog;
     var RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.TaskParameters && { TaskParameters: smithy_client_1.SENSITIVE_STRING },
@@ -32557,42 +33901,6 @@ var require_models_1 = __commonJS({
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog;
-    var RegisterTaskWithMaintenanceWindowResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RegisterTaskWithMaintenanceWindowResultFilterSensitiveLog = RegisterTaskWithMaintenanceWindowResultFilterSensitiveLog;
-    var RemoveTagsFromResourceRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RemoveTagsFromResourceRequestFilterSensitiveLog = RemoveTagsFromResourceRequestFilterSensitiveLog;
-    var RemoveTagsFromResourceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.RemoveTagsFromResourceResultFilterSensitiveLog = RemoveTagsFromResourceResultFilterSensitiveLog;
-    var ResetServiceSettingRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResetServiceSettingRequestFilterSensitiveLog = ResetServiceSettingRequestFilterSensitiveLog;
-    var ResetServiceSettingResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResetServiceSettingResultFilterSensitiveLog = ResetServiceSettingResultFilterSensitiveLog;
-    var ResumeSessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResumeSessionRequestFilterSensitiveLog = ResumeSessionRequestFilterSensitiveLog;
-    var ResumeSessionResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.ResumeSessionResponseFilterSensitiveLog = ResumeSessionResponseFilterSensitiveLog;
-    var SendAutomationSignalRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SendAutomationSignalRequestFilterSensitiveLog = SendAutomationSignalRequestFilterSensitiveLog;
-    var SendAutomationSignalResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.SendAutomationSignalResultFilterSensitiveLog = SendAutomationSignalResultFilterSensitiveLog;
     var SendCommandRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -32603,62 +33911,6 @@ var require_models_1 = __commonJS({
       ...obj.Command && { Command: (0, exports.CommandFilterSensitiveLog)(obj.Command) }
     });
     exports.SendCommandResultFilterSensitiveLog = SendCommandResultFilterSensitiveLog;
-    var StartAssociationsOnceRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartAssociationsOnceRequestFilterSensitiveLog = StartAssociationsOnceRequestFilterSensitiveLog;
-    var StartAssociationsOnceResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartAssociationsOnceResultFilterSensitiveLog = StartAssociationsOnceResultFilterSensitiveLog;
-    var StartAutomationExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartAutomationExecutionRequestFilterSensitiveLog = StartAutomationExecutionRequestFilterSensitiveLog;
-    var StartAutomationExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartAutomationExecutionResultFilterSensitiveLog = StartAutomationExecutionResultFilterSensitiveLog;
-    var StartChangeRequestExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartChangeRequestExecutionRequestFilterSensitiveLog = StartChangeRequestExecutionRequestFilterSensitiveLog;
-    var StartChangeRequestExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartChangeRequestExecutionResultFilterSensitiveLog = StartChangeRequestExecutionResultFilterSensitiveLog;
-    var StartSessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartSessionRequestFilterSensitiveLog = StartSessionRequestFilterSensitiveLog;
-    var StartSessionResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StartSessionResponseFilterSensitiveLog = StartSessionResponseFilterSensitiveLog;
-    var StopAutomationExecutionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StopAutomationExecutionRequestFilterSensitiveLog = StopAutomationExecutionRequestFilterSensitiveLog;
-    var StopAutomationExecutionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.StopAutomationExecutionResultFilterSensitiveLog = StopAutomationExecutionResultFilterSensitiveLog;
-    var TerminateSessionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TerminateSessionRequestFilterSensitiveLog = TerminateSessionRequestFilterSensitiveLog;
-    var TerminateSessionResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.TerminateSessionResponseFilterSensitiveLog = TerminateSessionResponseFilterSensitiveLog;
-    var UnlabelParameterVersionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UnlabelParameterVersionRequestFilterSensitiveLog = UnlabelParameterVersionRequestFilterSensitiveLog;
-    var UnlabelParameterVersionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UnlabelParameterVersionResultFilterSensitiveLog = UnlabelParameterVersionResultFilterSensitiveLog;
   }
 });
 
@@ -32667,7 +33919,7 @@ var require_models_2 = __commonJS({
   "node_modules/@aws-sdk/client-ssm/dist-cjs/models/models_2.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetOpsSummaryRequestFilterSensitiveLog = exports.GetInventoryRequestFilterSensitiveLog = exports.OpsAggregatorFilterSensitiveLog = exports.InventoryAggregatorFilterSensitiveLog = exports.UpdateServiceSettingResultFilterSensitiveLog = exports.UpdateServiceSettingRequestFilterSensitiveLog = exports.UpdateResourceDataSyncResultFilterSensitiveLog = exports.UpdateResourceDataSyncRequestFilterSensitiveLog = exports.UpdatePatchBaselineResultFilterSensitiveLog = exports.UpdatePatchBaselineRequestFilterSensitiveLog = exports.UpdateOpsMetadataResultFilterSensitiveLog = exports.UpdateOpsMetadataRequestFilterSensitiveLog = exports.UpdateOpsItemResponseFilterSensitiveLog = exports.UpdateOpsItemRequestFilterSensitiveLog = exports.UpdateManagedInstanceRoleResultFilterSensitiveLog = exports.UpdateManagedInstanceRoleRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowResultFilterSensitiveLog = exports.UpdateMaintenanceWindowRequestFilterSensitiveLog = exports.UpdateDocumentMetadataResponseFilterSensitiveLog = exports.UpdateDocumentMetadataRequestFilterSensitiveLog = exports.DocumentReviewsFilterSensitiveLog = exports.UpdateDocumentDefaultVersionResultFilterSensitiveLog = exports.DocumentDefaultVersionDescriptionFilterSensitiveLog = exports.UpdateDocumentDefaultVersionRequestFilterSensitiveLog = exports.UpdateDocumentResultFilterSensitiveLog = exports.UpdateDocumentRequestFilterSensitiveLog = exports.UpdateAssociationStatusResultFilterSensitiveLog = exports.UpdateAssociationStatusRequestFilterSensitiveLog = exports.UpdateAssociationResultFilterSensitiveLog = exports.UpdateAssociationRequestFilterSensitiveLog = exports.ResourceDataSyncConflictException = exports.OpsMetadataKeyLimitExceededException = exports.DocumentReviewAction = exports.DuplicateDocumentVersionName = exports.DuplicateDocumentContent = exports.DocumentVersionLimitExceeded = exports.StatusUnchanged = exports.InvalidUpdate = void 0;
+    exports.UpdatePatchBaselineResultFilterSensitiveLog = exports.UpdatePatchBaselineRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowResultFilterSensitiveLog = exports.UpdateMaintenanceWindowRequestFilterSensitiveLog = exports.UpdateAssociationStatusResultFilterSensitiveLog = exports.UpdateAssociationResultFilterSensitiveLog = exports.UpdateAssociationRequestFilterSensitiveLog = exports.ResourceDataSyncConflictException = exports.OpsMetadataKeyLimitExceededException = exports.DocumentReviewAction = exports.DuplicateDocumentVersionName = exports.DuplicateDocumentContent = exports.DocumentVersionLimitExceeded = exports.StatusUnchanged = exports.InvalidUpdate = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_1();
@@ -32787,10 +34039,6 @@ var require_models_2 = __commonJS({
       }
     });
     exports.UpdateAssociationResultFilterSensitiveLog = UpdateAssociationResultFilterSensitiveLog;
-    var UpdateAssociationStatusRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateAssociationStatusRequestFilterSensitiveLog = UpdateAssociationStatusRequestFilterSensitiveLog;
     var UpdateAssociationStatusResultFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.AssociationDescription && {
@@ -32798,38 +34046,6 @@ var require_models_2 = __commonJS({
       }
     });
     exports.UpdateAssociationStatusResultFilterSensitiveLog = UpdateAssociationStatusResultFilterSensitiveLog;
-    var UpdateDocumentRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentRequestFilterSensitiveLog = UpdateDocumentRequestFilterSensitiveLog;
-    var UpdateDocumentResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentResultFilterSensitiveLog = UpdateDocumentResultFilterSensitiveLog;
-    var UpdateDocumentDefaultVersionRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentDefaultVersionRequestFilterSensitiveLog = UpdateDocumentDefaultVersionRequestFilterSensitiveLog;
-    var DocumentDefaultVersionDescriptionFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentDefaultVersionDescriptionFilterSensitiveLog = DocumentDefaultVersionDescriptionFilterSensitiveLog;
-    var UpdateDocumentDefaultVersionResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentDefaultVersionResultFilterSensitiveLog = UpdateDocumentDefaultVersionResultFilterSensitiveLog;
-    var DocumentReviewsFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.DocumentReviewsFilterSensitiveLog = DocumentReviewsFilterSensitiveLog;
-    var UpdateDocumentMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentMetadataRequestFilterSensitiveLog = UpdateDocumentMetadataRequestFilterSensitiveLog;
-    var UpdateDocumentMetadataResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateDocumentMetadataResponseFilterSensitiveLog = UpdateDocumentMetadataResponseFilterSensitiveLog;
     var UpdateMaintenanceWindowRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
@@ -32870,30 +34086,6 @@ var require_models_2 = __commonJS({
       ...obj.Description && { Description: smithy_client_1.SENSITIVE_STRING }
     });
     exports.UpdateMaintenanceWindowTaskResultFilterSensitiveLog = UpdateMaintenanceWindowTaskResultFilterSensitiveLog;
-    var UpdateManagedInstanceRoleRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateManagedInstanceRoleRequestFilterSensitiveLog = UpdateManagedInstanceRoleRequestFilterSensitiveLog;
-    var UpdateManagedInstanceRoleResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateManagedInstanceRoleResultFilterSensitiveLog = UpdateManagedInstanceRoleResultFilterSensitiveLog;
-    var UpdateOpsItemRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateOpsItemRequestFilterSensitiveLog = UpdateOpsItemRequestFilterSensitiveLog;
-    var UpdateOpsItemResponseFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateOpsItemResponseFilterSensitiveLog = UpdateOpsItemResponseFilterSensitiveLog;
-    var UpdateOpsMetadataRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateOpsMetadataRequestFilterSensitiveLog = UpdateOpsMetadataRequestFilterSensitiveLog;
-    var UpdateOpsMetadataResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateOpsMetadataResultFilterSensitiveLog = UpdateOpsMetadataResultFilterSensitiveLog;
     var UpdatePatchBaselineRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Sources && { Sources: obj.Sources.map((item) => (0, models_0_1.PatchSourceFilterSensitiveLog)(item)) }
@@ -32904,38 +34096,6 @@ var require_models_2 = __commonJS({
       ...obj.Sources && { Sources: obj.Sources.map((item) => (0, models_0_1.PatchSourceFilterSensitiveLog)(item)) }
     });
     exports.UpdatePatchBaselineResultFilterSensitiveLog = UpdatePatchBaselineResultFilterSensitiveLog;
-    var UpdateResourceDataSyncRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateResourceDataSyncRequestFilterSensitiveLog = UpdateResourceDataSyncRequestFilterSensitiveLog;
-    var UpdateResourceDataSyncResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateResourceDataSyncResultFilterSensitiveLog = UpdateResourceDataSyncResultFilterSensitiveLog;
-    var UpdateServiceSettingRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateServiceSettingRequestFilterSensitiveLog = UpdateServiceSettingRequestFilterSensitiveLog;
-    var UpdateServiceSettingResultFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.UpdateServiceSettingResultFilterSensitiveLog = UpdateServiceSettingResultFilterSensitiveLog;
-    var InventoryAggregatorFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.InventoryAggregatorFilterSensitiveLog = InventoryAggregatorFilterSensitiveLog;
-    var OpsAggregatorFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.OpsAggregatorFilterSensitiveLog = OpsAggregatorFilterSensitiveLog;
-    var GetInventoryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetInventoryRequestFilterSensitiveLog = GetInventoryRequestFilterSensitiveLog;
-    var GetOpsSummaryRequestFilterSensitiveLog = (obj) => ({
-      ...obj
-    });
-    exports.GetOpsSummaryRequestFilterSensitiveLog = GetOpsSummaryRequestFilterSensitiveLog;
   }
 });
 
@@ -47704,7 +48864,6 @@ var require_AddTagsToResourceCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AddTagsToResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47730,8 +48889,8 @@ var require_AddTagsToResourceCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.AddTagsToResourceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.AddTagsToResourceResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -47756,7 +48915,6 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AssociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47782,8 +48940,8 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.AssociateOpsItemRelatedItemRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.AssociateOpsItemRelatedItemResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -47808,7 +48966,6 @@ var require_CancelCommandCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelCommandCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47834,8 +48991,8 @@ var require_CancelCommandCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CancelCommandRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CancelCommandResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -47860,7 +49017,6 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47886,8 +49042,8 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CancelMaintenanceWindowExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CancelMaintenanceWindowExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -47912,7 +49068,6 @@ var require_CreateActivationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateActivationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47938,8 +49093,8 @@ var require_CreateActivationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateActivationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateActivationResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48068,7 +49223,6 @@ var require_CreateDocumentCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48094,8 +49248,8 @@ var require_CreateDocumentCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateDocumentRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateDocumentResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48147,7 +49301,7 @@ var require_CreateMaintenanceWindowCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.CreateMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateMaintenanceWindowResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48172,7 +49326,6 @@ var require_CreateOpsItemCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48198,8 +49351,8 @@ var require_CreateOpsItemCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateOpsItemRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateOpsItemResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48224,7 +49377,6 @@ var require_CreateOpsMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48250,8 +49402,8 @@ var require_CreateOpsMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateOpsMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateOpsMetadataResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48303,7 +49455,7 @@ var require_CreatePatchBaselineCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.CreatePatchBaselineRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreatePatchBaselineResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48328,7 +49480,6 @@ var require_CreateResourceDataSyncCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48354,8 +49505,8 @@ var require_CreateResourceDataSyncCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateResourceDataSyncRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.CreateResourceDataSyncResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48380,7 +49531,6 @@ var require_DeleteActivationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteActivationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48406,8 +49556,8 @@ var require_DeleteActivationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteActivationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteActivationResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48432,7 +49582,6 @@ var require_DeleteAssociationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteAssociationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48458,8 +49607,8 @@ var require_DeleteAssociationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteAssociationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteAssociationResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48484,7 +49633,6 @@ var require_DeleteDocumentCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48510,8 +49658,8 @@ var require_DeleteDocumentCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteDocumentRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteDocumentResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48536,7 +49684,6 @@ var require_DeleteInventoryCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48562,8 +49709,8 @@ var require_DeleteInventoryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteInventoryRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteInventoryResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48588,7 +49735,6 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48614,8 +49760,8 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteMaintenanceWindowResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48640,7 +49786,6 @@ var require_DeleteOpsMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48666,8 +49811,8 @@ var require_DeleteOpsMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteOpsMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteOpsMetadataResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48692,7 +49837,6 @@ var require_DeleteParameterCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParameterCommand5 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48718,8 +49862,8 @@ var require_DeleteParameterCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteParameterRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteParameterResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48744,7 +49888,6 @@ var require_DeleteParametersCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParametersCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48770,8 +49913,8 @@ var require_DeleteParametersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteParametersRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteParametersResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48796,7 +49939,6 @@ var require_DeletePatchBaselineCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeletePatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48822,8 +49964,8 @@ var require_DeletePatchBaselineCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeletePatchBaselineRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeletePatchBaselineResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48848,7 +49990,6 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48874,8 +50015,8 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteResourceDataSyncRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteResourceDataSyncResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48900,7 +50041,6 @@ var require_DeleteResourcePolicyCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourcePolicyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48926,8 +50066,8 @@ var require_DeleteResourcePolicyCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeleteResourcePolicyRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeleteResourcePolicyResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -48952,7 +50092,6 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterManagedInstanceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48978,8 +50117,8 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeregisterManagedInstanceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeregisterManagedInstanceResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49004,7 +50143,6 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49030,8 +50168,8 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeregisterPatchBaselineForPatchGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeregisterPatchBaselineForPatchGroupResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49056,7 +50194,6 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTargetFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49082,8 +50219,8 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeregisterTargetFromMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeregisterTargetFromMaintenanceWindowResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49108,7 +50245,6 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTaskFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49134,8 +50270,8 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeregisterTaskFromMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DeregisterTaskFromMaintenanceWindowResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49160,7 +50296,6 @@ var require_DescribeActivationsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeActivationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49186,8 +50321,8 @@ var require_DescribeActivationsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeActivationsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeActivationsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49238,7 +50373,7 @@ var require_DescribeAssociationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAssociationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeAssociationResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -49264,7 +50399,6 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49290,8 +50424,8 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAssociationExecutionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeAssociationExecutionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49316,7 +50450,6 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionTargetsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49342,8 +50475,8 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAssociationExecutionTargetsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeAssociationExecutionTargetsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49368,7 +50501,6 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49394,8 +50526,8 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAutomationExecutionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeAutomationExecutionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49420,7 +50552,6 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationStepExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49446,8 +50577,8 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAutomationStepExecutionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeAutomationStepExecutionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49472,7 +50603,6 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAvailablePatchesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49498,8 +50628,8 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAvailablePatchesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeAvailablePatchesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49524,7 +50654,6 @@ var require_DescribeDocumentCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49550,8 +50679,8 @@ var require_DescribeDocumentCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeDocumentRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeDocumentResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49576,7 +50705,6 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentPermissionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49602,8 +50730,8 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeDocumentPermissionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeDocumentPermissionResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49628,7 +50756,6 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectiveInstanceAssociationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49654,8 +50781,8 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeEffectiveInstanceAssociationsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeEffectiveInstanceAssociationsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49680,7 +50807,6 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectivePatchesForPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49706,8 +50832,8 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeEffectivePatchesForPatchBaselineRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeEffectivePatchesForPatchBaselineResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49732,7 +50858,6 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceAssociationsStatusCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49758,8 +50883,8 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInstanceAssociationsStatusRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeInstanceAssociationsStatusResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49784,7 +50909,6 @@ var require_DescribeInstanceInformationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceInformationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49810,8 +50934,8 @@ var require_DescribeInstanceInformationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInstanceInformationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeInstanceInformationResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49836,7 +50960,6 @@ var require_DescribeInstancePatchesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49862,8 +50985,8 @@ var require_DescribeInstancePatchesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInstancePatchesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeInstancePatchesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -49914,7 +51037,7 @@ var require_DescribeInstancePatchStatesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInstancePatchStatesRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeInstancePatchStatesResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -49966,7 +51089,7 @@ var require_DescribeInstancePatchStatesForPatchGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInstancePatchStatesForPatchGroupRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -49992,7 +51115,6 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInventoryDeletionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50018,8 +51140,8 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeInventoryDeletionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeInventoryDeletionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50044,7 +51166,6 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50070,8 +51191,8 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50122,7 +51243,7 @@ var require_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = __commonJ
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionTaskInvocationsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -50148,7 +51269,6 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionTasksCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50174,8 +51294,8 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionTasksRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowExecutionTasksResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50200,7 +51320,6 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowScheduleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50226,8 +51345,8 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowScheduleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowScheduleResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50278,7 +51397,7 @@ var require_DescribeMaintenanceWindowsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowsResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -50304,7 +51423,6 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowsForTargetCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50330,8 +51448,8 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowsForTargetRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowsForTargetResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50382,7 +51500,7 @@ var require_DescribeMaintenanceWindowTargetsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowTargetsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -50434,7 +51552,7 @@ var require_DescribeMaintenanceWindowTasksCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowTasksRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeMaintenanceWindowTasksResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -50460,7 +51578,6 @@ var require_DescribeOpsItemsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeOpsItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50486,8 +51603,8 @@ var require_DescribeOpsItemsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribeOpsItemsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribeOpsItemsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50512,7 +51629,6 @@ var require_DescribeParametersCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeParametersCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50538,8 +51654,8 @@ var require_DescribeParametersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribeParametersRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribeParametersResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50564,7 +51680,6 @@ var require_DescribePatchBaselinesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchBaselinesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50590,8 +51705,8 @@ var require_DescribePatchBaselinesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribePatchBaselinesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribePatchBaselinesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50616,7 +51731,6 @@ var require_DescribePatchGroupsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50642,8 +51756,8 @@ var require_DescribePatchGroupsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribePatchGroupsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribePatchGroupsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50668,7 +51782,6 @@ var require_DescribePatchGroupStateCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupStateCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50694,8 +51807,8 @@ var require_DescribePatchGroupStateCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribePatchGroupStateRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribePatchGroupStateResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50720,7 +51833,6 @@ var require_DescribePatchPropertiesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchPropertiesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50746,8 +51858,8 @@ var require_DescribePatchPropertiesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribePatchPropertiesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribePatchPropertiesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50772,7 +51884,6 @@ var require_DescribeSessionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeSessionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50798,8 +51909,8 @@ var require_DescribeSessionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DescribeSessionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DescribeSessionsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50824,7 +51935,6 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DisassociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50850,8 +51960,8 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.DisassociateOpsItemRelatedItemRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.DisassociateOpsItemRelatedItemResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50876,7 +51986,6 @@ var require_GetAutomationExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50902,8 +52011,8 @@ var require_GetAutomationExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetAutomationExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetAutomationExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50928,7 +52037,6 @@ var require_GetCalendarStateCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCalendarStateCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -50954,8 +52062,8 @@ var require_GetCalendarStateCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetCalendarStateRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetCalendarStateResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -50980,7 +52088,6 @@ var require_GetCommandInvocationCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCommandInvocationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51006,8 +52113,8 @@ var require_GetCommandInvocationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetCommandInvocationRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetCommandInvocationResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51032,7 +52139,6 @@ var require_GetConnectionStatusCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetConnectionStatusCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51058,8 +52164,8 @@ var require_GetConnectionStatusCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetConnectionStatusRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetConnectionStatusResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51084,7 +52190,6 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51110,8 +52215,8 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetDefaultPatchBaselineRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetDefaultPatchBaselineResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51163,7 +52268,7 @@ var require_GetDeployablePatchSnapshotForInstanceCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_1_1.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetDeployablePatchSnapshotForInstanceResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51188,7 +52293,6 @@ var require_GetDocumentCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51214,8 +52318,8 @@ var require_GetDocumentCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetDocumentRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetDocumentResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51240,8 +52344,6 @@ var require_GetInventoryCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51267,8 +52369,8 @@ var require_GetInventoryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.GetInventoryRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetInventoryResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51293,7 +52395,6 @@ var require_GetInventorySchemaCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventorySchemaCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51319,8 +52420,8 @@ var require_GetInventorySchemaCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetInventorySchemaRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetInventorySchemaResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51371,7 +52472,7 @@ var require_GetMaintenanceWindowCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetMaintenanceWindowRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetMaintenanceWindowResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51397,7 +52498,6 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51423,8 +52523,8 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51475,7 +52575,7 @@ var require_GetMaintenanceWindowExecutionTaskCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionTaskRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51527,7 +52627,7 @@ var require_GetMaintenanceWindowExecutionTaskInvocationCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionTaskInvocationRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51579,7 +52679,7 @@ var require_GetMaintenanceWindowTaskCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetMaintenanceWindowTaskRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetMaintenanceWindowTaskResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51605,7 +52705,6 @@ var require_GetOpsItemCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51631,8 +52730,8 @@ var require_GetOpsItemCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetOpsItemRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetOpsItemResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51657,7 +52756,6 @@ var require_GetOpsMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51683,8 +52781,8 @@ var require_GetOpsMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetOpsMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetOpsMetadataResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51709,8 +52807,6 @@ var require_GetOpsSummaryCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsSummaryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -51736,8 +52832,8 @@ var require_GetOpsSummaryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.GetOpsSummaryRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetOpsSummaryResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -51788,7 +52884,7 @@ var require_GetParameterCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetParameterRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetParameterResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51840,7 +52936,7 @@ var require_GetParameterHistoryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetParameterHistoryRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetParameterHistoryResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51892,7 +52988,7 @@ var require_GetParametersByPathCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetParametersByPathRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetParametersByPathResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51944,7 +53040,7 @@ var require_GetParametersCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetParametersRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetParametersResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -51996,7 +53092,7 @@ var require_GetPatchBaselineCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetPatchBaselineRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.GetPatchBaselineResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -52022,7 +53118,6 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52048,8 +53143,8 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetPatchBaselineForPatchGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetPatchBaselineForPatchGroupResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52074,7 +53169,6 @@ var require_GetResourcePoliciesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetResourcePoliciesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52100,8 +53194,8 @@ var require_GetResourcePoliciesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetResourcePoliciesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetResourcePoliciesResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52126,7 +53220,6 @@ var require_GetServiceSettingCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52152,8 +53245,8 @@ var require_GetServiceSettingCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.GetServiceSettingRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.GetServiceSettingResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52178,7 +53271,6 @@ var require_LabelParameterVersionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var LabelParameterVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52204,8 +53296,8 @@ var require_LabelParameterVersionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.LabelParameterVersionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.LabelParameterVersionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52230,7 +53322,6 @@ var require_ListAssociationsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListAssociationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52256,8 +53347,8 @@ var require_ListAssociationsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListAssociationsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListAssociationsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52308,7 +53399,7 @@ var require_ListAssociationVersionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListAssociationVersionsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.ListAssociationVersionsResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -52334,7 +53425,6 @@ var require_ListCommandInvocationsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListCommandInvocationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52360,8 +53450,8 @@ var require_ListCommandInvocationsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListCommandInvocationsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListCommandInvocationsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52412,7 +53502,7 @@ var require_ListCommandsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListCommandsRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_1_1.ListCommandsResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -52438,7 +53528,6 @@ var require_ListComplianceItemsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52464,8 +53553,8 @@ var require_ListComplianceItemsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListComplianceItemsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListComplianceItemsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52490,7 +53579,6 @@ var require_ListComplianceSummariesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceSummariesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52516,8 +53604,8 @@ var require_ListComplianceSummariesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListComplianceSummariesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListComplianceSummariesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52542,7 +53630,6 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentMetadataHistoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52568,8 +53655,8 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListDocumentMetadataHistoryRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListDocumentMetadataHistoryResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52594,7 +53681,6 @@ var require_ListDocumentsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52620,8 +53706,8 @@ var require_ListDocumentsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListDocumentsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListDocumentsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52646,7 +53732,6 @@ var require_ListDocumentVersionsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentVersionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52672,8 +53757,8 @@ var require_ListDocumentVersionsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListDocumentVersionsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListDocumentVersionsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52698,7 +53783,6 @@ var require_ListInventoryEntriesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListInventoryEntriesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52724,8 +53808,8 @@ var require_ListInventoryEntriesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListInventoryEntriesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListInventoryEntriesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52750,7 +53834,6 @@ var require_ListOpsItemEventsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemEventsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52776,8 +53859,8 @@ var require_ListOpsItemEventsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListOpsItemEventsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListOpsItemEventsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52802,7 +53885,6 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemRelatedItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52828,8 +53910,8 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListOpsItemRelatedItemsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListOpsItemRelatedItemsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52854,7 +53936,6 @@ var require_ListOpsMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52880,8 +53961,8 @@ var require_ListOpsMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListOpsMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListOpsMetadataResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52906,7 +53987,6 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceComplianceSummariesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52932,8 +54012,8 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListResourceComplianceSummariesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListResourceComplianceSummariesResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -52958,7 +54038,6 @@ var require_ListResourceDataSyncCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -52984,8 +54063,8 @@ var require_ListResourceDataSyncCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListResourceDataSyncRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListResourceDataSyncResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53002,7 +54081,7 @@ var require_ListResourceDataSyncCommand = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-ssm/dist-cjs/commands/ListTagsForResourceCommand.js
-var require_ListTagsForResourceCommand = __commonJS({
+var require_ListTagsForResourceCommand2 = __commonJS({
   "node_modules/@aws-sdk/client-ssm/dist-cjs/commands/ListTagsForResourceCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -53010,7 +54089,6 @@ var require_ListTagsForResourceCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListTagsForResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53036,8 +54114,8 @@ var require_ListTagsForResourceCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ListTagsForResourceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ListTagsForResourceResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53062,7 +54140,6 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ModifyDocumentPermissionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53088,8 +54165,8 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ModifyDocumentPermissionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ModifyDocumentPermissionResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53114,7 +54191,6 @@ var require_PutComplianceItemsCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutComplianceItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53140,8 +54216,8 @@ var require_PutComplianceItemsCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.PutComplianceItemsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.PutComplianceItemsResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53166,7 +54242,6 @@ var require_PutInventoryCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53192,8 +54267,8 @@ var require_PutInventoryCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.PutInventoryRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.PutInventoryResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53245,7 +54320,7 @@ var require_PutParameterCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_1_1.PutParameterRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.PutParameterResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53270,7 +54345,6 @@ var require_PutResourcePolicyCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutResourcePolicyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53296,8 +54370,8 @@ var require_PutResourcePolicyCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.PutResourcePolicyRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.PutResourcePolicyResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53322,7 +54396,6 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53348,8 +54421,8 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.RegisterDefaultPatchBaselineRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.RegisterDefaultPatchBaselineResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53374,7 +54447,6 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53400,8 +54472,8 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.RegisterPatchBaselineForPatchGroupRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.RegisterPatchBaselineForPatchGroupResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53453,7 +54525,7 @@ var require_RegisterTargetWithMaintenanceWindowCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_1_1.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.RegisterTargetWithMaintenanceWindowResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53505,7 +54577,7 @@ var require_RegisterTaskWithMaintenanceWindowCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_1_1.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.RegisterTaskWithMaintenanceWindowResultFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53530,7 +54602,6 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RemoveTagsFromResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53556,8 +54627,8 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.RemoveTagsFromResourceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.RemoveTagsFromResourceResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53582,7 +54653,6 @@ var require_ResetServiceSettingCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResetServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53608,8 +54678,8 @@ var require_ResetServiceSettingCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ResetServiceSettingRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ResetServiceSettingResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53634,7 +54704,6 @@ var require_ResumeSessionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResumeSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53660,8 +54729,8 @@ var require_ResumeSessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.ResumeSessionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.ResumeSessionResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53686,7 +54755,6 @@ var require_SendAutomationSignalCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var SendAutomationSignalCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53712,8 +54780,8 @@ var require_SendAutomationSignalCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.SendAutomationSignalRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.SendAutomationSignalResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53790,7 +54858,6 @@ var require_StartAssociationsOnceCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAssociationsOnceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53816,8 +54883,8 @@ var require_StartAssociationsOnceCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.StartAssociationsOnceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.StartAssociationsOnceResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53842,7 +54909,6 @@ var require_StartAutomationExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53868,8 +54934,8 @@ var require_StartAutomationExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.StartAutomationExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.StartAutomationExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53894,7 +54960,6 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartChangeRequestExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53920,8 +54985,8 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.StartChangeRequestExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.StartChangeRequestExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53946,7 +55011,6 @@ var require_StartSessionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -53972,8 +55036,8 @@ var require_StartSessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.StartSessionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.StartSessionResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -53998,7 +55062,6 @@ var require_StopAutomationExecutionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StopAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54024,8 +55087,8 @@ var require_StopAutomationExecutionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.StopAutomationExecutionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.StopAutomationExecutionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54050,7 +55113,6 @@ var require_TerminateSessionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var TerminateSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54076,8 +55138,8 @@ var require_TerminateSessionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.TerminateSessionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.TerminateSessionResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54102,7 +55164,6 @@ var require_UnlabelParameterVersionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UnlabelParameterVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54128,8 +55189,8 @@ var require_UnlabelParameterVersionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_1_1.UnlabelParameterVersionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_1_1.UnlabelParameterVersionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54232,7 +55293,7 @@ var require_UpdateAssociationStatusCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateAssociationStatusRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_2_1.UpdateAssociationStatusResultFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -54258,7 +55319,6 @@ var require_UpdateDocumentCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54284,8 +55344,8 @@ var require_UpdateDocumentCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateDocumentRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateDocumentResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54310,7 +55370,6 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentDefaultVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54336,8 +55395,8 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateDocumentDefaultVersionRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateDocumentDefaultVersionResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54362,7 +55421,6 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54388,8 +55446,8 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateDocumentMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateDocumentMetadataResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54570,7 +55628,6 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateManagedInstanceRoleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54596,8 +55653,8 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateManagedInstanceRoleRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateManagedInstanceRoleResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54622,7 +55679,6 @@ var require_UpdateOpsItemCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54648,8 +55704,8 @@ var require_UpdateOpsItemCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateOpsItemRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateOpsItemResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54674,7 +55730,6 @@ var require_UpdateOpsMetadataCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54700,8 +55755,8 @@ var require_UpdateOpsMetadataCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateOpsMetadataRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateOpsMetadataResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54778,7 +55833,6 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54804,8 +55858,8 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateResourceDataSyncRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateResourceDataSyncResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54830,7 +55884,6 @@ var require_UpdateServiceSettingCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
-    var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -54856,8 +55909,8 @@ var require_UpdateServiceSettingCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_2_1.UpdateServiceSettingRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_2_1.UpdateServiceSettingResultFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -54897,7 +55950,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.297.0",
+      version: "3.298.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -54907,6 +55960,7 @@ var require_package5 = __commonJS({
         "build:types": "tsc -p tsconfig.types.json",
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
+        "extract:docs": "api-extractor run --local",
         "generate:client": "node ../../scripts/generate-clients/single-service --solo ssm"
       },
       main: "./dist-cjs/index.js",
@@ -54916,9 +55970,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.297.0",
+        "@aws-sdk/client-sts": "3.298.0",
         "@aws-sdk/config-resolver": "3.296.0",
-        "@aws-sdk/credential-provider-node": "3.297.0",
+        "@aws-sdk/credential-provider-node": "3.298.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -55281,7 +56335,7 @@ var require_SSM = __commonJS({
     var ListOpsMetadataCommand_1 = require_ListOpsMetadataCommand();
     var ListResourceComplianceSummariesCommand_1 = require_ListResourceComplianceSummariesCommand();
     var ListResourceDataSyncCommand_1 = require_ListResourceDataSyncCommand();
-    var ListTagsForResourceCommand_1 = require_ListTagsForResourceCommand();
+    var ListTagsForResourceCommand_1 = require_ListTagsForResourceCommand2();
     var ModifyDocumentPermissionCommand_1 = require_ModifyDocumentPermissionCommand();
     var PutComplianceItemsCommand_1 = require_PutComplianceItemsCommand();
     var PutInventoryCommand_1 = require_PutInventoryCommand();
@@ -57088,7 +58142,7 @@ var require_commands5 = __commonJS({
     tslib_1.__exportStar(require_ListOpsMetadataCommand(), exports);
     tslib_1.__exportStar(require_ListResourceComplianceSummariesCommand(), exports);
     tslib_1.__exportStar(require_ListResourceDataSyncCommand(), exports);
-    tslib_1.__exportStar(require_ListTagsForResourceCommand(), exports);
+    tslib_1.__exportStar(require_ListTagsForResourceCommand2(), exports);
     tslib_1.__exportStar(require_ModifyDocumentPermissionCommand(), exports);
     tslib_1.__exportStar(require_PutComplianceItemsCommand(), exports);
     tslib_1.__exportStar(require_PutInventoryCommand(), exports);
