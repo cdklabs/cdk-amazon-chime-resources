@@ -6666,7 +6666,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.299.0",
+      version: "3.300.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6686,9 +6686,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.299.0",
-        "@aws-sdk/config-resolver": "3.299.0",
-        "@aws-sdk/credential-provider-node": "3.299.0",
+        "@aws-sdk/client-sts": "3.300.0",
+        "@aws-sdk/config-resolver": "3.300.0",
+        "@aws-sdk/credential-provider-node": "3.300.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -6697,12 +6697,12 @@ var require_package = __commonJS({
         "@aws-sdk/middleware-host-header": "3.296.0",
         "@aws-sdk/middleware-logger": "3.296.0",
         "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.300.0",
         "@aws-sdk/middleware-serde": "3.296.0",
         "@aws-sdk/middleware-signing": "3.299.0",
         "@aws-sdk/middleware-stack": "3.296.0",
         "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.300.0",
         "@aws-sdk/node-http-handler": "3.296.0",
         "@aws-sdk/protocol-http": "3.296.0",
         "@aws-sdk/smithy-client": "3.296.0",
@@ -6712,11 +6712,11 @@ var require_package = __commonJS({
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
         "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.299.0",
+        "@aws-sdk/util-defaults-mode-node": "3.300.0",
         "@aws-sdk/util-endpoints": "3.296.0",
         "@aws-sdk/util-retry": "3.296.0",
         "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.299.0",
+        "@aws-sdk/util-user-agent-node": "3.300.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -9989,7 +9989,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.299.0",
+      version: "3.300.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10011,8 +10011,8 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.299.0",
-        "@aws-sdk/credential-provider-node": "3.299.0",
+        "@aws-sdk/config-resolver": "3.300.0",
+        "@aws-sdk/credential-provider-node": "3.300.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -10021,13 +10021,13 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-host-header": "3.296.0",
         "@aws-sdk/middleware-logger": "3.296.0",
         "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.300.0",
         "@aws-sdk/middleware-sdk-sts": "3.299.0",
         "@aws-sdk/middleware-serde": "3.296.0",
         "@aws-sdk/middleware-signing": "3.299.0",
         "@aws-sdk/middleware-stack": "3.296.0",
         "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.300.0",
         "@aws-sdk/node-http-handler": "3.296.0",
         "@aws-sdk/protocol-http": "3.296.0",
         "@aws-sdk/smithy-client": "3.296.0",
@@ -10037,11 +10037,11 @@ var require_package2 = __commonJS({
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
         "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.299.0",
+        "@aws-sdk/util-defaults-mode-node": "3.300.0",
         "@aws-sdk/util-endpoints": "3.296.0",
         "@aws-sdk/util-retry": "3.296.0",
         "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.299.0",
+        "@aws-sdk/util-user-agent-node": "3.300.0",
         "@aws-sdk/util-utf8": "3.295.0",
         "fast-xml-parser": "4.1.2",
         tslib: "^2.5.0"
@@ -10444,6 +10444,29 @@ var require_loadSsoSessionData = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/mergeConfigFiles.js
+var require_mergeConfigFiles = __commonJS({
+  "node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/mergeConfigFiles.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.mergeConfigFiles = void 0;
+    var mergeConfigFiles = (...files) => {
+      const merged = {};
+      for (const file of files) {
+        for (const [key, values] of Object.entries(file)) {
+          if (merged[key] !== void 0) {
+            Object.assign(merged[key], values);
+          } else {
+            merged[key] = values;
+          }
+        }
+      }
+      return merged;
+    };
+    exports.mergeConfigFiles = mergeConfigFiles;
+  }
+});
+
 // node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/parseKnownFiles.js
 var require_parseKnownFiles = __commonJS({
   "node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/parseKnownFiles.js"(exports) {
@@ -10451,12 +10474,10 @@ var require_parseKnownFiles = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.parseKnownFiles = void 0;
     var loadSharedConfigFiles_1 = require_loadSharedConfigFiles();
+    var mergeConfigFiles_1 = require_mergeConfigFiles();
     var parseKnownFiles = async (init) => {
       const parsedFiles = await (0, loadSharedConfigFiles_1.loadSharedConfigFiles)(init);
-      return {
-        ...parsedFiles.configFile,
-        ...parsedFiles.credentialsFile
-      };
+      return (0, mergeConfigFiles_1.mergeConfigFiles)(parsedFiles.configFile, parsedFiles.credentialsFile);
     };
     exports.parseKnownFiles = parseKnownFiles;
   }
@@ -11972,7 +11993,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.299.0",
+      version: "3.300.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -11992,7 +12013,7 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.299.0",
+        "@aws-sdk/config-resolver": "3.300.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -12001,11 +12022,11 @@ var require_package3 = __commonJS({
         "@aws-sdk/middleware-host-header": "3.296.0",
         "@aws-sdk/middleware-logger": "3.296.0",
         "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.300.0",
         "@aws-sdk/middleware-serde": "3.296.0",
         "@aws-sdk/middleware-stack": "3.296.0",
         "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.300.0",
         "@aws-sdk/node-http-handler": "3.296.0",
         "@aws-sdk/protocol-http": "3.296.0",
         "@aws-sdk/smithy-client": "3.296.0",
@@ -12015,11 +12036,11 @@ var require_package3 = __commonJS({
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
         "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.299.0",
+        "@aws-sdk/util-defaults-mode-node": "3.300.0",
         "@aws-sdk/util-endpoints": "3.296.0",
         "@aws-sdk/util-retry": "3.296.0",
         "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.299.0",
+        "@aws-sdk/util-user-agent-node": "3.300.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -14159,7 +14180,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.299.0",
+      version: "3.300.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14179,7 +14200,7 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.299.0",
+        "@aws-sdk/config-resolver": "3.300.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -14188,11 +14209,11 @@ var require_package4 = __commonJS({
         "@aws-sdk/middleware-host-header": "3.296.0",
         "@aws-sdk/middleware-logger": "3.296.0",
         "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.300.0",
         "@aws-sdk/middleware-serde": "3.296.0",
         "@aws-sdk/middleware-stack": "3.296.0",
         "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.300.0",
         "@aws-sdk/node-http-handler": "3.296.0",
         "@aws-sdk/protocol-http": "3.296.0",
         "@aws-sdk/smithy-client": "3.296.0",
@@ -14202,11 +14223,11 @@ var require_package4 = __commonJS({
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
         "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.299.0",
+        "@aws-sdk/util-defaults-mode-node": "3.300.0",
         "@aws-sdk/util-endpoints": "3.296.0",
         "@aws-sdk/util-retry": "3.296.0",
         "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.299.0",
+        "@aws-sdk/util-user-agent-node": "3.300.0",
         "@aws-sdk/util-utf8": "3.295.0",
         tslib: "^2.5.0"
       },
@@ -55950,7 +55971,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.299.0",
+      version: "3.300.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -55970,9 +55991,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.299.0",
-        "@aws-sdk/config-resolver": "3.299.0",
-        "@aws-sdk/credential-provider-node": "3.299.0",
+        "@aws-sdk/client-sts": "3.300.0",
+        "@aws-sdk/config-resolver": "3.300.0",
+        "@aws-sdk/credential-provider-node": "3.300.0",
         "@aws-sdk/fetch-http-handler": "3.296.0",
         "@aws-sdk/hash-node": "3.296.0",
         "@aws-sdk/invalid-dependency": "3.296.0",
@@ -55981,12 +56002,12 @@ var require_package5 = __commonJS({
         "@aws-sdk/middleware-host-header": "3.296.0",
         "@aws-sdk/middleware-logger": "3.296.0",
         "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.296.0",
+        "@aws-sdk/middleware-retry": "3.300.0",
         "@aws-sdk/middleware-serde": "3.296.0",
         "@aws-sdk/middleware-signing": "3.299.0",
         "@aws-sdk/middleware-stack": "3.296.0",
         "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.296.0",
+        "@aws-sdk/node-config-provider": "3.300.0",
         "@aws-sdk/node-http-handler": "3.296.0",
         "@aws-sdk/protocol-http": "3.296.0",
         "@aws-sdk/smithy-client": "3.296.0",
@@ -55996,11 +56017,11 @@ var require_package5 = __commonJS({
         "@aws-sdk/util-body-length-browser": "3.295.0",
         "@aws-sdk/util-body-length-node": "3.295.0",
         "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.299.0",
+        "@aws-sdk/util-defaults-mode-node": "3.300.0",
         "@aws-sdk/util-endpoints": "3.296.0",
         "@aws-sdk/util-retry": "3.296.0",
         "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.299.0",
+        "@aws-sdk/util-user-agent-node": "3.300.0",
         "@aws-sdk/util-utf8": "3.295.0",
         "@aws-sdk/util-waiter": "3.296.0",
         tslib: "^2.5.0",
