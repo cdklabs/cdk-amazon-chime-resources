@@ -1415,6 +1415,10 @@ var require_deserializerMiddleware = __commonJS({
         Object.defineProperty(error, "$response", {
           value: response2
         });
+        if (!("$metadata" in error)) {
+          const hint = `Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.`;
+          error.message += "\n  " + hint;
+        }
         throw error;
       }
     };
@@ -6666,7 +6670,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.301.0",
+      version: "3.303.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6686,42 +6690,42 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.301.0",
-        "@aws-sdk/config-resolver": "3.300.0",
-        "@aws-sdk/credential-provider-node": "3.301.0",
-        "@aws-sdk/fetch-http-handler": "3.296.0",
-        "@aws-sdk/hash-node": "3.296.0",
-        "@aws-sdk/invalid-dependency": "3.296.0",
-        "@aws-sdk/middleware-content-length": "3.296.0",
-        "@aws-sdk/middleware-endpoint": "3.299.0",
-        "@aws-sdk/middleware-host-header": "3.296.0",
-        "@aws-sdk/middleware-logger": "3.296.0",
-        "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.300.0",
-        "@aws-sdk/middleware-serde": "3.296.0",
-        "@aws-sdk/middleware-signing": "3.299.0",
-        "@aws-sdk/middleware-stack": "3.296.0",
-        "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.300.0",
-        "@aws-sdk/node-http-handler": "3.296.0",
-        "@aws-sdk/protocol-http": "3.296.0",
-        "@aws-sdk/smithy-client": "3.296.0",
-        "@aws-sdk/types": "3.296.0",
-        "@aws-sdk/url-parser": "3.296.0",
-        "@aws-sdk/util-base64": "3.295.0",
-        "@aws-sdk/util-body-length-browser": "3.295.0",
-        "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.300.0",
-        "@aws-sdk/util-endpoints": "3.296.0",
-        "@aws-sdk/util-retry": "3.296.0",
-        "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.300.0",
-        "@aws-sdk/util-utf8": "3.295.0",
+        "@aws-sdk/client-sts": "3.303.0",
+        "@aws-sdk/config-resolver": "3.303.0",
+        "@aws-sdk/credential-provider-node": "3.303.0",
+        "@aws-sdk/fetch-http-handler": "3.303.0",
+        "@aws-sdk/hash-node": "3.303.0",
+        "@aws-sdk/invalid-dependency": "3.303.0",
+        "@aws-sdk/middleware-content-length": "3.303.0",
+        "@aws-sdk/middleware-endpoint": "3.303.0",
+        "@aws-sdk/middleware-host-header": "3.303.0",
+        "@aws-sdk/middleware-logger": "3.303.0",
+        "@aws-sdk/middleware-recursion-detection": "3.303.0",
+        "@aws-sdk/middleware-retry": "3.303.0",
+        "@aws-sdk/middleware-serde": "3.303.0",
+        "@aws-sdk/middleware-signing": "3.303.0",
+        "@aws-sdk/middleware-stack": "3.303.0",
+        "@aws-sdk/middleware-user-agent": "3.303.0",
+        "@aws-sdk/node-config-provider": "3.303.0",
+        "@aws-sdk/node-http-handler": "3.303.0",
+        "@aws-sdk/protocol-http": "3.303.0",
+        "@aws-sdk/smithy-client": "3.303.0",
+        "@aws-sdk/types": "3.303.0",
+        "@aws-sdk/url-parser": "3.303.0",
+        "@aws-sdk/util-base64": "3.303.0",
+        "@aws-sdk/util-body-length-browser": "3.303.0",
+        "@aws-sdk/util-body-length-node": "3.303.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.303.0",
+        "@aws-sdk/util-defaults-mode-node": "3.303.0",
+        "@aws-sdk/util-endpoints": "3.303.0",
+        "@aws-sdk/util-retry": "3.303.0",
+        "@aws-sdk/util-user-agent-browser": "3.303.0",
+        "@aws-sdk/util-user-agent-node": "3.303.0",
+        "@aws-sdk/util-utf8": "3.303.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.295.0",
+        "@aws-sdk/service-client-documentation-generator": "3.303.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
@@ -9989,7 +9993,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.301.0",
+      version: "3.303.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10011,43 +10015,43 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.300.0",
-        "@aws-sdk/credential-provider-node": "3.301.0",
-        "@aws-sdk/fetch-http-handler": "3.296.0",
-        "@aws-sdk/hash-node": "3.296.0",
-        "@aws-sdk/invalid-dependency": "3.296.0",
-        "@aws-sdk/middleware-content-length": "3.296.0",
-        "@aws-sdk/middleware-endpoint": "3.299.0",
-        "@aws-sdk/middleware-host-header": "3.296.0",
-        "@aws-sdk/middleware-logger": "3.296.0",
-        "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.300.0",
-        "@aws-sdk/middleware-sdk-sts": "3.299.0",
-        "@aws-sdk/middleware-serde": "3.296.0",
-        "@aws-sdk/middleware-signing": "3.299.0",
-        "@aws-sdk/middleware-stack": "3.296.0",
-        "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.300.0",
-        "@aws-sdk/node-http-handler": "3.296.0",
-        "@aws-sdk/protocol-http": "3.296.0",
-        "@aws-sdk/smithy-client": "3.296.0",
-        "@aws-sdk/types": "3.296.0",
-        "@aws-sdk/url-parser": "3.296.0",
-        "@aws-sdk/util-base64": "3.295.0",
-        "@aws-sdk/util-body-length-browser": "3.295.0",
-        "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.300.0",
-        "@aws-sdk/util-endpoints": "3.296.0",
-        "@aws-sdk/util-retry": "3.296.0",
-        "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.300.0",
-        "@aws-sdk/util-utf8": "3.295.0",
+        "@aws-sdk/config-resolver": "3.303.0",
+        "@aws-sdk/credential-provider-node": "3.303.0",
+        "@aws-sdk/fetch-http-handler": "3.303.0",
+        "@aws-sdk/hash-node": "3.303.0",
+        "@aws-sdk/invalid-dependency": "3.303.0",
+        "@aws-sdk/middleware-content-length": "3.303.0",
+        "@aws-sdk/middleware-endpoint": "3.303.0",
+        "@aws-sdk/middleware-host-header": "3.303.0",
+        "@aws-sdk/middleware-logger": "3.303.0",
+        "@aws-sdk/middleware-recursion-detection": "3.303.0",
+        "@aws-sdk/middleware-retry": "3.303.0",
+        "@aws-sdk/middleware-sdk-sts": "3.303.0",
+        "@aws-sdk/middleware-serde": "3.303.0",
+        "@aws-sdk/middleware-signing": "3.303.0",
+        "@aws-sdk/middleware-stack": "3.303.0",
+        "@aws-sdk/middleware-user-agent": "3.303.0",
+        "@aws-sdk/node-config-provider": "3.303.0",
+        "@aws-sdk/node-http-handler": "3.303.0",
+        "@aws-sdk/protocol-http": "3.303.0",
+        "@aws-sdk/smithy-client": "3.303.0",
+        "@aws-sdk/types": "3.303.0",
+        "@aws-sdk/url-parser": "3.303.0",
+        "@aws-sdk/util-base64": "3.303.0",
+        "@aws-sdk/util-body-length-browser": "3.303.0",
+        "@aws-sdk/util-body-length-node": "3.303.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.303.0",
+        "@aws-sdk/util-defaults-mode-node": "3.303.0",
+        "@aws-sdk/util-endpoints": "3.303.0",
+        "@aws-sdk/util-retry": "3.303.0",
+        "@aws-sdk/util-user-agent-browser": "3.303.0",
+        "@aws-sdk/util-user-agent-node": "3.303.0",
+        "@aws-sdk/util-utf8": "3.303.0",
         "fast-xml-parser": "4.1.2",
         tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.295.0",
+        "@aws-sdk/service-client-documentation-generator": "3.303.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
@@ -11993,7 +11997,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.301.0",
+      version: "3.303.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12013,39 +12017,39 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.300.0",
-        "@aws-sdk/fetch-http-handler": "3.296.0",
-        "@aws-sdk/hash-node": "3.296.0",
-        "@aws-sdk/invalid-dependency": "3.296.0",
-        "@aws-sdk/middleware-content-length": "3.296.0",
-        "@aws-sdk/middleware-endpoint": "3.299.0",
-        "@aws-sdk/middleware-host-header": "3.296.0",
-        "@aws-sdk/middleware-logger": "3.296.0",
-        "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.300.0",
-        "@aws-sdk/middleware-serde": "3.296.0",
-        "@aws-sdk/middleware-stack": "3.296.0",
-        "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.300.0",
-        "@aws-sdk/node-http-handler": "3.296.0",
-        "@aws-sdk/protocol-http": "3.296.0",
-        "@aws-sdk/smithy-client": "3.296.0",
-        "@aws-sdk/types": "3.296.0",
-        "@aws-sdk/url-parser": "3.296.0",
-        "@aws-sdk/util-base64": "3.295.0",
-        "@aws-sdk/util-body-length-browser": "3.295.0",
-        "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.300.0",
-        "@aws-sdk/util-endpoints": "3.296.0",
-        "@aws-sdk/util-retry": "3.296.0",
-        "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.300.0",
-        "@aws-sdk/util-utf8": "3.295.0",
+        "@aws-sdk/config-resolver": "3.303.0",
+        "@aws-sdk/fetch-http-handler": "3.303.0",
+        "@aws-sdk/hash-node": "3.303.0",
+        "@aws-sdk/invalid-dependency": "3.303.0",
+        "@aws-sdk/middleware-content-length": "3.303.0",
+        "@aws-sdk/middleware-endpoint": "3.303.0",
+        "@aws-sdk/middleware-host-header": "3.303.0",
+        "@aws-sdk/middleware-logger": "3.303.0",
+        "@aws-sdk/middleware-recursion-detection": "3.303.0",
+        "@aws-sdk/middleware-retry": "3.303.0",
+        "@aws-sdk/middleware-serde": "3.303.0",
+        "@aws-sdk/middleware-stack": "3.303.0",
+        "@aws-sdk/middleware-user-agent": "3.303.0",
+        "@aws-sdk/node-config-provider": "3.303.0",
+        "@aws-sdk/node-http-handler": "3.303.0",
+        "@aws-sdk/protocol-http": "3.303.0",
+        "@aws-sdk/smithy-client": "3.303.0",
+        "@aws-sdk/types": "3.303.0",
+        "@aws-sdk/url-parser": "3.303.0",
+        "@aws-sdk/util-base64": "3.303.0",
+        "@aws-sdk/util-body-length-browser": "3.303.0",
+        "@aws-sdk/util-body-length-node": "3.303.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.303.0",
+        "@aws-sdk/util-defaults-mode-node": "3.303.0",
+        "@aws-sdk/util-endpoints": "3.303.0",
+        "@aws-sdk/util-retry": "3.303.0",
+        "@aws-sdk/util-user-agent-browser": "3.303.0",
+        "@aws-sdk/util-user-agent-node": "3.303.0",
+        "@aws-sdk/util-utf8": "3.303.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.295.0",
+        "@aws-sdk/service-client-documentation-generator": "3.303.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
@@ -14180,7 +14184,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.301.0",
+      version: "3.303.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14200,39 +14204,39 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.300.0",
-        "@aws-sdk/fetch-http-handler": "3.296.0",
-        "@aws-sdk/hash-node": "3.296.0",
-        "@aws-sdk/invalid-dependency": "3.296.0",
-        "@aws-sdk/middleware-content-length": "3.296.0",
-        "@aws-sdk/middleware-endpoint": "3.299.0",
-        "@aws-sdk/middleware-host-header": "3.296.0",
-        "@aws-sdk/middleware-logger": "3.296.0",
-        "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.300.0",
-        "@aws-sdk/middleware-serde": "3.296.0",
-        "@aws-sdk/middleware-stack": "3.296.0",
-        "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.300.0",
-        "@aws-sdk/node-http-handler": "3.296.0",
-        "@aws-sdk/protocol-http": "3.296.0",
-        "@aws-sdk/smithy-client": "3.296.0",
-        "@aws-sdk/types": "3.296.0",
-        "@aws-sdk/url-parser": "3.296.0",
-        "@aws-sdk/util-base64": "3.295.0",
-        "@aws-sdk/util-body-length-browser": "3.295.0",
-        "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.300.0",
-        "@aws-sdk/util-endpoints": "3.296.0",
-        "@aws-sdk/util-retry": "3.296.0",
-        "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.300.0",
-        "@aws-sdk/util-utf8": "3.295.0",
+        "@aws-sdk/config-resolver": "3.303.0",
+        "@aws-sdk/fetch-http-handler": "3.303.0",
+        "@aws-sdk/hash-node": "3.303.0",
+        "@aws-sdk/invalid-dependency": "3.303.0",
+        "@aws-sdk/middleware-content-length": "3.303.0",
+        "@aws-sdk/middleware-endpoint": "3.303.0",
+        "@aws-sdk/middleware-host-header": "3.303.0",
+        "@aws-sdk/middleware-logger": "3.303.0",
+        "@aws-sdk/middleware-recursion-detection": "3.303.0",
+        "@aws-sdk/middleware-retry": "3.303.0",
+        "@aws-sdk/middleware-serde": "3.303.0",
+        "@aws-sdk/middleware-stack": "3.303.0",
+        "@aws-sdk/middleware-user-agent": "3.303.0",
+        "@aws-sdk/node-config-provider": "3.303.0",
+        "@aws-sdk/node-http-handler": "3.303.0",
+        "@aws-sdk/protocol-http": "3.303.0",
+        "@aws-sdk/smithy-client": "3.303.0",
+        "@aws-sdk/types": "3.303.0",
+        "@aws-sdk/url-parser": "3.303.0",
+        "@aws-sdk/util-base64": "3.303.0",
+        "@aws-sdk/util-body-length-browser": "3.303.0",
+        "@aws-sdk/util-body-length-node": "3.303.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.303.0",
+        "@aws-sdk/util-defaults-mode-node": "3.303.0",
+        "@aws-sdk/util-endpoints": "3.303.0",
+        "@aws-sdk/util-retry": "3.303.0",
+        "@aws-sdk/util-user-agent-browser": "3.303.0",
+        "@aws-sdk/util-user-agent-node": "3.303.0",
+        "@aws-sdk/util-utf8": "3.303.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.295.0",
+        "@aws-sdk/service-client-documentation-generator": "3.303.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         concurrently: "7.0.0",
@@ -15757,25 +15761,24 @@ var require_models_04 = __commonJS({
     exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = exports.UpdateVoiceProfileResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
-    var ErrorCode;
-    (function(ErrorCode2) {
-      ErrorCode2["AccessDenied"] = "AccessDenied";
-      ErrorCode2["BadRequest"] = "BadRequest";
-      ErrorCode2["Conflict"] = "Conflict";
-      ErrorCode2["Forbidden"] = "Forbidden";
-      ErrorCode2["Gone"] = "Gone";
-      ErrorCode2["NotFound"] = "NotFound";
-      ErrorCode2["PhoneNumberAssociationsExist"] = "PhoneNumberAssociationsExist";
-      ErrorCode2["PreconditionFailed"] = "PreconditionFailed";
-      ErrorCode2["ResourceLimitExceeded"] = "ResourceLimitExceeded";
-      ErrorCode2["ServiceFailure"] = "ServiceFailure";
-      ErrorCode2["ServiceUnavailable"] = "ServiceUnavailable";
-      ErrorCode2["Throttled"] = "Throttled";
-      ErrorCode2["Throttling"] = "Throttling";
-      ErrorCode2["Unauthorized"] = "Unauthorized";
-      ErrorCode2["Unprocessable"] = "Unprocessable";
-      ErrorCode2["VoiceConnectorGroupAssociationsExist"] = "VoiceConnectorGroupAssociationsExist";
-    })(ErrorCode = exports.ErrorCode || (exports.ErrorCode = {}));
+    exports.ErrorCode = {
+      AccessDenied: "AccessDenied",
+      BadRequest: "BadRequest",
+      Conflict: "Conflict",
+      Forbidden: "Forbidden",
+      Gone: "Gone",
+      NotFound: "NotFound",
+      PhoneNumberAssociationsExist: "PhoneNumberAssociationsExist",
+      PreconditionFailed: "PreconditionFailed",
+      ResourceLimitExceeded: "ResourceLimitExceeded",
+      ServiceFailure: "ServiceFailure",
+      ServiceUnavailable: "ServiceUnavailable",
+      Throttled: "Throttled",
+      Throttling: "Throttling",
+      Unauthorized: "Unauthorized",
+      Unprocessable: "Unprocessable",
+      VoiceConnectorGroupAssociationsExist: "VoiceConnectorGroupAssociationsExist"
+    };
     var AccessDeniedException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -15791,11 +15794,10 @@ var require_models_04 = __commonJS({
       }
     };
     exports.AccessDeniedException = AccessDeniedException;
-    var AlexaSkillStatus;
-    (function(AlexaSkillStatus2) {
-      AlexaSkillStatus2["ACTIVE"] = "ACTIVE";
-      AlexaSkillStatus2["INACTIVE"] = "INACTIVE";
-    })(AlexaSkillStatus = exports.AlexaSkillStatus || (exports.AlexaSkillStatus = {}));
+    exports.AlexaSkillStatus = {
+      ACTIVE: "ACTIVE",
+      INACTIVE: "INACTIVE"
+    };
     var BadRequestException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -15901,48 +15903,42 @@ var require_models_04 = __commonJS({
       }
     };
     exports.UnauthorizedClientException = UnauthorizedClientException;
-    var PhoneNumberProductType;
-    (function(PhoneNumberProductType2) {
-      PhoneNumberProductType2["SipMediaApplicationDialIn"] = "SipMediaApplicationDialIn";
-      PhoneNumberProductType2["VoiceConnector"] = "VoiceConnector";
-    })(PhoneNumberProductType = exports.PhoneNumberProductType || (exports.PhoneNumberProductType = {}));
-    var CallingNameStatus;
-    (function(CallingNameStatus2) {
-      CallingNameStatus2["Unassigned"] = "Unassigned";
-      CallingNameStatus2["UpdateFailed"] = "UpdateFailed";
-      CallingNameStatus2["UpdateInProgress"] = "UpdateInProgress";
-      CallingNameStatus2["UpdateSucceeded"] = "UpdateSucceeded";
-    })(CallingNameStatus = exports.CallingNameStatus || (exports.CallingNameStatus = {}));
-    var Capability;
-    (function(Capability2) {
-      Capability2["SMS"] = "SMS";
-      Capability2["Voice"] = "Voice";
-    })(Capability = exports.Capability || (exports.Capability = {}));
-    var OrderedPhoneNumberStatus;
-    (function(OrderedPhoneNumberStatus2) {
-      OrderedPhoneNumberStatus2["Acquired"] = "Acquired";
-      OrderedPhoneNumberStatus2["Failed"] = "Failed";
-      OrderedPhoneNumberStatus2["Processing"] = "Processing";
-    })(OrderedPhoneNumberStatus = exports.OrderedPhoneNumberStatus || (exports.OrderedPhoneNumberStatus = {}));
-    var PhoneNumberOrderType;
-    (function(PhoneNumberOrderType2) {
-      PhoneNumberOrderType2["New"] = "New";
-      PhoneNumberOrderType2["Porting"] = "Porting";
-    })(PhoneNumberOrderType = exports.PhoneNumberOrderType || (exports.PhoneNumberOrderType = {}));
-    var PhoneNumberOrderStatus;
-    (function(PhoneNumberOrderStatus2) {
-      PhoneNumberOrderStatus2["CancelRequested"] = "CancelRequested";
-      PhoneNumberOrderStatus2["Cancelled"] = "Cancelled";
-      PhoneNumberOrderStatus2["ChangeRequested"] = "ChangeRequested";
-      PhoneNumberOrderStatus2["Exception"] = "Exception";
-      PhoneNumberOrderStatus2["FOC"] = "FOC";
-      PhoneNumberOrderStatus2["Failed"] = "Failed";
-      PhoneNumberOrderStatus2["Partial"] = "Partial";
-      PhoneNumberOrderStatus2["PendingDocuments"] = "PendingDocuments";
-      PhoneNumberOrderStatus2["Processing"] = "Processing";
-      PhoneNumberOrderStatus2["Submitted"] = "Submitted";
-      PhoneNumberOrderStatus2["Successful"] = "Successful";
-    })(PhoneNumberOrderStatus = exports.PhoneNumberOrderStatus || (exports.PhoneNumberOrderStatus = {}));
+    exports.PhoneNumberProductType = {
+      SipMediaApplicationDialIn: "SipMediaApplicationDialIn",
+      VoiceConnector: "VoiceConnector"
+    };
+    exports.CallingNameStatus = {
+      Unassigned: "Unassigned",
+      UpdateFailed: "UpdateFailed",
+      UpdateInProgress: "UpdateInProgress",
+      UpdateSucceeded: "UpdateSucceeded"
+    };
+    exports.Capability = {
+      SMS: "SMS",
+      Voice: "Voice"
+    };
+    exports.OrderedPhoneNumberStatus = {
+      Acquired: "Acquired",
+      Failed: "Failed",
+      Processing: "Processing"
+    };
+    exports.PhoneNumberOrderType = {
+      New: "New",
+      Porting: "Porting"
+    };
+    exports.PhoneNumberOrderStatus = {
+      CancelRequested: "CancelRequested",
+      Cancelled: "Cancelled",
+      ChangeRequested: "ChangeRequested",
+      Exception: "Exception",
+      FOC: "FOC",
+      Failed: "Failed",
+      Partial: "Partial",
+      PendingDocuments: "PendingDocuments",
+      Processing: "Processing",
+      Submitted: "Submitted",
+      Successful: "Successful"
+    };
     var ResourceLimitExceededException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -15958,22 +15954,19 @@ var require_models_04 = __commonJS({
       }
     };
     exports.ResourceLimitExceededException = ResourceLimitExceededException;
-    var GeoMatchLevel;
-    (function(GeoMatchLevel2) {
-      GeoMatchLevel2["AreaCode"] = "AreaCode";
-      GeoMatchLevel2["Country"] = "Country";
-    })(GeoMatchLevel = exports.GeoMatchLevel || (exports.GeoMatchLevel = {}));
-    var NumberSelectionBehavior;
-    (function(NumberSelectionBehavior2) {
-      NumberSelectionBehavior2["AvoidSticky"] = "AvoidSticky";
-      NumberSelectionBehavior2["PreferSticky"] = "PreferSticky";
-    })(NumberSelectionBehavior = exports.NumberSelectionBehavior || (exports.NumberSelectionBehavior = {}));
-    var ProxySessionStatus;
-    (function(ProxySessionStatus2) {
-      ProxySessionStatus2["Closed"] = "Closed";
-      ProxySessionStatus2["InProgress"] = "InProgress";
-      ProxySessionStatus2["Open"] = "Open";
-    })(ProxySessionStatus = exports.ProxySessionStatus || (exports.ProxySessionStatus = {}));
+    exports.GeoMatchLevel = {
+      AreaCode: "AreaCode",
+      Country: "Country"
+    };
+    exports.NumberSelectionBehavior = {
+      AvoidSticky: "AvoidSticky",
+      PreferSticky: "PreferSticky"
+    };
+    exports.ProxySessionStatus = {
+      Closed: "Closed",
+      InProgress: "InProgress",
+      Open: "Open"
+    };
     var ConflictException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -15989,24 +15982,22 @@ var require_models_04 = __commonJS({
       }
     };
     exports.ConflictException = ConflictException;
-    var SipRuleTriggerType2;
-    (function(SipRuleTriggerType3) {
-      SipRuleTriggerType3["RequestUriHostname"] = "RequestUriHostname";
-      SipRuleTriggerType3["ToPhoneNumber"] = "ToPhoneNumber";
-    })(SipRuleTriggerType2 = exports.SipRuleTriggerType || (exports.SipRuleTriggerType = {}));
-    var VoiceConnectorAwsRegion;
-    (function(VoiceConnectorAwsRegion2) {
-      VoiceConnectorAwsRegion2["AP_NORTHEAST_1"] = "ap-northeast-1";
-      VoiceConnectorAwsRegion2["AP_NORTHEAST_2"] = "ap-northeast-2";
-      VoiceConnectorAwsRegion2["AP_SOUTHEAST_1"] = "ap-southeast-1";
-      VoiceConnectorAwsRegion2["AP_SOUTHEAST_2"] = "ap-southeast-2";
-      VoiceConnectorAwsRegion2["CA_CENTRAL_1"] = "ca-central-1";
-      VoiceConnectorAwsRegion2["EU_CENTRAL_1"] = "eu-central-1";
-      VoiceConnectorAwsRegion2["EU_WEST_1"] = "eu-west-1";
-      VoiceConnectorAwsRegion2["EU_WEST_2"] = "eu-west-2";
-      VoiceConnectorAwsRegion2["US_EAST_1"] = "us-east-1";
-      VoiceConnectorAwsRegion2["US_WEST_2"] = "us-west-2";
-    })(VoiceConnectorAwsRegion = exports.VoiceConnectorAwsRegion || (exports.VoiceConnectorAwsRegion = {}));
+    exports.SipRuleTriggerType = {
+      RequestUriHostname: "RequestUriHostname",
+      ToPhoneNumber: "ToPhoneNumber"
+    };
+    exports.VoiceConnectorAwsRegion = {
+      AP_NORTHEAST_1: "ap-northeast-1",
+      AP_NORTHEAST_2: "ap-northeast-2",
+      AP_SOUTHEAST_1: "ap-southeast-1",
+      AP_SOUTHEAST_2: "ap-southeast-2",
+      CA_CENTRAL_1: "ca-central-1",
+      EU_CENTRAL_1: "eu-central-1",
+      EU_WEST_1: "eu-west-1",
+      EU_WEST_2: "eu-west-2",
+      US_EAST_1: "us-east-1",
+      US_WEST_2: "us-west-2"
+    };
     var GoneException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -16022,42 +16013,37 @@ var require_models_04 = __commonJS({
       }
     };
     exports.GoneException = GoneException;
-    var PhoneNumberAssociationName;
-    (function(PhoneNumberAssociationName2) {
-      PhoneNumberAssociationName2["SipRuleId"] = "SipRuleId";
-      PhoneNumberAssociationName2["VoiceConnectorGroupId"] = "VoiceConnectorGroupId";
-      PhoneNumberAssociationName2["VoiceConnectorId"] = "VoiceConnectorId";
-    })(PhoneNumberAssociationName = exports.PhoneNumberAssociationName || (exports.PhoneNumberAssociationName = {}));
-    var PhoneNumberStatus;
-    (function(PhoneNumberStatus2) {
-      PhoneNumberStatus2["AcquireFailed"] = "AcquireFailed";
-      PhoneNumberStatus2["AcquireInProgress"] = "AcquireInProgress";
-      PhoneNumberStatus2["Assigned"] = "Assigned";
-      PhoneNumberStatus2["Cancelled"] = "Cancelled";
-      PhoneNumberStatus2["DeleteFailed"] = "DeleteFailed";
-      PhoneNumberStatus2["DeleteInProgress"] = "DeleteInProgress";
-      PhoneNumberStatus2["PortinCancelRequested"] = "PortinCancelRequested";
-      PhoneNumberStatus2["PortinInProgress"] = "PortinInProgress";
-      PhoneNumberStatus2["ReleaseFailed"] = "ReleaseFailed";
-      PhoneNumberStatus2["ReleaseInProgress"] = "ReleaseInProgress";
-      PhoneNumberStatus2["Unassigned"] = "Unassigned";
-    })(PhoneNumberStatus = exports.PhoneNumberStatus || (exports.PhoneNumberStatus = {}));
-    var PhoneNumberType;
-    (function(PhoneNumberType2) {
-      PhoneNumberType2["Local"] = "Local";
-      PhoneNumberType2["TollFree"] = "TollFree";
-    })(PhoneNumberType = exports.PhoneNumberType || (exports.PhoneNumberType = {}));
-    var OriginationRouteProtocol;
-    (function(OriginationRouteProtocol2) {
-      OriginationRouteProtocol2["TCP"] = "TCP";
-      OriginationRouteProtocol2["UDP"] = "UDP";
-    })(OriginationRouteProtocol = exports.OriginationRouteProtocol || (exports.OriginationRouteProtocol = {}));
-    var NotificationTarget;
-    (function(NotificationTarget2) {
-      NotificationTarget2["EventBridge"] = "EventBridge";
-      NotificationTarget2["SNS"] = "SNS";
-      NotificationTarget2["SQS"] = "SQS";
-    })(NotificationTarget = exports.NotificationTarget || (exports.NotificationTarget = {}));
+    exports.PhoneNumberAssociationName = {
+      SipRuleId: "SipRuleId",
+      VoiceConnectorGroupId: "VoiceConnectorGroupId",
+      VoiceConnectorId: "VoiceConnectorId"
+    };
+    exports.PhoneNumberStatus = {
+      AcquireFailed: "AcquireFailed",
+      AcquireInProgress: "AcquireInProgress",
+      Assigned: "Assigned",
+      Cancelled: "Cancelled",
+      DeleteFailed: "DeleteFailed",
+      DeleteInProgress: "DeleteInProgress",
+      PortinCancelRequested: "PortinCancelRequested",
+      PortinInProgress: "PortinInProgress",
+      ReleaseFailed: "ReleaseFailed",
+      ReleaseInProgress: "ReleaseInProgress",
+      Unassigned: "Unassigned"
+    };
+    exports.PhoneNumberType = {
+      Local: "Local",
+      TollFree: "TollFree"
+    };
+    exports.OriginationRouteProtocol = {
+      TCP: "TCP",
+      UDP: "UDP"
+    };
+    exports.NotificationTarget = {
+      EventBridge: "EventBridge",
+      SNS: "SNS",
+      SQS: "SQS"
+    };
     var UnprocessableEntityException = class extends ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException {
       constructor(opts) {
         super({
@@ -16073,10 +16059,9 @@ var require_models_04 = __commonJS({
       }
     };
     exports.UnprocessableEntityException = UnprocessableEntityException;
-    var LanguageCode;
-    (function(LanguageCode2) {
-      LanguageCode2["EN_US"] = "en-US";
-    })(LanguageCode = exports.LanguageCode || (exports.LanguageCode = {}));
+    exports.LanguageCode = {
+      EN_US: "en-US"
+    };
     var AddressFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.streetName && { streetName: smithy_client_1.SENSITIVE_STRING },
@@ -31318,18 +31303,17 @@ var require_models_05 = __commonJS({
     exports.DescribeMaintenanceWindowTasksResultFilterSensitiveLog = exports.MaintenanceWindowTaskFilterSensitiveLog = exports.MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = exports.MaintenanceWindowTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = exports.MaintenanceWindowIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = exports.DescribeInstancePatchStatesResultFilterSensitiveLog = exports.InstancePatchStateFilterSensitiveLog = exports.DescribeAssociationResultFilterSensitiveLog = exports.CreatePatchBaselineRequestFilterSensitiveLog = exports.PatchSourceFilterSensitiveLog = exports.CreateMaintenanceWindowRequestFilterSensitiveLog = exports.CreateAssociationBatchResultFilterSensitiveLog = exports.FailedCreateAssociationFilterSensitiveLog = exports.CreateAssociationBatchRequestFilterSensitiveLog = exports.CreateAssociationBatchRequestEntryFilterSensitiveLog = exports.CreateAssociationResultFilterSensitiveLog = exports.AssociationDescriptionFilterSensitiveLog = exports.CreateAssociationRequestFilterSensitiveLog = exports.OpsItemFilterOperator = exports.OpsItemFilterKey = exports.MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowResourceType = exports.MaintenanceWindowTaskType = exports.MaintenanceWindowExecutionStatus = exports.InvalidDeletionIdException = exports.InventoryDeletionStatus = exports.InstancePatchStateOperatorType = exports.RebootOption = exports.PatchOperationType = exports.PatchComplianceDataState = exports.InvalidInstanceInformationFilterValue = exports.SourceType = exports.ResourceType = exports.PingStatus = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var SSMServiceException_1 = require_SSMServiceException();
-    var ResourceTypeForTagging;
-    (function(ResourceTypeForTagging2) {
-      ResourceTypeForTagging2["ASSOCIATION"] = "Association";
-      ResourceTypeForTagging2["AUTOMATION"] = "Automation";
-      ResourceTypeForTagging2["DOCUMENT"] = "Document";
-      ResourceTypeForTagging2["MAINTENANCE_WINDOW"] = "MaintenanceWindow";
-      ResourceTypeForTagging2["MANAGED_INSTANCE"] = "ManagedInstance";
-      ResourceTypeForTagging2["OPSMETADATA"] = "OpsMetadata";
-      ResourceTypeForTagging2["OPS_ITEM"] = "OpsItem";
-      ResourceTypeForTagging2["PARAMETER"] = "Parameter";
-      ResourceTypeForTagging2["PATCH_BASELINE"] = "PatchBaseline";
-    })(ResourceTypeForTagging = exports.ResourceTypeForTagging || (exports.ResourceTypeForTagging = {}));
+    exports.ResourceTypeForTagging = {
+      ASSOCIATION: "Association",
+      AUTOMATION: "Automation",
+      DOCUMENT: "Document",
+      MAINTENANCE_WINDOW: "MaintenanceWindow",
+      MANAGED_INSTANCE: "ManagedInstance",
+      OPSMETADATA: "OpsMetadata",
+      OPS_ITEM: "OpsItem",
+      PARAMETER: "Parameter",
+      PATCH_BASELINE: "PatchBaseline"
+    };
     var InternalServerError = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -31397,11 +31381,10 @@ var require_models_05 = __commonJS({
       }
     };
     exports.TooManyUpdates = TooManyUpdates;
-    var ExternalAlarmState;
-    (function(ExternalAlarmState2) {
-      ExternalAlarmState2["ALARM"] = "ALARM";
-      ExternalAlarmState2["UNKNOWN"] = "UNKNOWN";
-    })(ExternalAlarmState = exports.ExternalAlarmState || (exports.ExternalAlarmState = {}));
+    exports.ExternalAlarmState = {
+      ALARM: "ALARM",
+      UNKNOWN: "UNKNOWN"
+    };
     var AlreadyExistsException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -31572,25 +31555,22 @@ var require_models_05 = __commonJS({
       }
     };
     exports.AssociationLimitExceeded = AssociationLimitExceeded;
-    var AssociationComplianceSeverity;
-    (function(AssociationComplianceSeverity2) {
-      AssociationComplianceSeverity2["Critical"] = "CRITICAL";
-      AssociationComplianceSeverity2["High"] = "HIGH";
-      AssociationComplianceSeverity2["Low"] = "LOW";
-      AssociationComplianceSeverity2["Medium"] = "MEDIUM";
-      AssociationComplianceSeverity2["Unspecified"] = "UNSPECIFIED";
-    })(AssociationComplianceSeverity = exports.AssociationComplianceSeverity || (exports.AssociationComplianceSeverity = {}));
-    var AssociationSyncCompliance;
-    (function(AssociationSyncCompliance2) {
-      AssociationSyncCompliance2["Auto"] = "AUTO";
-      AssociationSyncCompliance2["Manual"] = "MANUAL";
-    })(AssociationSyncCompliance = exports.AssociationSyncCompliance || (exports.AssociationSyncCompliance = {}));
-    var AssociationStatusName;
-    (function(AssociationStatusName2) {
-      AssociationStatusName2["Failed"] = "Failed";
-      AssociationStatusName2["Pending"] = "Pending";
-      AssociationStatusName2["Success"] = "Success";
-    })(AssociationStatusName = exports.AssociationStatusName || (exports.AssociationStatusName = {}));
+    exports.AssociationComplianceSeverity = {
+      Critical: "CRITICAL",
+      High: "HIGH",
+      Low: "LOW",
+      Medium: "MEDIUM",
+      Unspecified: "UNSPECIFIED"
+    };
+    exports.AssociationSyncCompliance = {
+      Auto: "AUTO",
+      Manual: "MANUAL"
+    };
+    exports.AssociationStatusName = {
+      Failed: "Failed",
+      Pending: "Pending",
+      Success: "Success"
+    };
     var InvalidDocument = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -31702,73 +31682,64 @@ var require_models_05 = __commonJS({
       }
     };
     exports.UnsupportedPlatformType = UnsupportedPlatformType;
-    var Fault;
-    (function(Fault2) {
-      Fault2["Client"] = "Client";
-      Fault2["Server"] = "Server";
-      Fault2["Unknown"] = "Unknown";
-    })(Fault = exports.Fault || (exports.Fault = {}));
-    var AttachmentsSourceKey;
-    (function(AttachmentsSourceKey2) {
-      AttachmentsSourceKey2["AttachmentReference"] = "AttachmentReference";
-      AttachmentsSourceKey2["S3FileUrl"] = "S3FileUrl";
-      AttachmentsSourceKey2["SourceUrl"] = "SourceUrl";
-    })(AttachmentsSourceKey = exports.AttachmentsSourceKey || (exports.AttachmentsSourceKey = {}));
-    var DocumentFormat;
-    (function(DocumentFormat2) {
-      DocumentFormat2["JSON"] = "JSON";
-      DocumentFormat2["TEXT"] = "TEXT";
-      DocumentFormat2["YAML"] = "YAML";
-    })(DocumentFormat = exports.DocumentFormat || (exports.DocumentFormat = {}));
-    var DocumentType;
-    (function(DocumentType2) {
-      DocumentType2["ApplicationConfiguration"] = "ApplicationConfiguration";
-      DocumentType2["ApplicationConfigurationSchema"] = "ApplicationConfigurationSchema";
-      DocumentType2["Automation"] = "Automation";
-      DocumentType2["ChangeCalendar"] = "ChangeCalendar";
-      DocumentType2["ChangeTemplate"] = "Automation.ChangeTemplate";
-      DocumentType2["CloudFormation"] = "CloudFormation";
-      DocumentType2["Command"] = "Command";
-      DocumentType2["ConformancePackTemplate"] = "ConformancePackTemplate";
-      DocumentType2["DeploymentStrategy"] = "DeploymentStrategy";
-      DocumentType2["Package"] = "Package";
-      DocumentType2["Policy"] = "Policy";
-      DocumentType2["ProblemAnalysis"] = "ProblemAnalysis";
-      DocumentType2["ProblemAnalysisTemplate"] = "ProblemAnalysisTemplate";
-      DocumentType2["QuickSetup"] = "QuickSetup";
-      DocumentType2["Session"] = "Session";
-    })(DocumentType = exports.DocumentType || (exports.DocumentType = {}));
-    var DocumentHashType;
-    (function(DocumentHashType2) {
-      DocumentHashType2["SHA1"] = "Sha1";
-      DocumentHashType2["SHA256"] = "Sha256";
-    })(DocumentHashType = exports.DocumentHashType || (exports.DocumentHashType = {}));
-    var DocumentParameterType;
-    (function(DocumentParameterType2) {
-      DocumentParameterType2["String"] = "String";
-      DocumentParameterType2["StringList"] = "StringList";
-    })(DocumentParameterType = exports.DocumentParameterType || (exports.DocumentParameterType = {}));
-    var PlatformType;
-    (function(PlatformType2) {
-      PlatformType2["LINUX"] = "Linux";
-      PlatformType2["MACOS"] = "MacOS";
-      PlatformType2["WINDOWS"] = "Windows";
-    })(PlatformType = exports.PlatformType || (exports.PlatformType = {}));
-    var ReviewStatus;
-    (function(ReviewStatus2) {
-      ReviewStatus2["APPROVED"] = "APPROVED";
-      ReviewStatus2["NOT_REVIEWED"] = "NOT_REVIEWED";
-      ReviewStatus2["PENDING"] = "PENDING";
-      ReviewStatus2["REJECTED"] = "REJECTED";
-    })(ReviewStatus = exports.ReviewStatus || (exports.ReviewStatus = {}));
-    var DocumentStatus;
-    (function(DocumentStatus2) {
-      DocumentStatus2["Active"] = "Active";
-      DocumentStatus2["Creating"] = "Creating";
-      DocumentStatus2["Deleting"] = "Deleting";
-      DocumentStatus2["Failed"] = "Failed";
-      DocumentStatus2["Updating"] = "Updating";
-    })(DocumentStatus = exports.DocumentStatus || (exports.DocumentStatus = {}));
+    exports.Fault = {
+      Client: "Client",
+      Server: "Server",
+      Unknown: "Unknown"
+    };
+    exports.AttachmentsSourceKey = {
+      AttachmentReference: "AttachmentReference",
+      S3FileUrl: "S3FileUrl",
+      SourceUrl: "SourceUrl"
+    };
+    exports.DocumentFormat = {
+      JSON: "JSON",
+      TEXT: "TEXT",
+      YAML: "YAML"
+    };
+    exports.DocumentType = {
+      ApplicationConfiguration: "ApplicationConfiguration",
+      ApplicationConfigurationSchema: "ApplicationConfigurationSchema",
+      Automation: "Automation",
+      ChangeCalendar: "ChangeCalendar",
+      ChangeTemplate: "Automation.ChangeTemplate",
+      CloudFormation: "CloudFormation",
+      Command: "Command",
+      ConformancePackTemplate: "ConformancePackTemplate",
+      DeploymentStrategy: "DeploymentStrategy",
+      Package: "Package",
+      Policy: "Policy",
+      ProblemAnalysis: "ProblemAnalysis",
+      ProblemAnalysisTemplate: "ProblemAnalysisTemplate",
+      QuickSetup: "QuickSetup",
+      Session: "Session"
+    };
+    exports.DocumentHashType = {
+      SHA1: "Sha1",
+      SHA256: "Sha256"
+    };
+    exports.DocumentParameterType = {
+      String: "String",
+      StringList: "StringList"
+    };
+    exports.PlatformType = {
+      LINUX: "Linux",
+      MACOS: "MacOS",
+      WINDOWS: "Windows"
+    };
+    exports.ReviewStatus = {
+      APPROVED: "APPROVED",
+      NOT_REVIEWED: "NOT_REVIEWED",
+      PENDING: "PENDING",
+      REJECTED: "REJECTED"
+    };
+    exports.DocumentStatus = {
+      Active: "Active",
+      Creating: "Creating",
+      Deleting: "Deleting",
+      Failed: "Failed",
+      Updating: "Updating"
+    };
     var DocumentAlreadyExists = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -31867,11 +31838,10 @@ var require_models_05 = __commonJS({
       }
     };
     exports.ResourceLimitExceededException = ResourceLimitExceededException;
-    var OpsItemDataType;
-    (function(OpsItemDataType2) {
-      OpsItemDataType2["SEARCHABLE_STRING"] = "SearchableString";
-      OpsItemDataType2["STRING"] = "String";
-    })(OpsItemDataType = exports.OpsItemDataType || (exports.OpsItemDataType = {}));
+    exports.OpsItemDataType = {
+      SEARCHABLE_STRING: "SearchableString",
+      STRING: "String"
+    };
     var OpsItemAccessDeniedException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -31953,64 +31923,59 @@ var require_models_05 = __commonJS({
       }
     };
     exports.OpsMetadataTooManyUpdatesException = OpsMetadataTooManyUpdatesException;
-    var PatchComplianceLevel;
-    (function(PatchComplianceLevel2) {
-      PatchComplianceLevel2["Critical"] = "CRITICAL";
-      PatchComplianceLevel2["High"] = "HIGH";
-      PatchComplianceLevel2["Informational"] = "INFORMATIONAL";
-      PatchComplianceLevel2["Low"] = "LOW";
-      PatchComplianceLevel2["Medium"] = "MEDIUM";
-      PatchComplianceLevel2["Unspecified"] = "UNSPECIFIED";
-    })(PatchComplianceLevel = exports.PatchComplianceLevel || (exports.PatchComplianceLevel = {}));
-    var PatchFilterKey;
-    (function(PatchFilterKey2) {
-      PatchFilterKey2["AdvisoryId"] = "ADVISORY_ID";
-      PatchFilterKey2["Arch"] = "ARCH";
-      PatchFilterKey2["BugzillaId"] = "BUGZILLA_ID";
-      PatchFilterKey2["CVEId"] = "CVE_ID";
-      PatchFilterKey2["Classification"] = "CLASSIFICATION";
-      PatchFilterKey2["Epoch"] = "EPOCH";
-      PatchFilterKey2["MsrcSeverity"] = "MSRC_SEVERITY";
-      PatchFilterKey2["Name"] = "NAME";
-      PatchFilterKey2["PatchId"] = "PATCH_ID";
-      PatchFilterKey2["PatchSet"] = "PATCH_SET";
-      PatchFilterKey2["Priority"] = "PRIORITY";
-      PatchFilterKey2["Product"] = "PRODUCT";
-      PatchFilterKey2["ProductFamily"] = "PRODUCT_FAMILY";
-      PatchFilterKey2["Release"] = "RELEASE";
-      PatchFilterKey2["Repository"] = "REPOSITORY";
-      PatchFilterKey2["Section"] = "SECTION";
-      PatchFilterKey2["Security"] = "SECURITY";
-      PatchFilterKey2["Severity"] = "SEVERITY";
-      PatchFilterKey2["Version"] = "VERSION";
-    })(PatchFilterKey = exports.PatchFilterKey || (exports.PatchFilterKey = {}));
-    var OperatingSystem;
-    (function(OperatingSystem2) {
-      OperatingSystem2["AlmaLinux"] = "ALMA_LINUX";
-      OperatingSystem2["AmazonLinux"] = "AMAZON_LINUX";
-      OperatingSystem2["AmazonLinux2"] = "AMAZON_LINUX_2";
-      OperatingSystem2["AmazonLinux2022"] = "AMAZON_LINUX_2022";
-      OperatingSystem2["AmazonLinux2023"] = "AMAZON_LINUX_2023";
-      OperatingSystem2["CentOS"] = "CENTOS";
-      OperatingSystem2["Debian"] = "DEBIAN";
-      OperatingSystem2["MacOS"] = "MACOS";
-      OperatingSystem2["OracleLinux"] = "ORACLE_LINUX";
-      OperatingSystem2["Raspbian"] = "RASPBIAN";
-      OperatingSystem2["RedhatEnterpriseLinux"] = "REDHAT_ENTERPRISE_LINUX";
-      OperatingSystem2["Rocky_Linux"] = "ROCKY_LINUX";
-      OperatingSystem2["Suse"] = "SUSE";
-      OperatingSystem2["Ubuntu"] = "UBUNTU";
-      OperatingSystem2["Windows"] = "WINDOWS";
-    })(OperatingSystem = exports.OperatingSystem || (exports.OperatingSystem = {}));
-    var PatchAction;
-    (function(PatchAction2) {
-      PatchAction2["AllowAsDependency"] = "ALLOW_AS_DEPENDENCY";
-      PatchAction2["Block"] = "BLOCK";
-    })(PatchAction = exports.PatchAction || (exports.PatchAction = {}));
-    var ResourceDataSyncS3Format;
-    (function(ResourceDataSyncS3Format2) {
-      ResourceDataSyncS3Format2["JSON_SERDE"] = "JsonSerDe";
-    })(ResourceDataSyncS3Format = exports.ResourceDataSyncS3Format || (exports.ResourceDataSyncS3Format = {}));
+    exports.PatchComplianceLevel = {
+      Critical: "CRITICAL",
+      High: "HIGH",
+      Informational: "INFORMATIONAL",
+      Low: "LOW",
+      Medium: "MEDIUM",
+      Unspecified: "UNSPECIFIED"
+    };
+    exports.PatchFilterKey = {
+      AdvisoryId: "ADVISORY_ID",
+      Arch: "ARCH",
+      BugzillaId: "BUGZILLA_ID",
+      CVEId: "CVE_ID",
+      Classification: "CLASSIFICATION",
+      Epoch: "EPOCH",
+      MsrcSeverity: "MSRC_SEVERITY",
+      Name: "NAME",
+      PatchId: "PATCH_ID",
+      PatchSet: "PATCH_SET",
+      Priority: "PRIORITY",
+      Product: "PRODUCT",
+      ProductFamily: "PRODUCT_FAMILY",
+      Release: "RELEASE",
+      Repository: "REPOSITORY",
+      Section: "SECTION",
+      Security: "SECURITY",
+      Severity: "SEVERITY",
+      Version: "VERSION"
+    };
+    exports.OperatingSystem = {
+      AlmaLinux: "ALMA_LINUX",
+      AmazonLinux: "AMAZON_LINUX",
+      AmazonLinux2: "AMAZON_LINUX_2",
+      AmazonLinux2022: "AMAZON_LINUX_2022",
+      AmazonLinux2023: "AMAZON_LINUX_2023",
+      CentOS: "CENTOS",
+      Debian: "DEBIAN",
+      MacOS: "MACOS",
+      OracleLinux: "ORACLE_LINUX",
+      Raspbian: "RASPBIAN",
+      RedhatEnterpriseLinux: "REDHAT_ENTERPRISE_LINUX",
+      Rocky_Linux: "ROCKY_LINUX",
+      Suse: "SUSE",
+      Ubuntu: "UBUNTU",
+      Windows: "WINDOWS"
+    };
+    exports.PatchAction = {
+      AllowAsDependency: "ALLOW_AS_DEPENDENCY",
+      Block: "BLOCK"
+    };
+    exports.ResourceDataSyncS3Format = {
+      JSON_SERDE: "JsonSerDe"
+    };
     var ResourceDataSyncAlreadyExistsException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32122,11 +32087,10 @@ var require_models_05 = __commonJS({
       }
     };
     exports.InvalidDocumentOperation = InvalidDocumentOperation;
-    var InventorySchemaDeleteOption;
-    (function(InventorySchemaDeleteOption2) {
-      InventorySchemaDeleteOption2["DELETE_SCHEMA"] = "DeleteSchema";
-      InventorySchemaDeleteOption2["DISABLE_SCHEMA"] = "DisableSchema";
-    })(InventorySchemaDeleteOption = exports.InventorySchemaDeleteOption || (exports.InventorySchemaDeleteOption = {}));
+    exports.InventorySchemaDeleteOption = {
+      DELETE_SCHEMA: "DeleteSchema",
+      DISABLE_SCHEMA: "DisableSchema"
+    };
     var InvalidDeleteInventoryParametersException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32282,12 +32246,11 @@ var require_models_05 = __commonJS({
       }
     };
     exports.TargetInUseException = TargetInUseException;
-    var DescribeActivationsFilterKeys;
-    (function(DescribeActivationsFilterKeys2) {
-      DescribeActivationsFilterKeys2["ACTIVATION_IDS"] = "ActivationIds";
-      DescribeActivationsFilterKeys2["DEFAULT_INSTANCE_NAME"] = "DefaultInstanceName";
-      DescribeActivationsFilterKeys2["IAM_ROLE"] = "IamRole";
-    })(DescribeActivationsFilterKeys = exports.DescribeActivationsFilterKeys || (exports.DescribeActivationsFilterKeys = {}));
+    exports.DescribeActivationsFilterKeys = {
+      ACTIVATION_IDS: "ActivationIds",
+      DEFAULT_INSTANCE_NAME: "DefaultInstanceName",
+      IAM_ROLE: "IamRole"
+    };
     var InvalidFilter = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32330,18 +32293,16 @@ var require_models_05 = __commonJS({
       }
     };
     exports.InvalidAssociationVersion = InvalidAssociationVersion;
-    var AssociationExecutionFilterKey;
-    (function(AssociationExecutionFilterKey2) {
-      AssociationExecutionFilterKey2["CreatedTime"] = "CreatedTime";
-      AssociationExecutionFilterKey2["ExecutionId"] = "ExecutionId";
-      AssociationExecutionFilterKey2["Status"] = "Status";
-    })(AssociationExecutionFilterKey = exports.AssociationExecutionFilterKey || (exports.AssociationExecutionFilterKey = {}));
-    var AssociationFilterOperatorType;
-    (function(AssociationFilterOperatorType2) {
-      AssociationFilterOperatorType2["Equal"] = "EQUAL";
-      AssociationFilterOperatorType2["GreaterThan"] = "GREATER_THAN";
-      AssociationFilterOperatorType2["LessThan"] = "LESS_THAN";
-    })(AssociationFilterOperatorType = exports.AssociationFilterOperatorType || (exports.AssociationFilterOperatorType = {}));
+    exports.AssociationExecutionFilterKey = {
+      CreatedTime: "CreatedTime",
+      ExecutionId: "ExecutionId",
+      Status: "Status"
+    };
+    exports.AssociationFilterOperatorType = {
+      Equal: "EQUAL",
+      GreaterThan: "GREATER_THAN",
+      LessThan: "LESS_THAN"
+    };
     var AssociationExecutionDoesNotExist = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32356,62 +32317,56 @@ var require_models_05 = __commonJS({
       }
     };
     exports.AssociationExecutionDoesNotExist = AssociationExecutionDoesNotExist;
-    var AssociationExecutionTargetsFilterKey;
-    (function(AssociationExecutionTargetsFilterKey2) {
-      AssociationExecutionTargetsFilterKey2["ResourceId"] = "ResourceId";
-      AssociationExecutionTargetsFilterKey2["ResourceType"] = "ResourceType";
-      AssociationExecutionTargetsFilterKey2["Status"] = "Status";
-    })(AssociationExecutionTargetsFilterKey = exports.AssociationExecutionTargetsFilterKey || (exports.AssociationExecutionTargetsFilterKey = {}));
-    var AutomationExecutionFilterKey;
-    (function(AutomationExecutionFilterKey2) {
-      AutomationExecutionFilterKey2["AUTOMATION_SUBTYPE"] = "AutomationSubtype";
-      AutomationExecutionFilterKey2["AUTOMATION_TYPE"] = "AutomationType";
-      AutomationExecutionFilterKey2["CURRENT_ACTION"] = "CurrentAction";
-      AutomationExecutionFilterKey2["DOCUMENT_NAME_PREFIX"] = "DocumentNamePrefix";
-      AutomationExecutionFilterKey2["EXECUTION_ID"] = "ExecutionId";
-      AutomationExecutionFilterKey2["EXECUTION_STATUS"] = "ExecutionStatus";
-      AutomationExecutionFilterKey2["OPS_ITEM_ID"] = "OpsItemId";
-      AutomationExecutionFilterKey2["PARENT_EXECUTION_ID"] = "ParentExecutionId";
-      AutomationExecutionFilterKey2["START_TIME_AFTER"] = "StartTimeAfter";
-      AutomationExecutionFilterKey2["START_TIME_BEFORE"] = "StartTimeBefore";
-      AutomationExecutionFilterKey2["TAG_KEY"] = "TagKey";
-      AutomationExecutionFilterKey2["TARGET_RESOURCE_GROUP"] = "TargetResourceGroup";
-    })(AutomationExecutionFilterKey = exports.AutomationExecutionFilterKey || (exports.AutomationExecutionFilterKey = {}));
-    var AutomationExecutionStatus;
-    (function(AutomationExecutionStatus2) {
-      AutomationExecutionStatus2["APPROVED"] = "Approved";
-      AutomationExecutionStatus2["CANCELLED"] = "Cancelled";
-      AutomationExecutionStatus2["CANCELLING"] = "Cancelling";
-      AutomationExecutionStatus2["CHANGE_CALENDAR_OVERRIDE_APPROVED"] = "ChangeCalendarOverrideApproved";
-      AutomationExecutionStatus2["CHANGE_CALENDAR_OVERRIDE_REJECTED"] = "ChangeCalendarOverrideRejected";
-      AutomationExecutionStatus2["COMPLETED_WITH_FAILURE"] = "CompletedWithFailure";
-      AutomationExecutionStatus2["COMPLETED_WITH_SUCCESS"] = "CompletedWithSuccess";
-      AutomationExecutionStatus2["FAILED"] = "Failed";
-      AutomationExecutionStatus2["INPROGRESS"] = "InProgress";
-      AutomationExecutionStatus2["PENDING"] = "Pending";
-      AutomationExecutionStatus2["PENDING_APPROVAL"] = "PendingApproval";
-      AutomationExecutionStatus2["PENDING_CHANGE_CALENDAR_OVERRIDE"] = "PendingChangeCalendarOverride";
-      AutomationExecutionStatus2["REJECTED"] = "Rejected";
-      AutomationExecutionStatus2["RUNBOOK_INPROGRESS"] = "RunbookInProgress";
-      AutomationExecutionStatus2["SCHEDULED"] = "Scheduled";
-      AutomationExecutionStatus2["SUCCESS"] = "Success";
-      AutomationExecutionStatus2["TIMEDOUT"] = "TimedOut";
-      AutomationExecutionStatus2["WAITING"] = "Waiting";
-    })(AutomationExecutionStatus = exports.AutomationExecutionStatus || (exports.AutomationExecutionStatus = {}));
-    var AutomationSubtype;
-    (function(AutomationSubtype2) {
-      AutomationSubtype2["ChangeRequest"] = "ChangeRequest";
-    })(AutomationSubtype = exports.AutomationSubtype || (exports.AutomationSubtype = {}));
-    var AutomationType;
-    (function(AutomationType2) {
-      AutomationType2["CrossAccount"] = "CrossAccount";
-      AutomationType2["Local"] = "Local";
-    })(AutomationType = exports.AutomationType || (exports.AutomationType = {}));
-    var ExecutionMode;
-    (function(ExecutionMode2) {
-      ExecutionMode2["Auto"] = "Auto";
-      ExecutionMode2["Interactive"] = "Interactive";
-    })(ExecutionMode = exports.ExecutionMode || (exports.ExecutionMode = {}));
+    exports.AssociationExecutionTargetsFilterKey = {
+      ResourceId: "ResourceId",
+      ResourceType: "ResourceType",
+      Status: "Status"
+    };
+    exports.AutomationExecutionFilterKey = {
+      AUTOMATION_SUBTYPE: "AutomationSubtype",
+      AUTOMATION_TYPE: "AutomationType",
+      CURRENT_ACTION: "CurrentAction",
+      DOCUMENT_NAME_PREFIX: "DocumentNamePrefix",
+      EXECUTION_ID: "ExecutionId",
+      EXECUTION_STATUS: "ExecutionStatus",
+      OPS_ITEM_ID: "OpsItemId",
+      PARENT_EXECUTION_ID: "ParentExecutionId",
+      START_TIME_AFTER: "StartTimeAfter",
+      START_TIME_BEFORE: "StartTimeBefore",
+      TAG_KEY: "TagKey",
+      TARGET_RESOURCE_GROUP: "TargetResourceGroup"
+    };
+    exports.AutomationExecutionStatus = {
+      APPROVED: "Approved",
+      CANCELLED: "Cancelled",
+      CANCELLING: "Cancelling",
+      CHANGE_CALENDAR_OVERRIDE_APPROVED: "ChangeCalendarOverrideApproved",
+      CHANGE_CALENDAR_OVERRIDE_REJECTED: "ChangeCalendarOverrideRejected",
+      COMPLETED_WITH_FAILURE: "CompletedWithFailure",
+      COMPLETED_WITH_SUCCESS: "CompletedWithSuccess",
+      FAILED: "Failed",
+      INPROGRESS: "InProgress",
+      PENDING: "Pending",
+      PENDING_APPROVAL: "PendingApproval",
+      PENDING_CHANGE_CALENDAR_OVERRIDE: "PendingChangeCalendarOverride",
+      REJECTED: "Rejected",
+      RUNBOOK_INPROGRESS: "RunbookInProgress",
+      SCHEDULED: "Scheduled",
+      SUCCESS: "Success",
+      TIMEDOUT: "TimedOut",
+      WAITING: "Waiting"
+    };
+    exports.AutomationSubtype = {
+      ChangeRequest: "ChangeRequest"
+    };
+    exports.AutomationType = {
+      CrossAccount: "CrossAccount",
+      Local: "Local"
+    };
+    exports.ExecutionMode = {
+      Auto: "Auto",
+      Interactive: "Interactive"
+    };
     var InvalidFilterKey = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32453,19 +32408,17 @@ var require_models_05 = __commonJS({
       }
     };
     exports.AutomationExecutionNotFoundException = AutomationExecutionNotFoundException;
-    var StepExecutionFilterKey;
-    (function(StepExecutionFilterKey2) {
-      StepExecutionFilterKey2["ACTION"] = "Action";
-      StepExecutionFilterKey2["START_TIME_AFTER"] = "StartTimeAfter";
-      StepExecutionFilterKey2["START_TIME_BEFORE"] = "StartTimeBefore";
-      StepExecutionFilterKey2["STEP_EXECUTION_ID"] = "StepExecutionId";
-      StepExecutionFilterKey2["STEP_EXECUTION_STATUS"] = "StepExecutionStatus";
-      StepExecutionFilterKey2["STEP_NAME"] = "StepName";
-    })(StepExecutionFilterKey = exports.StepExecutionFilterKey || (exports.StepExecutionFilterKey = {}));
-    var DocumentPermissionType;
-    (function(DocumentPermissionType2) {
-      DocumentPermissionType2["SHARE"] = "Share";
-    })(DocumentPermissionType = exports.DocumentPermissionType || (exports.DocumentPermissionType = {}));
+    exports.StepExecutionFilterKey = {
+      ACTION: "Action",
+      START_TIME_AFTER: "StartTimeAfter",
+      START_TIME_BEFORE: "StartTimeBefore",
+      STEP_EXECUTION_ID: "StepExecutionId",
+      STEP_EXECUTION_STATUS: "StepExecutionStatus",
+      STEP_NAME: "StepName"
+    };
+    exports.DocumentPermissionType = {
+      SHARE: "Share"
+    };
     var InvalidPermissionType = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32480,13 +32433,12 @@ var require_models_05 = __commonJS({
       }
     };
     exports.InvalidPermissionType = InvalidPermissionType;
-    var PatchDeploymentStatus;
-    (function(PatchDeploymentStatus2) {
-      PatchDeploymentStatus2["Approved"] = "APPROVED";
-      PatchDeploymentStatus2["ExplicitApproved"] = "EXPLICIT_APPROVED";
-      PatchDeploymentStatus2["ExplicitRejected"] = "EXPLICIT_REJECTED";
-      PatchDeploymentStatus2["PendingApproval"] = "PENDING_APPROVAL";
-    })(PatchDeploymentStatus = exports.PatchDeploymentStatus || (exports.PatchDeploymentStatus = {}));
+    exports.PatchDeploymentStatus = {
+      Approved: "APPROVED",
+      ExplicitApproved: "EXPLICIT_APPROVED",
+      ExplicitRejected: "EXPLICIT_REJECTED",
+      PendingApproval: "PENDING_APPROVAL"
+    };
     var UnsupportedOperatingSystem = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32501,35 +32453,31 @@ var require_models_05 = __commonJS({
       }
     };
     exports.UnsupportedOperatingSystem = UnsupportedOperatingSystem;
-    var InstanceInformationFilterKey;
-    (function(InstanceInformationFilterKey2) {
-      InstanceInformationFilterKey2["ACTIVATION_IDS"] = "ActivationIds";
-      InstanceInformationFilterKey2["AGENT_VERSION"] = "AgentVersion";
-      InstanceInformationFilterKey2["ASSOCIATION_STATUS"] = "AssociationStatus";
-      InstanceInformationFilterKey2["IAM_ROLE"] = "IamRole";
-      InstanceInformationFilterKey2["INSTANCE_IDS"] = "InstanceIds";
-      InstanceInformationFilterKey2["PING_STATUS"] = "PingStatus";
-      InstanceInformationFilterKey2["PLATFORM_TYPES"] = "PlatformTypes";
-      InstanceInformationFilterKey2["RESOURCE_TYPE"] = "ResourceType";
-    })(InstanceInformationFilterKey = exports.InstanceInformationFilterKey || (exports.InstanceInformationFilterKey = {}));
-    var PingStatus;
-    (function(PingStatus2) {
-      PingStatus2["CONNECTION_LOST"] = "ConnectionLost";
-      PingStatus2["INACTIVE"] = "Inactive";
-      PingStatus2["ONLINE"] = "Online";
-    })(PingStatus = exports.PingStatus || (exports.PingStatus = {}));
-    var ResourceType;
-    (function(ResourceType2) {
-      ResourceType2["DOCUMENT"] = "Document";
-      ResourceType2["EC2_INSTANCE"] = "EC2Instance";
-      ResourceType2["MANAGED_INSTANCE"] = "ManagedInstance";
-    })(ResourceType = exports.ResourceType || (exports.ResourceType = {}));
-    var SourceType;
-    (function(SourceType2) {
-      SourceType2["AWS_EC2_INSTANCE"] = "AWS::EC2::Instance";
-      SourceType2["AWS_IOT_THING"] = "AWS::IoT::Thing";
-      SourceType2["AWS_SSM_MANAGEDINSTANCE"] = "AWS::SSM::ManagedInstance";
-    })(SourceType = exports.SourceType || (exports.SourceType = {}));
+    exports.InstanceInformationFilterKey = {
+      ACTIVATION_IDS: "ActivationIds",
+      AGENT_VERSION: "AgentVersion",
+      ASSOCIATION_STATUS: "AssociationStatus",
+      IAM_ROLE: "IamRole",
+      INSTANCE_IDS: "InstanceIds",
+      PING_STATUS: "PingStatus",
+      PLATFORM_TYPES: "PlatformTypes",
+      RESOURCE_TYPE: "ResourceType"
+    };
+    exports.PingStatus = {
+      CONNECTION_LOST: "ConnectionLost",
+      INACTIVE: "Inactive",
+      ONLINE: "Online"
+    };
+    exports.ResourceType = {
+      DOCUMENT: "Document",
+      EC2_INSTANCE: "EC2Instance",
+      MANAGED_INSTANCE: "ManagedInstance"
+    };
+    exports.SourceType = {
+      AWS_EC2_INSTANCE: "AWS::EC2::Instance",
+      AWS_IOT_THING: "AWS::IoT::Thing",
+      AWS_SSM_MANAGEDINSTANCE: "AWS::SSM::ManagedInstance"
+    };
     var InvalidInstanceInformationFilterValue = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32543,38 +32491,33 @@ var require_models_05 = __commonJS({
       }
     };
     exports.InvalidInstanceInformationFilterValue = InvalidInstanceInformationFilterValue;
-    var PatchComplianceDataState;
-    (function(PatchComplianceDataState2) {
-      PatchComplianceDataState2["Failed"] = "FAILED";
-      PatchComplianceDataState2["Installed"] = "INSTALLED";
-      PatchComplianceDataState2["InstalledOther"] = "INSTALLED_OTHER";
-      PatchComplianceDataState2["InstalledPendingReboot"] = "INSTALLED_PENDING_REBOOT";
-      PatchComplianceDataState2["InstalledRejected"] = "INSTALLED_REJECTED";
-      PatchComplianceDataState2["Missing"] = "MISSING";
-      PatchComplianceDataState2["NotApplicable"] = "NOT_APPLICABLE";
-    })(PatchComplianceDataState = exports.PatchComplianceDataState || (exports.PatchComplianceDataState = {}));
-    var PatchOperationType;
-    (function(PatchOperationType2) {
-      PatchOperationType2["INSTALL"] = "Install";
-      PatchOperationType2["SCAN"] = "Scan";
-    })(PatchOperationType = exports.PatchOperationType || (exports.PatchOperationType = {}));
-    var RebootOption;
-    (function(RebootOption2) {
-      RebootOption2["NO_REBOOT"] = "NoReboot";
-      RebootOption2["REBOOT_IF_NEEDED"] = "RebootIfNeeded";
-    })(RebootOption = exports.RebootOption || (exports.RebootOption = {}));
-    var InstancePatchStateOperatorType;
-    (function(InstancePatchStateOperatorType2) {
-      InstancePatchStateOperatorType2["EQUAL"] = "Equal";
-      InstancePatchStateOperatorType2["GREATER_THAN"] = "GreaterThan";
-      InstancePatchStateOperatorType2["LESS_THAN"] = "LessThan";
-      InstancePatchStateOperatorType2["NOT_EQUAL"] = "NotEqual";
-    })(InstancePatchStateOperatorType = exports.InstancePatchStateOperatorType || (exports.InstancePatchStateOperatorType = {}));
-    var InventoryDeletionStatus;
-    (function(InventoryDeletionStatus2) {
-      InventoryDeletionStatus2["COMPLETE"] = "Complete";
-      InventoryDeletionStatus2["IN_PROGRESS"] = "InProgress";
-    })(InventoryDeletionStatus = exports.InventoryDeletionStatus || (exports.InventoryDeletionStatus = {}));
+    exports.PatchComplianceDataState = {
+      Failed: "FAILED",
+      Installed: "INSTALLED",
+      InstalledOther: "INSTALLED_OTHER",
+      InstalledPendingReboot: "INSTALLED_PENDING_REBOOT",
+      InstalledRejected: "INSTALLED_REJECTED",
+      Missing: "MISSING",
+      NotApplicable: "NOT_APPLICABLE"
+    };
+    exports.PatchOperationType = {
+      INSTALL: "Install",
+      SCAN: "Scan"
+    };
+    exports.RebootOption = {
+      NO_REBOOT: "NoReboot",
+      REBOOT_IF_NEEDED: "RebootIfNeeded"
+    };
+    exports.InstancePatchStateOperatorType = {
+      EQUAL: "Equal",
+      GREATER_THAN: "GreaterThan",
+      LESS_THAN: "LessThan",
+      NOT_EQUAL: "NotEqual"
+    };
+    exports.InventoryDeletionStatus = {
+      COMPLETE: "Complete",
+      IN_PROGRESS: "InProgress"
+    };
     var InvalidDeletionIdException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32589,72 +32532,66 @@ var require_models_05 = __commonJS({
       }
     };
     exports.InvalidDeletionIdException = InvalidDeletionIdException;
-    var MaintenanceWindowExecutionStatus;
-    (function(MaintenanceWindowExecutionStatus2) {
-      MaintenanceWindowExecutionStatus2["Cancelled"] = "CANCELLED";
-      MaintenanceWindowExecutionStatus2["Cancelling"] = "CANCELLING";
-      MaintenanceWindowExecutionStatus2["Failed"] = "FAILED";
-      MaintenanceWindowExecutionStatus2["InProgress"] = "IN_PROGRESS";
-      MaintenanceWindowExecutionStatus2["Pending"] = "PENDING";
-      MaintenanceWindowExecutionStatus2["SkippedOverlapping"] = "SKIPPED_OVERLAPPING";
-      MaintenanceWindowExecutionStatus2["Success"] = "SUCCESS";
-      MaintenanceWindowExecutionStatus2["TimedOut"] = "TIMED_OUT";
-    })(MaintenanceWindowExecutionStatus = exports.MaintenanceWindowExecutionStatus || (exports.MaintenanceWindowExecutionStatus = {}));
-    var MaintenanceWindowTaskType;
-    (function(MaintenanceWindowTaskType2) {
-      MaintenanceWindowTaskType2["Automation"] = "AUTOMATION";
-      MaintenanceWindowTaskType2["Lambda"] = "LAMBDA";
-      MaintenanceWindowTaskType2["RunCommand"] = "RUN_COMMAND";
-      MaintenanceWindowTaskType2["StepFunctions"] = "STEP_FUNCTIONS";
-    })(MaintenanceWindowTaskType = exports.MaintenanceWindowTaskType || (exports.MaintenanceWindowTaskType = {}));
-    var MaintenanceWindowResourceType;
-    (function(MaintenanceWindowResourceType2) {
-      MaintenanceWindowResourceType2["Instance"] = "INSTANCE";
-      MaintenanceWindowResourceType2["ResourceGroup"] = "RESOURCE_GROUP";
-    })(MaintenanceWindowResourceType = exports.MaintenanceWindowResourceType || (exports.MaintenanceWindowResourceType = {}));
-    var MaintenanceWindowTaskCutoffBehavior;
-    (function(MaintenanceWindowTaskCutoffBehavior2) {
-      MaintenanceWindowTaskCutoffBehavior2["CancelTask"] = "CANCEL_TASK";
-      MaintenanceWindowTaskCutoffBehavior2["ContinueTask"] = "CONTINUE_TASK";
-    })(MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowTaskCutoffBehavior || (exports.MaintenanceWindowTaskCutoffBehavior = {}));
-    var OpsItemFilterKey;
-    (function(OpsItemFilterKey2) {
-      OpsItemFilterKey2["ACCOUNT_ID"] = "AccountId";
-      OpsItemFilterKey2["ACTUAL_END_TIME"] = "ActualEndTime";
-      OpsItemFilterKey2["ACTUAL_START_TIME"] = "ActualStartTime";
-      OpsItemFilterKey2["AUTOMATION_ID"] = "AutomationId";
-      OpsItemFilterKey2["CATEGORY"] = "Category";
-      OpsItemFilterKey2["CHANGE_REQUEST_APPROVER_ARN"] = "ChangeRequestByApproverArn";
-      OpsItemFilterKey2["CHANGE_REQUEST_APPROVER_NAME"] = "ChangeRequestByApproverName";
-      OpsItemFilterKey2["CHANGE_REQUEST_REQUESTER_ARN"] = "ChangeRequestByRequesterArn";
-      OpsItemFilterKey2["CHANGE_REQUEST_REQUESTER_NAME"] = "ChangeRequestByRequesterName";
-      OpsItemFilterKey2["CHANGE_REQUEST_TARGETS_RESOURCE_GROUP"] = "ChangeRequestByTargetsResourceGroup";
-      OpsItemFilterKey2["CHANGE_REQUEST_TEMPLATE"] = "ChangeRequestByTemplate";
-      OpsItemFilterKey2["CREATED_BY"] = "CreatedBy";
-      OpsItemFilterKey2["CREATED_TIME"] = "CreatedTime";
-      OpsItemFilterKey2["INSIGHT_TYPE"] = "InsightByType";
-      OpsItemFilterKey2["LAST_MODIFIED_TIME"] = "LastModifiedTime";
-      OpsItemFilterKey2["OPERATIONAL_DATA"] = "OperationalData";
-      OpsItemFilterKey2["OPERATIONAL_DATA_KEY"] = "OperationalDataKey";
-      OpsItemFilterKey2["OPERATIONAL_DATA_VALUE"] = "OperationalDataValue";
-      OpsItemFilterKey2["OPSITEM_ID"] = "OpsItemId";
-      OpsItemFilterKey2["OPSITEM_TYPE"] = "OpsItemType";
-      OpsItemFilterKey2["PLANNED_END_TIME"] = "PlannedEndTime";
-      OpsItemFilterKey2["PLANNED_START_TIME"] = "PlannedStartTime";
-      OpsItemFilterKey2["PRIORITY"] = "Priority";
-      OpsItemFilterKey2["RESOURCE_ID"] = "ResourceId";
-      OpsItemFilterKey2["SEVERITY"] = "Severity";
-      OpsItemFilterKey2["SOURCE"] = "Source";
-      OpsItemFilterKey2["STATUS"] = "Status";
-      OpsItemFilterKey2["TITLE"] = "Title";
-    })(OpsItemFilterKey = exports.OpsItemFilterKey || (exports.OpsItemFilterKey = {}));
-    var OpsItemFilterOperator;
-    (function(OpsItemFilterOperator2) {
-      OpsItemFilterOperator2["CONTAINS"] = "Contains";
-      OpsItemFilterOperator2["EQUAL"] = "Equal";
-      OpsItemFilterOperator2["GREATER_THAN"] = "GreaterThan";
-      OpsItemFilterOperator2["LESS_THAN"] = "LessThan";
-    })(OpsItemFilterOperator = exports.OpsItemFilterOperator || (exports.OpsItemFilterOperator = {}));
+    exports.MaintenanceWindowExecutionStatus = {
+      Cancelled: "CANCELLED",
+      Cancelling: "CANCELLING",
+      Failed: "FAILED",
+      InProgress: "IN_PROGRESS",
+      Pending: "PENDING",
+      SkippedOverlapping: "SKIPPED_OVERLAPPING",
+      Success: "SUCCESS",
+      TimedOut: "TIMED_OUT"
+    };
+    exports.MaintenanceWindowTaskType = {
+      Automation: "AUTOMATION",
+      Lambda: "LAMBDA",
+      RunCommand: "RUN_COMMAND",
+      StepFunctions: "STEP_FUNCTIONS"
+    };
+    exports.MaintenanceWindowResourceType = {
+      Instance: "INSTANCE",
+      ResourceGroup: "RESOURCE_GROUP"
+    };
+    exports.MaintenanceWindowTaskCutoffBehavior = {
+      CancelTask: "CANCEL_TASK",
+      ContinueTask: "CONTINUE_TASK"
+    };
+    exports.OpsItemFilterKey = {
+      ACCOUNT_ID: "AccountId",
+      ACTUAL_END_TIME: "ActualEndTime",
+      ACTUAL_START_TIME: "ActualStartTime",
+      AUTOMATION_ID: "AutomationId",
+      CATEGORY: "Category",
+      CHANGE_REQUEST_APPROVER_ARN: "ChangeRequestByApproverArn",
+      CHANGE_REQUEST_APPROVER_NAME: "ChangeRequestByApproverName",
+      CHANGE_REQUEST_REQUESTER_ARN: "ChangeRequestByRequesterArn",
+      CHANGE_REQUEST_REQUESTER_NAME: "ChangeRequestByRequesterName",
+      CHANGE_REQUEST_TARGETS_RESOURCE_GROUP: "ChangeRequestByTargetsResourceGroup",
+      CHANGE_REQUEST_TEMPLATE: "ChangeRequestByTemplate",
+      CREATED_BY: "CreatedBy",
+      CREATED_TIME: "CreatedTime",
+      INSIGHT_TYPE: "InsightByType",
+      LAST_MODIFIED_TIME: "LastModifiedTime",
+      OPERATIONAL_DATA: "OperationalData",
+      OPERATIONAL_DATA_KEY: "OperationalDataKey",
+      OPERATIONAL_DATA_VALUE: "OperationalDataValue",
+      OPSITEM_ID: "OpsItemId",
+      OPSITEM_TYPE: "OpsItemType",
+      PLANNED_END_TIME: "PlannedEndTime",
+      PLANNED_START_TIME: "PlannedStartTime",
+      PRIORITY: "Priority",
+      RESOURCE_ID: "ResourceId",
+      SEVERITY: "Severity",
+      SOURCE: "Source",
+      STATUS: "Status",
+      TITLE: "Title"
+    };
+    exports.OpsItemFilterOperator = {
+      CONTAINS: "Contains",
+      EQUAL: "Equal",
+      GREATER_THAN: "GreaterThan",
+      LESS_THAN: "LessThan"
+    };
     var CreateAssociationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Parameters && { Parameters: smithy_client_1.SENSITIVE_STRING }
@@ -32802,46 +32739,42 @@ var require_models_1 = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var models_0_1 = require_models_05();
     var SSMServiceException_1 = require_SSMServiceException();
-    var OpsItemStatus;
-    (function(OpsItemStatus2) {
-      OpsItemStatus2["APPROVED"] = "Approved";
-      OpsItemStatus2["CANCELLED"] = "Cancelled";
-      OpsItemStatus2["CANCELLING"] = "Cancelling";
-      OpsItemStatus2["CHANGE_CALENDAR_OVERRIDE_APPROVED"] = "ChangeCalendarOverrideApproved";
-      OpsItemStatus2["CHANGE_CALENDAR_OVERRIDE_REJECTED"] = "ChangeCalendarOverrideRejected";
-      OpsItemStatus2["CLOSED"] = "Closed";
-      OpsItemStatus2["COMPLETED_WITH_FAILURE"] = "CompletedWithFailure";
-      OpsItemStatus2["COMPLETED_WITH_SUCCESS"] = "CompletedWithSuccess";
-      OpsItemStatus2["FAILED"] = "Failed";
-      OpsItemStatus2["IN_PROGRESS"] = "InProgress";
-      OpsItemStatus2["OPEN"] = "Open";
-      OpsItemStatus2["PENDING"] = "Pending";
-      OpsItemStatus2["PENDING_APPROVAL"] = "PendingApproval";
-      OpsItemStatus2["PENDING_CHANGE_CALENDAR_OVERRIDE"] = "PendingChangeCalendarOverride";
-      OpsItemStatus2["REJECTED"] = "Rejected";
-      OpsItemStatus2["RESOLVED"] = "Resolved";
-      OpsItemStatus2["RUNBOOK_IN_PROGRESS"] = "RunbookInProgress";
-      OpsItemStatus2["SCHEDULED"] = "Scheduled";
-      OpsItemStatus2["TIMED_OUT"] = "TimedOut";
-    })(OpsItemStatus = exports.OpsItemStatus || (exports.OpsItemStatus = {}));
-    var ParametersFilterKey;
-    (function(ParametersFilterKey2) {
-      ParametersFilterKey2["KEY_ID"] = "KeyId";
-      ParametersFilterKey2["NAME"] = "Name";
-      ParametersFilterKey2["TYPE"] = "Type";
-    })(ParametersFilterKey = exports.ParametersFilterKey || (exports.ParametersFilterKey = {}));
-    var ParameterTier;
-    (function(ParameterTier2) {
-      ParameterTier2["ADVANCED"] = "Advanced";
-      ParameterTier2["INTELLIGENT_TIERING"] = "Intelligent-Tiering";
-      ParameterTier2["STANDARD"] = "Standard";
-    })(ParameterTier = exports.ParameterTier || (exports.ParameterTier = {}));
-    var ParameterType;
-    (function(ParameterType2) {
-      ParameterType2["SECURE_STRING"] = "SecureString";
-      ParameterType2["STRING"] = "String";
-      ParameterType2["STRING_LIST"] = "StringList";
-    })(ParameterType = exports.ParameterType || (exports.ParameterType = {}));
+    exports.OpsItemStatus = {
+      APPROVED: "Approved",
+      CANCELLED: "Cancelled",
+      CANCELLING: "Cancelling",
+      CHANGE_CALENDAR_OVERRIDE_APPROVED: "ChangeCalendarOverrideApproved",
+      CHANGE_CALENDAR_OVERRIDE_REJECTED: "ChangeCalendarOverrideRejected",
+      CLOSED: "Closed",
+      COMPLETED_WITH_FAILURE: "CompletedWithFailure",
+      COMPLETED_WITH_SUCCESS: "CompletedWithSuccess",
+      FAILED: "Failed",
+      IN_PROGRESS: "InProgress",
+      OPEN: "Open",
+      PENDING: "Pending",
+      PENDING_APPROVAL: "PendingApproval",
+      PENDING_CHANGE_CALENDAR_OVERRIDE: "PendingChangeCalendarOverride",
+      REJECTED: "Rejected",
+      RESOLVED: "Resolved",
+      RUNBOOK_IN_PROGRESS: "RunbookInProgress",
+      SCHEDULED: "Scheduled",
+      TIMED_OUT: "TimedOut"
+    };
+    exports.ParametersFilterKey = {
+      KEY_ID: "KeyId",
+      NAME: "Name",
+      TYPE: "Type"
+    };
+    exports.ParameterTier = {
+      ADVANCED: "Advanced",
+      INTELLIGENT_TIERING: "Intelligent-Tiering",
+      STANDARD: "Standard"
+    };
+    exports.ParameterType = {
+      SECURE_STRING: "SecureString",
+      STRING: "String",
+      STRING_LIST: "StringList"
+    };
     var InvalidFilterOption = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32855,43 +32788,38 @@ var require_models_1 = __commonJS({
       }
     };
     exports.InvalidFilterOption = InvalidFilterOption;
-    var PatchSet;
-    (function(PatchSet2) {
-      PatchSet2["Application"] = "APPLICATION";
-      PatchSet2["Os"] = "OS";
-    })(PatchSet = exports.PatchSet || (exports.PatchSet = {}));
-    var PatchProperty;
-    (function(PatchProperty2) {
-      PatchProperty2["PatchClassification"] = "CLASSIFICATION";
-      PatchProperty2["PatchMsrcSeverity"] = "MSRC_SEVERITY";
-      PatchProperty2["PatchPriority"] = "PRIORITY";
-      PatchProperty2["PatchProductFamily"] = "PRODUCT_FAMILY";
-      PatchProperty2["PatchSeverity"] = "SEVERITY";
-      PatchProperty2["Product"] = "PRODUCT";
-    })(PatchProperty = exports.PatchProperty || (exports.PatchProperty = {}));
-    var SessionFilterKey;
-    (function(SessionFilterKey2) {
-      SessionFilterKey2["INVOKED_AFTER"] = "InvokedAfter";
-      SessionFilterKey2["INVOKED_BEFORE"] = "InvokedBefore";
-      SessionFilterKey2["OWNER"] = "Owner";
-      SessionFilterKey2["SESSION_ID"] = "SessionId";
-      SessionFilterKey2["STATUS"] = "Status";
-      SessionFilterKey2["TARGET_ID"] = "Target";
-    })(SessionFilterKey = exports.SessionFilterKey || (exports.SessionFilterKey = {}));
-    var SessionState;
-    (function(SessionState2) {
-      SessionState2["ACTIVE"] = "Active";
-      SessionState2["HISTORY"] = "History";
-    })(SessionState = exports.SessionState || (exports.SessionState = {}));
-    var SessionStatus;
-    (function(SessionStatus2) {
-      SessionStatus2["CONNECTED"] = "Connected";
-      SessionStatus2["CONNECTING"] = "Connecting";
-      SessionStatus2["DISCONNECTED"] = "Disconnected";
-      SessionStatus2["FAILED"] = "Failed";
-      SessionStatus2["TERMINATED"] = "Terminated";
-      SessionStatus2["TERMINATING"] = "Terminating";
-    })(SessionStatus = exports.SessionStatus || (exports.SessionStatus = {}));
+    exports.PatchSet = {
+      Application: "APPLICATION",
+      Os: "OS"
+    };
+    exports.PatchProperty = {
+      PatchClassification: "CLASSIFICATION",
+      PatchMsrcSeverity: "MSRC_SEVERITY",
+      PatchPriority: "PRIORITY",
+      PatchProductFamily: "PRODUCT_FAMILY",
+      PatchSeverity: "SEVERITY",
+      Product: "PRODUCT"
+    };
+    exports.SessionFilterKey = {
+      INVOKED_AFTER: "InvokedAfter",
+      INVOKED_BEFORE: "InvokedBefore",
+      OWNER: "Owner",
+      SESSION_ID: "SessionId",
+      STATUS: "Status",
+      TARGET_ID: "Target"
+    };
+    exports.SessionState = {
+      ACTIVE: "Active",
+      HISTORY: "History"
+    };
+    exports.SessionStatus = {
+      CONNECTED: "Connected",
+      CONNECTING: "Connecting",
+      DISCONNECTED: "Disconnected",
+      FAILED: "Failed",
+      TERMINATED: "Terminated",
+      TERMINATING: "Terminating"
+    };
     var OpsItemRelatedItemAssociationNotFoundException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32906,11 +32834,10 @@ var require_models_1 = __commonJS({
       }
     };
     exports.OpsItemRelatedItemAssociationNotFoundException = OpsItemRelatedItemAssociationNotFoundException;
-    var CalendarState;
-    (function(CalendarState2) {
-      CalendarState2["CLOSED"] = "CLOSED";
-      CalendarState2["OPEN"] = "OPEN";
-    })(CalendarState = exports.CalendarState || (exports.CalendarState = {}));
+    exports.CalendarState = {
+      CLOSED: "CLOSED",
+      OPEN: "OPEN"
+    };
     var InvalidDocumentType = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32939,17 +32866,16 @@ var require_models_1 = __commonJS({
       }
     };
     exports.UnsupportedCalendarException = UnsupportedCalendarException;
-    var CommandInvocationStatus;
-    (function(CommandInvocationStatus2) {
-      CommandInvocationStatus2["CANCELLED"] = "Cancelled";
-      CommandInvocationStatus2["CANCELLING"] = "Cancelling";
-      CommandInvocationStatus2["DELAYED"] = "Delayed";
-      CommandInvocationStatus2["FAILED"] = "Failed";
-      CommandInvocationStatus2["IN_PROGRESS"] = "InProgress";
-      CommandInvocationStatus2["PENDING"] = "Pending";
-      CommandInvocationStatus2["SUCCESS"] = "Success";
-      CommandInvocationStatus2["TIMED_OUT"] = "TimedOut";
-    })(CommandInvocationStatus = exports.CommandInvocationStatus || (exports.CommandInvocationStatus = {}));
+    exports.CommandInvocationStatus = {
+      CANCELLED: "Cancelled",
+      CANCELLING: "Cancelling",
+      DELAYED: "Delayed",
+      FAILED: "Failed",
+      IN_PROGRESS: "InProgress",
+      PENDING: "Pending",
+      SUCCESS: "Success",
+      TIMED_OUT: "TimedOut"
+    };
     var InvalidPluginName = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32976,11 +32902,10 @@ var require_models_1 = __commonJS({
       }
     };
     exports.InvocationDoesNotExist = InvocationDoesNotExist;
-    var ConnectionStatus;
-    (function(ConnectionStatus2) {
-      ConnectionStatus2["CONNECTED"] = "Connected";
-      ConnectionStatus2["NOT_CONNECTED"] = "NotConnected";
-    })(ConnectionStatus = exports.ConnectionStatus || (exports.ConnectionStatus = {}));
+    exports.ConnectionStatus = {
+      CONNECTED: "Connected",
+      NOT_CONNECTED: "NotConnected"
+    };
     var UnsupportedFeatureRequiredException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -32995,19 +32920,17 @@ var require_models_1 = __commonJS({
       }
     };
     exports.UnsupportedFeatureRequiredException = UnsupportedFeatureRequiredException;
-    var AttachmentHashType;
-    (function(AttachmentHashType2) {
-      AttachmentHashType2["SHA256"] = "Sha256";
-    })(AttachmentHashType = exports.AttachmentHashType || (exports.AttachmentHashType = {}));
-    var InventoryQueryOperatorType;
-    (function(InventoryQueryOperatorType2) {
-      InventoryQueryOperatorType2["BEGIN_WITH"] = "BeginWith";
-      InventoryQueryOperatorType2["EQUAL"] = "Equal";
-      InventoryQueryOperatorType2["EXISTS"] = "Exists";
-      InventoryQueryOperatorType2["GREATER_THAN"] = "GreaterThan";
-      InventoryQueryOperatorType2["LESS_THAN"] = "LessThan";
-      InventoryQueryOperatorType2["NOT_EQUAL"] = "NotEqual";
-    })(InventoryQueryOperatorType = exports.InventoryQueryOperatorType || (exports.InventoryQueryOperatorType = {}));
+    exports.AttachmentHashType = {
+      SHA256: "Sha256"
+    };
+    exports.InventoryQueryOperatorType = {
+      BEGIN_WITH: "BeginWith",
+      EQUAL: "Equal",
+      EXISTS: "Exists",
+      GREATER_THAN: "GreaterThan",
+      LESS_THAN: "LessThan",
+      NOT_EQUAL: "NotEqual"
+    };
     var InvalidAggregatorException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -33050,34 +32973,30 @@ var require_models_1 = __commonJS({
       }
     };
     exports.InvalidResultAttributeException = InvalidResultAttributeException;
-    var InventoryAttributeDataType;
-    (function(InventoryAttributeDataType2) {
-      InventoryAttributeDataType2["NUMBER"] = "number";
-      InventoryAttributeDataType2["STRING"] = "string";
-    })(InventoryAttributeDataType = exports.InventoryAttributeDataType || (exports.InventoryAttributeDataType = {}));
-    var NotificationEvent;
-    (function(NotificationEvent2) {
-      NotificationEvent2["ALL"] = "All";
-      NotificationEvent2["CANCELLED"] = "Cancelled";
-      NotificationEvent2["FAILED"] = "Failed";
-      NotificationEvent2["IN_PROGRESS"] = "InProgress";
-      NotificationEvent2["SUCCESS"] = "Success";
-      NotificationEvent2["TIMED_OUT"] = "TimedOut";
-    })(NotificationEvent = exports.NotificationEvent || (exports.NotificationEvent = {}));
-    var NotificationType;
-    (function(NotificationType2) {
-      NotificationType2["Command"] = "Command";
-      NotificationType2["Invocation"] = "Invocation";
-    })(NotificationType = exports.NotificationType || (exports.NotificationType = {}));
-    var OpsFilterOperatorType;
-    (function(OpsFilterOperatorType2) {
-      OpsFilterOperatorType2["BEGIN_WITH"] = "BeginWith";
-      OpsFilterOperatorType2["EQUAL"] = "Equal";
-      OpsFilterOperatorType2["EXISTS"] = "Exists";
-      OpsFilterOperatorType2["GREATER_THAN"] = "GreaterThan";
-      OpsFilterOperatorType2["LESS_THAN"] = "LessThan";
-      OpsFilterOperatorType2["NOT_EQUAL"] = "NotEqual";
-    })(OpsFilterOperatorType = exports.OpsFilterOperatorType || (exports.OpsFilterOperatorType = {}));
+    exports.InventoryAttributeDataType = {
+      NUMBER: "number",
+      STRING: "string"
+    };
+    exports.NotificationEvent = {
+      ALL: "All",
+      CANCELLED: "Cancelled",
+      FAILED: "Failed",
+      IN_PROGRESS: "InProgress",
+      SUCCESS: "Success",
+      TIMED_OUT: "TimedOut"
+    };
+    exports.NotificationType = {
+      Command: "Command",
+      Invocation: "Invocation"
+    };
+    exports.OpsFilterOperatorType = {
+      BEGIN_WITH: "BeginWith",
+      EQUAL: "Equal",
+      EXISTS: "Exists",
+      GREATER_THAN: "GreaterThan",
+      LESS_THAN: "LessThan",
+      NOT_EQUAL: "NotEqual"
+    };
     var InvalidKeyId = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -33131,105 +33050,90 @@ var require_models_1 = __commonJS({
       }
     };
     exports.ParameterVersionLabelLimitExceeded = ParameterVersionLabelLimitExceeded;
-    var AssociationFilterKey;
-    (function(AssociationFilterKey2) {
-      AssociationFilterKey2["AssociationId"] = "AssociationId";
-      AssociationFilterKey2["AssociationName"] = "AssociationName";
-      AssociationFilterKey2["InstanceId"] = "InstanceId";
-      AssociationFilterKey2["LastExecutedAfter"] = "LastExecutedAfter";
-      AssociationFilterKey2["LastExecutedBefore"] = "LastExecutedBefore";
-      AssociationFilterKey2["Name"] = "Name";
-      AssociationFilterKey2["ResourceGroupName"] = "ResourceGroupName";
-      AssociationFilterKey2["Status"] = "AssociationStatusName";
-    })(AssociationFilterKey = exports.AssociationFilterKey || (exports.AssociationFilterKey = {}));
-    var CommandFilterKey;
-    (function(CommandFilterKey2) {
-      CommandFilterKey2["DOCUMENT_NAME"] = "DocumentName";
-      CommandFilterKey2["EXECUTION_STAGE"] = "ExecutionStage";
-      CommandFilterKey2["INVOKED_AFTER"] = "InvokedAfter";
-      CommandFilterKey2["INVOKED_BEFORE"] = "InvokedBefore";
-      CommandFilterKey2["STATUS"] = "Status";
-    })(CommandFilterKey = exports.CommandFilterKey || (exports.CommandFilterKey = {}));
-    var CommandPluginStatus;
-    (function(CommandPluginStatus2) {
-      CommandPluginStatus2["CANCELLED"] = "Cancelled";
-      CommandPluginStatus2["FAILED"] = "Failed";
-      CommandPluginStatus2["IN_PROGRESS"] = "InProgress";
-      CommandPluginStatus2["PENDING"] = "Pending";
-      CommandPluginStatus2["SUCCESS"] = "Success";
-      CommandPluginStatus2["TIMED_OUT"] = "TimedOut";
-    })(CommandPluginStatus = exports.CommandPluginStatus || (exports.CommandPluginStatus = {}));
-    var CommandStatus;
-    (function(CommandStatus2) {
-      CommandStatus2["CANCELLED"] = "Cancelled";
-      CommandStatus2["CANCELLING"] = "Cancelling";
-      CommandStatus2["FAILED"] = "Failed";
-      CommandStatus2["IN_PROGRESS"] = "InProgress";
-      CommandStatus2["PENDING"] = "Pending";
-      CommandStatus2["SUCCESS"] = "Success";
-      CommandStatus2["TIMED_OUT"] = "TimedOut";
-    })(CommandStatus = exports.CommandStatus || (exports.CommandStatus = {}));
-    var ComplianceQueryOperatorType;
-    (function(ComplianceQueryOperatorType2) {
-      ComplianceQueryOperatorType2["BeginWith"] = "BEGIN_WITH";
-      ComplianceQueryOperatorType2["Equal"] = "EQUAL";
-      ComplianceQueryOperatorType2["GreaterThan"] = "GREATER_THAN";
-      ComplianceQueryOperatorType2["LessThan"] = "LESS_THAN";
-      ComplianceQueryOperatorType2["NotEqual"] = "NOT_EQUAL";
-    })(ComplianceQueryOperatorType = exports.ComplianceQueryOperatorType || (exports.ComplianceQueryOperatorType = {}));
-    var ComplianceSeverity;
-    (function(ComplianceSeverity2) {
-      ComplianceSeverity2["Critical"] = "CRITICAL";
-      ComplianceSeverity2["High"] = "HIGH";
-      ComplianceSeverity2["Informational"] = "INFORMATIONAL";
-      ComplianceSeverity2["Low"] = "LOW";
-      ComplianceSeverity2["Medium"] = "MEDIUM";
-      ComplianceSeverity2["Unspecified"] = "UNSPECIFIED";
-    })(ComplianceSeverity = exports.ComplianceSeverity || (exports.ComplianceSeverity = {}));
-    var ComplianceStatus;
-    (function(ComplianceStatus2) {
-      ComplianceStatus2["Compliant"] = "COMPLIANT";
-      ComplianceStatus2["NonCompliant"] = "NON_COMPLIANT";
-    })(ComplianceStatus = exports.ComplianceStatus || (exports.ComplianceStatus = {}));
-    var DocumentMetadataEnum;
-    (function(DocumentMetadataEnum2) {
-      DocumentMetadataEnum2["DocumentReviews"] = "DocumentReviews";
-    })(DocumentMetadataEnum = exports.DocumentMetadataEnum || (exports.DocumentMetadataEnum = {}));
-    var DocumentReviewCommentType;
-    (function(DocumentReviewCommentType2) {
-      DocumentReviewCommentType2["Comment"] = "Comment";
-    })(DocumentReviewCommentType = exports.DocumentReviewCommentType || (exports.DocumentReviewCommentType = {}));
-    var DocumentFilterKey;
-    (function(DocumentFilterKey2) {
-      DocumentFilterKey2["DocumentType"] = "DocumentType";
-      DocumentFilterKey2["Name"] = "Name";
-      DocumentFilterKey2["Owner"] = "Owner";
-      DocumentFilterKey2["PlatformTypes"] = "PlatformTypes";
-    })(DocumentFilterKey = exports.DocumentFilterKey || (exports.DocumentFilterKey = {}));
-    var OpsItemEventFilterKey;
-    (function(OpsItemEventFilterKey2) {
-      OpsItemEventFilterKey2["OPSITEM_ID"] = "OpsItemId";
-    })(OpsItemEventFilterKey = exports.OpsItemEventFilterKey || (exports.OpsItemEventFilterKey = {}));
-    var OpsItemEventFilterOperator;
-    (function(OpsItemEventFilterOperator2) {
-      OpsItemEventFilterOperator2["EQUAL"] = "Equal";
-    })(OpsItemEventFilterOperator = exports.OpsItemEventFilterOperator || (exports.OpsItemEventFilterOperator = {}));
-    var OpsItemRelatedItemsFilterKey;
-    (function(OpsItemRelatedItemsFilterKey2) {
-      OpsItemRelatedItemsFilterKey2["ASSOCIATION_ID"] = "AssociationId";
-      OpsItemRelatedItemsFilterKey2["RESOURCE_TYPE"] = "ResourceType";
-      OpsItemRelatedItemsFilterKey2["RESOURCE_URI"] = "ResourceUri";
-    })(OpsItemRelatedItemsFilterKey = exports.OpsItemRelatedItemsFilterKey || (exports.OpsItemRelatedItemsFilterKey = {}));
-    var OpsItemRelatedItemsFilterOperator;
-    (function(OpsItemRelatedItemsFilterOperator2) {
-      OpsItemRelatedItemsFilterOperator2["EQUAL"] = "Equal";
-    })(OpsItemRelatedItemsFilterOperator = exports.OpsItemRelatedItemsFilterOperator || (exports.OpsItemRelatedItemsFilterOperator = {}));
-    var LastResourceDataSyncStatus;
-    (function(LastResourceDataSyncStatus2) {
-      LastResourceDataSyncStatus2["FAILED"] = "Failed";
-      LastResourceDataSyncStatus2["INPROGRESS"] = "InProgress";
-      LastResourceDataSyncStatus2["SUCCESSFUL"] = "Successful";
-    })(LastResourceDataSyncStatus = exports.LastResourceDataSyncStatus || (exports.LastResourceDataSyncStatus = {}));
+    exports.AssociationFilterKey = {
+      AssociationId: "AssociationId",
+      AssociationName: "AssociationName",
+      InstanceId: "InstanceId",
+      LastExecutedAfter: "LastExecutedAfter",
+      LastExecutedBefore: "LastExecutedBefore",
+      Name: "Name",
+      ResourceGroupName: "ResourceGroupName",
+      Status: "AssociationStatusName"
+    };
+    exports.CommandFilterKey = {
+      DOCUMENT_NAME: "DocumentName",
+      EXECUTION_STAGE: "ExecutionStage",
+      INVOKED_AFTER: "InvokedAfter",
+      INVOKED_BEFORE: "InvokedBefore",
+      STATUS: "Status"
+    };
+    exports.CommandPluginStatus = {
+      CANCELLED: "Cancelled",
+      FAILED: "Failed",
+      IN_PROGRESS: "InProgress",
+      PENDING: "Pending",
+      SUCCESS: "Success",
+      TIMED_OUT: "TimedOut"
+    };
+    exports.CommandStatus = {
+      CANCELLED: "Cancelled",
+      CANCELLING: "Cancelling",
+      FAILED: "Failed",
+      IN_PROGRESS: "InProgress",
+      PENDING: "Pending",
+      SUCCESS: "Success",
+      TIMED_OUT: "TimedOut"
+    };
+    exports.ComplianceQueryOperatorType = {
+      BeginWith: "BEGIN_WITH",
+      Equal: "EQUAL",
+      GreaterThan: "GREATER_THAN",
+      LessThan: "LESS_THAN",
+      NotEqual: "NOT_EQUAL"
+    };
+    exports.ComplianceSeverity = {
+      Critical: "CRITICAL",
+      High: "HIGH",
+      Informational: "INFORMATIONAL",
+      Low: "LOW",
+      Medium: "MEDIUM",
+      Unspecified: "UNSPECIFIED"
+    };
+    exports.ComplianceStatus = {
+      Compliant: "COMPLIANT",
+      NonCompliant: "NON_COMPLIANT"
+    };
+    exports.DocumentMetadataEnum = {
+      DocumentReviews: "DocumentReviews"
+    };
+    exports.DocumentReviewCommentType = {
+      Comment: "Comment"
+    };
+    exports.DocumentFilterKey = {
+      DocumentType: "DocumentType",
+      Name: "Name",
+      Owner: "Owner",
+      PlatformTypes: "PlatformTypes"
+    };
+    exports.OpsItemEventFilterKey = {
+      OPSITEM_ID: "OpsItemId"
+    };
+    exports.OpsItemEventFilterOperator = {
+      EQUAL: "Equal"
+    };
+    exports.OpsItemRelatedItemsFilterKey = {
+      ASSOCIATION_ID: "AssociationId",
+      RESOURCE_TYPE: "ResourceType",
+      RESOURCE_URI: "ResourceUri"
+    };
+    exports.OpsItemRelatedItemsFilterOperator = {
+      EQUAL: "Equal"
+    };
+    exports.LastResourceDataSyncStatus = {
+      FAILED: "Failed",
+      INPROGRESS: "InProgress",
+      SUCCESSFUL: "Successful"
+    };
     var DocumentPermissionLimit = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -33288,11 +33192,10 @@ var require_models_1 = __commonJS({
       }
     };
     exports.ItemSizeLimitExceededException = ItemSizeLimitExceededException;
-    var ComplianceUploadType;
-    (function(ComplianceUploadType2) {
-      ComplianceUploadType2["Complete"] = "COMPLETE";
-      ComplianceUploadType2["Partial"] = "PARTIAL";
-    })(ComplianceUploadType = exports.ComplianceUploadType || (exports.ComplianceUploadType = {}));
+    exports.ComplianceUploadType = {
+      Complete: "COMPLETE",
+      Partial: "PARTIAL"
+    };
     var TotalSizeLimitExceededException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -33607,14 +33510,13 @@ var require_models_1 = __commonJS({
       }
     };
     exports.InvalidAutomationSignalException = InvalidAutomationSignalException;
-    var SignalType;
-    (function(SignalType2) {
-      SignalType2["APPROVE"] = "Approve";
-      SignalType2["REJECT"] = "Reject";
-      SignalType2["RESUME"] = "Resume";
-      SignalType2["START_STEP"] = "StartStep";
-      SignalType2["STOP_STEP"] = "StopStep";
-    })(SignalType = exports.SignalType || (exports.SignalType = {}));
+    exports.SignalType = {
+      APPROVE: "Approve",
+      REJECT: "Reject",
+      RESUME: "Resume",
+      START_STEP: "StartStep",
+      STOP_STEP: "StopStep"
+    };
     var InvalidNotificationConfig = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -33768,11 +33670,10 @@ var require_models_1 = __commonJS({
       }
     };
     exports.InvalidAutomationStatusUpdateException = InvalidAutomationStatusUpdateException;
-    var StopType;
-    (function(StopType2) {
-      StopType2["CANCEL"] = "Cancel";
-      StopType2["COMPLETE"] = "Complete";
-    })(StopType = exports.StopType || (exports.StopType = {}));
+    exports.StopType = {
+      CANCEL: "Cancel",
+      COMPLETE: "Complete"
+    };
     var AssociationVersionLimitExceeded = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -34014,13 +33915,12 @@ var require_models_2 = __commonJS({
       }
     };
     exports.DuplicateDocumentVersionName = DuplicateDocumentVersionName;
-    var DocumentReviewAction;
-    (function(DocumentReviewAction2) {
-      DocumentReviewAction2["Approve"] = "Approve";
-      DocumentReviewAction2["Reject"] = "Reject";
-      DocumentReviewAction2["SendForReview"] = "SendForReview";
-      DocumentReviewAction2["UpdateReview"] = "UpdateReview";
-    })(DocumentReviewAction = exports.DocumentReviewAction || (exports.DocumentReviewAction = {}));
+    exports.DocumentReviewAction = {
+      Approve: "Approve",
+      Reject: "Reject",
+      SendForReview: "SendForReview",
+      UpdateReview: "UpdateReview"
+    };
     var OpsMetadataKeyLimitExceededException = class extends SSMServiceException_1.SSMServiceException {
       constructor(opts) {
         super({
@@ -55971,7 +55871,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.301.0",
+      version: "3.303.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -55991,44 +55891,44 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.301.0",
-        "@aws-sdk/config-resolver": "3.300.0",
-        "@aws-sdk/credential-provider-node": "3.301.0",
-        "@aws-sdk/fetch-http-handler": "3.296.0",
-        "@aws-sdk/hash-node": "3.296.0",
-        "@aws-sdk/invalid-dependency": "3.296.0",
-        "@aws-sdk/middleware-content-length": "3.296.0",
-        "@aws-sdk/middleware-endpoint": "3.299.0",
-        "@aws-sdk/middleware-host-header": "3.296.0",
-        "@aws-sdk/middleware-logger": "3.296.0",
-        "@aws-sdk/middleware-recursion-detection": "3.296.0",
-        "@aws-sdk/middleware-retry": "3.300.0",
-        "@aws-sdk/middleware-serde": "3.296.0",
-        "@aws-sdk/middleware-signing": "3.299.0",
-        "@aws-sdk/middleware-stack": "3.296.0",
-        "@aws-sdk/middleware-user-agent": "3.299.0",
-        "@aws-sdk/node-config-provider": "3.300.0",
-        "@aws-sdk/node-http-handler": "3.296.0",
-        "@aws-sdk/protocol-http": "3.296.0",
-        "@aws-sdk/smithy-client": "3.296.0",
-        "@aws-sdk/types": "3.296.0",
-        "@aws-sdk/url-parser": "3.296.0",
-        "@aws-sdk/util-base64": "3.295.0",
-        "@aws-sdk/util-body-length-browser": "3.295.0",
-        "@aws-sdk/util-body-length-node": "3.295.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.296.0",
-        "@aws-sdk/util-defaults-mode-node": "3.300.0",
-        "@aws-sdk/util-endpoints": "3.296.0",
-        "@aws-sdk/util-retry": "3.296.0",
-        "@aws-sdk/util-user-agent-browser": "3.299.0",
-        "@aws-sdk/util-user-agent-node": "3.300.0",
-        "@aws-sdk/util-utf8": "3.295.0",
-        "@aws-sdk/util-waiter": "3.296.0",
+        "@aws-sdk/client-sts": "3.303.0",
+        "@aws-sdk/config-resolver": "3.303.0",
+        "@aws-sdk/credential-provider-node": "3.303.0",
+        "@aws-sdk/fetch-http-handler": "3.303.0",
+        "@aws-sdk/hash-node": "3.303.0",
+        "@aws-sdk/invalid-dependency": "3.303.0",
+        "@aws-sdk/middleware-content-length": "3.303.0",
+        "@aws-sdk/middleware-endpoint": "3.303.0",
+        "@aws-sdk/middleware-host-header": "3.303.0",
+        "@aws-sdk/middleware-logger": "3.303.0",
+        "@aws-sdk/middleware-recursion-detection": "3.303.0",
+        "@aws-sdk/middleware-retry": "3.303.0",
+        "@aws-sdk/middleware-serde": "3.303.0",
+        "@aws-sdk/middleware-signing": "3.303.0",
+        "@aws-sdk/middleware-stack": "3.303.0",
+        "@aws-sdk/middleware-user-agent": "3.303.0",
+        "@aws-sdk/node-config-provider": "3.303.0",
+        "@aws-sdk/node-http-handler": "3.303.0",
+        "@aws-sdk/protocol-http": "3.303.0",
+        "@aws-sdk/smithy-client": "3.303.0",
+        "@aws-sdk/types": "3.303.0",
+        "@aws-sdk/url-parser": "3.303.0",
+        "@aws-sdk/util-base64": "3.303.0",
+        "@aws-sdk/util-body-length-browser": "3.303.0",
+        "@aws-sdk/util-body-length-node": "3.303.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.303.0",
+        "@aws-sdk/util-defaults-mode-node": "3.303.0",
+        "@aws-sdk/util-endpoints": "3.303.0",
+        "@aws-sdk/util-retry": "3.303.0",
+        "@aws-sdk/util-user-agent-browser": "3.303.0",
+        "@aws-sdk/util-user-agent-node": "3.303.0",
+        "@aws-sdk/util-utf8": "3.303.0",
+        "@aws-sdk/util-waiter": "3.303.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
       },
       devDependencies: {
-        "@aws-sdk/service-client-documentation-generator": "3.295.0",
+        "@aws-sdk/service-client-documentation-generator": "3.303.0",
         "@tsconfig/node14": "1.0.3",
         "@types/node": "^14.14.31",
         "@types/uuid": "^8.3.0",
