@@ -54,6 +54,7 @@ tsconfig.json
 /assets/
 !/src/resources/pstn/pstn-function.ts
 !/src/resources/messaging/messaging-function.ts
+!/src/resources/media-pipelines/media-pipelines-function.ts
 cdk.out
 cdk.context.json
 yarn-error.log

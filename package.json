@@ -8,6 +8,8 @@
     "build": "npx projen build",
     "bump": "npx projen bump",
     "bundle": "npx projen bundle",
+    "bundle:resources/media-pipelines/media-pipelines.lambda": "npx projen bundle:resources/media-pipelines/media-pipelines.lambda",
+    "bundle:resources/media-pipelines/media-pipelines.lambda:watch": "npx projen bundle:resources/media-pipelines/media-pipelines.lambda:watch",
     "bundle:resources/messaging/messaging.lambda": "npx projen bundle:resources/messaging/messaging.lambda",
     "bundle:resources/messaging/messaging.lambda:watch": "npx projen bundle:resources/messaging/messaging.lambda:watch",
     "bundle:resources/pstn/pstn.lambda": "npx projen bundle:resources/pstn/pstn.lambda",
@@ -44,7 +46,7 @@
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk-lib": "2.68.0",
+    "aws-cdk-lib": "2.70.0",
     "constructs": "10.0.5",
     "esbuild": "^0.17.12",
     "eslint": "^8",
@@ -65,11 +67,12 @@
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.68.0",
+    "aws-cdk-lib": "^2.70.0",
     "constructs": "^10.0.5"
   },
   "dependencies": {
     "@aws-sdk/client-chime": "^3.295.0",
+    "@aws-sdk/client-chime-sdk-media-pipelines": "^3.301.0",
     "@aws-sdk/client-chime-sdk-messaging": "^3.295.0",
     "@aws-sdk/client-chime-sdk-voice": "^3.295.0",
     "@aws-sdk/client-ssm": "^3.295.0",
@@ -78,6 +81,7 @@
   },
   "bundledDependencies": [
     "@aws-sdk/client-chime",
+    "@aws-sdk/client-chime-sdk-media-pipelines",
     "@aws-sdk/client-chime-sdk-messaging",
     "@aws-sdk/client-chime-sdk-voice",
     "@aws-sdk/client-ssm",

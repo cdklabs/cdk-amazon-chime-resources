@@ -144,7 +144,8 @@
           "**/test/**",
           "**/build-tools/**",
           "src/resources/pstn/pstn.lambda.ts",
-          "src/resources/messaging/messaging.lambda.ts"
+          "src/resources/messaging/messaging.lambda.ts",
+          "src/resources/media-pipelines/media-pipelines.lambda.ts"
         ],
         "optionalDependencies": false,
         "peerDependencies": true

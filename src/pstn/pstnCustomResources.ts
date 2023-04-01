@@ -64,6 +64,7 @@ export class PSTNResources extends Construct {
     const stack = Stack.of(this);
     const constructName = 'PSTNResources';
     const existing = stack.node.tryFindChild(constructName);
+    /* istanbul ignore next */
     if (existing) {
       return existing as Function;
     }

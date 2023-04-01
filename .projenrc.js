@@ -2,7 +2,7 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
-  cdkVersion: '2.68.0',
+  cdkVersion: '2.70.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
@@ -14,6 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   deps: [
     '@aws-sdk/client-chime-sdk-voice',
     '@aws-sdk/client-chime-sdk-messaging',
+    '@aws-sdk/client-chime-sdk-media-pipelines',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
     'aws-lambda',
@@ -23,6 +24,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   bundledDeps: [
     '@aws-sdk/client-chime-sdk-voice',
     '@aws-sdk/client-chime-sdk-messaging',
+    '@aws-sdk/client-chime-sdk-media-pipelines',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
     'aws-lambda',
@@ -50,7 +52,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.68.0',
+  cdkVersion: '2.70.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
     '@aws-sdk/client-chime-sdk-voice',
@@ -74,7 +76,7 @@ new awscdk.LambdaFunction(project, {
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.68.0',
+  cdkVersion: '2.70.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
     '@aws-sdk/client-chime-sdk-messaging',
@@ -89,6 +91,30 @@ new awscdk.LambdaFunction(project, {
     nodeModules: [
       '@aws-sdk/client-ssm',
       '@aws-sdk/client-chime-sdk-messaging',
+      'aws-lambda',
+      '@types/aws-lambda',
+    ],
+  },
+  target: 'node18',
+  platform: 'node',
+});
+
+new awscdk.LambdaFunction(project, {
+  cdkVersion: '2.70.0',
+  cdkDeps: [
+    '@aws-sdk/client-ssm',
+    '@aws-sdk/client-chime-sdk-media-pipelines',
+    'aws-lambda',
+    '@types/aws-lambda',
+  ],
+  entrypoint: 'src/resources/media-pipelines/media-pipelines.lambda.ts',
+  runtime: awscdk.LambdaRuntime.NODEJS_18_X,
+  bundlingOptions: {
+    externals: [''],
+    minify: true,
+    nodeModules: [
+      '@aws-sdk/client-ssm',
+      '@aws-sdk/client-chime-sdk-media-pipelines',
       'aws-lambda',
       '@types/aws-lambda',
     ],
