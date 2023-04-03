@@ -78,6 +78,7 @@ export class MediaPipelineResources extends Construct {
                   'lambda:AddPermission',
                   'iam:PutRolePolicy',
                   'iam:CreateServiceLinkedRole',
+                  'iam:PassRole',
                 ],
               }),
               new PolicyStatement({

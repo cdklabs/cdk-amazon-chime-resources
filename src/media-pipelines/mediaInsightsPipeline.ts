@@ -47,7 +47,7 @@ export enum ElementsType {
   VOICE_ANALYTICS_PROCESSOR = 'VoiceAnalyticsProcessor',
   AMAZON_TRANSCRIBE_PROCESSOR = 'AmazonTranscribeProcessor',
   KINESIS_DATA_STREAM_SINK = 'KinesisDataStreamSink',
-  LAMBDA_FUNCTION_SING = 'LambdaFunctionSink',
+  LAMBDA_FUNCTION_SINK = 'LambdaFunctionSink',
   SQS_QUEUE_SINK = 'SqsQueueSink',
   SNS_TOPICS_SINK = 'SnsTopicSink',
   S3_RECORDING_SINK = 'S3RecordingSink',
@@ -134,12 +134,12 @@ export interface S3RecordingSinkConfiguration {
   readonly destination: string;
 }
 export enum SpeakerSearchStatus {
-  ENABLED = 'enabled',
-  DISABLED = 'disabled',
+  ENABLED = 'Enabled',
+  DISABLED = 'Disabled',
 }
 export enum VoiceToneAnalysisStatus {
-  ENABLED = 'enabled',
-  DISABLED = 'disabled',
+  ENABLED = 'Enabled',
+  DISABLED = 'Disabled',
 }
 export interface VoiceAnalyticsProcessorConfiguration {
   readonly speakerSearchStatus: SpeakerSearchStatus;
@@ -182,8 +182,9 @@ export interface MediaInsightsPipelineProps {
 }
 
 export class MediaInsightsPipeline extends Construct {
-  public readonly mediaInsightsPipelineConfiguration: string;
-
+  public readonly mediaInsightsPipelineConfigurationArn: string;
+  public readonly mediaInsightsPipelineConfigurationId: string;
+  public readonly mediaInsightsPipelineConfigurationName: string;
   constructor(scope: Construct, id: string, props: MediaInsightsPipelineProps) {
     super(scope, id);
 
@@ -218,9 +219,18 @@ export class MediaInsightsPipeline extends Construct {
       },
     );
 
-    this.mediaInsightsPipelineConfiguration =
+    this.mediaInsightsPipelineConfigurationArn =
       mediaPipelinesInsightRequest.mediaPipelineCustomResource.getAttString(
-        'sipMediaAppId',
+        'MediaInsightsPipelineConfigurationArn',
+      );
+    this.mediaInsightsPipelineConfigurationId =
+      mediaPipelinesInsightRequest.mediaPipelineCustomResource.getAttString(
+        'MediaInsightsPipelineConfigurationId',
+      );
+
+    this.mediaInsightsPipelineConfigurationName =
+      mediaPipelinesInsightRequest.mediaPipelineCustomResource.getAttString(
+        'MediaInsightsPipelineConfigurationName',
       );
   }
 }

@@ -437,14 +437,36 @@ new MediaInsightsPipeline(scope: Construct, id: string, props: MediaInsightsPipe
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`mediaInsightsPipelineConfiguration`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfiguration)<span title="Required">*</span> | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationArn`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationId`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationid)<span title="Required">*</span> | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationName`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationname)<span title="Required">*</span> | `string` | *No description.* |
 
 ---
 
-##### `mediaInsightsPipelineConfiguration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfiguration" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfiguration"></a>
+##### `mediaInsightsPipelineConfigurationArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationArn" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationarn"></a>
 
 ```typescript
-public readonly mediaInsightsPipelineConfiguration: string;
+public readonly mediaInsightsPipelineConfigurationArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `mediaInsightsPipelineConfigurationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationId" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationid"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationId: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `mediaInsightsPipelineConfigurationName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationName" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationname"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationName: string;
 ```
 
 - *Type:* `string`
@@ -3735,7 +3757,7 @@ public readonly termination: Termination;
 | [`VOICE_ANALYTICS_PROCESSOR`](#cdkamazonchimeresourceselementstypevoiceanalyticsprocessor) | *No description.* |
 | [`AMAZON_TRANSCRIBE_PROCESSOR`](#cdkamazonchimeresourceselementstypeamazontranscribeprocessor) | *No description.* |
 | [`KINESIS_DATA_STREAM_SINK`](#cdkamazonchimeresourceselementstypekinesisdatastreamsink) | *No description.* |
-| [`LAMBDA_FUNCTION_SING`](#cdkamazonchimeresourceselementstypelambdafunctionsing) | *No description.* |
+| [`LAMBDA_FUNCTION_SINK`](#cdkamazonchimeresourceselementstypelambdafunctionsink) | *No description.* |
 | [`SQS_QUEUE_SINK`](#cdkamazonchimeresourceselementstypesqsqueuesink) | *No description.* |
 | [`SNS_TOPICS_SINK`](#cdkamazonchimeresourceselementstypesnstopicssink) | *No description.* |
 | [`S3_RECORDING_SINK`](#cdkamazonchimeresourceselementstypes3recordingsink) | *No description.* |
@@ -3762,7 +3784,7 @@ public readonly termination: Termination;
 ---
 
 
-#### `LAMBDA_FUNCTION_SING` <a name="cdk-amazon-chime-resources.ElementsType.LAMBDA_FUNCTION_SING" id="cdkamazonchimeresourceselementstypelambdafunctionsing"></a>
+#### `LAMBDA_FUNCTION_SINK` <a name="cdk-amazon-chime-resources.ElementsType.LAMBDA_FUNCTION_SINK" id="cdkamazonchimeresourceselementstypelambdafunctionsink"></a>
 
 ---
 

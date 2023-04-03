@@ -31,6 +31,8 @@ const chimeSDKMediaPipelineClient = new ChimeSDKMediaPipelinesClient({
   region: process.env.AWS_REGION,
 });
 
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 function capitalizeKeys(obj: any): any {
   if (typeof obj !== 'object' || obj === null) {
     return obj;
@@ -57,30 +59,46 @@ function capitalizeElementsKeys(
   return capitalizeKeys(elements) as MediaInsightsPipelineConfigurationElement;
 }
 
-let formattedElements: MediaInsightsPipelineConfigurationElement[];
-let formattedTags: Tag[];
-let formattedRealTimeAlertConfiguration: RealTimeAlertConfiguration;
+let formattedElements: MediaInsightsPipelineConfigurationElement[] = [];
+let formattedTags: Tag[] = [];
+let formattedRealTimeAlertConfiguration: RealTimeAlertConfiguration = {};
 let createMediaInsightsPipelineConfigurationResponse: CreateMediaInsightsPipelineConfigurationCommandOutput;
 let createMediaInsightsPipelineConfigurationParams: CreateMediaInsightsPipelineConfigurationCommandInput;
+
 const formatProps = (props: MediaInsightsPipelineProps) => {
+  console.info(`Formatting Props: ${JSON.stringify(props)}`);
   if (props.elements) {
+    console.info(`Formatting Elements: ${JSON.stringify(props.elements)}`);
     props.elements.forEach((element) => {
       formattedElements.push(capitalizeElementsKeys(element));
     });
+    console.info(`Formatted Elements: ${JSON.stringify(formattedElements)}`);
   }
 
   if (props.tags) {
+    console.info(`Formatting Tags: ${JSON.stringify(props.tags)}`);
     props.tags.forEach((tag) => {
       formattedTags.push(capitalizeKeys(tag));
     });
+    console.info(`Formatted Tags: ${JSON.stringify(formattedTags)}`);
   }
 
   if (props.realTimeAlertConfiguration) {
+    console.info(
+      `Formatting Real Time Alert Configuration: ${JSON.stringify(
+        props.realTimeAlertConfiguration,
+      )}`,
+    );
     formattedRealTimeAlertConfiguration.Disabled =
       props.realTimeAlertConfiguration.disabled;
     props.realTimeAlertConfiguration.rules.forEach((rule) => {
       formattedRealTimeAlertConfiguration.Rules!.push(capitalizeKeys(rule));
     });
+    console.info(
+      `Formatted Real Time Alert Configuration: ${JSON.stringify(
+        formattedRealTimeAlertConfiguration,
+      )}`,
+    );
   }
 
   const mediaInsightsPipelineConfigurationParams = {
@@ -98,6 +116,12 @@ const formatProps = (props: MediaInsightsPipelineProps) => {
       RealTimeAlertConfiguration: formattedRealTimeAlertConfiguration,
     }),
   };
+
+  console.info(
+    `mediaInsightsPipelineConfigurationParams: ${JSON.stringify(
+      mediaInsightsPipelineConfigurationParams,
+    )}`,
+  );
 
   return mediaInsightsPipelineConfigurationParams;
 };
@@ -119,6 +143,9 @@ export const CreateMediaInsightsPipelineConfiguration = async (
       createMediaInsightsPipelineConfigurationParams,
     )}`,
   );
+
+  await sleep(15000);
+
   try {
     createMediaInsightsPipelineConfigurationResponse =
       await chimeSDKMediaPipelineClient.send(
@@ -156,7 +183,7 @@ export const CreateMediaInsightsPipelineConfiguration = async (
       throw error;
     }
   }
-  return createMediaInsightsPipelineConfigurationResponse;
+  return createMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration;
 };
 
 let updateMediaInsightsPipelineConfigurationParams: UpdateMediaInsightsPipelineConfigurationCommandInput;
@@ -218,7 +245,7 @@ export const UpdateMediaInsightsPipelineConfiguration = async (
       throw error;
     }
   }
-  return updateMediaInsightsPipelineConfigurationResponse;
+  return updateMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration;
 };
 
 export const DeleteMediaInsightsPipelineConfiguration = async (uid: string) => {

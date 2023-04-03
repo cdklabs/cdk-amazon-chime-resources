@@ -21,7 +21,7 @@ export const handler = async (
   event: CdkCustomResourceEvent,
   context: Context,
 ): Promise<CdkCustomResourceResponse> => {
-  console.info('event: ', event);
+  console.info('event: ', JSON.stringify(event));
 
   const resourceType = event.ResourceProperties.resourceType;
   const requestType = event.RequestType;
@@ -34,7 +34,7 @@ export const handler = async (
   response.PhysicalResourceId = context.logGroupName;
 
   switch (resourceType) {
-    case 'mediaPipelinesInsightRequest':
+    case 'MediaPipelineInsights':
       switch (requestType) {
         case 'Create':
           response.Data = await CreateMediaInsightsPipelineConfiguration(
