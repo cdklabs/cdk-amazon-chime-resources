@@ -60548,6 +60548,7 @@ var chimeSDKVoiceClient4 = new import_client_chime_sdk_voice4.ChimeSDKVoiceClien
 var ssmClient4 = new import_client_ssm4.SSMClient({ region: process.env.AWS_REGION });
 var createVoiceConnectorResponse;
 var createVoiceConnectorParams;
+var updateVoiceConnectorParams;
 var getParameterCommandOutput4;
 var voiceConnectorId;
 var phoneNumbersToDisassociate;
@@ -60621,15 +60622,15 @@ var CreateVoiceConnector = async (uid, props) => {
   };
 };
 var UpdateVoiceConnector = async (uid, props) => {
-  console.log(`Creating Voice Connector: ${uid}`);
-  console.log(`Create Voice Connector Props: ${JSON.stringify(props)}`);
-  createVoiceConnectorParams = {
+  console.log(`Updating Voice Connector: ${uid}`);
+  console.log(`Updating Voice Connector Props: ${JSON.stringify(props)}`);
+  updateVoiceConnectorParams = {
     Name: props.name,
     RequireEncryption: props.encryption,
     AwsRegion: props.region
   };
   console.log(
-    `updateVoiceConnectorParams: ${JSON.stringify(createVoiceConnectorParams)}`
+    `updateVoiceConnectorParams: ${JSON.stringify(updateVoiceConnectorParams)}`
   );
   try {
     getParameterCommandOutput4 = await ssmClient4.send(
@@ -60656,6 +60657,9 @@ var UpdateVoiceConnector = async (uid, props) => {
   if (props.logging) {
     await putLogging(voiceConnectorId, props.logging);
   }
+  return {
+    voiceConnectorId
+  };
 };
 var DeleteVoiceConnector = async (uid) => {
   try {
@@ -60724,6 +60728,7 @@ var DeleteVoiceConnector = async (uid) => {
 };
 var putOrigination = async (originationVoiceConnectorId, originations) => {
   console.log(`originations:  ${JSON.stringify(originations)}`);
+  console.info(`voiceConnectorId: ${originationVoiceConnectorId}`);
   routes = [];
   originations.forEach(async (origination) => {
     routes.push({
@@ -60754,6 +60759,7 @@ var putOrigination = async (originationVoiceConnectorId, originations) => {
 };
 var putTermination = async (terminationVoiceConnectorId, termination) => {
   console.log(`termination:  ${JSON.stringify(termination)}`);
+  console.info(`voiceConnectorId: ${terminationVoiceConnectorId}`);
   terminationConfiguration = {
     CallingRegions: termination.callingRegions,
     CidrAllowedList: termination.terminationCidrs,
@@ -60778,6 +60784,7 @@ var putTermination = async (terminationVoiceConnectorId, termination) => {
 };
 var putStreaming = async (streamingVoiceConnectorId, streaming) => {
   console.log(`streaming:  ${JSON.stringify(streaming)}`);
+  console.info(`voiceConnectorId: ${streamingVoiceConnectorId}`);
   streamingConfiguration = {
     StreamingNotificationTargets: streaming.notificationTarget,
     Disabled: false,
@@ -60802,6 +60809,7 @@ var putStreaming = async (streamingVoiceConnectorId, streaming) => {
 };
 var putLogging = async (loggingVoiceConnectorId, logging) => {
   console.log(`logging:  ${JSON.stringify(logging)}`);
+  console.info(`voiceConnectorId: ${loggingVoiceConnectorId}`);
   loggingConfiguration = {
     ...logging.enableSIPLogs && { EnableSIPLogs: logging.enableSIPLogs },
     ...logging.enableMediaMetricLogs && {
@@ -60954,8 +60962,12 @@ var handler = async (event, context) => {
           response.Reason = "Create VC successful";
           break;
         case "Update":
-          await UpdateVoiceConnector(resourcePropertiesUid, requestProperties);
+          response.Data = await UpdateVoiceConnector(
+            resourcePropertiesUid,
+            requestProperties
+          );
           response.Status = "SUCCESS";
+          response.Reason = "Update VC successful";
           break;
         case "Delete":
           await DeleteVoiceConnector(resourcePropertiesUid);

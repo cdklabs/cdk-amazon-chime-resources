@@ -159,8 +159,12 @@ export const handler = async (
           response.Reason = 'Create VC successful';
           break;
         case 'Update':
-          await UpdateVoiceConnector(resourcePropertiesUid, requestProperties);
+          response.Data = await UpdateVoiceConnector(
+            resourcePropertiesUid,
+            requestProperties,
+          );
           response.Status = 'SUCCESS';
+          response.Reason = 'Update VC successful';
           break;
         case 'Delete':
           await DeleteVoiceConnector(resourcePropertiesUid);

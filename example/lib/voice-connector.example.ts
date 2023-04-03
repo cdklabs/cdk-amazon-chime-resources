@@ -46,7 +46,7 @@ export class VoiceConnectorExample extends Stack {
         ],
         streaming: {
           enabled: true,
-          dataRetention: 0,
+          dataRetention: 24,
           notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
         },
         loggingConfiguration: {
