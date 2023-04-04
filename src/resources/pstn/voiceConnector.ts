@@ -27,6 +27,8 @@ import {
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
 
+import { MediaInsightsConfiguration } from '../../pstn/voiceConnector';
+
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: process.env.AWS_REGION,
 });
@@ -62,6 +64,7 @@ interface StreamingProps {
   enabled: boolean;
   dataRetention: string;
   notificationTarget: StreamingNotificationTarget[];
+  mediaInsightsConfiguration: MediaInsightsConfiguration;
 }
 
 interface LoggingProps {
@@ -372,6 +375,12 @@ const putStreaming = async (
     StreamingNotificationTargets: streaming.notificationTarget,
     Disabled: false,
     DataRetentionInHours: parseInt(streaming.dataRetention),
+    ...(streaming.mediaInsightsConfiguration && {
+      MediaInsightsConfiguration: {
+        Disabled: streaming.mediaInsightsConfiguration.disabled,
+        ConfigurationArn: streaming.mediaInsightsConfiguration.configurationArn,
+      },
+    }),
   };
   console.log(
     `streamingConfiguration:  ${JSON.stringify(streamingConfiguration)}`,

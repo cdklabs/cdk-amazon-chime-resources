@@ -1969,6 +1969,45 @@ public readonly insightsTarget: string;
 
 ---
 
+### MediaInsightsConfiguration <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration" id="cdkamazonchimeresourcesmediainsightsconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { MediaInsightsConfiguration } from 'cdk-amazon-chime-resources'
+
+const mediaInsightsConfiguration: MediaInsightsConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`configurationArn`](#cdkamazonchimeresourcesmediainsightsconfigurationpropertyconfigurationarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`disabled`](#cdkamazonchimeresourcesmediainsightsconfigurationpropertydisabled)<span title="Required">*</span> | `boolean` | *No description.* |
+
+---
+
+##### `configurationArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration.property.configurationArn" id="cdkamazonchimeresourcesmediainsightsconfigurationpropertyconfigurationarn"></a>
+
+```typescript
+public readonly configurationArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `disabled`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration.property.disabled" id="cdkamazonchimeresourcesmediainsightsconfigurationpropertydisabled"></a>
+
+```typescript
+public readonly disabled: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
 ### MediaInsightsPipelineProps <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps" id="cdkamazonchimeresourcesmediainsightspipelineprops"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -1988,7 +2027,7 @@ const mediaInsightsPipelineProps: MediaInsightsPipelineProps = { ... }
 | [`clientRequestToken`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyclientrequesttoken) | `string` | *No description.* |
 | [`mediaInsightsPipelineConfigurationName`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertymediainsightspipelineconfigurationname) | `string` | *No description.* |
 | [`realTimeAlertConfiguration`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyrealtimealertconfiguration) | [`cdk-amazon-chime-resources.RealTimeAlertConfiguration`](#cdk-amazon-chime-resources.RealTimeAlertConfiguration) | *No description.* |
-| [`tags`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertytags) | [`cdk-amazon-chime-resources.Tag`](#cdk-amazon-chime-resources.Tag)[] | *No description.* |
+| [`tags`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertytags) | [`cdk-amazon-chime-resources.MediaPipelineInsightsTag`](#cdk-amazon-chime-resources.MediaPipelineInsightsTag)[] | *No description.* |
 
 ---
 
@@ -2045,10 +2084,49 @@ public readonly realTimeAlertConfiguration: RealTimeAlertConfiguration;
 ##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.tags" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertytags"></a>
 
 ```typescript
-public readonly tags: Tag[];
+public readonly tags: MediaPipelineInsightsTag[];
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.Tag`](#cdk-amazon-chime-resources.Tag)[]
+- *Type:* [`cdk-amazon-chime-resources.MediaPipelineInsightsTag`](#cdk-amazon-chime-resources.MediaPipelineInsightsTag)[]
+
+---
+
+### MediaPipelineInsightsTag <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag" id="cdkamazonchimeresourcesmediapipelineinsightstag"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { MediaPipelineInsightsTag } from 'cdk-amazon-chime-resources'
+
+const mediaPipelineInsightsTag: MediaPipelineInsightsTag = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesmediapipelineinsightstagpropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesmediapipelineinsightstagpropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag.property.key" id="cdkamazonchimeresourcesmediapipelineinsightstagpropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag.property.value" id="cdkamazonchimeresourcesmediapipelineinsightstagpropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 
@@ -3218,6 +3296,7 @@ const streaming: Streaming = { ... }
 | [`dataRetention`](#cdkamazonchimeresourcesstreamingpropertydataretention)<span title="Required">*</span> | `number` | Streaming data retention for VoiceConnector. |
 | [`enabled`](#cdkamazonchimeresourcesstreamingpropertyenabled)<span title="Required">*</span> | `boolean` | *No description.* |
 | [`notificationTargets`](#cdkamazonchimeresourcesstreamingpropertynotificationtargets)<span title="Required">*</span> | [`cdk-amazon-chime-resources.NotificationTargetType`](#cdk-amazon-chime-resources.NotificationTargetType)[] | Streaming data retention for VoiceConnector. |
+| [`mediaInsightsConfiguration`](#cdkamazonchimeresourcesstreamingpropertymediainsightsconfiguration) | [`cdk-amazon-chime-resources.MediaInsightsConfiguration`](#cdk-amazon-chime-resources.MediaInsightsConfiguration) | *No description.* |
 
 ---
 
@@ -3254,6 +3333,16 @@ public readonly notificationTargets: NotificationTargetType[];
 - *Default:* 0
 
 Streaming data retention for VoiceConnector.
+
+---
+
+##### `mediaInsightsConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Streaming.property.mediaInsightsConfiguration" id="cdkamazonchimeresourcesstreamingpropertymediainsightsconfiguration"></a>
+
+```typescript
+public readonly mediaInsightsConfiguration: MediaInsightsConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.MediaInsightsConfiguration`](#cdk-amazon-chime-resources.MediaInsightsConfiguration)
 
 ---
 
@@ -3350,73 +3439,6 @@ public readonly streamingConfigs: StreamingConfig[];
 - *Default:* None
 
 The AppInstanceStreamingConfigurations.
-
----
-
-### Tag <a name="cdk-amazon-chime-resources.Tag" id="cdkamazonchimeresourcestag"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { Tag } from 'cdk-amazon-chime-resources'
-
-const tag: Tag = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`key`](#cdkamazonchimeresourcestagpropertykey)<span title="Required">*</span> | `string` | *No description.* |
-| [`value`](#cdkamazonchimeresourcestagpropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
-
----
-
-##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Tag.property.key" id="cdkamazonchimeresourcestagpropertykey"></a>
-
-```typescript
-public readonly key: string;
-```
-
-- *Type:* `string`
-
----
-
-##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Tag.property.value" id="cdkamazonchimeresourcestagpropertyvalue"></a>
-
-```typescript
-public readonly value: string;
-```
-
-- *Type:* `string`
-
----
-
-### Tags <a name="cdk-amazon-chime-resources.Tags" id="cdkamazonchimeresourcestags"></a>
-
-#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
-
-```typescript
-import { Tags } from 'cdk-amazon-chime-resources'
-
-const tags: Tags = { ... }
-```
-
-#### Properties <a name="Properties" id="properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| [`tag`](#cdkamazonchimeresourcestagspropertytag)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Tag`](#cdk-amazon-chime-resources.Tag)[] | *No description.* |
-
----
-
-##### `tag`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Tags.property.tag" id="cdkamazonchimeresourcestagspropertytag"></a>
-
-```typescript
-public readonly tag: Tag[];
-```
-
-- *Type:* [`cdk-amazon-chime-resources.Tag`](#cdk-amazon-chime-resources.Tag)[]
 
 ---
 

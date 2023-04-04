@@ -38,7 +38,8 @@ export interface PSTNResourceProps extends ResourceProps {
     | 'SMALogging'
     | 'SMAAlexaSkill'
     | 'SMARule'
-    | 'PhoneAssociation';
+    | 'PhoneAssociation'
+    | 'VoiceProfileDomain';
   readonly uid: string;
 }
 
@@ -78,6 +79,8 @@ export class PSTNResources extends Construct {
             new PolicyStatement({
               resources: ['*'],
               actions: [
+                'chime:*VoiceProfileDomain*',
+                'chime:*MediaInsightsPipelineConfiguration*',
                 'chime:CreateSipRule',
                 'chime:DeleteSipRule',
                 'chime:UpdateSipRule',

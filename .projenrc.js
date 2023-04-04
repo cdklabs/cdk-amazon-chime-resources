@@ -12,9 +12,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   lambdaAutoDiscover: false,
   deps: [
-    '@aws-sdk/client-chime-sdk-voice',
-    '@aws-sdk/client-chime-sdk-messaging',
-    '@aws-sdk/client-chime-sdk-media-pipelines',
+    '@aws-sdk/client-chime-sdk-voice@latest',
+    '@aws-sdk/client-chime-sdk-messaging@latest',
+    '@aws-sdk/client-chime-sdk-media-pipelines@latest',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
     'aws-lambda',
@@ -22,9 +22,9 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   devDeps: ['yalc', 'esbuild'],
   bundledDeps: [
-    '@aws-sdk/client-chime-sdk-voice',
-    '@aws-sdk/client-chime-sdk-messaging',
-    '@aws-sdk/client-chime-sdk-media-pipelines',
+    '@aws-sdk/client-chime-sdk-voice@latest',
+    '@aws-sdk/client-chime-sdk-messaging@latest',
+    '@aws-sdk/client-chime-sdk-media-pipelines@latest',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
     'aws-lambda',
@@ -55,7 +55,7 @@ new awscdk.LambdaFunction(project, {
   cdkVersion: '2.70.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-voice',
+    '@aws-sdk/client-chime-sdk-voice@latest',
     'aws-lambda',
     '@types/aws-lambda',
   ],
@@ -64,7 +64,7 @@ new awscdk.LambdaFunction(project, {
     minify: true,
     nodeModules: [
       '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-voice',
+      '@aws-sdk/client-chime-sdk-voice@latest',
       'aws-lambda',
       '@types/aws-lambda',
     ],
@@ -79,7 +79,7 @@ new awscdk.LambdaFunction(project, {
   cdkVersion: '2.70.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-messaging',
+    '@aws-sdk/client-chime-sdk-messaging@latest',
     'aws-lambda',
     '@types/aws-lambda',
   ],
@@ -90,7 +90,7 @@ new awscdk.LambdaFunction(project, {
     minify: true,
     nodeModules: [
       '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-messaging',
+      '@aws-sdk/client-chime-sdk-messaging@latest',
       'aws-lambda',
       '@types/aws-lambda',
     ],
@@ -103,7 +103,7 @@ new awscdk.LambdaFunction(project, {
   cdkVersion: '2.70.0',
   cdkDeps: [
     '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-media-pipelines',
+    '@aws-sdk/client-chime-sdk-media-pipelines@latest',
     'aws-lambda',
     '@types/aws-lambda',
   ],
@@ -114,7 +114,7 @@ new awscdk.LambdaFunction(project, {
     minify: true,
     nodeModules: [
       '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-media-pipelines',
+      '@aws-sdk/client-chime-sdk-media-pipelines@latest',
       'aws-lambda',
       '@types/aws-lambda',
     ],

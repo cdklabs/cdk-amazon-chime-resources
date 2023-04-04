@@ -18,6 +18,14 @@ import {
   DeleteVoiceConnector,
 } from './voiceConnector';
 
+import {
+  CreateVoiceProfileDomain,
+  DeleteVoiceProfileDomain,
+  UpdateVoiceProfileDomain,
+} from './voiceProfileDomain';
+
+import { VoiceProfileDomainProps } from '../../pstn/voiceProfileDomain';
+
 const response: CdkCustomResourceResponse = {};
 let resourcePropertiesUid: string;
 let requestProperties: {};
@@ -164,6 +172,31 @@ export const handler = async (
           break;
         case 'Delete':
           await DeleteVoiceConnector(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'Delete VC successful';
+          break;
+      }
+      break;
+
+    case 'VoiceProfileDomain':
+      switch (requestType) {
+        case 'Create':
+          response.Data = await CreateVoiceProfileDomain(
+            resourcePropertiesUid,
+            requestProperties as VoiceProfileDomainProps,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'Create Voice Profile Domain successful';
+          break;
+        case 'Update':
+          await UpdateVoiceProfileDomain(
+            resourcePropertiesUid,
+            requestProperties as VoiceProfileDomainProps,
+          );
+          response.Status = 'SUCCESS';
+          break;
+        case 'Delete':
+          await DeleteVoiceProfileDomain(resourcePropertiesUid);
           response.Status = 'SUCCESS';
           response.Reason = 'Delete VC successful';
           break;

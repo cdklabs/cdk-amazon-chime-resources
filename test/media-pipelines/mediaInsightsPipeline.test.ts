@@ -27,6 +27,12 @@ test('BasicMediaInsightsPipeline', () => {
           languageCode: LanguageCode.EN_US,
         },
       },
+      {
+        type: ElementsType.KINESIS_DATA_STREAM_SINK,
+        kinesisDataStreamSinkConfiguration: {
+          insightsTarget: 'arn:aws',
+        },
+      },
     ],
   });
 });
@@ -41,6 +47,12 @@ test('BasicMediaInsightsPipelineWithName', () => {
         type: ElementsType.AMAZON_TRANSCRIBE_PROCESSOR,
         amazonTranscribeProcessorConfiguration: {
           languageCode: LanguageCode.EN_US,
+        },
+      },
+      {
+        type: ElementsType.KINESIS_DATA_STREAM_SINK,
+        kinesisDataStreamSinkConfiguration: {
+          insightsTarget: 'arn:aws',
         },
       },
     ],
@@ -77,6 +89,12 @@ test('BasicMediaInsightsPipelineWithVoiceAnalyticsProcessor', () => {
           voiceAnalyticsProcessorConfiguration: {
             speakerSearchStatus: SpeakerSearchStatus.ENABLED,
             voiceToneAnalysisStatus: VoiceToneAnalysisStatus.DISABLED,
+          },
+        },
+        {
+          type: ElementsType.KINESIS_DATA_STREAM_SINK,
+          kinesisDataStreamSinkConfiguration: {
+            insightsTarget: 'arn:aws',
           },
         },
       ],
@@ -117,6 +135,12 @@ test('BothTranscribeAndTranscribeCallAnalytics', () => {
                 languageCode: LanguageCode.EN_US,
               },
             },
+            {
+              type: ElementsType.KINESIS_DATA_STREAM_SINK,
+              kinesisDataStreamSinkConfiguration: {
+                insightsTarget: 'arn:aws',
+              },
+            },
           ],
         },
       ),
@@ -136,6 +160,12 @@ test('BasicMediaInsightsPipelineWithRealTimeAlerts', () => {
           type: ElementsType.AMAZON_TRANSCRIBE_PROCESSOR,
           amazonTranscribeProcessorConfiguration: {
             languageCode: LanguageCode.EN_US,
+          },
+        },
+        {
+          type: ElementsType.KINESIS_DATA_STREAM_SINK,
+          kinesisDataStreamSinkConfiguration: {
+            insightsTarget: 'arn:aws',
           },
         },
       ],
@@ -170,6 +200,12 @@ test('TranscribeProcessWithSentimentAnalysis', () => {
                 languageCode: LanguageCode.EN_US,
               },
             },
+            {
+              type: ElementsType.KINESIS_DATA_STREAM_SINK,
+              kinesisDataStreamSinkConfiguration: {
+                insightsTarget: 'arn:aws',
+              },
+            },
           ],
           realTimeAlertConfiguration: {
             disabled: false,
@@ -201,6 +237,12 @@ test('S3SinkAndTranscribe', () => {
             type: ElementsType.AMAZON_TRANSCRIBE_PROCESSOR,
             amazonTranscribeProcessorConfiguration: {
               languageCode: LanguageCode.EN_US,
+            },
+          },
+          {
+            type: ElementsType.KINESIS_DATA_STREAM_SINK,
+            kinesisDataStreamSinkConfiguration: {
+              insightsTarget: 'arn:aws',
             },
           },
           {
@@ -260,6 +302,12 @@ test('TooManyRealTimeAlerts', () => {
               languageCode: LanguageCode.EN_US,
             },
           },
+          {
+            type: ElementsType.KINESIS_DATA_STREAM_SINK,
+            kinesisDataStreamSinkConfiguration: {
+              insightsTarget: 'arn:aws',
+            },
+          },
         ],
         realTimeAlertConfiguration: {
           disabled: false,
@@ -313,6 +361,12 @@ test('WrongRulesConfigurationTypeKeyWordMatch', () => {
                 languageCode: LanguageCode.EN_US,
               },
             },
+            {
+              type: ElementsType.KINESIS_DATA_STREAM_SINK,
+              kinesisDataStreamSinkConfiguration: {
+                insightsTarget: 'arn:aws',
+              },
+            },
           ],
           realTimeAlertConfiguration: {
             disabled: false,
@@ -344,6 +398,12 @@ test('WrongRulesConfigurationTypeSentiment', () => {
               languageCode: LanguageCode.EN_US,
             },
           },
+          {
+            type: ElementsType.KINESIS_DATA_STREAM_SINK,
+            kinesisDataStreamSinkConfiguration: {
+              insightsTarget: 'arn:aws',
+            },
+          },
         ],
         realTimeAlertConfiguration: {
           disabled: false,
@@ -371,6 +431,12 @@ test('WrongRulesConfigurationTypeIssue', () => {
             type: ElementsType.AMAZON_TRANSCRIBE_PROCESSOR,
             amazonTranscribeProcessorConfiguration: {
               languageCode: LanguageCode.EN_US,
+            },
+          },
+          {
+            type: ElementsType.KINESIS_DATA_STREAM_SINK,
+            kinesisDataStreamSinkConfiguration: {
+              insightsTarget: 'arn:aws',
             },
           },
         ],
@@ -402,6 +468,12 @@ test('MissingRulesConfiguration', () => {
               languageCode: LanguageCode.EN_US,
             },
           },
+          {
+            type: ElementsType.KINESIS_DATA_STREAM_SINK,
+            kinesisDataStreamSinkConfiguration: {
+              insightsTarget: 'arn:aws',
+            },
+          },
         ],
         realTimeAlertConfiguration: {
           disabled: false,
@@ -431,6 +503,12 @@ test('RealTimeAlertWithoutTranscribeOrTranscribeCallAnalytics', () => {
                 voiceToneAnalysisStatus: VoiceToneAnalysisStatus.DISABLED,
               },
             },
+            {
+              type: ElementsType.KINESIS_DATA_STREAM_SINK,
+              kinesisDataStreamSinkConfiguration: {
+                insightsTarget: 'arn:aws',
+              },
+            },
           ],
           realTimeAlertConfiguration: {
             disabled: false,
@@ -448,5 +526,24 @@ test('RealTimeAlertWithoutTranscribeOrTranscribeCallAnalytics', () => {
       ),
   ).toThrowError(
     'realTimeAlertConfiguration requires amazonTranscribeProcessorConfiguration or amazonTranscribeCallAnalyticsProcessorConfiguration',
+  );
+});
+
+test('MissingKDSSink', () => {
+  expect(
+    () =>
+      new MediaInsightsPipeline(stack, 'MissingKDSSink', {
+        resourceAccessRoleArn: 'resourceAccessRoleArnString',
+        elements: [
+          {
+            type: ElementsType.AMAZON_TRANSCRIBE_PROCESSOR,
+            amazonTranscribeProcessorConfiguration: {
+              languageCode: LanguageCode.EN_US,
+            },
+          },
+        ],
+      }),
+  ).toThrowError(
+    'A kinesisDataStreamSinkConfiguration is required if amazonTranscribeCallAnalyticsProcessorConfiguration, amazonTranscribeProcessorConfiguration, or voiceAnalyticsProcessorConfiguration are used',
   );
 });

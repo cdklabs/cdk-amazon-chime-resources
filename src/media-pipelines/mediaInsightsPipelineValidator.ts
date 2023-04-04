@@ -21,6 +21,22 @@ export function mediaPipelinesInsightValidator(
     if (
       props.elements.some(
         (element) =>
+          element.amazonTranscribeCallAnalyticsProcessorConfiguration ||
+          element.amazonTranscribeProcessorConfiguration ||
+          element.voiceAnalyticsProcessorConfiguration,
+      ) &&
+      !props.elements.some(
+        (element) => element.kinesisDataStreamSinkConfiguration,
+      )
+    ) {
+      throw new Error(
+        'A kinesisDataStreamSinkConfiguration is required if amazonTranscribeCallAnalyticsProcessorConfiguration, amazonTranscribeProcessorConfiguration, or voiceAnalyticsProcessorConfiguration are used',
+      );
+    }
+
+    if (
+      props.elements.some(
+        (element) =>
           element.amazonTranscribeCallAnalyticsProcessorConfiguration,
       ) &&
       props.elements.some(

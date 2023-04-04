@@ -10,6 +10,7 @@ import {
   MediaInsightsPipelineConfigurationElement,
   Tag,
   RealTimeAlertConfiguration,
+  RealTimeAlertRule,
 } from '@aws-sdk/client-chime-sdk-media-pipelines';
 
 import {
@@ -31,26 +32,27 @@ const chimeSDKMediaPipelineClient = new ChimeSDKMediaPipelinesClient({
   region: process.env.AWS_REGION,
 });
 
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 function capitalizeKeys(obj: any): any {
-  if (typeof obj !== 'object' || obj === null) {
-    return obj;
-  }
-
   if (Array.isArray(obj)) {
     return obj.map((item) => capitalizeKeys(item));
   }
 
-  const capitalizedObj: { [key: string]: any } = {};
-  for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
-      capitalizedObj[capitalizedKey] = capitalizeKeys(obj[key]);
+  if (typeof obj === 'object') {
+    const capitalizedObj: { [key: string]: any } = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+        const value = obj[key];
+        capitalizedObj[capitalizedKey] =
+          typeof value === 'string' && !isNaN(parseFloat(value))
+            ? parseFloat(value)
+            : capitalizeKeys(value);
+      }
     }
+    return capitalizedObj;
   }
 
-  return capitalizedObj;
+  return obj;
 }
 
 function capitalizeElementsKeys(
@@ -62,6 +64,7 @@ function capitalizeElementsKeys(
 let formattedElements: MediaInsightsPipelineConfigurationElement[] = [];
 let formattedTags: Tag[] = [];
 let formattedRealTimeAlertConfiguration: RealTimeAlertConfiguration = {};
+let formattedRealTimeAlertRules: RealTimeAlertRule[] = [];
 let createMediaInsightsPipelineConfigurationResponse: CreateMediaInsightsPipelineConfigurationCommandOutput;
 let createMediaInsightsPipelineConfigurationParams: CreateMediaInsightsPipelineConfigurationCommandInput;
 
@@ -89,11 +92,16 @@ const formatProps = (props: MediaInsightsPipelineProps) => {
         props.realTimeAlertConfiguration,
       )}`,
     );
-    formattedRealTimeAlertConfiguration.Disabled =
-      props.realTimeAlertConfiguration.disabled;
+
     props.realTimeAlertConfiguration.rules.forEach((rule) => {
-      formattedRealTimeAlertConfiguration.Rules!.push(capitalizeKeys(rule));
+      formattedRealTimeAlertRules.push(capitalizeKeys(rule));
     });
+
+    formattedRealTimeAlertConfiguration = {
+      Disabled: props.realTimeAlertConfiguration.disabled,
+      Rules: formattedRealTimeAlertRules,
+    };
+
     console.info(
       `Formatted Real Time Alert Configuration: ${JSON.stringify(
         formattedRealTimeAlertConfiguration,
@@ -143,8 +151,6 @@ export const CreateMediaInsightsPipelineConfiguration = async (
       createMediaInsightsPipelineConfigurationParams,
     )}`,
   );
-
-  await sleep(15000);
 
   try {
     createMediaInsightsPipelineConfigurationResponse =
@@ -248,8 +254,23 @@ export const UpdateMediaInsightsPipelineConfiguration = async (
   return updateMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration;
 };
 
+let deleteMediaInsightsPipelineIdentifier: string;
+
 export const DeleteMediaInsightsPipelineConfiguration = async (uid: string) => {
   console.log(`Deleting Media Insights Pipeline Configuration: ${uid}`);
+
+  try {
+    getParameterCommandOutput = await ssmClient.send(
+      new GetParameterCommand({
+        Name: '/chime/MediaInsightsPipelineConfigurationArn' + uid,
+      }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
 
   try {
     await ssmClient.send(
@@ -263,10 +284,17 @@ export const DeleteMediaInsightsPipelineConfiguration = async (uid: string) => {
       throw error;
     }
   }
+
+  deleteMediaInsightsPipelineIdentifier =
+    getParameterCommandOutput.Parameter!.Value!;
+
+  console.info(
+    `deleteMediaInsightsPipelineIdentifier: ${deleteMediaInsightsPipelineIdentifier}`,
+  );
   try {
     await chimeSDKMediaPipelineClient.send(
       new DeleteMediaInsightsPipelineConfigurationCommand({
-        Identifier: updateMediaInsightsPipelineIdentifier,
+        Identifier: deleteMediaInsightsPipelineIdentifier,
       }),
     );
   } catch (error) {

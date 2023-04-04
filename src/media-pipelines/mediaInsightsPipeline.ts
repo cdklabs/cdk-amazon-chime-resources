@@ -3,12 +3,9 @@ import { Construct } from 'constructs';
 import { mediaPipelinesInsightValidator } from './mediaInsightsPipelineValidator';
 import { MediaPipelineResources } from './mediaPipelinesCustomResources';
 
-export interface Tag {
+export interface MediaPipelineInsightsTag {
   readonly key: string;
   readonly value: string;
-}
-export interface Tags {
-  readonly tag: Tag[];
 }
 
 export enum RulesType {
@@ -24,7 +21,7 @@ export interface Rules {
 }
 
 export enum SentimentType {
-  NEGATIVE = 'Negative',
+  NEGATIVE = 'NEGATIVE',
 }
 
 export interface KeywordMatchConfiguration {
@@ -177,7 +174,7 @@ export interface MediaInsightsPipelineProps {
   readonly realTimeAlertConfiguration?: RealTimeAlertConfiguration;
   readonly resourceAccessRoleArn: string;
   readonly elements: Elements[];
-  readonly tags?: Array<Tag>;
+  readonly tags?: Array<MediaPipelineInsightsTag>;
   readonly clientRequestToken?: string;
 }
 

@@ -66,6 +66,10 @@ export class MediaPipelineResources extends Construct {
                 resources: ['*'],
                 actions: [
                   'chime:*MediaInsightsPipelineConfiguration',
+                  'chime:ListVoiceConnectors',
+                  'chime:tagResource',
+                  's3:ListBucket',
+                  'kinesis:DescribeStream',
                   'logs:GetLogDelivery',
                   'logs:DeleteLogDelivery',
                   'logs:ListLogDeliveries',

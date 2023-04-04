@@ -41,6 +41,11 @@ export interface VoiceConnectorLoggingConfiguration {
   readonly enableMediaMetricLogs?: boolean;
 }
 
+export interface MediaInsightsConfiguration {
+  readonly disabled: boolean;
+  readonly configurationArn: string;
+}
+
 export interface Routes {
   readonly host: string;
   readonly port: number;
@@ -64,6 +69,8 @@ export interface Streaming {
    * @default - 0
    */
   readonly notificationTargets: Array<NotificationTargetType>;
+
+  readonly mediaInsightsConfiguration?: MediaInsightsConfiguration;
 }
 /**
  * Props for `SipMediaApplication`.
