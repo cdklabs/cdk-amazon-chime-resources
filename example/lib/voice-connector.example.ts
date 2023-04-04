@@ -8,9 +8,9 @@ import {
   PhoneNumberType,
   Protocol,
   NotificationTargetType,
-  ChimeVoiceProfileDomain,
+  // ChimeVoiceProfileDomain,
 } from 'cdk-amazon-chime-resources';
-import { Key, KeySpec } from 'aws-cdk-lib/aws-kms';
+// import { Key, KeySpec } from 'aws-cdk-lib/aws-kms';
 
 export class VoiceConnectorExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -27,42 +27,13 @@ export class VoiceConnectorExample extends Stack {
       },
     );
 
-    const voiceConnector = new chime.ChimeVoiceConnector(
-      this,
-      'voiceConnector',
-      {
-        encryption: false,
-        region: 'us-east-1',
-        termination: {
-          terminationCidrs: ['198.51.100.0/27'],
-          callingRegions: ['US'],
-          cps: 1,
-        },
-        origination: [
-          {
-            host: '198.51.100.10',
-            port: 5061,
-            protocol: chime.Protocol.TCP,
-            priority: 1,
-            weight: 1,
-          },
-          {
-            host: '198.51.100.11',
-            port: 5061,
-            protocol: chime.Protocol.TCP,
-            priority: 2,
-            weight: 1,
-          },
-        ],
-        streaming: {
-          enabled: true,
-          dataRetention: 24,
-          notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
-        },
-        loggingConfiguration: {
-          enableSIPLogs: true,
-          enableMediaMetricLogs: true,
-        },
+    const voiceConnector = new ChimeVoiceConnector(this, 'voiceConnector', {
+      encryption: false,
+      region: 'us-east-1',
+      termination: {
+        terminationCidrs: ['198.51.100.0/27'],
+        callingRegions: ['US'],
+        cps: 1,
       },
       origination: [
         {
@@ -82,7 +53,7 @@ export class VoiceConnectorExample extends Stack {
       ],
       streaming: {
         enabled: true,
-        dataRetention: 0,
+        dataRetention: 24,
         notificationTargets: [NotificationTargetType.EVENTBRIDGE],
       },
       loggingConfiguration: {
@@ -93,29 +64,28 @@ export class VoiceConnectorExample extends Stack {
 
     voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 
-    const voiceProfileDomainKey = new Key(this, 'voiceProfileDomainKey', {
-      enableKeyRotation: true,
-      keySpec: KeySpec.SYMMETRIC_DEFAULT,
-      enabled: true,
-    });
+    // const voiceProfileDomainKey = new Key(this, 'voiceProfileDomainKey', {
+    //   enableKeyRotation: true,
+    //   keySpec: KeySpec.SYMMETRIC_DEFAULT,
+    //   enabled: true,
+    // });
 
-    const voiceProfileDomain = new ChimeVoiceProfileDomain(
-      this,
-      'voiceProfileDomain',
-      {
-        serverSideEncryptionConfiguration: {
-          kmsKeyArn: voiceProfileDomainKey.keyArn,
-        },
-      },
-    );
+    // const voiceProfileDomain = new ChimeVoiceProfileDomain(
+    //   this,
+    //   'voiceProfileDomain',
+    //   {
+    //     serverSideEncryptionConfiguration: {
+    //       kmsKeyArn: voiceProfileDomainKey.keyArn,
+    //     },
+    //   },
+    // );
 
-    new CfnOutput(this, 'voiceProfileDomainId', {
-      value: voiceProfileDomain.voiceProfileDomainId!,
-    });
+    // new CfnOutput(this, 'voiceProfileDomainId', {
+    //   value: voiceProfileDomain.voiceProfileDomainId!,
+    // });
     new CfnOutput(this, 'phoneNumber', {
       value: voiceConnectorPhone.phoneNumber,
     });
-
     new CfnOutput(this, 'voiceConnectorId', {
       value: voiceConnector.voiceConnectorId,
     });
