@@ -79,7 +79,49 @@
     "@aws-sdk/types" "3.303.0"
     tslib "^2.5.0"
 
-"@aws-sdk/client-chime-sdk-messaging@^3.303.0":
+"@aws-sdk/client-chime-sdk-media-pipelines@latest":
+  version "3.303.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime-sdk-media-pipelines/-/client-chime-sdk-media-pipelines-3.303.0.tgz#53348fe9cf2728d56acef6e2c721c1903ee238a3"
+  integrity sha512-GAvRZNgVhFL/E0XPg2fRcF9KC9ytBL3UBMU0L51s2JAy8OY1hVGjGzd2CekstrT9SqzoQN2M/DlDR6TKn8dC5g==
+  dependencies:
+    "@aws-crypto/sha256-browser" "3.0.0"
+    "@aws-crypto/sha256-js" "3.0.0"
+    "@aws-sdk/client-sts" "3.303.0"
+    "@aws-sdk/config-resolver" "3.303.0"
+    "@aws-sdk/credential-provider-node" "3.303.0"
+    "@aws-sdk/fetch-http-handler" "3.303.0"
+    "@aws-sdk/hash-node" "3.303.0"
+    "@aws-sdk/invalid-dependency" "3.303.0"
+    "@aws-sdk/middleware-content-length" "3.303.0"
+    "@aws-sdk/middleware-endpoint" "3.303.0"
+    "@aws-sdk/middleware-host-header" "3.303.0"
+    "@aws-sdk/middleware-logger" "3.303.0"
+    "@aws-sdk/middleware-recursion-detection" "3.303.0"
+    "@aws-sdk/middleware-retry" "3.303.0"
+    "@aws-sdk/middleware-serde" "3.303.0"
+    "@aws-sdk/middleware-signing" "3.303.0"
+    "@aws-sdk/middleware-stack" "3.303.0"
+    "@aws-sdk/middleware-user-agent" "3.303.0"
+    "@aws-sdk/node-config-provider" "3.303.0"
+    "@aws-sdk/node-http-handler" "3.303.0"
+    "@aws-sdk/protocol-http" "3.303.0"
+    "@aws-sdk/smithy-client" "3.303.0"
+    "@aws-sdk/types" "3.303.0"
+    "@aws-sdk/url-parser" "3.303.0"
+    "@aws-sdk/util-base64" "3.303.0"
+    "@aws-sdk/util-body-length-browser" "3.303.0"
+    "@aws-sdk/util-body-length-node" "3.303.0"
+    "@aws-sdk/util-defaults-mode-browser" "3.303.0"
+    "@aws-sdk/util-defaults-mode-node" "3.303.0"
+    "@aws-sdk/util-endpoints" "3.303.0"
+    "@aws-sdk/util-retry" "3.303.0"
+    "@aws-sdk/util-user-agent-browser" "3.303.0"
+    "@aws-sdk/util-user-agent-node" "3.303.0"
+    "@aws-sdk/util-utf8" "3.303.0"
+    tslib "^2.5.0"
+    uuid "^8.3.2"
+
+"@aws-sdk/client-chime-sdk-messaging@latest":
   version "3.303.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime-sdk-messaging/-/client-chime-sdk-messaging-3.303.0.tgz#295bebf25f1faf3bb83a1598089c9eddd2ff259c"
   integrity sha512-bmVr8oTK+SFl4CIwrxVzpghVGlrTpSZpsJfp+dLu/+o/g69OMhjbLMsS5brPlfYFdj84/QmonpalhGK5GwWmlQ==
@@ -121,7 +163,7 @@
     tslib "^2.5.0"
     uuid "^8.3.2"
 
-"@aws-sdk/client-chime-sdk-voice@^3.303.0":
+"@aws-sdk/client-chime-sdk-voice@latest":
   version "3.303.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/client-chime-sdk-voice/-/client-chime-sdk-voice-3.303.0.tgz#c55e259184a2ac24228afde7573abc7b4844bb43"
   integrity sha512-w+UFRRO3UsQU7vw52ywS25b3Y9Gic8ERqLMQWQuaJCw2tCa8T6ZFtkPI2TNMibRIkH/oe92k+VA6XO7pLHr/0Q==
@@ -2240,10 +2282,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.yarnpkg.com/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz#92f95616501069d07d10edb2fc37d3e1c65123b7"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-cdk-lib@2.68.0:
-  version "2.68.0"
-  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.68.0.tgz#5448dfff733a88551e3df61df5c5b646a7b6ee75"
-  integrity sha512-roN3xwzv/GleGG3CaJrf+thdzr9WBzJU4LotumEOs+0cGfeXSta8Pm/cGAeY4kplr5r10QWUovH0fv/bi6Vrbw==
+aws-cdk-lib@2.70.0:
+  version "2.70.0"
+  resolved "https://registry.yarnpkg.com/aws-cdk-lib/-/aws-cdk-lib-2.70.0.tgz#207422bf8766caf56c76956f9f2263cdbe97ef67"
+  integrity sha512-q/Go/3VERycIMJp3LfVtjRCLnIJHXJ0gfev5qM5yPyuvoDgZaKuaGA54T0IebgXDyZzS6We3j/DhuP/nPR8sPw==
   dependencies:
     "@aws-cdk/asset-awscli-v1" "^2.2.97"
     "@aws-cdk/asset-kubectl-v20" "^2.1.1"
@@ -2545,9 +2587,9 @@ camelcase@^7.0.0:
   integrity sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==
 
 caniuse-lite@^1.0.30001449:
-  version "1.0.30001473"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001473.tgz#3859898b3cab65fc8905bb923df36ad35058153c"
-  integrity sha512-ewDad7+D2vlyy+E4UJuVfiBsU69IL+8oVmTuZnH5Q6CIUbxNfI50uVpRHbUPDD6SUaN2o0Lh4DhTrvLG/Tn1yg==
+  version "1.0.30001474"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001474.tgz#13b6fe301a831fe666cce8ca4ef89352334133d5"
+  integrity sha512-iaIZ8gVrWfemh5DG3T9/YqarVZoYf0r188IjaGwx68j4Pf0SGY6CQkmJUIE+NZHkkecQGohzXmBGEwWDr9aM3Q==
 
 case@1.6.3, case@^1.6.3:
   version "1.6.3"
@@ -6226,10 +6268,10 @@ progress@^2.0.3:
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
-projen@^0.70.9:
-  version "0.70.9"
-  resolved "https://registry.yarnpkg.com/projen/-/projen-0.70.9.tgz#30f746bcbd04999e37f47eee63ea8efb99b8f134"
-  integrity sha512-rBn4oY9fiWlm+Mp5hug/0hpYP4c6UtOFuX7byaPybaBhOLSbDMgNTaqGLlg2LgtZYRtgAwspGCVIvqRfmqt6Ig==
+projen@^0.70.10:
+  version "0.70.10"
+  resolved "https://registry.yarnpkg.com/projen/-/projen-0.70.10.tgz#d3f1c704ef201223851055833af3fcb5dd07f60c"
+  integrity sha512-vzv+b8erEKC4KxB7Bc4lxNcUcKDZ+zcNblv8Q0NwDKfwCtxSIyqZRidHgZALONSuTPJ9Fxs8VKy+StQrgvjMkQ==
   dependencies:
     "@iarna/toml" "^2.2.5"
     case "^1.6.3"

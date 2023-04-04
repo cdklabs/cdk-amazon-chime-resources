@@ -15706,7 +15706,7 @@ var require_ChimeSDKVoiceClient = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var EndpointParameters_1 = require_EndpointParameters();
     var runtimeConfig_1 = require_runtimeConfig4();
-    var ChimeSDKVoiceClient5 = class extends smithy_client_1.Client {
+    var ChimeSDKVoiceClient6 = class extends smithy_client_1.Client {
       constructor(configuration) {
         const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration);
         const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
@@ -15730,7 +15730,7 @@ var require_ChimeSDKVoiceClient = __commonJS({
         super.destroy();
       }
     };
-    exports.ChimeSDKVoiceClient = ChimeSDKVoiceClient5;
+    exports.ChimeSDKVoiceClient = ChimeSDKVoiceClient6;
   }
 });
 
@@ -25392,7 +25392,7 @@ var require_CreateVoiceProfileDomainCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+    var CreateVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -25407,7 +25407,7 @@ var require_CreateVoiceProfileDomainCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, CreateVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, CreateVoiceProfileDomainCommand2.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "ChimeSDKVoiceClient";
@@ -25429,7 +25429,7 @@ var require_CreateVoiceProfileDomainCommand = __commonJS({
         return (0, Aws_restJson1_1.deserializeAws_restJson1CreateVoiceProfileDomainCommand)(output, context);
       }
     };
-    exports.CreateVoiceProfileDomainCommand = CreateVoiceProfileDomainCommand;
+    exports.CreateVoiceProfileDomainCommand = CreateVoiceProfileDomainCommand2;
   }
 });
 
@@ -26108,7 +26108,7 @@ var require_DeleteVoiceProfileDomainCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
     var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+    var DeleteVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -26123,7 +26123,7 @@ var require_DeleteVoiceProfileDomainCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteVoiceProfileDomainCommand2.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "ChimeSDKVoiceClient";
@@ -26145,7 +26145,7 @@ var require_DeleteVoiceProfileDomainCommand = __commonJS({
         return (0, Aws_restJson1_1.deserializeAws_restJson1DeleteVoiceProfileDomainCommand)(output, context);
       }
     };
-    exports.DeleteVoiceProfileDomainCommand = DeleteVoiceProfileDomainCommand;
+    exports.DeleteVoiceProfileDomainCommand = DeleteVoiceProfileDomainCommand2;
   }
 });
 
@@ -29462,7 +29462,7 @@ var require_UpdateVoiceProfileDomainCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
-    var UpdateVoiceProfileDomainCommand = class extends smithy_client_1.Command {
+    var UpdateVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -29477,7 +29477,7 @@ var require_UpdateVoiceProfileDomainCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateVoiceProfileDomainCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateVoiceProfileDomainCommand2.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "ChimeSDKVoiceClient";
@@ -29499,7 +29499,7 @@ var require_UpdateVoiceProfileDomainCommand = __commonJS({
         return (0, Aws_restJson1_1.deserializeAws_restJson1UpdateVoiceProfileDomainCommand)(output, context);
       }
     };
-    exports.UpdateVoiceProfileDomainCommand = UpdateVoiceProfileDomainCommand;
+    exports.UpdateVoiceProfileDomainCommand = UpdateVoiceProfileDomainCommand2;
   }
 });
 
@@ -49759,7 +49759,7 @@ var require_DeleteParameterCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var DeleteParameterCommand5 = class extends smithy_client_1.Command {
+    var DeleteParameterCommand6 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -49774,7 +49774,7 @@ var require_DeleteParameterCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteParameterCommand5.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, DeleteParameterCommand6.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "SSMClient";
@@ -49796,7 +49796,7 @@ var require_DeleteParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.deserializeAws_json1_1DeleteParameterCommand)(output, context);
       }
     };
-    exports.DeleteParameterCommand = DeleteParameterCommand5;
+    exports.DeleteParameterCommand = DeleteParameterCommand6;
   }
 });
 
@@ -52781,7 +52781,7 @@ var require_GetParameterCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var GetParameterCommand5 = class extends smithy_client_1.Command {
+    var GetParameterCommand6 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -52796,7 +52796,7 @@ var require_GetParameterCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetParameterCommand5.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, GetParameterCommand6.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "SSMClient";
@@ -52818,7 +52818,7 @@ var require_GetParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.deserializeAws_json1_1GetParameterCommand)(output, context);
       }
     };
-    exports.GetParameterCommand = GetParameterCommand5;
+    exports.GetParameterCommand = GetParameterCommand6;
   }
 });
 
@@ -54216,7 +54216,7 @@ var require_PutParameterCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var PutParameterCommand5 = class extends smithy_client_1.Command {
+    var PutParameterCommand6 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -54231,7 +54231,7 @@ var require_PutParameterCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, PutParameterCommand5.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, PutParameterCommand6.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "SSMClient";
@@ -54253,7 +54253,7 @@ var require_PutParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.deserializeAws_json1_1PutParameterCommand)(output, context);
       }
     };
-    exports.PutParameterCommand = PutParameterCommand5;
+    exports.PutParameterCommand = PutParameterCommand6;
   }
 });
 
@@ -56120,7 +56120,7 @@ var require_SSMClient = __commonJS({
     var smithy_client_1 = require_dist_cjs28();
     var EndpointParameters_1 = require_EndpointParameters5();
     var runtimeConfig_1 = require_runtimeConfig5();
-    var SSMClient5 = class extends smithy_client_1.Client {
+    var SSMClient6 = class extends smithy_client_1.Client {
       constructor(configuration) {
         const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration);
         const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
@@ -56144,7 +56144,7 @@ var require_SSMClient = __commonJS({
         super.destroy();
       }
     };
-    exports.SSMClient = SSMClient5;
+    exports.SSMClient = SSMClient6;
   }
 });
 
@@ -60788,7 +60788,13 @@ var putStreaming = async (streamingVoiceConnectorId, streaming) => {
   streamingConfiguration = {
     StreamingNotificationTargets: streaming.notificationTarget,
     Disabled: false,
-    DataRetentionInHours: parseInt(streaming.dataRetention)
+    DataRetentionInHours: parseInt(streaming.dataRetention),
+    ...streaming.mediaInsightsConfiguration && {
+      MediaInsightsConfiguration: {
+        Disabled: streaming.mediaInsightsConfiguration.disabled,
+        ConfigurationArn: streaming.mediaInsightsConfiguration.configurationArn
+      }
+    }
   };
   console.log(
     `streamingConfiguration:  ${JSON.stringify(streamingConfiguration)}`
@@ -60823,6 +60829,193 @@ var putLogging = async (loggingVoiceConnectorId, logging) => {
         VoiceConnectorId: loggingVoiceConnectorId,
         LoggingConfiguration: loggingConfiguration
       })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+};
+
+// src/resources/pstn/voiceProfileDomain.ts
+var import_client_chime_sdk_voice5 = __toESM(require_dist_cjs50());
+var import_client_ssm5 = __toESM(require_dist_cjs52());
+var chimeSDKVoiceClient5 = new import_client_chime_sdk_voice5.ChimeSDKVoiceClient({
+  region: process.env.AWS_REGION
+});
+var ssmClient5 = new import_client_ssm5.SSMClient({ region: process.env.AWS_REGION });
+var formattedCreateVoiceProfileDomainParams;
+var createVoiceProfileDomainResponse;
+var getParameterCommandOutput5;
+var voiceProfileDomainId;
+var updateVoiceProfileDomainParams;
+var updateVoiceProfileDomainResponse;
+var deleteVoiceProfileDomainResponse;
+var formattedTags = [];
+function capitalizeKeys(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => capitalizeKeys(item));
+  }
+  if (typeof obj === "object") {
+    const capitalizedObj = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+        const value = obj[key];
+        capitalizedObj[capitalizedKey] = typeof value === "string" && !isNaN(parseFloat(value)) ? parseFloat(value) : capitalizeKeys(value);
+      }
+    }
+    return capitalizedObj;
+  }
+  return obj;
+}
+var formatProps = (props) => {
+  console.info(`Formatting Props: ${JSON.stringify(props)}`);
+  if (props.tags) {
+    console.info(`Formatting Tags: ${JSON.stringify(props.tags)}`);
+    props.tags.forEach((tag) => {
+      formattedTags.push(capitalizeKeys(tag));
+    });
+    console.info(`Formatted Tags: ${JSON.stringify(formattedTags)}`);
+  }
+  formattedCreateVoiceProfileDomainParams = {
+    Name: props.name,
+    ...props.tags && { Tags: formattedTags },
+    ...props.clientRequestToken && {
+      ClientRequestToken: props.clientRequestToken
+    },
+    ...props.description && { Description: props.description },
+    ...props.serverSideEncryptionConfiguration && {
+      ServerSideEncryptionConfiguration: {
+        KmsKeyArn: props.serverSideEncryptionConfiguration.kmsKeyArn
+      }
+    }
+  };
+  return formattedCreateVoiceProfileDomainParams;
+};
+var CreateVoiceProfileDomain = async (uid, props) => {
+  console.log(`Creating Voice Profile Domain: ${uid}`);
+  console.log(`Create Voice Profile DomainProps: ${JSON.stringify(props)}`);
+  formattedCreateVoiceProfileDomainParams = formatProps(props);
+  console.log(
+    `Create Voice Profile Domain params: ${JSON.stringify(
+      formattedCreateVoiceProfileDomainParams
+    )}`
+  );
+  console.log(
+    `createVoiceProfileDomainParams: ${JSON.stringify(
+      formattedCreateVoiceProfileDomainParams
+    )}`
+  );
+  try {
+    createVoiceProfileDomainResponse = await chimeSDKVoiceClient5.send(
+      new import_client_chime_sdk_voice5.CreateVoiceProfileDomainCommand(
+        formattedCreateVoiceProfileDomainParams
+      )
+    );
+    console.log(
+      `createVoiceConnectorResponse: ${JSON.stringify(
+        createVoiceProfileDomainResponse
+      )}`
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  try {
+    await ssmClient5.send(
+      new import_client_ssm5.PutParameterCommand({
+        Name: "/chime/voiceProfileDomain" + uid,
+        Value: createVoiceProfileDomainResponse.VoiceProfileDomain.VoiceProfileDomainId,
+        Description: "Voice Profile Domain ID",
+        Overwrite: true,
+        Type: "String"
+      })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  return {
+    voiceProfileDomain: createVoiceProfileDomainResponse.VoiceProfileDomain
+  };
+};
+var UpdateVoiceProfileDomain = async (uid, props) => {
+  console.log(`Updating Voice Profile Domain: ${uid}`);
+  console.log(`Update Voice Profile DomainProps: ${JSON.stringify(props)}`);
+  try {
+    getParameterCommandOutput5 = await ssmClient5.send(
+      new import_client_ssm5.GetParameterCommand({ Name: "/chime/voiceProfileDomain" + uid })
+    );
+    if (getParameterCommandOutput5.Parameter && getParameterCommandOutput5.Parameter.Value) {
+      voiceProfileDomainId = getParameterCommandOutput5.Parameter.Value;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  updateVoiceProfileDomainParams = {
+    Name: props.name,
+    Description: props.description,
+    VoiceProfileDomainId: voiceProfileDomainId
+  };
+  console.log(
+    `updateVoiceConnectorParams: ${JSON.stringify(
+      updateVoiceProfileDomainParams
+    )}`
+  );
+  try {
+    updateVoiceProfileDomainResponse = await chimeSDKVoiceClient5.send(
+      new import_client_chime_sdk_voice5.UpdateVoiceProfileDomainCommand(updateVoiceProfileDomainParams)
+    );
+    console.log(
+      `updateVoiceProfileDomainResponse: ${JSON.stringify(
+        updateVoiceProfileDomainResponse
+      )}`
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  return {
+    voiceProfileDomain: updateVoiceProfileDomainResponse.VoiceProfileDomain
+  };
+};
+var DeleteVoiceProfileDomain = async (uid) => {
+  try {
+    getParameterCommandOutput5 = await ssmClient5.send(
+      new import_client_ssm5.GetParameterCommand({ Name: "/chime/voiceProfileDomain" + uid })
+    );
+    if (getParameterCommandOutput5.Parameter && getParameterCommandOutput5.Parameter.Value) {
+      voiceProfileDomainId = getParameterCommandOutput5.Parameter.Value;
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  console.log(`Deleting voiceProfileDomainId: ${voiceProfileDomainId}`);
+  try {
+    deleteVoiceProfileDomainResponse = await chimeSDKVoiceClient5.send(
+      new import_client_chime_sdk_voice5.DeleteVoiceProfileDomainCommand({
+        VoiceProfileDomainId: voiceProfileDomainId
+      })
+    );
+    console.log(
+      `Delete Voice Profile Domain Response: ${deleteVoiceProfileDomainResponse}`
+    );
+    await ssmClient5.send(
+      new import_client_ssm5.DeleteParameterCommand({ Name: "/chime/voiceProfileDomain" + uid })
     );
   } catch (error) {
     if (error instanceof Error) {
@@ -60971,6 +61164,30 @@ var handler = async (event, context) => {
           break;
         case "Delete":
           await DeleteVoiceConnector(resourcePropertiesUid);
+          response.Status = "SUCCESS";
+          response.Reason = "Delete VC successful";
+          break;
+      }
+      break;
+    case "VoiceProfileDomain":
+      switch (requestType) {
+        case "Create":
+          response.Data = await CreateVoiceProfileDomain(
+            resourcePropertiesUid,
+            requestProperties
+          );
+          response.Status = "SUCCESS";
+          response.Reason = "Create Voice Profile Domain successful";
+          break;
+        case "Update":
+          await UpdateVoiceProfileDomain(
+            resourcePropertiesUid,
+            requestProperties
+          );
+          response.Status = "SUCCESS";
+          break;
+        case "Delete":
+          await DeleteVoiceProfileDomain(resourcePropertiesUid);
           response.Status = "SUCCESS";
           response.Reason = "Delete VC successful";
           break;

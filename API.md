@@ -395,6 +395,85 @@ public readonly voiceConnectorId: string;
 ---
 
 
+### MediaInsightsPipeline <a name="cdk-amazon-chime-resources.MediaInsightsPipeline" id="cdkamazonchimeresourcesmediainsightspipeline"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.Initializer" id="cdkamazonchimeresourcesmediainsightspipelineinitializer"></a>
+
+```typescript
+import { MediaInsightsPipeline } from 'cdk-amazon-chime-resources'
+
+new MediaInsightsPipeline(scope: Construct, id: string, props: MediaInsightsPipelineProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourcesmediainsightspipelineparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourcesmediainsightspipelineparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourcesmediainsightspipelineparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.MediaInsightsPipelineProps`](#cdk-amazon-chime-resources.MediaInsightsPipelineProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.parameter.scope" id="cdkamazonchimeresourcesmediainsightspipelineparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.parameter.id" id="cdkamazonchimeresourcesmediainsightspipelineparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.parameter.props" id="cdkamazonchimeresourcesmediainsightspipelineparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.MediaInsightsPipelineProps`](#cdk-amazon-chime-resources.MediaInsightsPipelineProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`mediaInsightsPipelineConfigurationArn`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationId`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationid)<span title="Required">*</span> | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationName`](#cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationname)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `mediaInsightsPipelineConfigurationArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationArn" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationarn"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `mediaInsightsPipelineConfigurationId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationId" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationid"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationId: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `mediaInsightsPipelineConfigurationName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.property.mediaInsightsPipelineConfigurationName" id="cdkamazonchimeresourcesmediainsightspipelinepropertymediainsightspipelineconfigurationname"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationName: string;
+```
+
+- *Type:* `string`
+
+---
+
+
 ### MessagingAppInstance <a name="cdk-amazon-chime-resources.MessagingAppInstance" id="cdkamazonchimeresourcesmessagingappinstance"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.MessagingAppInstance.Initializer" id="cdkamazonchimeresourcesmessagingappinstanceinitializer"></a>
@@ -803,6 +882,315 @@ public readonly pstnCustomResource: CustomResource;
 
 
 ## Structs <a name="Structs" id="structs"></a>
+
+### AmazonTranscribeCallAnalyticsProcessorConfiguration <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AmazonTranscribeCallAnalyticsProcessorConfiguration } from 'cdk-amazon-chime-resources'
+
+const amazonTranscribeCallAnalyticsProcessorConfiguration: AmazonTranscribeCallAnalyticsProcessorConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`languageCode`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertylanguagecode)<span title="Required">*</span> | [`cdk-amazon-chime-resources.LanguageCode`](#cdk-amazon-chime-resources.LanguageCode) | *No description.* |
+| [`callAnalyticsStreamCategories`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycallanalyticsstreamcategories) | `string`[] | *No description.* |
+| [`contentIdentificationType`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycontentidentificationtype) | [`cdk-amazon-chime-resources.ContentIdentificationType`](#cdk-amazon-chime-resources.ContentIdentificationType) | *No description.* |
+| [`contentRedactionType`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycontentredactiontype) | [`cdk-amazon-chime-resources.ContentRedactionType`](#cdk-amazon-chime-resources.ContentRedactionType) | *No description.* |
+| [`enablePartialResultsStabilization`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyenablepartialresultsstabilization) | `boolean` | *No description.* |
+| [`filterPartialResults`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyfilterpartialresults) | `boolean` | *No description.* |
+| [`languageModelName`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertylanguagemodelname) | `string` | *No description.* |
+| [`partialResultsStability`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypartialresultsstability) | [`cdk-amazon-chime-resources.PartialResultsStability`](#cdk-amazon-chime-resources.PartialResultsStability) | *No description.* |
+| [`piiEntityTypes`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypiientitytypes) | `string` | *No description.* |
+| [`postCallAnalyticsSettings`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypostcallanalyticssettings) | [`cdk-amazon-chime-resources.PostCallAnalyticsSettings`](#cdk-amazon-chime-resources.PostCallAnalyticsSettings) | *No description.* |
+| [`vocabularyFilterMethod`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyfiltermethod) | [`cdk-amazon-chime-resources.VocabularyFilterMethod`](#cdk-amazon-chime-resources.VocabularyFilterMethod) | *No description.* |
+| [`vocabularyFilterName`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyfiltername) | `string` | *No description.* |
+| [`vocabularyName`](#cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyname) | `string` | *No description.* |
+
+---
+
+##### `languageCode`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.languageCode" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertylanguagecode"></a>
+
+```typescript
+public readonly languageCode: LanguageCode;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.LanguageCode`](#cdk-amazon-chime-resources.LanguageCode)
+
+---
+
+##### `callAnalyticsStreamCategories`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.callAnalyticsStreamCategories" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycallanalyticsstreamcategories"></a>
+
+```typescript
+public readonly callAnalyticsStreamCategories: string[];
+```
+
+- *Type:* `string`[]
+
+---
+
+##### `contentIdentificationType`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.contentIdentificationType" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycontentidentificationtype"></a>
+
+```typescript
+public readonly contentIdentificationType: ContentIdentificationType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ContentIdentificationType`](#cdk-amazon-chime-resources.ContentIdentificationType)
+
+---
+
+##### `contentRedactionType`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.contentRedactionType" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertycontentredactiontype"></a>
+
+```typescript
+public readonly contentRedactionType: ContentRedactionType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ContentRedactionType`](#cdk-amazon-chime-resources.ContentRedactionType)
+
+---
+
+##### `enablePartialResultsStabilization`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.enablePartialResultsStabilization" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyenablepartialresultsstabilization"></a>
+
+```typescript
+public readonly enablePartialResultsStabilization: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `filterPartialResults`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.filterPartialResults" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyfilterpartialresults"></a>
+
+```typescript
+public readonly filterPartialResults: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `languageModelName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.languageModelName" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertylanguagemodelname"></a>
+
+```typescript
+public readonly languageModelName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `partialResultsStability`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.partialResultsStability" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypartialresultsstability"></a>
+
+```typescript
+public readonly partialResultsStability: PartialResultsStability;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.PartialResultsStability`](#cdk-amazon-chime-resources.PartialResultsStability)
+
+---
+
+##### `piiEntityTypes`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.piiEntityTypes" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypiientitytypes"></a>
+
+```typescript
+public readonly piiEntityTypes: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `postCallAnalyticsSettings`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.postCallAnalyticsSettings" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertypostcallanalyticssettings"></a>
+
+```typescript
+public readonly postCallAnalyticsSettings: PostCallAnalyticsSettings;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.PostCallAnalyticsSettings`](#cdk-amazon-chime-resources.PostCallAnalyticsSettings)
+
+---
+
+##### `vocabularyFilterMethod`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.vocabularyFilterMethod" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyfiltermethod"></a>
+
+```typescript
+public readonly vocabularyFilterMethod: VocabularyFilterMethod;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VocabularyFilterMethod`](#cdk-amazon-chime-resources.VocabularyFilterMethod)
+
+---
+
+##### `vocabularyFilterName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.vocabularyFilterName" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyfiltername"></a>
+
+```typescript
+public readonly vocabularyFilterName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `vocabularyName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration.property.vocabularyName" id="cdkamazonchimeresourcesamazontranscribecallanalyticsprocessorconfigurationpropertyvocabularyname"></a>
+
+```typescript
+public readonly vocabularyName: string;
+```
+
+- *Type:* `string`
+
+---
+
+### AmazonTranscribeProcessorConfiguration <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration" id="cdkamazonchimeresourcesamazontranscribeprocessorconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AmazonTranscribeProcessorConfiguration } from 'cdk-amazon-chime-resources'
+
+const amazonTranscribeProcessorConfiguration: AmazonTranscribeProcessorConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`languageCode`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertylanguagecode)<span title="Required">*</span> | [`cdk-amazon-chime-resources.LanguageCode`](#cdk-amazon-chime-resources.LanguageCode) | *No description.* |
+| [`contentIdentificationType`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertycontentidentificationtype) | [`cdk-amazon-chime-resources.ContentIdentificationType`](#cdk-amazon-chime-resources.ContentIdentificationType) | *No description.* |
+| [`contentRedactionType`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertycontentredactiontype) | [`cdk-amazon-chime-resources.ContentRedactionType`](#cdk-amazon-chime-resources.ContentRedactionType) | *No description.* |
+| [`enablePartialResultsStabilization`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyenablepartialresultsstabilization) | `boolean` | *No description.* |
+| [`filterPartialResults`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyfilterpartialresults) | `boolean` | *No description.* |
+| [`languageModelName`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertylanguagemodelname) | `string` | *No description.* |
+| [`partialResultsStability`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertypartialresultsstability) | [`cdk-amazon-chime-resources.PartialResultsStability`](#cdk-amazon-chime-resources.PartialResultsStability) | *No description.* |
+| [`piiEntityTypes`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertypiientitytypes) | `string` | *No description.* |
+| [`showSpeakerLabel`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyshowspeakerlabel) | `boolean` | *No description.* |
+| [`vocabularyFilterMethod`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyfiltermethod) | [`cdk-amazon-chime-resources.VocabularyFilterMethod`](#cdk-amazon-chime-resources.VocabularyFilterMethod) | *No description.* |
+| [`vocabularyFilterName`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyfiltername) | `string` | *No description.* |
+| [`vocabularyName`](#cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyname) | `string` | *No description.* |
+
+---
+
+##### `languageCode`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.languageCode" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertylanguagecode"></a>
+
+```typescript
+public readonly languageCode: LanguageCode;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.LanguageCode`](#cdk-amazon-chime-resources.LanguageCode)
+
+---
+
+##### `contentIdentificationType`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.contentIdentificationType" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertycontentidentificationtype"></a>
+
+```typescript
+public readonly contentIdentificationType: ContentIdentificationType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ContentIdentificationType`](#cdk-amazon-chime-resources.ContentIdentificationType)
+
+---
+
+##### `contentRedactionType`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.contentRedactionType" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertycontentredactiontype"></a>
+
+```typescript
+public readonly contentRedactionType: ContentRedactionType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ContentRedactionType`](#cdk-amazon-chime-resources.ContentRedactionType)
+
+---
+
+##### `enablePartialResultsStabilization`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.enablePartialResultsStabilization" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyenablepartialresultsstabilization"></a>
+
+```typescript
+public readonly enablePartialResultsStabilization: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `filterPartialResults`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.filterPartialResults" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyfilterpartialresults"></a>
+
+```typescript
+public readonly filterPartialResults: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `languageModelName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.languageModelName" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertylanguagemodelname"></a>
+
+```typescript
+public readonly languageModelName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `partialResultsStability`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.partialResultsStability" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertypartialresultsstability"></a>
+
+```typescript
+public readonly partialResultsStability: PartialResultsStability;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.PartialResultsStability`](#cdk-amazon-chime-resources.PartialResultsStability)
+
+---
+
+##### `piiEntityTypes`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.piiEntityTypes" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertypiientitytypes"></a>
+
+```typescript
+public readonly piiEntityTypes: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `showSpeakerLabel`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.showSpeakerLabel" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyshowspeakerlabel"></a>
+
+```typescript
+public readonly showSpeakerLabel: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `vocabularyFilterMethod`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.vocabularyFilterMethod" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyfiltermethod"></a>
+
+```typescript
+public readonly vocabularyFilterMethod: VocabularyFilterMethod;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VocabularyFilterMethod`](#cdk-amazon-chime-resources.VocabularyFilterMethod)
+
+---
+
+##### `vocabularyFilterName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.vocabularyFilterName" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyfiltername"></a>
+
+```typescript
+public readonly vocabularyFilterName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `vocabularyName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration.property.vocabularyName" id="cdkamazonchimeresourcesamazontranscribeprocessorconfigurationpropertyvocabularyname"></a>
+
+```typescript
+public readonly vocabularyName: string;
+```
+
+- *Type:* `string`
+
+---
 
 ### AppInstanceAdminProps <a name="cdk-amazon-chime-resources.AppInstanceAdminProps" id="cdkamazonchimeresourcesappinstanceadminprops"></a>
 
@@ -1243,6 +1631,122 @@ Indicates that the processor is of type Lambda.
 
 ---
 
+### Elements <a name="cdk-amazon-chime-resources.Elements" id="cdkamazonchimeresourceselements"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { Elements } from 'cdk-amazon-chime-resources'
+
+const elements: Elements = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`type`](#cdkamazonchimeresourceselementspropertytype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.ElementsType`](#cdk-amazon-chime-resources.ElementsType) | *No description.* |
+| [`amazonTranscribeCallAnalyticsProcessorConfiguration`](#cdkamazonchimeresourceselementspropertyamazontranscribecallanalyticsprocessorconfiguration) | [`cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration`](#cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration) | *No description.* |
+| [`amazonTranscribeProcessorConfiguration`](#cdkamazonchimeresourceselementspropertyamazontranscribeprocessorconfiguration) | [`cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration`](#cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration) | *No description.* |
+| [`kinesisDataStreamSinkConfiguration`](#cdkamazonchimeresourceselementspropertykinesisdatastreamsinkconfiguration) | [`cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration`](#cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration) | *No description.* |
+| [`lambdaFunctionSinkConfiguration`](#cdkamazonchimeresourceselementspropertylambdafunctionsinkconfiguration) | [`cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration`](#cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration) | *No description.* |
+| [`s3RecordingSinkConfiguration`](#cdkamazonchimeresourceselementspropertys3recordingsinkconfiguration) | [`cdk-amazon-chime-resources.S3RecordingSinkConfiguration`](#cdk-amazon-chime-resources.S3RecordingSinkConfiguration) | *No description.* |
+| [`snsTopicSinkConfiguration`](#cdkamazonchimeresourceselementspropertysnstopicsinkconfiguration) | [`cdk-amazon-chime-resources.SnsTopicSinkConfiguration`](#cdk-amazon-chime-resources.SnsTopicSinkConfiguration) | *No description.* |
+| [`sqsQueueSinkConfiguration`](#cdkamazonchimeresourceselementspropertysqsqueuesinkconfiguration) | [`cdk-amazon-chime-resources.SqsQueueSinkConfiguration`](#cdk-amazon-chime-resources.SqsQueueSinkConfiguration) | *No description.* |
+| [`voiceAnalyticsProcessorConfiguration`](#cdkamazonchimeresourceselementspropertyvoiceanalyticsprocessorconfiguration) | [`cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration`](#cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration) | *No description.* |
+
+---
+
+##### `type`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Elements.property.type" id="cdkamazonchimeresourceselementspropertytype"></a>
+
+```typescript
+public readonly type: ElementsType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ElementsType`](#cdk-amazon-chime-resources.ElementsType)
+
+---
+
+##### `amazonTranscribeCallAnalyticsProcessorConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.amazonTranscribeCallAnalyticsProcessorConfiguration" id="cdkamazonchimeresourceselementspropertyamazontranscribecallanalyticsprocessorconfiguration"></a>
+
+```typescript
+public readonly amazonTranscribeCallAnalyticsProcessorConfiguration: AmazonTranscribeCallAnalyticsProcessorConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration`](#cdk-amazon-chime-resources.AmazonTranscribeCallAnalyticsProcessorConfiguration)
+
+---
+
+##### `amazonTranscribeProcessorConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.amazonTranscribeProcessorConfiguration" id="cdkamazonchimeresourceselementspropertyamazontranscribeprocessorconfiguration"></a>
+
+```typescript
+public readonly amazonTranscribeProcessorConfiguration: AmazonTranscribeProcessorConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration`](#cdk-amazon-chime-resources.AmazonTranscribeProcessorConfiguration)
+
+---
+
+##### `kinesisDataStreamSinkConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.kinesisDataStreamSinkConfiguration" id="cdkamazonchimeresourceselementspropertykinesisdatastreamsinkconfiguration"></a>
+
+```typescript
+public readonly kinesisDataStreamSinkConfiguration: KinesisDataStreamSinkConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration`](#cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration)
+
+---
+
+##### `lambdaFunctionSinkConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.lambdaFunctionSinkConfiguration" id="cdkamazonchimeresourceselementspropertylambdafunctionsinkconfiguration"></a>
+
+```typescript
+public readonly lambdaFunctionSinkConfiguration: LambdaFunctionSinkConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration`](#cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration)
+
+---
+
+##### `s3RecordingSinkConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.s3RecordingSinkConfiguration" id="cdkamazonchimeresourceselementspropertys3recordingsinkconfiguration"></a>
+
+```typescript
+public readonly s3RecordingSinkConfiguration: S3RecordingSinkConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.S3RecordingSinkConfiguration`](#cdk-amazon-chime-resources.S3RecordingSinkConfiguration)
+
+---
+
+##### `snsTopicSinkConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.snsTopicSinkConfiguration" id="cdkamazonchimeresourceselementspropertysnstopicsinkconfiguration"></a>
+
+```typescript
+public readonly snsTopicSinkConfiguration: SnsTopicSinkConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.SnsTopicSinkConfiguration`](#cdk-amazon-chime-resources.SnsTopicSinkConfiguration)
+
+---
+
+##### `sqsQueueSinkConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.sqsQueueSinkConfiguration" id="cdkamazonchimeresourceselementspropertysqsqueuesinkconfiguration"></a>
+
+```typescript
+public readonly sqsQueueSinkConfiguration: SqsQueueSinkConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.SqsQueueSinkConfiguration`](#cdk-amazon-chime-resources.SqsQueueSinkConfiguration)
+
+---
+
+##### `voiceAnalyticsProcessorConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Elements.property.voiceAnalyticsProcessorConfiguration" id="cdkamazonchimeresourceselementspropertyvoiceanalyticsprocessorconfiguration"></a>
+
+```typescript
+public readonly voiceAnalyticsProcessorConfiguration: VoiceAnalyticsProcessorConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration`](#cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration)
+
+---
+
 ### InstanceUserTags <a name="cdk-amazon-chime-resources.InstanceUserTags" id="cdkamazonchimeresourcesinstanceusertags"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -1276,6 +1780,112 @@ public readonly key: string;
 
 ```typescript
 public readonly value: string;
+```
+
+- *Type:* `string`
+
+---
+
+### IssueDetectionConfiguration <a name="cdk-amazon-chime-resources.IssueDetectionConfiguration" id="cdkamazonchimeresourcesissuedetectionconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { IssueDetectionConfiguration } from 'cdk-amazon-chime-resources'
+
+const issueDetectionConfiguration: IssueDetectionConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`ruleName`](#cdkamazonchimeresourcesissuedetectionconfigurationpropertyrulename)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `ruleName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.IssueDetectionConfiguration.property.ruleName" id="cdkamazonchimeresourcesissuedetectionconfigurationpropertyrulename"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* `string`
+
+---
+
+### KeywordMatchConfiguration <a name="cdk-amazon-chime-resources.KeywordMatchConfiguration" id="cdkamazonchimeresourceskeywordmatchconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { KeywordMatchConfiguration } from 'cdk-amazon-chime-resources'
+
+const keywordMatchConfiguration: KeywordMatchConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`keywords`](#cdkamazonchimeresourceskeywordmatchconfigurationpropertykeywords)<span title="Required">*</span> | `string`[] | *No description.* |
+| [`ruleName`](#cdkamazonchimeresourceskeywordmatchconfigurationpropertyrulename)<span title="Required">*</span> | `string` | *No description.* |
+| [`negate`](#cdkamazonchimeresourceskeywordmatchconfigurationpropertynegate) | `boolean` | *No description.* |
+
+---
+
+##### `keywords`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KeywordMatchConfiguration.property.keywords" id="cdkamazonchimeresourceskeywordmatchconfigurationpropertykeywords"></a>
+
+```typescript
+public readonly keywords: string[];
+```
+
+- *Type:* `string`[]
+
+---
+
+##### `ruleName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KeywordMatchConfiguration.property.ruleName" id="cdkamazonchimeresourceskeywordmatchconfigurationpropertyrulename"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `negate`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.KeywordMatchConfiguration.property.negate" id="cdkamazonchimeresourceskeywordmatchconfigurationpropertynegate"></a>
+
+```typescript
+public readonly negate: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+### KinesisDataStreamSinkConfiguration <a name="cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration" id="cdkamazonchimeresourceskinesisdatastreamsinkconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { KinesisDataStreamSinkConfiguration } from 'cdk-amazon-chime-resources'
+
+const kinesisDataStreamSinkConfiguration: KinesisDataStreamSinkConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`insightsTarget`](#cdkamazonchimeresourceskinesisdatastreamsinkconfigurationpropertyinsightstarget)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `insightsTarget`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisDataStreamSinkConfiguration.property.insightsTarget" id="cdkamazonchimeresourceskinesisdatastreamsinkconfigurationpropertyinsightstarget"></a>
+
+```typescript
+public readonly insightsTarget: string;
 ```
 
 - *Type:* `string`
@@ -1328,6 +1938,195 @@ public readonly resourceArn: string;
 - *Default:* None
 
 The ARN of the Lambda message processing function.
+
+---
+
+### LambdaFunctionSinkConfiguration <a name="cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration" id="cdkamazonchimeresourceslambdafunctionsinkconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { LambdaFunctionSinkConfiguration } from 'cdk-amazon-chime-resources'
+
+const lambdaFunctionSinkConfiguration: LambdaFunctionSinkConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`insightsTarget`](#cdkamazonchimeresourceslambdafunctionsinkconfigurationpropertyinsightstarget)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `insightsTarget`<sup>Required</sup> <a name="cdk-amazon-chime-resources.LambdaFunctionSinkConfiguration.property.insightsTarget" id="cdkamazonchimeresourceslambdafunctionsinkconfigurationpropertyinsightstarget"></a>
+
+```typescript
+public readonly insightsTarget: string;
+```
+
+- *Type:* `string`
+
+---
+
+### MediaInsightsConfiguration <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration" id="cdkamazonchimeresourcesmediainsightsconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { MediaInsightsConfiguration } from 'cdk-amazon-chime-resources'
+
+const mediaInsightsConfiguration: MediaInsightsConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`configurationArn`](#cdkamazonchimeresourcesmediainsightsconfigurationpropertyconfigurationarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`disabled`](#cdkamazonchimeresourcesmediainsightsconfigurationpropertydisabled)<span title="Required">*</span> | `boolean` | *No description.* |
+
+---
+
+##### `configurationArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration.property.configurationArn" id="cdkamazonchimeresourcesmediainsightsconfigurationpropertyconfigurationarn"></a>
+
+```typescript
+public readonly configurationArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `disabled`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsConfiguration.property.disabled" id="cdkamazonchimeresourcesmediainsightsconfigurationpropertydisabled"></a>
+
+```typescript
+public readonly disabled: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+### MediaInsightsPipelineProps <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps" id="cdkamazonchimeresourcesmediainsightspipelineprops"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { MediaInsightsPipelineProps } from 'cdk-amazon-chime-resources'
+
+const mediaInsightsPipelineProps: MediaInsightsPipelineProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`elements`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyelements)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Elements`](#cdk-amazon-chime-resources.Elements)[] | *No description.* |
+| [`resourceAccessRoleArn`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyresourceaccessrolearn)<span title="Required">*</span> | `string` | *No description.* |
+| [`clientRequestToken`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyclientrequesttoken) | `string` | *No description.* |
+| [`mediaInsightsPipelineConfigurationName`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertymediainsightspipelineconfigurationname) | `string` | *No description.* |
+| [`realTimeAlertConfiguration`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertyrealtimealertconfiguration) | [`cdk-amazon-chime-resources.RealTimeAlertConfiguration`](#cdk-amazon-chime-resources.RealTimeAlertConfiguration) | *No description.* |
+| [`tags`](#cdkamazonchimeresourcesmediainsightspipelinepropspropertytags) | [`cdk-amazon-chime-resources.MediaPipelineInsightsTag`](#cdk-amazon-chime-resources.MediaPipelineInsightsTag)[] | *No description.* |
+
+---
+
+##### `elements`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.elements" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertyelements"></a>
+
+```typescript
+public readonly elements: Elements[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.Elements`](#cdk-amazon-chime-resources.Elements)[]
+
+---
+
+##### `resourceAccessRoleArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.resourceAccessRoleArn" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertyresourceaccessrolearn"></a>
+
+```typescript
+public readonly resourceAccessRoleArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `clientRequestToken`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.clientRequestToken" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertyclientrequesttoken"></a>
+
+```typescript
+public readonly clientRequestToken: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `mediaInsightsPipelineConfigurationName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.mediaInsightsPipelineConfigurationName" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertymediainsightspipelineconfigurationname"></a>
+
+```typescript
+public readonly mediaInsightsPipelineConfigurationName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `realTimeAlertConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.realTimeAlertConfiguration" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertyrealtimealertconfiguration"></a>
+
+```typescript
+public readonly realTimeAlertConfiguration: RealTimeAlertConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.RealTimeAlertConfiguration`](#cdk-amazon-chime-resources.RealTimeAlertConfiguration)
+
+---
+
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.MediaInsightsPipelineProps.property.tags" id="cdkamazonchimeresourcesmediainsightspipelinepropspropertytags"></a>
+
+```typescript
+public readonly tags: MediaPipelineInsightsTag[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.MediaPipelineInsightsTag`](#cdk-amazon-chime-resources.MediaPipelineInsightsTag)[]
+
+---
+
+### MediaPipelineInsightsTag <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag" id="cdkamazonchimeresourcesmediapipelineinsightstag"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { MediaPipelineInsightsTag } from 'cdk-amazon-chime-resources'
+
+const mediaPipelineInsightsTag: MediaPipelineInsightsTag = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesmediapipelineinsightstagpropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesmediapipelineinsightstagpropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag.property.key" id="cdkamazonchimeresourcesmediapipelineinsightstagpropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MediaPipelineInsightsTag.property.value" id="cdkamazonchimeresourcesmediapipelineinsightstagpropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 
@@ -1657,6 +2456,67 @@ State for phone number request (optional) - Usable only with US Country.
 
 ---
 
+### PostCallAnalyticsSettings <a name="cdk-amazon-chime-resources.PostCallAnalyticsSettings" id="cdkamazonchimeresourcespostcallanalyticssettings"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { PostCallAnalyticsSettings } from 'cdk-amazon-chime-resources'
+
+const postCallAnalyticsSettings: PostCallAnalyticsSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`dataAccessRoleArn`](#cdkamazonchimeresourcespostcallanalyticssettingspropertydataaccessrolearn)<span title="Required">*</span> | `string` | *No description.* |
+| [`outputLocation`](#cdkamazonchimeresourcespostcallanalyticssettingspropertyoutputlocation)<span title="Required">*</span> | `string` | *No description.* |
+| [`contentRedactionOutput`](#cdkamazonchimeresourcespostcallanalyticssettingspropertycontentredactionoutput) | [`cdk-amazon-chime-resources.ContentRedactionOutput`](#cdk-amazon-chime-resources.ContentRedactionOutput) | *No description.* |
+| [`outputEncryptionKMSKeyId`](#cdkamazonchimeresourcespostcallanalyticssettingspropertyoutputencryptionkmskeyid) | `string` | *No description.* |
+
+---
+
+##### `dataAccessRoleArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.PostCallAnalyticsSettings.property.dataAccessRoleArn" id="cdkamazonchimeresourcespostcallanalyticssettingspropertydataaccessrolearn"></a>
+
+```typescript
+public readonly dataAccessRoleArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `outputLocation`<sup>Required</sup> <a name="cdk-amazon-chime-resources.PostCallAnalyticsSettings.property.outputLocation" id="cdkamazonchimeresourcespostcallanalyticssettingspropertyoutputlocation"></a>
+
+```typescript
+public readonly outputLocation: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `contentRedactionOutput`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.PostCallAnalyticsSettings.property.contentRedactionOutput" id="cdkamazonchimeresourcespostcallanalyticssettingspropertycontentredactionoutput"></a>
+
+```typescript
+public readonly contentRedactionOutput: ContentRedactionOutput;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ContentRedactionOutput`](#cdk-amazon-chime-resources.ContentRedactionOutput)
+
+---
+
+##### `outputEncryptionKMSKeyId`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.PostCallAnalyticsSettings.property.outputEncryptionKMSKeyId" id="cdkamazonchimeresourcespostcallanalyticssettingspropertyoutputencryptionkmskeyid"></a>
+
+```typescript
+public readonly outputEncryptionKMSKeyId: string;
+```
+
+- *Type:* `string`
+
+---
+
 ### Processors <a name="cdk-amazon-chime-resources.Processors" id="cdkamazonchimeresourcesprocessors"></a>
 
 Props for `Processors`.
@@ -1848,6 +2708,45 @@ public readonly uid: string;
 
 ---
 
+### RealTimeAlertConfiguration <a name="cdk-amazon-chime-resources.RealTimeAlertConfiguration" id="cdkamazonchimeresourcesrealtimealertconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { RealTimeAlertConfiguration } from 'cdk-amazon-chime-resources'
+
+const realTimeAlertConfiguration: RealTimeAlertConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`disabled`](#cdkamazonchimeresourcesrealtimealertconfigurationpropertydisabled)<span title="Required">*</span> | `boolean` | *No description.* |
+| [`rules`](#cdkamazonchimeresourcesrealtimealertconfigurationpropertyrules)<span title="Required">*</span> | [`cdk-amazon-chime-resources.Rules`](#cdk-amazon-chime-resources.Rules)[] | *No description.* |
+
+---
+
+##### `disabled`<sup>Required</sup> <a name="cdk-amazon-chime-resources.RealTimeAlertConfiguration.property.disabled" id="cdkamazonchimeresourcesrealtimealertconfigurationpropertydisabled"></a>
+
+```typescript
+public readonly disabled: boolean;
+```
+
+- *Type:* `boolean`
+
+---
+
+##### `rules`<sup>Required</sup> <a name="cdk-amazon-chime-resources.RealTimeAlertConfiguration.property.rules" id="cdkamazonchimeresourcesrealtimealertconfigurationpropertyrules"></a>
+
+```typescript
+public readonly rules: Rules[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.Rules`](#cdk-amazon-chime-resources.Rules)[]
+
+---
+
 ### Routes <a name="cdk-amazon-chime-resources.Routes" id="cdkamazonchimeresourcesroutes"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -1914,6 +2813,145 @@ public readonly protocol: Protocol;
 
 ```typescript
 public readonly weight: number;
+```
+
+- *Type:* `number`
+
+---
+
+### Rules <a name="cdk-amazon-chime-resources.Rules" id="cdkamazonchimeresourcesrules"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { Rules } from 'cdk-amazon-chime-resources'
+
+const rules: Rules = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`type`](#cdkamazonchimeresourcesrulespropertytype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.RulesType`](#cdk-amazon-chime-resources.RulesType) | *No description.* |
+| [`issueDetectionConfiguration`](#cdkamazonchimeresourcesrulespropertyissuedetectionconfiguration) | [`cdk-amazon-chime-resources.IssueDetectionConfiguration`](#cdk-amazon-chime-resources.IssueDetectionConfiguration) | *No description.* |
+| [`keywordMatchConfiguration`](#cdkamazonchimeresourcesrulespropertykeywordmatchconfiguration) | [`cdk-amazon-chime-resources.KeywordMatchConfiguration`](#cdk-amazon-chime-resources.KeywordMatchConfiguration) | *No description.* |
+| [`sentimentConfiguration`](#cdkamazonchimeresourcesrulespropertysentimentconfiguration) | [`cdk-amazon-chime-resources.SentimentConfiguration`](#cdk-amazon-chime-resources.SentimentConfiguration) | *No description.* |
+
+---
+
+##### `type`<sup>Required</sup> <a name="cdk-amazon-chime-resources.Rules.property.type" id="cdkamazonchimeresourcesrulespropertytype"></a>
+
+```typescript
+public readonly type: RulesType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.RulesType`](#cdk-amazon-chime-resources.RulesType)
+
+---
+
+##### `issueDetectionConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Rules.property.issueDetectionConfiguration" id="cdkamazonchimeresourcesrulespropertyissuedetectionconfiguration"></a>
+
+```typescript
+public readonly issueDetectionConfiguration: IssueDetectionConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.IssueDetectionConfiguration`](#cdk-amazon-chime-resources.IssueDetectionConfiguration)
+
+---
+
+##### `keywordMatchConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Rules.property.keywordMatchConfiguration" id="cdkamazonchimeresourcesrulespropertykeywordmatchconfiguration"></a>
+
+```typescript
+public readonly keywordMatchConfiguration: KeywordMatchConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.KeywordMatchConfiguration`](#cdk-amazon-chime-resources.KeywordMatchConfiguration)
+
+---
+
+##### `sentimentConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Rules.property.sentimentConfiguration" id="cdkamazonchimeresourcesrulespropertysentimentconfiguration"></a>
+
+```typescript
+public readonly sentimentConfiguration: SentimentConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.SentimentConfiguration`](#cdk-amazon-chime-resources.SentimentConfiguration)
+
+---
+
+### S3RecordingSinkConfiguration <a name="cdk-amazon-chime-resources.S3RecordingSinkConfiguration" id="cdkamazonchimeresourcess3recordingsinkconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { S3RecordingSinkConfiguration } from 'cdk-amazon-chime-resources'
+
+const s3RecordingSinkConfiguration: S3RecordingSinkConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`destination`](#cdkamazonchimeresourcess3recordingsinkconfigurationpropertydestination)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `destination`<sup>Required</sup> <a name="cdk-amazon-chime-resources.S3RecordingSinkConfiguration.property.destination" id="cdkamazonchimeresourcess3recordingsinkconfigurationpropertydestination"></a>
+
+```typescript
+public readonly destination: string;
+```
+
+- *Type:* `string`
+
+---
+
+### SentimentConfiguration <a name="cdk-amazon-chime-resources.SentimentConfiguration" id="cdkamazonchimeresourcessentimentconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SentimentConfiguration } from 'cdk-amazon-chime-resources'
+
+const sentimentConfiguration: SentimentConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`ruleName`](#cdkamazonchimeresourcessentimentconfigurationpropertyrulename)<span title="Required">*</span> | `string` | *No description.* |
+| [`sentimentType`](#cdkamazonchimeresourcessentimentconfigurationpropertysentimenttype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.SentimentType`](#cdk-amazon-chime-resources.SentimentType) | *No description.* |
+| [`timePeriod`](#cdkamazonchimeresourcessentimentconfigurationpropertytimeperiod)<span title="Required">*</span> | `number` | *No description.* |
+
+---
+
+##### `ruleName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SentimentConfiguration.property.ruleName" id="cdkamazonchimeresourcessentimentconfigurationpropertyrulename"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `sentimentType`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SentimentConfiguration.property.sentimentType" id="cdkamazonchimeresourcessentimentconfigurationpropertysentimenttype"></a>
+
+```typescript
+public readonly sentimentType: SentimentType;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.SentimentType`](#cdk-amazon-chime-resources.SentimentType)
+
+---
+
+##### `timePeriod`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SentimentConfiguration.property.timePeriod" id="cdkamazonchimeresourcessentimentconfigurationpropertytimeperiod"></a>
+
+```typescript
+public readonly timePeriod: number;
 ```
 
 - *Type:* `number`
@@ -2185,6 +3223,62 @@ Region for SipRule (optional).
 
 ---
 
+### SnsTopicSinkConfiguration <a name="cdk-amazon-chime-resources.SnsTopicSinkConfiguration" id="cdkamazonchimeresourcessnstopicsinkconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SnsTopicSinkConfiguration } from 'cdk-amazon-chime-resources'
+
+const snsTopicSinkConfiguration: SnsTopicSinkConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`insightsTarget`](#cdkamazonchimeresourcessnstopicsinkconfigurationpropertyinsightstarget)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `insightsTarget`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SnsTopicSinkConfiguration.property.insightsTarget" id="cdkamazonchimeresourcessnstopicsinkconfigurationpropertyinsightstarget"></a>
+
+```typescript
+public readonly insightsTarget: string;
+```
+
+- *Type:* `string`
+
+---
+
+### SqsQueueSinkConfiguration <a name="cdk-amazon-chime-resources.SqsQueueSinkConfiguration" id="cdkamazonchimeresourcessqsqueuesinkconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { SqsQueueSinkConfiguration } from 'cdk-amazon-chime-resources'
+
+const sqsQueueSinkConfiguration: SqsQueueSinkConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`insightsTarget`](#cdkamazonchimeresourcessqsqueuesinkconfigurationpropertyinsightstarget)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `insightsTarget`<sup>Required</sup> <a name="cdk-amazon-chime-resources.SqsQueueSinkConfiguration.property.insightsTarget" id="cdkamazonchimeresourcessqsqueuesinkconfigurationpropertyinsightstarget"></a>
+
+```typescript
+public readonly insightsTarget: string;
+```
+
+- *Type:* `string`
+
+---
+
 ### Streaming <a name="cdk-amazon-chime-resources.Streaming" id="cdkamazonchimeresourcesstreaming"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -2202,6 +3296,7 @@ const streaming: Streaming = { ... }
 | [`dataRetention`](#cdkamazonchimeresourcesstreamingpropertydataretention)<span title="Required">*</span> | `number` | Streaming data retention for VoiceConnector. |
 | [`enabled`](#cdkamazonchimeresourcesstreamingpropertyenabled)<span title="Required">*</span> | `boolean` | *No description.* |
 | [`notificationTargets`](#cdkamazonchimeresourcesstreamingpropertynotificationtargets)<span title="Required">*</span> | [`cdk-amazon-chime-resources.NotificationTargetType`](#cdk-amazon-chime-resources.NotificationTargetType)[] | Streaming data retention for VoiceConnector. |
+| [`mediaInsightsConfiguration`](#cdkamazonchimeresourcesstreamingpropertymediainsightsconfiguration) | [`cdk-amazon-chime-resources.MediaInsightsConfiguration`](#cdk-amazon-chime-resources.MediaInsightsConfiguration) | *No description.* |
 
 ---
 
@@ -2238,6 +3333,16 @@ public readonly notificationTargets: NotificationTargetType[];
 - *Default:* 0
 
 Streaming data retention for VoiceConnector.
+
+---
+
+##### `mediaInsightsConfiguration`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.Streaming.property.mediaInsightsConfiguration" id="cdkamazonchimeresourcesstreamingpropertymediainsightsconfiguration"></a>
+
+```typescript
+public readonly mediaInsightsConfiguration: MediaInsightsConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.MediaInsightsConfiguration`](#cdk-amazon-chime-resources.MediaInsightsConfiguration)
 
 ---
 
@@ -2393,6 +3498,45 @@ public readonly cps: number;
 - *Default:* 1
 
 CPS Limit.
+
+---
+
+### VoiceAnalyticsProcessorConfiguration <a name="cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration" id="cdkamazonchimeresourcesvoiceanalyticsprocessorconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { VoiceAnalyticsProcessorConfiguration } from 'cdk-amazon-chime-resources'
+
+const voiceAnalyticsProcessorConfiguration: VoiceAnalyticsProcessorConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`speakerSearchStatus`](#cdkamazonchimeresourcesvoiceanalyticsprocessorconfigurationpropertyspeakersearchstatus)<span title="Required">*</span> | [`cdk-amazon-chime-resources.SpeakerSearchStatus`](#cdk-amazon-chime-resources.SpeakerSearchStatus) | *No description.* |
+| [`voiceToneAnalysisStatus`](#cdkamazonchimeresourcesvoiceanalyticsprocessorconfigurationpropertyvoicetoneanalysisstatus)<span title="Required">*</span> | [`cdk-amazon-chime-resources.VoiceToneAnalysisStatus`](#cdk-amazon-chime-resources.VoiceToneAnalysisStatus) | *No description.* |
+
+---
+
+##### `speakerSearchStatus`<sup>Required</sup> <a name="cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration.property.speakerSearchStatus" id="cdkamazonchimeresourcesvoiceanalyticsprocessorconfigurationpropertyspeakersearchstatus"></a>
+
+```typescript
+public readonly speakerSearchStatus: SpeakerSearchStatus;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.SpeakerSearchStatus`](#cdk-amazon-chime-resources.SpeakerSearchStatus)
+
+---
+
+##### `voiceToneAnalysisStatus`<sup>Required</sup> <a name="cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration.property.voiceToneAnalysisStatus" id="cdkamazonchimeresourcesvoiceanalyticsprocessorconfigurationpropertyvoicetoneanalysisstatus"></a>
+
+```typescript
+public readonly voiceToneAnalysisStatus: VoiceToneAnalysisStatus;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VoiceToneAnalysisStatus`](#cdk-amazon-chime-resources.VoiceToneAnalysisStatus)
 
 ---
 
@@ -2582,6 +3726,106 @@ public readonly termination: Termination;
 ---
 
 
+### ContentIdentificationType <a name="ContentIdentificationType" id="contentidentificationtype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`PII`](#cdkamazonchimeresourcescontentidentificationtypepii) | *No description.* |
+
+---
+
+#### `PII` <a name="cdk-amazon-chime-resources.ContentIdentificationType.PII" id="cdkamazonchimeresourcescontentidentificationtypepii"></a>
+
+---
+
+
+### ContentRedactionOutput <a name="ContentRedactionOutput" id="contentredactionoutput"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`REDACTED`](#cdkamazonchimeresourcescontentredactionoutputredacted) | *No description.* |
+| [`REDACTED_AND_UNREDACTED`](#cdkamazonchimeresourcescontentredactionoutputredactedandunredacted) | *No description.* |
+
+---
+
+#### `REDACTED` <a name="cdk-amazon-chime-resources.ContentRedactionOutput.REDACTED" id="cdkamazonchimeresourcescontentredactionoutputredacted"></a>
+
+---
+
+
+#### `REDACTED_AND_UNREDACTED` <a name="cdk-amazon-chime-resources.ContentRedactionOutput.REDACTED_AND_UNREDACTED" id="cdkamazonchimeresourcescontentredactionoutputredactedandunredacted"></a>
+
+---
+
+
+### ContentRedactionType <a name="ContentRedactionType" id="contentredactiontype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`PII`](#cdkamazonchimeresourcescontentredactiontypepii) | *No description.* |
+
+---
+
+#### `PII` <a name="cdk-amazon-chime-resources.ContentRedactionType.PII" id="cdkamazonchimeresourcescontentredactiontypepii"></a>
+
+---
+
+
+### ElementsType <a name="ElementsType" id="elementstype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`AMAZON_TRANSCRIPT_CALL_ANALYTICS_PROCESS`](#cdkamazonchimeresourceselementstypeamazontranscriptcallanalyticsprocess) | *No description.* |
+| [`VOICE_ANALYTICS_PROCESSOR`](#cdkamazonchimeresourceselementstypevoiceanalyticsprocessor) | *No description.* |
+| [`AMAZON_TRANSCRIBE_PROCESSOR`](#cdkamazonchimeresourceselementstypeamazontranscribeprocessor) | *No description.* |
+| [`KINESIS_DATA_STREAM_SINK`](#cdkamazonchimeresourceselementstypekinesisdatastreamsink) | *No description.* |
+| [`LAMBDA_FUNCTION_SINK`](#cdkamazonchimeresourceselementstypelambdafunctionsink) | *No description.* |
+| [`SQS_QUEUE_SINK`](#cdkamazonchimeresourceselementstypesqsqueuesink) | *No description.* |
+| [`SNS_TOPICS_SINK`](#cdkamazonchimeresourceselementstypesnstopicssink) | *No description.* |
+| [`S3_RECORDING_SINK`](#cdkamazonchimeresourceselementstypes3recordingsink) | *No description.* |
+
+---
+
+#### `AMAZON_TRANSCRIPT_CALL_ANALYTICS_PROCESS` <a name="cdk-amazon-chime-resources.ElementsType.AMAZON_TRANSCRIPT_CALL_ANALYTICS_PROCESS" id="cdkamazonchimeresourceselementstypeamazontranscriptcallanalyticsprocess"></a>
+
+---
+
+
+#### `VOICE_ANALYTICS_PROCESSOR` <a name="cdk-amazon-chime-resources.ElementsType.VOICE_ANALYTICS_PROCESSOR" id="cdkamazonchimeresourceselementstypevoiceanalyticsprocessor"></a>
+
+---
+
+
+#### `AMAZON_TRANSCRIBE_PROCESSOR` <a name="cdk-amazon-chime-resources.ElementsType.AMAZON_TRANSCRIBE_PROCESSOR" id="cdkamazonchimeresourceselementstypeamazontranscribeprocessor"></a>
+
+---
+
+
+#### `KINESIS_DATA_STREAM_SINK` <a name="cdk-amazon-chime-resources.ElementsType.KINESIS_DATA_STREAM_SINK" id="cdkamazonchimeresourceselementstypekinesisdatastreamsink"></a>
+
+---
+
+
+#### `LAMBDA_FUNCTION_SINK` <a name="cdk-amazon-chime-resources.ElementsType.LAMBDA_FUNCTION_SINK" id="cdkamazonchimeresourceselementstypelambdafunctionsink"></a>
+
+---
+
+
+#### `SQS_QUEUE_SINK` <a name="cdk-amazon-chime-resources.ElementsType.SQS_QUEUE_SINK" id="cdkamazonchimeresourceselementstypesqsqueuesink"></a>
+
+---
+
+
+#### `SNS_TOPICS_SINK` <a name="cdk-amazon-chime-resources.ElementsType.SNS_TOPICS_SINK" id="cdkamazonchimeresourceselementstypesnstopicssink"></a>
+
+---
+
+
+#### `S3_RECORDING_SINK` <a name="cdk-amazon-chime-resources.ElementsType.S3_RECORDING_SINK" id="cdkamazonchimeresourceselementstypes3recordingsink"></a>
+
+---
+
+
 ### FallbackAction <a name="FallbackAction" id="fallbackaction"></a>
 
 | **Name** | **Description** |
@@ -2614,6 +3858,67 @@ public readonly termination: Termination;
 ---
 
 
+### LanguageCode <a name="LanguageCode" id="languagecode"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`EN_US`](#cdkamazonchimeresourceslanguagecodeenus) | *No description.* |
+| [`EN_GB`](#cdkamazonchimeresourceslanguagecodeengb) | *No description.* |
+| [`ES_US`](#cdkamazonchimeresourceslanguagecodeesus) | *No description.* |
+| [`FR_CA`](#cdkamazonchimeresourceslanguagecodefrca) | *No description.* |
+| [`FR_FR`](#cdkamazonchimeresourceslanguagecodefrfr) | *No description.* |
+| [`EN_AU`](#cdkamazonchimeresourceslanguagecodeenau) | *No description.* |
+| [`IT_IT`](#cdkamazonchimeresourceslanguagecodeitit) | *No description.* |
+| [`DE_DE`](#cdkamazonchimeresourceslanguagecodedede) | *No description.* |
+| [`PT_BR`](#cdkamazonchimeresourceslanguagecodeptbr) | *No description.* |
+
+---
+
+#### `EN_US` <a name="cdk-amazon-chime-resources.LanguageCode.EN_US" id="cdkamazonchimeresourceslanguagecodeenus"></a>
+
+---
+
+
+#### `EN_GB` <a name="cdk-amazon-chime-resources.LanguageCode.EN_GB" id="cdkamazonchimeresourceslanguagecodeengb"></a>
+
+---
+
+
+#### `ES_US` <a name="cdk-amazon-chime-resources.LanguageCode.ES_US" id="cdkamazonchimeresourceslanguagecodeesus"></a>
+
+---
+
+
+#### `FR_CA` <a name="cdk-amazon-chime-resources.LanguageCode.FR_CA" id="cdkamazonchimeresourceslanguagecodefrca"></a>
+
+---
+
+
+#### `FR_FR` <a name="cdk-amazon-chime-resources.LanguageCode.FR_FR" id="cdkamazonchimeresourceslanguagecodefrfr"></a>
+
+---
+
+
+#### `EN_AU` <a name="cdk-amazon-chime-resources.LanguageCode.EN_AU" id="cdkamazonchimeresourceslanguagecodeenau"></a>
+
+---
+
+
+#### `IT_IT` <a name="cdk-amazon-chime-resources.LanguageCode.IT_IT" id="cdkamazonchimeresourceslanguagecodeitit"></a>
+
+---
+
+
+#### `DE_DE` <a name="cdk-amazon-chime-resources.LanguageCode.DE_DE" id="cdkamazonchimeresourceslanguagecodedede"></a>
+
+---
+
+
+#### `PT_BR` <a name="cdk-amazon-chime-resources.LanguageCode.PT_BR" id="cdkamazonchimeresourceslanguagecodeptbr"></a>
+
+---
+
+
 ### NotificationTargetType <a name="NotificationTargetType" id="notificationtargettype"></a>
 
 | **Name** | **Description** |
@@ -2635,6 +3940,31 @@ public readonly termination: Termination;
 
 
 #### `SQS` <a name="cdk-amazon-chime-resources.NotificationTargetType.SQS" id="cdkamazonchimeresourcesnotificationtargettypesqs"></a>
+
+---
+
+
+### PartialResultsStability <a name="PartialResultsStability" id="partialresultsstability"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`HIGH`](#cdkamazonchimeresourcespartialresultsstabilityhigh) | *No description.* |
+| [`MEDIUM`](#cdkamazonchimeresourcespartialresultsstabilitymedium) | *No description.* |
+| [`LOW`](#cdkamazonchimeresourcespartialresultsstabilitylow) | *No description.* |
+
+---
+
+#### `HIGH` <a name="cdk-amazon-chime-resources.PartialResultsStability.HIGH" id="cdkamazonchimeresourcespartialresultsstabilityhigh"></a>
+
+---
+
+
+#### `MEDIUM` <a name="cdk-amazon-chime-resources.PartialResultsStability.MEDIUM" id="cdkamazonchimeresourcespartialresultsstabilitymedium"></a>
+
+---
+
+
+#### `LOW` <a name="cdk-amazon-chime-resources.PartialResultsStability.LOW" id="cdkamazonchimeresourcespartialresultsstabilitylow"></a>
 
 ---
 
@@ -2793,6 +4123,63 @@ public readonly termination: Termination;
 ---
 
 
+### RulesType <a name="RulesType" id="rulestype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`KEYWORD_MATCH`](#cdkamazonchimeresourcesrulestypekeywordmatch) | *No description.* |
+| [`SENTIMENT`](#cdkamazonchimeresourcesrulestypesentiment) | *No description.* |
+| [`ISSUE_DETECTION`](#cdkamazonchimeresourcesrulestypeissuedetection) | *No description.* |
+
+---
+
+#### `KEYWORD_MATCH` <a name="cdk-amazon-chime-resources.RulesType.KEYWORD_MATCH" id="cdkamazonchimeresourcesrulestypekeywordmatch"></a>
+
+---
+
+
+#### `SENTIMENT` <a name="cdk-amazon-chime-resources.RulesType.SENTIMENT" id="cdkamazonchimeresourcesrulestypesentiment"></a>
+
+---
+
+
+#### `ISSUE_DETECTION` <a name="cdk-amazon-chime-resources.RulesType.ISSUE_DETECTION" id="cdkamazonchimeresourcesrulestypeissuedetection"></a>
+
+---
+
+
+### SentimentType <a name="SentimentType" id="sentimenttype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`NEGATIVE`](#cdkamazonchimeresourcessentimenttypenegative) | *No description.* |
+
+---
+
+#### `NEGATIVE` <a name="cdk-amazon-chime-resources.SentimentType.NEGATIVE" id="cdkamazonchimeresourcessentimenttypenegative"></a>
+
+---
+
+
+### SpeakerSearchStatus <a name="SpeakerSearchStatus" id="speakersearchstatus"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`ENABLED`](#cdkamazonchimeresourcesspeakersearchstatusenabled) | *No description.* |
+| [`DISABLED`](#cdkamazonchimeresourcesspeakersearchstatusdisabled) | *No description.* |
+
+---
+
+#### `ENABLED` <a name="cdk-amazon-chime-resources.SpeakerSearchStatus.ENABLED" id="cdkamazonchimeresourcesspeakersearchstatusenabled"></a>
+
+---
+
+
+#### `DISABLED` <a name="cdk-amazon-chime-resources.SpeakerSearchStatus.DISABLED" id="cdkamazonchimeresourcesspeakersearchstatusdisabled"></a>
+
+---
+
+
 ### TriggerType <a name="TriggerType" id="triggertype"></a>
 
 | **Name** | **Description** |
@@ -2808,6 +4195,50 @@ public readonly termination: Termination;
 
 
 #### `REQUEST_URI_HOSTNAME` <a name="cdk-amazon-chime-resources.TriggerType.REQUEST_URI_HOSTNAME" id="cdkamazonchimeresourcestriggertyperequesturihostname"></a>
+
+---
+
+
+### VocabularyFilterMethod <a name="VocabularyFilterMethod" id="vocabularyfiltermethod"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`REMOVE`](#cdkamazonchimeresourcesvocabularyfiltermethodremove) | *No description.* |
+| [`MASK`](#cdkamazonchimeresourcesvocabularyfiltermethodmask) | *No description.* |
+| [`TAG`](#cdkamazonchimeresourcesvocabularyfiltermethodtag) | *No description.* |
+
+---
+
+#### `REMOVE` <a name="cdk-amazon-chime-resources.VocabularyFilterMethod.REMOVE" id="cdkamazonchimeresourcesvocabularyfiltermethodremove"></a>
+
+---
+
+
+#### `MASK` <a name="cdk-amazon-chime-resources.VocabularyFilterMethod.MASK" id="cdkamazonchimeresourcesvocabularyfiltermethodmask"></a>
+
+---
+
+
+#### `TAG` <a name="cdk-amazon-chime-resources.VocabularyFilterMethod.TAG" id="cdkamazonchimeresourcesvocabularyfiltermethodtag"></a>
+
+---
+
+
+### VoiceToneAnalysisStatus <a name="VoiceToneAnalysisStatus" id="voicetoneanalysisstatus"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`ENABLED`](#cdkamazonchimeresourcesvoicetoneanalysisstatusenabled) | *No description.* |
+| [`DISABLED`](#cdkamazonchimeresourcesvoicetoneanalysisstatusdisabled) | *No description.* |
+
+---
+
+#### `ENABLED` <a name="cdk-amazon-chime-resources.VoiceToneAnalysisStatus.ENABLED" id="cdkamazonchimeresourcesvoicetoneanalysisstatusenabled"></a>
+
+---
+
+
+#### `DISABLED` <a name="cdk-amazon-chime-resources.VoiceToneAnalysisStatus.DISABLED" id="cdkamazonchimeresourcesvoicetoneanalysisstatusdisabled"></a>
 
 ---
 

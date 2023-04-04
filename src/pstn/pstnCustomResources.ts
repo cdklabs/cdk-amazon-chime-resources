@@ -38,7 +38,8 @@ export interface PSTNResourceProps extends ResourceProps {
     | 'SMALogging'
     | 'SMAAlexaSkill'
     | 'SMARule'
-    | 'PhoneAssociation';
+    | 'PhoneAssociation'
+    | 'VoiceProfileDomain';
   readonly uid: string;
 }
 
@@ -64,6 +65,7 @@ export class PSTNResources extends Construct {
     const stack = Stack.of(this);
     const constructName = 'PSTNResources';
     const existing = stack.node.tryFindChild(constructName);
+    /* istanbul ignore next */
     if (existing) {
       return existing as Function;
     }
@@ -77,6 +79,8 @@ export class PSTNResources extends Construct {
             new PolicyStatement({
               resources: ['*'],
               actions: [
+                'chime:*VoiceProfileDomain*',
+                'chime:*MediaInsightsPipelineConfiguration*',
                 'chime:CreateSipRule',
                 'chime:DeleteSipRule',
                 'chime:UpdateSipRule',

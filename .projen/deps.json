@@ -22,7 +22,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "2.68.0",
+      "version": "2.70.0",
       "type": "build"
     },
     {
@@ -110,11 +110,18 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-sdk/client-chime-sdk-media-pipelines",
+      "version": "latest",
+      "type": "bundled"
+    },
+    {
       "name": "@aws-sdk/client-chime-sdk-messaging",
+      "version": "latest",
       "type": "bundled"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-voice",
+      "version": "latest",
       "type": "bundled"
     },
     {
@@ -141,7 +148,7 @@
     },
     {
       "name": "aws-cdk-lib",
-      "version": "^2.68.0",
+      "version": "^2.70.0",
       "type": "peer"
     },
     {
@@ -154,11 +161,18 @@
       "type": "runtime"
     },
     {
+      "name": "@aws-sdk/client-chime-sdk-media-pipelines",
+      "version": "latest",
+      "type": "runtime"
+    },
+    {
       "name": "@aws-sdk/client-chime-sdk-messaging",
+      "version": "latest",
       "type": "runtime"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-voice",
+      "version": "latest",
       "type": "runtime"
     },
     {

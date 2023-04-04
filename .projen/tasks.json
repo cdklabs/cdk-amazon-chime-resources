@@ -50,6 +50,27 @@
         },
         {
           "spawn": "bundle:resources/messaging/messaging.lambda"
+        },
+        {
+          "spawn": "bundle:resources/media-pipelines/media-pipelines.lambda"
+        }
+      ]
+    },
+    "bundle:resources/media-pipelines/media-pipelines.lambda": {
+      "name": "bundle:resources/media-pipelines/media-pipelines.lambda",
+      "description": "Create a JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:"
+        }
+      ]
+    },
+    "bundle:resources/media-pipelines/media-pipelines.lambda:watch": {
+      "name": "bundle:resources/media-pipelines/media-pipelines.lambda:watch",
+      "description": "Continuously update the JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
+      "steps": [
+        {
+          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external: --watch"
         }
       ]
     },
@@ -331,19 +352,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
           "exec": "yarn install --check-files"

@@ -60,6 +60,7 @@ export class MessagingResources extends Construct {
     const stack = Stack.of(this);
     const constructName = 'MessagingResources';
     const existing = stack.node.tryFindChild(constructName);
+    /* istanbul ignore next */
     if (existing) {
       return existing as Function;
     }
