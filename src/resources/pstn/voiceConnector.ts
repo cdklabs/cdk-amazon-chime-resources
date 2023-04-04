@@ -37,6 +37,7 @@ const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
 let createVoiceConnectorResponse: CreateVoiceConnectorCommandOutput;
 let createVoiceConnectorParams: CreateVoiceConnectorCommandInput;
+let updateVoiceConnectorParams: CreateVoiceConnectorCommandInput;
 let getParameterCommandOutput: GetParameterCommandOutput;
 let voiceConnectorId: string;
 let phoneNumbersToDisassociate: string[];
@@ -173,17 +174,17 @@ export interface UpdateVoiceConnectorProps {
 
 export const UpdateVoiceConnector = async (
   uid: string,
-  props: CreateVoiceConnectorProps,
+  props: UpdateVoiceConnectorProps,
 ) => {
-  console.log(`Creating Voice Connector: ${uid}`);
-  console.log(`Create Voice Connector Props: ${JSON.stringify(props)}`);
-  createVoiceConnectorParams = {
+  console.log(`Updating Voice Connector: ${uid}`);
+  console.log(`Updating Voice Connector Props: ${JSON.stringify(props)}`);
+  updateVoiceConnectorParams = {
     Name: props.name,
     RequireEncryption: props.encryption,
     AwsRegion: props.region,
   };
   console.log(
-    `updateVoiceConnectorParams: ${JSON.stringify(createVoiceConnectorParams)}`,
+    `updateVoiceConnectorParams: ${JSON.stringify(updateVoiceConnectorParams)}`,
   );
 
   try {
@@ -218,6 +219,9 @@ export const UpdateVoiceConnector = async (
   if (props.logging) {
     await putLogging(voiceConnectorId, props.logging);
   }
+  return {
+    voiceConnectorId: voiceConnectorId,
+  };
 };
 
 export const DeleteVoiceConnector = async (uid: string) => {
@@ -303,7 +307,7 @@ const putOrigination = async (
   }[],
 ) => {
   console.log(`originations:  ${JSON.stringify(originations)}`);
-
+  console.info(`voiceConnectorId: ${originationVoiceConnectorId}`);
   routes = [];
   originations.forEach(async (origination) => {
     routes.push({
@@ -342,6 +346,7 @@ const putTermination = async (
   },
 ) => {
   console.log(`termination:  ${JSON.stringify(termination)}`);
+  console.info(`voiceConnectorId: ${terminationVoiceConnectorId}`);
   terminationConfiguration = {
     CallingRegions: termination.callingRegions,
     CidrAllowedList: termination.terminationCidrs,
@@ -370,6 +375,7 @@ const putStreaming = async (
   streaming: StreamingProps,
 ) => {
   console.log(`streaming:  ${JSON.stringify(streaming)}`);
+  console.info(`voiceConnectorId: ${streamingVoiceConnectorId}`);
 
   streamingConfiguration = {
     StreamingNotificationTargets: streaming.notificationTarget,
@@ -405,6 +411,7 @@ const putLogging = async (
   logging: LoggingProps,
 ) => {
   console.log(`logging:  ${JSON.stringify(logging)}`);
+  console.info(`voiceConnectorId: ${loggingVoiceConnectorId}`);
   loggingConfiguration = {
     ...(logging.enableSIPLogs && { EnableSIPLogs: logging.enableSIPLogs }),
     ...(logging.enableMediaMetricLogs && {
