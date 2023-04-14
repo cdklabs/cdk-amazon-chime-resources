@@ -395,6 +395,85 @@ public readonly voiceConnectorId: string;
 ---
 
 
+### ChimeVoiceProfileDomain <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain" id="cdkamazonchimeresourceschimevoiceprofiledomain"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.Initializer" id="cdkamazonchimeresourceschimevoiceprofiledomaininitializer"></a>
+
+```typescript
+import { ChimeVoiceProfileDomain } from 'cdk-amazon-chime-resources'
+
+new ChimeVoiceProfileDomain(scope: Construct, id: string, props: VoiceProfileDomainProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourceschimevoiceprofiledomainparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourceschimevoiceprofiledomainparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourceschimevoiceprofiledomainparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.VoiceProfileDomainProps`](#cdk-amazon-chime-resources.VoiceProfileDomainProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.parameter.scope" id="cdkamazonchimeresourceschimevoiceprofiledomainparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.parameter.id" id="cdkamazonchimeresourceschimevoiceprofiledomainparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.parameter.props" id="cdkamazonchimeresourceschimevoiceprofiledomainparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.VoiceProfileDomainProps`](#cdk-amazon-chime-resources.VoiceProfileDomainProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`voiceProfileDomainArn`](#cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`voiceProfileDomainId`](#cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainid)<span title="Required">*</span> | `string` | *No description.* |
+| [`voiceProfileDomainName`](#cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainname)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `voiceProfileDomainArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.property.voiceProfileDomainArn" id="cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainarn"></a>
+
+```typescript
+public readonly voiceProfileDomainArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `voiceProfileDomainId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.property.voiceProfileDomainId" id="cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainid"></a>
+
+```typescript
+public readonly voiceProfileDomainId: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `voiceProfileDomainName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.property.voiceProfileDomainName" id="cdkamazonchimeresourceschimevoiceprofiledomainpropertyvoiceprofiledomainname"></a>
+
+```typescript
+public readonly voiceProfileDomainName: string;
+```
+
+- *Type:* `string`
+
+---
+
+
 ### MediaInsightsPipeline <a name="cdk-amazon-chime-resources.MediaInsightsPipeline" id="cdkamazonchimeresourcesmediainsightspipeline"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.Initializer" id="cdkamazonchimeresourcesmediainsightspipelineinitializer"></a>
@@ -2958,6 +3037,34 @@ public readonly timePeriod: number;
 
 ---
 
+### ServerSideEncryptionConfiguration <a name="cdk-amazon-chime-resources.ServerSideEncryptionConfiguration" id="cdkamazonchimeresourcesserversideencryptionconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { ServerSideEncryptionConfiguration } from 'cdk-amazon-chime-resources'
+
+const serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`kmsKeyArn`](#cdkamazonchimeresourcesserversideencryptionconfigurationpropertykmskeyarn)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `kmsKeyArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.ServerSideEncryptionConfiguration.property.kmsKeyArn" id="cdkamazonchimeresourcesserversideencryptionconfigurationpropertykmskeyarn"></a>
+
+```typescript
+public readonly kmsKeyArn: string;
+```
+
+- *Type:* `string`
+
+---
+
 ### SipMediaApplicationAlexaSkillConfiguration <a name="cdk-amazon-chime-resources.SipMediaApplicationAlexaSkillConfiguration" id="cdkamazonchimeresourcessipmediaapplicationalexaskillconfiguration"></a>
 
 #### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
@@ -3681,6 +3788,117 @@ public readonly termination: Termination;
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.Termination`](#cdk-amazon-chime-resources.Termination)
+
+---
+
+### VoiceProfileDomainProps <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps" id="cdkamazonchimeresourcesvoiceprofiledomainprops"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { VoiceProfileDomainProps } from 'cdk-amazon-chime-resources'
+
+const voiceProfileDomainProps: VoiceProfileDomainProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`serverSideEncryptionConfiguration`](#cdkamazonchimeresourcesvoiceprofiledomainpropspropertyserversideencryptionconfiguration)<span title="Required">*</span> | [`cdk-amazon-chime-resources.ServerSideEncryptionConfiguration`](#cdk-amazon-chime-resources.ServerSideEncryptionConfiguration) | *No description.* |
+| [`clientRequestToken`](#cdkamazonchimeresourcesvoiceprofiledomainpropspropertyclientrequesttoken) | `string` | *No description.* |
+| [`description`](#cdkamazonchimeresourcesvoiceprofiledomainpropspropertydescription) | `string` | *No description.* |
+| [`name`](#cdkamazonchimeresourcesvoiceprofiledomainpropspropertyname) | `string` | *No description.* |
+| [`tags`](#cdkamazonchimeresourcesvoiceprofiledomainpropspropertytags) | [`cdk-amazon-chime-resources.VoiceProfileDomainTag`](#cdk-amazon-chime-resources.VoiceProfileDomainTag)[] | *No description.* |
+
+---
+
+##### `serverSideEncryptionConfiguration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps.property.serverSideEncryptionConfiguration" id="cdkamazonchimeresourcesvoiceprofiledomainpropspropertyserversideencryptionconfiguration"></a>
+
+```typescript
+public readonly serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.ServerSideEncryptionConfiguration`](#cdk-amazon-chime-resources.ServerSideEncryptionConfiguration)
+
+---
+
+##### `clientRequestToken`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps.property.clientRequestToken" id="cdkamazonchimeresourcesvoiceprofiledomainpropspropertyclientrequesttoken"></a>
+
+```typescript
+public readonly clientRequestToken: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `description`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps.property.description" id="cdkamazonchimeresourcesvoiceprofiledomainpropspropertydescription"></a>
+
+```typescript
+public readonly description: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `name`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps.property.name" id="cdkamazonchimeresourcesvoiceprofiledomainpropspropertyname"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainProps.property.tags" id="cdkamazonchimeresourcesvoiceprofiledomainpropspropertytags"></a>
+
+```typescript
+public readonly tags: VoiceProfileDomainTag[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.VoiceProfileDomainTag`](#cdk-amazon-chime-resources.VoiceProfileDomainTag)[]
+
+---
+
+### VoiceProfileDomainTag <a name="cdk-amazon-chime-resources.VoiceProfileDomainTag" id="cdkamazonchimeresourcesvoiceprofiledomaintag"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { VoiceProfileDomainTag } from 'cdk-amazon-chime-resources'
+
+const voiceProfileDomainTag: VoiceProfileDomainTag = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesvoiceprofiledomaintagpropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesvoiceprofiledomaintagpropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainTag.property.key" id="cdkamazonchimeresourcesvoiceprofiledomaintagpropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.VoiceProfileDomainTag.property.value" id="cdkamazonchimeresourcesvoiceprofiledomaintagpropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 

@@ -8,9 +8,9 @@ import {
   PhoneNumberType,
   Protocol,
   NotificationTargetType,
-  // ChimeVoiceProfileDomain,
+  ChimeVoiceProfileDomain,
 } from 'cdk-amazon-chime-resources';
-// import { Key, KeySpec } from 'aws-cdk-lib/aws-kms';
+import { Key, KeySpec } from 'aws-cdk-lib/aws-kms';
 
 export class VoiceConnectorExample extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -64,25 +64,25 @@ export class VoiceConnectorExample extends Stack {
 
     voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 
-    // const voiceProfileDomainKey = new Key(this, 'voiceProfileDomainKey', {
-    //   enableKeyRotation: true,
-    //   keySpec: KeySpec.SYMMETRIC_DEFAULT,
-    //   enabled: true,
-    // });
+    const voiceProfileDomainKey = new Key(this, 'voiceProfileDomainKey', {
+      enableKeyRotation: true,
+      keySpec: KeySpec.SYMMETRIC_DEFAULT,
+      enabled: true,
+    });
 
-    // const voiceProfileDomain = new ChimeVoiceProfileDomain(
-    //   this,
-    //   'voiceProfileDomain',
-    //   {
-    //     serverSideEncryptionConfiguration: {
-    //       kmsKeyArn: voiceProfileDomainKey.keyArn,
-    //     },
-    //   },
-    // );
+    const voiceProfileDomain = new ChimeVoiceProfileDomain(
+      this,
+      'voiceProfileDomain',
+      {
+        serverSideEncryptionConfiguration: {
+          kmsKeyArn: voiceProfileDomainKey.keyArn,
+        },
+      },
+    );
 
-    // new CfnOutput(this, 'voiceProfileDomainId', {
-    //   value: voiceProfileDomain.voiceProfileDomainId!,
-    // });
+    new CfnOutput(this, 'voiceProfileDomainId', {
+      value: voiceProfileDomain.voiceProfileDomainId!,
+    });
     new CfnOutput(this, 'phoneNumber', {
       value: voiceConnectorPhone.phoneNumber,
     });

@@ -56,16 +56,14 @@ export class ChimeVoiceProfileDomain extends Construct {
 
     this.voiceProfileDomainId =
       voiceProfileDomainRequest.pstnCustomResource.getAttString(
-        'voiceProfileDomainId',
+        'VoiceProfileDomainId',
       );
     this.voiceProfileDomainArn =
       voiceProfileDomainRequest.pstnCustomResource.getAttString(
-        'voiceProfileDomainArn',
+        'VoiceProfileDomainArn',
       );
 
     this.voiceProfileDomainName =
-      voiceProfileDomainRequest.pstnCustomResource.getAttString(
-        'voiceProfileDomainName',
-      );
+      voiceProfileDomainRequest.pstnCustomResource.getAttString('Name');
   }
 }

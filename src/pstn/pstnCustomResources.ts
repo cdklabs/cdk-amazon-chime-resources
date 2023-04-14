@@ -117,6 +117,8 @@ export class PSTNResources extends Construct {
                 'lambda:AddPermission',
                 'iam:PutRolePolicy',
                 'iam:CreateServiceLinkedRole',
+                'kms:CreateGrant',
+                'kms:DescribeKey',
               ],
             }),
             new PolicyStatement({

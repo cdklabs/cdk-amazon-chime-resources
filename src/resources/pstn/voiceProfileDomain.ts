@@ -142,9 +142,7 @@ export const CreateVoiceProfileDomain = async (
     }
   }
 
-  return {
-    voiceProfileDomain: createVoiceProfileDomainResponse.VoiceProfileDomain,
-  };
+  return createVoiceProfileDomainResponse.VoiceProfileDomain;
 };
 
 export const UpdateVoiceProfileDomain = async (
