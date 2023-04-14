@@ -6731,7 +6731,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.312.0",
+      version: "3.313.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -15805,8 +15805,8 @@ var require_models_04 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateProxySessionResponseFilterSensitiveLog = exports.ProxySessionFilterSensitiveLog = exports.ParticipantFilterSensitiveLog = exports.CreateProxySessionRequestFilterSensitiveLog = exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = exports.PhoneNumberOrderFilterSensitiveLog = exports.OrderedPhoneNumberFilterSensitiveLog = exports.CreatePhoneNumberOrderRequestFilterSensitiveLog = exports.CandidateAddressFilterSensitiveLog = exports.BatchUpdatePhoneNumberResponseFilterSensitiveLog = exports.BatchUpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdatePhoneNumberRequestItemFilterSensitiveLog = exports.BatchDeletePhoneNumberResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorResponseFilterSensitiveLog = exports.PhoneNumberErrorFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorRequestFilterSensitiveLog = exports.AddressFilterSensitiveLog = exports.LanguageCode = exports.UnprocessableEntityException = exports.NotificationTarget = exports.OriginationRouteProtocol = exports.PhoneNumberType = exports.PhoneNumberStatus = exports.PhoneNumberAssociationName = exports.GoneException = exports.VoiceConnectorAwsRegion = exports.SipRuleTriggerType = exports.ConflictException = exports.ProxySessionStatus = exports.NumberSelectionBehavior = exports.GeoMatchLevel = exports.ResourceLimitExceededException = exports.PhoneNumberOrderStatus = exports.PhoneNumberOrderType = exports.OrderedPhoneNumberStatus = exports.Capability = exports.CallingNameStatus = exports.PhoneNumberProductType = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.BadRequestException = exports.AlexaSkillStatus = exports.AccessDeniedException = exports.ErrorCode = void 0;
-    exports.ListVoiceProfilesResponseFilterSensitiveLog = exports.VoiceProfileSummaryFilterSensitiveLog = exports.ListVoiceProfileDomainsResponseFilterSensitiveLog = exports.VoiceProfileDomainSummaryFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.GetVoiceProfileDomainResponseFilterSensitiveLog = exports.GetVoiceProfileResponseFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.StreamingConfigurationFilterSensitiveLog = exports.MediaInsightsConfigurationFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetProxySessionResponseFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.GetPhoneNumberRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.DeletePhoneNumberRequestFilterSensitiveLog = exports.CreateVoiceProfileDomainResponseFilterSensitiveLog = exports.VoiceProfileDomainFilterSensitiveLog = exports.CreateVoiceProfileDomainRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.ServerSideEncryptionConfigurationFilterSensitiveLog = exports.CreateVoiceProfileResponseFilterSensitiveLog = exports.VoiceProfileFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = exports.SipMediaApplicationEndpointFilterSensitiveLog = void 0;
-    exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = exports.UpdateVoiceProfileResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = void 0;
+    exports.VoiceProfileSummaryFilterSensitiveLog = exports.ListVoiceProfileDomainsResponseFilterSensitiveLog = exports.VoiceProfileDomainSummaryFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.GetVoiceProfileDomainResponseFilterSensitiveLog = exports.GetVoiceProfileResponseFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.StreamingConfigurationFilterSensitiveLog = exports.MediaInsightsConfigurationFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetProxySessionResponseFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.GetPhoneNumberRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.DeletePhoneNumberRequestFilterSensitiveLog = exports.CreateVoiceProfileDomainResponseFilterSensitiveLog = exports.VoiceProfileDomainFilterSensitiveLog = exports.CreateVoiceProfileDomainRequestFilterSensitiveLog = exports.ServerSideEncryptionConfigurationFilterSensitiveLog = exports.CreateVoiceProfileResponseFilterSensitiveLog = exports.VoiceProfileFilterSensitiveLog = exports.CreateVoiceConnectorRequestFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.SipMediaApplicationEndpointFilterSensitiveLog = void 0;
+    exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = exports.UpdateVoiceProfileResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = exports.ListVoiceProfilesResponseFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs28();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
     exports.ErrorCode = {
@@ -16240,9 +16240,16 @@ var require_models_04 = __commonJS({
       ...obj.LambdaArn && { LambdaArn: smithy_client_1.SENSITIVE_STRING }
     });
     exports.SipMediaApplicationEndpointFilterSensitiveLog = SipMediaApplicationEndpointFilterSensitiveLog;
+    var TagFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Key && { Key: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
     var CreateSipMediaApplicationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Endpoints && { Endpoints: obj.Endpoints.map((item) => (0, exports.SipMediaApplicationEndpointFilterSensitiveLog)(item)) }
+      ...obj.Endpoints && { Endpoints: obj.Endpoints.map((item) => (0, exports.SipMediaApplicationEndpointFilterSensitiveLog)(item)) },
+      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
     });
     exports.CreateSipMediaApplicationRequestFilterSensitiveLog = CreateSipMediaApplicationRequestFilterSensitiveLog;
     var SipMediaApplicationFilterSensitiveLog = (obj) => ({
@@ -16265,6 +16272,11 @@ var require_models_04 = __commonJS({
       ...obj.ArgumentsMap && { ArgumentsMap: smithy_client_1.SENSITIVE_STRING }
     });
     exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = CreateSipMediaApplicationCallRequestFilterSensitiveLog;
+    var CreateVoiceConnectorRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
+    });
+    exports.CreateVoiceConnectorRequestFilterSensitiveLog = CreateVoiceConnectorRequestFilterSensitiveLog;
     var VoiceProfileFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.VoiceProfileArn && { VoiceProfileArn: smithy_client_1.SENSITIVE_STRING }
@@ -16280,12 +16292,6 @@ var require_models_04 = __commonJS({
       ...obj.KmsKeyArn && { KmsKeyArn: smithy_client_1.SENSITIVE_STRING }
     });
     exports.ServerSideEncryptionConfigurationFilterSensitiveLog = ServerSideEncryptionConfigurationFilterSensitiveLog;
-    var TagFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Key && { Key: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
     var CreateVoiceProfileDomainRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.ServerSideEncryptionConfiguration && {
@@ -16871,7 +16877,8 @@ var require_Aws_restJson13 = __commonJS({
       body = JSON.stringify({
         ...input.AwsRegion != null && { AwsRegion: input.AwsRegion },
         ...input.Endpoints != null && { Endpoints: se_SipMediaApplicationEndpointList(input.Endpoints, context) },
-        ...input.Name != null && { Name: input.Name }
+        ...input.Name != null && { Name: input.Name },
+        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
       });
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -16946,7 +16953,8 @@ var require_Aws_restJson13 = __commonJS({
       body = JSON.stringify({
         ...input.AwsRegion != null && { AwsRegion: input.AwsRegion },
         ...input.Name != null && { Name: input.Name },
-        ...input.RequireEncryption != null && { RequireEncryption: input.RequireEncryption }
+        ...input.RequireEncryption != null && { RequireEncryption: input.RequireEncryption },
+        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
       });
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -24413,6 +24421,7 @@ var require_Aws_restJson13 = __commonJS({
         CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
         Endpoints: output.Endpoints != null ? de_SipMediaApplicationEndpointList(output.Endpoints, context) : void 0,
         Name: (0, smithy_client_1.expectString)(output.Name),
+        SipMediaApplicationArn: (0, smithy_client_1.expectString)(output.SipMediaApplicationArn),
         SipMediaApplicationId: (0, smithy_client_1.expectString)(output.SipMediaApplicationId),
         UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
       };
@@ -25258,6 +25267,7 @@ var require_CreateVoiceConnectorCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var smithy_client_1 = require_dist_cjs28();
+    var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25283,7 +25293,7 @@ var require_CreateVoiceConnectorCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (_) => _,
+          inputFilterSensitiveLog: models_0_1.CreateVoiceConnectorRequestFilterSensitiveLog,
           outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
