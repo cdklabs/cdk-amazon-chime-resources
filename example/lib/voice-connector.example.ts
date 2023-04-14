@@ -86,7 +86,6 @@ export class VoiceConnectorExample extends Stack {
     new CfnOutput(this, 'phoneNumber', {
       value: voiceConnectorPhone.phoneNumber,
     });
-
     new CfnOutput(this, 'voiceConnectorId', {
       value: voiceConnector.voiceConnectorId,
     });

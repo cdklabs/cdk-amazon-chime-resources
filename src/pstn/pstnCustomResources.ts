@@ -80,6 +80,8 @@ export class PSTNResources extends Construct {
               resources: ['*'],
               actions: [
                 'chime:*VoiceProfileDomain*',
+                'kms:CreateGrant',
+                'kms:DescribeKey',
                 'chime:*MediaInsightsPipelineConfiguration*',
                 'chime:CreateSipRule',
                 'chime:DeleteSipRule',

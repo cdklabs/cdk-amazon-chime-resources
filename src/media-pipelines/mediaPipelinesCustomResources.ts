@@ -46,12 +46,12 @@ export class MediaPipelineResources extends Construct {
 
   private ensureLambda(): Function {
     const stack = Stack.of(this);
-    const constructName = 'MediaPipelineResources';
-    const existing = stack.node.tryFindChild(constructName);
-    /* istanbul ignore next */
-    if (existing) {
-      return existing as Function;
-    }
+    // const constructName = 'MediaPipelineResources';
+    // const existing = stack.node.tryFindChild(constructName);
+    // istanbul ignore next */
+    // if (existing) {
+    //   return existing as Function;
+    // }
 
     const mediaPipelineCustomResourceRole = new Role(
       this,
@@ -111,6 +111,6 @@ export class MediaPipelineResources extends Construct {
       timeout: Duration.seconds(60),
     });
 
-    return fn;
+    return fn as Function;
   }
 }
