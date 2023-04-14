@@ -27,42 +27,13 @@ export class VoiceConnectorExample extends Stack {
       },
     );
 
-    const voiceConnector = new chime.ChimeVoiceConnector(
-      this,
-      'voiceConnector',
-      {
-        encryption: false,
-        region: 'us-east-1',
-        termination: {
-          terminationCidrs: ['198.51.100.0/27'],
-          callingRegions: ['US'],
-          cps: 1,
-        },
-        origination: [
-          {
-            host: '198.51.100.10',
-            port: 5061,
-            protocol: chime.Protocol.TCP,
-            priority: 1,
-            weight: 1,
-          },
-          {
-            host: '198.51.100.11',
-            port: 5061,
-            protocol: chime.Protocol.TCP,
-            priority: 2,
-            weight: 1,
-          },
-        ],
-        streaming: {
-          enabled: true,
-          dataRetention: 24,
-          notificationTargets: [chime.NotificationTargetType.EVENTBRIDGE],
-        },
-        loggingConfiguration: {
-          enableSIPLogs: true,
-          enableMediaMetricLogs: true,
-        },
+    const voiceConnector = new ChimeVoiceConnector(this, 'voiceConnector', {
+      encryption: false,
+      region: 'us-east-1',
+      termination: {
+        terminationCidrs: ['198.51.100.0/27'],
+        callingRegions: ['US'],
+        cps: 1,
       },
       origination: [
         {
@@ -82,7 +53,7 @@ export class VoiceConnectorExample extends Stack {
       ],
       streaming: {
         enabled: true,
-        dataRetention: 0,
+        dataRetention: 24,
         notificationTargets: [NotificationTargetType.EVENTBRIDGE],
       },
       loggingConfiguration: {

@@ -30,7 +30,7 @@ export class MediaPipelineExample extends Stack {
 
     const kinesisDataStream = new Stream(this, 'kinesisDataStream', {
       encryption: StreamEncryption.UNENCRYPTED,
-      streamName: 'ChimeSDK',
+      streamName: 'ChimeSDKMediaResourcesExample',
       shardCount: 4,
     });
 
@@ -292,7 +292,8 @@ export class MediaPipelineExample extends Stack {
       'voiceAnalyticsConfiguration',
       {
         resourceAccessRoleArn: resourceAccessRole.roleArn,
-        mediaInsightsPipelineConfigurationName: 'voiceAnalyticsConfiguration',
+        mediaInsightsPipelineConfigurationName:
+          'voiceAnalyticsConfigurationExample',
         elements: [
           {
             type: ElementsType.VOICE_ANALYTICS_PROCESSOR,
@@ -335,7 +336,7 @@ export class MediaPipelineExample extends Stack {
       {
         resourceAccessRoleArn: resourceAccessRole.roleArn,
         mediaInsightsPipelineConfigurationName:
-          'transcribeCallAnalyticsConfiguration',
+          'transcribeCallAnalyticsConfigurationExample',
         elements: [
           {
             type: ElementsType.AMAZON_TRANSCRIPT_CALL_ANALYTICS_PROCESS,
@@ -384,7 +385,8 @@ export class MediaPipelineExample extends Stack {
       's3RecordingSinkConfiguration',
       {
         resourceAccessRoleArn: resourceAccessRole.roleArn,
-        mediaInsightsPipelineConfigurationName: 's3RecordingSinkConfiguration',
+        mediaInsightsPipelineConfigurationName:
+          's3RecordingSinkConfigurationExample',
         elements: [
           {
             type: ElementsType.S3_RECORDING_SINK,

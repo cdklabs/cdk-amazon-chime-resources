@@ -60941,9 +60941,7 @@ var CreateVoiceProfileDomain = async (uid, props) => {
       throw error;
     }
   }
-  return {
-    voiceProfileDomain: createVoiceProfileDomainResponse.VoiceProfileDomain
-  };
+  return createVoiceProfileDomainResponse.VoiceProfileDomain;
 };
 var UpdateVoiceProfileDomain = async (uid, props) => {
   console.log(`Updating Voice Profile Domain: ${uid}`);
