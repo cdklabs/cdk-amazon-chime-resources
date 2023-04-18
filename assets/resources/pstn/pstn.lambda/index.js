@@ -6333,7 +6333,7 @@ var require_default_error_handler = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/default-error-handler.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.throwDefaultError = void 0;
+    exports.withBaseException = exports.throwDefaultError = void 0;
     var exceptions_1 = require_exceptions();
     var throwDefaultError = ({ output, parsedBody, exceptionCtor, errorCode }) => {
       const $metadata = deserializeMetadata(output);
@@ -6346,6 +6346,12 @@ var require_default_error_handler = __commonJS({
       throw (0, exceptions_1.decorateServiceException)(response2, parsedBody);
     };
     exports.throwDefaultError = throwDefaultError;
+    var withBaseException = (ExceptionCtor) => {
+      return ({ output, parsedBody, errorCode }) => {
+        (0, exports.throwDefaultError)({ output, parsedBody, exceptionCtor: ExceptionCtor, errorCode });
+      };
+    };
+    exports.withBaseException = withBaseException;
     var deserializeMetadata = (output) => {
       var _a, _b;
       return {
@@ -6644,6 +6650,35 @@ var require_ser_utils = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/smithy-client/dist-cjs/serde-json.js
+var require_serde_json = __commonJS({
+  "node_modules/@aws-sdk/smithy-client/dist-cjs/serde-json.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports._json = void 0;
+    var _json = (obj) => {
+      if (obj == null) {
+        return {};
+      }
+      if (Array.isArray(obj)) {
+        return obj.filter((_) => _ != null);
+      }
+      if (typeof obj === "object") {
+        const target = {};
+        for (const key of Object.keys(obj)) {
+          if (obj[key] == null) {
+            continue;
+          }
+          target[key] = (0, exports._json)(obj[key]);
+        }
+        return target;
+      }
+      return obj;
+    };
+    exports._json = _json;
+  }
+});
+
 // node_modules/@aws-sdk/smithy-client/dist-cjs/split-every.js
 var require_split_every = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/split-every.js"(exports) {
@@ -6703,6 +6738,7 @@ var require_dist_cjs28 = __commonJS({
     tslib_1.__exportStar(require_parse_utils(), exports);
     tslib_1.__exportStar(require_resolve_path(), exports);
     tslib_1.__exportStar(require_ser_utils(), exports);
+    tslib_1.__exportStar(require_serde_json(), exports);
     tslib_1.__exportStar(require_split_every(), exports);
   }
 });
@@ -6731,7 +6767,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.313.0",
+      version: "3.315.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6751,9 +6787,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.312.0",
+        "@aws-sdk/client-sts": "3.315.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.310.0",
+        "@aws-sdk/credential-provider-node": "3.315.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -6770,14 +6806,14 @@ var require_package = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.310.0",
+        "@aws-sdk/smithy-client": "3.315.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.310.0",
-        "@aws-sdk/util-defaults-mode-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
+        "@aws-sdk/util-defaults-mode-node": "3.315.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -8673,7 +8709,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_AssumeRoleCommand = de_AssumeRoleCommand;
     var de_AssumeRoleCommandError = async (output, context) => {
@@ -8697,10 +8733,9 @@ var require_Aws_query = __commonJS({
           throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -8716,7 +8751,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_AssumeRoleWithSAMLCommand = de_AssumeRoleWithSAMLCommand;
     var de_AssumeRoleWithSAMLCommandError = async (output, context) => {
@@ -8746,10 +8781,9 @@ var require_Aws_query = __commonJS({
           throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -8765,7 +8799,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_AssumeRoleWithWebIdentityCommand = de_AssumeRoleWithWebIdentityCommand;
     var de_AssumeRoleWithWebIdentityCommandError = async (output, context) => {
@@ -8798,10 +8832,9 @@ var require_Aws_query = __commonJS({
           throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -8817,7 +8850,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DecodeAuthorizationMessageCommand = de_DecodeAuthorizationMessageCommand;
     var de_DecodeAuthorizationMessageCommandError = async (output, context) => {
@@ -8832,10 +8865,9 @@ var require_Aws_query = __commonJS({
           throw await de_InvalidAuthorizationMessageExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -8851,7 +8883,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetAccessKeyInfoCommand = de_GetAccessKeyInfoCommand;
     var de_GetAccessKeyInfoCommandError = async (output, context) => {
@@ -8861,10 +8893,9 @@ var require_Aws_query = __commonJS({
       };
       const errorCode = loadQueryErrorCode(output, parsedOutput.body);
       const parsedBody = parsedOutput.body;
-      (0, smithy_client_1.throwDefaultError)({
+      return throwDefaultError({
         output,
         parsedBody: parsedBody.Error,
-        exceptionCtor: STSServiceException_1.STSServiceException,
         errorCode
       });
     };
@@ -8879,7 +8910,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetCallerIdentityCommand = de_GetCallerIdentityCommand;
     var de_GetCallerIdentityCommandError = async (output, context) => {
@@ -8889,10 +8920,9 @@ var require_Aws_query = __commonJS({
       };
       const errorCode = loadQueryErrorCode(output, parsedOutput.body);
       const parsedBody = parsedOutput.body;
-      (0, smithy_client_1.throwDefaultError)({
+      return throwDefaultError({
         output,
         parsedBody: parsedBody.Error,
-        exceptionCtor: STSServiceException_1.STSServiceException,
         errorCode
       });
     };
@@ -8907,7 +8937,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetFederationTokenCommand = de_GetFederationTokenCommand;
     var de_GetFederationTokenCommandError = async (output, context) => {
@@ -8928,10 +8958,9 @@ var require_Aws_query = __commonJS({
           throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -8947,7 +8976,7 @@ var require_Aws_query = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetSessionTokenCommand = de_GetSessionTokenCommand;
     var de_GetSessionTokenCommandError = async (output, context) => {
@@ -8962,10 +8991,9 @@ var require_Aws_query = __commonJS({
           throw await de_RegionDisabledExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody: parsedBody.Error,
-            exceptionCtor: STSServiceException_1.STSServiceException,
             errorCode
           });
       }
@@ -9508,6 +9536,7 @@ var require_Aws_query = __commonJS({
       return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
     };
     var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(STSServiceException_1.STSServiceException);
     var buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const contents = {
@@ -10041,7 +10070,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.312.0",
+      version: "3.315.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10064,7 +10093,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.310.0",
+        "@aws-sdk/credential-provider-node": "3.315.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -10082,14 +10111,14 @@ var require_package2 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.310.0",
+        "@aws-sdk/smithy-client": "3.315.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.310.0",
-        "@aws-sdk/util-defaults-mode-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
+        "@aws-sdk/util-defaults-mode-node": "3.315.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -11410,11 +11439,11 @@ var require_Aws_restJson1 = __commonJS({
     var SSOServiceException_1 = require_SSOServiceException();
     var se_GetRoleCredentialsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = map({}, isSerializableHeaderValue, {
+      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken
       });
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/federation/credentials`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         role_name: [, (0, smithy_client_1.expectNonNull)(input.roleName, `roleName`)],
         account_id: [, (0, smithy_client_1.expectNonNull)(input.accountId, `accountId`)]
       });
@@ -11433,11 +11462,11 @@ var require_Aws_restJson1 = __commonJS({
     exports.se_GetRoleCredentialsCommand = se_GetRoleCredentialsCommand;
     var se_ListAccountRolesCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = map({}, isSerializableHeaderValue, {
+      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken
       });
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/assignment/roles`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         next_token: [, input.nextToken],
         max_result: [() => input.maxResults !== void 0, () => input.maxResults.toString()],
         account_id: [, (0, smithy_client_1.expectNonNull)(input.accountId, `accountId`)]
@@ -11457,11 +11486,11 @@ var require_Aws_restJson1 = __commonJS({
     exports.se_ListAccountRolesCommand = se_ListAccountRolesCommand;
     var se_ListAccountsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = map({}, isSerializableHeaderValue, {
+      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken
       });
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/assignment/accounts`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         next_token: [, input.nextToken],
         max_result: [() => input.maxResults !== void 0, () => input.maxResults.toString()]
       });
@@ -11480,7 +11509,7 @@ var require_Aws_restJson1 = __commonJS({
     exports.se_ListAccountsCommand = se_ListAccountsCommand;
     var se_LogoutCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = map({}, isSerializableHeaderValue, {
+      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
         "x-amz-sso_bearer_token": input.accessToken
       });
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/logout`;
@@ -11500,13 +11529,14 @@ var require_Aws_restJson1 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetRoleCredentialsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.roleCredentials != null) {
-        contents.roleCredentials = de_RoleCredentials(data.roleCredentials, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        roleCredentials: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetRoleCredentialsCommand = de_GetRoleCredentialsCommand;
@@ -11531,10 +11561,9 @@ var require_Aws_restJson1 = __commonJS({
           throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOServiceException_1.SSOServiceException,
             errorCode
           });
       }
@@ -11543,16 +11572,15 @@ var require_Aws_restJson1 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListAccountRolesCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.nextToken != null) {
-        contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
-      }
-      if (data.roleList != null) {
-        contents.roleList = de_RoleListType(data.roleList, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        nextToken: smithy_client_1.expectString,
+        roleList: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListAccountRolesCommand = de_ListAccountRolesCommand;
@@ -11577,10 +11605,9 @@ var require_Aws_restJson1 = __commonJS({
           throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOServiceException_1.SSOServiceException,
             errorCode
           });
       }
@@ -11589,16 +11616,15 @@ var require_Aws_restJson1 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListAccountsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.accountList != null) {
-        contents.accountList = de_AccountListType(data.accountList, context);
-      }
-      if (data.nextToken != null) {
-        contents.nextToken = (0, smithy_client_1.expectString)(data.nextToken);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        accountList: smithy_client_1._json,
+        nextToken: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListAccountsCommand = de_ListAccountsCommand;
@@ -11623,10 +11649,9 @@ var require_Aws_restJson1 = __commonJS({
           throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOServiceException_1.SSOServiceException,
             errorCode
           });
       }
@@ -11635,7 +11660,7 @@ var require_Aws_restJson1 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_LogoutCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -11660,21 +11685,21 @@ var require_Aws_restJson1 = __commonJS({
           throw await de_UnauthorizedExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOServiceException_1.SSOServiceException,
             errorCode
           });
       }
     };
-    var map = smithy_client_1.map;
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(SSOServiceException_1.SSOServiceException);
     var de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -11682,11 +11707,12 @@ var require_Aws_restJson1 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ResourceNotFoundExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ResourceNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -11694,11 +11720,12 @@ var require_Aws_restJson1 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_TooManyRequestsExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.TooManyRequestsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -11706,55 +11733,17 @@ var require_Aws_restJson1 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_UnauthorizedExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.message != null) {
-        contents.message = (0, smithy_client_1.expectString)(data.message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.UnauthorizedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_AccountInfo = (output, context) => {
-      return {
-        accountId: (0, smithy_client_1.expectString)(output.accountId),
-        accountName: (0, smithy_client_1.expectString)(output.accountName),
-        emailAddress: (0, smithy_client_1.expectString)(output.emailAddress)
-      };
-    };
-    var de_AccountListType = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_AccountInfo(entry, context);
-      });
-      return retVal;
-    };
-    var de_RoleCredentials = (output, context) => {
-      return {
-        accessKeyId: (0, smithy_client_1.expectString)(output.accessKeyId),
-        expiration: (0, smithy_client_1.expectLong)(output.expiration),
-        secretAccessKey: (0, smithy_client_1.expectString)(output.secretAccessKey),
-        sessionToken: (0, smithy_client_1.expectString)(output.sessionToken)
-      };
-    };
-    var de_RoleInfo = (output, context) => {
-      return {
-        accountId: (0, smithy_client_1.expectString)(output.accountId),
-        roleName: (0, smithy_client_1.expectString)(output.roleName)
-      };
-    };
-    var de_RoleListType = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_RoleInfo(entry, context);
-      });
-      return retVal;
     };
     var deserializeMetadata = (output) => ({
       httpStatusCode: output.statusCode,
@@ -12045,7 +12034,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.310.0",
+      version: "3.315.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12081,14 +12070,14 @@ var require_package3 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.310.0",
+        "@aws-sdk/smithy-client": "3.315.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.310.0",
-        "@aws-sdk/util-defaults-mode-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
+        "@aws-sdk/util-defaults-mode-node": "3.315.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -13551,16 +13540,16 @@ var require_Aws_restJson12 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/token`;
       let body;
-      body = JSON.stringify({
-        ...input.clientId != null && { clientId: input.clientId },
-        ...input.clientSecret != null && { clientSecret: input.clientSecret },
-        ...input.code != null && { code: input.code },
-        ...input.deviceCode != null && { deviceCode: input.deviceCode },
-        ...input.grantType != null && { grantType: input.grantType },
-        ...input.redirectUri != null && { redirectUri: input.redirectUri },
-        ...input.refreshToken != null && { refreshToken: input.refreshToken },
-        ...input.scope != null && { scope: se_Scopes(input.scope, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientId: [],
+        clientSecret: [],
+        code: [],
+        deviceCode: [],
+        grantType: [],
+        redirectUri: [],
+        refreshToken: [],
+        scope: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -13579,11 +13568,11 @@ var require_Aws_restJson12 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/client/register`;
       let body;
-      body = JSON.stringify({
-        ...input.clientName != null && { clientName: input.clientName },
-        ...input.clientType != null && { clientType: input.clientType },
-        ...input.scopes != null && { scopes: se_Scopes(input.scopes, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientName: [],
+        clientType: [],
+        scopes: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -13602,11 +13591,11 @@ var require_Aws_restJson12 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/device_authorization`;
       let body;
-      body = JSON.stringify({
-        ...input.clientId != null && { clientId: input.clientId },
-        ...input.clientSecret != null && { clientSecret: input.clientSecret },
-        ...input.startUrl != null && { startUrl: input.startUrl }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        clientId: [],
+        clientSecret: [],
+        startUrl: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -13622,25 +13611,18 @@ var require_Aws_restJson12 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_CreateTokenCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.accessToken != null) {
-        contents.accessToken = (0, smithy_client_1.expectString)(data.accessToken);
-      }
-      if (data.expiresIn != null) {
-        contents.expiresIn = (0, smithy_client_1.expectInt32)(data.expiresIn);
-      }
-      if (data.idToken != null) {
-        contents.idToken = (0, smithy_client_1.expectString)(data.idToken);
-      }
-      if (data.refreshToken != null) {
-        contents.refreshToken = (0, smithy_client_1.expectString)(data.refreshToken);
-      }
-      if (data.tokenType != null) {
-        contents.tokenType = (0, smithy_client_1.expectString)(data.tokenType);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        accessToken: smithy_client_1.expectString,
+        expiresIn: smithy_client_1.expectInt32,
+        idToken: smithy_client_1.expectString,
+        refreshToken: smithy_client_1.expectString,
+        tokenType: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateTokenCommand = de_CreateTokenCommand;
@@ -13686,10 +13668,9 @@ var require_Aws_restJson12 = __commonJS({
           throw await de_UnsupportedGrantTypeExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
             errorCode
           });
       }
@@ -13698,28 +13679,19 @@ var require_Aws_restJson12 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_RegisterClientCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.authorizationEndpoint != null) {
-        contents.authorizationEndpoint = (0, smithy_client_1.expectString)(data.authorizationEndpoint);
-      }
-      if (data.clientId != null) {
-        contents.clientId = (0, smithy_client_1.expectString)(data.clientId);
-      }
-      if (data.clientIdIssuedAt != null) {
-        contents.clientIdIssuedAt = (0, smithy_client_1.expectLong)(data.clientIdIssuedAt);
-      }
-      if (data.clientSecret != null) {
-        contents.clientSecret = (0, smithy_client_1.expectString)(data.clientSecret);
-      }
-      if (data.clientSecretExpiresAt != null) {
-        contents.clientSecretExpiresAt = (0, smithy_client_1.expectLong)(data.clientSecretExpiresAt);
-      }
-      if (data.tokenEndpoint != null) {
-        contents.tokenEndpoint = (0, smithy_client_1.expectString)(data.tokenEndpoint);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        authorizationEndpoint: smithy_client_1.expectString,
+        clientId: smithy_client_1.expectString,
+        clientIdIssuedAt: smithy_client_1.expectLong,
+        clientSecret: smithy_client_1.expectString,
+        clientSecretExpiresAt: smithy_client_1.expectLong,
+        tokenEndpoint: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_RegisterClientCommand = de_RegisterClientCommand;
@@ -13744,10 +13716,9 @@ var require_Aws_restJson12 = __commonJS({
           throw await de_InvalidScopeExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
             errorCode
           });
       }
@@ -13756,28 +13727,19 @@ var require_Aws_restJson12 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_StartDeviceAuthorizationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.deviceCode != null) {
-        contents.deviceCode = (0, smithy_client_1.expectString)(data.deviceCode);
-      }
-      if (data.expiresIn != null) {
-        contents.expiresIn = (0, smithy_client_1.expectInt32)(data.expiresIn);
-      }
-      if (data.interval != null) {
-        contents.interval = (0, smithy_client_1.expectInt32)(data.interval);
-      }
-      if (data.userCode != null) {
-        contents.userCode = (0, smithy_client_1.expectString)(data.userCode);
-      }
-      if (data.verificationUri != null) {
-        contents.verificationUri = (0, smithy_client_1.expectString)(data.verificationUri);
-      }
-      if (data.verificationUriComplete != null) {
-        contents.verificationUriComplete = (0, smithy_client_1.expectString)(data.verificationUriComplete);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        deviceCode: smithy_client_1.expectString,
+        expiresIn: smithy_client_1.expectInt32,
+        interval: smithy_client_1.expectInt32,
+        userCode: smithy_client_1.expectString,
+        verificationUri: smithy_client_1.expectString,
+        verificationUriComplete: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_StartDeviceAuthorizationCommand = de_StartDeviceAuthorizationCommand;
@@ -13805,24 +13767,22 @@ var require_Aws_restJson12 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSOOIDCServiceException_1.SSOOIDCServiceException,
             errorCode
           });
       }
     };
-    var map = smithy_client_1.map;
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(SSOOIDCServiceException_1.SSOOIDCServiceException);
     var de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.AccessDeniedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13830,14 +13790,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_AuthorizationPendingExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.AuthorizationPendingException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13845,14 +13804,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ExpiredTokenExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ExpiredTokenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13860,14 +13818,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InternalServerExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InternalServerException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13875,14 +13832,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InvalidClientExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13890,14 +13846,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InvalidClientMetadataExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidClientMetadataException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13905,14 +13860,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InvalidGrantExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidGrantException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13920,14 +13874,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InvalidRequestExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13935,14 +13888,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_InvalidScopeExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.InvalidScopeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13950,14 +13902,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_SlowDownExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.SlowDownException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13965,14 +13916,13 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.UnauthorizedClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -13980,24 +13930,18 @@ var require_Aws_restJson12 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_UnsupportedGrantTypeExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.error != null) {
-        contents.error = (0, smithy_client_1.expectString)(data.error);
-      }
-      if (data.error_description != null) {
-        contents.error_description = (0, smithy_client_1.expectString)(data.error_description);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        error: smithy_client_1.expectString,
+        error_description: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.UnsupportedGrantTypeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var se_Scopes = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
     };
     var deserializeMetadata = (output) => ({
       httpStatusCode: output.statusCode,
@@ -14232,7 +14176,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.310.0",
+      version: "3.315.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14268,14 +14212,14 @@ var require_package4 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.310.0",
+        "@aws-sdk/smithy-client": "3.315.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.310.0",
-        "@aws-sdk/util-defaults-mode-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
+        "@aws-sdk/util-defaults-mode-node": "3.315.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -16710,16 +16654,14 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "associate-phone-numbers"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.E164PhoneNumbers != null && {
-          E164PhoneNumbers: se_E164PhoneNumberList(input.E164PhoneNumbers, context)
-        },
-        ...input.ForceAssociate != null && { ForceAssociate: input.ForceAssociate }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        E164PhoneNumbers: (_) => (0, smithy_client_1._json)(_),
+        ForceAssociate: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16739,16 +16681,14 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connector-groups/{VoiceConnectorGroupId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorGroupId", () => input.VoiceConnectorGroupId, "{VoiceConnectorGroupId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "associate-phone-numbers"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.E164PhoneNumbers != null && {
-          E164PhoneNumbers: se_E164PhoneNumberList(input.E164PhoneNumbers, context)
-        },
-        ...input.ForceAssociate != null && { ForceAssociate: input.ForceAssociate }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        E164PhoneNumbers: (_) => (0, smithy_client_1._json)(_),
+        ForceAssociate: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16767,13 +16707,13 @@ var require_Aws_restJson13 = __commonJS({
         "content-type": "application/json"
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-numbers`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "batch-delete"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.PhoneNumberIds != null && { PhoneNumberIds: se_NonEmptyStringList(input.PhoneNumberIds, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        PhoneNumberIds: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16792,15 +16732,13 @@ var require_Aws_restJson13 = __commonJS({
         "content-type": "application/json"
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-numbers`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "batch-update"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.UpdatePhoneNumberRequestItems != null && {
-          UpdatePhoneNumberRequestItems: se_UpdatePhoneNumberRequestItemList(input.UpdatePhoneNumberRequestItems, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        UpdatePhoneNumberRequestItems: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16820,12 +16758,10 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-number-orders`;
       let body;
-      body = JSON.stringify({
-        ...input.E164PhoneNumbers != null && {
-          E164PhoneNumbers: se_E164PhoneNumberList(input.E164PhoneNumbers, context)
-        },
-        ...input.ProductType != null && { ProductType: input.ProductType }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        E164PhoneNumbers: (_) => (0, smithy_client_1._json)(_),
+        ProductType: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16845,17 +16781,15 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/proxy-sessions`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Capabilities != null && { Capabilities: se_CapabilityList(input.Capabilities, context) },
-        ...input.ExpiryMinutes != null && { ExpiryMinutes: input.ExpiryMinutes },
-        ...input.GeoMatchLevel != null && { GeoMatchLevel: input.GeoMatchLevel },
-        ...input.GeoMatchParams != null && { GeoMatchParams: se_GeoMatchParams(input.GeoMatchParams, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.NumberSelectionBehavior != null && { NumberSelectionBehavior: input.NumberSelectionBehavior },
-        ...input.ParticipantPhoneNumbers != null && {
-          ParticipantPhoneNumbers: se_ParticipantPhoneNumberList(input.ParticipantPhoneNumbers, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Capabilities: (_) => (0, smithy_client_1._json)(_),
+        ExpiryMinutes: [],
+        GeoMatchLevel: [],
+        GeoMatchParams: (_) => (0, smithy_client_1._json)(_),
+        Name: [],
+        NumberSelectionBehavior: [],
+        ParticipantPhoneNumbers: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16874,12 +16808,12 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications`;
       let body;
-      body = JSON.stringify({
-        ...input.AwsRegion != null && { AwsRegion: input.AwsRegion },
-        ...input.Endpoints != null && { Endpoints: se_SipMediaApplicationEndpointList(input.Endpoints, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        AwsRegion: [],
+        Endpoints: (_) => (0, smithy_client_1._json)(_),
+        Name: [],
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16899,12 +16833,12 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications/{SipMediaApplicationId}/calls`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipMediaApplicationId", () => input.SipMediaApplicationId, "{SipMediaApplicationId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.ArgumentsMap != null && { ArgumentsMap: se_SMACreateCallArgumentsMap(input.ArgumentsMap, context) },
-        ...input.FromPhoneNumber != null && { FromPhoneNumber: input.FromPhoneNumber },
-        ...input.SipHeaders != null && { SipHeaders: se_SipHeadersMap(input.SipHeaders, context) },
-        ...input.ToPhoneNumber != null && { ToPhoneNumber: input.ToPhoneNumber }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ArgumentsMap: (_) => (0, smithy_client_1._json)(_),
+        FromPhoneNumber: [],
+        SipHeaders: (_) => (0, smithy_client_1._json)(_),
+        ToPhoneNumber: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16923,15 +16857,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-rules`;
       let body;
-      body = JSON.stringify({
-        ...input.Disabled != null && { Disabled: input.Disabled },
-        ...input.Name != null && { Name: input.Name },
-        ...input.TargetApplications != null && {
-          TargetApplications: se_SipRuleTargetApplicationList(input.TargetApplications, context)
-        },
-        ...input.TriggerType != null && { TriggerType: input.TriggerType },
-        ...input.TriggerValue != null && { TriggerValue: input.TriggerValue }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Disabled: [],
+        Name: [],
+        TargetApplications: (_) => (0, smithy_client_1._json)(_),
+        TriggerType: [],
+        TriggerValue: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16950,12 +16882,12 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors`;
       let body;
-      body = JSON.stringify({
-        ...input.AwsRegion != null && { AwsRegion: input.AwsRegion },
-        ...input.Name != null && { Name: input.Name },
-        ...input.RequireEncryption != null && { RequireEncryption: input.RequireEncryption },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        AwsRegion: [],
+        Name: [],
+        RequireEncryption: [],
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16974,12 +16906,10 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connector-groups`;
       let body;
-      body = JSON.stringify({
-        ...input.Name != null && { Name: input.Name },
-        ...input.VoiceConnectorItems != null && {
-          VoiceConnectorItems: se_VoiceConnectorItemList(input.VoiceConnectorItems, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Name: [],
+        VoiceConnectorItems: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -16998,9 +16928,9 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles`;
       let body;
-      body = JSON.stringify({
-        ...input.SpeakerSearchTaskId != null && { SpeakerSearchTaskId: input.SpeakerSearchTaskId }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        SpeakerSearchTaskId: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -17019,15 +16949,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains`;
       let body;
-      body = JSON.stringify({
-        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
-        ...input.Description != null && { Description: input.Description },
-        ...input.Name != null && { Name: input.Name },
-        ...input.ServerSideEncryptionConfiguration != null && {
-          ServerSideEncryptionConfiguration: se_ServerSideEncryptionConfiguration(input.ServerSideEncryptionConfiguration, context)
-        },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ClientRequestToken: [],
+        Description: [],
+        Name: [],
+        ServerSideEncryptionConfiguration: (_) => (0, smithy_client_1._json)(_),
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -17234,13 +17162,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/termination/credentials`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "delete"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.Usernames != null && { Usernames: se_SensitiveStringList(input.Usernames, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Usernames: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -17294,15 +17222,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "disassociate-phone-numbers"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.E164PhoneNumbers != null && {
-          E164PhoneNumbers: se_E164PhoneNumberList(input.E164PhoneNumbers, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        E164PhoneNumbers: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -17322,15 +17248,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connector-groups/{VoiceConnectorGroupId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorGroupId", () => input.VoiceConnectorGroupId, "{VoiceConnectorGroupId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "disassociate-phone-numbers"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.E164PhoneNumbers != null && {
-          E164PhoneNumbers: se_E164PhoneNumberList(input.E164PhoneNumbers, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        E164PhoneNumbers: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -17712,7 +17636,7 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceToneAnalysisTaskId", () => input.VoiceToneAnalysisTaskId, "{VoiceToneAnalysisTaskId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         isCaller: [(0, smithy_client_1.expectNonNull)(input.IsCaller, `IsCaller`) != null, () => input.IsCaller.toString()]
       });
       let body;
@@ -17751,7 +17675,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-number-orders`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
@@ -17772,7 +17696,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-numbers`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         status: [, input.Status],
         "product-type": [, input.ProductType],
         "filter-name": [, input.FilterName],
@@ -17798,7 +17722,7 @@ var require_Aws_restJson13 = __commonJS({
       const headers = {};
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/proxy-sessions`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         status: [, input.Status],
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
@@ -17820,7 +17744,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
         "next-token": [, input.NextToken]
       });
@@ -17841,7 +17765,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-rules`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "sip-media-application": [, input.SipMediaApplicationId],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
         "next-token": [, input.NextToken]
@@ -17863,7 +17787,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-number-countries`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "product-type": [, (0, smithy_client_1.expectNonNull)(input.ProductType, `ProductType`)]
       });
       let body;
@@ -17883,7 +17807,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         arn: [, (0, smithy_client_1.expectNonNull)(input.ResourceARN, `ResourceARN`)]
       });
       let body;
@@ -17903,7 +17827,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connector-groups`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
@@ -17924,7 +17848,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
@@ -17962,7 +17886,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
@@ -17983,7 +17907,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         "voice-profile-domain-id": [, (0, smithy_client_1.expectNonNull)(input.VoiceProfileDomainId, `VoiceProfileDomainId`)],
         "next-token": [, input.NextToken],
         "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
@@ -18009,11 +17933,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications/{SipMediaApplicationId}/alexa-skill-configuration`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipMediaApplicationId", () => input.SipMediaApplicationId, "{SipMediaApplicationId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.SipMediaApplicationAlexaSkillConfiguration != null && {
-          SipMediaApplicationAlexaSkillConfiguration: se_SipMediaApplicationAlexaSkillConfiguration(input.SipMediaApplicationAlexaSkillConfiguration, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        SipMediaApplicationAlexaSkillConfiguration: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18033,11 +17955,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications/{SipMediaApplicationId}/logging-configuration`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipMediaApplicationId", () => input.SipMediaApplicationId, "{SipMediaApplicationId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.SipMediaApplicationLoggingConfiguration != null && {
-          SipMediaApplicationLoggingConfiguration: se_SipMediaApplicationLoggingConfiguration(input.SipMediaApplicationLoggingConfiguration, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        SipMediaApplicationLoggingConfiguration: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18057,11 +17977,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/emergency-calling-configuration`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.EmergencyCallingConfiguration != null && {
-          EmergencyCallingConfiguration: se_EmergencyCallingConfiguration(input.EmergencyCallingConfiguration, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        EmergencyCallingConfiguration: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18081,11 +17999,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/logging-configuration`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.LoggingConfiguration != null && {
-          LoggingConfiguration: se_LoggingConfiguration(input.LoggingConfiguration, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        LoggingConfiguration: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18105,9 +18021,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/origination`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Origination != null && { Origination: se_Origination(input.Origination, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Origination: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18127,16 +18043,12 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/programmable-numbers/proxy`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.DefaultSessionExpiryMinutes != null && {
-          DefaultSessionExpiryMinutes: input.DefaultSessionExpiryMinutes
-        },
-        ...input.Disabled != null && { Disabled: input.Disabled },
-        ...input.FallBackPhoneNumber != null && { FallBackPhoneNumber: input.FallBackPhoneNumber },
-        ...input.PhoneNumberPoolCountries != null && {
-          PhoneNumberPoolCountries: se_CountryList(input.PhoneNumberPoolCountries, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        DefaultSessionExpiryMinutes: [],
+        Disabled: [],
+        FallBackPhoneNumber: [],
+        PhoneNumberPoolCountries: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18156,11 +18068,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/streaming-configuration`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.StreamingConfiguration != null && {
-          StreamingConfiguration: se_StreamingConfiguration(input.StreamingConfiguration, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        StreamingConfiguration: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18180,9 +18090,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/termination`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Termination != null && { Termination: se_Termination(input.Termination, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Termination: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18201,13 +18111,13 @@ var require_Aws_restJson13 = __commonJS({
       };
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/termination/credentials`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "put"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.Credentials != null && { Credentials: se_CredentialList(input.Credentials, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Credentials: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18225,7 +18135,7 @@ var require_Aws_restJson13 = __commonJS({
       const headers = {};
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-numbers/{PhoneNumberId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "PhoneNumberId", () => input.PhoneNumberId, "{PhoneNumberId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "restore"]
       });
       let body;
@@ -18245,7 +18155,7 @@ var require_Aws_restJson13 = __commonJS({
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/search`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         type: [, "phone-numbers"],
         "area-code": [, input.AreaCode],
         city: [, input.City],
@@ -18277,11 +18187,11 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/speaker-search-tasks`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
-        ...input.TransactionId != null && { TransactionId: input.TransactionId },
-        ...input.VoiceProfileDomainId != null && { VoiceProfileDomainId: input.VoiceProfileDomainId }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ClientRequestToken: [],
+        TransactionId: [],
+        VoiceProfileDomainId: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18301,11 +18211,11 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.ClientRequestToken != null && { ClientRequestToken: input.ClientRequestToken },
-        ...input.LanguageCode != null && { LanguageCode: input.LanguageCode },
-        ...input.TransactionId != null && { TransactionId: input.TransactionId }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ClientRequestToken: [],
+        LanguageCode: [],
+        TransactionId: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18323,7 +18233,7 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/speaker-search-tasks/{SpeakerSearchTaskId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SpeakerSearchTaskId", () => input.SpeakerSearchTaskId, "{SpeakerSearchTaskId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "stop"]
       });
       let body;
@@ -18345,7 +18255,7 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}/voice-tone-analysis-tasks/{VoiceToneAnalysisTaskId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceToneAnalysisTaskId", () => input.VoiceToneAnalysisTaskId, "{VoiceToneAnalysisTaskId}", false);
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "stop"]
       });
       let body;
@@ -18367,14 +18277,14 @@ var require_Aws_restJson13 = __commonJS({
         "content-type": "application/json"
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "tag-resource"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.ResourceARN != null && { ResourceARN: input.ResourceARN },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ResourceARN: [],
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18393,14 +18303,14 @@ var require_Aws_restJson13 = __commonJS({
         "content-type": "application/json"
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = map({
+      const query = (0, smithy_client_1.map)({
         operation: [, "untag-resource"]
       });
       let body;
-      body = JSON.stringify({
-        ...input.ResourceARN != null && { ResourceARN: input.ResourceARN },
-        ...input.TagKeys != null && { TagKeys: se_TagKeyList(input.TagKeys, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ResourceARN: [],
+        TagKeys: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18420,9 +18330,9 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/settings`;
       let body;
-      body = JSON.stringify({
-        ...input.VoiceConnector != null && { VoiceConnector: se_VoiceConnectorSettings(input.VoiceConnector, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        VoiceConnector: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18442,10 +18352,10 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/phone-numbers/{PhoneNumberId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "PhoneNumberId", () => input.PhoneNumberId, "{PhoneNumberId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.CallingName != null && { CallingName: input.CallingName },
-        ...input.ProductType != null && { ProductType: input.ProductType }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        CallingName: [],
+        ProductType: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18464,9 +18374,9 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/settings/phone-number`;
       let body;
-      body = JSON.stringify({
-        ...input.CallingName != null && { CallingName: input.CallingName }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        CallingName: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18487,10 +18397,10 @@ var require_Aws_restJson13 = __commonJS({
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ProxySessionId", () => input.ProxySessionId, "{ProxySessionId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Capabilities != null && { Capabilities: se_CapabilityList(input.Capabilities, context) },
-        ...input.ExpiryMinutes != null && { ExpiryMinutes: input.ExpiryMinutes }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Capabilities: (_) => (0, smithy_client_1._json)(_),
+        ExpiryMinutes: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18510,10 +18420,10 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-media-applications/{SipMediaApplicationId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipMediaApplicationId", () => input.SipMediaApplicationId, "{SipMediaApplicationId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Endpoints != null && { Endpoints: se_SipMediaApplicationEndpointList(input.Endpoints, context) },
-        ...input.Name != null && { Name: input.Name }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Endpoints: (_) => (0, smithy_client_1._json)(_),
+        Name: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18534,9 +18444,9 @@ var require_Aws_restJson13 = __commonJS({
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipMediaApplicationId", () => input.SipMediaApplicationId, "{SipMediaApplicationId}", false);
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "TransactionId", () => input.TransactionId, "{TransactionId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Arguments != null && { Arguments: se_SMAUpdateCallArgumentsMap(input.Arguments, context) }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Arguments: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18556,13 +18466,11 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sip-rules/{SipRuleId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "SipRuleId", () => input.SipRuleId, "{SipRuleId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Disabled != null && { Disabled: input.Disabled },
-        ...input.Name != null && { Name: input.Name },
-        ...input.TargetApplications != null && {
-          TargetApplications: se_SipRuleTargetApplicationList(input.TargetApplications, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Disabled: [],
+        Name: [],
+        TargetApplications: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18582,10 +18490,10 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connectors/{VoiceConnectorId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorId", () => input.VoiceConnectorId, "{VoiceConnectorId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Name != null && { Name: input.Name },
-        ...input.RequireEncryption != null && { RequireEncryption: input.RequireEncryption }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Name: [],
+        RequireEncryption: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18605,12 +18513,10 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-connector-groups/{VoiceConnectorGroupId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceConnectorGroupId", () => input.VoiceConnectorGroupId, "{VoiceConnectorGroupId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Name != null && { Name: input.Name },
-        ...input.VoiceConnectorItems != null && {
-          VoiceConnectorItems: se_VoiceConnectorItemList(input.VoiceConnectorItems, context)
-        }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Name: [],
+        VoiceConnectorItems: (_) => (0, smithy_client_1._json)(_)
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18630,9 +18536,9 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profiles/{VoiceProfileId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileId", () => input.VoiceProfileId, "{VoiceProfileId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.SpeakerSearchTaskId != null && { SpeakerSearchTaskId: input.SpeakerSearchTaskId }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        SpeakerSearchTaskId: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18652,10 +18558,10 @@ var require_Aws_restJson13 = __commonJS({
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/voice-profile-domains/{VoiceProfileDomainId}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "VoiceProfileDomainId", () => input.VoiceProfileDomainId, "{VoiceProfileDomainId}", false);
       let body;
-      body = JSON.stringify({
-        ...input.Description != null && { Description: input.Description },
-        ...input.Name != null && { Name: input.Name }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Description: [],
+        Name: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18674,15 +18580,15 @@ var require_Aws_restJson13 = __commonJS({
       };
       const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/emergency-calling/address`;
       let body;
-      body = JSON.stringify({
-        ...input.AwsAccountId != null && { AwsAccountId: input.AwsAccountId },
-        ...input.City != null && { City: input.City },
-        ...input.Country != null && { Country: input.Country },
-        ...input.PostalCode != null && { PostalCode: input.PostalCode },
-        ...input.State != null && { State: input.State },
-        ...input.StreetInfo != null && { StreetInfo: input.StreetInfo },
-        ...input.StreetNumber != null && { StreetNumber: input.StreetNumber }
-      });
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        AwsAccountId: [],
+        City: [],
+        Country: [],
+        PostalCode: [],
+        State: [],
+        StreetInfo: [],
+        StreetNumber: []
+      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -18698,13 +18604,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_AssociatePhoneNumbersWithVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_AssociatePhoneNumbersWithVoiceConnectorCommand = de_AssociatePhoneNumbersWithVoiceConnectorCommand;
@@ -18741,10 +18648,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -18753,13 +18659,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_AssociatePhoneNumbersWithVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = de_AssociatePhoneNumbersWithVoiceConnectorGroupCommand;
@@ -18796,10 +18703,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -18808,13 +18714,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_BatchDeletePhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_BatchDeletePhoneNumberCommand = de_BatchDeletePhoneNumberCommand;
@@ -18848,10 +18755,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -18860,13 +18766,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_BatchUpdatePhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_BatchUpdatePhoneNumberCommand = de_BatchUpdatePhoneNumberCommand;
@@ -18900,10 +18807,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -18912,13 +18818,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreatePhoneNumberOrderCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberOrder != null) {
-        contents.PhoneNumberOrder = de_PhoneNumberOrder(data.PhoneNumberOrder, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberOrder: (_) => de_PhoneNumberOrder(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreatePhoneNumberOrderCommand = de_CreatePhoneNumberOrderCommand;
@@ -18955,10 +18862,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -18967,13 +18873,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateProxySessionCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.ProxySession != null) {
-        contents.ProxySession = de_ProxySession(data.ProxySession, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        ProxySession: (_) => de_ProxySession(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateProxySessionCommand = de_CreateProxySessionCommand;
@@ -19007,10 +18914,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19019,13 +18925,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateSipMediaApplicationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplication != null) {
-        contents.SipMediaApplication = de_SipMediaApplication(data.SipMediaApplication, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplication: (_) => de_SipMediaApplication(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateSipMediaApplicationCommand = de_CreateSipMediaApplicationCommand;
@@ -19065,10 +18972,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19077,13 +18983,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateSipMediaApplicationCallCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationCall != null) {
-        contents.SipMediaApplicationCall = de_SipMediaApplicationCall(data.SipMediaApplicationCall, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationCall: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateSipMediaApplicationCallCommand = de_CreateSipMediaApplicationCallCommand;
@@ -19120,10 +19027,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19132,13 +19038,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateSipRuleCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipRule != null) {
-        contents.SipRule = de_SipRule(data.SipRule, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipRule: (_) => de_SipRule(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateSipRuleCommand = de_CreateSipRuleCommand;
@@ -19178,10 +19085,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19190,13 +19096,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnector != null) {
-        contents.VoiceConnector = de_VoiceConnector(data.VoiceConnector, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnector: (_) => de_VoiceConnector(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateVoiceConnectorCommand = de_CreateVoiceConnectorCommand;
@@ -19233,10 +19140,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19245,13 +19151,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnectorGroup != null) {
-        contents.VoiceConnectorGroup = de_VoiceConnectorGroup(data.VoiceConnectorGroup, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnectorGroup: (_) => de_VoiceConnectorGroup(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateVoiceConnectorGroupCommand = de_CreateVoiceConnectorGroupCommand;
@@ -19288,10 +19195,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19300,13 +19206,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateVoiceProfileCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfile != null) {
-        contents.VoiceProfile = de_VoiceProfile(data.VoiceProfile, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfile: (_) => de_VoiceProfile(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateVoiceProfileCommand = de_CreateVoiceProfileCommand;
@@ -19352,10 +19259,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19364,13 +19270,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_CreateVoiceProfileDomainCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfileDomain != null) {
-        contents.VoiceProfileDomain = de_VoiceProfileDomain(data.VoiceProfileDomain, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfileDomain: (_) => de_VoiceProfileDomain(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_CreateVoiceProfileDomainCommand = de_CreateVoiceProfileDomainCommand;
@@ -19410,10 +19317,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19422,7 +19328,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeletePhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19459,10 +19365,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19471,7 +19376,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteProxySessionCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19508,10 +19413,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19520,7 +19424,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteSipMediaApplicationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19560,10 +19464,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19572,7 +19475,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteSipRuleCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19612,10 +19515,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19624,7 +19526,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19664,10 +19566,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19676,7 +19577,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorEmergencyCallingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19713,10 +19614,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19725,7 +19625,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19765,10 +19665,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19777,7 +19676,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorOriginationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19814,10 +19713,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19826,7 +19724,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorProxyCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19863,10 +19761,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19875,7 +19772,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorStreamingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19912,10 +19809,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19924,7 +19820,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorTerminationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -19961,10 +19857,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -19973,7 +19868,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceConnectorTerminationCredentialsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -20010,10 +19905,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20022,7 +19916,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceProfileCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -20065,10 +19959,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20077,7 +19970,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_DeleteVoiceProfileDomainCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -20120,10 +20013,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20132,13 +20024,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_DisassociatePhoneNumbersFromVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_DisassociatePhoneNumbersFromVoiceConnectorCommand = de_DisassociatePhoneNumbersFromVoiceConnectorCommand;
@@ -20172,10 +20065,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20184,13 +20076,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberErrors != null) {
-        contents.PhoneNumberErrors = de_PhoneNumberErrorList(data.PhoneNumberErrors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberErrors: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand;
@@ -20224,10 +20117,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20236,13 +20128,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetGlobalSettingsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnector != null) {
-        contents.VoiceConnector = de_VoiceConnectorSettings(data.VoiceConnector, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnector: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetGlobalSettingsCommand = de_GetGlobalSettingsCommand;
@@ -20273,10 +20166,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20285,13 +20177,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetPhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumber != null) {
-        contents.PhoneNumber = de_PhoneNumber(data.PhoneNumber, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumber: (_) => de_PhoneNumber(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetPhoneNumberCommand = de_GetPhoneNumberCommand;
@@ -20325,10 +20218,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20337,13 +20229,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetPhoneNumberOrderCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberOrder != null) {
-        contents.PhoneNumberOrder = de_PhoneNumberOrder(data.PhoneNumberOrder, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberOrder: (_) => de_PhoneNumberOrder(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetPhoneNumberOrderCommand = de_GetPhoneNumberOrderCommand;
@@ -20377,10 +20270,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20389,16 +20281,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetPhoneNumberSettingsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.CallingName != null) {
-        contents.CallingName = (0, smithy_client_1.expectString)(data.CallingName);
-      }
-      if (data.CallingNameUpdatedTimestamp != null) {
-        contents.CallingNameUpdatedTimestamp = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(data.CallingNameUpdatedTimestamp));
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        CallingName: smithy_client_1.expectString,
+        CallingNameUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetPhoneNumberSettingsCommand = de_GetPhoneNumberSettingsCommand;
@@ -20429,10 +20320,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20441,13 +20331,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetProxySessionCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.ProxySession != null) {
-        contents.ProxySession = de_ProxySession(data.ProxySession, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        ProxySession: (_) => de_ProxySession(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetProxySessionCommand = de_GetProxySessionCommand;
@@ -20481,10 +20372,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20493,13 +20383,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetSipMediaApplicationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplication != null) {
-        contents.SipMediaApplication = de_SipMediaApplication(data.SipMediaApplication, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplication: (_) => de_SipMediaApplication(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetSipMediaApplicationCommand = de_GetSipMediaApplicationCommand;
@@ -20533,10 +20424,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20545,13 +20435,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetSipMediaApplicationAlexaSkillConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationAlexaSkillConfiguration != null) {
-        contents.SipMediaApplicationAlexaSkillConfiguration = de_SipMediaApplicationAlexaSkillConfiguration(data.SipMediaApplicationAlexaSkillConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationAlexaSkillConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetSipMediaApplicationAlexaSkillConfigurationCommand = de_GetSipMediaApplicationAlexaSkillConfigurationCommand;
@@ -20585,10 +20476,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20597,13 +20487,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetSipMediaApplicationLoggingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationLoggingConfiguration != null) {
-        contents.SipMediaApplicationLoggingConfiguration = de_SipMediaApplicationLoggingConfiguration(data.SipMediaApplicationLoggingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationLoggingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetSipMediaApplicationLoggingConfigurationCommand = de_GetSipMediaApplicationLoggingConfigurationCommand;
@@ -20637,10 +20528,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20649,13 +20539,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetSipRuleCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipRule != null) {
-        contents.SipRule = de_SipRule(data.SipRule, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipRule: (_) => de_SipRule(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetSipRuleCommand = de_GetSipRuleCommand;
@@ -20689,10 +20580,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20701,13 +20591,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetSpeakerSearchTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SpeakerSearchTask != null) {
-        contents.SpeakerSearchTask = de_SpeakerSearchTask(data.SpeakerSearchTask, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SpeakerSearchTask: (_) => de_SpeakerSearchTask(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetSpeakerSearchTaskCommand = de_GetSpeakerSearchTaskCommand;
@@ -20747,10 +20638,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20759,13 +20649,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnector != null) {
-        contents.VoiceConnector = de_VoiceConnector(data.VoiceConnector, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnector: (_) => de_VoiceConnector(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorCommand = de_GetVoiceConnectorCommand;
@@ -20799,10 +20690,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20811,13 +20701,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorEmergencyCallingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.EmergencyCallingConfiguration != null) {
-        contents.EmergencyCallingConfiguration = de_EmergencyCallingConfiguration(data.EmergencyCallingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        EmergencyCallingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorEmergencyCallingConfigurationCommand = de_GetVoiceConnectorEmergencyCallingConfigurationCommand;
@@ -20851,10 +20742,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20863,13 +20753,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnectorGroup != null) {
-        contents.VoiceConnectorGroup = de_VoiceConnectorGroup(data.VoiceConnectorGroup, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnectorGroup: (_) => de_VoiceConnectorGroup(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorGroupCommand = de_GetVoiceConnectorGroupCommand;
@@ -20903,10 +20794,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20915,13 +20805,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorLoggingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.LoggingConfiguration != null) {
-        contents.LoggingConfiguration = de_LoggingConfiguration(data.LoggingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        LoggingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorLoggingConfigurationCommand = de_GetVoiceConnectorLoggingConfigurationCommand;
@@ -20955,10 +20846,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -20967,13 +20857,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorOriginationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Origination != null) {
-        contents.Origination = de_Origination(data.Origination, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Origination: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorOriginationCommand = de_GetVoiceConnectorOriginationCommand;
@@ -21007,10 +20898,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21019,13 +20909,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorProxyCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Proxy != null) {
-        contents.Proxy = de_Proxy(data.Proxy, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Proxy: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorProxyCommand = de_GetVoiceConnectorProxyCommand;
@@ -21059,10 +20950,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21071,13 +20961,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorStreamingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.StreamingConfiguration != null) {
-        contents.StreamingConfiguration = de_StreamingConfiguration(data.StreamingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        StreamingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorStreamingConfigurationCommand = de_GetVoiceConnectorStreamingConfigurationCommand;
@@ -21111,10 +21002,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21123,13 +21013,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorTerminationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Termination != null) {
-        contents.Termination = de_Termination(data.Termination, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Termination: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorTerminationCommand = de_GetVoiceConnectorTerminationCommand;
@@ -21163,10 +21054,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21175,13 +21065,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceConnectorTerminationHealthCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.TerminationHealth != null) {
-        contents.TerminationHealth = de_TerminationHealth(data.TerminationHealth, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        TerminationHealth: (_) => de_TerminationHealth(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceConnectorTerminationHealthCommand = de_GetVoiceConnectorTerminationHealthCommand;
@@ -21215,10 +21106,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21227,13 +21117,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceProfileCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfile != null) {
-        contents.VoiceProfile = de_VoiceProfile(data.VoiceProfile, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfile: (_) => de_VoiceProfile(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceProfileCommand = de_GetVoiceProfileCommand;
@@ -21270,10 +21161,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21282,13 +21172,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceProfileDomainCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfileDomain != null) {
-        contents.VoiceProfileDomain = de_VoiceProfileDomain(data.VoiceProfileDomain, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfileDomain: (_) => de_VoiceProfileDomain(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceProfileDomainCommand = de_GetVoiceProfileDomainCommand;
@@ -21325,10 +21216,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21337,13 +21227,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_GetVoiceToneAnalysisTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceToneAnalysisTask != null) {
-        contents.VoiceToneAnalysisTask = de_VoiceToneAnalysisTask(data.VoiceToneAnalysisTask, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceToneAnalysisTask: (_) => de_VoiceToneAnalysisTask(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_GetVoiceToneAnalysisTaskCommand = de_GetVoiceToneAnalysisTaskCommand;
@@ -21383,10 +21274,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21395,13 +21285,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListAvailableVoiceConnectorRegionsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnectorRegions != null) {
-        contents.VoiceConnectorRegions = de_VoiceConnectorAwsRegionList(data.VoiceConnectorRegions, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnectorRegions: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListAvailableVoiceConnectorRegionsCommand = de_ListAvailableVoiceConnectorRegionsCommand;
@@ -21432,10 +21323,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21444,16 +21334,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListPhoneNumberOrdersCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.PhoneNumberOrders != null) {
-        contents.PhoneNumberOrders = de_PhoneNumberOrderList(data.PhoneNumberOrders, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        PhoneNumberOrders: (_) => de_PhoneNumberOrderList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListPhoneNumberOrdersCommand = de_ListPhoneNumberOrdersCommand;
@@ -21484,10 +21373,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21496,16 +21384,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListPhoneNumbersCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.PhoneNumbers != null) {
-        contents.PhoneNumbers = de_PhoneNumberList(data.PhoneNumbers, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        PhoneNumbers: (_) => de_PhoneNumberList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListPhoneNumbersCommand = de_ListPhoneNumbersCommand;
@@ -21539,10 +21426,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21551,16 +21437,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListProxySessionsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.ProxySessions != null) {
-        contents.ProxySessions = de_ProxySessions(data.ProxySessions, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        ProxySessions: (_) => de_ProxySessions(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListProxySessionsCommand = de_ListProxySessionsCommand;
@@ -21594,10 +21479,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21606,16 +21490,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListSipMediaApplicationsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.SipMediaApplications != null) {
-        contents.SipMediaApplications = de_SipMediaApplicationList(data.SipMediaApplications, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        SipMediaApplications: (_) => de_SipMediaApplicationList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListSipMediaApplicationsCommand = de_ListSipMediaApplicationsCommand;
@@ -21646,10 +21529,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21658,16 +21540,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListSipRulesCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.SipRules != null) {
-        contents.SipRules = de_SipRuleList(data.SipRules, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        SipRules: (_) => de_SipRuleList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListSipRulesCommand = de_ListSipRulesCommand;
@@ -21698,10 +21579,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21710,13 +21590,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListSupportedPhoneNumberCountriesCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumberCountries != null) {
-        contents.PhoneNumberCountries = de_PhoneNumberCountriesList(data.PhoneNumberCountries, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumberCountries: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListSupportedPhoneNumberCountriesCommand = de_ListSupportedPhoneNumberCountriesCommand;
@@ -21750,10 +21631,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21762,13 +21642,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListTagsForResourceCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Tags != null) {
-        contents.Tags = de_TagList(data.Tags, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Tags: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListTagsForResourceCommand = de_ListTagsForResourceCommand;
@@ -21799,10 +21680,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21811,16 +21691,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListVoiceConnectorGroupsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.VoiceConnectorGroups != null) {
-        contents.VoiceConnectorGroups = de_VoiceConnectorGroupList(data.VoiceConnectorGroups, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        VoiceConnectorGroups: (_) => de_VoiceConnectorGroupList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListVoiceConnectorGroupsCommand = de_ListVoiceConnectorGroupsCommand;
@@ -21851,10 +21730,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21863,16 +21741,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListVoiceConnectorsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.VoiceConnectors != null) {
-        contents.VoiceConnectors = de_VoiceConnectorList(data.VoiceConnectors, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        VoiceConnectors: (_) => de_VoiceConnectorList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListVoiceConnectorsCommand = de_ListVoiceConnectorsCommand;
@@ -21903,10 +21780,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21915,13 +21791,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListVoiceConnectorTerminationCredentialsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Usernames != null) {
-        contents.Usernames = de_SensitiveStringList(data.Usernames, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Usernames: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListVoiceConnectorTerminationCredentialsCommand = de_ListVoiceConnectorTerminationCredentialsCommand;
@@ -21955,10 +21832,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -21967,16 +21843,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListVoiceProfileDomainsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.VoiceProfileDomains != null) {
-        contents.VoiceProfileDomains = de_VoiceProfileDomainSummaryList(data.VoiceProfileDomains, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        VoiceProfileDomains: (_) => de_VoiceProfileDomainSummaryList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListVoiceProfileDomainsCommand = de_ListVoiceProfileDomainsCommand;
@@ -22010,10 +21885,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22022,16 +21896,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_ListVoiceProfilesCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
-      if (data.VoiceProfiles != null) {
-        contents.VoiceProfiles = de_VoiceProfileSummaryList(data.VoiceProfiles, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        NextToken: smithy_client_1.expectString,
+        VoiceProfiles: (_) => de_VoiceProfileSummaryList(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ListVoiceProfilesCommand = de_ListVoiceProfilesCommand;
@@ -22065,10 +21938,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22077,13 +21949,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutSipMediaApplicationAlexaSkillConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationAlexaSkillConfiguration != null) {
-        contents.SipMediaApplicationAlexaSkillConfiguration = de_SipMediaApplicationAlexaSkillConfiguration(data.SipMediaApplicationAlexaSkillConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationAlexaSkillConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutSipMediaApplicationAlexaSkillConfigurationCommand = de_PutSipMediaApplicationAlexaSkillConfigurationCommand;
@@ -22117,10 +21990,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22129,13 +22001,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutSipMediaApplicationLoggingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationLoggingConfiguration != null) {
-        contents.SipMediaApplicationLoggingConfiguration = de_SipMediaApplicationLoggingConfiguration(data.SipMediaApplicationLoggingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationLoggingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutSipMediaApplicationLoggingConfigurationCommand = de_PutSipMediaApplicationLoggingConfigurationCommand;
@@ -22169,10 +22042,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22181,13 +22053,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorEmergencyCallingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.EmergencyCallingConfiguration != null) {
-        contents.EmergencyCallingConfiguration = de_EmergencyCallingConfiguration(data.EmergencyCallingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        EmergencyCallingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorEmergencyCallingConfigurationCommand = de_PutVoiceConnectorEmergencyCallingConfigurationCommand;
@@ -22221,10 +22094,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22233,13 +22105,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorLoggingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.LoggingConfiguration != null) {
-        contents.LoggingConfiguration = de_LoggingConfiguration(data.LoggingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        LoggingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorLoggingConfigurationCommand = de_PutVoiceConnectorLoggingConfigurationCommand;
@@ -22273,10 +22146,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22285,13 +22157,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorOriginationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Origination != null) {
-        contents.Origination = de_Origination(data.Origination, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Origination: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorOriginationCommand = de_PutVoiceConnectorOriginationCommand;
@@ -22325,10 +22198,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22337,13 +22209,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorProxyCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Proxy != null) {
-        contents.Proxy = de_Proxy(data.Proxy, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Proxy: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorProxyCommand = de_PutVoiceConnectorProxyCommand;
@@ -22380,10 +22253,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22392,13 +22264,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorStreamingConfigurationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.StreamingConfiguration != null) {
-        contents.StreamingConfiguration = de_StreamingConfiguration(data.StreamingConfiguration, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        StreamingConfiguration: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorStreamingConfigurationCommand = de_PutVoiceConnectorStreamingConfigurationCommand;
@@ -22432,10 +22305,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22444,13 +22316,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_PutVoiceConnectorTerminationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Termination != null) {
-        contents.Termination = de_Termination(data.Termination, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Termination: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_PutVoiceConnectorTerminationCommand = de_PutVoiceConnectorTerminationCommand;
@@ -22487,10 +22360,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22499,7 +22371,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_PutVoiceConnectorTerminationCredentialsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -22536,10 +22408,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22548,13 +22419,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_RestorePhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumber != null) {
-        contents.PhoneNumber = de_PhoneNumber(data.PhoneNumber, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumber: (_) => de_PhoneNumber(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_RestorePhoneNumberCommand = de_RestorePhoneNumberCommand;
@@ -22591,10 +22463,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22603,16 +22474,15 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_SearchAvailablePhoneNumbersCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.E164PhoneNumbers != null) {
-        contents.E164PhoneNumbers = de_E164PhoneNumberList(data.E164PhoneNumbers, context);
-      }
-      if (data.NextToken != null) {
-        contents.NextToken = (0, smithy_client_1.expectString)(data.NextToken);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        E164PhoneNumbers: smithy_client_1._json,
+        NextToken: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_SearchAvailablePhoneNumbersCommand = de_SearchAvailablePhoneNumbersCommand;
@@ -22646,10 +22516,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22658,13 +22527,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_StartSpeakerSearchTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SpeakerSearchTask != null) {
-        contents.SpeakerSearchTask = de_SpeakerSearchTask(data.SpeakerSearchTask, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SpeakerSearchTask: (_) => de_SpeakerSearchTask(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_StartSpeakerSearchTaskCommand = de_StartSpeakerSearchTaskCommand;
@@ -22713,10 +22583,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnprocessableEntityExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22725,13 +22594,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_StartVoiceToneAnalysisTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceToneAnalysisTask != null) {
-        contents.VoiceToneAnalysisTask = de_VoiceToneAnalysisTask(data.VoiceToneAnalysisTask, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceToneAnalysisTask: (_) => de_VoiceToneAnalysisTask(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_StartVoiceToneAnalysisTaskCommand = de_StartVoiceToneAnalysisTaskCommand;
@@ -22780,10 +22650,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnprocessableEntityExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22792,7 +22661,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_StopSpeakerSearchTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -22838,10 +22707,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnprocessableEntityExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22850,7 +22718,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_StopVoiceToneAnalysisTaskCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -22896,10 +22764,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnprocessableEntityExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22908,7 +22775,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_TagResourceCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -22945,10 +22812,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -22957,7 +22823,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_UntagResourceCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -22991,10 +22857,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23003,7 +22868,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_UpdateGlobalSettingsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -23037,10 +22902,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23049,13 +22913,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_UpdatePhoneNumberCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.PhoneNumber != null) {
-        contents.PhoneNumber = de_PhoneNumber(data.PhoneNumber, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        PhoneNumber: (_) => de_PhoneNumber(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdatePhoneNumberCommand = de_UpdatePhoneNumberCommand;
@@ -23092,10 +22957,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23104,7 +22968,7 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 204 && output.statusCode >= 300) {
         return de_UpdatePhoneNumberSettingsCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       await collectBody(output.body, context);
@@ -23138,10 +23002,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23150,13 +23013,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 201 && output.statusCode >= 300) {
         return de_UpdateProxySessionCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.ProxySession != null) {
-        contents.ProxySession = de_ProxySession(data.ProxySession, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        ProxySession: (_) => de_ProxySession(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateProxySessionCommand = de_UpdateProxySessionCommand;
@@ -23190,10 +23054,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23202,13 +23065,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_UpdateSipMediaApplicationCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplication != null) {
-        contents.SipMediaApplication = de_SipMediaApplication(data.SipMediaApplication, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplication: (_) => de_SipMediaApplication(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateSipMediaApplicationCommand = de_UpdateSipMediaApplicationCommand;
@@ -23245,10 +23109,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23257,13 +23120,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 202 && output.statusCode >= 300) {
         return de_UpdateSipMediaApplicationCallCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipMediaApplicationCall != null) {
-        contents.SipMediaApplicationCall = de_SipMediaApplicationCall(data.SipMediaApplicationCall, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipMediaApplicationCall: smithy_client_1._json
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateSipMediaApplicationCallCommand = de_UpdateSipMediaApplicationCallCommand;
@@ -23300,10 +23164,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23312,13 +23175,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 202 && output.statusCode >= 300) {
         return de_UpdateSipRuleCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.SipRule != null) {
-        contents.SipRule = de_SipRule(data.SipRule, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        SipRule: (_) => de_SipRule(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateSipRuleCommand = de_UpdateSipRuleCommand;
@@ -23358,10 +23222,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23370,13 +23233,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_UpdateVoiceConnectorCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnector != null) {
-        contents.VoiceConnector = de_VoiceConnector(data.VoiceConnector, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnector: (_) => de_VoiceConnector(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateVoiceConnectorCommand = de_UpdateVoiceConnectorCommand;
@@ -23410,10 +23274,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23422,13 +23285,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 202 && output.statusCode >= 300) {
         return de_UpdateVoiceConnectorGroupCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceConnectorGroup != null) {
-        contents.VoiceConnectorGroup = de_VoiceConnectorGroup(data.VoiceConnectorGroup, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceConnectorGroup: (_) => de_VoiceConnectorGroup(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateVoiceConnectorGroupCommand = de_UpdateVoiceConnectorGroupCommand;
@@ -23465,10 +23329,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23477,13 +23340,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_UpdateVoiceProfileCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfile != null) {
-        contents.VoiceProfile = de_VoiceProfile(data.VoiceProfile, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfile: (_) => de_VoiceProfile(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateVoiceProfileCommand = de_UpdateVoiceProfileCommand;
@@ -23526,10 +23390,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23538,13 +23401,14 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 200 && output.statusCode >= 300) {
         return de_UpdateVoiceProfileDomainCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.VoiceProfileDomain != null) {
-        contents.VoiceProfileDomain = de_VoiceProfileDomain(data.VoiceProfileDomain, context);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        VoiceProfileDomain: (_) => de_VoiceProfileDomain(_, context)
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_UpdateVoiceProfileDomainCommand = de_UpdateVoiceProfileDomainCommand;
@@ -23581,10 +23445,9 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
@@ -23593,22 +23456,17 @@ var require_Aws_restJson13 = __commonJS({
       if (output.statusCode !== 202 && output.statusCode >= 300) {
         return de_ValidateE911AddressCommandError(output, context);
       }
-      const contents = map({
+      const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      if (data.Address != null) {
-        contents.Address = de_Address(data.Address, context);
-      }
-      if (data.AddressExternalId != null) {
-        contents.AddressExternalId = (0, smithy_client_1.expectString)(data.AddressExternalId);
-      }
-      if (data.CandidateAddressList != null) {
-        contents.CandidateAddressList = de_CandidateAddressList(data.CandidateAddressList, context);
-      }
-      if (data.ValidationResult != null) {
-        contents.ValidationResult = (0, smithy_client_1.expectInt32)(data.ValidationResult);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Address: smithy_client_1._json,
+        AddressExternalId: smithy_client_1.expectString,
+        CandidateAddressList: smithy_client_1._json,
+        ValidationResult: smithy_client_1.expectInt32
+      });
+      Object.assign(contents, doc);
       return contents;
     };
     exports.de_ValidateE911AddressCommand = de_ValidateE911AddressCommand;
@@ -23642,24 +23500,22 @@ var require_Aws_restJson13 = __commonJS({
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException,
             errorCode
           });
       }
     };
-    var map = smithy_client_1.map;
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(ChimeSDKVoiceServiceException_1.ChimeSDKVoiceServiceException);
     var de_AccessDeniedExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.AccessDeniedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23667,14 +23523,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_BadRequestExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.BadRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23682,14 +23537,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ConflictExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ConflictException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23697,14 +23551,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ForbiddenExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ForbiddenException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23712,14 +23565,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_GoneExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.GoneException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23727,14 +23579,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_NotFoundExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.NotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23742,14 +23593,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ResourceLimitExceededExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ResourceLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23757,14 +23607,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ServiceFailureExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ServiceFailureException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23772,14 +23621,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ServiceUnavailableExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ServiceUnavailableException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23787,14 +23635,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_ThrottledClientExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.ThrottledClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23802,14 +23649,13 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.UnauthorizedClientException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
@@ -23817,923 +23663,264 @@ var require_Aws_restJson13 = __commonJS({
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
     var de_UnprocessableEntityExceptionRes = async (parsedOutput, context) => {
-      const contents = map({});
+      const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
-      if (data.Code != null) {
-        contents.Code = (0, smithy_client_1.expectString)(data.Code);
-      }
-      if (data.Message != null) {
-        contents.Message = (0, smithy_client_1.expectString)(data.Message);
-      }
+      const doc = (0, smithy_client_1.take)(data, {
+        Code: smithy_client_1.expectString,
+        Message: smithy_client_1.expectString
+      });
+      Object.assign(contents, doc);
       const exception = new models_0_1.UnprocessableEntityException({
         $metadata: deserializeMetadata(parsedOutput),
         ...contents
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
-    var se_AlexaSkillIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_CallingRegionList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_CapabilityList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_CountryList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Credential = (input, context) => {
-      return {
-        ...input.Password != null && { Password: input.Password },
-        ...input.Username != null && { Username: input.Username }
-      };
-    };
-    var se_CredentialList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Credential(entry, context);
-      });
-    };
-    var se_DNISEmergencyCallingConfiguration = (input, context) => {
-      return {
-        ...input.CallingCountry != null && { CallingCountry: input.CallingCountry },
-        ...input.EmergencyPhoneNumber != null && { EmergencyPhoneNumber: input.EmergencyPhoneNumber },
-        ...input.TestPhoneNumber != null && { TestPhoneNumber: input.TestPhoneNumber }
-      };
-    };
-    var se_DNISEmergencyCallingConfigurationList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DNISEmergencyCallingConfiguration(entry, context);
-      });
-    };
-    var se_E164PhoneNumberList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_EmergencyCallingConfiguration = (input, context) => {
-      return {
-        ...input.DNIS != null && { DNIS: se_DNISEmergencyCallingConfigurationList(input.DNIS, context) }
-      };
-    };
-    var se_GeoMatchParams = (input, context) => {
-      return {
-        ...input.AreaCode != null && { AreaCode: input.AreaCode },
-        ...input.Country != null && { Country: input.Country }
-      };
-    };
-    var se_LoggingConfiguration = (input, context) => {
-      return {
-        ...input.EnableMediaMetricLogs != null && { EnableMediaMetricLogs: input.EnableMediaMetricLogs },
-        ...input.EnableSIPLogs != null && { EnableSIPLogs: input.EnableSIPLogs }
-      };
-    };
-    var se_MediaInsightsConfiguration = (input, context) => {
-      return {
-        ...input.ConfigurationArn != null && { ConfigurationArn: input.ConfigurationArn },
-        ...input.Disabled != null && { Disabled: input.Disabled }
-      };
-    };
-    var se_NonEmptyStringList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Origination = (input, context) => {
-      return {
-        ...input.Disabled != null && { Disabled: input.Disabled },
-        ...input.Routes != null && { Routes: se_OriginationRouteList(input.Routes, context) }
-      };
-    };
-    var se_OriginationRoute = (input, context) => {
-      return {
-        ...input.Host != null && { Host: input.Host },
-        ...input.Port != null && { Port: input.Port },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.Protocol != null && { Protocol: input.Protocol },
-        ...input.Weight != null && { Weight: input.Weight }
-      };
-    };
-    var se_OriginationRouteList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OriginationRoute(entry, context);
-      });
-    };
-    var se_ParticipantPhoneNumberList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_SensitiveStringList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ServerSideEncryptionConfiguration = (input, context) => {
-      return {
-        ...input.KmsKeyArn != null && { KmsKeyArn: input.KmsKeyArn }
-      };
-    };
-    var se_SipHeadersMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_SipMediaApplicationAlexaSkillConfiguration = (input, context) => {
-      return {
-        ...input.AlexaSkillIds != null && { AlexaSkillIds: se_AlexaSkillIdList(input.AlexaSkillIds, context) },
-        ...input.AlexaSkillStatus != null && { AlexaSkillStatus: input.AlexaSkillStatus }
-      };
-    };
-    var se_SipMediaApplicationEndpoint = (input, context) => {
-      return {
-        ...input.LambdaArn != null && { LambdaArn: input.LambdaArn }
-      };
-    };
-    var se_SipMediaApplicationEndpointList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_SipMediaApplicationEndpoint(entry, context);
-      });
-    };
-    var se_SipMediaApplicationLoggingConfiguration = (input, context) => {
-      return {
-        ...input.EnableSipMediaApplicationMessageLogs != null && {
-          EnableSipMediaApplicationMessageLogs: input.EnableSipMediaApplicationMessageLogs
-        }
-      };
-    };
-    var se_SipRuleTargetApplication = (input, context) => {
-      return {
-        ...input.AwsRegion != null && { AwsRegion: input.AwsRegion },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.SipMediaApplicationId != null && { SipMediaApplicationId: input.SipMediaApplicationId }
-      };
-    };
-    var se_SipRuleTargetApplicationList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_SipRuleTargetApplication(entry, context);
-      });
-    };
-    var se_SMACreateCallArgumentsMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_SMAUpdateCallArgumentsMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_StreamingConfiguration = (input, context) => {
-      return {
-        ...input.DataRetentionInHours != null && { DataRetentionInHours: input.DataRetentionInHours },
-        ...input.Disabled != null && { Disabled: input.Disabled },
-        ...input.MediaInsightsConfiguration != null && {
-          MediaInsightsConfiguration: se_MediaInsightsConfiguration(input.MediaInsightsConfiguration, context)
-        },
-        ...input.StreamingNotificationTargets != null && {
-          StreamingNotificationTargets: se_StreamingNotificationTargetList(input.StreamingNotificationTargets, context)
-        }
-      };
-    };
-    var se_StreamingNotificationTarget = (input, context) => {
-      return {
-        ...input.NotificationTarget != null && { NotificationTarget: input.NotificationTarget }
-      };
-    };
-    var se_StreamingNotificationTargetList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_StreamingNotificationTarget(entry, context);
-      });
-    };
-    var se_StringList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Tag = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_TagKeyList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_TagList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Tag(entry, context);
-      });
-    };
-    var se_Termination = (input, context) => {
-      return {
-        ...input.CallingRegions != null && { CallingRegions: se_CallingRegionList(input.CallingRegions, context) },
-        ...input.CidrAllowedList != null && { CidrAllowedList: se_StringList(input.CidrAllowedList, context) },
-        ...input.CpsLimit != null && { CpsLimit: input.CpsLimit },
-        ...input.DefaultPhoneNumber != null && { DefaultPhoneNumber: input.DefaultPhoneNumber },
-        ...input.Disabled != null && { Disabled: input.Disabled }
-      };
-    };
-    var se_UpdatePhoneNumberRequestItem = (input, context) => {
-      return {
-        ...input.CallingName != null && { CallingName: input.CallingName },
-        ...input.PhoneNumberId != null && { PhoneNumberId: input.PhoneNumberId },
-        ...input.ProductType != null && { ProductType: input.ProductType }
-      };
-    };
-    var se_UpdatePhoneNumberRequestItemList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_UpdatePhoneNumberRequestItem(entry, context);
-      });
-    };
-    var se_VoiceConnectorItem = (input, context) => {
-      return {
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.VoiceConnectorId != null && { VoiceConnectorId: input.VoiceConnectorId }
-      };
-    };
-    var se_VoiceConnectorItemList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_VoiceConnectorItem(entry, context);
-      });
-    };
-    var se_VoiceConnectorSettings = (input, context) => {
-      return {
-        ...input.CdrBucket != null && { CdrBucket: input.CdrBucket }
-      };
-    };
-    var de_Address = (output, context) => {
-      return {
-        city: (0, smithy_client_1.expectString)(output.city),
-        country: (0, smithy_client_1.expectString)(output.country),
-        postDirectional: (0, smithy_client_1.expectString)(output.postDirectional),
-        postalCode: (0, smithy_client_1.expectString)(output.postalCode),
-        postalCodePlus4: (0, smithy_client_1.expectString)(output.postalCodePlus4),
-        preDirectional: (0, smithy_client_1.expectString)(output.preDirectional),
-        state: (0, smithy_client_1.expectString)(output.state),
-        streetName: (0, smithy_client_1.expectString)(output.streetName),
-        streetNumber: (0, smithy_client_1.expectString)(output.streetNumber),
-        streetSuffix: (0, smithy_client_1.expectString)(output.streetSuffix)
-      };
-    };
-    var de_AlexaSkillIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_CallDetails = (output, context) => {
-      return {
-        IsCaller: (0, smithy_client_1.expectBoolean)(output.IsCaller),
-        TransactionId: (0, smithy_client_1.expectString)(output.TransactionId),
-        VoiceConnectorId: (0, smithy_client_1.expectString)(output.VoiceConnectorId)
-      };
-    };
-    var de_CallingRegionList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_CandidateAddress = (output, context) => {
-      return {
-        city: (0, smithy_client_1.expectString)(output.city),
-        country: (0, smithy_client_1.expectString)(output.country),
-        postalCode: (0, smithy_client_1.expectString)(output.postalCode),
-        postalCodePlus4: (0, smithy_client_1.expectString)(output.postalCodePlus4),
-        state: (0, smithy_client_1.expectString)(output.state),
-        streetInfo: (0, smithy_client_1.expectString)(output.streetInfo),
-        streetNumber: (0, smithy_client_1.expectString)(output.streetNumber)
-      };
-    };
-    var de_CandidateAddressList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_CandidateAddress(entry, context);
-      });
-      return retVal;
-    };
-    var de_CapabilityList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_DNISEmergencyCallingConfiguration = (output, context) => {
-      return {
-        CallingCountry: (0, smithy_client_1.expectString)(output.CallingCountry),
-        EmergencyPhoneNumber: (0, smithy_client_1.expectString)(output.EmergencyPhoneNumber),
-        TestPhoneNumber: (0, smithy_client_1.expectString)(output.TestPhoneNumber)
-      };
-    };
-    var de_DNISEmergencyCallingConfigurationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_DNISEmergencyCallingConfiguration(entry, context);
-      });
-      return retVal;
-    };
-    var de_E164PhoneNumberList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_EmergencyCallingConfiguration = (output, context) => {
-      return {
-        DNIS: output.DNIS != null ? de_DNISEmergencyCallingConfigurationList(output.DNIS, context) : void 0
-      };
-    };
-    var de_GeoMatchParams = (output, context) => {
-      return {
-        AreaCode: (0, smithy_client_1.expectString)(output.AreaCode),
-        Country: (0, smithy_client_1.expectString)(output.Country)
-      };
-    };
-    var de_LoggingConfiguration = (output, context) => {
-      return {
-        EnableMediaMetricLogs: (0, smithy_client_1.expectBoolean)(output.EnableMediaMetricLogs),
-        EnableSIPLogs: (0, smithy_client_1.expectBoolean)(output.EnableSIPLogs)
-      };
-    };
-    var de_MediaInsightsConfiguration = (output, context) => {
-      return {
-        ConfigurationArn: (0, smithy_client_1.expectString)(output.ConfigurationArn),
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled)
-      };
-    };
-    var de_OrderedPhoneNumber = (output, context) => {
-      return {
-        E164PhoneNumber: (0, smithy_client_1.expectString)(output.E164PhoneNumber),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
-    };
-    var de_OrderedPhoneNumberList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_OrderedPhoneNumber(entry, context);
-      });
-      return retVal;
-    };
-    var de_Origination = (output, context) => {
-      return {
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled),
-        Routes: output.Routes != null ? de_OriginationRouteList(output.Routes, context) : void 0
-      };
-    };
-    var de_OriginationRoute = (output, context) => {
-      return {
-        Host: (0, smithy_client_1.expectString)(output.Host),
-        Port: (0, smithy_client_1.expectInt32)(output.Port),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        Protocol: (0, smithy_client_1.expectString)(output.Protocol),
-        Weight: (0, smithy_client_1.expectInt32)(output.Weight)
-      };
-    };
-    var de_OriginationRouteList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_OriginationRoute(entry, context);
-      });
-      return retVal;
-    };
-    var de_Participant = (output, context) => {
-      return {
-        PhoneNumber: (0, smithy_client_1.expectString)(output.PhoneNumber),
-        ProxyPhoneNumber: (0, smithy_client_1.expectString)(output.ProxyPhoneNumber)
-      };
-    };
-    var de_Participants = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Participant(entry, context);
-      });
-      return retVal;
-    };
     var de_PhoneNumber = (output, context) => {
-      return {
-        Associations: output.Associations != null ? de_PhoneNumberAssociationList(output.Associations, context) : void 0,
-        CallingName: (0, smithy_client_1.expectString)(output.CallingName),
-        CallingNameStatus: (0, smithy_client_1.expectString)(output.CallingNameStatus),
-        Capabilities: output.Capabilities != null ? de_PhoneNumberCapabilities(output.Capabilities, context) : void 0,
-        Country: (0, smithy_client_1.expectString)(output.Country),
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        DeletionTimestamp: output.DeletionTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.DeletionTimestamp)) : void 0,
-        E164PhoneNumber: (0, smithy_client_1.expectString)(output.E164PhoneNumber),
-        OrderId: (0, smithy_client_1.expectString)(output.OrderId),
-        PhoneNumberId: (0, smithy_client_1.expectString)(output.PhoneNumberId),
-        ProductType: (0, smithy_client_1.expectString)(output.ProductType),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Associations: (_) => de_PhoneNumberAssociationList(_, context),
+        CallingName: smithy_client_1.expectString,
+        CallingNameStatus: smithy_client_1.expectString,
+        Capabilities: smithy_client_1._json,
+        Country: smithy_client_1.expectString,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        DeletionTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        E164PhoneNumber: smithy_client_1.expectString,
+        OrderId: smithy_client_1.expectString,
+        PhoneNumberId: smithy_client_1.expectString,
+        ProductType: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        Type: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
     };
     var de_PhoneNumberAssociation = (output, context) => {
-      return {
-        AssociatedTimestamp: output.AssociatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.AssociatedTimestamp)) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Value: (0, smithy_client_1.expectString)(output.Value)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Name: smithy_client_1.expectString,
+        Value: smithy_client_1.expectString
+      });
     };
     var de_PhoneNumberAssociationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_PhoneNumberAssociation(entry, context);
-      });
-      return retVal;
-    };
-    var de_PhoneNumberCapabilities = (output, context) => {
-      return {
-        InboundCall: (0, smithy_client_1.expectBoolean)(output.InboundCall),
-        InboundMMS: (0, smithy_client_1.expectBoolean)(output.InboundMMS),
-        InboundSMS: (0, smithy_client_1.expectBoolean)(output.InboundSMS),
-        OutboundCall: (0, smithy_client_1.expectBoolean)(output.OutboundCall),
-        OutboundMMS: (0, smithy_client_1.expectBoolean)(output.OutboundMMS),
-        OutboundSMS: (0, smithy_client_1.expectBoolean)(output.OutboundSMS)
-      };
-    };
-    var de_PhoneNumberCountriesList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PhoneNumberCountry(entry, context);
-      });
-      return retVal;
-    };
-    var de_PhoneNumberCountry = (output, context) => {
-      return {
-        CountryCode: (0, smithy_client_1.expectString)(output.CountryCode),
-        SupportedPhoneNumberTypes: output.SupportedPhoneNumberTypes != null ? de_PhoneNumberTypeList(output.SupportedPhoneNumberTypes, context) : void 0
-      };
-    };
-    var de_PhoneNumberError = (output, context) => {
-      return {
-        ErrorCode: (0, smithy_client_1.expectString)(output.ErrorCode),
-        ErrorMessage: (0, smithy_client_1.expectString)(output.ErrorMessage),
-        PhoneNumberId: (0, smithy_client_1.expectString)(output.PhoneNumberId)
-      };
-    };
-    var de_PhoneNumberErrorList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PhoneNumberError(entry, context);
       });
       return retVal;
     };
     var de_PhoneNumberList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_PhoneNumber(entry, context);
       });
       return retVal;
     };
     var de_PhoneNumberOrder = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        OrderType: (0, smithy_client_1.expectString)(output.OrderType),
-        OrderedPhoneNumbers: output.OrderedPhoneNumbers != null ? de_OrderedPhoneNumberList(output.OrderedPhoneNumbers, context) : void 0,
-        PhoneNumberOrderId: (0, smithy_client_1.expectString)(output.PhoneNumberOrderId),
-        ProductType: (0, smithy_client_1.expectString)(output.ProductType),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        OrderType: smithy_client_1.expectString,
+        OrderedPhoneNumbers: smithy_client_1._json,
+        PhoneNumberOrderId: smithy_client_1.expectString,
+        ProductType: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
     };
     var de_PhoneNumberOrderList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_PhoneNumberOrder(entry, context);
       });
       return retVal;
     };
-    var de_PhoneNumberTypeList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_Proxy = (output, context) => {
-      return {
-        DefaultSessionExpiryMinutes: (0, smithy_client_1.expectInt32)(output.DefaultSessionExpiryMinutes),
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled),
-        FallBackPhoneNumber: (0, smithy_client_1.expectString)(output.FallBackPhoneNumber),
-        PhoneNumberCountries: output.PhoneNumberCountries != null ? de_StringList(output.PhoneNumberCountries, context) : void 0
-      };
-    };
     var de_ProxySession = (output, context) => {
-      return {
-        Capabilities: output.Capabilities != null ? de_CapabilityList(output.Capabilities, context) : void 0,
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        EndedTimestamp: output.EndedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.EndedTimestamp)) : void 0,
-        ExpiryMinutes: (0, smithy_client_1.expectInt32)(output.ExpiryMinutes),
-        GeoMatchLevel: (0, smithy_client_1.expectString)(output.GeoMatchLevel),
-        GeoMatchParams: output.GeoMatchParams != null ? de_GeoMatchParams(output.GeoMatchParams, context) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NumberSelectionBehavior: (0, smithy_client_1.expectString)(output.NumberSelectionBehavior),
-        Participants: output.Participants != null ? de_Participants(output.Participants, context) : void 0,
-        ProxySessionId: (0, smithy_client_1.expectString)(output.ProxySessionId),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceConnectorId: (0, smithy_client_1.expectString)(output.VoiceConnectorId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Capabilities: smithy_client_1._json,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        EndedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        ExpiryMinutes: smithy_client_1.expectInt32,
+        GeoMatchLevel: smithy_client_1.expectString,
+        GeoMatchParams: smithy_client_1._json,
+        Name: smithy_client_1.expectString,
+        NumberSelectionBehavior: smithy_client_1.expectString,
+        Participants: smithy_client_1._json,
+        ProxySessionId: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceConnectorId: smithy_client_1.expectString
+      });
     };
     var de_ProxySessions = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ProxySession(entry, context);
       });
       return retVal;
     };
-    var de_SensitiveStringList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ServerSideEncryptionConfiguration = (output, context) => {
-      return {
-        KmsKeyArn: (0, smithy_client_1.expectString)(output.KmsKeyArn)
-      };
-    };
     var de_SipMediaApplication = (output, context) => {
-      return {
-        AwsRegion: (0, smithy_client_1.expectString)(output.AwsRegion),
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Endpoints: output.Endpoints != null ? de_SipMediaApplicationEndpointList(output.Endpoints, context) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        SipMediaApplicationArn: (0, smithy_client_1.expectString)(output.SipMediaApplicationArn),
-        SipMediaApplicationId: (0, smithy_client_1.expectString)(output.SipMediaApplicationId),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
-      };
-    };
-    var de_SipMediaApplicationAlexaSkillConfiguration = (output, context) => {
-      return {
-        AlexaSkillIds: output.AlexaSkillIds != null ? de_AlexaSkillIdList(output.AlexaSkillIds, context) : void 0,
-        AlexaSkillStatus: (0, smithy_client_1.expectString)(output.AlexaSkillStatus)
-      };
-    };
-    var de_SipMediaApplicationCall = (output, context) => {
-      return {
-        TransactionId: (0, smithy_client_1.expectString)(output.TransactionId)
-      };
-    };
-    var de_SipMediaApplicationEndpoint = (output, context) => {
-      return {
-        LambdaArn: (0, smithy_client_1.expectString)(output.LambdaArn)
-      };
-    };
-    var de_SipMediaApplicationEndpointList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_SipMediaApplicationEndpoint(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        AwsRegion: smithy_client_1.expectString,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Endpoints: smithy_client_1._json,
+        Name: smithy_client_1.expectString,
+        SipMediaApplicationArn: smithy_client_1.expectString,
+        SipMediaApplicationId: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
       });
-      return retVal;
     };
     var de_SipMediaApplicationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_SipMediaApplication(entry, context);
       });
       return retVal;
     };
-    var de_SipMediaApplicationLoggingConfiguration = (output, context) => {
-      return {
-        EnableSipMediaApplicationMessageLogs: (0, smithy_client_1.expectBoolean)(output.EnableSipMediaApplicationMessageLogs)
-      };
-    };
     var de_SipRule = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        SipRuleId: (0, smithy_client_1.expectString)(output.SipRuleId),
-        TargetApplications: output.TargetApplications != null ? de_SipRuleTargetApplicationList(output.TargetApplications, context) : void 0,
-        TriggerType: (0, smithy_client_1.expectString)(output.TriggerType),
-        TriggerValue: (0, smithy_client_1.expectString)(output.TriggerValue),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Disabled: smithy_client_1.expectBoolean,
+        Name: smithy_client_1.expectString,
+        SipRuleId: smithy_client_1.expectString,
+        TargetApplications: smithy_client_1._json,
+        TriggerType: smithy_client_1.expectString,
+        TriggerValue: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
     };
     var de_SipRuleList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_SipRule(entry, context);
       });
       return retVal;
     };
-    var de_SipRuleTargetApplication = (output, context) => {
-      return {
-        AwsRegion: (0, smithy_client_1.expectString)(output.AwsRegion),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        SipMediaApplicationId: (0, smithy_client_1.expectString)(output.SipMediaApplicationId)
-      };
-    };
-    var de_SipRuleTargetApplicationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_SipRuleTargetApplication(entry, context);
-      });
-      return retVal;
-    };
     var de_SpeakerSearchDetails = (output, context) => {
-      return {
-        Results: output.Results != null ? de_SpeakerSearchResultList(output.Results, context) : void 0,
-        VoiceprintGenerationStatus: (0, smithy_client_1.expectString)(output.VoiceprintGenerationStatus)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Results: (_) => de_SpeakerSearchResultList(_, context),
+        VoiceprintGenerationStatus: smithy_client_1.expectString
+      });
     };
     var de_SpeakerSearchResult = (output, context) => {
-      return {
-        ConfidenceScore: (0, smithy_client_1.limitedParseFloat32)(output.ConfidenceScore),
-        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ConfidenceScore: smithy_client_1.limitedParseFloat32,
+        VoiceProfileId: smithy_client_1.expectString
+      });
     };
     var de_SpeakerSearchResultList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_SpeakerSearchResult(entry, context);
       });
       return retVal;
     };
     var de_SpeakerSearchTask = (output, context) => {
-      return {
-        CallDetails: output.CallDetails != null ? de_CallDetails(output.CallDetails, context) : void 0,
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        SpeakerSearchDetails: output.SpeakerSearchDetails != null ? de_SpeakerSearchDetails(output.SpeakerSearchDetails, context) : void 0,
-        SpeakerSearchTaskId: (0, smithy_client_1.expectString)(output.SpeakerSearchTaskId),
-        SpeakerSearchTaskStatus: (0, smithy_client_1.expectString)(output.SpeakerSearchTaskStatus),
-        StartedTimestamp: output.StartedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.StartedTimestamp)) : void 0,
-        StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0
-      };
-    };
-    var de_StreamingConfiguration = (output, context) => {
-      return {
-        DataRetentionInHours: (0, smithy_client_1.expectInt32)(output.DataRetentionInHours),
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled),
-        MediaInsightsConfiguration: output.MediaInsightsConfiguration != null ? de_MediaInsightsConfiguration(output.MediaInsightsConfiguration, context) : void 0,
-        StreamingNotificationTargets: output.StreamingNotificationTargets != null ? de_StreamingNotificationTargetList(output.StreamingNotificationTargets, context) : void 0
-      };
-    };
-    var de_StreamingNotificationTarget = (output, context) => {
-      return {
-        NotificationTarget: (0, smithy_client_1.expectString)(output.NotificationTarget)
-      };
-    };
-    var de_StreamingNotificationTargetList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_StreamingNotificationTarget(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        CallDetails: smithy_client_1._json,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        SpeakerSearchDetails: (_) => de_SpeakerSearchDetails(_, context),
+        SpeakerSearchTaskId: smithy_client_1.expectString,
+        SpeakerSearchTaskStatus: smithy_client_1.expectString,
+        StartedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        StatusMessage: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
       });
-      return retVal;
-    };
-    var de_StringList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_Tag = (output, context) => {
-      return {
-        Key: (0, smithy_client_1.expectString)(output.Key),
-        Value: (0, smithy_client_1.expectString)(output.Value)
-      };
-    };
-    var de_TagList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Tag(entry, context);
-      });
-      return retVal;
-    };
-    var de_Termination = (output, context) => {
-      return {
-        CallingRegions: output.CallingRegions != null ? de_CallingRegionList(output.CallingRegions, context) : void 0,
-        CidrAllowedList: output.CidrAllowedList != null ? de_StringList(output.CidrAllowedList, context) : void 0,
-        CpsLimit: (0, smithy_client_1.expectInt32)(output.CpsLimit),
-        DefaultPhoneNumber: (0, smithy_client_1.expectString)(output.DefaultPhoneNumber),
-        Disabled: (0, smithy_client_1.expectBoolean)(output.Disabled)
-      };
     };
     var de_TerminationHealth = (output, context) => {
-      return {
-        Source: (0, smithy_client_1.expectString)(output.Source),
-        Timestamp: output.Timestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.Timestamp)) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Source: smithy_client_1.expectString,
+        Timestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
     };
     var de_VoiceConnector = (output, context) => {
-      return {
-        AwsRegion: (0, smithy_client_1.expectString)(output.AwsRegion),
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OutboundHostName: (0, smithy_client_1.expectString)(output.OutboundHostName),
-        RequireEncryption: (0, smithy_client_1.expectBoolean)(output.RequireEncryption),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceConnectorArn: (0, smithy_client_1.expectString)(output.VoiceConnectorArn),
-        VoiceConnectorId: (0, smithy_client_1.expectString)(output.VoiceConnectorId)
-      };
-    };
-    var de_VoiceConnectorAwsRegionList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+      return (0, smithy_client_1.take)(output, {
+        AwsRegion: smithy_client_1.expectString,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Name: smithy_client_1.expectString,
+        OutboundHostName: smithy_client_1.expectString,
+        RequireEncryption: smithy_client_1.expectBoolean,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceConnectorArn: smithy_client_1.expectString,
+        VoiceConnectorId: smithy_client_1.expectString
       });
-      return retVal;
     };
     var de_VoiceConnectorGroup = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceConnectorGroupArn: (0, smithy_client_1.expectString)(output.VoiceConnectorGroupArn),
-        VoiceConnectorGroupId: (0, smithy_client_1.expectString)(output.VoiceConnectorGroupId),
-        VoiceConnectorItems: output.VoiceConnectorItems != null ? de_VoiceConnectorItemList(output.VoiceConnectorItems, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Name: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceConnectorGroupArn: smithy_client_1.expectString,
+        VoiceConnectorGroupId: smithy_client_1.expectString,
+        VoiceConnectorItems: smithy_client_1._json
+      });
     };
     var de_VoiceConnectorGroupList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_VoiceConnectorGroup(entry, context);
-      });
-      return retVal;
-    };
-    var de_VoiceConnectorItem = (output, context) => {
-      return {
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        VoiceConnectorId: (0, smithy_client_1.expectString)(output.VoiceConnectorId)
-      };
-    };
-    var de_VoiceConnectorItemList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_VoiceConnectorItem(entry, context);
       });
       return retVal;
     };
     var de_VoiceConnectorList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_VoiceConnector(entry, context);
       });
       return retVal;
     };
-    var de_VoiceConnectorSettings = (output, context) => {
-      return {
-        CdrBucket: (0, smithy_client_1.expectString)(output.CdrBucket)
-      };
-    };
     var de_VoiceProfile = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        ExpirationTimestamp: output.ExpirationTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.ExpirationTimestamp)) : void 0,
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceProfileArn: (0, smithy_client_1.expectString)(output.VoiceProfileArn),
-        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId),
-        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        ExpirationTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceProfileArn: smithy_client_1.expectString,
+        VoiceProfileDomainId: smithy_client_1.expectString,
+        VoiceProfileId: smithy_client_1.expectString
+      });
     };
     var de_VoiceProfileDomain = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        ServerSideEncryptionConfiguration: output.ServerSideEncryptionConfiguration != null ? de_ServerSideEncryptionConfiguration(output.ServerSideEncryptionConfiguration, context) : void 0,
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceProfileDomainArn: (0, smithy_client_1.expectString)(output.VoiceProfileDomainArn),
-        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Description: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        ServerSideEncryptionConfiguration: smithy_client_1._json,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceProfileDomainArn: smithy_client_1.expectString,
+        VoiceProfileDomainId: smithy_client_1.expectString
+      });
     };
     var de_VoiceProfileDomainSummary = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceProfileDomainArn: (0, smithy_client_1.expectString)(output.VoiceProfileDomainArn),
-        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Description: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceProfileDomainArn: smithy_client_1.expectString,
+        VoiceProfileDomainId: smithy_client_1.expectString
+      });
     };
     var de_VoiceProfileDomainSummaryList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_VoiceProfileDomainSummary(entry, context);
       });
       return retVal;
     };
     var de_VoiceProfileSummary = (output, context) => {
-      return {
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        ExpirationTimestamp: output.ExpirationTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.ExpirationTimestamp)) : void 0,
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceProfileArn: (0, smithy_client_1.expectString)(output.VoiceProfileArn),
-        VoiceProfileDomainId: (0, smithy_client_1.expectString)(output.VoiceProfileDomainId),
-        VoiceProfileId: (0, smithy_client_1.expectString)(output.VoiceProfileId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        ExpirationTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceProfileArn: smithy_client_1.expectString,
+        VoiceProfileDomainId: smithy_client_1.expectString,
+        VoiceProfileId: smithy_client_1.expectString
+      });
     };
     var de_VoiceProfileSummaryList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_VoiceProfileSummary(entry, context);
       });
       return retVal;
     };
     var de_VoiceToneAnalysisTask = (output, context) => {
-      return {
-        CallDetails: output.CallDetails != null ? de_CallDetails(output.CallDetails, context) : void 0,
-        CreatedTimestamp: output.CreatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.CreatedTimestamp)) : void 0,
-        StartedTimestamp: output.StartedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.StartedTimestamp)) : void 0,
-        StatusMessage: (0, smithy_client_1.expectString)(output.StatusMessage),
-        UpdatedTimestamp: output.UpdatedTimestamp != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(output.UpdatedTimestamp)) : void 0,
-        VoiceToneAnalysisTaskId: (0, smithy_client_1.expectString)(output.VoiceToneAnalysisTaskId),
-        VoiceToneAnalysisTaskStatus: (0, smithy_client_1.expectString)(output.VoiceToneAnalysisTaskStatus)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CallDetails: smithy_client_1._json,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        StartedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        StatusMessage: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        VoiceToneAnalysisTaskId: smithy_client_1.expectString,
+        VoiceToneAnalysisTaskStatus: smithy_client_1.expectString
+      });
     };
     var deserializeMetadata = (output) => ({
       httpStatusCode: output.statusCode,
@@ -34073,28 +33260,28 @@ var require_Aws_json1_1 = __commonJS({
     var se_AddTagsToResourceCommand = async (input, context) => {
       const headers = sharedHeaders("AddTagsToResource");
       let body;
-      body = JSON.stringify(se_AddTagsToResourceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_AddTagsToResourceCommand = se_AddTagsToResourceCommand;
     var se_AssociateOpsItemRelatedItemCommand = async (input, context) => {
       const headers = sharedHeaders("AssociateOpsItemRelatedItem");
       let body;
-      body = JSON.stringify(se_AssociateOpsItemRelatedItemRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_AssociateOpsItemRelatedItemCommand = se_AssociateOpsItemRelatedItemCommand;
     var se_CancelCommandCommand = async (input, context) => {
       const headers = sharedHeaders("CancelCommand");
       let body;
-      body = JSON.stringify(se_CancelCommandRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CancelCommandCommand = se_CancelCommandCommand;
     var se_CancelMaintenanceWindowExecutionCommand = async (input, context) => {
       const headers = sharedHeaders("CancelMaintenanceWindowExecution");
       let body;
-      body = JSON.stringify(se_CancelMaintenanceWindowExecutionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CancelMaintenanceWindowExecutionCommand = se_CancelMaintenanceWindowExecutionCommand;
@@ -34108,21 +33295,21 @@ var require_Aws_json1_1 = __commonJS({
     var se_CreateAssociationCommand = async (input, context) => {
       const headers = sharedHeaders("CreateAssociation");
       let body;
-      body = JSON.stringify(se_CreateAssociationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CreateAssociationCommand = se_CreateAssociationCommand;
     var se_CreateAssociationBatchCommand = async (input, context) => {
       const headers = sharedHeaders("CreateAssociationBatch");
       let body;
-      body = JSON.stringify(se_CreateAssociationBatchRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CreateAssociationBatchCommand = se_CreateAssociationBatchCommand;
     var se_CreateDocumentCommand = async (input, context) => {
       const headers = sharedHeaders("CreateDocument");
       let body;
-      body = JSON.stringify(se_CreateDocumentRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CreateDocumentCommand = se_CreateDocumentCommand;
@@ -34143,7 +33330,7 @@ var require_Aws_json1_1 = __commonJS({
     var se_CreateOpsMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("CreateOpsMetadata");
       let body;
-      body = JSON.stringify(se_CreateOpsMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CreateOpsMetadataCommand = se_CreateOpsMetadataCommand;
@@ -34157,28 +33344,28 @@ var require_Aws_json1_1 = __commonJS({
     var se_CreateResourceDataSyncCommand = async (input, context) => {
       const headers = sharedHeaders("CreateResourceDataSync");
       let body;
-      body = JSON.stringify(se_CreateResourceDataSyncRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_CreateResourceDataSyncCommand = se_CreateResourceDataSyncCommand;
     var se_DeleteActivationCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteActivation");
       let body;
-      body = JSON.stringify(se_DeleteActivationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteActivationCommand = se_DeleteActivationCommand;
     var se_DeleteAssociationCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteAssociation");
       let body;
-      body = JSON.stringify(se_DeleteAssociationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteAssociationCommand = se_DeleteAssociationCommand;
     var se_DeleteDocumentCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteDocument");
       let body;
-      body = JSON.stringify(se_DeleteDocumentRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteDocumentCommand = se_DeleteDocumentCommand;
@@ -34192,357 +33379,357 @@ var require_Aws_json1_1 = __commonJS({
     var se_DeleteMaintenanceWindowCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteMaintenanceWindow");
       let body;
-      body = JSON.stringify(se_DeleteMaintenanceWindowRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteMaintenanceWindowCommand = se_DeleteMaintenanceWindowCommand;
     var se_DeleteOpsMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteOpsMetadata");
       let body;
-      body = JSON.stringify(se_DeleteOpsMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteOpsMetadataCommand = se_DeleteOpsMetadataCommand;
     var se_DeleteParameterCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteParameter");
       let body;
-      body = JSON.stringify(se_DeleteParameterRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteParameterCommand = se_DeleteParameterCommand;
     var se_DeleteParametersCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteParameters");
       let body;
-      body = JSON.stringify(se_DeleteParametersRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteParametersCommand = se_DeleteParametersCommand;
     var se_DeletePatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("DeletePatchBaseline");
       let body;
-      body = JSON.stringify(se_DeletePatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeletePatchBaselineCommand = se_DeletePatchBaselineCommand;
     var se_DeleteResourceDataSyncCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteResourceDataSync");
       let body;
-      body = JSON.stringify(se_DeleteResourceDataSyncRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteResourceDataSyncCommand = se_DeleteResourceDataSyncCommand;
     var se_DeleteResourcePolicyCommand = async (input, context) => {
       const headers = sharedHeaders("DeleteResourcePolicy");
       let body;
-      body = JSON.stringify(se_DeleteResourcePolicyRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeleteResourcePolicyCommand = se_DeleteResourcePolicyCommand;
     var se_DeregisterManagedInstanceCommand = async (input, context) => {
       const headers = sharedHeaders("DeregisterManagedInstance");
       let body;
-      body = JSON.stringify(se_DeregisterManagedInstanceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeregisterManagedInstanceCommand = se_DeregisterManagedInstanceCommand;
     var se_DeregisterPatchBaselineForPatchGroupCommand = async (input, context) => {
       const headers = sharedHeaders("DeregisterPatchBaselineForPatchGroup");
       let body;
-      body = JSON.stringify(se_DeregisterPatchBaselineForPatchGroupRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeregisterPatchBaselineForPatchGroupCommand = se_DeregisterPatchBaselineForPatchGroupCommand;
     var se_DeregisterTargetFromMaintenanceWindowCommand = async (input, context) => {
       const headers = sharedHeaders("DeregisterTargetFromMaintenanceWindow");
       let body;
-      body = JSON.stringify(se_DeregisterTargetFromMaintenanceWindowRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeregisterTargetFromMaintenanceWindowCommand = se_DeregisterTargetFromMaintenanceWindowCommand;
     var se_DeregisterTaskFromMaintenanceWindowCommand = async (input, context) => {
       const headers = sharedHeaders("DeregisterTaskFromMaintenanceWindow");
       let body;
-      body = JSON.stringify(se_DeregisterTaskFromMaintenanceWindowRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DeregisterTaskFromMaintenanceWindowCommand = se_DeregisterTaskFromMaintenanceWindowCommand;
     var se_DescribeActivationsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeActivations");
       let body;
-      body = JSON.stringify(se_DescribeActivationsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeActivationsCommand = se_DescribeActivationsCommand;
     var se_DescribeAssociationCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAssociation");
       let body;
-      body = JSON.stringify(se_DescribeAssociationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAssociationCommand = se_DescribeAssociationCommand;
     var se_DescribeAssociationExecutionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAssociationExecutions");
       let body;
-      body = JSON.stringify(se_DescribeAssociationExecutionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAssociationExecutionsCommand = se_DescribeAssociationExecutionsCommand;
     var se_DescribeAssociationExecutionTargetsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAssociationExecutionTargets");
       let body;
-      body = JSON.stringify(se_DescribeAssociationExecutionTargetsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAssociationExecutionTargetsCommand = se_DescribeAssociationExecutionTargetsCommand;
     var se_DescribeAutomationExecutionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAutomationExecutions");
       let body;
-      body = JSON.stringify(se_DescribeAutomationExecutionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAutomationExecutionsCommand = se_DescribeAutomationExecutionsCommand;
     var se_DescribeAutomationStepExecutionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAutomationStepExecutions");
       let body;
-      body = JSON.stringify(se_DescribeAutomationStepExecutionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAutomationStepExecutionsCommand = se_DescribeAutomationStepExecutionsCommand;
     var se_DescribeAvailablePatchesCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeAvailablePatches");
       let body;
-      body = JSON.stringify(se_DescribeAvailablePatchesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeAvailablePatchesCommand = se_DescribeAvailablePatchesCommand;
     var se_DescribeDocumentCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeDocument");
       let body;
-      body = JSON.stringify(se_DescribeDocumentRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeDocumentCommand = se_DescribeDocumentCommand;
     var se_DescribeDocumentPermissionCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeDocumentPermission");
       let body;
-      body = JSON.stringify(se_DescribeDocumentPermissionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeDocumentPermissionCommand = se_DescribeDocumentPermissionCommand;
     var se_DescribeEffectiveInstanceAssociationsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeEffectiveInstanceAssociations");
       let body;
-      body = JSON.stringify(se_DescribeEffectiveInstanceAssociationsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeEffectiveInstanceAssociationsCommand = se_DescribeEffectiveInstanceAssociationsCommand;
     var se_DescribeEffectivePatchesForPatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeEffectivePatchesForPatchBaseline");
       let body;
-      body = JSON.stringify(se_DescribeEffectivePatchesForPatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeEffectivePatchesForPatchBaselineCommand = se_DescribeEffectivePatchesForPatchBaselineCommand;
     var se_DescribeInstanceAssociationsStatusCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInstanceAssociationsStatus");
       let body;
-      body = JSON.stringify(se_DescribeInstanceAssociationsStatusRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInstanceAssociationsStatusCommand = se_DescribeInstanceAssociationsStatusCommand;
     var se_DescribeInstanceInformationCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInstanceInformation");
       let body;
-      body = JSON.stringify(se_DescribeInstanceInformationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInstanceInformationCommand = se_DescribeInstanceInformationCommand;
     var se_DescribeInstancePatchesCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInstancePatches");
       let body;
-      body = JSON.stringify(se_DescribeInstancePatchesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInstancePatchesCommand = se_DescribeInstancePatchesCommand;
     var se_DescribeInstancePatchStatesCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInstancePatchStates");
       let body;
-      body = JSON.stringify(se_DescribeInstancePatchStatesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInstancePatchStatesCommand = se_DescribeInstancePatchStatesCommand;
     var se_DescribeInstancePatchStatesForPatchGroupCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInstancePatchStatesForPatchGroup");
       let body;
-      body = JSON.stringify(se_DescribeInstancePatchStatesForPatchGroupRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInstancePatchStatesForPatchGroupCommand = se_DescribeInstancePatchStatesForPatchGroupCommand;
     var se_DescribeInventoryDeletionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeInventoryDeletions");
       let body;
-      body = JSON.stringify(se_DescribeInventoryDeletionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeInventoryDeletionsCommand = se_DescribeInventoryDeletionsCommand;
     var se_DescribeMaintenanceWindowExecutionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowExecutions");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowExecutionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowExecutionsCommand = se_DescribeMaintenanceWindowExecutionsCommand;
     var se_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowExecutionTaskInvocations");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowExecutionTaskInvocationsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = se_DescribeMaintenanceWindowExecutionTaskInvocationsCommand;
     var se_DescribeMaintenanceWindowExecutionTasksCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowExecutionTasks");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowExecutionTasksRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowExecutionTasksCommand = se_DescribeMaintenanceWindowExecutionTasksCommand;
     var se_DescribeMaintenanceWindowsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindows");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowsCommand = se_DescribeMaintenanceWindowsCommand;
     var se_DescribeMaintenanceWindowScheduleCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowSchedule");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowScheduleRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowScheduleCommand = se_DescribeMaintenanceWindowScheduleCommand;
     var se_DescribeMaintenanceWindowsForTargetCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowsForTarget");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowsForTargetRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowsForTargetCommand = se_DescribeMaintenanceWindowsForTargetCommand;
     var se_DescribeMaintenanceWindowTargetsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowTargets");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowTargetsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowTargetsCommand = se_DescribeMaintenanceWindowTargetsCommand;
     var se_DescribeMaintenanceWindowTasksCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeMaintenanceWindowTasks");
       let body;
-      body = JSON.stringify(se_DescribeMaintenanceWindowTasksRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeMaintenanceWindowTasksCommand = se_DescribeMaintenanceWindowTasksCommand;
     var se_DescribeOpsItemsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeOpsItems");
       let body;
-      body = JSON.stringify(se_DescribeOpsItemsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeOpsItemsCommand = se_DescribeOpsItemsCommand;
     var se_DescribeParametersCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeParameters");
       let body;
-      body = JSON.stringify(se_DescribeParametersRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeParametersCommand = se_DescribeParametersCommand;
     var se_DescribePatchBaselinesCommand = async (input, context) => {
       const headers = sharedHeaders("DescribePatchBaselines");
       let body;
-      body = JSON.stringify(se_DescribePatchBaselinesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribePatchBaselinesCommand = se_DescribePatchBaselinesCommand;
     var se_DescribePatchGroupsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribePatchGroups");
       let body;
-      body = JSON.stringify(se_DescribePatchGroupsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribePatchGroupsCommand = se_DescribePatchGroupsCommand;
     var se_DescribePatchGroupStateCommand = async (input, context) => {
       const headers = sharedHeaders("DescribePatchGroupState");
       let body;
-      body = JSON.stringify(se_DescribePatchGroupStateRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribePatchGroupStateCommand = se_DescribePatchGroupStateCommand;
     var se_DescribePatchPropertiesCommand = async (input, context) => {
       const headers = sharedHeaders("DescribePatchProperties");
       let body;
-      body = JSON.stringify(se_DescribePatchPropertiesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribePatchPropertiesCommand = se_DescribePatchPropertiesCommand;
     var se_DescribeSessionsCommand = async (input, context) => {
       const headers = sharedHeaders("DescribeSessions");
       let body;
-      body = JSON.stringify(se_DescribeSessionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DescribeSessionsCommand = se_DescribeSessionsCommand;
     var se_DisassociateOpsItemRelatedItemCommand = async (input, context) => {
       const headers = sharedHeaders("DisassociateOpsItemRelatedItem");
       let body;
-      body = JSON.stringify(se_DisassociateOpsItemRelatedItemRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_DisassociateOpsItemRelatedItemCommand = se_DisassociateOpsItemRelatedItemCommand;
     var se_GetAutomationExecutionCommand = async (input, context) => {
       const headers = sharedHeaders("GetAutomationExecution");
       let body;
-      body = JSON.stringify(se_GetAutomationExecutionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetAutomationExecutionCommand = se_GetAutomationExecutionCommand;
     var se_GetCalendarStateCommand = async (input, context) => {
       const headers = sharedHeaders("GetCalendarState");
       let body;
-      body = JSON.stringify(se_GetCalendarStateRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetCalendarStateCommand = se_GetCalendarStateCommand;
     var se_GetCommandInvocationCommand = async (input, context) => {
       const headers = sharedHeaders("GetCommandInvocation");
       let body;
-      body = JSON.stringify(se_GetCommandInvocationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetCommandInvocationCommand = se_GetCommandInvocationCommand;
     var se_GetConnectionStatusCommand = async (input, context) => {
       const headers = sharedHeaders("GetConnectionStatus");
       let body;
-      body = JSON.stringify(se_GetConnectionStatusRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetConnectionStatusCommand = se_GetConnectionStatusCommand;
     var se_GetDefaultPatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("GetDefaultPatchBaseline");
       let body;
-      body = JSON.stringify(se_GetDefaultPatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetDefaultPatchBaselineCommand = se_GetDefaultPatchBaselineCommand;
     var se_GetDeployablePatchSnapshotForInstanceCommand = async (input, context) => {
       const headers = sharedHeaders("GetDeployablePatchSnapshotForInstance");
       let body;
-      body = JSON.stringify(se_GetDeployablePatchSnapshotForInstanceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetDeployablePatchSnapshotForInstanceCommand = se_GetDeployablePatchSnapshotForInstanceCommand;
     var se_GetDocumentCommand = async (input, context) => {
       const headers = sharedHeaders("GetDocument");
       let body;
-      body = JSON.stringify(se_GetDocumentRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetDocumentCommand = se_GetDocumentCommand;
@@ -34556,56 +33743,56 @@ var require_Aws_json1_1 = __commonJS({
     var se_GetInventorySchemaCommand = async (input, context) => {
       const headers = sharedHeaders("GetInventorySchema");
       let body;
-      body = JSON.stringify(se_GetInventorySchemaRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetInventorySchemaCommand = se_GetInventorySchemaCommand;
     var se_GetMaintenanceWindowCommand = async (input, context) => {
       const headers = sharedHeaders("GetMaintenanceWindow");
       let body;
-      body = JSON.stringify(se_GetMaintenanceWindowRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetMaintenanceWindowCommand = se_GetMaintenanceWindowCommand;
     var se_GetMaintenanceWindowExecutionCommand = async (input, context) => {
       const headers = sharedHeaders("GetMaintenanceWindowExecution");
       let body;
-      body = JSON.stringify(se_GetMaintenanceWindowExecutionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetMaintenanceWindowExecutionCommand = se_GetMaintenanceWindowExecutionCommand;
     var se_GetMaintenanceWindowExecutionTaskCommand = async (input, context) => {
       const headers = sharedHeaders("GetMaintenanceWindowExecutionTask");
       let body;
-      body = JSON.stringify(se_GetMaintenanceWindowExecutionTaskRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetMaintenanceWindowExecutionTaskCommand = se_GetMaintenanceWindowExecutionTaskCommand;
     var se_GetMaintenanceWindowExecutionTaskInvocationCommand = async (input, context) => {
       const headers = sharedHeaders("GetMaintenanceWindowExecutionTaskInvocation");
       let body;
-      body = JSON.stringify(se_GetMaintenanceWindowExecutionTaskInvocationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetMaintenanceWindowExecutionTaskInvocationCommand = se_GetMaintenanceWindowExecutionTaskInvocationCommand;
     var se_GetMaintenanceWindowTaskCommand = async (input, context) => {
       const headers = sharedHeaders("GetMaintenanceWindowTask");
       let body;
-      body = JSON.stringify(se_GetMaintenanceWindowTaskRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetMaintenanceWindowTaskCommand = se_GetMaintenanceWindowTaskCommand;
     var se_GetOpsItemCommand = async (input, context) => {
       const headers = sharedHeaders("GetOpsItem");
       let body;
-      body = JSON.stringify(se_GetOpsItemRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetOpsItemCommand = se_GetOpsItemCommand;
     var se_GetOpsMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("GetOpsMetadata");
       let body;
-      body = JSON.stringify(se_GetOpsMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetOpsMetadataCommand = se_GetOpsMetadataCommand;
@@ -34619,182 +33806,182 @@ var require_Aws_json1_1 = __commonJS({
     var se_GetParameterCommand = async (input, context) => {
       const headers = sharedHeaders("GetParameter");
       let body;
-      body = JSON.stringify(se_GetParameterRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetParameterCommand = se_GetParameterCommand;
     var se_GetParameterHistoryCommand = async (input, context) => {
       const headers = sharedHeaders("GetParameterHistory");
       let body;
-      body = JSON.stringify(se_GetParameterHistoryRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetParameterHistoryCommand = se_GetParameterHistoryCommand;
     var se_GetParametersCommand = async (input, context) => {
       const headers = sharedHeaders("GetParameters");
       let body;
-      body = JSON.stringify(se_GetParametersRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetParametersCommand = se_GetParametersCommand;
     var se_GetParametersByPathCommand = async (input, context) => {
       const headers = sharedHeaders("GetParametersByPath");
       let body;
-      body = JSON.stringify(se_GetParametersByPathRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetParametersByPathCommand = se_GetParametersByPathCommand;
     var se_GetPatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("GetPatchBaseline");
       let body;
-      body = JSON.stringify(se_GetPatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetPatchBaselineCommand = se_GetPatchBaselineCommand;
     var se_GetPatchBaselineForPatchGroupCommand = async (input, context) => {
       const headers = sharedHeaders("GetPatchBaselineForPatchGroup");
       let body;
-      body = JSON.stringify(se_GetPatchBaselineForPatchGroupRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetPatchBaselineForPatchGroupCommand = se_GetPatchBaselineForPatchGroupCommand;
     var se_GetResourcePoliciesCommand = async (input, context) => {
       const headers = sharedHeaders("GetResourcePolicies");
       let body;
-      body = JSON.stringify(se_GetResourcePoliciesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetResourcePoliciesCommand = se_GetResourcePoliciesCommand;
     var se_GetServiceSettingCommand = async (input, context) => {
       const headers = sharedHeaders("GetServiceSetting");
       let body;
-      body = JSON.stringify(se_GetServiceSettingRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_GetServiceSettingCommand = se_GetServiceSettingCommand;
     var se_LabelParameterVersionCommand = async (input, context) => {
       const headers = sharedHeaders("LabelParameterVersion");
       let body;
-      body = JSON.stringify(se_LabelParameterVersionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_LabelParameterVersionCommand = se_LabelParameterVersionCommand;
     var se_ListAssociationsCommand = async (input, context) => {
       const headers = sharedHeaders("ListAssociations");
       let body;
-      body = JSON.stringify(se_ListAssociationsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListAssociationsCommand = se_ListAssociationsCommand;
     var se_ListAssociationVersionsCommand = async (input, context) => {
       const headers = sharedHeaders("ListAssociationVersions");
       let body;
-      body = JSON.stringify(se_ListAssociationVersionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListAssociationVersionsCommand = se_ListAssociationVersionsCommand;
     var se_ListCommandInvocationsCommand = async (input, context) => {
       const headers = sharedHeaders("ListCommandInvocations");
       let body;
-      body = JSON.stringify(se_ListCommandInvocationsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListCommandInvocationsCommand = se_ListCommandInvocationsCommand;
     var se_ListCommandsCommand = async (input, context) => {
       const headers = sharedHeaders("ListCommands");
       let body;
-      body = JSON.stringify(se_ListCommandsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListCommandsCommand = se_ListCommandsCommand;
     var se_ListComplianceItemsCommand = async (input, context) => {
       const headers = sharedHeaders("ListComplianceItems");
       let body;
-      body = JSON.stringify(se_ListComplianceItemsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListComplianceItemsCommand = se_ListComplianceItemsCommand;
     var se_ListComplianceSummariesCommand = async (input, context) => {
       const headers = sharedHeaders("ListComplianceSummaries");
       let body;
-      body = JSON.stringify(se_ListComplianceSummariesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListComplianceSummariesCommand = se_ListComplianceSummariesCommand;
     var se_ListDocumentMetadataHistoryCommand = async (input, context) => {
       const headers = sharedHeaders("ListDocumentMetadataHistory");
       let body;
-      body = JSON.stringify(se_ListDocumentMetadataHistoryRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListDocumentMetadataHistoryCommand = se_ListDocumentMetadataHistoryCommand;
     var se_ListDocumentsCommand = async (input, context) => {
       const headers = sharedHeaders("ListDocuments");
       let body;
-      body = JSON.stringify(se_ListDocumentsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListDocumentsCommand = se_ListDocumentsCommand;
     var se_ListDocumentVersionsCommand = async (input, context) => {
       const headers = sharedHeaders("ListDocumentVersions");
       let body;
-      body = JSON.stringify(se_ListDocumentVersionsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListDocumentVersionsCommand = se_ListDocumentVersionsCommand;
     var se_ListInventoryEntriesCommand = async (input, context) => {
       const headers = sharedHeaders("ListInventoryEntries");
       let body;
-      body = JSON.stringify(se_ListInventoryEntriesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListInventoryEntriesCommand = se_ListInventoryEntriesCommand;
     var se_ListOpsItemEventsCommand = async (input, context) => {
       const headers = sharedHeaders("ListOpsItemEvents");
       let body;
-      body = JSON.stringify(se_ListOpsItemEventsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListOpsItemEventsCommand = se_ListOpsItemEventsCommand;
     var se_ListOpsItemRelatedItemsCommand = async (input, context) => {
       const headers = sharedHeaders("ListOpsItemRelatedItems");
       let body;
-      body = JSON.stringify(se_ListOpsItemRelatedItemsRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListOpsItemRelatedItemsCommand = se_ListOpsItemRelatedItemsCommand;
     var se_ListOpsMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("ListOpsMetadata");
       let body;
-      body = JSON.stringify(se_ListOpsMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListOpsMetadataCommand = se_ListOpsMetadataCommand;
     var se_ListResourceComplianceSummariesCommand = async (input, context) => {
       const headers = sharedHeaders("ListResourceComplianceSummaries");
       let body;
-      body = JSON.stringify(se_ListResourceComplianceSummariesRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListResourceComplianceSummariesCommand = se_ListResourceComplianceSummariesCommand;
     var se_ListResourceDataSyncCommand = async (input, context) => {
       const headers = sharedHeaders("ListResourceDataSync");
       let body;
-      body = JSON.stringify(se_ListResourceDataSyncRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListResourceDataSyncCommand = se_ListResourceDataSyncCommand;
     var se_ListTagsForResourceCommand = async (input, context) => {
       const headers = sharedHeaders("ListTagsForResource");
       let body;
-      body = JSON.stringify(se_ListTagsForResourceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ListTagsForResourceCommand = se_ListTagsForResourceCommand;
     var se_ModifyDocumentPermissionCommand = async (input, context) => {
       const headers = sharedHeaders("ModifyDocumentPermission");
       let body;
-      body = JSON.stringify(se_ModifyDocumentPermissionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ModifyDocumentPermissionCommand = se_ModifyDocumentPermissionCommand;
@@ -34808,35 +33995,35 @@ var require_Aws_json1_1 = __commonJS({
     var se_PutInventoryCommand = async (input, context) => {
       const headers = sharedHeaders("PutInventory");
       let body;
-      body = JSON.stringify(se_PutInventoryRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_PutInventoryCommand = se_PutInventoryCommand;
     var se_PutParameterCommand = async (input, context) => {
       const headers = sharedHeaders("PutParameter");
       let body;
-      body = JSON.stringify(se_PutParameterRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_PutParameterCommand = se_PutParameterCommand;
     var se_PutResourcePolicyCommand = async (input, context) => {
       const headers = sharedHeaders("PutResourcePolicy");
       let body;
-      body = JSON.stringify(se_PutResourcePolicyRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_PutResourcePolicyCommand = se_PutResourcePolicyCommand;
     var se_RegisterDefaultPatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("RegisterDefaultPatchBaseline");
       let body;
-      body = JSON.stringify(se_RegisterDefaultPatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_RegisterDefaultPatchBaselineCommand = se_RegisterDefaultPatchBaselineCommand;
     var se_RegisterPatchBaselineForPatchGroupCommand = async (input, context) => {
       const headers = sharedHeaders("RegisterPatchBaselineForPatchGroup");
       let body;
-      body = JSON.stringify(se_RegisterPatchBaselineForPatchGroupRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_RegisterPatchBaselineForPatchGroupCommand = se_RegisterPatchBaselineForPatchGroupCommand;
@@ -34857,49 +34044,49 @@ var require_Aws_json1_1 = __commonJS({
     var se_RemoveTagsFromResourceCommand = async (input, context) => {
       const headers = sharedHeaders("RemoveTagsFromResource");
       let body;
-      body = JSON.stringify(se_RemoveTagsFromResourceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_RemoveTagsFromResourceCommand = se_RemoveTagsFromResourceCommand;
     var se_ResetServiceSettingCommand = async (input, context) => {
       const headers = sharedHeaders("ResetServiceSetting");
       let body;
-      body = JSON.stringify(se_ResetServiceSettingRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ResetServiceSettingCommand = se_ResetServiceSettingCommand;
     var se_ResumeSessionCommand = async (input, context) => {
       const headers = sharedHeaders("ResumeSession");
       let body;
-      body = JSON.stringify(se_ResumeSessionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_ResumeSessionCommand = se_ResumeSessionCommand;
     var se_SendAutomationSignalCommand = async (input, context) => {
       const headers = sharedHeaders("SendAutomationSignal");
       let body;
-      body = JSON.stringify(se_SendAutomationSignalRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_SendAutomationSignalCommand = se_SendAutomationSignalCommand;
     var se_SendCommandCommand = async (input, context) => {
       const headers = sharedHeaders("SendCommand");
       let body;
-      body = JSON.stringify(se_SendCommandRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_SendCommandCommand = se_SendCommandCommand;
     var se_StartAssociationsOnceCommand = async (input, context) => {
       const headers = sharedHeaders("StartAssociationsOnce");
       let body;
-      body = JSON.stringify(se_StartAssociationsOnceRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_StartAssociationsOnceCommand = se_StartAssociationsOnceCommand;
     var se_StartAutomationExecutionCommand = async (input, context) => {
       const headers = sharedHeaders("StartAutomationExecution");
       let body;
-      body = JSON.stringify(se_StartAutomationExecutionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_StartAutomationExecutionCommand = se_StartAutomationExecutionCommand;
@@ -34913,35 +34100,35 @@ var require_Aws_json1_1 = __commonJS({
     var se_StartSessionCommand = async (input, context) => {
       const headers = sharedHeaders("StartSession");
       let body;
-      body = JSON.stringify(se_StartSessionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_StartSessionCommand = se_StartSessionCommand;
     var se_StopAutomationExecutionCommand = async (input, context) => {
       const headers = sharedHeaders("StopAutomationExecution");
       let body;
-      body = JSON.stringify(se_StopAutomationExecutionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_StopAutomationExecutionCommand = se_StopAutomationExecutionCommand;
     var se_TerminateSessionCommand = async (input, context) => {
       const headers = sharedHeaders("TerminateSession");
       let body;
-      body = JSON.stringify(se_TerminateSessionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_TerminateSessionCommand = se_TerminateSessionCommand;
     var se_UnlabelParameterVersionCommand = async (input, context) => {
       const headers = sharedHeaders("UnlabelParameterVersion");
       let body;
-      body = JSON.stringify(se_UnlabelParameterVersionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UnlabelParameterVersionCommand = se_UnlabelParameterVersionCommand;
     var se_UpdateAssociationCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateAssociation");
       let body;
-      body = JSON.stringify(se_UpdateAssociationRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateAssociationCommand = se_UpdateAssociationCommand;
@@ -34955,35 +34142,35 @@ var require_Aws_json1_1 = __commonJS({
     var se_UpdateDocumentCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateDocument");
       let body;
-      body = JSON.stringify(se_UpdateDocumentRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateDocumentCommand = se_UpdateDocumentCommand;
     var se_UpdateDocumentDefaultVersionCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateDocumentDefaultVersion");
       let body;
-      body = JSON.stringify(se_UpdateDocumentDefaultVersionRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateDocumentDefaultVersionCommand = se_UpdateDocumentDefaultVersionCommand;
     var se_UpdateDocumentMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateDocumentMetadata");
       let body;
-      body = JSON.stringify(se_UpdateDocumentMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateDocumentMetadataCommand = se_UpdateDocumentMetadataCommand;
     var se_UpdateMaintenanceWindowCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateMaintenanceWindow");
       let body;
-      body = JSON.stringify(se_UpdateMaintenanceWindowRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateMaintenanceWindowCommand = se_UpdateMaintenanceWindowCommand;
     var se_UpdateMaintenanceWindowTargetCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateMaintenanceWindowTarget");
       let body;
-      body = JSON.stringify(se_UpdateMaintenanceWindowTargetRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateMaintenanceWindowTargetCommand = se_UpdateMaintenanceWindowTargetCommand;
@@ -34997,7 +34184,7 @@ var require_Aws_json1_1 = __commonJS({
     var se_UpdateManagedInstanceRoleCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateManagedInstanceRole");
       let body;
-      body = JSON.stringify(se_UpdateManagedInstanceRoleRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateManagedInstanceRoleCommand = se_UpdateManagedInstanceRoleCommand;
@@ -35011,28 +34198,28 @@ var require_Aws_json1_1 = __commonJS({
     var se_UpdateOpsMetadataCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateOpsMetadata");
       let body;
-      body = JSON.stringify(se_UpdateOpsMetadataRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateOpsMetadataCommand = se_UpdateOpsMetadataCommand;
     var se_UpdatePatchBaselineCommand = async (input, context) => {
       const headers = sharedHeaders("UpdatePatchBaseline");
       let body;
-      body = JSON.stringify(se_UpdatePatchBaselineRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdatePatchBaselineCommand = se_UpdatePatchBaselineCommand;
     var se_UpdateResourceDataSyncCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateResourceDataSync");
       let body;
-      body = JSON.stringify(se_UpdateResourceDataSyncRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateResourceDataSyncCommand = se_UpdateResourceDataSyncCommand;
     var se_UpdateServiceSettingCommand = async (input, context) => {
       const headers = sharedHeaders("UpdateServiceSetting");
       let body;
-      body = JSON.stringify(se_UpdateServiceSettingRequest(input, context));
+      body = JSON.stringify((0, smithy_client_1._json)(input));
       return buildHttpRpcRequest(context, headers, "/", void 0, body);
     };
     exports.se_UpdateServiceSettingCommand = se_UpdateServiceSettingCommand;
@@ -35042,12 +34229,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_AddTagsToResourceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_AddTagsToResourceCommand = de_AddTagsToResourceCommand;
     var de_AddTagsToResourceCommandError = async (output, context) => {
@@ -35074,10 +34261,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35088,12 +34274,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_AssociateOpsItemRelatedItemResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_AssociateOpsItemRelatedItemCommand = de_AssociateOpsItemRelatedItemCommand;
     var de_AssociateOpsItemRelatedItemCommandError = async (output, context) => {
@@ -35120,10 +34306,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemRelatedItemAlreadyExistsExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35134,12 +34319,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CancelCommandResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CancelCommandCommand = de_CancelCommandCommand;
     var de_CancelCommandCommandError = async (output, context) => {
@@ -35163,10 +34348,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidInstanceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35177,12 +34361,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CancelMaintenanceWindowExecutionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CancelMaintenanceWindowExecutionCommand = de_CancelMaintenanceWindowExecutionCommand;
     var de_CancelMaintenanceWindowExecutionCommandError = async (output, context) => {
@@ -35200,10 +34384,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35214,12 +34397,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreateActivationResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateActivationCommand = de_CreateActivationCommand;
     var de_CreateActivationCommandError = async (output, context) => {
@@ -35237,10 +34420,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidParametersRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35256,7 +34438,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateAssociationCommand = de_CreateAssociationCommand;
     var de_CreateAssociationCommandError = async (output, context) => {
@@ -35307,10 +34489,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedPlatformTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35326,7 +34507,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateAssociationBatchCommand = de_CreateAssociationBatchCommand;
     var de_CreateAssociationBatchCommandError = async (output, context) => {
@@ -35374,10 +34555,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedPlatformTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35393,7 +34573,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateDocumentCommand = de_CreateDocumentCommand;
     var de_CreateDocumentCommandError = async (output, context) => {
@@ -35423,10 +34603,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_MaxDocumentSizeExceededRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35437,12 +34616,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreateMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateMaintenanceWindowCommand = de_CreateMaintenanceWindowCommand;
     var de_CreateMaintenanceWindowCommandError = async (output, context) => {
@@ -35463,10 +34642,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35477,12 +34655,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreateOpsItemResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateOpsItemCommand = de_CreateOpsItemCommand;
     var de_CreateOpsItemCommandError = async (output, context) => {
@@ -35509,10 +34687,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35523,12 +34700,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreateOpsMetadataResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateOpsMetadataCommand = de_CreateOpsMetadataCommand;
     var de_CreateOpsMetadataCommandError = async (output, context) => {
@@ -35555,10 +34732,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsMetadataTooManyUpdatesExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35569,12 +34745,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreatePatchBaselineResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreatePatchBaselineCommand = de_CreatePatchBaselineCommand;
     var de_CreatePatchBaselineCommandError = async (output, context) => {
@@ -35595,10 +34771,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35609,12 +34784,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_CreateResourceDataSyncResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_CreateResourceDataSyncCommand = de_CreateResourceDataSyncCommand;
     var de_CreateResourceDataSyncCommandError = async (output, context) => {
@@ -35638,10 +34813,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceDataSyncInvalidConfigurationExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35652,12 +34826,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteActivationResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteActivationCommand = de_DeleteActivationCommand;
     var de_DeleteActivationCommandError = async (output, context) => {
@@ -35681,10 +34855,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35695,12 +34868,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteAssociationResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteAssociationCommand = de_DeleteAssociationCommand;
     var de_DeleteAssociationCommandError = async (output, context) => {
@@ -35727,10 +34900,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35741,12 +34913,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteDocumentResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteDocumentCommand = de_DeleteDocumentCommand;
     var de_DeleteDocumentCommandError = async (output, context) => {
@@ -35770,10 +34942,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidDocumentOperationRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35784,12 +34955,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteInventoryResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteInventoryCommand = de_DeleteInventoryCommand;
     var de_DeleteInventoryCommandError = async (output, context) => {
@@ -35816,10 +34987,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidTypeNameExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35830,12 +35000,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteMaintenanceWindowCommand = de_DeleteMaintenanceWindowCommand;
     var de_DeleteMaintenanceWindowCommandError = async (output, context) => {
@@ -35850,10 +35020,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35864,12 +35033,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteOpsMetadataResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteOpsMetadataCommand = de_DeleteOpsMetadataCommand;
     var de_DeleteOpsMetadataCommandError = async (output, context) => {
@@ -35890,10 +35059,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsMetadataNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35904,12 +35072,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteParameterResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteParameterCommand = de_DeleteParameterCommand;
     var de_DeleteParameterCommandError = async (output, context) => {
@@ -35927,10 +35095,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ParameterNotFoundRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35941,12 +35108,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteParametersResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteParametersCommand = de_DeleteParametersCommand;
     var de_DeleteParametersCommandError = async (output, context) => {
@@ -35961,10 +35128,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -35975,12 +35141,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeletePatchBaselineResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeletePatchBaselineCommand = de_DeletePatchBaselineCommand;
     var de_DeletePatchBaselineCommandError = async (output, context) => {
@@ -35998,10 +35164,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceInUseExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36012,12 +35177,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteResourceDataSyncResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteResourceDataSyncCommand = de_DeleteResourceDataSyncCommand;
     var de_DeleteResourceDataSyncCommandError = async (output, context) => {
@@ -36038,10 +35203,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceDataSyncNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36052,12 +35216,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeleteResourcePolicyResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeleteResourcePolicyCommand = de_DeleteResourcePolicyCommand;
     var de_DeleteResourcePolicyCommandError = async (output, context) => {
@@ -36078,10 +35242,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourcePolicyInvalidParameterExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36092,12 +35255,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeregisterManagedInstanceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeregisterManagedInstanceCommand = de_DeregisterManagedInstanceCommand;
     var de_DeregisterManagedInstanceCommandError = async (output, context) => {
@@ -36115,10 +35278,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidInstanceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36129,12 +35291,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeregisterPatchBaselineForPatchGroupResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeregisterPatchBaselineForPatchGroupCommand = de_DeregisterPatchBaselineForPatchGroupCommand;
     var de_DeregisterPatchBaselineForPatchGroupCommandError = async (output, context) => {
@@ -36152,10 +35314,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidResourceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36166,12 +35327,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeregisterTargetFromMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeregisterTargetFromMaintenanceWindowCommand = de_DeregisterTargetFromMaintenanceWindowCommand;
     var de_DeregisterTargetFromMaintenanceWindowCommandError = async (output, context) => {
@@ -36192,10 +35353,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TargetInUseExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36206,12 +35366,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DeregisterTaskFromMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DeregisterTaskFromMaintenanceWindowCommand = de_DeregisterTaskFromMaintenanceWindowCommand;
     var de_DeregisterTaskFromMaintenanceWindowCommandError = async (output, context) => {
@@ -36229,10 +35389,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36248,7 +35407,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeActivationsCommand = de_DescribeActivationsCommand;
     var de_DescribeActivationsCommandError = async (output, context) => {
@@ -36269,10 +35428,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36288,7 +35446,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAssociationCommand = de_DescribeAssociationCommand;
     var de_DescribeAssociationCommandError = async (output, context) => {
@@ -36315,10 +35473,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidInstanceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36334,7 +35491,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAssociationExecutionsCommand = de_DescribeAssociationExecutionsCommand;
     var de_DescribeAssociationExecutionsCommandError = async (output, context) => {
@@ -36355,10 +35512,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36374,7 +35530,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAssociationExecutionTargetsCommand = de_DescribeAssociationExecutionTargetsCommand;
     var de_DescribeAssociationExecutionTargetsCommandError = async (output, context) => {
@@ -36398,10 +35554,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36417,7 +35572,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAutomationExecutionsCommand = de_DescribeAutomationExecutionsCommand;
     var de_DescribeAutomationExecutionsCommandError = async (output, context) => {
@@ -36441,10 +35596,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36460,7 +35614,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAutomationStepExecutionsCommand = de_DescribeAutomationStepExecutionsCommand;
     var de_DescribeAutomationStepExecutionsCommandError = async (output, context) => {
@@ -36487,10 +35641,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36506,7 +35659,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeAvailablePatchesCommand = de_DescribeAvailablePatchesCommand;
     var de_DescribeAvailablePatchesCommandError = async (output, context) => {
@@ -36521,10 +35674,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36540,7 +35692,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeDocumentCommand = de_DescribeDocumentCommand;
     var de_DescribeDocumentCommandError = async (output, context) => {
@@ -36561,10 +35713,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidDocumentVersionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36575,12 +35726,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeDocumentPermissionResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeDocumentPermissionCommand = de_DescribeDocumentPermissionCommand;
     var de_DescribeDocumentPermissionCommandError = async (output, context) => {
@@ -36607,10 +35758,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidPermissionTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36621,12 +35771,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeEffectiveInstanceAssociationsResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeEffectiveInstanceAssociationsCommand = de_DescribeEffectiveInstanceAssociationsCommand;
     var de_DescribeEffectiveInstanceAssociationsCommandError = async (output, context) => {
@@ -36647,10 +35797,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36666,7 +35815,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeEffectivePatchesForPatchBaselineCommand = de_DescribeEffectivePatchesForPatchBaselineCommand;
     var de_DescribeEffectivePatchesForPatchBaselineCommandError = async (output, context) => {
@@ -36690,10 +35839,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedOperatingSystemRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36709,7 +35857,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInstanceAssociationsStatusCommand = de_DescribeInstanceAssociationsStatusCommand;
     var de_DescribeInstanceAssociationsStatusCommandError = async (output, context) => {
@@ -36730,10 +35878,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36749,7 +35896,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInstanceInformationCommand = de_DescribeInstanceInformationCommand;
     var de_DescribeInstanceInformationCommandError = async (output, context) => {
@@ -36776,10 +35923,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36795,7 +35941,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInstancePatchesCommand = de_DescribeInstancePatchesCommand;
     var de_DescribeInstancePatchesCommandError = async (output, context) => {
@@ -36819,10 +35965,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36838,7 +35983,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInstancePatchStatesCommand = de_DescribeInstancePatchStatesCommand;
     var de_DescribeInstancePatchStatesCommandError = async (output, context) => {
@@ -36856,10 +36001,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36875,7 +36019,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInstancePatchStatesForPatchGroupCommand = de_DescribeInstancePatchStatesForPatchGroupCommand;
     var de_DescribeInstancePatchStatesForPatchGroupCommandError = async (output, context) => {
@@ -36896,10 +36040,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36915,7 +36058,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeInventoryDeletionsCommand = de_DescribeInventoryDeletionsCommand;
     var de_DescribeInventoryDeletionsCommandError = async (output, context) => {
@@ -36936,10 +36079,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36955,7 +36097,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowExecutionsCommand = de_DescribeMaintenanceWindowExecutionsCommand;
     var de_DescribeMaintenanceWindowExecutionsCommandError = async (output, context) => {
@@ -36970,10 +36112,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -36989,7 +36130,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = de_DescribeMaintenanceWindowExecutionTaskInvocationsCommand;
     var de_DescribeMaintenanceWindowExecutionTaskInvocationsCommandError = async (output, context) => {
@@ -37007,10 +36148,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37026,7 +36166,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowExecutionTasksCommand = de_DescribeMaintenanceWindowExecutionTasksCommand;
     var de_DescribeMaintenanceWindowExecutionTasksCommandError = async (output, context) => {
@@ -37044,10 +36184,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37058,12 +36197,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeMaintenanceWindowsResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowsCommand = de_DescribeMaintenanceWindowsCommand;
     var de_DescribeMaintenanceWindowsCommandError = async (output, context) => {
@@ -37078,10 +36217,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37092,12 +36230,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeMaintenanceWindowScheduleResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowScheduleCommand = de_DescribeMaintenanceWindowScheduleCommand;
     var de_DescribeMaintenanceWindowScheduleCommandError = async (output, context) => {
@@ -37115,10 +36253,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37129,12 +36266,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeMaintenanceWindowsForTargetResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowsForTargetCommand = de_DescribeMaintenanceWindowsForTargetCommand;
     var de_DescribeMaintenanceWindowsForTargetCommandError = async (output, context) => {
@@ -37149,10 +36286,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37163,12 +36299,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeMaintenanceWindowTargetsResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowTargetsCommand = de_DescribeMaintenanceWindowTargetsCommand;
     var de_DescribeMaintenanceWindowTargetsCommandError = async (output, context) => {
@@ -37186,10 +36322,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37200,12 +36335,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribeMaintenanceWindowTasksResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeMaintenanceWindowTasksCommand = de_DescribeMaintenanceWindowTasksCommand;
     var de_DescribeMaintenanceWindowTasksCommandError = async (output, context) => {
@@ -37223,10 +36358,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37242,7 +36376,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeOpsItemsCommand = de_DescribeOpsItemsCommand;
     var de_DescribeOpsItemsCommandError = async (output, context) => {
@@ -37257,10 +36391,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37276,7 +36409,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeParametersCommand = de_DescribeParametersCommand;
     var de_DescribeParametersCommandError = async (output, context) => {
@@ -37303,10 +36436,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37317,12 +36449,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribePatchBaselinesResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribePatchBaselinesCommand = de_DescribePatchBaselinesCommand;
     var de_DescribePatchBaselinesCommandError = async (output, context) => {
@@ -37337,10 +36469,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37351,12 +36482,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribePatchGroupsResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribePatchGroupsCommand = de_DescribePatchGroupsCommand;
     var de_DescribePatchGroupsCommandError = async (output, context) => {
@@ -37371,10 +36502,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37385,12 +36515,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribePatchGroupStateResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribePatchGroupStateCommand = de_DescribePatchGroupStateCommand;
     var de_DescribePatchGroupStateCommandError = async (output, context) => {
@@ -37408,10 +36538,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37422,12 +36551,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DescribePatchPropertiesResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribePatchPropertiesCommand = de_DescribePatchPropertiesCommand;
     var de_DescribePatchPropertiesCommandError = async (output, context) => {
@@ -37442,10 +36571,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37461,7 +36589,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DescribeSessionsCommand = de_DescribeSessionsCommand;
     var de_DescribeSessionsCommandError = async (output, context) => {
@@ -37482,10 +36610,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37496,12 +36623,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_DisassociateOpsItemRelatedItemResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_DisassociateOpsItemRelatedItemCommand = de_DisassociateOpsItemRelatedItemCommand;
     var de_DisassociateOpsItemRelatedItemCommandError = async (output, context) => {
@@ -37525,10 +36652,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemRelatedItemAssociationNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37544,7 +36670,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetAutomationExecutionCommand = de_GetAutomationExecutionCommand;
     var de_GetAutomationExecutionCommandError = async (output, context) => {
@@ -37562,10 +36688,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37576,12 +36701,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetCalendarStateResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetCalendarStateCommand = de_GetCalendarStateCommand;
     var de_GetCalendarStateCommandError = async (output, context) => {
@@ -37605,10 +36730,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedCalendarExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37619,12 +36743,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetCommandInvocationResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetCommandInvocationCommand = de_GetCommandInvocationCommand;
     var de_GetCommandInvocationCommandError = async (output, context) => {
@@ -37651,10 +36775,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvocationDoesNotExistRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37665,12 +36788,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetConnectionStatusResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetConnectionStatusCommand = de_GetConnectionStatusCommand;
     var de_GetConnectionStatusCommandError = async (output, context) => {
@@ -37685,10 +36808,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37699,12 +36821,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetDefaultPatchBaselineResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetDefaultPatchBaselineCommand = de_GetDefaultPatchBaselineCommand;
     var de_GetDefaultPatchBaselineCommandError = async (output, context) => {
@@ -37719,10 +36841,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37733,12 +36854,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetDeployablePatchSnapshotForInstanceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetDeployablePatchSnapshotForInstanceCommand = de_GetDeployablePatchSnapshotForInstanceCommand;
     var de_GetDeployablePatchSnapshotForInstanceCommandError = async (output, context) => {
@@ -37759,10 +36880,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedOperatingSystemRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37778,7 +36898,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetDocumentCommand = de_GetDocumentCommand;
     var de_GetDocumentCommandError = async (output, context) => {
@@ -37799,10 +36919,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidDocumentVersionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37813,12 +36932,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetInventoryResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetInventoryCommand = de_GetInventoryCommand;
     var de_GetInventoryCommandError = async (output, context) => {
@@ -37851,10 +36970,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidTypeNameExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37865,12 +36983,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetInventorySchemaResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetInventorySchemaCommand = de_GetInventorySchemaCommand;
     var de_GetInventorySchemaCommandError = async (output, context) => {
@@ -37891,10 +37009,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidTypeNameExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37910,7 +37027,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetMaintenanceWindowCommand = de_GetMaintenanceWindowCommand;
     var de_GetMaintenanceWindowCommandError = async (output, context) => {
@@ -37928,10 +37045,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37947,7 +37063,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetMaintenanceWindowExecutionCommand = de_GetMaintenanceWindowExecutionCommand;
     var de_GetMaintenanceWindowExecutionCommandError = async (output, context) => {
@@ -37965,10 +37081,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -37984,7 +37099,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetMaintenanceWindowExecutionTaskCommand = de_GetMaintenanceWindowExecutionTaskCommand;
     var de_GetMaintenanceWindowExecutionTaskCommandError = async (output, context) => {
@@ -38002,10 +37117,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38021,7 +37135,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetMaintenanceWindowExecutionTaskInvocationCommand = de_GetMaintenanceWindowExecutionTaskInvocationCommand;
     var de_GetMaintenanceWindowExecutionTaskInvocationCommandError = async (output, context) => {
@@ -38039,10 +37153,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38058,7 +37171,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetMaintenanceWindowTaskCommand = de_GetMaintenanceWindowTaskCommand;
     var de_GetMaintenanceWindowTaskCommandError = async (output, context) => {
@@ -38076,10 +37189,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38095,7 +37207,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetOpsItemCommand = de_GetOpsItemCommand;
     var de_GetOpsItemCommandError = async (output, context) => {
@@ -38116,10 +37228,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38130,12 +37241,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetOpsMetadataResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetOpsMetadataCommand = de_GetOpsMetadataCommand;
     var de_GetOpsMetadataCommandError = async (output, context) => {
@@ -38156,10 +37267,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsMetadataNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38170,12 +37280,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetOpsSummaryResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetOpsSummaryCommand = de_GetOpsSummaryCommand;
     var de_GetOpsSummaryCommandError = async (output, context) => {
@@ -38205,10 +37315,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceDataSyncNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38224,7 +37333,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetParameterCommand = de_GetParameterCommand;
     var de_GetParameterCommandError = async (output, context) => {
@@ -38248,10 +37357,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ParameterVersionNotFoundRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38267,7 +37375,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetParameterHistoryCommand = de_GetParameterHistoryCommand;
     var de_GetParameterHistoryCommandError = async (output, context) => {
@@ -38291,10 +37399,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ParameterNotFoundRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38310,7 +37417,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetParametersCommand = de_GetParametersCommand;
     var de_GetParametersCommandError = async (output, context) => {
@@ -38328,10 +37435,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidKeyIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38347,7 +37453,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetParametersByPathCommand = de_GetParametersByPathCommand;
     var de_GetParametersByPathCommandError = async (output, context) => {
@@ -38377,10 +37483,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38396,7 +37501,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetPatchBaselineCommand = de_GetPatchBaselineCommand;
     var de_GetPatchBaselineCommandError = async (output, context) => {
@@ -38417,10 +37522,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidResourceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38431,12 +37535,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetPatchBaselineForPatchGroupResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetPatchBaselineForPatchGroupCommand = de_GetPatchBaselineForPatchGroupCommand;
     var de_GetPatchBaselineForPatchGroupCommandError = async (output, context) => {
@@ -38451,10 +37555,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38465,12 +37568,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_GetResourcePoliciesResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetResourcePoliciesCommand = de_GetResourcePoliciesCommand;
     var de_GetResourcePoliciesCommandError = async (output, context) => {
@@ -38488,10 +37591,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourcePolicyInvalidParameterExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38507,7 +37609,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_GetServiceSettingCommand = de_GetServiceSettingCommand;
     var de_GetServiceSettingCommandError = async (output, context) => {
@@ -38525,10 +37627,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ServiceSettingNotFoundRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38539,12 +37640,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_LabelParameterVersionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_LabelParameterVersionCommand = de_LabelParameterVersionCommand;
     var de_LabelParameterVersionCommandError = async (output, context) => {
@@ -38571,10 +37672,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38590,7 +37690,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListAssociationsCommand = de_ListAssociationsCommand;
     var de_ListAssociationsCommandError = async (output, context) => {
@@ -38608,10 +37708,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38627,7 +37726,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListAssociationVersionsCommand = de_ListAssociationVersionsCommand;
     var de_ListAssociationVersionsCommandError = async (output, context) => {
@@ -38648,10 +37747,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38667,7 +37765,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListCommandInvocationsCommand = de_ListCommandInvocationsCommand;
     var de_ListCommandInvocationsCommandError = async (output, context) => {
@@ -38694,10 +37792,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38713,7 +37810,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListCommandsCommand = de_ListCommandsCommand;
     var de_ListCommandsCommandError = async (output, context) => {
@@ -38740,10 +37837,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38759,7 +37855,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListComplianceItemsCommand = de_ListComplianceItemsCommand;
     var de_ListComplianceItemsCommandError = async (output, context) => {
@@ -38786,10 +37882,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidResourceTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38800,12 +37895,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_ListComplianceSummariesResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListComplianceSummariesCommand = de_ListComplianceSummariesCommand;
     var de_ListComplianceSummariesCommandError = async (output, context) => {
@@ -38826,10 +37921,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38845,7 +37939,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListDocumentMetadataHistoryCommand = de_ListDocumentMetadataHistoryCommand;
     var de_ListDocumentMetadataHistoryCommandError = async (output, context) => {
@@ -38869,10 +37963,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38888,7 +37981,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListDocumentsCommand = de_ListDocumentsCommand;
     var de_ListDocumentsCommandError = async (output, context) => {
@@ -38909,10 +38002,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38928,7 +38020,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListDocumentVersionsCommand = de_ListDocumentVersionsCommand;
     var de_ListDocumentVersionsCommandError = async (output, context) => {
@@ -38949,10 +38041,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -38963,12 +38054,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_ListInventoryEntriesResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListInventoryEntriesCommand = de_ListInventoryEntriesCommand;
     var de_ListInventoryEntriesCommandError = async (output, context) => {
@@ -38995,10 +38086,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidTypeNameExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39014,7 +38104,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListOpsItemEventsCommand = de_ListOpsItemEventsCommand;
     var de_ListOpsItemEventsCommandError = async (output, context) => {
@@ -39038,10 +38128,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39057,7 +38146,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListOpsItemRelatedItemsCommand = de_ListOpsItemRelatedItemsCommand;
     var de_ListOpsItemRelatedItemsCommandError = async (output, context) => {
@@ -39075,10 +38164,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemInvalidParameterExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39094,7 +38182,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListOpsMetadataCommand = de_ListOpsMetadataCommand;
     var de_ListOpsMetadataCommandError = async (output, context) => {
@@ -39112,10 +38200,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsMetadataInvalidArgumentExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39131,7 +38218,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListResourceComplianceSummariesCommand = de_ListResourceComplianceSummariesCommand;
     var de_ListResourceComplianceSummariesCommandError = async (output, context) => {
@@ -39152,10 +38239,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidNextTokenRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39171,7 +38257,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListResourceDataSyncCommand = de_ListResourceDataSyncCommand;
     var de_ListResourceDataSyncCommandError = async (output, context) => {
@@ -39192,10 +38278,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceDataSyncInvalidConfigurationExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39206,12 +38291,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_ListTagsForResourceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ListTagsForResourceCommand = de_ListTagsForResourceCommand;
     var de_ListTagsForResourceCommandError = async (output, context) => {
@@ -39232,10 +38317,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidResourceTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39246,12 +38330,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_ModifyDocumentPermissionResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ModifyDocumentPermissionCommand = de_ModifyDocumentPermissionCommand;
     var de_ModifyDocumentPermissionCommandError = async (output, context) => {
@@ -39278,10 +38362,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidPermissionTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39292,12 +38375,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_PutComplianceItemsResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_PutComplianceItemsCommand = de_PutComplianceItemsCommand;
     var de_PutComplianceItemsCommandError = async (output, context) => {
@@ -39330,10 +38413,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TotalSizeLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39344,12 +38426,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_PutInventoryResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_PutInventoryCommand = de_PutInventoryCommand;
     var de_PutInventoryCommandError = async (output, context) => {
@@ -39397,10 +38479,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedInventorySchemaVersionExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39411,12 +38492,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_PutParameterResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_PutParameterCommand = de_PutParameterCommand;
     var de_PutParameterCommandError = async (output, context) => {
@@ -39473,10 +38554,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedParameterTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39487,12 +38567,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_PutResourcePolicyResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_PutResourcePolicyCommand = de_PutResourcePolicyCommand;
     var de_PutResourcePolicyCommandError = async (output, context) => {
@@ -39516,10 +38596,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourcePolicyLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39530,12 +38609,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_RegisterDefaultPatchBaselineResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_RegisterDefaultPatchBaselineCommand = de_RegisterDefaultPatchBaselineCommand;
     var de_RegisterDefaultPatchBaselineCommandError = async (output, context) => {
@@ -39556,10 +38635,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidResourceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39570,12 +38648,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_RegisterPatchBaselineForPatchGroupResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_RegisterPatchBaselineForPatchGroupCommand = de_RegisterPatchBaselineForPatchGroupCommand;
     var de_RegisterPatchBaselineForPatchGroupCommandError = async (output, context) => {
@@ -39602,10 +38680,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39616,12 +38693,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_RegisterTargetWithMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_RegisterTargetWithMaintenanceWindowCommand = de_RegisterTargetWithMaintenanceWindowCommand;
     var de_RegisterTargetWithMaintenanceWindowCommandError = async (output, context) => {
@@ -39645,10 +38722,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39659,12 +38735,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_RegisterTaskWithMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_RegisterTaskWithMaintenanceWindowCommand = de_RegisterTaskWithMaintenanceWindowCommand;
     var de_RegisterTaskWithMaintenanceWindowCommandError = async (output, context) => {
@@ -39691,10 +38767,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39705,12 +38780,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_RemoveTagsFromResourceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_RemoveTagsFromResourceCommand = de_RemoveTagsFromResourceCommand;
     var de_RemoveTagsFromResourceCommandError = async (output, context) => {
@@ -39734,10 +38809,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39753,7 +38827,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ResetServiceSettingCommand = de_ResetServiceSettingCommand;
     var de_ResetServiceSettingCommandError = async (output, context) => {
@@ -39774,10 +38848,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39788,12 +38861,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_ResumeSessionResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_ResumeSessionCommand = de_ResumeSessionCommand;
     var de_ResumeSessionCommandError = async (output, context) => {
@@ -39811,10 +38884,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39825,12 +38897,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_SendAutomationSignalResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_SendAutomationSignalCommand = de_SendAutomationSignalCommand;
     var de_SendAutomationSignalCommandError = async (output, context) => {
@@ -39854,10 +38926,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidAutomationSignalExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39873,7 +38944,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_SendCommandCommand = de_SendCommandCommand;
     var de_SendCommandCommandError = async (output, context) => {
@@ -39918,10 +38989,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_UnsupportedPlatformTypeRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39932,12 +39002,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_StartAssociationsOnceResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_StartAssociationsOnceCommand = de_StartAssociationsOnceCommand;
     var de_StartAssociationsOnceCommandError = async (output, context) => {
@@ -39955,10 +39025,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidAssociationRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -39969,12 +39038,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_StartAutomationExecutionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_StartAutomationExecutionCommand = de_StartAutomationExecutionCommand;
     var de_StartAutomationExecutionCommandError = async (output, context) => {
@@ -40007,10 +39076,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidTargetRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40021,12 +39089,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_StartChangeRequestExecutionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_StartChangeRequestExecutionCommand = de_StartChangeRequestExecutionCommand;
     var de_StartChangeRequestExecutionCommandError = async (output, context) => {
@@ -40059,10 +39127,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidAutomationExecutionParametersExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40073,12 +39140,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_StartSessionResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_StartSessionCommand = de_StartSessionCommand;
     var de_StartSessionCommandError = async (output, context) => {
@@ -40099,10 +39166,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TargetNotConnectedRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40113,12 +39179,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_StopAutomationExecutionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_StopAutomationExecutionCommand = de_StopAutomationExecutionCommand;
     var de_StopAutomationExecutionCommandError = async (output, context) => {
@@ -40139,10 +39205,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidAutomationStatusUpdateExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40153,12 +39218,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_TerminateSessionResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_TerminateSessionCommand = de_TerminateSessionCommand;
     var de_TerminateSessionCommandError = async (output, context) => {
@@ -40173,10 +39238,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40187,12 +39251,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UnlabelParameterVersionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UnlabelParameterVersionCommand = de_UnlabelParameterVersionCommand;
     var de_UnlabelParameterVersionCommandError = async (output, context) => {
@@ -40216,10 +39280,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40235,7 +39298,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateAssociationCommand = de_UpdateAssociationCommand;
     var de_UpdateAssociationCommandError = async (output, context) => {
@@ -40286,10 +39349,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40305,7 +39367,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateAssociationStatusCommand = de_UpdateAssociationStatusCommand;
     var de_UpdateAssociationStatusCommandError = async (output, context) => {
@@ -40335,10 +39397,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40354,7 +39415,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateDocumentCommand = de_UpdateDocumentCommand;
     var de_UpdateDocumentCommandError = async (output, context) => {
@@ -40396,10 +39457,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_MaxDocumentSizeExceededRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40410,12 +39470,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateDocumentDefaultVersionResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateDocumentDefaultVersionCommand = de_UpdateDocumentDefaultVersionCommand;
     var de_UpdateDocumentDefaultVersionCommandError = async (output, context) => {
@@ -40439,10 +39499,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidDocumentVersionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40453,12 +39512,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateDocumentMetadataResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateDocumentMetadataCommand = de_UpdateDocumentMetadataCommand;
     var de_UpdateDocumentMetadataCommandError = async (output, context) => {
@@ -40482,10 +39541,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidDocumentVersionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40496,12 +39554,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateMaintenanceWindowResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateMaintenanceWindowCommand = de_UpdateMaintenanceWindowCommand;
     var de_UpdateMaintenanceWindowCommandError = async (output, context) => {
@@ -40519,10 +39577,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40533,12 +39590,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateMaintenanceWindowTargetResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateMaintenanceWindowTargetCommand = de_UpdateMaintenanceWindowTargetCommand;
     var de_UpdateMaintenanceWindowTargetCommandError = async (output, context) => {
@@ -40556,10 +39613,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40575,7 +39631,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateMaintenanceWindowTaskCommand = de_UpdateMaintenanceWindowTaskCommand;
     var de_UpdateMaintenanceWindowTaskCommandError = async (output, context) => {
@@ -40593,10 +39649,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40607,12 +39662,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateManagedInstanceRoleResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateManagedInstanceRoleCommand = de_UpdateManagedInstanceRoleCommand;
     var de_UpdateManagedInstanceRoleCommandError = async (output, context) => {
@@ -40630,10 +39685,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InvalidInstanceIdRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40644,12 +39698,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateOpsItemResponse(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateOpsItemCommand = de_UpdateOpsItemCommand;
     var de_UpdateOpsItemCommandError = async (output, context) => {
@@ -40679,10 +39733,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsItemNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40693,12 +39746,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateOpsMetadataResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateOpsMetadataCommand = de_UpdateOpsMetadataCommand;
     var de_UpdateOpsMetadataCommandError = async (output, context) => {
@@ -40725,10 +39778,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_OpsMetadataTooManyUpdatesExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40744,7 +39796,7 @@ var require_Aws_json1_1 = __commonJS({
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdatePatchBaselineCommand = de_UpdatePatchBaselineCommand;
     var de_UpdatePatchBaselineCommandError = async (output, context) => {
@@ -40762,10 +39814,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_InternalServerErrorRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40776,12 +39827,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateResourceDataSyncResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateResourceDataSyncCommand = de_UpdateResourceDataSyncCommand;
     var de_UpdateResourceDataSyncCommandError = async (output, context) => {
@@ -40805,10 +39856,9 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_ResourceDataSyncNotFoundExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
@@ -40819,12 +39869,12 @@ var require_Aws_json1_1 = __commonJS({
       }
       const data = await parseBody(output.body, context);
       let contents = {};
-      contents = de_UpdateServiceSettingResult(data, context);
+      contents = (0, smithy_client_1._json)(data);
       const response2 = {
         $metadata: deserializeMetadata(output),
         ...contents
       };
-      return Promise.resolve(response2);
+      return response2;
     };
     exports.de_UpdateServiceSettingCommand = de_UpdateServiceSettingCommand;
     var de_UpdateServiceSettingCommandError = async (output, context) => {
@@ -40845,17 +39895,16 @@ var require_Aws_json1_1 = __commonJS({
           throw await de_TooManyUpdatesRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
-          (0, smithy_client_1.throwDefaultError)({
+          return throwDefaultError({
             output,
             parsedBody,
-            exceptionCtor: SSMServiceException_1.SSMServiceException,
             errorCode
           });
       }
     };
     var de_AlreadyExistsExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AlreadyExistsException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AlreadyExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40864,7 +39913,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociatedInstancesRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociatedInstances(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AssociatedInstances({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40873,7 +39922,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociationAlreadyExistsRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociationAlreadyExists(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AssociationAlreadyExists({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40882,7 +39931,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociationDoesNotExistRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociationDoesNotExist(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AssociationDoesNotExist({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40891,7 +39940,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociationExecutionDoesNotExistRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociationExecutionDoesNotExist(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AssociationExecutionDoesNotExist({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40900,7 +39949,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociationLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociationLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AssociationLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40909,7 +39958,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AssociationVersionLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AssociationVersionLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AssociationVersionLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40918,7 +39967,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationDefinitionNotApprovedExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationDefinitionNotApprovedException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AutomationDefinitionNotApprovedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40927,7 +39976,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationDefinitionNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationDefinitionNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AutomationDefinitionNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40936,7 +39985,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationDefinitionVersionNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationDefinitionVersionNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AutomationDefinitionVersionNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40945,7 +39994,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationExecutionLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationExecutionLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AutomationExecutionLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40954,7 +40003,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationExecutionNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationExecutionNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.AutomationExecutionNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40963,7 +40012,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_AutomationStepNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_AutomationStepNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.AutomationStepNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40972,7 +40021,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ComplianceTypeCountLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ComplianceTypeCountLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ComplianceTypeCountLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40981,7 +40030,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_CustomSchemaCountLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_CustomSchemaCountLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.CustomSchemaCountLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40990,7 +40039,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DocumentAlreadyExistsRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DocumentAlreadyExists(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.DocumentAlreadyExists({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -40999,7 +40048,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DocumentLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DocumentLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.DocumentLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41008,7 +40057,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DocumentPermissionLimitRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DocumentPermissionLimit(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.DocumentPermissionLimit({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41017,7 +40066,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DocumentVersionLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DocumentVersionLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.DocumentVersionLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41026,7 +40075,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DoesNotExistExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DoesNotExistException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.DoesNotExistException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41035,7 +40084,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DuplicateDocumentContentRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DuplicateDocumentContent(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.DuplicateDocumentContent({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41044,7 +40093,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DuplicateDocumentVersionNameRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DuplicateDocumentVersionName(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.DuplicateDocumentVersionName({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41053,7 +40102,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_DuplicateInstanceIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_DuplicateInstanceId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.DuplicateInstanceId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41062,7 +40111,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_FeatureNotAvailableExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_FeatureNotAvailableException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.FeatureNotAvailableException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41071,7 +40120,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_HierarchyLevelLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_HierarchyLevelLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.HierarchyLevelLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41080,7 +40129,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_HierarchyTypeMismatchExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_HierarchyTypeMismatchException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.HierarchyTypeMismatchException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41089,7 +40138,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_IdempotentParameterMismatchRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_IdempotentParameterMismatch(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.IdempotentParameterMismatch({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41098,7 +40147,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_IncompatiblePolicyExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_IncompatiblePolicyException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.IncompatiblePolicyException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41107,7 +40156,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InternalServerErrorRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InternalServerError(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InternalServerError({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41116,7 +40165,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidActivationRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidActivation(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidActivation({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41125,7 +40174,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidActivationIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidActivationId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidActivationId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41134,7 +40183,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAggregatorExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAggregatorException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAggregatorException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41143,7 +40192,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAllowedPatternExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAllowedPatternException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAllowedPatternException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41152,7 +40201,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAssociationRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAssociation(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAssociation({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41161,7 +40210,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAssociationVersionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAssociationVersion(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidAssociationVersion({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41170,7 +40219,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAutomationExecutionParametersExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAutomationExecutionParametersException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAutomationExecutionParametersException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41179,7 +40228,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAutomationSignalExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAutomationSignalException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAutomationSignalException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41188,7 +40237,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidAutomationStatusUpdateExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidAutomationStatusUpdateException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidAutomationStatusUpdateException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41197,7 +40246,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidCommandIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidCommandId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidCommandId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41206,7 +40255,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDeleteInventoryParametersExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDeleteInventoryParametersException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDeleteInventoryParametersException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41215,7 +40264,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDeletionIdExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDeletionIdException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDeletionIdException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41224,7 +40273,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocument(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDocument({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41233,7 +40282,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentContentRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocumentContent(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDocumentContent({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41242,7 +40291,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentOperationRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocumentOperation(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDocumentOperation({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41251,7 +40300,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentSchemaVersionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocumentSchemaVersion(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDocumentSchemaVersion({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41260,7 +40309,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentTypeRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocumentType(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidDocumentType({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41269,7 +40318,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidDocumentVersionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidDocumentVersion(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidDocumentVersion({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41278,7 +40327,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidFilterRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidFilter(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidFilter({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41287,7 +40336,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidFilterKeyRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidFilterKey(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidFilterKey({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41296,7 +40345,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidFilterOptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidFilterOption(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidFilterOption({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41305,7 +40354,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidFilterValueRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidFilterValue(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidFilterValue({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41314,7 +40363,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidInstanceIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidInstanceId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidInstanceId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41323,7 +40372,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidInstanceInformationFilterValueRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidInstanceInformationFilterValue(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidInstanceInformationFilterValue({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41332,7 +40381,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidInventoryGroupExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidInventoryGroupException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidInventoryGroupException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41341,7 +40390,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidInventoryItemContextExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidInventoryItemContextException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidInventoryItemContextException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41350,7 +40399,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidInventoryRequestExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidInventoryRequestException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidInventoryRequestException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41359,7 +40408,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidItemContentExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidItemContentException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidItemContentException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41368,7 +40417,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidKeyIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidKeyId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidKeyId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41377,7 +40426,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidNextTokenRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidNextToken(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidNextToken({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41386,7 +40435,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidNotificationConfigRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidNotificationConfig(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidNotificationConfig({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41395,7 +40444,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidOptionExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidOptionException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidOptionException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41404,7 +40453,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidOutputFolderRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidOutputFolder(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidOutputFolder({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41413,7 +40462,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidOutputLocationRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidOutputLocation(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidOutputLocation({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41422,7 +40471,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidParametersRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidParameters(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidParameters({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41431,7 +40480,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidPermissionTypeRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidPermissionType(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidPermissionType({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41440,7 +40489,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidPluginNameRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidPluginName(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidPluginName({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41449,7 +40498,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidPolicyAttributeExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidPolicyAttributeException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidPolicyAttributeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41458,7 +40507,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidPolicyTypeExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidPolicyTypeException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidPolicyTypeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41467,7 +40516,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidResourceIdRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidResourceId(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidResourceId({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41476,7 +40525,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidResourceTypeRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidResourceType(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidResourceType({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41485,7 +40534,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidResultAttributeExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidResultAttributeException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidResultAttributeException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41494,7 +40543,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidRoleRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidRole(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvalidRole({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41503,7 +40552,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidScheduleRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidSchedule(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidSchedule({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41512,7 +40561,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidTagRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidTag(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidTag({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41521,7 +40570,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidTargetRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidTarget(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidTarget({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41530,7 +40579,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidTargetMapsRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidTargetMaps(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidTargetMaps({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41539,7 +40588,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidTypeNameExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidTypeNameException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.InvalidTypeNameException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41548,7 +40597,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvalidUpdateRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvalidUpdate(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.InvalidUpdate({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41557,7 +40606,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_InvocationDoesNotExistRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_InvocationDoesNotExist(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.InvocationDoesNotExist({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41566,7 +40615,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ItemContentMismatchExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ItemContentMismatchException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ItemContentMismatchException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41575,7 +40624,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ItemSizeLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ItemSizeLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ItemSizeLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41584,7 +40633,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_MaxDocumentSizeExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_MaxDocumentSizeExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.MaxDocumentSizeExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41593,7 +40642,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemAccessDeniedExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemAccessDeniedException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemAccessDeniedException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41602,7 +40651,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemAlreadyExistsExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemAlreadyExistsException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemAlreadyExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41611,7 +40660,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemInvalidParameterExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemInvalidParameterException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemInvalidParameterException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41620,7 +40669,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41629,7 +40678,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41638,7 +40687,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemRelatedItemAlreadyExistsExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemRelatedItemAlreadyExistsException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsItemRelatedItemAlreadyExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41647,7 +40696,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsItemRelatedItemAssociationNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsItemRelatedItemAssociationNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.OpsItemRelatedItemAssociationNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41656,7 +40705,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataAlreadyExistsExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataAlreadyExistsException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsMetadataAlreadyExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41665,7 +40714,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataInvalidArgumentExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataInvalidArgumentException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsMetadataInvalidArgumentException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41674,7 +40723,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataKeyLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataKeyLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.OpsMetadataKeyLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41683,7 +40732,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsMetadataLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41692,7 +40741,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsMetadataNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41701,7 +40750,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_OpsMetadataTooManyUpdatesExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_OpsMetadataTooManyUpdatesException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.OpsMetadataTooManyUpdatesException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41710,7 +40759,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterAlreadyExistsRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterAlreadyExists(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterAlreadyExists({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41719,7 +40768,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41728,7 +40777,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterMaxVersionLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterMaxVersionLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterMaxVersionLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41737,7 +40786,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterNotFoundRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterNotFound(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ParameterNotFound({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41746,7 +40795,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterPatternMismatchExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterPatternMismatchException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterPatternMismatchException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41755,7 +40804,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterVersionLabelLimitExceededRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterVersionLabelLimitExceeded(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterVersionLabelLimitExceeded({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41764,7 +40813,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ParameterVersionNotFoundRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ParameterVersionNotFound(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ParameterVersionNotFound({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41773,7 +40822,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_PoliciesLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_PoliciesLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.PoliciesLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41782,7 +40831,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceDataSyncAlreadyExistsExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceDataSyncAlreadyExistsException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceDataSyncAlreadyExistsException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41791,7 +40840,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceDataSyncConflictExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceDataSyncConflictException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.ResourceDataSyncConflictException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41800,7 +40849,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceDataSyncCountExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceDataSyncCountExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceDataSyncCountExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41809,7 +40858,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceDataSyncInvalidConfigurationExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceDataSyncInvalidConfigurationException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceDataSyncInvalidConfigurationException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41818,7 +40867,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceDataSyncNotFoundExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceDataSyncNotFoundException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceDataSyncNotFoundException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41827,7 +40876,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceInUseExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceInUseException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceInUseException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41836,7 +40885,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourceLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourceLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourceLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41845,7 +40894,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourcePolicyConflictExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourcePolicyConflictException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourcePolicyConflictException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41854,7 +40903,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourcePolicyInvalidParameterExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourcePolicyInvalidParameterException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.ResourcePolicyInvalidParameterException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41863,7 +40912,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ResourcePolicyLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ResourcePolicyLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ResourcePolicyLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41872,7 +40921,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_ServiceSettingNotFoundRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_ServiceSettingNotFound(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.ServiceSettingNotFound({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41881,7 +40930,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_StatusUnchangedRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_StatusUnchanged(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_2_1.StatusUnchanged({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41890,7 +40939,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_SubTypeCountLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_SubTypeCountLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.SubTypeCountLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41899,7 +40948,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_TargetInUseExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_TargetInUseException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.TargetInUseException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41908,7 +40957,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_TargetNotConnectedRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_TargetNotConnected(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.TargetNotConnected({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41917,7 +40966,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_TooManyTagsErrorRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_TooManyTagsError(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.TooManyTagsError({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41926,7 +40975,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_TooManyUpdatesRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_TooManyUpdates(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.TooManyUpdates({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41935,7 +40984,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_TotalSizeLimitExceededExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_TotalSizeLimitExceededException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.TotalSizeLimitExceededException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41944,7 +40993,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedCalendarExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedCalendarException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.UnsupportedCalendarException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41953,7 +41002,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedFeatureRequiredExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedFeatureRequiredException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.UnsupportedFeatureRequiredException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41962,7 +41011,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedInventoryItemContextExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedInventoryItemContextException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.UnsupportedInventoryItemContextException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41971,7 +41020,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedInventorySchemaVersionExceptionRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedInventorySchemaVersionException(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.UnsupportedInventorySchemaVersionException({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41980,7 +41029,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedOperatingSystemRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedOperatingSystem(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.UnsupportedOperatingSystem({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41989,7 +41038,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedParameterTypeRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedParameterType(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_1_1.UnsupportedParameterType({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
@@ -41998,6207 +41047,1679 @@ var require_Aws_json1_1 = __commonJS({
     };
     var de_UnsupportedPlatformTypeRes = async (parsedOutput, context) => {
       const body = parsedOutput.body;
-      const deserialized = de_UnsupportedPlatformType(body, context);
+      const deserialized = (0, smithy_client_1._json)(body);
       const exception = new models_0_1.UnsupportedPlatformType({
         $metadata: deserializeMetadata(parsedOutput),
         ...deserialized
       });
       return (0, smithy_client_1.decorateServiceException)(exception, body);
     };
-    var se_AccountIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Accounts = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_AddTagsToResourceRequest = (input, context) => {
-      return {
-        ...input.ResourceId != null && { ResourceId: input.ResourceId },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
-    };
-    var se_Alarm = (input, context) => {
-      return {
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_AlarmConfiguration = (input, context) => {
-      return {
-        ...input.Alarms != null && { Alarms: se_AlarmList(input.Alarms, context) },
-        ...input.IgnorePollAlarmFailure != null && { IgnorePollAlarmFailure: input.IgnorePollAlarmFailure }
-      };
-    };
-    var se_AlarmList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Alarm(entry, context);
-      });
-    };
-    var se_AssociateOpsItemRelatedItemRequest = (input, context) => {
-      return {
-        ...input.AssociationType != null && { AssociationType: input.AssociationType },
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.ResourceUri != null && { ResourceUri: input.ResourceUri }
-      };
-    };
-    var se_AssociationExecutionFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_AssociationExecutionFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_AssociationExecutionFilter(entry, context);
-      });
-    };
-    var se_AssociationExecutionTargetsFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_AssociationExecutionTargetsFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_AssociationExecutionTargetsFilter(entry, context);
-      });
-    };
-    var se_AssociationFilter = (input, context) => {
-      return {
-        ...input.key != null && { key: input.key },
-        ...input.value != null && { value: input.value }
-      };
-    };
-    var se_AssociationFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_AssociationFilter(entry, context);
-      });
-    };
-    var se_AssociationIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
     var se_AssociationStatus = (input, context) => {
-      return {
-        ...input.AdditionalInfo != null && { AdditionalInfo: input.AdditionalInfo },
-        ...input.Date != null && { Date: Math.round(input.Date.getTime() / 1e3) },
-        ...input.Message != null && { Message: input.Message },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_AttachmentsSource = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Values != null && { Values: se_AttachmentsSourceValues(input.Values, context) }
-      };
-    };
-    var se_AttachmentsSourceList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_AttachmentsSource(entry, context);
-      });
-    };
-    var se_AttachmentsSourceValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_AutomationExecutionFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_AutomationExecutionFilterValueList(input.Values, context) }
-      };
-    };
-    var se_AutomationExecutionFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_AutomationExecutionFilter(entry, context);
-      });
-    };
-    var se_AutomationExecutionFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_AutomationParameterMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_AutomationParameterValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var se_AutomationParameterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_BaselineOverride = (input, context) => {
-      return {
-        ...input.ApprovalRules != null && { ApprovalRules: se_PatchRuleGroup(input.ApprovalRules, context) },
-        ...input.ApprovedPatches != null && { ApprovedPatches: se_PatchIdList(input.ApprovedPatches, context) },
-        ...input.ApprovedPatchesComplianceLevel != null && {
-          ApprovedPatchesComplianceLevel: input.ApprovedPatchesComplianceLevel
-        },
-        ...input.ApprovedPatchesEnableNonSecurity != null && {
-          ApprovedPatchesEnableNonSecurity: input.ApprovedPatchesEnableNonSecurity
-        },
-        ...input.GlobalFilters != null && { GlobalFilters: se_PatchFilterGroup(input.GlobalFilters, context) },
-        ...input.OperatingSystem != null && { OperatingSystem: input.OperatingSystem },
-        ...input.RejectedPatches != null && { RejectedPatches: se_PatchIdList(input.RejectedPatches, context) },
-        ...input.RejectedPatchesAction != null && { RejectedPatchesAction: input.RejectedPatchesAction },
-        ...input.Sources != null && { Sources: se_PatchSourceList(input.Sources, context) }
-      };
-    };
-    var se_CalendarNameOrARNList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_CancelCommandRequest = (input, context) => {
-      return {
-        ...input.CommandId != null && { CommandId: input.CommandId },
-        ...input.InstanceIds != null && { InstanceIds: se_InstanceIdList(input.InstanceIds, context) }
-      };
-    };
-    var se_CancelMaintenanceWindowExecutionRequest = (input, context) => {
-      return {
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_CloudWatchOutputConfig = (input, context) => {
-      return {
-        ...input.CloudWatchLogGroupName != null && { CloudWatchLogGroupName: input.CloudWatchLogGroupName },
-        ...input.CloudWatchOutputEnabled != null && { CloudWatchOutputEnabled: input.CloudWatchOutputEnabled }
-      };
-    };
-    var se_CommandFilter = (input, context) => {
-      return {
-        ...input.key != null && { key: input.key },
-        ...input.value != null && { value: input.value }
-      };
-    };
-    var se_CommandFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_CommandFilter(entry, context);
+      return (0, smithy_client_1.take)(input, {
+        AdditionalInfo: [],
+        Date: (_) => Math.round(_.getTime() / 1e3),
+        Message: [],
+        Name: []
       });
     };
     var se_ComplianceExecutionSummary = (input, context) => {
-      return {
-        ...input.ExecutionId != null && { ExecutionId: input.ExecutionId },
-        ...input.ExecutionTime != null && { ExecutionTime: Math.round(input.ExecutionTime.getTime() / 1e3) },
-        ...input.ExecutionType != null && { ExecutionType: input.ExecutionType }
-      };
-    };
-    var se_ComplianceItemDetails = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_ComplianceItemEntry = (input, context) => {
-      return {
-        ...input.Details != null && { Details: se_ComplianceItemDetails(input.Details, context) },
-        ...input.Id != null && { Id: input.Id },
-        ...input.Severity != null && { Severity: input.Severity },
-        ...input.Status != null && { Status: input.Status },
-        ...input.Title != null && { Title: input.Title }
-      };
-    };
-    var se_ComplianceItemEntryList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ComplianceItemEntry(entry, context);
-      });
-    };
-    var se_ComplianceResourceIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ComplianceResourceTypeList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ComplianceStringFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Values != null && { Values: se_ComplianceStringFilterValueList(input.Values, context) }
-      };
-    };
-    var se_ComplianceStringFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ComplianceStringFilter(entry, context);
-      });
-    };
-    var se_ComplianceStringFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
+      return (0, smithy_client_1.take)(input, {
+        ExecutionId: [],
+        ExecutionTime: (_) => Math.round(_.getTime() / 1e3),
+        ExecutionType: []
       });
     };
     var se_CreateActivationRequest = (input, context) => {
-      return {
-        ...input.DefaultInstanceName != null && { DefaultInstanceName: input.DefaultInstanceName },
-        ...input.Description != null && { Description: input.Description },
-        ...input.ExpirationDate != null && { ExpirationDate: Math.round(input.ExpirationDate.getTime() / 1e3) },
-        ...input.IamRole != null && { IamRole: input.IamRole },
-        ...input.RegistrationLimit != null && { RegistrationLimit: input.RegistrationLimit },
-        ...input.RegistrationMetadata != null && {
-          RegistrationMetadata: se_RegistrationMetadataList(input.RegistrationMetadata, context)
-        },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
-    };
-    var se_CreateAssociationBatchRequest = (input, context) => {
-      return {
-        ...input.Entries != null && { Entries: se_CreateAssociationBatchRequestEntries(input.Entries, context) }
-      };
-    };
-    var se_CreateAssociationBatchRequestEntries = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_CreateAssociationBatchRequestEntry(entry, context);
+      return (0, smithy_client_1.take)(input, {
+        DefaultInstanceName: [],
+        Description: [],
+        ExpirationDate: (_) => Math.round(_.getTime() / 1e3),
+        IamRole: [],
+        RegistrationLimit: [],
+        RegistrationMetadata: smithy_client_1._json,
+        Tags: smithy_client_1._json
       });
-    };
-    var se_CreateAssociationBatchRequestEntry = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.ApplyOnlyAtCronInterval != null && { ApplyOnlyAtCronInterval: input.ApplyOnlyAtCronInterval },
-        ...input.AssociationName != null && { AssociationName: input.AssociationName },
-        ...input.AutomationTargetParameterName != null && {
-          AutomationTargetParameterName: input.AutomationTargetParameterName
-        },
-        ...input.CalendarNames != null && { CalendarNames: se_CalendarNameOrARNList(input.CalendarNames, context) },
-        ...input.ComplianceSeverity != null && { ComplianceSeverity: input.ComplianceSeverity },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OutputLocation != null && {
-          OutputLocation: se_InstanceAssociationOutputLocation(input.OutputLocation, context)
-        },
-        ...input.Parameters != null && { Parameters: se_Parameters(input.Parameters, context) },
-        ...input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression },
-        ...input.ScheduleOffset != null && { ScheduleOffset: input.ScheduleOffset },
-        ...input.SyncCompliance != null && { SyncCompliance: input.SyncCompliance },
-        ...input.TargetLocations != null && { TargetLocations: se_TargetLocations(input.TargetLocations, context) },
-        ...input.TargetMaps != null && { TargetMaps: se_TargetMaps(input.TargetMaps, context) },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
-    };
-    var se_CreateAssociationRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.ApplyOnlyAtCronInterval != null && { ApplyOnlyAtCronInterval: input.ApplyOnlyAtCronInterval },
-        ...input.AssociationName != null && { AssociationName: input.AssociationName },
-        ...input.AutomationTargetParameterName != null && {
-          AutomationTargetParameterName: input.AutomationTargetParameterName
-        },
-        ...input.CalendarNames != null && { CalendarNames: se_CalendarNameOrARNList(input.CalendarNames, context) },
-        ...input.ComplianceSeverity != null && { ComplianceSeverity: input.ComplianceSeverity },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OutputLocation != null && {
-          OutputLocation: se_InstanceAssociationOutputLocation(input.OutputLocation, context)
-        },
-        ...input.Parameters != null && { Parameters: se_Parameters(input.Parameters, context) },
-        ...input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression },
-        ...input.ScheduleOffset != null && { ScheduleOffset: input.ScheduleOffset },
-        ...input.SyncCompliance != null && { SyncCompliance: input.SyncCompliance },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) },
-        ...input.TargetLocations != null && { TargetLocations: se_TargetLocations(input.TargetLocations, context) },
-        ...input.TargetMaps != null && { TargetMaps: se_TargetMaps(input.TargetMaps, context) },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
-    };
-    var se_CreateDocumentRequest = (input, context) => {
-      return {
-        ...input.Attachments != null && { Attachments: se_AttachmentsSourceList(input.Attachments, context) },
-        ...input.Content != null && { Content: input.Content },
-        ...input.DisplayName != null && { DisplayName: input.DisplayName },
-        ...input.DocumentFormat != null && { DocumentFormat: input.DocumentFormat },
-        ...input.DocumentType != null && { DocumentType: input.DocumentType },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Requires != null && { Requires: se_DocumentRequiresList(input.Requires, context) },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) },
-        ...input.TargetType != null && { TargetType: input.TargetType },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
     };
     var se_CreateMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.AllowUnassociatedTargets != null && { AllowUnassociatedTargets: input.AllowUnassociatedTargets },
-        ClientToken: input.ClientToken ?? (0, uuid_1.v4)(),
-        ...input.Cutoff != null && { Cutoff: input.Cutoff },
-        ...input.Description != null && { Description: input.Description },
-        ...input.Duration != null && { Duration: input.Duration },
-        ...input.EndDate != null && { EndDate: input.EndDate },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Schedule != null && { Schedule: input.Schedule },
-        ...input.ScheduleOffset != null && { ScheduleOffset: input.ScheduleOffset },
-        ...input.ScheduleTimezone != null && { ScheduleTimezone: input.ScheduleTimezone },
-        ...input.StartDate != null && { StartDate: input.StartDate },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
+      return (0, smithy_client_1.take)(input, {
+        AllowUnassociatedTargets: [],
+        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        Cutoff: [],
+        Description: [],
+        Duration: [],
+        EndDate: [],
+        Name: [],
+        Schedule: [],
+        ScheduleOffset: [],
+        ScheduleTimezone: [],
+        StartDate: [],
+        Tags: smithy_client_1._json
+      });
     };
     var se_CreateOpsItemRequest = (input, context) => {
-      return {
-        ...input.AccountId != null && { AccountId: input.AccountId },
-        ...input.ActualEndTime != null && { ActualEndTime: Math.round(input.ActualEndTime.getTime() / 1e3) },
-        ...input.ActualStartTime != null && { ActualStartTime: Math.round(input.ActualStartTime.getTime() / 1e3) },
-        ...input.Category != null && { Category: input.Category },
-        ...input.Description != null && { Description: input.Description },
-        ...input.Notifications != null && { Notifications: se_OpsItemNotifications(input.Notifications, context) },
-        ...input.OperationalData != null && {
-          OperationalData: se_OpsItemOperationalData(input.OperationalData, context)
-        },
-        ...input.OpsItemType != null && { OpsItemType: input.OpsItemType },
-        ...input.PlannedEndTime != null && { PlannedEndTime: Math.round(input.PlannedEndTime.getTime() / 1e3) },
-        ...input.PlannedStartTime != null && { PlannedStartTime: Math.round(input.PlannedStartTime.getTime() / 1e3) },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.RelatedOpsItems != null && { RelatedOpsItems: se_RelatedOpsItems(input.RelatedOpsItems, context) },
-        ...input.Severity != null && { Severity: input.Severity },
-        ...input.Source != null && { Source: input.Source },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) },
-        ...input.Title != null && { Title: input.Title }
-      };
-    };
-    var se_CreateOpsMetadataRequest = (input, context) => {
-      return {
-        ...input.Metadata != null && { Metadata: se_MetadataMap(input.Metadata, context) },
-        ...input.ResourceId != null && { ResourceId: input.ResourceId },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
+      return (0, smithy_client_1.take)(input, {
+        AccountId: [],
+        ActualEndTime: (_) => Math.round(_.getTime() / 1e3),
+        ActualStartTime: (_) => Math.round(_.getTime() / 1e3),
+        Category: [],
+        Description: [],
+        Notifications: smithy_client_1._json,
+        OperationalData: smithy_client_1._json,
+        OpsItemType: [],
+        PlannedEndTime: (_) => Math.round(_.getTime() / 1e3),
+        PlannedStartTime: (_) => Math.round(_.getTime() / 1e3),
+        Priority: [],
+        RelatedOpsItems: smithy_client_1._json,
+        Severity: [],
+        Source: [],
+        Tags: smithy_client_1._json,
+        Title: []
+      });
     };
     var se_CreatePatchBaselineRequest = (input, context) => {
-      return {
-        ...input.ApprovalRules != null && { ApprovalRules: se_PatchRuleGroup(input.ApprovalRules, context) },
-        ...input.ApprovedPatches != null && { ApprovedPatches: se_PatchIdList(input.ApprovedPatches, context) },
-        ...input.ApprovedPatchesComplianceLevel != null && {
-          ApprovedPatchesComplianceLevel: input.ApprovedPatchesComplianceLevel
-        },
-        ...input.ApprovedPatchesEnableNonSecurity != null && {
-          ApprovedPatchesEnableNonSecurity: input.ApprovedPatchesEnableNonSecurity
-        },
-        ClientToken: input.ClientToken ?? (0, uuid_1.v4)(),
-        ...input.Description != null && { Description: input.Description },
-        ...input.GlobalFilters != null && { GlobalFilters: se_PatchFilterGroup(input.GlobalFilters, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OperatingSystem != null && { OperatingSystem: input.OperatingSystem },
-        ...input.RejectedPatches != null && { RejectedPatches: se_PatchIdList(input.RejectedPatches, context) },
-        ...input.RejectedPatchesAction != null && { RejectedPatchesAction: input.RejectedPatchesAction },
-        ...input.Sources != null && { Sources: se_PatchSourceList(input.Sources, context) },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
-    };
-    var se_CreateResourceDataSyncRequest = (input, context) => {
-      return {
-        ...input.S3Destination != null && {
-          S3Destination: se_ResourceDataSyncS3Destination(input.S3Destination, context)
-        },
-        ...input.SyncName != null && { SyncName: input.SyncName },
-        ...input.SyncSource != null && { SyncSource: se_ResourceDataSyncSource(input.SyncSource, context) },
-        ...input.SyncType != null && { SyncType: input.SyncType }
-      };
-    };
-    var se_DeleteActivationRequest = (input, context) => {
-      return {
-        ...input.ActivationId != null && { ActivationId: input.ActivationId }
-      };
-    };
-    var se_DeleteAssociationRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_DeleteDocumentRequest = (input, context) => {
-      return {
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Force != null && { Force: input.Force },
-        ...input.Name != null && { Name: input.Name },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
+      return (0, smithy_client_1.take)(input, {
+        ApprovalRules: smithy_client_1._json,
+        ApprovedPatches: smithy_client_1._json,
+        ApprovedPatchesComplianceLevel: [],
+        ApprovedPatchesEnableNonSecurity: [],
+        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        Description: [],
+        GlobalFilters: smithy_client_1._json,
+        Name: [],
+        OperatingSystem: [],
+        RejectedPatches: smithy_client_1._json,
+        RejectedPatchesAction: [],
+        Sources: smithy_client_1._json,
+        Tags: smithy_client_1._json
+      });
     };
     var se_DeleteInventoryRequest = (input, context) => {
-      return {
-        ClientToken: input.ClientToken ?? (0, uuid_1.v4)(),
-        ...input.DryRun != null && { DryRun: input.DryRun },
-        ...input.SchemaDeleteOption != null && { SchemaDeleteOption: input.SchemaDeleteOption },
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_DeleteMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_DeleteOpsMetadataRequest = (input, context) => {
-      return {
-        ...input.OpsMetadataArn != null && { OpsMetadataArn: input.OpsMetadataArn }
-      };
-    };
-    var se_DeleteParameterRequest = (input, context) => {
-      return {
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_DeleteParametersRequest = (input, context) => {
-      return {
-        ...input.Names != null && { Names: se_ParameterNameList(input.Names, context) }
-      };
-    };
-    var se_DeletePatchBaselineRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId }
-      };
-    };
-    var se_DeleteResourceDataSyncRequest = (input, context) => {
-      return {
-        ...input.SyncName != null && { SyncName: input.SyncName },
-        ...input.SyncType != null && { SyncType: input.SyncType }
-      };
-    };
-    var se_DeleteResourcePolicyRequest = (input, context) => {
-      return {
-        ...input.PolicyHash != null && { PolicyHash: input.PolicyHash },
-        ...input.PolicyId != null && { PolicyId: input.PolicyId },
-        ...input.ResourceArn != null && { ResourceArn: input.ResourceArn }
-      };
-    };
-    var se_DeregisterManagedInstanceRequest = (input, context) => {
-      return {
-        ...input.InstanceId != null && { InstanceId: input.InstanceId }
-      };
-    };
-    var se_DeregisterPatchBaselineForPatchGroupRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId },
-        ...input.PatchGroup != null && { PatchGroup: input.PatchGroup }
-      };
-    };
-    var se_DeregisterTargetFromMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.Safe != null && { Safe: input.Safe },
-        ...input.WindowId != null && { WindowId: input.WindowId },
-        ...input.WindowTargetId != null && { WindowTargetId: input.WindowTargetId }
-      };
-    };
-    var se_DeregisterTaskFromMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.WindowId != null && { WindowId: input.WindowId },
-        ...input.WindowTaskId != null && { WindowTaskId: input.WindowTaskId }
-      };
-    };
-    var se_DescribeActivationsFilter = (input, context) => {
-      return {
-        ...input.FilterKey != null && { FilterKey: input.FilterKey },
-        ...input.FilterValues != null && { FilterValues: se_StringList(input.FilterValues, context) }
-      };
-    };
-    var se_DescribeActivationsFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DescribeActivationsFilter(entry, context);
+      return (0, smithy_client_1.take)(input, {
+        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        DryRun: [],
+        SchemaDeleteOption: [],
+        TypeName: []
       });
-    };
-    var se_DescribeActivationsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_DescribeActivationsFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeAssociationExecutionsRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.Filters != null && { Filters: se_AssociationExecutionFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeAssociationExecutionTargetsRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.ExecutionId != null && { ExecutionId: input.ExecutionId },
-        ...input.Filters != null && { Filters: se_AssociationExecutionTargetsFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeAssociationRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.AssociationVersion != null && { AssociationVersion: input.AssociationVersion },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_DescribeAutomationExecutionsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_AutomationExecutionFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeAutomationStepExecutionsRequest = (input, context) => {
-      return {
-        ...input.AutomationExecutionId != null && { AutomationExecutionId: input.AutomationExecutionId },
-        ...input.Filters != null && { Filters: se_StepExecutionFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ReverseOrder != null && { ReverseOrder: input.ReverseOrder }
-      };
-    };
-    var se_DescribeAvailablePatchesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_PatchOrchestratorFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeDocumentPermissionRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.Name != null && { Name: input.Name },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.PermissionType != null && { PermissionType: input.PermissionType }
-      };
-    };
-    var se_DescribeDocumentRequest = (input, context) => {
-      return {
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Name != null && { Name: input.Name },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
-    };
-    var se_DescribeEffectiveInstanceAssociationsRequest = (input, context) => {
-      return {
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeEffectivePatchesForPatchBaselineRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeInstanceAssociationsStatusRequest = (input, context) => {
-      return {
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeInstanceInformationRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_InstanceInformationStringFilterList(input.Filters, context) },
-        ...input.InstanceInformationFilterList != null && {
-          InstanceInformationFilterList: se_InstanceInformationFilterList(input.InstanceInformationFilterList, context)
-        },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeInstancePatchesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_PatchOrchestratorFilterList(input.Filters, context) },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeInstancePatchStatesForPatchGroupRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_InstancePatchStateFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.PatchGroup != null && { PatchGroup: input.PatchGroup }
-      };
-    };
-    var se_DescribeInstancePatchStatesRequest = (input, context) => {
-      return {
-        ...input.InstanceIds != null && { InstanceIds: se_InstanceIdList(input.InstanceIds, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeInventoryDeletionsRequest = (input, context) => {
-      return {
-        ...input.DeletionId != null && { DeletionId: input.DeletionId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeMaintenanceWindowExecutionsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_DescribeMaintenanceWindowExecutionTaskInvocationsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.TaskId != null && { TaskId: input.TaskId },
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_DescribeMaintenanceWindowExecutionTasksRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_DescribeMaintenanceWindowScheduleRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_PatchOrchestratorFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_DescribeMaintenanceWindowsForTargetRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
-    };
-    var se_DescribeMaintenanceWindowsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribeMaintenanceWindowTargetsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_DescribeMaintenanceWindowTasksRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_MaintenanceWindowFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_DescribeOpsItemsRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.OpsItemFilters != null && { OpsItemFilters: se_OpsItemFilters(input.OpsItemFilters, context) }
-      };
-    };
-    var se_DescribeParametersRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_ParametersFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ParameterFilters != null && {
-          ParameterFilters: se_ParameterStringFilterList(input.ParameterFilters, context)
-        }
-      };
-    };
-    var se_DescribePatchBaselinesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_PatchOrchestratorFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribePatchGroupsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_PatchOrchestratorFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_DescribePatchGroupStateRequest = (input, context) => {
-      return {
-        ...input.PatchGroup != null && { PatchGroup: input.PatchGroup }
-      };
-    };
-    var se_DescribePatchPropertiesRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.OperatingSystem != null && { OperatingSystem: input.OperatingSystem },
-        ...input.PatchSet != null && { PatchSet: input.PatchSet },
-        ...input.Property != null && { Property: input.Property }
-      };
-    };
-    var se_DescribeSessionsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_SessionFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.State != null && { State: input.State }
-      };
-    };
-    var se_DisassociateOpsItemRelatedItemRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId }
-      };
-    };
-    var se_DocumentFilter = (input, context) => {
-      return {
-        ...input.key != null && { key: input.key },
-        ...input.value != null && { value: input.value }
-      };
-    };
-    var se_DocumentFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DocumentFilter(entry, context);
-      });
-    };
-    var se_DocumentKeyValuesFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_DocumentKeyValuesFilterValues(input.Values, context) }
-      };
-    };
-    var se_DocumentKeyValuesFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DocumentKeyValuesFilter(entry, context);
-      });
-    };
-    var se_DocumentKeyValuesFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_DocumentRequires = (input, context) => {
-      return {
-        ...input.Name != null && { Name: input.Name },
-        ...input.RequireType != null && { RequireType: input.RequireType },
-        ...input.Version != null && { Version: input.Version },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
-    };
-    var se_DocumentRequiresList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DocumentRequires(entry, context);
-      });
-    };
-    var se_DocumentReviewCommentList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_DocumentReviewCommentSource(entry, context);
-      });
-    };
-    var se_DocumentReviewCommentSource = (input, context) => {
-      return {
-        ...input.Content != null && { Content: input.Content },
-        ...input.Type != null && { Type: input.Type }
-      };
-    };
-    var se_DocumentReviews = (input, context) => {
-      return {
-        ...input.Action != null && { Action: input.Action },
-        ...input.Comment != null && { Comment: se_DocumentReviewCommentList(input.Comment, context) }
-      };
-    };
-    var se_GetAutomationExecutionRequest = (input, context) => {
-      return {
-        ...input.AutomationExecutionId != null && { AutomationExecutionId: input.AutomationExecutionId }
-      };
-    };
-    var se_GetCalendarStateRequest = (input, context) => {
-      return {
-        ...input.AtTime != null && { AtTime: input.AtTime },
-        ...input.CalendarNames != null && { CalendarNames: se_CalendarNameOrARNList(input.CalendarNames, context) }
-      };
-    };
-    var se_GetCommandInvocationRequest = (input, context) => {
-      return {
-        ...input.CommandId != null && { CommandId: input.CommandId },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.PluginName != null && { PluginName: input.PluginName }
-      };
-    };
-    var se_GetConnectionStatusRequest = (input, context) => {
-      return {
-        ...input.Target != null && { Target: input.Target }
-      };
-    };
-    var se_GetDefaultPatchBaselineRequest = (input, context) => {
-      return {
-        ...input.OperatingSystem != null && { OperatingSystem: input.OperatingSystem }
-      };
-    };
-    var se_GetDeployablePatchSnapshotForInstanceRequest = (input, context) => {
-      return {
-        ...input.BaselineOverride != null && { BaselineOverride: se_BaselineOverride(input.BaselineOverride, context) },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.SnapshotId != null && { SnapshotId: input.SnapshotId }
-      };
-    };
-    var se_GetDocumentRequest = (input, context) => {
-      return {
-        ...input.DocumentFormat != null && { DocumentFormat: input.DocumentFormat },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Name != null && { Name: input.Name },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
     };
     var se_GetInventoryRequest = (input, context) => {
-      return {
-        ...input.Aggregators != null && { Aggregators: se_InventoryAggregatorList(input.Aggregators, context) },
-        ...input.Filters != null && { Filters: se_InventoryFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResultAttributes != null && {
-          ResultAttributes: se_ResultAttributeList(input.ResultAttributes, context)
-        }
-      };
-    };
-    var se_GetInventorySchemaRequest = (input, context) => {
-      return {
-        ...input.Aggregator != null && { Aggregator: input.Aggregator },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.SubType != null && { SubType: input.SubType },
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_GetMaintenanceWindowExecutionRequest = (input, context) => {
-      return {
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_GetMaintenanceWindowExecutionTaskInvocationRequest = (input, context) => {
-      return {
-        ...input.InvocationId != null && { InvocationId: input.InvocationId },
-        ...input.TaskId != null && { TaskId: input.TaskId },
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_GetMaintenanceWindowExecutionTaskRequest = (input, context) => {
-      return {
-        ...input.TaskId != null && { TaskId: input.TaskId },
-        ...input.WindowExecutionId != null && { WindowExecutionId: input.WindowExecutionId }
-      };
-    };
-    var se_GetMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_GetMaintenanceWindowTaskRequest = (input, context) => {
-      return {
-        ...input.WindowId != null && { WindowId: input.WindowId },
-        ...input.WindowTaskId != null && { WindowTaskId: input.WindowTaskId }
-      };
-    };
-    var se_GetOpsItemRequest = (input, context) => {
-      return {
-        ...input.OpsItemArn != null && { OpsItemArn: input.OpsItemArn },
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId }
-      };
-    };
-    var se_GetOpsMetadataRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.OpsMetadataArn != null && { OpsMetadataArn: input.OpsMetadataArn }
-      };
+      return (0, smithy_client_1.take)(input, {
+        Aggregators: (_) => se_InventoryAggregatorList(_, context),
+        Filters: smithy_client_1._json,
+        MaxResults: [],
+        NextToken: [],
+        ResultAttributes: smithy_client_1._json
+      });
     };
     var se_GetOpsSummaryRequest = (input, context) => {
-      return {
-        ...input.Aggregators != null && { Aggregators: se_OpsAggregatorList(input.Aggregators, context) },
-        ...input.Filters != null && { Filters: se_OpsFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResultAttributes != null && {
-          ResultAttributes: se_OpsResultAttributeList(input.ResultAttributes, context)
-        },
-        ...input.SyncName != null && { SyncName: input.SyncName }
-      };
-    };
-    var se_GetParameterHistoryRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.Name != null && { Name: input.Name },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.WithDecryption != null && { WithDecryption: input.WithDecryption }
-      };
-    };
-    var se_GetParameterRequest = (input, context) => {
-      return {
-        ...input.Name != null && { Name: input.Name },
-        ...input.WithDecryption != null && { WithDecryption: input.WithDecryption }
-      };
-    };
-    var se_GetParametersByPathRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ParameterFilters != null && {
-          ParameterFilters: se_ParameterStringFilterList(input.ParameterFilters, context)
-        },
-        ...input.Path != null && { Path: input.Path },
-        ...input.Recursive != null && { Recursive: input.Recursive },
-        ...input.WithDecryption != null && { WithDecryption: input.WithDecryption }
-      };
-    };
-    var se_GetParametersRequest = (input, context) => {
-      return {
-        ...input.Names != null && { Names: se_ParameterNameList(input.Names, context) },
-        ...input.WithDecryption != null && { WithDecryption: input.WithDecryption }
-      };
-    };
-    var se_GetPatchBaselineForPatchGroupRequest = (input, context) => {
-      return {
-        ...input.OperatingSystem != null && { OperatingSystem: input.OperatingSystem },
-        ...input.PatchGroup != null && { PatchGroup: input.PatchGroup }
-      };
-    };
-    var se_GetPatchBaselineRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId }
-      };
-    };
-    var se_GetResourcePoliciesRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResourceArn != null && { ResourceArn: input.ResourceArn }
-      };
-    };
-    var se_GetServiceSettingRequest = (input, context) => {
-      return {
-        ...input.SettingId != null && { SettingId: input.SettingId }
-      };
-    };
-    var se_InstanceAssociationOutputLocation = (input, context) => {
-      return {
-        ...input.S3Location != null && { S3Location: se_S3OutputLocation(input.S3Location, context) }
-      };
-    };
-    var se_InstanceIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_InstanceInformationFilter = (input, context) => {
-      return {
-        ...input.key != null && { key: input.key },
-        ...input.valueSet != null && { valueSet: se_InstanceInformationFilterValueSet(input.valueSet, context) }
-      };
-    };
-    var se_InstanceInformationFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InstanceInformationFilter(entry, context);
-      });
-    };
-    var se_InstanceInformationFilterValueSet = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_InstanceInformationStringFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_InstanceInformationFilterValueSet(input.Values, context) }
-      };
-    };
-    var se_InstanceInformationStringFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InstanceInformationStringFilter(entry, context);
-      });
-    };
-    var se_InstancePatchStateFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Values != null && { Values: se_InstancePatchStateFilterValues(input.Values, context) }
-      };
-    };
-    var se_InstancePatchStateFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InstancePatchStateFilter(entry, context);
-      });
-    };
-    var se_InstancePatchStateFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
+      return (0, smithy_client_1.take)(input, {
+        Aggregators: (_) => se_OpsAggregatorList(_, context),
+        Filters: smithy_client_1._json,
+        MaxResults: [],
+        NextToken: [],
+        ResultAttributes: smithy_client_1._json,
+        SyncName: []
       });
     };
     var se_InventoryAggregator = (input, context) => {
-      return {
-        ...input.Aggregators != null && { Aggregators: se_InventoryAggregatorList(input.Aggregators, context) },
-        ...input.Expression != null && { Expression: input.Expression },
-        ...input.Groups != null && { Groups: se_InventoryGroupList(input.Groups, context) }
-      };
+      return (0, smithy_client_1.take)(input, {
+        Aggregators: (_) => se_InventoryAggregatorList(_, context),
+        Expression: [],
+        Groups: smithy_client_1._json
+      });
     };
     var se_InventoryAggregatorList = (input, context) => {
       return input.filter((e) => e != null).map((entry) => {
         return se_InventoryAggregator(entry, context);
       });
     };
-    var se_InventoryFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Values != null && { Values: se_InventoryFilterValueList(input.Values, context) }
-      };
-    };
-    var se_InventoryFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InventoryFilter(entry, context);
-      });
-    };
-    var se_InventoryFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_InventoryGroup = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_InventoryFilterList(input.Filters, context) },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_InventoryGroupList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InventoryGroup(entry, context);
-      });
-    };
-    var se_InventoryItem = (input, context) => {
-      return {
-        ...input.CaptureTime != null && { CaptureTime: input.CaptureTime },
-        ...input.Content != null && { Content: se_InventoryItemEntryList(input.Content, context) },
-        ...input.ContentHash != null && { ContentHash: input.ContentHash },
-        ...input.Context != null && { Context: se_InventoryItemContentContext(input.Context, context) },
-        ...input.SchemaVersion != null && { SchemaVersion: input.SchemaVersion },
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_InventoryItemContentContext = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_InventoryItemEntry = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_InventoryItemEntryList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InventoryItemEntry(entry, context);
-      });
-    };
-    var se_InventoryItemList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_InventoryItem(entry, context);
-      });
-    };
-    var se_KeyList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_LabelParameterVersionRequest = (input, context) => {
-      return {
-        ...input.Labels != null && { Labels: se_ParameterLabelList(input.Labels, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.ParameterVersion != null && { ParameterVersion: input.ParameterVersion }
-      };
-    };
-    var se_ListAssociationsRequest = (input, context) => {
-      return {
-        ...input.AssociationFilterList != null && {
-          AssociationFilterList: se_AssociationFilterList(input.AssociationFilterList, context)
-        },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListAssociationVersionsRequest = (input, context) => {
-      return {
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListCommandInvocationsRequest = (input, context) => {
-      return {
-        ...input.CommandId != null && { CommandId: input.CommandId },
-        ...input.Details != null && { Details: input.Details },
-        ...input.Filters != null && { Filters: se_CommandFilterList(input.Filters, context) },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListCommandsRequest = (input, context) => {
-      return {
-        ...input.CommandId != null && { CommandId: input.CommandId },
-        ...input.Filters != null && { Filters: se_CommandFilterList(input.Filters, context) },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListComplianceItemsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_ComplianceStringFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.ResourceIds != null && { ResourceIds: se_ComplianceResourceIdList(input.ResourceIds, context) },
-        ...input.ResourceTypes != null && { ResourceTypes: se_ComplianceResourceTypeList(input.ResourceTypes, context) }
-      };
-    };
-    var se_ListComplianceSummariesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_ComplianceStringFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListDocumentMetadataHistoryRequest = (input, context) => {
-      return {
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.Metadata != null && { Metadata: input.Metadata },
-        ...input.Name != null && { Name: input.Name },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListDocumentsRequest = (input, context) => {
-      return {
-        ...input.DocumentFilterList != null && {
-          DocumentFilterList: se_DocumentFilterList(input.DocumentFilterList, context)
-        },
-        ...input.Filters != null && { Filters: se_DocumentKeyValuesFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListDocumentVersionsRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.Name != null && { Name: input.Name },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListInventoryEntriesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_InventoryFilterList(input.Filters, context) },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_ListOpsItemEventsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_OpsItemEventFilters(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListOpsItemRelatedItemsRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_OpsItemRelatedItemsFilters(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId }
-      };
-    };
-    var se_ListOpsMetadataRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_OpsMetadataFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListResourceComplianceSummariesRequest = (input, context) => {
-      return {
-        ...input.Filters != null && { Filters: se_ComplianceStringFilterList(input.Filters, context) },
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken }
-      };
-    };
-    var se_ListResourceDataSyncRequest = (input, context) => {
-      return {
-        ...input.MaxResults != null && { MaxResults: input.MaxResults },
-        ...input.NextToken != null && { NextToken: input.NextToken },
-        ...input.SyncType != null && { SyncType: input.SyncType }
-      };
-    };
-    var se_ListTagsForResourceRequest = (input, context) => {
-      return {
-        ...input.ResourceId != null && { ResourceId: input.ResourceId },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType }
-      };
-    };
-    var se_LoggingInfo = (input, context) => {
-      return {
-        ...input.S3BucketName != null && { S3BucketName: input.S3BucketName },
-        ...input.S3KeyPrefix != null && { S3KeyPrefix: input.S3KeyPrefix },
-        ...input.S3Region != null && { S3Region: input.S3Region }
-      };
-    };
-    var se_MaintenanceWindowAutomationParameters = (input, context) => {
-      return {
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Parameters != null && { Parameters: se_AutomationParameterMap(input.Parameters, context) }
-      };
-    };
-    var se_MaintenanceWindowFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_MaintenanceWindowFilterValues(input.Values, context) }
-      };
-    };
-    var se_MaintenanceWindowFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_MaintenanceWindowFilter(entry, context);
-      });
-    };
-    var se_MaintenanceWindowFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
     var se_MaintenanceWindowLambdaParameters = (input, context) => {
-      return {
-        ...input.ClientContext != null && { ClientContext: input.ClientContext },
-        ...input.Payload != null && { Payload: context.base64Encoder(input.Payload) },
-        ...input.Qualifier != null && { Qualifier: input.Qualifier }
-      };
-    };
-    var se_MaintenanceWindowRunCommandParameters = (input, context) => {
-      return {
-        ...input.CloudWatchOutputConfig != null && {
-          CloudWatchOutputConfig: se_CloudWatchOutputConfig(input.CloudWatchOutputConfig, context)
-        },
-        ...input.Comment != null && { Comment: input.Comment },
-        ...input.DocumentHash != null && { DocumentHash: input.DocumentHash },
-        ...input.DocumentHashType != null && { DocumentHashType: input.DocumentHashType },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.NotificationConfig != null && {
-          NotificationConfig: se_NotificationConfig(input.NotificationConfig, context)
-        },
-        ...input.OutputS3BucketName != null && { OutputS3BucketName: input.OutputS3BucketName },
-        ...input.OutputS3KeyPrefix != null && { OutputS3KeyPrefix: input.OutputS3KeyPrefix },
-        ...input.Parameters != null && { Parameters: se_Parameters(input.Parameters, context) },
-        ...input.ServiceRoleArn != null && { ServiceRoleArn: input.ServiceRoleArn },
-        ...input.TimeoutSeconds != null && { TimeoutSeconds: input.TimeoutSeconds }
-      };
-    };
-    var se_MaintenanceWindowStepFunctionsParameters = (input, context) => {
-      return {
-        ...input.Input != null && { Input: input.Input },
-        ...input.Name != null && { Name: input.Name }
-      };
+      return (0, smithy_client_1.take)(input, {
+        ClientContext: [],
+        Payload: context.base64Encoder,
+        Qualifier: []
+      });
     };
     var se_MaintenanceWindowTaskInvocationParameters = (input, context) => {
-      return {
-        ...input.Automation != null && {
-          Automation: se_MaintenanceWindowAutomationParameters(input.Automation, context)
-        },
-        ...input.Lambda != null && { Lambda: se_MaintenanceWindowLambdaParameters(input.Lambda, context) },
-        ...input.RunCommand != null && {
-          RunCommand: se_MaintenanceWindowRunCommandParameters(input.RunCommand, context)
-        },
-        ...input.StepFunctions != null && {
-          StepFunctions: se_MaintenanceWindowStepFunctionsParameters(input.StepFunctions, context)
-        }
-      };
-    };
-    var se_MaintenanceWindowTaskParameters = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_MaintenanceWindowTaskParameterValueExpression(value, context);
-        return acc;
-      }, {});
-    };
-    var se_MaintenanceWindowTaskParameterValueExpression = (input, context) => {
-      return {
-        ...input.Values != null && { Values: se_MaintenanceWindowTaskParameterValueList(input.Values, context) }
-      };
-    };
-    var se_MaintenanceWindowTaskParameterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_MetadataKeysToDeleteList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_MetadataMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_MetadataValue(value, context);
-        return acc;
-      }, {});
-    };
-    var se_MetadataValue = (input, context) => {
-      return {
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_ModifyDocumentPermissionRequest = (input, context) => {
-      return {
-        ...input.AccountIdsToAdd != null && { AccountIdsToAdd: se_AccountIdList(input.AccountIdsToAdd, context) },
-        ...input.AccountIdsToRemove != null && {
-          AccountIdsToRemove: se_AccountIdList(input.AccountIdsToRemove, context)
-        },
-        ...input.Name != null && { Name: input.Name },
-        ...input.PermissionType != null && { PermissionType: input.PermissionType },
-        ...input.SharedDocumentVersion != null && { SharedDocumentVersion: input.SharedDocumentVersion }
-      };
-    };
-    var se_NotificationConfig = (input, context) => {
-      return {
-        ...input.NotificationArn != null && { NotificationArn: input.NotificationArn },
-        ...input.NotificationEvents != null && {
-          NotificationEvents: se_NotificationEventList(input.NotificationEvents, context)
-        },
-        ...input.NotificationType != null && { NotificationType: input.NotificationType }
-      };
-    };
-    var se_NotificationEventList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
+      return (0, smithy_client_1.take)(input, {
+        Automation: smithy_client_1._json,
+        Lambda: (_) => se_MaintenanceWindowLambdaParameters(_, context),
+        RunCommand: smithy_client_1._json,
+        StepFunctions: smithy_client_1._json
       });
     };
     var se_OpsAggregator = (input, context) => {
-      return {
-        ...input.AggregatorType != null && { AggregatorType: input.AggregatorType },
-        ...input.Aggregators != null && { Aggregators: se_OpsAggregatorList(input.Aggregators, context) },
-        ...input.AttributeName != null && { AttributeName: input.AttributeName },
-        ...input.Filters != null && { Filters: se_OpsFilterList(input.Filters, context) },
-        ...input.TypeName != null && { TypeName: input.TypeName },
-        ...input.Values != null && { Values: se_OpsAggregatorValueMap(input.Values, context) }
-      };
+      return (0, smithy_client_1.take)(input, {
+        AggregatorType: [],
+        Aggregators: (_) => se_OpsAggregatorList(_, context),
+        AttributeName: [],
+        Filters: smithy_client_1._json,
+        TypeName: [],
+        Values: smithy_client_1._json
+      });
     };
     var se_OpsAggregatorList = (input, context) => {
       return input.filter((e) => e != null).map((entry) => {
         return se_OpsAggregator(entry, context);
       });
     };
-    var se_OpsAggregatorValueMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = value;
-        return acc;
-      }, {});
-    };
-    var se_OpsFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Values != null && { Values: se_OpsFilterValueList(input.Values, context) }
-      };
-    };
-    var se_OpsFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsFilter(entry, context);
-      });
-    };
-    var se_OpsFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsItemDataValue = (input, context) => {
-      return {
-        ...input.Type != null && { Type: input.Type },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_OpsItemEventFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Operator != null && { Operator: input.Operator },
-        ...input.Values != null && { Values: se_OpsItemEventFilterValues(input.Values, context) }
-      };
-    };
-    var se_OpsItemEventFilters = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsItemEventFilter(entry, context);
-      });
-    };
-    var se_OpsItemEventFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsItemFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Operator != null && { Operator: input.Operator },
-        ...input.Values != null && { Values: se_OpsItemFilterValues(input.Values, context) }
-      };
-    };
-    var se_OpsItemFilters = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsItemFilter(entry, context);
-      });
-    };
-    var se_OpsItemFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsItemNotification = (input, context) => {
-      return {
-        ...input.Arn != null && { Arn: input.Arn }
-      };
-    };
-    var se_OpsItemNotifications = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsItemNotification(entry, context);
-      });
-    };
-    var se_OpsItemOperationalData = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_OpsItemDataValue(value, context);
-        return acc;
-      }, {});
-    };
-    var se_OpsItemOpsDataKeysList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsItemRelatedItemsFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Operator != null && { Operator: input.Operator },
-        ...input.Values != null && { Values: se_OpsItemRelatedItemsFilterValues(input.Values, context) }
-      };
-    };
-    var se_OpsItemRelatedItemsFilters = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsItemRelatedItemsFilter(entry, context);
-      });
-    };
-    var se_OpsItemRelatedItemsFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsMetadataFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_OpsMetadataFilterValueList(input.Values, context) }
-      };
-    };
-    var se_OpsMetadataFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsMetadataFilter(entry, context);
-      });
-    };
-    var se_OpsMetadataFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_OpsResultAttribute = (input, context) => {
-      return {
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_OpsResultAttributeList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_OpsResultAttribute(entry, context);
-      });
-    };
-    var se_ParameterLabelList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ParameterNameList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Parameters = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_ParameterValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var se_ParametersFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_ParametersFilterValueList(input.Values, context) }
-      };
-    };
-    var se_ParametersFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ParametersFilter(entry, context);
-      });
-    };
-    var se_ParametersFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ParameterStringFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Option != null && { Option: input.Option },
-        ...input.Values != null && { Values: se_ParameterStringFilterValueList(input.Values, context) }
-      };
-    };
-    var se_ParameterStringFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ParameterStringFilter(entry, context);
-      });
-    };
-    var se_ParameterStringFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ParameterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_PatchFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_PatchFilterValueList(input.Values, context) }
-      };
-    };
-    var se_PatchFilterGroup = (input, context) => {
-      return {
-        ...input.PatchFilters != null && { PatchFilters: se_PatchFilterList(input.PatchFilters, context) }
-      };
-    };
-    var se_PatchFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_PatchFilter(entry, context);
-      });
-    };
-    var se_PatchFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_PatchIdList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_PatchOrchestratorFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_PatchOrchestratorFilterValues(input.Values, context) }
-      };
-    };
-    var se_PatchOrchestratorFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_PatchOrchestratorFilter(entry, context);
-      });
-    };
-    var se_PatchOrchestratorFilterValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_PatchRule = (input, context) => {
-      return {
-        ...input.ApproveAfterDays != null && { ApproveAfterDays: input.ApproveAfterDays },
-        ...input.ApproveUntilDate != null && { ApproveUntilDate: input.ApproveUntilDate },
-        ...input.ComplianceLevel != null && { ComplianceLevel: input.ComplianceLevel },
-        ...input.EnableNonSecurity != null && { EnableNonSecurity: input.EnableNonSecurity },
-        ...input.PatchFilterGroup != null && { PatchFilterGroup: se_PatchFilterGroup(input.PatchFilterGroup, context) }
-      };
-    };
-    var se_PatchRuleGroup = (input, context) => {
-      return {
-        ...input.PatchRules != null && { PatchRules: se_PatchRuleList(input.PatchRules, context) }
-      };
-    };
-    var se_PatchRuleList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_PatchRule(entry, context);
-      });
-    };
-    var se_PatchSource = (input, context) => {
-      return {
-        ...input.Configuration != null && { Configuration: input.Configuration },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Products != null && { Products: se_PatchSourceProductList(input.Products, context) }
-      };
-    };
-    var se_PatchSourceList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_PatchSource(entry, context);
-      });
-    };
-    var se_PatchSourceProductList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
     var se_PutComplianceItemsRequest = (input, context) => {
-      return {
-        ...input.ComplianceType != null && { ComplianceType: input.ComplianceType },
-        ...input.ExecutionSummary != null && {
-          ExecutionSummary: se_ComplianceExecutionSummary(input.ExecutionSummary, context)
-        },
-        ...input.ItemContentHash != null && { ItemContentHash: input.ItemContentHash },
-        ...input.Items != null && { Items: se_ComplianceItemEntryList(input.Items, context) },
-        ...input.ResourceId != null && { ResourceId: input.ResourceId },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.UploadType != null && { UploadType: input.UploadType }
-      };
-    };
-    var se_PutInventoryRequest = (input, context) => {
-      return {
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.Items != null && { Items: se_InventoryItemList(input.Items, context) }
-      };
-    };
-    var se_PutParameterRequest = (input, context) => {
-      return {
-        ...input.AllowedPattern != null && { AllowedPattern: input.AllowedPattern },
-        ...input.DataType != null && { DataType: input.DataType },
-        ...input.Description != null && { Description: input.Description },
-        ...input.KeyId != null && { KeyId: input.KeyId },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Overwrite != null && { Overwrite: input.Overwrite },
-        ...input.Policies != null && { Policies: input.Policies },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) },
-        ...input.Tier != null && { Tier: input.Tier },
-        ...input.Type != null && { Type: input.Type },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_PutResourcePolicyRequest = (input, context) => {
-      return {
-        ...input.Policy != null && { Policy: input.Policy },
-        ...input.PolicyHash != null && { PolicyHash: input.PolicyHash },
-        ...input.PolicyId != null && { PolicyId: input.PolicyId },
-        ...input.ResourceArn != null && { ResourceArn: input.ResourceArn }
-      };
-    };
-    var se_Regions = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
+      return (0, smithy_client_1.take)(input, {
+        ComplianceType: [],
+        ExecutionSummary: (_) => se_ComplianceExecutionSummary(_, context),
+        ItemContentHash: [],
+        Items: smithy_client_1._json,
+        ResourceId: [],
+        ResourceType: [],
+        UploadType: []
       });
-    };
-    var se_RegisterDefaultPatchBaselineRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId }
-      };
-    };
-    var se_RegisterPatchBaselineForPatchGroupRequest = (input, context) => {
-      return {
-        ...input.BaselineId != null && { BaselineId: input.BaselineId },
-        ...input.PatchGroup != null && { PatchGroup: input.PatchGroup }
-      };
     };
     var se_RegisterTargetWithMaintenanceWindowRequest = (input, context) => {
-      return {
-        ClientToken: input.ClientToken ?? (0, uuid_1.v4)(),
-        ...input.Description != null && { Description: input.Description },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OwnerInformation != null && { OwnerInformation: input.OwnerInformation },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
+      return (0, smithy_client_1.take)(input, {
+        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        Description: [],
+        Name: [],
+        OwnerInformation: [],
+        ResourceType: [],
+        Targets: smithy_client_1._json,
+        WindowId: []
+      });
     };
     var se_RegisterTaskWithMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ClientToken: input.ClientToken ?? (0, uuid_1.v4)(),
-        ...input.CutoffBehavior != null && { CutoffBehavior: input.CutoffBehavior },
-        ...input.Description != null && { Description: input.Description },
-        ...input.LoggingInfo != null && { LoggingInfo: se_LoggingInfo(input.LoggingInfo, context) },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.ServiceRoleArn != null && { ServiceRoleArn: input.ServiceRoleArn },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.TaskArn != null && { TaskArn: input.TaskArn },
-        ...input.TaskInvocationParameters != null && {
-          TaskInvocationParameters: se_MaintenanceWindowTaskInvocationParameters(input.TaskInvocationParameters, context)
-        },
-        ...input.TaskParameters != null && {
-          TaskParameters: se_MaintenanceWindowTaskParameters(input.TaskParameters, context)
-        },
-        ...input.TaskType != null && { TaskType: input.TaskType },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_RegistrationMetadataItem = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_RegistrationMetadataList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_RegistrationMetadataItem(entry, context);
+      return (0, smithy_client_1.take)(input, {
+        AlarmConfiguration: smithy_client_1._json,
+        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        CutoffBehavior: [],
+        Description: [],
+        LoggingInfo: smithy_client_1._json,
+        MaxConcurrency: [],
+        MaxErrors: [],
+        Name: [],
+        Priority: [],
+        ServiceRoleArn: [],
+        Targets: smithy_client_1._json,
+        TaskArn: [],
+        TaskInvocationParameters: (_) => se_MaintenanceWindowTaskInvocationParameters(_, context),
+        TaskParameters: smithy_client_1._json,
+        TaskType: [],
+        WindowId: []
       });
-    };
-    var se_RelatedOpsItem = (input, context) => {
-      return {
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId }
-      };
-    };
-    var se_RelatedOpsItems = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_RelatedOpsItem(entry, context);
-      });
-    };
-    var se_RemoveTagsFromResourceRequest = (input, context) => {
-      return {
-        ...input.ResourceId != null && { ResourceId: input.ResourceId },
-        ...input.ResourceType != null && { ResourceType: input.ResourceType },
-        ...input.TagKeys != null && { TagKeys: se_KeyList(input.TagKeys, context) }
-      };
-    };
-    var se_ResetServiceSettingRequest = (input, context) => {
-      return {
-        ...input.SettingId != null && { SettingId: input.SettingId }
-      };
-    };
-    var se_ResourceDataSyncAwsOrganizationsSource = (input, context) => {
-      return {
-        ...input.OrganizationSourceType != null && { OrganizationSourceType: input.OrganizationSourceType },
-        ...input.OrganizationalUnits != null && {
-          OrganizationalUnits: se_ResourceDataSyncOrganizationalUnitList(input.OrganizationalUnits, context)
-        }
-      };
-    };
-    var se_ResourceDataSyncDestinationDataSharing = (input, context) => {
-      return {
-        ...input.DestinationDataSharingType != null && { DestinationDataSharingType: input.DestinationDataSharingType }
-      };
-    };
-    var se_ResourceDataSyncOrganizationalUnit = (input, context) => {
-      return {
-        ...input.OrganizationalUnitId != null && { OrganizationalUnitId: input.OrganizationalUnitId }
-      };
-    };
-    var se_ResourceDataSyncOrganizationalUnitList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ResourceDataSyncOrganizationalUnit(entry, context);
-      });
-    };
-    var se_ResourceDataSyncS3Destination = (input, context) => {
-      return {
-        ...input.AWSKMSKeyARN != null && { AWSKMSKeyARN: input.AWSKMSKeyARN },
-        ...input.BucketName != null && { BucketName: input.BucketName },
-        ...input.DestinationDataSharing != null && {
-          DestinationDataSharing: se_ResourceDataSyncDestinationDataSharing(input.DestinationDataSharing, context)
-        },
-        ...input.Prefix != null && { Prefix: input.Prefix },
-        ...input.Region != null && { Region: input.Region },
-        ...input.SyncFormat != null && { SyncFormat: input.SyncFormat }
-      };
-    };
-    var se_ResourceDataSyncSource = (input, context) => {
-      return {
-        ...input.AwsOrganizationsSource != null && {
-          AwsOrganizationsSource: se_ResourceDataSyncAwsOrganizationsSource(input.AwsOrganizationsSource, context)
-        },
-        ...input.EnableAllOpsDataSources != null && { EnableAllOpsDataSources: input.EnableAllOpsDataSources },
-        ...input.IncludeFutureRegions != null && { IncludeFutureRegions: input.IncludeFutureRegions },
-        ...input.SourceRegions != null && {
-          SourceRegions: se_ResourceDataSyncSourceRegionList(input.SourceRegions, context)
-        },
-        ...input.SourceType != null && { SourceType: input.SourceType }
-      };
-    };
-    var se_ResourceDataSyncSourceRegionList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_ResultAttribute = (input, context) => {
-      return {
-        ...input.TypeName != null && { TypeName: input.TypeName }
-      };
-    };
-    var se_ResultAttributeList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_ResultAttribute(entry, context);
-      });
-    };
-    var se_ResumeSessionRequest = (input, context) => {
-      return {
-        ...input.SessionId != null && { SessionId: input.SessionId }
-      };
-    };
-    var se_Runbook = (input, context) => {
-      return {
-        ...input.DocumentName != null && { DocumentName: input.DocumentName },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Parameters != null && { Parameters: se_AutomationParameterMap(input.Parameters, context) },
-        ...input.TargetLocations != null && { TargetLocations: se_TargetLocations(input.TargetLocations, context) },
-        ...input.TargetMaps != null && { TargetMaps: se_TargetMaps(input.TargetMaps, context) },
-        ...input.TargetParameterName != null && { TargetParameterName: input.TargetParameterName },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
-    };
-    var se_Runbooks = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Runbook(entry, context);
-      });
-    };
-    var se_S3OutputLocation = (input, context) => {
-      return {
-        ...input.OutputS3BucketName != null && { OutputS3BucketName: input.OutputS3BucketName },
-        ...input.OutputS3KeyPrefix != null && { OutputS3KeyPrefix: input.OutputS3KeyPrefix },
-        ...input.OutputS3Region != null && { OutputS3Region: input.OutputS3Region }
-      };
-    };
-    var se_SendAutomationSignalRequest = (input, context) => {
-      return {
-        ...input.AutomationExecutionId != null && { AutomationExecutionId: input.AutomationExecutionId },
-        ...input.Payload != null && { Payload: se_AutomationParameterMap(input.Payload, context) },
-        ...input.SignalType != null && { SignalType: input.SignalType }
-      };
-    };
-    var se_SendCommandRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.CloudWatchOutputConfig != null && {
-          CloudWatchOutputConfig: se_CloudWatchOutputConfig(input.CloudWatchOutputConfig, context)
-        },
-        ...input.Comment != null && { Comment: input.Comment },
-        ...input.DocumentHash != null && { DocumentHash: input.DocumentHash },
-        ...input.DocumentHashType != null && { DocumentHashType: input.DocumentHashType },
-        ...input.DocumentName != null && { DocumentName: input.DocumentName },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.InstanceIds != null && { InstanceIds: se_InstanceIdList(input.InstanceIds, context) },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.NotificationConfig != null && {
-          NotificationConfig: se_NotificationConfig(input.NotificationConfig, context)
-        },
-        ...input.OutputS3BucketName != null && { OutputS3BucketName: input.OutputS3BucketName },
-        ...input.OutputS3KeyPrefix != null && { OutputS3KeyPrefix: input.OutputS3KeyPrefix },
-        ...input.OutputS3Region != null && { OutputS3Region: input.OutputS3Region },
-        ...input.Parameters != null && { Parameters: se_Parameters(input.Parameters, context) },
-        ...input.ServiceRoleArn != null && { ServiceRoleArn: input.ServiceRoleArn },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.TimeoutSeconds != null && { TimeoutSeconds: input.TimeoutSeconds }
-      };
-    };
-    var se_SessionFilter = (input, context) => {
-      return {
-        ...input.key != null && { key: input.key },
-        ...input.value != null && { value: input.value }
-      };
-    };
-    var se_SessionFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_SessionFilter(entry, context);
-      });
-    };
-    var se_SessionManagerParameters = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_SessionManagerParameterValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var se_SessionManagerParameterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_StartAssociationsOnceRequest = (input, context) => {
-      return {
-        ...input.AssociationIds != null && { AssociationIds: se_AssociationIdList(input.AssociationIds, context) }
-      };
-    };
-    var se_StartAutomationExecutionRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.ClientToken != null && { ClientToken: input.ClientToken },
-        ...input.DocumentName != null && { DocumentName: input.DocumentName },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Mode != null && { Mode: input.Mode },
-        ...input.Parameters != null && { Parameters: se_AutomationParameterMap(input.Parameters, context) },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) },
-        ...input.TargetLocations != null && { TargetLocations: se_TargetLocations(input.TargetLocations, context) },
-        ...input.TargetMaps != null && { TargetMaps: se_TargetMaps(input.TargetMaps, context) },
-        ...input.TargetParameterName != null && { TargetParameterName: input.TargetParameterName },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
     };
     var se_StartChangeRequestExecutionRequest = (input, context) => {
-      return {
-        ...input.AutoApprove != null && { AutoApprove: input.AutoApprove },
-        ...input.ChangeDetails != null && { ChangeDetails: input.ChangeDetails },
-        ...input.ChangeRequestName != null && { ChangeRequestName: input.ChangeRequestName },
-        ...input.ClientToken != null && { ClientToken: input.ClientToken },
-        ...input.DocumentName != null && { DocumentName: input.DocumentName },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Parameters != null && { Parameters: se_AutomationParameterMap(input.Parameters, context) },
-        ...input.Runbooks != null && { Runbooks: se_Runbooks(input.Runbooks, context) },
-        ...input.ScheduledEndTime != null && { ScheduledEndTime: Math.round(input.ScheduledEndTime.getTime() / 1e3) },
-        ...input.ScheduledTime != null && { ScheduledTime: Math.round(input.ScheduledTime.getTime() / 1e3) },
-        ...input.Tags != null && { Tags: se_TagList(input.Tags, context) }
-      };
-    };
-    var se_StartSessionRequest = (input, context) => {
-      return {
-        ...input.DocumentName != null && { DocumentName: input.DocumentName },
-        ...input.Parameters != null && { Parameters: se_SessionManagerParameters(input.Parameters, context) },
-        ...input.Reason != null && { Reason: input.Reason },
-        ...input.Target != null && { Target: input.Target }
-      };
-    };
-    var se_StepExecutionFilter = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_StepExecutionFilterValueList(input.Values, context) }
-      };
-    };
-    var se_StepExecutionFilterList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_StepExecutionFilter(entry, context);
+      return (0, smithy_client_1.take)(input, {
+        AutoApprove: [],
+        ChangeDetails: [],
+        ChangeRequestName: [],
+        ClientToken: [],
+        DocumentName: [],
+        DocumentVersion: [],
+        Parameters: smithy_client_1._json,
+        Runbooks: smithy_client_1._json,
+        ScheduledEndTime: (_) => Math.round(_.getTime() / 1e3),
+        ScheduledTime: (_) => Math.round(_.getTime() / 1e3),
+        Tags: smithy_client_1._json
       });
-    };
-    var se_StepExecutionFilterValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_StopAutomationExecutionRequest = (input, context) => {
-      return {
-        ...input.AutomationExecutionId != null && { AutomationExecutionId: input.AutomationExecutionId },
-        ...input.Type != null && { Type: input.Type }
-      };
-    };
-    var se_StringList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Tag = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Value != null && { Value: input.Value }
-      };
-    };
-    var se_TagList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Tag(entry, context);
-      });
-    };
-    var se_Target = (input, context) => {
-      return {
-        ...input.Key != null && { Key: input.Key },
-        ...input.Values != null && { Values: se_TargetValues(input.Values, context) }
-      };
-    };
-    var se_TargetLocation = (input, context) => {
-      return {
-        ...input.Accounts != null && { Accounts: se_Accounts(input.Accounts, context) },
-        ...input.ExecutionRoleName != null && { ExecutionRoleName: input.ExecutionRoleName },
-        ...input.Regions != null && { Regions: se_Regions(input.Regions, context) },
-        ...input.TargetLocationAlarmConfiguration != null && {
-          TargetLocationAlarmConfiguration: se_AlarmConfiguration(input.TargetLocationAlarmConfiguration, context)
-        },
-        ...input.TargetLocationMaxConcurrency != null && {
-          TargetLocationMaxConcurrency: input.TargetLocationMaxConcurrency
-        },
-        ...input.TargetLocationMaxErrors != null && { TargetLocationMaxErrors: input.TargetLocationMaxErrors }
-      };
-    };
-    var se_TargetLocations = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_TargetLocation(entry, context);
-      });
-    };
-    var se_TargetMap = (input, context) => {
-      return Object.entries(input).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = se_TargetMapValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var se_TargetMaps = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_TargetMap(entry, context);
-      });
-    };
-    var se_TargetMapValueList = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_Targets = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return se_Target(entry, context);
-      });
-    };
-    var se_TargetValues = (input, context) => {
-      return input.filter((e) => e != null).map((entry) => {
-        return entry;
-      });
-    };
-    var se_TerminateSessionRequest = (input, context) => {
-      return {
-        ...input.SessionId != null && { SessionId: input.SessionId }
-      };
-    };
-    var se_UnlabelParameterVersionRequest = (input, context) => {
-      return {
-        ...input.Labels != null && { Labels: se_ParameterLabelList(input.Labels, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.ParameterVersion != null && { ParameterVersion: input.ParameterVersion }
-      };
-    };
-    var se_UpdateAssociationRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.ApplyOnlyAtCronInterval != null && { ApplyOnlyAtCronInterval: input.ApplyOnlyAtCronInterval },
-        ...input.AssociationId != null && { AssociationId: input.AssociationId },
-        ...input.AssociationName != null && { AssociationName: input.AssociationName },
-        ...input.AssociationVersion != null && { AssociationVersion: input.AssociationVersion },
-        ...input.AutomationTargetParameterName != null && {
-          AutomationTargetParameterName: input.AutomationTargetParameterName
-        },
-        ...input.CalendarNames != null && { CalendarNames: se_CalendarNameOrARNList(input.CalendarNames, context) },
-        ...input.ComplianceSeverity != null && { ComplianceSeverity: input.ComplianceSeverity },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OutputLocation != null && {
-          OutputLocation: se_InstanceAssociationOutputLocation(input.OutputLocation, context)
-        },
-        ...input.Parameters != null && { Parameters: se_Parameters(input.Parameters, context) },
-        ...input.ScheduleExpression != null && { ScheduleExpression: input.ScheduleExpression },
-        ...input.ScheduleOffset != null && { ScheduleOffset: input.ScheduleOffset },
-        ...input.SyncCompliance != null && { SyncCompliance: input.SyncCompliance },
-        ...input.TargetLocations != null && { TargetLocations: se_TargetLocations(input.TargetLocations, context) },
-        ...input.TargetMaps != null && { TargetMaps: se_TargetMaps(input.TargetMaps, context) },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) }
-      };
     };
     var se_UpdateAssociationStatusRequest = (input, context) => {
-      return {
-        ...input.AssociationStatus != null && {
-          AssociationStatus: se_AssociationStatus(input.AssociationStatus, context)
-        },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_UpdateDocumentDefaultVersionRequest = (input, context) => {
-      return {
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_UpdateDocumentMetadataRequest = (input, context) => {
-      return {
-        ...input.DocumentReviews != null && { DocumentReviews: se_DocumentReviews(input.DocumentReviews, context) },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Name != null && { Name: input.Name }
-      };
-    };
-    var se_UpdateDocumentRequest = (input, context) => {
-      return {
-        ...input.Attachments != null && { Attachments: se_AttachmentsSourceList(input.Attachments, context) },
-        ...input.Content != null && { Content: input.Content },
-        ...input.DisplayName != null && { DisplayName: input.DisplayName },
-        ...input.DocumentFormat != null && { DocumentFormat: input.DocumentFormat },
-        ...input.DocumentVersion != null && { DocumentVersion: input.DocumentVersion },
-        ...input.Name != null && { Name: input.Name },
-        ...input.TargetType != null && { TargetType: input.TargetType },
-        ...input.VersionName != null && { VersionName: input.VersionName }
-      };
-    };
-    var se_UpdateMaintenanceWindowRequest = (input, context) => {
-      return {
-        ...input.AllowUnassociatedTargets != null && { AllowUnassociatedTargets: input.AllowUnassociatedTargets },
-        ...input.Cutoff != null && { Cutoff: input.Cutoff },
-        ...input.Description != null && { Description: input.Description },
-        ...input.Duration != null && { Duration: input.Duration },
-        ...input.Enabled != null && { Enabled: input.Enabled },
-        ...input.EndDate != null && { EndDate: input.EndDate },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Replace != null && { Replace: input.Replace },
-        ...input.Schedule != null && { Schedule: input.Schedule },
-        ...input.ScheduleOffset != null && { ScheduleOffset: input.ScheduleOffset },
-        ...input.ScheduleTimezone != null && { ScheduleTimezone: input.ScheduleTimezone },
-        ...input.StartDate != null && { StartDate: input.StartDate },
-        ...input.WindowId != null && { WindowId: input.WindowId }
-      };
-    };
-    var se_UpdateMaintenanceWindowTargetRequest = (input, context) => {
-      return {
-        ...input.Description != null && { Description: input.Description },
-        ...input.Name != null && { Name: input.Name },
-        ...input.OwnerInformation != null && { OwnerInformation: input.OwnerInformation },
-        ...input.Replace != null && { Replace: input.Replace },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.WindowId != null && { WindowId: input.WindowId },
-        ...input.WindowTargetId != null && { WindowTargetId: input.WindowTargetId }
-      };
+      return (0, smithy_client_1.take)(input, {
+        AssociationStatus: (_) => se_AssociationStatus(_, context),
+        InstanceId: [],
+        Name: []
+      });
     };
     var se_UpdateMaintenanceWindowTaskRequest = (input, context) => {
-      return {
-        ...input.AlarmConfiguration != null && {
-          AlarmConfiguration: se_AlarmConfiguration(input.AlarmConfiguration, context)
-        },
-        ...input.CutoffBehavior != null && { CutoffBehavior: input.CutoffBehavior },
-        ...input.Description != null && { Description: input.Description },
-        ...input.LoggingInfo != null && { LoggingInfo: se_LoggingInfo(input.LoggingInfo, context) },
-        ...input.MaxConcurrency != null && { MaxConcurrency: input.MaxConcurrency },
-        ...input.MaxErrors != null && { MaxErrors: input.MaxErrors },
-        ...input.Name != null && { Name: input.Name },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.Replace != null && { Replace: input.Replace },
-        ...input.ServiceRoleArn != null && { ServiceRoleArn: input.ServiceRoleArn },
-        ...input.Targets != null && { Targets: se_Targets(input.Targets, context) },
-        ...input.TaskArn != null && { TaskArn: input.TaskArn },
-        ...input.TaskInvocationParameters != null && {
-          TaskInvocationParameters: se_MaintenanceWindowTaskInvocationParameters(input.TaskInvocationParameters, context)
-        },
-        ...input.TaskParameters != null && {
-          TaskParameters: se_MaintenanceWindowTaskParameters(input.TaskParameters, context)
-        },
-        ...input.WindowId != null && { WindowId: input.WindowId },
-        ...input.WindowTaskId != null && { WindowTaskId: input.WindowTaskId }
-      };
-    };
-    var se_UpdateManagedInstanceRoleRequest = (input, context) => {
-      return {
-        ...input.IamRole != null && { IamRole: input.IamRole },
-        ...input.InstanceId != null && { InstanceId: input.InstanceId }
-      };
+      return (0, smithy_client_1.take)(input, {
+        AlarmConfiguration: smithy_client_1._json,
+        CutoffBehavior: [],
+        Description: [],
+        LoggingInfo: smithy_client_1._json,
+        MaxConcurrency: [],
+        MaxErrors: [],
+        Name: [],
+        Priority: [],
+        Replace: [],
+        ServiceRoleArn: [],
+        Targets: smithy_client_1._json,
+        TaskArn: [],
+        TaskInvocationParameters: (_) => se_MaintenanceWindowTaskInvocationParameters(_, context),
+        TaskParameters: smithy_client_1._json,
+        WindowId: [],
+        WindowTaskId: []
+      });
     };
     var se_UpdateOpsItemRequest = (input, context) => {
-      return {
-        ...input.ActualEndTime != null && { ActualEndTime: Math.round(input.ActualEndTime.getTime() / 1e3) },
-        ...input.ActualStartTime != null && { ActualStartTime: Math.round(input.ActualStartTime.getTime() / 1e3) },
-        ...input.Category != null && { Category: input.Category },
-        ...input.Description != null && { Description: input.Description },
-        ...input.Notifications != null && { Notifications: se_OpsItemNotifications(input.Notifications, context) },
-        ...input.OperationalData != null && {
-          OperationalData: se_OpsItemOperationalData(input.OperationalData, context)
-        },
-        ...input.OperationalDataToDelete != null && {
-          OperationalDataToDelete: se_OpsItemOpsDataKeysList(input.OperationalDataToDelete, context)
-        },
-        ...input.OpsItemArn != null && { OpsItemArn: input.OpsItemArn },
-        ...input.OpsItemId != null && { OpsItemId: input.OpsItemId },
-        ...input.PlannedEndTime != null && { PlannedEndTime: Math.round(input.PlannedEndTime.getTime() / 1e3) },
-        ...input.PlannedStartTime != null && { PlannedStartTime: Math.round(input.PlannedStartTime.getTime() / 1e3) },
-        ...input.Priority != null && { Priority: input.Priority },
-        ...input.RelatedOpsItems != null && { RelatedOpsItems: se_RelatedOpsItems(input.RelatedOpsItems, context) },
-        ...input.Severity != null && { Severity: input.Severity },
-        ...input.Status != null && { Status: input.Status },
-        ...input.Title != null && { Title: input.Title }
-      };
-    };
-    var se_UpdateOpsMetadataRequest = (input, context) => {
-      return {
-        ...input.KeysToDelete != null && { KeysToDelete: se_MetadataKeysToDeleteList(input.KeysToDelete, context) },
-        ...input.MetadataToUpdate != null && { MetadataToUpdate: se_MetadataMap(input.MetadataToUpdate, context) },
-        ...input.OpsMetadataArn != null && { OpsMetadataArn: input.OpsMetadataArn }
-      };
-    };
-    var se_UpdatePatchBaselineRequest = (input, context) => {
-      return {
-        ...input.ApprovalRules != null && { ApprovalRules: se_PatchRuleGroup(input.ApprovalRules, context) },
-        ...input.ApprovedPatches != null && { ApprovedPatches: se_PatchIdList(input.ApprovedPatches, context) },
-        ...input.ApprovedPatchesComplianceLevel != null && {
-          ApprovedPatchesComplianceLevel: input.ApprovedPatchesComplianceLevel
-        },
-        ...input.ApprovedPatchesEnableNonSecurity != null && {
-          ApprovedPatchesEnableNonSecurity: input.ApprovedPatchesEnableNonSecurity
-        },
-        ...input.BaselineId != null && { BaselineId: input.BaselineId },
-        ...input.Description != null && { Description: input.Description },
-        ...input.GlobalFilters != null && { GlobalFilters: se_PatchFilterGroup(input.GlobalFilters, context) },
-        ...input.Name != null && { Name: input.Name },
-        ...input.RejectedPatches != null && { RejectedPatches: se_PatchIdList(input.RejectedPatches, context) },
-        ...input.RejectedPatchesAction != null && { RejectedPatchesAction: input.RejectedPatchesAction },
-        ...input.Replace != null && { Replace: input.Replace },
-        ...input.Sources != null && { Sources: se_PatchSourceList(input.Sources, context) }
-      };
-    };
-    var se_UpdateResourceDataSyncRequest = (input, context) => {
-      return {
-        ...input.SyncName != null && { SyncName: input.SyncName },
-        ...input.SyncSource != null && { SyncSource: se_ResourceDataSyncSource(input.SyncSource, context) },
-        ...input.SyncType != null && { SyncType: input.SyncType }
-      };
-    };
-    var se_UpdateServiceSettingRequest = (input, context) => {
-      return {
-        ...input.SettingId != null && { SettingId: input.SettingId },
-        ...input.SettingValue != null && { SettingValue: input.SettingValue }
-      };
-    };
-    var de_AccountIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+      return (0, smithy_client_1.take)(input, {
+        ActualEndTime: (_) => Math.round(_.getTime() / 1e3),
+        ActualStartTime: (_) => Math.round(_.getTime() / 1e3),
+        Category: [],
+        Description: [],
+        Notifications: smithy_client_1._json,
+        OperationalData: smithy_client_1._json,
+        OperationalDataToDelete: smithy_client_1._json,
+        OpsItemArn: [],
+        OpsItemId: [],
+        PlannedEndTime: (_) => Math.round(_.getTime() / 1e3),
+        PlannedStartTime: (_) => Math.round(_.getTime() / 1e3),
+        Priority: [],
+        RelatedOpsItems: smithy_client_1._json,
+        Severity: [],
+        Status: [],
+        Title: []
       });
-      return retVal;
-    };
-    var de_Accounts = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_AccountSharingInfo = (output, context) => {
-      return {
-        AccountId: (0, smithy_client_1.expectString)(output.AccountId),
-        SharedDocumentVersion: (0, smithy_client_1.expectString)(output.SharedDocumentVersion)
-      };
-    };
-    var de_AccountSharingInfoList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_AccountSharingInfo(entry, context);
-      });
-      return retVal;
     };
     var de_Activation = (output, context) => {
-      return {
-        ActivationId: (0, smithy_client_1.expectString)(output.ActivationId),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DefaultInstanceName: (0, smithy_client_1.expectString)(output.DefaultInstanceName),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        ExpirationDate: output.ExpirationDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExpirationDate))) : void 0,
-        Expired: (0, smithy_client_1.expectBoolean)(output.Expired),
-        IamRole: (0, smithy_client_1.expectString)(output.IamRole),
-        RegistrationLimit: (0, smithy_client_1.expectInt32)(output.RegistrationLimit),
-        RegistrationsCount: (0, smithy_client_1.expectInt32)(output.RegistrationsCount),
-        Tags: output.Tags != null ? de_TagList(output.Tags, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        ActivationId: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DefaultInstanceName: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        ExpirationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Expired: smithy_client_1.expectBoolean,
+        IamRole: smithy_client_1.expectString,
+        RegistrationLimit: smithy_client_1.expectInt32,
+        RegistrationsCount: smithy_client_1.expectInt32,
+        Tags: smithy_client_1._json
+      });
     };
     var de_ActivationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Activation(entry, context);
       });
       return retVal;
     };
-    var de_AddTagsToResourceResult = (output, context) => {
-      return {};
-    };
-    var de_Alarm = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
-    };
-    var de_AlarmConfiguration = (output, context) => {
-      return {
-        Alarms: output.Alarms != null ? de_AlarmList(output.Alarms, context) : void 0,
-        IgnorePollAlarmFailure: (0, smithy_client_1.expectBoolean)(output.IgnorePollAlarmFailure)
-      };
-    };
-    var de_AlarmList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Alarm(entry, context);
-      });
-      return retVal;
-    };
-    var de_AlarmStateInformation = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        State: (0, smithy_client_1.expectString)(output.State)
-      };
-    };
-    var de_AlarmStateInformationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_AlarmStateInformation(entry, context);
-      });
-      return retVal;
-    };
-    var de_AlreadyExistsException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_AssociatedInstances = (output, context) => {
-      return {};
-    };
-    var de_AssociateOpsItemRelatedItemResponse = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId)
-      };
-    };
     var de_Association = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationName: (0, smithy_client_1.expectString)(output.AssociationName),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        LastExecutionDate: output.LastExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastExecutionDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Overview: output.Overview != null ? de_AssociationOverview(output.Overview, context) : void 0,
-        ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0
-      };
-    };
-    var de_AssociationAlreadyExists = (output, context) => {
-      return {};
+      return (0, smithy_client_1.take)(output, {
+        AssociationId: smithy_client_1.expectString,
+        AssociationName: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        InstanceId: smithy_client_1.expectString,
+        LastExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        Overview: smithy_client_1._json,
+        ScheduleExpression: smithy_client_1.expectString,
+        ScheduleOffset: smithy_client_1.expectInt32,
+        TargetMaps: smithy_client_1._json,
+        Targets: smithy_client_1._json
+      });
     };
     var de_AssociationDescription = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        ApplyOnlyAtCronInterval: (0, smithy_client_1.expectBoolean)(output.ApplyOnlyAtCronInterval),
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationName: (0, smithy_client_1.expectString)(output.AssociationName),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        AutomationTargetParameterName: (0, smithy_client_1.expectString)(output.AutomationTargetParameterName),
-        CalendarNames: output.CalendarNames != null ? de_CalendarNameOrARNList(output.CalendarNames, context) : void 0,
-        ComplianceSeverity: (0, smithy_client_1.expectString)(output.ComplianceSeverity),
-        Date: output.Date != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.Date))) : void 0,
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        LastExecutionDate: output.LastExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastExecutionDate))) : void 0,
-        LastSuccessfulExecutionDate: output.LastSuccessfulExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastSuccessfulExecutionDate))) : void 0,
-        LastUpdateAssociationDate: output.LastUpdateAssociationDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastUpdateAssociationDate))) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OutputLocation: output.OutputLocation != null ? de_InstanceAssociationOutputLocation(output.OutputLocation, context) : void 0,
-        Overview: output.Overview != null ? de_AssociationOverview(output.Overview, context) : void 0,
-        Parameters: output.Parameters != null ? de_Parameters(output.Parameters, context) : void 0,
-        ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        Status: output.Status != null ? de_AssociationStatus(output.Status, context) : void 0,
-        SyncCompliance: (0, smithy_client_1.expectString)(output.SyncCompliance),
-        TargetLocations: output.TargetLocations != null ? de_TargetLocations(output.TargetLocations, context) : void 0,
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        ApplyOnlyAtCronInterval: smithy_client_1.expectBoolean,
+        AssociationId: smithy_client_1.expectString,
+        AssociationName: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        AutomationTargetParameterName: smithy_client_1.expectString,
+        CalendarNames: smithy_client_1._json,
+        ComplianceSeverity: smithy_client_1.expectString,
+        Date: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DocumentVersion: smithy_client_1.expectString,
+        InstanceId: smithy_client_1.expectString,
+        LastExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastSuccessfulExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastUpdateAssociationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        OutputLocation: smithy_client_1._json,
+        Overview: smithy_client_1._json,
+        Parameters: smithy_client_1._json,
+        ScheduleExpression: smithy_client_1.expectString,
+        ScheduleOffset: smithy_client_1.expectInt32,
+        Status: (_) => de_AssociationStatus(_, context),
+        SyncCompliance: smithy_client_1.expectString,
+        TargetLocations: smithy_client_1._json,
+        TargetMaps: smithy_client_1._json,
+        Targets: smithy_client_1._json,
+        TriggeredAlarms: smithy_client_1._json
+      });
     };
     var de_AssociationDescriptionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_AssociationDescription(entry, context);
       });
       return retVal;
     };
-    var de_AssociationDoesNotExist = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_AssociationExecution = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        CreatedTime: output.CreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedTime))) : void 0,
-        DetailedStatus: (0, smithy_client_1.expectString)(output.DetailedStatus),
-        ExecutionId: (0, smithy_client_1.expectString)(output.ExecutionId),
-        LastExecutionDate: output.LastExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastExecutionDate))) : void 0,
-        ResourceCountByStatus: (0, smithy_client_1.expectString)(output.ResourceCountByStatus),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0
-      };
-    };
-    var de_AssociationExecutionDoesNotExist = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        AssociationId: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        CreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DetailedStatus: smithy_client_1.expectString,
+        ExecutionId: smithy_client_1.expectString,
+        LastExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ResourceCountByStatus: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        TriggeredAlarms: smithy_client_1._json
+      });
     };
     var de_AssociationExecutionsList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_AssociationExecution(entry, context);
       });
       return retVal;
     };
     var de_AssociationExecutionTarget = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        DetailedStatus: (0, smithy_client_1.expectString)(output.DetailedStatus),
-        ExecutionId: (0, smithy_client_1.expectString)(output.ExecutionId),
-        LastExecutionDate: output.LastExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastExecutionDate))) : void 0,
-        OutputSource: output.OutputSource != null ? de_OutputSource(output.OutputSource, context) : void 0,
-        ResourceId: (0, smithy_client_1.expectString)(output.ResourceId),
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationId: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        DetailedStatus: smithy_client_1.expectString,
+        ExecutionId: smithy_client_1.expectString,
+        LastExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OutputSource: smithy_client_1._json,
+        ResourceId: smithy_client_1.expectString,
+        ResourceType: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString
+      });
     };
     var de_AssociationExecutionTargetsList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_AssociationExecutionTarget(entry, context);
       });
       return retVal;
     };
-    var de_AssociationLimitExceeded = (output, context) => {
-      return {};
-    };
     var de_AssociationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Association(entry, context);
       });
       return retVal;
     };
-    var de_AssociationOverview = (output, context) => {
-      return {
-        AssociationStatusAggregatedCount: output.AssociationStatusAggregatedCount != null ? de_AssociationStatusAggregatedCount(output.AssociationStatusAggregatedCount, context) : void 0,
-        DetailedStatus: (0, smithy_client_1.expectString)(output.DetailedStatus),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
-    };
     var de_AssociationStatus = (output, context) => {
-      return {
-        AdditionalInfo: (0, smithy_client_1.expectString)(output.AdditionalInfo),
-        Date: output.Date != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.Date))) : void 0,
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
-    };
-    var de_AssociationStatusAggregatedCount = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectInt32)(value);
-        return acc;
-      }, {});
+      return (0, smithy_client_1.take)(output, {
+        AdditionalInfo: smithy_client_1.expectString,
+        Date: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Message: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString
+      });
     };
     var de_AssociationVersionInfo = (output, context) => {
-      return {
-        ApplyOnlyAtCronInterval: (0, smithy_client_1.expectBoolean)(output.ApplyOnlyAtCronInterval),
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationName: (0, smithy_client_1.expectString)(output.AssociationName),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        CalendarNames: output.CalendarNames != null ? de_CalendarNameOrARNList(output.CalendarNames, context) : void 0,
-        ComplianceSeverity: (0, smithy_client_1.expectString)(output.ComplianceSeverity),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OutputLocation: output.OutputLocation != null ? de_InstanceAssociationOutputLocation(output.OutputLocation, context) : void 0,
-        Parameters: output.Parameters != null ? de_Parameters(output.Parameters, context) : void 0,
-        ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        SyncCompliance: (0, smithy_client_1.expectString)(output.SyncCompliance),
-        TargetLocations: output.TargetLocations != null ? de_TargetLocations(output.TargetLocations, context) : void 0,
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0
-      };
-    };
-    var de_AssociationVersionLimitExceeded = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ApplyOnlyAtCronInterval: smithy_client_1.expectBoolean,
+        AssociationId: smithy_client_1.expectString,
+        AssociationName: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        CalendarNames: smithy_client_1._json,
+        ComplianceSeverity: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DocumentVersion: smithy_client_1.expectString,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        OutputLocation: smithy_client_1._json,
+        Parameters: smithy_client_1._json,
+        ScheduleExpression: smithy_client_1.expectString,
+        ScheduleOffset: smithy_client_1.expectInt32,
+        SyncCompliance: smithy_client_1.expectString,
+        TargetLocations: smithy_client_1._json,
+        TargetMaps: smithy_client_1._json,
+        Targets: smithy_client_1._json
+      });
     };
     var de_AssociationVersionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_AssociationVersionInfo(entry, context);
       });
       return retVal;
     };
-    var de_AttachmentContent = (output, context) => {
-      return {
-        Hash: (0, smithy_client_1.expectString)(output.Hash),
-        HashType: (0, smithy_client_1.expectString)(output.HashType),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Size: (0, smithy_client_1.expectLong)(output.Size),
-        Url: (0, smithy_client_1.expectString)(output.Url)
-      };
-    };
-    var de_AttachmentContentList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_AttachmentContent(entry, context);
-      });
-      return retVal;
-    };
-    var de_AttachmentInformation = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
-    };
-    var de_AttachmentInformationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_AttachmentInformation(entry, context);
-      });
-      return retVal;
-    };
-    var de_AutomationDefinitionNotApprovedException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_AutomationDefinitionNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_AutomationDefinitionVersionNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_AutomationExecution = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AutomationExecutionId: (0, smithy_client_1.expectString)(output.AutomationExecutionId),
-        AutomationExecutionStatus: (0, smithy_client_1.expectString)(output.AutomationExecutionStatus),
-        AutomationSubtype: (0, smithy_client_1.expectString)(output.AutomationSubtype),
-        ChangeRequestName: (0, smithy_client_1.expectString)(output.ChangeRequestName),
-        CurrentAction: (0, smithy_client_1.expectString)(output.CurrentAction),
-        CurrentStepName: (0, smithy_client_1.expectString)(output.CurrentStepName),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        ExecutedBy: (0, smithy_client_1.expectString)(output.ExecutedBy),
-        ExecutionEndTime: output.ExecutionEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionEndTime))) : void 0,
-        ExecutionStartTime: output.ExecutionStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionStartTime))) : void 0,
-        FailureMessage: (0, smithy_client_1.expectString)(output.FailureMessage),
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Mode: (0, smithy_client_1.expectString)(output.Mode),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        Outputs: output.Outputs != null ? de_AutomationParameterMap(output.Outputs, context) : void 0,
-        Parameters: output.Parameters != null ? de_AutomationParameterMap(output.Parameters, context) : void 0,
-        ParentAutomationExecutionId: (0, smithy_client_1.expectString)(output.ParentAutomationExecutionId),
-        ProgressCounters: output.ProgressCounters != null ? de_ProgressCounters(output.ProgressCounters, context) : void 0,
-        ResolvedTargets: output.ResolvedTargets != null ? de_ResolvedTargets(output.ResolvedTargets, context) : void 0,
-        Runbooks: output.Runbooks != null ? de_Runbooks(output.Runbooks, context) : void 0,
-        ScheduledTime: output.ScheduledTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ScheduledTime))) : void 0,
-        StepExecutions: output.StepExecutions != null ? de_StepExecutionList(output.StepExecutions, context) : void 0,
-        StepExecutionsTruncated: (0, smithy_client_1.expectBoolean)(output.StepExecutionsTruncated),
-        Target: (0, smithy_client_1.expectString)(output.Target),
-        TargetLocations: output.TargetLocations != null ? de_TargetLocations(output.TargetLocations, context) : void 0,
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        TargetParameterName: (0, smithy_client_1.expectString)(output.TargetParameterName),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0
-      };
-    };
-    var de_AutomationExecutionLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        AssociationId: smithy_client_1.expectString,
+        AutomationExecutionId: smithy_client_1.expectString,
+        AutomationExecutionStatus: smithy_client_1.expectString,
+        AutomationSubtype: smithy_client_1.expectString,
+        ChangeRequestName: smithy_client_1.expectString,
+        CurrentAction: smithy_client_1.expectString,
+        CurrentStepName: smithy_client_1.expectString,
+        DocumentName: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        ExecutedBy: smithy_client_1.expectString,
+        ExecutionEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        FailureMessage: smithy_client_1.expectString,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Mode: smithy_client_1.expectString,
+        OpsItemId: smithy_client_1.expectString,
+        Outputs: smithy_client_1._json,
+        Parameters: smithy_client_1._json,
+        ParentAutomationExecutionId: smithy_client_1.expectString,
+        ProgressCounters: smithy_client_1._json,
+        ResolvedTargets: smithy_client_1._json,
+        Runbooks: smithy_client_1._json,
+        ScheduledTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StepExecutions: (_) => de_StepExecutionList(_, context),
+        StepExecutionsTruncated: smithy_client_1.expectBoolean,
+        Target: smithy_client_1.expectString,
+        TargetLocations: smithy_client_1._json,
+        TargetMaps: smithy_client_1._json,
+        TargetParameterName: smithy_client_1.expectString,
+        Targets: smithy_client_1._json,
+        TriggeredAlarms: smithy_client_1._json
+      });
     };
     var de_AutomationExecutionMetadata = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AutomationExecutionId: (0, smithy_client_1.expectString)(output.AutomationExecutionId),
-        AutomationExecutionStatus: (0, smithy_client_1.expectString)(output.AutomationExecutionStatus),
-        AutomationSubtype: (0, smithy_client_1.expectString)(output.AutomationSubtype),
-        AutomationType: (0, smithy_client_1.expectString)(output.AutomationType),
-        ChangeRequestName: (0, smithy_client_1.expectString)(output.ChangeRequestName),
-        CurrentAction: (0, smithy_client_1.expectString)(output.CurrentAction),
-        CurrentStepName: (0, smithy_client_1.expectString)(output.CurrentStepName),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        ExecutedBy: (0, smithy_client_1.expectString)(output.ExecutedBy),
-        ExecutionEndTime: output.ExecutionEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionEndTime))) : void 0,
-        ExecutionStartTime: output.ExecutionStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionStartTime))) : void 0,
-        FailureMessage: (0, smithy_client_1.expectString)(output.FailureMessage),
-        LogFile: (0, smithy_client_1.expectString)(output.LogFile),
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Mode: (0, smithy_client_1.expectString)(output.Mode),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        Outputs: output.Outputs != null ? de_AutomationParameterMap(output.Outputs, context) : void 0,
-        ParentAutomationExecutionId: (0, smithy_client_1.expectString)(output.ParentAutomationExecutionId),
-        ResolvedTargets: output.ResolvedTargets != null ? de_ResolvedTargets(output.ResolvedTargets, context) : void 0,
-        Runbooks: output.Runbooks != null ? de_Runbooks(output.Runbooks, context) : void 0,
-        ScheduledTime: output.ScheduledTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ScheduledTime))) : void 0,
-        Target: (0, smithy_client_1.expectString)(output.Target),
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        TargetParameterName: (0, smithy_client_1.expectString)(output.TargetParameterName),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        AssociationId: smithy_client_1.expectString,
+        AutomationExecutionId: smithy_client_1.expectString,
+        AutomationExecutionStatus: smithy_client_1.expectString,
+        AutomationSubtype: smithy_client_1.expectString,
+        AutomationType: smithy_client_1.expectString,
+        ChangeRequestName: smithy_client_1.expectString,
+        CurrentAction: smithy_client_1.expectString,
+        CurrentStepName: smithy_client_1.expectString,
+        DocumentName: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        ExecutedBy: smithy_client_1.expectString,
+        ExecutionEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        FailureMessage: smithy_client_1.expectString,
+        LogFile: smithy_client_1.expectString,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Mode: smithy_client_1.expectString,
+        OpsItemId: smithy_client_1.expectString,
+        Outputs: smithy_client_1._json,
+        ParentAutomationExecutionId: smithy_client_1.expectString,
+        ResolvedTargets: smithy_client_1._json,
+        Runbooks: smithy_client_1._json,
+        ScheduledTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Target: smithy_client_1.expectString,
+        TargetMaps: smithy_client_1._json,
+        TargetParameterName: smithy_client_1.expectString,
+        Targets: smithy_client_1._json,
+        TriggeredAlarms: smithy_client_1._json
+      });
     };
     var de_AutomationExecutionMetadataList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_AutomationExecutionMetadata(entry, context);
       });
       return retVal;
     };
-    var de_AutomationExecutionNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_AutomationParameterMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_AutomationParameterValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var de_AutomationParameterValueList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_AutomationStepNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_CalendarNameOrARNList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_CancelCommandResult = (output, context) => {
-      return {};
-    };
-    var de_CancelMaintenanceWindowExecutionResult = (output, context) => {
-      return {
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId)
-      };
-    };
-    var de_CategoryEnumList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_CategoryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_CloudWatchOutputConfig = (output, context) => {
-      return {
-        CloudWatchLogGroupName: (0, smithy_client_1.expectString)(output.CloudWatchLogGroupName),
-        CloudWatchOutputEnabled: (0, smithy_client_1.expectBoolean)(output.CloudWatchOutputEnabled)
-      };
-    };
     var de_Command = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        CloudWatchOutputConfig: output.CloudWatchOutputConfig != null ? de_CloudWatchOutputConfig(output.CloudWatchOutputConfig, context) : void 0,
-        CommandId: (0, smithy_client_1.expectString)(output.CommandId),
-        Comment: (0, smithy_client_1.expectString)(output.Comment),
-        CompletedCount: (0, smithy_client_1.expectInt32)(output.CompletedCount),
-        DeliveryTimedOutCount: (0, smithy_client_1.expectInt32)(output.DeliveryTimedOutCount),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        ErrorCount: (0, smithy_client_1.expectInt32)(output.ErrorCount),
-        ExpiresAfter: output.ExpiresAfter != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExpiresAfter))) : void 0,
-        InstanceIds: output.InstanceIds != null ? de_InstanceIdList(output.InstanceIds, context) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        NotificationConfig: output.NotificationConfig != null ? de_NotificationConfig(output.NotificationConfig, context) : void 0,
-        OutputS3BucketName: (0, smithy_client_1.expectString)(output.OutputS3BucketName),
-        OutputS3KeyPrefix: (0, smithy_client_1.expectString)(output.OutputS3KeyPrefix),
-        OutputS3Region: (0, smithy_client_1.expectString)(output.OutputS3Region),
-        Parameters: output.Parameters != null ? de_Parameters(output.Parameters, context) : void 0,
-        RequestedDateTime: output.RequestedDateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.RequestedDateTime))) : void 0,
-        ServiceRole: (0, smithy_client_1.expectString)(output.ServiceRole),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TargetCount: (0, smithy_client_1.expectInt32)(output.TargetCount),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TimeoutSeconds: (0, smithy_client_1.expectInt32)(output.TimeoutSeconds),
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        CloudWatchOutputConfig: smithy_client_1._json,
+        CommandId: smithy_client_1.expectString,
+        Comment: smithy_client_1.expectString,
+        CompletedCount: smithy_client_1.expectInt32,
+        DeliveryTimedOutCount: smithy_client_1.expectInt32,
+        DocumentName: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        ErrorCount: smithy_client_1.expectInt32,
+        ExpiresAfter: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        InstanceIds: smithy_client_1._json,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        NotificationConfig: smithy_client_1._json,
+        OutputS3BucketName: smithy_client_1.expectString,
+        OutputS3KeyPrefix: smithy_client_1.expectString,
+        OutputS3Region: smithy_client_1.expectString,
+        Parameters: smithy_client_1._json,
+        RequestedDateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ServiceRole: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TargetCount: smithy_client_1.expectInt32,
+        Targets: smithy_client_1._json,
+        TimeoutSeconds: smithy_client_1.expectInt32,
+        TriggeredAlarms: smithy_client_1._json
+      });
     };
     var de_CommandInvocation = (output, context) => {
-      return {
-        CloudWatchOutputConfig: output.CloudWatchOutputConfig != null ? de_CloudWatchOutputConfig(output.CloudWatchOutputConfig, context) : void 0,
-        CommandId: (0, smithy_client_1.expectString)(output.CommandId),
-        CommandPlugins: output.CommandPlugins != null ? de_CommandPluginList(output.CommandPlugins, context) : void 0,
-        Comment: (0, smithy_client_1.expectString)(output.Comment),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        InstanceName: (0, smithy_client_1.expectString)(output.InstanceName),
-        NotificationConfig: output.NotificationConfig != null ? de_NotificationConfig(output.NotificationConfig, context) : void 0,
-        RequestedDateTime: output.RequestedDateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.RequestedDateTime))) : void 0,
-        ServiceRole: (0, smithy_client_1.expectString)(output.ServiceRole),
-        StandardErrorUrl: (0, smithy_client_1.expectString)(output.StandardErrorUrl),
-        StandardOutputUrl: (0, smithy_client_1.expectString)(output.StandardOutputUrl),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TraceOutput: (0, smithy_client_1.expectString)(output.TraceOutput)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CloudWatchOutputConfig: smithy_client_1._json,
+        CommandId: smithy_client_1.expectString,
+        CommandPlugins: (_) => de_CommandPluginList(_, context),
+        Comment: smithy_client_1.expectString,
+        DocumentName: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        InstanceId: smithy_client_1.expectString,
+        InstanceName: smithy_client_1.expectString,
+        NotificationConfig: smithy_client_1._json,
+        RequestedDateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ServiceRole: smithy_client_1.expectString,
+        StandardErrorUrl: smithy_client_1.expectString,
+        StandardOutputUrl: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TraceOutput: smithy_client_1.expectString
+      });
     };
     var de_CommandInvocationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_CommandInvocation(entry, context);
       });
       return retVal;
     };
     var de_CommandList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Command(entry, context);
       });
       return retVal;
     };
     var de_CommandPlugin = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Output: (0, smithy_client_1.expectString)(output.Output),
-        OutputS3BucketName: (0, smithy_client_1.expectString)(output.OutputS3BucketName),
-        OutputS3KeyPrefix: (0, smithy_client_1.expectString)(output.OutputS3KeyPrefix),
-        OutputS3Region: (0, smithy_client_1.expectString)(output.OutputS3Region),
-        ResponseCode: (0, smithy_client_1.expectInt32)(output.ResponseCode),
-        ResponseFinishDateTime: output.ResponseFinishDateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ResponseFinishDateTime))) : void 0,
-        ResponseStartDateTime: output.ResponseStartDateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ResponseStartDateTime))) : void 0,
-        StandardErrorUrl: (0, smithy_client_1.expectString)(output.StandardErrorUrl),
-        StandardOutputUrl: (0, smithy_client_1.expectString)(output.StandardOutputUrl),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Name: smithy_client_1.expectString,
+        Output: smithy_client_1.expectString,
+        OutputS3BucketName: smithy_client_1.expectString,
+        OutputS3KeyPrefix: smithy_client_1.expectString,
+        OutputS3Region: smithy_client_1.expectString,
+        ResponseCode: smithy_client_1.expectInt32,
+        ResponseFinishDateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ResponseStartDateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StandardErrorUrl: smithy_client_1.expectString,
+        StandardOutputUrl: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString
+      });
     };
     var de_CommandPluginList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_CommandPlugin(entry, context);
       });
       return retVal;
     };
     var de_ComplianceExecutionSummary = (output, context) => {
-      return {
-        ExecutionId: (0, smithy_client_1.expectString)(output.ExecutionId),
-        ExecutionTime: output.ExecutionTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionTime))) : void 0,
-        ExecutionType: (0, smithy_client_1.expectString)(output.ExecutionType)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ExecutionId: smithy_client_1.expectString,
+        ExecutionTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionType: smithy_client_1.expectString
+      });
     };
     var de_ComplianceItem = (output, context) => {
-      return {
-        ComplianceType: (0, smithy_client_1.expectString)(output.ComplianceType),
-        Details: output.Details != null ? de_ComplianceItemDetails(output.Details, context) : void 0,
-        ExecutionSummary: output.ExecutionSummary != null ? de_ComplianceExecutionSummary(output.ExecutionSummary, context) : void 0,
-        Id: (0, smithy_client_1.expectString)(output.Id),
-        ResourceId: (0, smithy_client_1.expectString)(output.ResourceId),
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        Severity: (0, smithy_client_1.expectString)(output.Severity),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Title: (0, smithy_client_1.expectString)(output.Title)
-      };
-    };
-    var de_ComplianceItemDetails = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectString)(value);
-        return acc;
-      }, {});
+      return (0, smithy_client_1.take)(output, {
+        ComplianceType: smithy_client_1.expectString,
+        Details: smithy_client_1._json,
+        ExecutionSummary: (_) => de_ComplianceExecutionSummary(_, context),
+        Id: smithy_client_1.expectString,
+        ResourceId: smithy_client_1.expectString,
+        ResourceType: smithy_client_1.expectString,
+        Severity: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        Title: smithy_client_1.expectString
+      });
     };
     var de_ComplianceItemList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ComplianceItem(entry, context);
       });
       return retVal;
     };
-    var de_ComplianceSummaryItem = (output, context) => {
-      return {
-        ComplianceType: (0, smithy_client_1.expectString)(output.ComplianceType),
-        CompliantSummary: output.CompliantSummary != null ? de_CompliantSummary(output.CompliantSummary, context) : void 0,
-        NonCompliantSummary: output.NonCompliantSummary != null ? de_NonCompliantSummary(output.NonCompliantSummary, context) : void 0
-      };
-    };
-    var de_ComplianceSummaryItemList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_ComplianceSummaryItem(entry, context);
-      });
-      return retVal;
-    };
-    var de_ComplianceTypeCountLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_CompliantSummary = (output, context) => {
-      return {
-        CompliantCount: (0, smithy_client_1.expectInt32)(output.CompliantCount),
-        SeveritySummary: output.SeveritySummary != null ? de_SeveritySummary(output.SeveritySummary, context) : void 0
-      };
-    };
-    var de_CreateActivationResult = (output, context) => {
-      return {
-        ActivationCode: (0, smithy_client_1.expectString)(output.ActivationCode),
-        ActivationId: (0, smithy_client_1.expectString)(output.ActivationId)
-      };
-    };
-    var de_CreateAssociationBatchRequestEntry = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        ApplyOnlyAtCronInterval: (0, smithy_client_1.expectBoolean)(output.ApplyOnlyAtCronInterval),
-        AssociationName: (0, smithy_client_1.expectString)(output.AssociationName),
-        AutomationTargetParameterName: (0, smithy_client_1.expectString)(output.AutomationTargetParameterName),
-        CalendarNames: output.CalendarNames != null ? de_CalendarNameOrARNList(output.CalendarNames, context) : void 0,
-        ComplianceSeverity: (0, smithy_client_1.expectString)(output.ComplianceSeverity),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OutputLocation: output.OutputLocation != null ? de_InstanceAssociationOutputLocation(output.OutputLocation, context) : void 0,
-        Parameters: output.Parameters != null ? de_Parameters(output.Parameters, context) : void 0,
-        ScheduleExpression: (0, smithy_client_1.expectString)(output.ScheduleExpression),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        SyncCompliance: (0, smithy_client_1.expectString)(output.SyncCompliance),
-        TargetLocations: output.TargetLocations != null ? de_TargetLocations(output.TargetLocations, context) : void 0,
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0
-      };
-    };
     var de_CreateAssociationBatchResult = (output, context) => {
-      return {
-        Failed: output.Failed != null ? de_FailedCreateAssociationList(output.Failed, context) : void 0,
-        Successful: output.Successful != null ? de_AssociationDescriptionList(output.Successful, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Failed: smithy_client_1._json,
+        Successful: (_) => de_AssociationDescriptionList(_, context)
+      });
     };
     var de_CreateAssociationResult = (output, context) => {
-      return {
-        AssociationDescription: output.AssociationDescription != null ? de_AssociationDescription(output.AssociationDescription, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationDescription: (_) => de_AssociationDescription(_, context)
+      });
     };
     var de_CreateDocumentResult = (output, context) => {
-      return {
-        DocumentDescription: output.DocumentDescription != null ? de_DocumentDescription(output.DocumentDescription, context) : void 0
-      };
-    };
-    var de_CreateMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_CreateOpsItemResponse = (output, context) => {
-      return {
-        OpsItemArn: (0, smithy_client_1.expectString)(output.OpsItemArn),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId)
-      };
-    };
-    var de_CreateOpsMetadataResult = (output, context) => {
-      return {
-        OpsMetadataArn: (0, smithy_client_1.expectString)(output.OpsMetadataArn)
-      };
-    };
-    var de_CreatePatchBaselineResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId)
-      };
-    };
-    var de_CreateResourceDataSyncResult = (output, context) => {
-      return {};
-    };
-    var de_CustomSchemaCountLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DeleteActivationResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteAssociationResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteDocumentResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteInventoryResult = (output, context) => {
-      return {
-        DeletionId: (0, smithy_client_1.expectString)(output.DeletionId),
-        DeletionSummary: output.DeletionSummary != null ? de_InventoryDeletionSummary(output.DeletionSummary, context) : void 0,
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_DeleteMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_DeleteOpsMetadataResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteParameterResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteParametersResult = (output, context) => {
-      return {
-        DeletedParameters: output.DeletedParameters != null ? de_ParameterNameList(output.DeletedParameters, context) : void 0,
-        InvalidParameters: output.InvalidParameters != null ? de_ParameterNameList(output.InvalidParameters, context) : void 0
-      };
-    };
-    var de_DeletePatchBaselineResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId)
-      };
-    };
-    var de_DeleteResourceDataSyncResult = (output, context) => {
-      return {};
-    };
-    var de_DeleteResourcePolicyResponse = (output, context) => {
-      return {};
-    };
-    var de_DeregisterManagedInstanceResult = (output, context) => {
-      return {};
-    };
-    var de_DeregisterPatchBaselineForPatchGroupResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        PatchGroup: (0, smithy_client_1.expectString)(output.PatchGroup)
-      };
-    };
-    var de_DeregisterTargetFromMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
-    };
-    var de_DeregisterTaskFromMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTaskId: (0, smithy_client_1.expectString)(output.WindowTaskId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        DocumentDescription: (_) => de_DocumentDescription(_, context)
+      });
     };
     var de_DescribeActivationsResult = (output, context) => {
-      return {
-        ActivationList: output.ActivationList != null ? de_ActivationList(output.ActivationList, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ActivationList: (_) => de_ActivationList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeAssociationExecutionsResult = (output, context) => {
-      return {
-        AssociationExecutions: output.AssociationExecutions != null ? de_AssociationExecutionsList(output.AssociationExecutions, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationExecutions: (_) => de_AssociationExecutionsList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeAssociationExecutionTargetsResult = (output, context) => {
-      return {
-        AssociationExecutionTargets: output.AssociationExecutionTargets != null ? de_AssociationExecutionTargetsList(output.AssociationExecutionTargets, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationExecutionTargets: (_) => de_AssociationExecutionTargetsList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeAssociationResult = (output, context) => {
-      return {
-        AssociationDescription: output.AssociationDescription != null ? de_AssociationDescription(output.AssociationDescription, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationDescription: (_) => de_AssociationDescription(_, context)
+      });
     };
     var de_DescribeAutomationExecutionsResult = (output, context) => {
-      return {
-        AutomationExecutionMetadataList: output.AutomationExecutionMetadataList != null ? de_AutomationExecutionMetadataList(output.AutomationExecutionMetadataList, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AutomationExecutionMetadataList: (_) => de_AutomationExecutionMetadataList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeAutomationStepExecutionsResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        StepExecutions: output.StepExecutions != null ? de_StepExecutionList(output.StepExecutions, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        StepExecutions: (_) => de_StepExecutionList(_, context)
+      });
     };
     var de_DescribeAvailablePatchesResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Patches: output.Patches != null ? de_PatchList(output.Patches, context) : void 0
-      };
-    };
-    var de_DescribeDocumentPermissionResponse = (output, context) => {
-      return {
-        AccountIds: output.AccountIds != null ? de_AccountIdList(output.AccountIds, context) : void 0,
-        AccountSharingInfoList: output.AccountSharingInfoList != null ? de_AccountSharingInfoList(output.AccountSharingInfoList, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Patches: (_) => de_PatchList(_, context)
+      });
     };
     var de_DescribeDocumentResult = (output, context) => {
-      return {
-        Document: output.Document != null ? de_DocumentDescription(output.Document, context) : void 0
-      };
-    };
-    var de_DescribeEffectiveInstanceAssociationsResult = (output, context) => {
-      return {
-        Associations: output.Associations != null ? de_InstanceAssociationList(output.Associations, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Document: (_) => de_DocumentDescription(_, context)
+      });
     };
     var de_DescribeEffectivePatchesForPatchBaselineResult = (output, context) => {
-      return {
-        EffectivePatches: output.EffectivePatches != null ? de_EffectivePatchList(output.EffectivePatches, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        EffectivePatches: (_) => de_EffectivePatchList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeInstanceAssociationsStatusResult = (output, context) => {
-      return {
-        InstanceAssociationStatusInfos: output.InstanceAssociationStatusInfos != null ? de_InstanceAssociationStatusInfos(output.InstanceAssociationStatusInfos, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InstanceAssociationStatusInfos: (_) => de_InstanceAssociationStatusInfos(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeInstanceInformationResult = (output, context) => {
-      return {
-        InstanceInformationList: output.InstanceInformationList != null ? de_InstanceInformationList(output.InstanceInformationList, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InstanceInformationList: (_) => de_InstanceInformationList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeInstancePatchesResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Patches: output.Patches != null ? de_PatchComplianceDataList(output.Patches, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Patches: (_) => de_PatchComplianceDataList(_, context)
+      });
     };
     var de_DescribeInstancePatchStatesForPatchGroupResult = (output, context) => {
-      return {
-        InstancePatchStates: output.InstancePatchStates != null ? de_InstancePatchStatesList(output.InstancePatchStates, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InstancePatchStates: (_) => de_InstancePatchStatesList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeInstancePatchStatesResult = (output, context) => {
-      return {
-        InstancePatchStates: output.InstancePatchStates != null ? de_InstancePatchStateList(output.InstancePatchStates, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InstancePatchStates: (_) => de_InstancePatchStateList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeInventoryDeletionsResult = (output, context) => {
-      return {
-        InventoryDeletions: output.InventoryDeletions != null ? de_InventoryDeletionsList(output.InventoryDeletions, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InventoryDeletions: (_) => de_InventoryDeletionsList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_DescribeMaintenanceWindowExecutionsResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        WindowExecutions: output.WindowExecutions != null ? de_MaintenanceWindowExecutionList(output.WindowExecutions, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        WindowExecutions: (_) => de_MaintenanceWindowExecutionList(_, context)
+      });
     };
     var de_DescribeMaintenanceWindowExecutionTaskInvocationsResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        WindowExecutionTaskInvocationIdentities: output.WindowExecutionTaskInvocationIdentities != null ? de_MaintenanceWindowExecutionTaskInvocationIdentityList(output.WindowExecutionTaskInvocationIdentities, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        WindowExecutionTaskInvocationIdentities: (_) => de_MaintenanceWindowExecutionTaskInvocationIdentityList(_, context)
+      });
     };
     var de_DescribeMaintenanceWindowExecutionTasksResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        WindowExecutionTaskIdentities: output.WindowExecutionTaskIdentities != null ? de_MaintenanceWindowExecutionTaskIdentityList(output.WindowExecutionTaskIdentities, context) : void 0
-      };
-    };
-    var de_DescribeMaintenanceWindowScheduleResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        ScheduledWindowExecutions: output.ScheduledWindowExecutions != null ? de_ScheduledWindowExecutionList(output.ScheduledWindowExecutions, context) : void 0
-      };
-    };
-    var de_DescribeMaintenanceWindowsForTargetResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        WindowIdentities: output.WindowIdentities != null ? de_MaintenanceWindowsForTargetList(output.WindowIdentities, context) : void 0
-      };
-    };
-    var de_DescribeMaintenanceWindowsResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        WindowIdentities: output.WindowIdentities != null ? de_MaintenanceWindowIdentityList(output.WindowIdentities, context) : void 0
-      };
-    };
-    var de_DescribeMaintenanceWindowTargetsResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Targets: output.Targets != null ? de_MaintenanceWindowTargetList(output.Targets, context) : void 0
-      };
-    };
-    var de_DescribeMaintenanceWindowTasksResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Tasks: output.Tasks != null ? de_MaintenanceWindowTaskList(output.Tasks, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        WindowExecutionTaskIdentities: (_) => de_MaintenanceWindowExecutionTaskIdentityList(_, context)
+      });
     };
     var de_DescribeOpsItemsResponse = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        OpsItemSummaries: output.OpsItemSummaries != null ? de_OpsItemSummaries(output.OpsItemSummaries, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        OpsItemSummaries: (_) => de_OpsItemSummaries(_, context)
+      });
     };
     var de_DescribeParametersResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Parameters: output.Parameters != null ? de_ParameterMetadataList(output.Parameters, context) : void 0
-      };
-    };
-    var de_DescribePatchBaselinesResult = (output, context) => {
-      return {
-        BaselineIdentities: output.BaselineIdentities != null ? de_PatchBaselineIdentityList(output.BaselineIdentities, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
-    };
-    var de_DescribePatchGroupsResult = (output, context) => {
-      return {
-        Mappings: output.Mappings != null ? de_PatchGroupPatchBaselineMappingList(output.Mappings, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
-    };
-    var de_DescribePatchGroupStateResult = (output, context) => {
-      return {
-        Instances: (0, smithy_client_1.expectInt32)(output.Instances),
-        InstancesWithCriticalNonCompliantPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithCriticalNonCompliantPatches),
-        InstancesWithFailedPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithFailedPatches),
-        InstancesWithInstalledOtherPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithInstalledOtherPatches),
-        InstancesWithInstalledPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithInstalledPatches),
-        InstancesWithInstalledPendingRebootPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithInstalledPendingRebootPatches),
-        InstancesWithInstalledRejectedPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithInstalledRejectedPatches),
-        InstancesWithMissingPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithMissingPatches),
-        InstancesWithNotApplicablePatches: (0, smithy_client_1.expectInt32)(output.InstancesWithNotApplicablePatches),
-        InstancesWithOtherNonCompliantPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithOtherNonCompliantPatches),
-        InstancesWithSecurityNonCompliantPatches: (0, smithy_client_1.expectInt32)(output.InstancesWithSecurityNonCompliantPatches),
-        InstancesWithUnreportedNotApplicablePatches: (0, smithy_client_1.expectInt32)(output.InstancesWithUnreportedNotApplicablePatches)
-      };
-    };
-    var de_DescribePatchPropertiesResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Properties: output.Properties != null ? de_PatchPropertiesList(output.Properties, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Parameters: (_) => de_ParameterMetadataList(_, context)
+      });
     };
     var de_DescribeSessionsResponse = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Sessions: output.Sessions != null ? de_SessionList(output.Sessions, context) : void 0
-      };
-    };
-    var de_DisassociateOpsItemRelatedItemResponse = (output, context) => {
-      return {};
-    };
-    var de_DocumentAlreadyExists = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DocumentDefaultVersionDescription = (output, context) => {
-      return {
-        DefaultVersion: (0, smithy_client_1.expectString)(output.DefaultVersion),
-        DefaultVersionName: (0, smithy_client_1.expectString)(output.DefaultVersionName),
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Sessions: (_) => de_SessionList(_, context)
+      });
     };
     var de_DocumentDescription = (output, context) => {
-      return {
-        ApprovedVersion: (0, smithy_client_1.expectString)(output.ApprovedVersion),
-        AttachmentsInformation: output.AttachmentsInformation != null ? de_AttachmentInformationList(output.AttachmentsInformation, context) : void 0,
-        Author: (0, smithy_client_1.expectString)(output.Author),
-        Category: output.Category != null ? de_CategoryList(output.Category, context) : void 0,
-        CategoryEnum: output.CategoryEnum != null ? de_CategoryEnumList(output.CategoryEnum, context) : void 0,
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DefaultVersion: (0, smithy_client_1.expectString)(output.DefaultVersion),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        DisplayName: (0, smithy_client_1.expectString)(output.DisplayName),
-        DocumentFormat: (0, smithy_client_1.expectString)(output.DocumentFormat),
-        DocumentType: (0, smithy_client_1.expectString)(output.DocumentType),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        Hash: (0, smithy_client_1.expectString)(output.Hash),
-        HashType: (0, smithy_client_1.expectString)(output.HashType),
-        LatestVersion: (0, smithy_client_1.expectString)(output.LatestVersion),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Owner: (0, smithy_client_1.expectString)(output.Owner),
-        Parameters: output.Parameters != null ? de_DocumentParameterList(output.Parameters, context) : void 0,
-        PendingReviewVersion: (0, smithy_client_1.expectString)(output.PendingReviewVersion),
-        PlatformTypes: output.PlatformTypes != null ? de_PlatformTypeList(output.PlatformTypes, context) : void 0,
-        Requires: output.Requires != null ? de_DocumentRequiresList(output.Requires, context) : void 0,
-        ReviewInformation: output.ReviewInformation != null ? de_ReviewInformationList(output.ReviewInformation, context) : void 0,
-        ReviewStatus: (0, smithy_client_1.expectString)(output.ReviewStatus),
-        SchemaVersion: (0, smithy_client_1.expectString)(output.SchemaVersion),
-        Sha1: (0, smithy_client_1.expectString)(output.Sha1),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusInformation: (0, smithy_client_1.expectString)(output.StatusInformation),
-        Tags: output.Tags != null ? de_TagList(output.Tags, context) : void 0,
-        TargetType: (0, smithy_client_1.expectString)(output.TargetType),
-        VersionName: (0, smithy_client_1.expectString)(output.VersionName)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ApprovedVersion: smithy_client_1.expectString,
+        AttachmentsInformation: smithy_client_1._json,
+        Author: smithy_client_1.expectString,
+        Category: smithy_client_1._json,
+        CategoryEnum: smithy_client_1._json,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DefaultVersion: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        DisplayName: smithy_client_1.expectString,
+        DocumentFormat: smithy_client_1.expectString,
+        DocumentType: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        Hash: smithy_client_1.expectString,
+        HashType: smithy_client_1.expectString,
+        LatestVersion: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Owner: smithy_client_1.expectString,
+        Parameters: smithy_client_1._json,
+        PendingReviewVersion: smithy_client_1.expectString,
+        PlatformTypes: smithy_client_1._json,
+        Requires: smithy_client_1._json,
+        ReviewInformation: (_) => de_ReviewInformationList(_, context),
+        ReviewStatus: smithy_client_1.expectString,
+        SchemaVersion: smithy_client_1.expectString,
+        Sha1: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusInformation: smithy_client_1.expectString,
+        Tags: smithy_client_1._json,
+        TargetType: smithy_client_1.expectString,
+        VersionName: smithy_client_1.expectString
+      });
     };
     var de_DocumentIdentifier = (output, context) => {
-      return {
-        Author: (0, smithy_client_1.expectString)(output.Author),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DisplayName: (0, smithy_client_1.expectString)(output.DisplayName),
-        DocumentFormat: (0, smithy_client_1.expectString)(output.DocumentFormat),
-        DocumentType: (0, smithy_client_1.expectString)(output.DocumentType),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Owner: (0, smithy_client_1.expectString)(output.Owner),
-        PlatformTypes: output.PlatformTypes != null ? de_PlatformTypeList(output.PlatformTypes, context) : void 0,
-        Requires: output.Requires != null ? de_DocumentRequiresList(output.Requires, context) : void 0,
-        ReviewStatus: (0, smithy_client_1.expectString)(output.ReviewStatus),
-        SchemaVersion: (0, smithy_client_1.expectString)(output.SchemaVersion),
-        Tags: output.Tags != null ? de_TagList(output.Tags, context) : void 0,
-        TargetType: (0, smithy_client_1.expectString)(output.TargetType),
-        VersionName: (0, smithy_client_1.expectString)(output.VersionName)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Author: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DisplayName: smithy_client_1.expectString,
+        DocumentFormat: smithy_client_1.expectString,
+        DocumentType: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Owner: smithy_client_1.expectString,
+        PlatformTypes: smithy_client_1._json,
+        Requires: smithy_client_1._json,
+        ReviewStatus: smithy_client_1.expectString,
+        SchemaVersion: smithy_client_1.expectString,
+        Tags: smithy_client_1._json,
+        TargetType: smithy_client_1.expectString,
+        VersionName: smithy_client_1.expectString
+      });
     };
     var de_DocumentIdentifierList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_DocumentIdentifier(entry, context);
       });
       return retVal;
     };
-    var de_DocumentLimitExceeded = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_DocumentMetadataResponseInfo = (output, context) => {
-      return {
-        ReviewerResponse: output.ReviewerResponse != null ? de_DocumentReviewerResponseList(output.ReviewerResponse, context) : void 0
-      };
-    };
-    var de_DocumentParameter = (output, context) => {
-      return {
-        DefaultValue: (0, smithy_client_1.expectString)(output.DefaultValue),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Type: (0, smithy_client_1.expectString)(output.Type)
-      };
-    };
-    var de_DocumentParameterList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_DocumentParameter(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        ReviewerResponse: (_) => de_DocumentReviewerResponseList(_, context)
       });
-      return retVal;
-    };
-    var de_DocumentPermissionLimit = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DocumentRequires = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        RequireType: (0, smithy_client_1.expectString)(output.RequireType),
-        Version: (0, smithy_client_1.expectString)(output.Version),
-        VersionName: (0, smithy_client_1.expectString)(output.VersionName)
-      };
-    };
-    var de_DocumentRequiresList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_DocumentRequires(entry, context);
-      });
-      return retVal;
-    };
-    var de_DocumentReviewCommentList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_DocumentReviewCommentSource(entry, context);
-      });
-      return retVal;
-    };
-    var de_DocumentReviewCommentSource = (output, context) => {
-      return {
-        Content: (0, smithy_client_1.expectString)(output.Content),
-        Type: (0, smithy_client_1.expectString)(output.Type)
-      };
     };
     var de_DocumentReviewerResponseList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_DocumentReviewerResponseSource(entry, context);
       });
       return retVal;
     };
     var de_DocumentReviewerResponseSource = (output, context) => {
-      return {
-        Comment: output.Comment != null ? de_DocumentReviewCommentList(output.Comment, context) : void 0,
-        CreateTime: output.CreateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreateTime))) : void 0,
-        ReviewStatus: (0, smithy_client_1.expectString)(output.ReviewStatus),
-        Reviewer: (0, smithy_client_1.expectString)(output.Reviewer),
-        UpdatedTime: output.UpdatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.UpdatedTime))) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Comment: smithy_client_1._json,
+        CreateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ReviewStatus: smithy_client_1.expectString,
+        Reviewer: smithy_client_1.expectString,
+        UpdatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_)))
+      });
     };
     var de_DocumentVersionInfo = (output, context) => {
-      return {
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DisplayName: (0, smithy_client_1.expectString)(output.DisplayName),
-        DocumentFormat: (0, smithy_client_1.expectString)(output.DocumentFormat),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        IsDefaultVersion: (0, smithy_client_1.expectBoolean)(output.IsDefaultVersion),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        ReviewStatus: (0, smithy_client_1.expectString)(output.ReviewStatus),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusInformation: (0, smithy_client_1.expectString)(output.StatusInformation),
-        VersionName: (0, smithy_client_1.expectString)(output.VersionName)
-      };
-    };
-    var de_DocumentVersionLimitExceeded = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DisplayName: smithy_client_1.expectString,
+        DocumentFormat: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        IsDefaultVersion: smithy_client_1.expectBoolean,
+        Name: smithy_client_1.expectString,
+        ReviewStatus: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusInformation: smithy_client_1.expectString,
+        VersionName: smithy_client_1.expectString
+      });
     };
     var de_DocumentVersionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_DocumentVersionInfo(entry, context);
       });
       return retVal;
     };
-    var de_DoesNotExistException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DuplicateDocumentContent = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DuplicateDocumentVersionName = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_DuplicateInstanceId = (output, context) => {
-      return {};
-    };
     var de_EffectivePatch = (output, context) => {
-      return {
-        Patch: output.Patch != null ? de_Patch(output.Patch, context) : void 0,
-        PatchStatus: output.PatchStatus != null ? de_PatchStatus(output.PatchStatus, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Patch: (_) => de_Patch(_, context),
+        PatchStatus: (_) => de_PatchStatus(_, context)
+      });
     };
     var de_EffectivePatchList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_EffectivePatch(entry, context);
       });
       return retVal;
     };
-    var de_FailedCreateAssociation = (output, context) => {
-      return {
-        Entry: output.Entry != null ? de_CreateAssociationBatchRequestEntry(output.Entry, context) : void 0,
-        Fault: (0, smithy_client_1.expectString)(output.Fault),
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_FailedCreateAssociationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_FailedCreateAssociation(entry, context);
-      });
-      return retVal;
-    };
-    var de_FailureDetails = (output, context) => {
-      return {
-        Details: output.Details != null ? de_AutomationParameterMap(output.Details, context) : void 0,
-        FailureStage: (0, smithy_client_1.expectString)(output.FailureStage),
-        FailureType: (0, smithy_client_1.expectString)(output.FailureType)
-      };
-    };
-    var de_FeatureNotAvailableException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_GetAutomationExecutionResult = (output, context) => {
-      return {
-        AutomationExecution: output.AutomationExecution != null ? de_AutomationExecution(output.AutomationExecution, context) : void 0
-      };
-    };
-    var de_GetCalendarStateResponse = (output, context) => {
-      return {
-        AtTime: (0, smithy_client_1.expectString)(output.AtTime),
-        NextTransitionTime: (0, smithy_client_1.expectString)(output.NextTransitionTime),
-        State: (0, smithy_client_1.expectString)(output.State)
-      };
-    };
-    var de_GetCommandInvocationResult = (output, context) => {
-      return {
-        CloudWatchOutputConfig: output.CloudWatchOutputConfig != null ? de_CloudWatchOutputConfig(output.CloudWatchOutputConfig, context) : void 0,
-        CommandId: (0, smithy_client_1.expectString)(output.CommandId),
-        Comment: (0, smithy_client_1.expectString)(output.Comment),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        ExecutionElapsedTime: (0, smithy_client_1.expectString)(output.ExecutionElapsedTime),
-        ExecutionEndDateTime: (0, smithy_client_1.expectString)(output.ExecutionEndDateTime),
-        ExecutionStartDateTime: (0, smithy_client_1.expectString)(output.ExecutionStartDateTime),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        PluginName: (0, smithy_client_1.expectString)(output.PluginName),
-        ResponseCode: (0, smithy_client_1.expectInt32)(output.ResponseCode),
-        StandardErrorContent: (0, smithy_client_1.expectString)(output.StandardErrorContent),
-        StandardErrorUrl: (0, smithy_client_1.expectString)(output.StandardErrorUrl),
-        StandardOutputContent: (0, smithy_client_1.expectString)(output.StandardOutputContent),
-        StandardOutputUrl: (0, smithy_client_1.expectString)(output.StandardOutputUrl),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails)
-      };
-    };
-    var de_GetConnectionStatusResponse = (output, context) => {
-      return {
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Target: (0, smithy_client_1.expectString)(output.Target)
-      };
-    };
-    var de_GetDefaultPatchBaselineResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        OperatingSystem: (0, smithy_client_1.expectString)(output.OperatingSystem)
-      };
-    };
-    var de_GetDeployablePatchSnapshotForInstanceResult = (output, context) => {
-      return {
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        Product: (0, smithy_client_1.expectString)(output.Product),
-        SnapshotDownloadUrl: (0, smithy_client_1.expectString)(output.SnapshotDownloadUrl),
-        SnapshotId: (0, smithy_client_1.expectString)(output.SnapshotId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AutomationExecution: (_) => de_AutomationExecution(_, context)
+      });
     };
     var de_GetDocumentResult = (output, context) => {
-      return {
-        AttachmentsContent: output.AttachmentsContent != null ? de_AttachmentContentList(output.AttachmentsContent, context) : void 0,
-        Content: (0, smithy_client_1.expectString)(output.Content),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        DisplayName: (0, smithy_client_1.expectString)(output.DisplayName),
-        DocumentFormat: (0, smithy_client_1.expectString)(output.DocumentFormat),
-        DocumentType: (0, smithy_client_1.expectString)(output.DocumentType),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Requires: output.Requires != null ? de_DocumentRequiresList(output.Requires, context) : void 0,
-        ReviewStatus: (0, smithy_client_1.expectString)(output.ReviewStatus),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusInformation: (0, smithy_client_1.expectString)(output.StatusInformation),
-        VersionName: (0, smithy_client_1.expectString)(output.VersionName)
-      };
-    };
-    var de_GetInventoryResult = (output, context) => {
-      return {
-        Entities: output.Entities != null ? de_InventoryResultEntityList(output.Entities, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
-    };
-    var de_GetInventorySchemaResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Schemas: output.Schemas != null ? de_InventoryItemSchemaResultList(output.Schemas, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AttachmentsContent: smithy_client_1._json,
+        Content: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DisplayName: smithy_client_1.expectString,
+        DocumentFormat: smithy_client_1.expectString,
+        DocumentType: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Requires: smithy_client_1._json,
+        ReviewStatus: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        StatusInformation: smithy_client_1.expectString,
+        VersionName: smithy_client_1.expectString
+      });
     };
     var de_GetMaintenanceWindowExecutionResult = (output, context) => {
-      return {
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TaskIds: output.TaskIds != null ? de_MaintenanceWindowExecutionTaskIdList(output.TaskIds, context) : void 0,
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TaskIds: smithy_client_1._json,
+        WindowExecutionId: smithy_client_1.expectString
+      });
     };
     var de_GetMaintenanceWindowExecutionTaskInvocationResult = (output, context) => {
-      return {
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        ExecutionId: (0, smithy_client_1.expectString)(output.ExecutionId),
-        InvocationId: (0, smithy_client_1.expectString)(output.InvocationId),
-        OwnerInformation: (0, smithy_client_1.expectString)(output.OwnerInformation),
-        Parameters: (0, smithy_client_1.expectString)(output.Parameters),
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TaskExecutionId: (0, smithy_client_1.expectString)(output.TaskExecutionId),
-        TaskType: (0, smithy_client_1.expectString)(output.TaskType),
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId),
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionId: smithy_client_1.expectString,
+        InvocationId: smithy_client_1.expectString,
+        OwnerInformation: smithy_client_1.expectString,
+        Parameters: smithy_client_1.expectString,
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TaskExecutionId: smithy_client_1.expectString,
+        TaskType: smithy_client_1.expectString,
+        WindowExecutionId: smithy_client_1.expectString,
+        WindowTargetId: smithy_client_1.expectString
+      });
     };
     var de_GetMaintenanceWindowExecutionTaskResult = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        ServiceRole: (0, smithy_client_1.expectString)(output.ServiceRole),
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TaskArn: (0, smithy_client_1.expectString)(output.TaskArn),
-        TaskExecutionId: (0, smithy_client_1.expectString)(output.TaskExecutionId),
-        TaskParameters: output.TaskParameters != null ? de_MaintenanceWindowTaskParametersList(output.TaskParameters, context) : void 0,
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0,
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Priority: smithy_client_1.expectInt32,
+        ServiceRole: smithy_client_1.expectString,
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TaskArn: smithy_client_1.expectString,
+        TaskExecutionId: smithy_client_1.expectString,
+        TaskParameters: smithy_client_1._json,
+        TriggeredAlarms: smithy_client_1._json,
+        Type: smithy_client_1.expectString,
+        WindowExecutionId: smithy_client_1.expectString
+      });
     };
     var de_GetMaintenanceWindowResult = (output, context) => {
-      return {
-        AllowUnassociatedTargets: (0, smithy_client_1.expectBoolean)(output.AllowUnassociatedTargets),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        Cutoff: (0, smithy_client_1.expectInt32)(output.Cutoff),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Duration: (0, smithy_client_1.expectInt32)(output.Duration),
-        Enabled: (0, smithy_client_1.expectBoolean)(output.Enabled),
-        EndDate: (0, smithy_client_1.expectString)(output.EndDate),
-        ModifiedDate: output.ModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ModifiedDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextExecutionTime: (0, smithy_client_1.expectString)(output.NextExecutionTime),
-        Schedule: (0, smithy_client_1.expectString)(output.Schedule),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        ScheduleTimezone: (0, smithy_client_1.expectString)(output.ScheduleTimezone),
-        StartDate: (0, smithy_client_1.expectString)(output.StartDate),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AllowUnassociatedTargets: smithy_client_1.expectBoolean,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Cutoff: smithy_client_1.expectInt32,
+        Description: smithy_client_1.expectString,
+        Duration: smithy_client_1.expectInt32,
+        Enabled: smithy_client_1.expectBoolean,
+        EndDate: smithy_client_1.expectString,
+        ModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        NextExecutionTime: smithy_client_1.expectString,
+        Schedule: smithy_client_1.expectString,
+        ScheduleOffset: smithy_client_1.expectInt32,
+        ScheduleTimezone: smithy_client_1.expectString,
+        StartDate: smithy_client_1.expectString,
+        WindowId: smithy_client_1.expectString
+      });
     };
     var de_GetMaintenanceWindowTaskResult = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        CutoffBehavior: (0, smithy_client_1.expectString)(output.CutoffBehavior),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        LoggingInfo: output.LoggingInfo != null ? de_LoggingInfo(output.LoggingInfo, context) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        ServiceRoleArn: (0, smithy_client_1.expectString)(output.ServiceRoleArn),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TaskArn: (0, smithy_client_1.expectString)(output.TaskArn),
-        TaskInvocationParameters: output.TaskInvocationParameters != null ? de_MaintenanceWindowTaskInvocationParameters(output.TaskInvocationParameters, context) : void 0,
-        TaskParameters: output.TaskParameters != null ? de_MaintenanceWindowTaskParameters(output.TaskParameters, context) : void 0,
-        TaskType: (0, smithy_client_1.expectString)(output.TaskType),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTaskId: (0, smithy_client_1.expectString)(output.WindowTaskId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        CutoffBehavior: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        LoggingInfo: smithy_client_1._json,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Priority: smithy_client_1.expectInt32,
+        ServiceRoleArn: smithy_client_1.expectString,
+        Targets: smithy_client_1._json,
+        TaskArn: smithy_client_1.expectString,
+        TaskInvocationParameters: (_) => de_MaintenanceWindowTaskInvocationParameters(_, context),
+        TaskParameters: smithy_client_1._json,
+        TaskType: smithy_client_1.expectString,
+        WindowId: smithy_client_1.expectString,
+        WindowTaskId: smithy_client_1.expectString
+      });
     };
     var de_GetOpsItemResponse = (output, context) => {
-      return {
-        OpsItem: output.OpsItem != null ? de_OpsItem(output.OpsItem, context) : void 0
-      };
-    };
-    var de_GetOpsMetadataResult = (output, context) => {
-      return {
-        Metadata: output.Metadata != null ? de_MetadataMap(output.Metadata, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        ResourceId: (0, smithy_client_1.expectString)(output.ResourceId)
-      };
-    };
-    var de_GetOpsSummaryResult = (output, context) => {
-      return {
-        Entities: output.Entities != null ? de_OpsEntityList(output.Entities, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        OpsItem: (_) => de_OpsItem(_, context)
+      });
     };
     var de_GetParameterHistoryResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Parameters: output.Parameters != null ? de_ParameterHistoryList(output.Parameters, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Parameters: (_) => de_ParameterHistoryList(_, context)
+      });
     };
     var de_GetParameterResult = (output, context) => {
-      return {
-        Parameter: output.Parameter != null ? de_Parameter(output.Parameter, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Parameter: (_) => de_Parameter(_, context)
+      });
     };
     var de_GetParametersByPathResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Parameters: output.Parameters != null ? de_ParameterList(output.Parameters, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Parameters: (_) => de_ParameterList(_, context)
+      });
     };
     var de_GetParametersResult = (output, context) => {
-      return {
-        InvalidParameters: output.InvalidParameters != null ? de_ParameterNameList(output.InvalidParameters, context) : void 0,
-        Parameters: output.Parameters != null ? de_ParameterList(output.Parameters, context) : void 0
-      };
-    };
-    var de_GetPatchBaselineForPatchGroupResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        OperatingSystem: (0, smithy_client_1.expectString)(output.OperatingSystem),
-        PatchGroup: (0, smithy_client_1.expectString)(output.PatchGroup)
-      };
+      return (0, smithy_client_1.take)(output, {
+        InvalidParameters: smithy_client_1._json,
+        Parameters: (_) => de_ParameterList(_, context)
+      });
     };
     var de_GetPatchBaselineResult = (output, context) => {
-      return {
-        ApprovalRules: output.ApprovalRules != null ? de_PatchRuleGroup(output.ApprovalRules, context) : void 0,
-        ApprovedPatches: output.ApprovedPatches != null ? de_PatchIdList(output.ApprovedPatches, context) : void 0,
-        ApprovedPatchesComplianceLevel: (0, smithy_client_1.expectString)(output.ApprovedPatchesComplianceLevel),
-        ApprovedPatchesEnableNonSecurity: (0, smithy_client_1.expectBoolean)(output.ApprovedPatchesEnableNonSecurity),
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        GlobalFilters: output.GlobalFilters != null ? de_PatchFilterGroup(output.GlobalFilters, context) : void 0,
-        ModifiedDate: output.ModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ModifiedDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OperatingSystem: (0, smithy_client_1.expectString)(output.OperatingSystem),
-        PatchGroups: output.PatchGroups != null ? de_PatchGroupList(output.PatchGroups, context) : void 0,
-        RejectedPatches: output.RejectedPatches != null ? de_PatchIdList(output.RejectedPatches, context) : void 0,
-        RejectedPatchesAction: (0, smithy_client_1.expectString)(output.RejectedPatchesAction),
-        Sources: output.Sources != null ? de_PatchSourceList(output.Sources, context) : void 0
-      };
-    };
-    var de_GetResourcePoliciesResponse = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Policies: output.Policies != null ? de_GetResourcePoliciesResponseEntries(output.Policies, context) : void 0
-      };
-    };
-    var de_GetResourcePoliciesResponseEntries = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_GetResourcePoliciesResponseEntry(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        ApprovalRules: smithy_client_1._json,
+        ApprovedPatches: smithy_client_1._json,
+        ApprovedPatchesComplianceLevel: smithy_client_1.expectString,
+        ApprovedPatchesEnableNonSecurity: smithy_client_1.expectBoolean,
+        BaselineId: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Description: smithy_client_1.expectString,
+        GlobalFilters: smithy_client_1._json,
+        ModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        OperatingSystem: smithy_client_1.expectString,
+        PatchGroups: smithy_client_1._json,
+        RejectedPatches: smithy_client_1._json,
+        RejectedPatchesAction: smithy_client_1.expectString,
+        Sources: smithy_client_1._json
       });
-      return retVal;
-    };
-    var de_GetResourcePoliciesResponseEntry = (output, context) => {
-      return {
-        Policy: (0, smithy_client_1.expectString)(output.Policy),
-        PolicyHash: (0, smithy_client_1.expectString)(output.PolicyHash),
-        PolicyId: (0, smithy_client_1.expectString)(output.PolicyId)
-      };
     };
     var de_GetServiceSettingResult = (output, context) => {
-      return {
-        ServiceSetting: output.ServiceSetting != null ? de_ServiceSetting(output.ServiceSetting, context) : void 0
-      };
-    };
-    var de_HierarchyLevelLimitExceededException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_HierarchyTypeMismatchException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_IdempotentParameterMismatch = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_IncompatiblePolicyException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InstanceAggregatedAssociationOverview = (output, context) => {
-      return {
-        DetailedStatus: (0, smithy_client_1.expectString)(output.DetailedStatus),
-        InstanceAssociationStatusAggregatedCount: output.InstanceAssociationStatusAggregatedCount != null ? de_InstanceAssociationStatusAggregatedCount(output.InstanceAssociationStatusAggregatedCount, context) : void 0
-      };
-    };
-    var de_InstanceAssociation = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        Content: (0, smithy_client_1.expectString)(output.Content),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId)
-      };
-    };
-    var de_InstanceAssociationList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InstanceAssociation(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        ServiceSetting: (_) => de_ServiceSetting(_, context)
       });
-      return retVal;
-    };
-    var de_InstanceAssociationOutputLocation = (output, context) => {
-      return {
-        S3Location: output.S3Location != null ? de_S3OutputLocation(output.S3Location, context) : void 0
-      };
-    };
-    var de_InstanceAssociationOutputUrl = (output, context) => {
-      return {
-        S3OutputUrl: output.S3OutputUrl != null ? de_S3OutputUrl(output.S3OutputUrl, context) : void 0
-      };
-    };
-    var de_InstanceAssociationStatusAggregatedCount = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectInt32)(value);
-        return acc;
-      }, {});
     };
     var de_InstanceAssociationStatusInfo = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationName: (0, smithy_client_1.expectString)(output.AssociationName),
-        AssociationVersion: (0, smithy_client_1.expectString)(output.AssociationVersion),
-        DetailedStatus: (0, smithy_client_1.expectString)(output.DetailedStatus),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        ErrorCode: (0, smithy_client_1.expectString)(output.ErrorCode),
-        ExecutionDate: output.ExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionDate))) : void 0,
-        ExecutionSummary: (0, smithy_client_1.expectString)(output.ExecutionSummary),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OutputUrl: output.OutputUrl != null ? de_InstanceAssociationOutputUrl(output.OutputUrl, context) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationId: smithy_client_1.expectString,
+        AssociationName: smithy_client_1.expectString,
+        AssociationVersion: smithy_client_1.expectString,
+        DetailedStatus: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        ErrorCode: smithy_client_1.expectString,
+        ExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionSummary: smithy_client_1.expectString,
+        InstanceId: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        OutputUrl: smithy_client_1._json,
+        Status: smithy_client_1.expectString
+      });
     };
     var de_InstanceAssociationStatusInfos = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_InstanceAssociationStatusInfo(entry, context);
       });
       return retVal;
     };
-    var de_InstanceIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
     var de_InstanceInformation = (output, context) => {
-      return {
-        ActivationId: (0, smithy_client_1.expectString)(output.ActivationId),
-        AgentVersion: (0, smithy_client_1.expectString)(output.AgentVersion),
-        AssociationOverview: output.AssociationOverview != null ? de_InstanceAggregatedAssociationOverview(output.AssociationOverview, context) : void 0,
-        AssociationStatus: (0, smithy_client_1.expectString)(output.AssociationStatus),
-        ComputerName: (0, smithy_client_1.expectString)(output.ComputerName),
-        IPAddress: (0, smithy_client_1.expectString)(output.IPAddress),
-        IamRole: (0, smithy_client_1.expectString)(output.IamRole),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        IsLatestVersion: (0, smithy_client_1.expectBoolean)(output.IsLatestVersion),
-        LastAssociationExecutionDate: output.LastAssociationExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastAssociationExecutionDate))) : void 0,
-        LastPingDateTime: output.LastPingDateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastPingDateTime))) : void 0,
-        LastSuccessfulAssociationExecutionDate: output.LastSuccessfulAssociationExecutionDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastSuccessfulAssociationExecutionDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        PingStatus: (0, smithy_client_1.expectString)(output.PingStatus),
-        PlatformName: (0, smithy_client_1.expectString)(output.PlatformName),
-        PlatformType: (0, smithy_client_1.expectString)(output.PlatformType),
-        PlatformVersion: (0, smithy_client_1.expectString)(output.PlatformVersion),
-        RegistrationDate: output.RegistrationDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.RegistrationDate))) : void 0,
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        SourceId: (0, smithy_client_1.expectString)(output.SourceId),
-        SourceType: (0, smithy_client_1.expectString)(output.SourceType)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ActivationId: smithy_client_1.expectString,
+        AgentVersion: smithy_client_1.expectString,
+        AssociationOverview: smithy_client_1._json,
+        AssociationStatus: smithy_client_1.expectString,
+        ComputerName: smithy_client_1.expectString,
+        IPAddress: smithy_client_1.expectString,
+        IamRole: smithy_client_1.expectString,
+        InstanceId: smithy_client_1.expectString,
+        IsLatestVersion: smithy_client_1.expectBoolean,
+        LastAssociationExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastPingDateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastSuccessfulAssociationExecutionDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        PingStatus: smithy_client_1.expectString,
+        PlatformName: smithy_client_1.expectString,
+        PlatformType: smithy_client_1.expectString,
+        PlatformVersion: smithy_client_1.expectString,
+        RegistrationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ResourceType: smithy_client_1.expectString,
+        SourceId: smithy_client_1.expectString,
+        SourceType: smithy_client_1.expectString
+      });
     };
     var de_InstanceInformationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_InstanceInformation(entry, context);
       });
       return retVal;
     };
     var de_InstancePatchState = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        CriticalNonCompliantCount: (0, smithy_client_1.expectInt32)(output.CriticalNonCompliantCount),
-        FailedCount: (0, smithy_client_1.expectInt32)(output.FailedCount),
-        InstallOverrideList: (0, smithy_client_1.expectString)(output.InstallOverrideList),
-        InstalledCount: (0, smithy_client_1.expectInt32)(output.InstalledCount),
-        InstalledOtherCount: (0, smithy_client_1.expectInt32)(output.InstalledOtherCount),
-        InstalledPendingRebootCount: (0, smithy_client_1.expectInt32)(output.InstalledPendingRebootCount),
-        InstalledRejectedCount: (0, smithy_client_1.expectInt32)(output.InstalledRejectedCount),
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        LastNoRebootInstallOperationTime: output.LastNoRebootInstallOperationTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastNoRebootInstallOperationTime))) : void 0,
-        MissingCount: (0, smithy_client_1.expectInt32)(output.MissingCount),
-        NotApplicableCount: (0, smithy_client_1.expectInt32)(output.NotApplicableCount),
-        Operation: (0, smithy_client_1.expectString)(output.Operation),
-        OperationEndTime: output.OperationEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.OperationEndTime))) : void 0,
-        OperationStartTime: output.OperationStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.OperationStartTime))) : void 0,
-        OtherNonCompliantCount: (0, smithy_client_1.expectInt32)(output.OtherNonCompliantCount),
-        OwnerInformation: (0, smithy_client_1.expectString)(output.OwnerInformation),
-        PatchGroup: (0, smithy_client_1.expectString)(output.PatchGroup),
-        RebootOption: (0, smithy_client_1.expectString)(output.RebootOption),
-        SecurityNonCompliantCount: (0, smithy_client_1.expectInt32)(output.SecurityNonCompliantCount),
-        SnapshotId: (0, smithy_client_1.expectString)(output.SnapshotId),
-        UnreportedNotApplicableCount: (0, smithy_client_1.expectInt32)(output.UnreportedNotApplicableCount)
-      };
+      return (0, smithy_client_1.take)(output, {
+        BaselineId: smithy_client_1.expectString,
+        CriticalNonCompliantCount: smithy_client_1.expectInt32,
+        FailedCount: smithy_client_1.expectInt32,
+        InstallOverrideList: smithy_client_1.expectString,
+        InstalledCount: smithy_client_1.expectInt32,
+        InstalledOtherCount: smithy_client_1.expectInt32,
+        InstalledPendingRebootCount: smithy_client_1.expectInt32,
+        InstalledRejectedCount: smithy_client_1.expectInt32,
+        InstanceId: smithy_client_1.expectString,
+        LastNoRebootInstallOperationTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        MissingCount: smithy_client_1.expectInt32,
+        NotApplicableCount: smithy_client_1.expectInt32,
+        Operation: smithy_client_1.expectString,
+        OperationEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OperationStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OtherNonCompliantCount: smithy_client_1.expectInt32,
+        OwnerInformation: smithy_client_1.expectString,
+        PatchGroup: smithy_client_1.expectString,
+        RebootOption: smithy_client_1.expectString,
+        SecurityNonCompliantCount: smithy_client_1.expectInt32,
+        SnapshotId: smithy_client_1.expectString,
+        UnreportedNotApplicableCount: smithy_client_1.expectInt32
+      });
     };
     var de_InstancePatchStateList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_InstancePatchState(entry, context);
       });
       return retVal;
     };
     var de_InstancePatchStatesList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_InstancePatchState(entry, context);
       });
       return retVal;
     };
-    var de_InternalServerError = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidActivation = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidActivationId = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAggregatorException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAllowedPatternException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidAssociation = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAssociationVersion = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAutomationExecutionParametersException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAutomationSignalException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidAutomationStatusUpdateException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidCommandId = (output, context) => {
-      return {};
-    };
-    var de_InvalidDeleteInventoryParametersException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDeletionIdException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocument = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocumentContent = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocumentOperation = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocumentSchemaVersion = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocumentType = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidDocumentVersion = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidFilter = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidFilterKey = (output, context) => {
-      return {};
-    };
-    var de_InvalidFilterOption = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidFilterValue = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidInstanceId = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidInstanceInformationFilterValue = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidInventoryGroupException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidInventoryItemContextException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidInventoryRequestException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidItemContentException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_InvalidKeyId = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidNextToken = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidNotificationConfig = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidOptionException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidOutputFolder = (output, context) => {
-      return {};
-    };
-    var de_InvalidOutputLocation = (output, context) => {
-      return {};
-    };
-    var de_InvalidParameters = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidPermissionType = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidPluginName = (output, context) => {
-      return {};
-    };
-    var de_InvalidPolicyAttributeException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidPolicyTypeException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_InvalidResourceId = (output, context) => {
-      return {};
-    };
-    var de_InvalidResourceType = (output, context) => {
-      return {};
-    };
-    var de_InvalidResultAttributeException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidRole = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidSchedule = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidTag = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidTarget = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidTargetMaps = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidTypeNameException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_InvalidUpdate = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_InventoryDeletionsList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_InventoryDeletionStatusItem(entry, context);
       });
       return retVal;
     };
     var de_InventoryDeletionStatusItem = (output, context) => {
-      return {
-        DeletionId: (0, smithy_client_1.expectString)(output.DeletionId),
-        DeletionStartTime: output.DeletionStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.DeletionStartTime))) : void 0,
-        DeletionSummary: output.DeletionSummary != null ? de_InventoryDeletionSummary(output.DeletionSummary, context) : void 0,
-        LastStatus: (0, smithy_client_1.expectString)(output.LastStatus),
-        LastStatusMessage: (0, smithy_client_1.expectString)(output.LastStatusMessage),
-        LastStatusUpdateTime: output.LastStatusUpdateTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastStatusUpdateTime))) : void 0,
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_InventoryDeletionSummary = (output, context) => {
-      return {
-        RemainingCount: (0, smithy_client_1.expectInt32)(output.RemainingCount),
-        SummaryItems: output.SummaryItems != null ? de_InventoryDeletionSummaryItems(output.SummaryItems, context) : void 0,
-        TotalCount: (0, smithy_client_1.expectInt32)(output.TotalCount)
-      };
-    };
-    var de_InventoryDeletionSummaryItem = (output, context) => {
-      return {
-        Count: (0, smithy_client_1.expectInt32)(output.Count),
-        RemainingCount: (0, smithy_client_1.expectInt32)(output.RemainingCount),
-        Version: (0, smithy_client_1.expectString)(output.Version)
-      };
-    };
-    var de_InventoryDeletionSummaryItems = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InventoryDeletionSummaryItem(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        DeletionId: smithy_client_1.expectString,
+        DeletionStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        DeletionSummary: smithy_client_1._json,
+        LastStatus: smithy_client_1.expectString,
+        LastStatusMessage: smithy_client_1.expectString,
+        LastStatusUpdateTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        TypeName: smithy_client_1.expectString
       });
-      return retVal;
-    };
-    var de_InventoryItemAttribute = (output, context) => {
-      return {
-        DataType: (0, smithy_client_1.expectString)(output.DataType),
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
-    };
-    var de_InventoryItemAttributeList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InventoryItemAttribute(entry, context);
-      });
-      return retVal;
-    };
-    var de_InventoryItemEntry = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectString)(value);
-        return acc;
-      }, {});
-    };
-    var de_InventoryItemEntryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InventoryItemEntry(entry, context);
-      });
-      return retVal;
-    };
-    var de_InventoryItemSchema = (output, context) => {
-      return {
-        Attributes: output.Attributes != null ? de_InventoryItemAttributeList(output.Attributes, context) : void 0,
-        DisplayName: (0, smithy_client_1.expectString)(output.DisplayName),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName),
-        Version: (0, smithy_client_1.expectString)(output.Version)
-      };
-    };
-    var de_InventoryItemSchemaResultList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InventoryItemSchema(entry, context);
-      });
-      return retVal;
-    };
-    var de_InventoryResultEntity = (output, context) => {
-      return {
-        Data: output.Data != null ? de_InventoryResultItemMap(output.Data, context) : void 0,
-        Id: (0, smithy_client_1.expectString)(output.Id)
-      };
-    };
-    var de_InventoryResultEntityList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_InventoryResultEntity(entry, context);
-      });
-      return retVal;
-    };
-    var de_InventoryResultItem = (output, context) => {
-      return {
-        CaptureTime: (0, smithy_client_1.expectString)(output.CaptureTime),
-        Content: output.Content != null ? de_InventoryItemEntryList(output.Content, context) : void 0,
-        ContentHash: (0, smithy_client_1.expectString)(output.ContentHash),
-        SchemaVersion: (0, smithy_client_1.expectString)(output.SchemaVersion),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_InventoryResultItemMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_InventoryResultItem(value, context);
-        return acc;
-      }, {});
-    };
-    var de_InvocationDoesNotExist = (output, context) => {
-      return {};
-    };
-    var de_ItemContentMismatchException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_ItemSizeLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_LabelParameterVersionResult = (output, context) => {
-      return {
-        InvalidLabels: output.InvalidLabels != null ? de_ParameterLabelList(output.InvalidLabels, context) : void 0,
-        ParameterVersion: (0, smithy_client_1.expectLong)(output.ParameterVersion)
-      };
     };
     var de_ListAssociationsResult = (output, context) => {
-      return {
-        Associations: output.Associations != null ? de_AssociationList(output.Associations, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Associations: (_) => de_AssociationList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListAssociationVersionsResult = (output, context) => {
-      return {
-        AssociationVersions: output.AssociationVersions != null ? de_AssociationVersionList(output.AssociationVersions, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationVersions: (_) => de_AssociationVersionList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListCommandInvocationsResult = (output, context) => {
-      return {
-        CommandInvocations: output.CommandInvocations != null ? de_CommandInvocationList(output.CommandInvocations, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CommandInvocations: (_) => de_CommandInvocationList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListCommandsResult = (output, context) => {
-      return {
-        Commands: output.Commands != null ? de_CommandList(output.Commands, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Commands: (_) => de_CommandList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListComplianceItemsResult = (output, context) => {
-      return {
-        ComplianceItems: output.ComplianceItems != null ? de_ComplianceItemList(output.ComplianceItems, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
-    };
-    var de_ListComplianceSummariesResult = (output, context) => {
-      return {
-        ComplianceSummaryItems: output.ComplianceSummaryItems != null ? de_ComplianceSummaryItemList(output.ComplianceSummaryItems, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ComplianceItems: (_) => de_ComplianceItemList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListDocumentMetadataHistoryResponse = (output, context) => {
-      return {
-        Author: (0, smithy_client_1.expectString)(output.Author),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        Metadata: output.Metadata != null ? de_DocumentMetadataResponseInfo(output.Metadata, context) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Author: smithy_client_1.expectString,
+        DocumentVersion: smithy_client_1.expectString,
+        Metadata: (_) => de_DocumentMetadataResponseInfo(_, context),
+        Name: smithy_client_1.expectString,
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListDocumentsResult = (output, context) => {
-      return {
-        DocumentIdentifiers: output.DocumentIdentifiers != null ? de_DocumentIdentifierList(output.DocumentIdentifiers, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
+      return (0, smithy_client_1.take)(output, {
+        DocumentIdentifiers: (_) => de_DocumentIdentifierList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListDocumentVersionsResult = (output, context) => {
-      return {
-        DocumentVersions: output.DocumentVersions != null ? de_DocumentVersionList(output.DocumentVersions, context) : void 0,
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken)
-      };
-    };
-    var de_ListInventoryEntriesResult = (output, context) => {
-      return {
-        CaptureTime: (0, smithy_client_1.expectString)(output.CaptureTime),
-        Entries: output.Entries != null ? de_InventoryItemEntryList(output.Entries, context) : void 0,
-        InstanceId: (0, smithy_client_1.expectString)(output.InstanceId),
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        SchemaVersion: (0, smithy_client_1.expectString)(output.SchemaVersion),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
+      return (0, smithy_client_1.take)(output, {
+        DocumentVersions: (_) => de_DocumentVersionList(_, context),
+        NextToken: smithy_client_1.expectString
+      });
     };
     var de_ListOpsItemEventsResponse = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Summaries: output.Summaries != null ? de_OpsItemEventSummaries(output.Summaries, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Summaries: (_) => de_OpsItemEventSummaries(_, context)
+      });
     };
     var de_ListOpsItemRelatedItemsResponse = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        Summaries: output.Summaries != null ? de_OpsItemRelatedItemSummaries(output.Summaries, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        Summaries: (_) => de_OpsItemRelatedItemSummaries(_, context)
+      });
     };
     var de_ListOpsMetadataResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        OpsMetadataList: output.OpsMetadataList != null ? de_OpsMetadataList(output.OpsMetadataList, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        OpsMetadataList: (_) => de_OpsMetadataList(_, context)
+      });
     };
     var de_ListResourceComplianceSummariesResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        ResourceComplianceSummaryItems: output.ResourceComplianceSummaryItems != null ? de_ResourceComplianceSummaryItemList(output.ResourceComplianceSummaryItems, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        ResourceComplianceSummaryItems: (_) => de_ResourceComplianceSummaryItemList(_, context)
+      });
     };
     var de_ListResourceDataSyncResult = (output, context) => {
-      return {
-        NextToken: (0, smithy_client_1.expectString)(output.NextToken),
-        ResourceDataSyncItems: output.ResourceDataSyncItems != null ? de_ResourceDataSyncItemList(output.ResourceDataSyncItems, context) : void 0
-      };
-    };
-    var de_ListTagsForResourceResult = (output, context) => {
-      return {
-        TagList: output.TagList != null ? de_TagList(output.TagList, context) : void 0
-      };
-    };
-    var de_LoggingInfo = (output, context) => {
-      return {
-        S3BucketName: (0, smithy_client_1.expectString)(output.S3BucketName),
-        S3KeyPrefix: (0, smithy_client_1.expectString)(output.S3KeyPrefix),
-        S3Region: (0, smithy_client_1.expectString)(output.S3Region)
-      };
-    };
-    var de_MaintenanceWindowAutomationParameters = (output, context) => {
-      return {
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        Parameters: output.Parameters != null ? de_AutomationParameterMap(output.Parameters, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        NextToken: smithy_client_1.expectString,
+        ResourceDataSyncItems: (_) => de_ResourceDataSyncItemList(_, context)
+      });
     };
     var de_MaintenanceWindowExecution = (output, context) => {
-      return {
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        WindowExecutionId: smithy_client_1.expectString,
+        WindowId: smithy_client_1.expectString
+      });
     };
     var de_MaintenanceWindowExecutionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_MaintenanceWindowExecution(entry, context);
       });
       return retVal;
     };
     var de_MaintenanceWindowExecutionTaskIdentity = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TaskArn: (0, smithy_client_1.expectString)(output.TaskArn),
-        TaskExecutionId: (0, smithy_client_1.expectString)(output.TaskExecutionId),
-        TaskType: (0, smithy_client_1.expectString)(output.TaskType),
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0,
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TaskArn: smithy_client_1.expectString,
+        TaskExecutionId: smithy_client_1.expectString,
+        TaskType: smithy_client_1.expectString,
+        TriggeredAlarms: smithy_client_1._json,
+        WindowExecutionId: smithy_client_1.expectString
+      });
     };
     var de_MaintenanceWindowExecutionTaskIdentityList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_MaintenanceWindowExecutionTaskIdentity(entry, context);
       });
       return retVal;
     };
-    var de_MaintenanceWindowExecutionTaskIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
     var de_MaintenanceWindowExecutionTaskInvocationIdentity = (output, context) => {
-      return {
-        EndTime: output.EndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndTime))) : void 0,
-        ExecutionId: (0, smithy_client_1.expectString)(output.ExecutionId),
-        InvocationId: (0, smithy_client_1.expectString)(output.InvocationId),
-        OwnerInformation: (0, smithy_client_1.expectString)(output.OwnerInformation),
-        Parameters: (0, smithy_client_1.expectString)(output.Parameters),
-        StartTime: output.StartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartTime))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        StatusDetails: (0, smithy_client_1.expectString)(output.StatusDetails),
-        TaskExecutionId: (0, smithy_client_1.expectString)(output.TaskExecutionId),
-        TaskType: (0, smithy_client_1.expectString)(output.TaskType),
-        WindowExecutionId: (0, smithy_client_1.expectString)(output.WindowExecutionId),
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        EndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionId: smithy_client_1.expectString,
+        InvocationId: smithy_client_1.expectString,
+        OwnerInformation: smithy_client_1.expectString,
+        Parameters: smithy_client_1.expectString,
+        StartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        StatusDetails: smithy_client_1.expectString,
+        TaskExecutionId: smithy_client_1.expectString,
+        TaskType: smithy_client_1.expectString,
+        WindowExecutionId: smithy_client_1.expectString,
+        WindowTargetId: smithy_client_1.expectString
+      });
     };
     var de_MaintenanceWindowExecutionTaskInvocationIdentityList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_MaintenanceWindowExecutionTaskInvocationIdentity(entry, context);
       });
       return retVal;
     };
-    var de_MaintenanceWindowIdentity = (output, context) => {
-      return {
-        Cutoff: (0, smithy_client_1.expectInt32)(output.Cutoff),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Duration: (0, smithy_client_1.expectInt32)(output.Duration),
-        Enabled: (0, smithy_client_1.expectBoolean)(output.Enabled),
-        EndDate: (0, smithy_client_1.expectString)(output.EndDate),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        NextExecutionTime: (0, smithy_client_1.expectString)(output.NextExecutionTime),
-        Schedule: (0, smithy_client_1.expectString)(output.Schedule),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        ScheduleTimezone: (0, smithy_client_1.expectString)(output.ScheduleTimezone),
-        StartDate: (0, smithy_client_1.expectString)(output.StartDate),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_MaintenanceWindowIdentityForTarget = (output, context) => {
-      return {
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_MaintenanceWindowIdentityList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_MaintenanceWindowIdentity(entry, context);
-      });
-      return retVal;
-    };
     var de_MaintenanceWindowLambdaParameters = (output, context) => {
-      return {
-        ClientContext: (0, smithy_client_1.expectString)(output.ClientContext),
-        Payload: output.Payload != null ? context.base64Decoder(output.Payload) : void 0,
-        Qualifier: (0, smithy_client_1.expectString)(output.Qualifier)
-      };
-    };
-    var de_MaintenanceWindowRunCommandParameters = (output, context) => {
-      return {
-        CloudWatchOutputConfig: output.CloudWatchOutputConfig != null ? de_CloudWatchOutputConfig(output.CloudWatchOutputConfig, context) : void 0,
-        Comment: (0, smithy_client_1.expectString)(output.Comment),
-        DocumentHash: (0, smithy_client_1.expectString)(output.DocumentHash),
-        DocumentHashType: (0, smithy_client_1.expectString)(output.DocumentHashType),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        NotificationConfig: output.NotificationConfig != null ? de_NotificationConfig(output.NotificationConfig, context) : void 0,
-        OutputS3BucketName: (0, smithy_client_1.expectString)(output.OutputS3BucketName),
-        OutputS3KeyPrefix: (0, smithy_client_1.expectString)(output.OutputS3KeyPrefix),
-        Parameters: output.Parameters != null ? de_Parameters(output.Parameters, context) : void 0,
-        ServiceRoleArn: (0, smithy_client_1.expectString)(output.ServiceRoleArn),
-        TimeoutSeconds: (0, smithy_client_1.expectInt32)(output.TimeoutSeconds)
-      };
-    };
-    var de_MaintenanceWindowsForTargetList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_MaintenanceWindowIdentityForTarget(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        ClientContext: smithy_client_1.expectString,
+        Payload: context.base64Decoder,
+        Qualifier: smithy_client_1.expectString
       });
-      return retVal;
-    };
-    var de_MaintenanceWindowStepFunctionsParameters = (output, context) => {
-      return {
-        Input: (0, smithy_client_1.expectString)(output.Input),
-        Name: (0, smithy_client_1.expectString)(output.Name)
-      };
-    };
-    var de_MaintenanceWindowTarget = (output, context) => {
-      return {
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OwnerInformation: (0, smithy_client_1.expectString)(output.OwnerInformation),
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
-    };
-    var de_MaintenanceWindowTargetList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_MaintenanceWindowTarget(entry, context);
-      });
-      return retVal;
-    };
-    var de_MaintenanceWindowTask = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        CutoffBehavior: (0, smithy_client_1.expectString)(output.CutoffBehavior),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        LoggingInfo: output.LoggingInfo != null ? de_LoggingInfo(output.LoggingInfo, context) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        ServiceRoleArn: (0, smithy_client_1.expectString)(output.ServiceRoleArn),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TaskArn: (0, smithy_client_1.expectString)(output.TaskArn),
-        TaskParameters: output.TaskParameters != null ? de_MaintenanceWindowTaskParameters(output.TaskParameters, context) : void 0,
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTaskId: (0, smithy_client_1.expectString)(output.WindowTaskId)
-      };
     };
     var de_MaintenanceWindowTaskInvocationParameters = (output, context) => {
-      return {
-        Automation: output.Automation != null ? de_MaintenanceWindowAutomationParameters(output.Automation, context) : void 0,
-        Lambda: output.Lambda != null ? de_MaintenanceWindowLambdaParameters(output.Lambda, context) : void 0,
-        RunCommand: output.RunCommand != null ? de_MaintenanceWindowRunCommandParameters(output.RunCommand, context) : void 0,
-        StepFunctions: output.StepFunctions != null ? de_MaintenanceWindowStepFunctionsParameters(output.StepFunctions, context) : void 0
-      };
-    };
-    var de_MaintenanceWindowTaskList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_MaintenanceWindowTask(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        Automation: smithy_client_1._json,
+        Lambda: (_) => de_MaintenanceWindowLambdaParameters(_, context),
+        RunCommand: smithy_client_1._json,
+        StepFunctions: smithy_client_1._json
       });
-      return retVal;
-    };
-    var de_MaintenanceWindowTaskParameters = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_MaintenanceWindowTaskParameterValueExpression(value, context);
-        return acc;
-      }, {});
-    };
-    var de_MaintenanceWindowTaskParametersList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_MaintenanceWindowTaskParameters(entry, context);
-      });
-      return retVal;
-    };
-    var de_MaintenanceWindowTaskParameterValueExpression = (output, context) => {
-      return {
-        Values: output.Values != null ? de_MaintenanceWindowTaskParameterValueList(output.Values, context) : void 0
-      };
-    };
-    var de_MaintenanceWindowTaskParameterValueList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_MaxDocumentSizeExceeded = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_MetadataMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_MetadataValue(value, context);
-        return acc;
-      }, {});
-    };
-    var de_MetadataValue = (output, context) => {
-      return {
-        Value: (0, smithy_client_1.expectString)(output.Value)
-      };
-    };
-    var de_ModifyDocumentPermissionResponse = (output, context) => {
-      return {};
-    };
-    var de_NonCompliantSummary = (output, context) => {
-      return {
-        NonCompliantCount: (0, smithy_client_1.expectInt32)(output.NonCompliantCount),
-        SeveritySummary: output.SeveritySummary != null ? de_SeveritySummary(output.SeveritySummary, context) : void 0
-      };
-    };
-    var de_NormalStringMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectString)(value);
-        return acc;
-      }, {});
-    };
-    var de_NotificationConfig = (output, context) => {
-      return {
-        NotificationArn: (0, smithy_client_1.expectString)(output.NotificationArn),
-        NotificationEvents: output.NotificationEvents != null ? de_NotificationEventList(output.NotificationEvents, context) : void 0,
-        NotificationType: (0, smithy_client_1.expectString)(output.NotificationType)
-      };
-    };
-    var de_NotificationEventList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_OpsEntity = (output, context) => {
-      return {
-        Data: output.Data != null ? de_OpsEntityItemMap(output.Data, context) : void 0,
-        Id: (0, smithy_client_1.expectString)(output.Id)
-      };
-    };
-    var de_OpsEntityItem = (output, context) => {
-      return {
-        CaptureTime: (0, smithy_client_1.expectString)(output.CaptureTime),
-        Content: output.Content != null ? de_OpsEntityItemEntryList(output.Content, context) : void 0
-      };
-    };
-    var de_OpsEntityItemEntry = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectString)(value);
-        return acc;
-      }, {});
-    };
-    var de_OpsEntityItemEntryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_OpsEntityItemEntry(entry, context);
-      });
-      return retVal;
-    };
-    var de_OpsEntityItemMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_OpsEntityItem(value, context);
-        return acc;
-      }, {});
-    };
-    var de_OpsEntityList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_OpsEntity(entry, context);
-      });
-      return retVal;
     };
     var de_OpsItem = (output, context) => {
-      return {
-        ActualEndTime: output.ActualEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ActualEndTime))) : void 0,
-        ActualStartTime: output.ActualStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ActualStartTime))) : void 0,
-        Category: (0, smithy_client_1.expectString)(output.Category),
-        CreatedBy: (0, smithy_client_1.expectString)(output.CreatedBy),
-        CreatedTime: output.CreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedTime))) : void 0,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        LastModifiedBy: (0, smithy_client_1.expectString)(output.LastModifiedBy),
-        LastModifiedTime: output.LastModifiedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedTime))) : void 0,
-        Notifications: output.Notifications != null ? de_OpsItemNotifications(output.Notifications, context) : void 0,
-        OperationalData: output.OperationalData != null ? de_OpsItemOperationalData(output.OperationalData, context) : void 0,
-        OpsItemArn: (0, smithy_client_1.expectString)(output.OpsItemArn),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        OpsItemType: (0, smithy_client_1.expectString)(output.OpsItemType),
-        PlannedEndTime: output.PlannedEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.PlannedEndTime))) : void 0,
-        PlannedStartTime: output.PlannedStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.PlannedStartTime))) : void 0,
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        RelatedOpsItems: output.RelatedOpsItems != null ? de_RelatedOpsItems(output.RelatedOpsItems, context) : void 0,
-        Severity: (0, smithy_client_1.expectString)(output.Severity),
-        Source: (0, smithy_client_1.expectString)(output.Source),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Title: (0, smithy_client_1.expectString)(output.Title),
-        Version: (0, smithy_client_1.expectString)(output.Version)
-      };
-    };
-    var de_OpsItemAccessDeniedException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_OpsItemAlreadyExistsException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId)
-      };
-    };
-    var de_OpsItemDataValue = (output, context) => {
-      return {
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        Value: (0, smithy_client_1.expectString)(output.Value)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ActualEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ActualStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Category: smithy_client_1.expectString,
+        CreatedBy: smithy_client_1.expectString,
+        CreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Description: smithy_client_1.expectString,
+        LastModifiedBy: smithy_client_1.expectString,
+        LastModifiedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Notifications: smithy_client_1._json,
+        OperationalData: smithy_client_1._json,
+        OpsItemArn: smithy_client_1.expectString,
+        OpsItemId: smithy_client_1.expectString,
+        OpsItemType: smithy_client_1.expectString,
+        PlannedEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        PlannedStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Priority: smithy_client_1.expectInt32,
+        RelatedOpsItems: smithy_client_1._json,
+        Severity: smithy_client_1.expectString,
+        Source: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        Title: smithy_client_1.expectString,
+        Version: smithy_client_1.expectString
+      });
     };
     var de_OpsItemEventSummaries = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_OpsItemEventSummary(entry, context);
       });
       return retVal;
     };
     var de_OpsItemEventSummary = (output, context) => {
-      return {
-        CreatedBy: output.CreatedBy != null ? de_OpsItemIdentity(output.CreatedBy, context) : void 0,
-        CreatedTime: output.CreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedTime))) : void 0,
-        Detail: (0, smithy_client_1.expectString)(output.Detail),
-        DetailType: (0, smithy_client_1.expectString)(output.DetailType),
-        EventId: (0, smithy_client_1.expectString)(output.EventId),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        Source: (0, smithy_client_1.expectString)(output.Source)
-      };
-    };
-    var de_OpsItemIdentity = (output, context) => {
-      return {
-        Arn: (0, smithy_client_1.expectString)(output.Arn)
-      };
-    };
-    var de_OpsItemInvalidParameterException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        ParameterNames: output.ParameterNames != null ? de_OpsItemParameterNamesList(output.ParameterNames, context) : void 0
-      };
-    };
-    var de_OpsItemLimitExceededException = (output, context) => {
-      return {
-        Limit: (0, smithy_client_1.expectInt32)(output.Limit),
-        LimitType: (0, smithy_client_1.expectString)(output.LimitType),
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        ResourceTypes: output.ResourceTypes != null ? de_OpsItemParameterNamesList(output.ResourceTypes, context) : void 0
-      };
-    };
-    var de_OpsItemNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_OpsItemNotification = (output, context) => {
-      return {
-        Arn: (0, smithy_client_1.expectString)(output.Arn)
-      };
-    };
-    var de_OpsItemNotifications = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_OpsItemNotification(entry, context);
+      return (0, smithy_client_1.take)(output, {
+        CreatedBy: smithy_client_1._json,
+        CreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Detail: smithy_client_1.expectString,
+        DetailType: smithy_client_1.expectString,
+        EventId: smithy_client_1.expectString,
+        OpsItemId: smithy_client_1.expectString,
+        Source: smithy_client_1.expectString
       });
-      return retVal;
-    };
-    var de_OpsItemOperationalData = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_OpsItemDataValue(value, context);
-        return acc;
-      }, {});
-    };
-    var de_OpsItemParameterNamesList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_OpsItemRelatedItemAlreadyExistsException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        ResourceUri: (0, smithy_client_1.expectString)(output.ResourceUri)
-      };
-    };
-    var de_OpsItemRelatedItemAssociationNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
     };
     var de_OpsItemRelatedItemSummaries = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_OpsItemRelatedItemSummary(entry, context);
       });
       return retVal;
     };
     var de_OpsItemRelatedItemSummary = (output, context) => {
-      return {
-        AssociationId: (0, smithy_client_1.expectString)(output.AssociationId),
-        AssociationType: (0, smithy_client_1.expectString)(output.AssociationType),
-        CreatedBy: output.CreatedBy != null ? de_OpsItemIdentity(output.CreatedBy, context) : void 0,
-        CreatedTime: output.CreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedTime))) : void 0,
-        LastModifiedBy: output.LastModifiedBy != null ? de_OpsItemIdentity(output.LastModifiedBy, context) : void 0,
-        LastModifiedTime: output.LastModifiedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedTime))) : void 0,
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        ResourceUri: (0, smithy_client_1.expectString)(output.ResourceUri)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationId: smithy_client_1.expectString,
+        AssociationType: smithy_client_1.expectString,
+        CreatedBy: smithy_client_1._json,
+        CreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedBy: smithy_client_1._json,
+        LastModifiedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OpsItemId: smithy_client_1.expectString,
+        ResourceType: smithy_client_1.expectString,
+        ResourceUri: smithy_client_1.expectString
+      });
     };
     var de_OpsItemSummaries = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_OpsItemSummary(entry, context);
       });
       return retVal;
     };
     var de_OpsItemSummary = (output, context) => {
-      return {
-        ActualEndTime: output.ActualEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ActualEndTime))) : void 0,
-        ActualStartTime: output.ActualStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ActualStartTime))) : void 0,
-        Category: (0, smithy_client_1.expectString)(output.Category),
-        CreatedBy: (0, smithy_client_1.expectString)(output.CreatedBy),
-        CreatedTime: output.CreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedTime))) : void 0,
-        LastModifiedBy: (0, smithy_client_1.expectString)(output.LastModifiedBy),
-        LastModifiedTime: output.LastModifiedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedTime))) : void 0,
-        OperationalData: output.OperationalData != null ? de_OpsItemOperationalData(output.OperationalData, context) : void 0,
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId),
-        OpsItemType: (0, smithy_client_1.expectString)(output.OpsItemType),
-        PlannedEndTime: output.PlannedEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.PlannedEndTime))) : void 0,
-        PlannedStartTime: output.PlannedStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.PlannedStartTime))) : void 0,
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        Severity: (0, smithy_client_1.expectString)(output.Severity),
-        Source: (0, smithy_client_1.expectString)(output.Source),
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Title: (0, smithy_client_1.expectString)(output.Title)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ActualEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ActualStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Category: smithy_client_1.expectString,
+        CreatedBy: smithy_client_1.expectString,
+        CreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedBy: smithy_client_1.expectString,
+        LastModifiedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        OperationalData: smithy_client_1._json,
+        OpsItemId: smithy_client_1.expectString,
+        OpsItemType: smithy_client_1.expectString,
+        PlannedEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        PlannedStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Priority: smithy_client_1.expectInt32,
+        Severity: smithy_client_1.expectString,
+        Source: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        Title: smithy_client_1.expectString
+      });
     };
     var de_OpsMetadata = (output, context) => {
-      return {
-        CreationDate: output.CreationDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreationDate))) : void 0,
-        LastModifiedDate: output.LastModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedDate))) : void 0,
-        LastModifiedUser: (0, smithy_client_1.expectString)(output.LastModifiedUser),
-        OpsMetadataArn: (0, smithy_client_1.expectString)(output.OpsMetadataArn),
-        ResourceId: (0, smithy_client_1.expectString)(output.ResourceId)
-      };
-    };
-    var de_OpsMetadataAlreadyExistsException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_OpsMetadataInvalidArgumentException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_OpsMetadataKeyLimitExceededException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_OpsMetadataLimitExceededException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CreationDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedUser: smithy_client_1.expectString,
+        OpsMetadataArn: smithy_client_1.expectString,
+        ResourceId: smithy_client_1.expectString
+      });
     };
     var de_OpsMetadataList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_OpsMetadata(entry, context);
       });
       return retVal;
     };
-    var de_OpsMetadataNotFoundException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_OpsMetadataTooManyUpdatesException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_OutputSource = (output, context) => {
-      return {
-        OutputSourceId: (0, smithy_client_1.expectString)(output.OutputSourceId),
-        OutputSourceType: (0, smithy_client_1.expectString)(output.OutputSourceType)
-      };
-    };
     var de_Parameter = (output, context) => {
-      return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        DataType: (0, smithy_client_1.expectString)(output.DataType),
-        LastModifiedDate: output.LastModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Selector: (0, smithy_client_1.expectString)(output.Selector),
-        SourceResult: (0, smithy_client_1.expectString)(output.SourceResult),
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        Value: (0, smithy_client_1.expectString)(output.Value),
-        Version: (0, smithy_client_1.expectLong)(output.Version)
-      };
-    };
-    var de_ParameterAlreadyExists = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        DataType: smithy_client_1.expectString,
+        LastModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        Selector: smithy_client_1.expectString,
+        SourceResult: smithy_client_1.expectString,
+        Type: smithy_client_1.expectString,
+        Value: smithy_client_1.expectString,
+        Version: smithy_client_1.expectLong
+      });
     };
     var de_ParameterHistory = (output, context) => {
-      return {
-        AllowedPattern: (0, smithy_client_1.expectString)(output.AllowedPattern),
-        DataType: (0, smithy_client_1.expectString)(output.DataType),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        KeyId: (0, smithy_client_1.expectString)(output.KeyId),
-        Labels: output.Labels != null ? de_ParameterLabelList(output.Labels, context) : void 0,
-        LastModifiedDate: output.LastModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedDate))) : void 0,
-        LastModifiedUser: (0, smithy_client_1.expectString)(output.LastModifiedUser),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Policies: output.Policies != null ? de_ParameterPolicyList(output.Policies, context) : void 0,
-        Tier: (0, smithy_client_1.expectString)(output.Tier),
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        Value: (0, smithy_client_1.expectString)(output.Value),
-        Version: (0, smithy_client_1.expectLong)(output.Version)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AllowedPattern: smithy_client_1.expectString,
+        DataType: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        KeyId: smithy_client_1.expectString,
+        Labels: smithy_client_1._json,
+        LastModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedUser: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Policies: smithy_client_1._json,
+        Tier: smithy_client_1.expectString,
+        Type: smithy_client_1.expectString,
+        Value: smithy_client_1.expectString,
+        Version: smithy_client_1.expectLong
+      });
     };
     var de_ParameterHistoryList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ParameterHistory(entry, context);
       });
       return retVal;
     };
-    var de_ParameterInlinePolicy = (output, context) => {
-      return {
-        PolicyStatus: (0, smithy_client_1.expectString)(output.PolicyStatus),
-        PolicyText: (0, smithy_client_1.expectString)(output.PolicyText),
-        PolicyType: (0, smithy_client_1.expectString)(output.PolicyType)
-      };
-    };
-    var de_ParameterLabelList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ParameterLimitExceeded = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
     var de_ParameterList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Parameter(entry, context);
       });
       return retVal;
     };
-    var de_ParameterMaxVersionLimitExceeded = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
     var de_ParameterMetadata = (output, context) => {
-      return {
-        AllowedPattern: (0, smithy_client_1.expectString)(output.AllowedPattern),
-        DataType: (0, smithy_client_1.expectString)(output.DataType),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        KeyId: (0, smithy_client_1.expectString)(output.KeyId),
-        LastModifiedDate: output.LastModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedDate))) : void 0,
-        LastModifiedUser: (0, smithy_client_1.expectString)(output.LastModifiedUser),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Policies: output.Policies != null ? de_ParameterPolicyList(output.Policies, context) : void 0,
-        Tier: (0, smithy_client_1.expectString)(output.Tier),
-        Type: (0, smithy_client_1.expectString)(output.Type),
-        Version: (0, smithy_client_1.expectLong)(output.Version)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AllowedPattern: smithy_client_1.expectString,
+        DataType: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        KeyId: smithy_client_1.expectString,
+        LastModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedUser: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Policies: smithy_client_1._json,
+        Tier: smithy_client_1.expectString,
+        Type: smithy_client_1.expectString,
+        Version: smithy_client_1.expectLong
+      });
     };
     var de_ParameterMetadataList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ParameterMetadata(entry, context);
       });
       return retVal;
     };
-    var de_ParameterNameList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ParameterNotFound = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_ParameterPatternMismatchException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_ParameterPolicyList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_ParameterInlinePolicy(entry, context);
-      });
-      return retVal;
-    };
-    var de_Parameters = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_ParameterValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var de_ParameterValueList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ParameterVersionLabelLimitExceeded = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_ParameterVersionNotFound = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
     var de_Patch = (output, context) => {
-      return {
-        AdvisoryIds: output.AdvisoryIds != null ? de_PatchAdvisoryIdList(output.AdvisoryIds, context) : void 0,
-        Arch: (0, smithy_client_1.expectString)(output.Arch),
-        BugzillaIds: output.BugzillaIds != null ? de_PatchBugzillaIdList(output.BugzillaIds, context) : void 0,
-        CVEIds: output.CVEIds != null ? de_PatchCVEIdList(output.CVEIds, context) : void 0,
-        Classification: (0, smithy_client_1.expectString)(output.Classification),
-        ContentUrl: (0, smithy_client_1.expectString)(output.ContentUrl),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Epoch: (0, smithy_client_1.expectInt32)(output.Epoch),
-        Id: (0, smithy_client_1.expectString)(output.Id),
-        KbNumber: (0, smithy_client_1.expectString)(output.KbNumber),
-        Language: (0, smithy_client_1.expectString)(output.Language),
-        MsrcNumber: (0, smithy_client_1.expectString)(output.MsrcNumber),
-        MsrcSeverity: (0, smithy_client_1.expectString)(output.MsrcSeverity),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Product: (0, smithy_client_1.expectString)(output.Product),
-        ProductFamily: (0, smithy_client_1.expectString)(output.ProductFamily),
-        Release: (0, smithy_client_1.expectString)(output.Release),
-        ReleaseDate: output.ReleaseDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ReleaseDate))) : void 0,
-        Repository: (0, smithy_client_1.expectString)(output.Repository),
-        Severity: (0, smithy_client_1.expectString)(output.Severity),
-        Title: (0, smithy_client_1.expectString)(output.Title),
-        Vendor: (0, smithy_client_1.expectString)(output.Vendor),
-        Version: (0, smithy_client_1.expectString)(output.Version)
-      };
-    };
-    var de_PatchAdvisoryIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+      return (0, smithy_client_1.take)(output, {
+        AdvisoryIds: smithy_client_1._json,
+        Arch: smithy_client_1.expectString,
+        BugzillaIds: smithy_client_1._json,
+        CVEIds: smithy_client_1._json,
+        Classification: smithy_client_1.expectString,
+        ContentUrl: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        Epoch: smithy_client_1.expectInt32,
+        Id: smithy_client_1.expectString,
+        KbNumber: smithy_client_1.expectString,
+        Language: smithy_client_1.expectString,
+        MsrcNumber: smithy_client_1.expectString,
+        MsrcSeverity: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Product: smithy_client_1.expectString,
+        ProductFamily: smithy_client_1.expectString,
+        Release: smithy_client_1.expectString,
+        ReleaseDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Repository: smithy_client_1.expectString,
+        Severity: smithy_client_1.expectString,
+        Title: smithy_client_1.expectString,
+        Vendor: smithy_client_1.expectString,
+        Version: smithy_client_1.expectString
       });
-      return retVal;
-    };
-    var de_PatchBaselineIdentity = (output, context) => {
-      return {
-        BaselineDescription: (0, smithy_client_1.expectString)(output.BaselineDescription),
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        BaselineName: (0, smithy_client_1.expectString)(output.BaselineName),
-        DefaultBaseline: (0, smithy_client_1.expectBoolean)(output.DefaultBaseline),
-        OperatingSystem: (0, smithy_client_1.expectString)(output.OperatingSystem)
-      };
-    };
-    var de_PatchBaselineIdentityList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchBaselineIdentity(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchBugzillaIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
     };
     var de_PatchComplianceData = (output, context) => {
-      return {
-        CVEIds: (0, smithy_client_1.expectString)(output.CVEIds),
-        Classification: (0, smithy_client_1.expectString)(output.Classification),
-        InstalledTime: output.InstalledTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.InstalledTime))) : void 0,
-        KBId: (0, smithy_client_1.expectString)(output.KBId),
-        Severity: (0, smithy_client_1.expectString)(output.Severity),
-        State: (0, smithy_client_1.expectString)(output.State),
-        Title: (0, smithy_client_1.expectString)(output.Title)
-      };
+      return (0, smithy_client_1.take)(output, {
+        CVEIds: smithy_client_1.expectString,
+        Classification: smithy_client_1.expectString,
+        InstalledTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        KBId: smithy_client_1.expectString,
+        Severity: smithy_client_1.expectString,
+        State: smithy_client_1.expectString,
+        Title: smithy_client_1.expectString
+      });
     };
     var de_PatchComplianceDataList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_PatchComplianceData(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchCVEIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_PatchFilter = (output, context) => {
-      return {
-        Key: (0, smithy_client_1.expectString)(output.Key),
-        Values: output.Values != null ? de_PatchFilterValueList(output.Values, context) : void 0
-      };
-    };
-    var de_PatchFilterGroup = (output, context) => {
-      return {
-        PatchFilters: output.PatchFilters != null ? de_PatchFilterList(output.PatchFilters, context) : void 0
-      };
-    };
-    var de_PatchFilterList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchFilter(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchFilterValueList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_PatchGroupList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_PatchGroupPatchBaselineMapping = (output, context) => {
-      return {
-        BaselineIdentity: output.BaselineIdentity != null ? de_PatchBaselineIdentity(output.BaselineIdentity, context) : void 0,
-        PatchGroup: (0, smithy_client_1.expectString)(output.PatchGroup)
-      };
-    };
-    var de_PatchGroupPatchBaselineMappingList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchGroupPatchBaselineMapping(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchIdList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
       });
       return retVal;
     };
     var de_PatchList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Patch(entry, context);
       });
       return retVal;
     };
-    var de_PatchPropertiesList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchPropertyEntry(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchPropertyEntry = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = (0, smithy_client_1.expectString)(value);
-        return acc;
-      }, {});
-    };
-    var de_PatchRule = (output, context) => {
-      return {
-        ApproveAfterDays: (0, smithy_client_1.expectInt32)(output.ApproveAfterDays),
-        ApproveUntilDate: (0, smithy_client_1.expectString)(output.ApproveUntilDate),
-        ComplianceLevel: (0, smithy_client_1.expectString)(output.ComplianceLevel),
-        EnableNonSecurity: (0, smithy_client_1.expectBoolean)(output.EnableNonSecurity),
-        PatchFilterGroup: output.PatchFilterGroup != null ? de_PatchFilterGroup(output.PatchFilterGroup, context) : void 0
-      };
-    };
-    var de_PatchRuleGroup = (output, context) => {
-      return {
-        PatchRules: output.PatchRules != null ? de_PatchRuleList(output.PatchRules, context) : void 0
-      };
-    };
-    var de_PatchRuleList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchRule(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchSource = (output, context) => {
-      return {
-        Configuration: (0, smithy_client_1.expectString)(output.Configuration),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Products: output.Products != null ? de_PatchSourceProductList(output.Products, context) : void 0
-      };
-    };
-    var de_PatchSourceList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_PatchSource(entry, context);
-      });
-      return retVal;
-    };
-    var de_PatchSourceProductList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
     var de_PatchStatus = (output, context) => {
-      return {
-        ApprovalDate: output.ApprovalDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ApprovalDate))) : void 0,
-        ComplianceLevel: (0, smithy_client_1.expectString)(output.ComplianceLevel),
-        DeploymentStatus: (0, smithy_client_1.expectString)(output.DeploymentStatus)
-      };
-    };
-    var de_PlatformTypeList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+      return (0, smithy_client_1.take)(output, {
+        ApprovalDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ComplianceLevel: smithy_client_1.expectString,
+        DeploymentStatus: smithy_client_1.expectString
       });
-      return retVal;
-    };
-    var de_PoliciesLimitExceededException = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_ProgressCounters = (output, context) => {
-      return {
-        CancelledSteps: (0, smithy_client_1.expectInt32)(output.CancelledSteps),
-        FailedSteps: (0, smithy_client_1.expectInt32)(output.FailedSteps),
-        SuccessSteps: (0, smithy_client_1.expectInt32)(output.SuccessSteps),
-        TimedOutSteps: (0, smithy_client_1.expectInt32)(output.TimedOutSteps),
-        TotalSteps: (0, smithy_client_1.expectInt32)(output.TotalSteps)
-      };
-    };
-    var de_PutComplianceItemsResult = (output, context) => {
-      return {};
-    };
-    var de_PutInventoryResult = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_PutParameterResult = (output, context) => {
-      return {
-        Tier: (0, smithy_client_1.expectString)(output.Tier),
-        Version: (0, smithy_client_1.expectLong)(output.Version)
-      };
-    };
-    var de_PutResourcePolicyResponse = (output, context) => {
-      return {
-        PolicyHash: (0, smithy_client_1.expectString)(output.PolicyHash),
-        PolicyId: (0, smithy_client_1.expectString)(output.PolicyId)
-      };
-    };
-    var de_Regions = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_RegisterDefaultPatchBaselineResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId)
-      };
-    };
-    var de_RegisterPatchBaselineForPatchGroupResult = (output, context) => {
-      return {
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        PatchGroup: (0, smithy_client_1.expectString)(output.PatchGroup)
-      };
-    };
-    var de_RegisterTargetWithMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
-    };
-    var de_RegisterTaskWithMaintenanceWindowResult = (output, context) => {
-      return {
-        WindowTaskId: (0, smithy_client_1.expectString)(output.WindowTaskId)
-      };
-    };
-    var de_RelatedOpsItem = (output, context) => {
-      return {
-        OpsItemId: (0, smithy_client_1.expectString)(output.OpsItemId)
-      };
-    };
-    var de_RelatedOpsItems = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_RelatedOpsItem(entry, context);
-      });
-      return retVal;
-    };
-    var de_RemoveTagsFromResourceResult = (output, context) => {
-      return {};
     };
     var de_ResetServiceSettingResult = (output, context) => {
-      return {
-        ServiceSetting: output.ServiceSetting != null ? de_ServiceSetting(output.ServiceSetting, context) : void 0
-      };
-    };
-    var de_ResolvedTargets = (output, context) => {
-      return {
-        ParameterValues: output.ParameterValues != null ? de_TargetParameterList(output.ParameterValues, context) : void 0,
-        Truncated: (0, smithy_client_1.expectBoolean)(output.Truncated)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ServiceSetting: (_) => de_ServiceSetting(_, context)
+      });
     };
     var de_ResourceComplianceSummaryItem = (output, context) => {
-      return {
-        ComplianceType: (0, smithy_client_1.expectString)(output.ComplianceType),
-        CompliantSummary: output.CompliantSummary != null ? de_CompliantSummary(output.CompliantSummary, context) : void 0,
-        ExecutionSummary: output.ExecutionSummary != null ? de_ComplianceExecutionSummary(output.ExecutionSummary, context) : void 0,
-        NonCompliantSummary: output.NonCompliantSummary != null ? de_NonCompliantSummary(output.NonCompliantSummary, context) : void 0,
-        OverallSeverity: (0, smithy_client_1.expectString)(output.OverallSeverity),
-        ResourceId: (0, smithy_client_1.expectString)(output.ResourceId),
-        ResourceType: (0, smithy_client_1.expectString)(output.ResourceType),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ComplianceType: smithy_client_1.expectString,
+        CompliantSummary: smithy_client_1._json,
+        ExecutionSummary: (_) => de_ComplianceExecutionSummary(_, context),
+        NonCompliantSummary: smithy_client_1._json,
+        OverallSeverity: smithy_client_1.expectString,
+        ResourceId: smithy_client_1.expectString,
+        ResourceType: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString
+      });
     };
     var de_ResourceComplianceSummaryItemList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ResourceComplianceSummaryItem(entry, context);
       });
       return retVal;
     };
-    var de_ResourceDataSyncAlreadyExistsException = (output, context) => {
-      return {
-        SyncName: (0, smithy_client_1.expectString)(output.SyncName)
-      };
-    };
-    var de_ResourceDataSyncAwsOrganizationsSource = (output, context) => {
-      return {
-        OrganizationSourceType: (0, smithy_client_1.expectString)(output.OrganizationSourceType),
-        OrganizationalUnits: output.OrganizationalUnits != null ? de_ResourceDataSyncOrganizationalUnitList(output.OrganizationalUnits, context) : void 0
-      };
-    };
-    var de_ResourceDataSyncConflictException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourceDataSyncCountExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourceDataSyncDestinationDataSharing = (output, context) => {
-      return {
-        DestinationDataSharingType: (0, smithy_client_1.expectString)(output.DestinationDataSharingType)
-      };
-    };
-    var de_ResourceDataSyncInvalidConfigurationException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_ResourceDataSyncItem = (output, context) => {
-      return {
-        LastStatus: (0, smithy_client_1.expectString)(output.LastStatus),
-        LastSuccessfulSyncTime: output.LastSuccessfulSyncTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastSuccessfulSyncTime))) : void 0,
-        LastSyncStatusMessage: (0, smithy_client_1.expectString)(output.LastSyncStatusMessage),
-        LastSyncTime: output.LastSyncTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastSyncTime))) : void 0,
-        S3Destination: output.S3Destination != null ? de_ResourceDataSyncS3Destination(output.S3Destination, context) : void 0,
-        SyncCreatedTime: output.SyncCreatedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.SyncCreatedTime))) : void 0,
-        SyncLastModifiedTime: output.SyncLastModifiedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.SyncLastModifiedTime))) : void 0,
-        SyncName: (0, smithy_client_1.expectString)(output.SyncName),
-        SyncSource: output.SyncSource != null ? de_ResourceDataSyncSourceWithState(output.SyncSource, context) : void 0,
-        SyncType: (0, smithy_client_1.expectString)(output.SyncType)
-      };
+      return (0, smithy_client_1.take)(output, {
+        LastStatus: smithy_client_1.expectString,
+        LastSuccessfulSyncTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastSyncStatusMessage: smithy_client_1.expectString,
+        LastSyncTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        S3Destination: smithy_client_1._json,
+        SyncCreatedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        SyncLastModifiedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        SyncName: smithy_client_1.expectString,
+        SyncSource: smithy_client_1._json,
+        SyncType: smithy_client_1.expectString
+      });
     };
     var de_ResourceDataSyncItemList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ResourceDataSyncItem(entry, context);
       });
       return retVal;
     };
-    var de_ResourceDataSyncNotFoundException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        SyncName: (0, smithy_client_1.expectString)(output.SyncName),
-        SyncType: (0, smithy_client_1.expectString)(output.SyncType)
-      };
-    };
-    var de_ResourceDataSyncOrganizationalUnit = (output, context) => {
-      return {
-        OrganizationalUnitId: (0, smithy_client_1.expectString)(output.OrganizationalUnitId)
-      };
-    };
-    var de_ResourceDataSyncOrganizationalUnitList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_ResourceDataSyncOrganizationalUnit(entry, context);
-      });
-      return retVal;
-    };
-    var de_ResourceDataSyncS3Destination = (output, context) => {
-      return {
-        AWSKMSKeyARN: (0, smithy_client_1.expectString)(output.AWSKMSKeyARN),
-        BucketName: (0, smithy_client_1.expectString)(output.BucketName),
-        DestinationDataSharing: output.DestinationDataSharing != null ? de_ResourceDataSyncDestinationDataSharing(output.DestinationDataSharing, context) : void 0,
-        Prefix: (0, smithy_client_1.expectString)(output.Prefix),
-        Region: (0, smithy_client_1.expectString)(output.Region),
-        SyncFormat: (0, smithy_client_1.expectString)(output.SyncFormat)
-      };
-    };
-    var de_ResourceDataSyncSourceRegionList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ResourceDataSyncSourceWithState = (output, context) => {
-      return {
-        AwsOrganizationsSource: output.AwsOrganizationsSource != null ? de_ResourceDataSyncAwsOrganizationsSource(output.AwsOrganizationsSource, context) : void 0,
-        EnableAllOpsDataSources: (0, smithy_client_1.expectBoolean)(output.EnableAllOpsDataSources),
-        IncludeFutureRegions: (0, smithy_client_1.expectBoolean)(output.IncludeFutureRegions),
-        SourceRegions: output.SourceRegions != null ? de_ResourceDataSyncSourceRegionList(output.SourceRegions, context) : void 0,
-        SourceType: (0, smithy_client_1.expectString)(output.SourceType),
-        State: (0, smithy_client_1.expectString)(output.State)
-      };
-    };
-    var de_ResourceInUseException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourceLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourcePolicyConflictException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourcePolicyInvalidParameterException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        ParameterNames: output.ParameterNames != null ? de_ResourcePolicyParameterNamesList(output.ParameterNames, context) : void 0
-      };
-    };
-    var de_ResourcePolicyLimitExceededException = (output, context) => {
-      return {
-        Limit: (0, smithy_client_1.expectInt32)(output.Limit),
-        LimitType: (0, smithy_client_1.expectString)(output.LimitType),
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_ResourcePolicyParameterNamesList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_ResumeSessionResponse = (output, context) => {
-      return {
-        SessionId: (0, smithy_client_1.expectString)(output.SessionId),
-        StreamUrl: (0, smithy_client_1.expectString)(output.StreamUrl),
-        TokenValue: (0, smithy_client_1.expectString)(output.TokenValue)
-      };
-    };
     var de_ReviewInformation = (output, context) => {
-      return {
-        ReviewedTime: output.ReviewedTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ReviewedTime))) : void 0,
-        Reviewer: (0, smithy_client_1.expectString)(output.Reviewer),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ReviewedTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Reviewer: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString
+      });
     };
     var de_ReviewInformationList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_ReviewInformation(entry, context);
       });
       return retVal;
     };
-    var de_Runbook = (output, context) => {
-      return {
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        DocumentVersion: (0, smithy_client_1.expectString)(output.DocumentVersion),
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Parameters: output.Parameters != null ? de_AutomationParameterMap(output.Parameters, context) : void 0,
-        TargetLocations: output.TargetLocations != null ? de_TargetLocations(output.TargetLocations, context) : void 0,
-        TargetMaps: output.TargetMaps != null ? de_TargetMaps(output.TargetMaps, context) : void 0,
-        TargetParameterName: (0, smithy_client_1.expectString)(output.TargetParameterName),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0
-      };
-    };
-    var de_Runbooks = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Runbook(entry, context);
-      });
-      return retVal;
-    };
-    var de_S3OutputLocation = (output, context) => {
-      return {
-        OutputS3BucketName: (0, smithy_client_1.expectString)(output.OutputS3BucketName),
-        OutputS3KeyPrefix: (0, smithy_client_1.expectString)(output.OutputS3KeyPrefix),
-        OutputS3Region: (0, smithy_client_1.expectString)(output.OutputS3Region)
-      };
-    };
-    var de_S3OutputUrl = (output, context) => {
-      return {
-        OutputUrl: (0, smithy_client_1.expectString)(output.OutputUrl)
-      };
-    };
-    var de_ScheduledWindowExecution = (output, context) => {
-      return {
-        ExecutionTime: (0, smithy_client_1.expectString)(output.ExecutionTime),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_ScheduledWindowExecutionList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_ScheduledWindowExecution(entry, context);
-      });
-      return retVal;
-    };
-    var de_SendAutomationSignalResult = (output, context) => {
-      return {};
-    };
     var de_SendCommandResult = (output, context) => {
-      return {
-        Command: output.Command != null ? de_Command(output.Command, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Command: (_) => de_Command(_, context)
+      });
     };
     var de_ServiceSetting = (output, context) => {
-      return {
-        ARN: (0, smithy_client_1.expectString)(output.ARN),
-        LastModifiedDate: output.LastModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.LastModifiedDate))) : void 0,
-        LastModifiedUser: (0, smithy_client_1.expectString)(output.LastModifiedUser),
-        SettingId: (0, smithy_client_1.expectString)(output.SettingId),
-        SettingValue: (0, smithy_client_1.expectString)(output.SettingValue),
-        Status: (0, smithy_client_1.expectString)(output.Status)
-      };
-    };
-    var de_ServiceSettingNotFound = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
+      return (0, smithy_client_1.take)(output, {
+        ARN: smithy_client_1.expectString,
+        LastModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        LastModifiedUser: smithy_client_1.expectString,
+        SettingId: smithy_client_1.expectString,
+        SettingValue: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString
+      });
     };
     var de_Session = (output, context) => {
-      return {
-        Details: (0, smithy_client_1.expectString)(output.Details),
-        DocumentName: (0, smithy_client_1.expectString)(output.DocumentName),
-        EndDate: output.EndDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.EndDate))) : void 0,
-        MaxSessionDuration: (0, smithy_client_1.expectString)(output.MaxSessionDuration),
-        OutputUrl: output.OutputUrl != null ? de_SessionManagerOutputUrl(output.OutputUrl, context) : void 0,
-        Owner: (0, smithy_client_1.expectString)(output.Owner),
-        Reason: (0, smithy_client_1.expectString)(output.Reason),
-        SessionId: (0, smithy_client_1.expectString)(output.SessionId),
-        StartDate: output.StartDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.StartDate))) : void 0,
-        Status: (0, smithy_client_1.expectString)(output.Status),
-        Target: (0, smithy_client_1.expectString)(output.Target)
-      };
+      return (0, smithy_client_1.take)(output, {
+        Details: smithy_client_1.expectString,
+        DocumentName: smithy_client_1.expectString,
+        EndDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        MaxSessionDuration: smithy_client_1.expectString,
+        OutputUrl: smithy_client_1._json,
+        Owner: smithy_client_1.expectString,
+        Reason: smithy_client_1.expectString,
+        SessionId: smithy_client_1.expectString,
+        StartDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Status: smithy_client_1.expectString,
+        Target: smithy_client_1.expectString
+      });
     };
     var de_SessionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_Session(entry, context);
       });
       return retVal;
     };
-    var de_SessionManagerOutputUrl = (output, context) => {
-      return {
-        CloudWatchOutputUrl: (0, smithy_client_1.expectString)(output.CloudWatchOutputUrl),
-        S3OutputUrl: (0, smithy_client_1.expectString)(output.S3OutputUrl)
-      };
-    };
-    var de_SeveritySummary = (output, context) => {
-      return {
-        CriticalCount: (0, smithy_client_1.expectInt32)(output.CriticalCount),
-        HighCount: (0, smithy_client_1.expectInt32)(output.HighCount),
-        InformationalCount: (0, smithy_client_1.expectInt32)(output.InformationalCount),
-        LowCount: (0, smithy_client_1.expectInt32)(output.LowCount),
-        MediumCount: (0, smithy_client_1.expectInt32)(output.MediumCount),
-        UnspecifiedCount: (0, smithy_client_1.expectInt32)(output.UnspecifiedCount)
-      };
-    };
-    var de_StartAssociationsOnceResult = (output, context) => {
-      return {};
-    };
-    var de_StartAutomationExecutionResult = (output, context) => {
-      return {
-        AutomationExecutionId: (0, smithy_client_1.expectString)(output.AutomationExecutionId)
-      };
-    };
-    var de_StartChangeRequestExecutionResult = (output, context) => {
-      return {
-        AutomationExecutionId: (0, smithy_client_1.expectString)(output.AutomationExecutionId)
-      };
-    };
-    var de_StartSessionResponse = (output, context) => {
-      return {
-        SessionId: (0, smithy_client_1.expectString)(output.SessionId),
-        StreamUrl: (0, smithy_client_1.expectString)(output.StreamUrl),
-        TokenValue: (0, smithy_client_1.expectString)(output.TokenValue)
-      };
-    };
-    var de_StatusUnchanged = (output, context) => {
-      return {};
-    };
     var de_StepExecution = (output, context) => {
-      return {
-        Action: (0, smithy_client_1.expectString)(output.Action),
-        ExecutionEndTime: output.ExecutionEndTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionEndTime))) : void 0,
-        ExecutionStartTime: output.ExecutionStartTime != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ExecutionStartTime))) : void 0,
-        FailureDetails: output.FailureDetails != null ? de_FailureDetails(output.FailureDetails, context) : void 0,
-        FailureMessage: (0, smithy_client_1.expectString)(output.FailureMessage),
-        Inputs: output.Inputs != null ? de_NormalStringMap(output.Inputs, context) : void 0,
-        IsCritical: (0, smithy_client_1.expectBoolean)(output.IsCritical),
-        IsEnd: (0, smithy_client_1.expectBoolean)(output.IsEnd),
-        MaxAttempts: (0, smithy_client_1.expectInt32)(output.MaxAttempts),
-        NextStep: (0, smithy_client_1.expectString)(output.NextStep),
-        OnFailure: (0, smithy_client_1.expectString)(output.OnFailure),
-        Outputs: output.Outputs != null ? de_AutomationParameterMap(output.Outputs, context) : void 0,
-        OverriddenParameters: output.OverriddenParameters != null ? de_AutomationParameterMap(output.OverriddenParameters, context) : void 0,
-        Response: (0, smithy_client_1.expectString)(output.Response),
-        ResponseCode: (0, smithy_client_1.expectString)(output.ResponseCode),
-        StepExecutionId: (0, smithy_client_1.expectString)(output.StepExecutionId),
-        StepName: (0, smithy_client_1.expectString)(output.StepName),
-        StepStatus: (0, smithy_client_1.expectString)(output.StepStatus),
-        TargetLocation: output.TargetLocation != null ? de_TargetLocation(output.TargetLocation, context) : void 0,
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TimeoutSeconds: (0, smithy_client_1.expectLong)(output.TimeoutSeconds),
-        TriggeredAlarms: output.TriggeredAlarms != null ? de_AlarmStateInformationList(output.TriggeredAlarms, context) : void 0,
-        ValidNextSteps: output.ValidNextSteps != null ? de_ValidNextStepList(output.ValidNextSteps, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        Action: smithy_client_1.expectString,
+        ExecutionEndTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        ExecutionStartTime: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        FailureDetails: smithy_client_1._json,
+        FailureMessage: smithy_client_1.expectString,
+        Inputs: smithy_client_1._json,
+        IsCritical: smithy_client_1.expectBoolean,
+        IsEnd: smithy_client_1.expectBoolean,
+        MaxAttempts: smithy_client_1.expectInt32,
+        NextStep: smithy_client_1.expectString,
+        OnFailure: smithy_client_1.expectString,
+        Outputs: smithy_client_1._json,
+        OverriddenParameters: smithy_client_1._json,
+        Response: smithy_client_1.expectString,
+        ResponseCode: smithy_client_1.expectString,
+        StepExecutionId: smithy_client_1.expectString,
+        StepName: smithy_client_1.expectString,
+        StepStatus: smithy_client_1.expectString,
+        TargetLocation: smithy_client_1._json,
+        Targets: smithy_client_1._json,
+        TimeoutSeconds: smithy_client_1.expectLong,
+        TriggeredAlarms: smithy_client_1._json,
+        ValidNextSteps: smithy_client_1._json
+      });
     };
     var de_StepExecutionList = (output, context) => {
       const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
         return de_StepExecution(entry, context);
       });
       return retVal;
     };
-    var de_StopAutomationExecutionResult = (output, context) => {
-      return {};
-    };
-    var de_SubTypeCountLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_Tag = (output, context) => {
-      return {
-        Key: (0, smithy_client_1.expectString)(output.Key),
-        Value: (0, smithy_client_1.expectString)(output.Value)
-      };
-    };
-    var de_TagList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Tag(entry, context);
-      });
-      return retVal;
-    };
-    var de_Target = (output, context) => {
-      return {
-        Key: (0, smithy_client_1.expectString)(output.Key),
-        Values: output.Values != null ? de_TargetValues(output.Values, context) : void 0
-      };
-    };
-    var de_TargetInUseException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_TargetLocation = (output, context) => {
-      return {
-        Accounts: output.Accounts != null ? de_Accounts(output.Accounts, context) : void 0,
-        ExecutionRoleName: (0, smithy_client_1.expectString)(output.ExecutionRoleName),
-        Regions: output.Regions != null ? de_Regions(output.Regions, context) : void 0,
-        TargetLocationAlarmConfiguration: output.TargetLocationAlarmConfiguration != null ? de_AlarmConfiguration(output.TargetLocationAlarmConfiguration, context) : void 0,
-        TargetLocationMaxConcurrency: (0, smithy_client_1.expectString)(output.TargetLocationMaxConcurrency),
-        TargetLocationMaxErrors: (0, smithy_client_1.expectString)(output.TargetLocationMaxErrors)
-      };
-    };
-    var de_TargetLocations = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_TargetLocation(entry, context);
-      });
-      return retVal;
-    };
-    var de_TargetMap = (output, context) => {
-      return Object.entries(output).reduce((acc, [key, value]) => {
-        if (value === null) {
-          return acc;
-        }
-        acc[key] = de_TargetMapValueList(value, context);
-        return acc;
-      }, {});
-    };
-    var de_TargetMaps = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_TargetMap(entry, context);
-      });
-      return retVal;
-    };
-    var de_TargetMapValueList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_TargetNotConnected = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_TargetParameterList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_Targets = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return de_Target(entry, context);
-      });
-      return retVal;
-    };
-    var de_TargetValues = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
-      });
-      return retVal;
-    };
-    var de_TerminateSessionResponse = (output, context) => {
-      return {
-        SessionId: (0, smithy_client_1.expectString)(output.SessionId)
-      };
-    };
-    var de_TooManyTagsError = (output, context) => {
-      return {};
-    };
-    var de_TooManyUpdates = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_TotalSizeLimitExceededException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_UnlabelParameterVersionResult = (output, context) => {
-      return {
-        InvalidLabels: output.InvalidLabels != null ? de_ParameterLabelList(output.InvalidLabels, context) : void 0,
-        RemovedLabels: output.RemovedLabels != null ? de_ParameterLabelList(output.RemovedLabels, context) : void 0
-      };
-    };
-    var de_UnsupportedCalendarException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_UnsupportedFeatureRequiredException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_UnsupportedInventoryItemContextException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message),
-        TypeName: (0, smithy_client_1.expectString)(output.TypeName)
-      };
-    };
-    var de_UnsupportedInventorySchemaVersionException = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_UnsupportedOperatingSystem = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
-    var de_UnsupportedParameterType = (output, context) => {
-      return {
-        message: (0, smithy_client_1.expectString)(output.message)
-      };
-    };
-    var de_UnsupportedPlatformType = (output, context) => {
-      return {
-        Message: (0, smithy_client_1.expectString)(output.Message)
-      };
-    };
     var de_UpdateAssociationResult = (output, context) => {
-      return {
-        AssociationDescription: output.AssociationDescription != null ? de_AssociationDescription(output.AssociationDescription, context) : void 0
-      };
+      return (0, smithy_client_1.take)(output, {
+        AssociationDescription: (_) => de_AssociationDescription(_, context)
+      });
     };
     var de_UpdateAssociationStatusResult = (output, context) => {
-      return {
-        AssociationDescription: output.AssociationDescription != null ? de_AssociationDescription(output.AssociationDescription, context) : void 0
-      };
-    };
-    var de_UpdateDocumentDefaultVersionResult = (output, context) => {
-      return {
-        Description: output.Description != null ? de_DocumentDefaultVersionDescription(output.Description, context) : void 0
-      };
-    };
-    var de_UpdateDocumentMetadataResponse = (output, context) => {
-      return {};
+      return (0, smithy_client_1.take)(output, {
+        AssociationDescription: (_) => de_AssociationDescription(_, context)
+      });
     };
     var de_UpdateDocumentResult = (output, context) => {
-      return {
-        DocumentDescription: output.DocumentDescription != null ? de_DocumentDescription(output.DocumentDescription, context) : void 0
-      };
-    };
-    var de_UpdateMaintenanceWindowResult = (output, context) => {
-      return {
-        AllowUnassociatedTargets: (0, smithy_client_1.expectBoolean)(output.AllowUnassociatedTargets),
-        Cutoff: (0, smithy_client_1.expectInt32)(output.Cutoff),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Duration: (0, smithy_client_1.expectInt32)(output.Duration),
-        Enabled: (0, smithy_client_1.expectBoolean)(output.Enabled),
-        EndDate: (0, smithy_client_1.expectString)(output.EndDate),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Schedule: (0, smithy_client_1.expectString)(output.Schedule),
-        ScheduleOffset: (0, smithy_client_1.expectInt32)(output.ScheduleOffset),
-        ScheduleTimezone: (0, smithy_client_1.expectString)(output.ScheduleTimezone),
-        StartDate: (0, smithy_client_1.expectString)(output.StartDate),
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId)
-      };
-    };
-    var de_UpdateMaintenanceWindowTargetResult = (output, context) => {
-      return {
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OwnerInformation: (0, smithy_client_1.expectString)(output.OwnerInformation),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTargetId: (0, smithy_client_1.expectString)(output.WindowTargetId)
-      };
+      return (0, smithy_client_1.take)(output, {
+        DocumentDescription: (_) => de_DocumentDescription(_, context)
+      });
     };
     var de_UpdateMaintenanceWindowTaskResult = (output, context) => {
-      return {
-        AlarmConfiguration: output.AlarmConfiguration != null ? de_AlarmConfiguration(output.AlarmConfiguration, context) : void 0,
-        CutoffBehavior: (0, smithy_client_1.expectString)(output.CutoffBehavior),
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        LoggingInfo: output.LoggingInfo != null ? de_LoggingInfo(output.LoggingInfo, context) : void 0,
-        MaxConcurrency: (0, smithy_client_1.expectString)(output.MaxConcurrency),
-        MaxErrors: (0, smithy_client_1.expectString)(output.MaxErrors),
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        Priority: (0, smithy_client_1.expectInt32)(output.Priority),
-        ServiceRoleArn: (0, smithy_client_1.expectString)(output.ServiceRoleArn),
-        Targets: output.Targets != null ? de_Targets(output.Targets, context) : void 0,
-        TaskArn: (0, smithy_client_1.expectString)(output.TaskArn),
-        TaskInvocationParameters: output.TaskInvocationParameters != null ? de_MaintenanceWindowTaskInvocationParameters(output.TaskInvocationParameters, context) : void 0,
-        TaskParameters: output.TaskParameters != null ? de_MaintenanceWindowTaskParameters(output.TaskParameters, context) : void 0,
-        WindowId: (0, smithy_client_1.expectString)(output.WindowId),
-        WindowTaskId: (0, smithy_client_1.expectString)(output.WindowTaskId)
-      };
-    };
-    var de_UpdateManagedInstanceRoleResult = (output, context) => {
-      return {};
-    };
-    var de_UpdateOpsItemResponse = (output, context) => {
-      return {};
-    };
-    var de_UpdateOpsMetadataResult = (output, context) => {
-      return {
-        OpsMetadataArn: (0, smithy_client_1.expectString)(output.OpsMetadataArn)
-      };
+      return (0, smithy_client_1.take)(output, {
+        AlarmConfiguration: smithy_client_1._json,
+        CutoffBehavior: smithy_client_1.expectString,
+        Description: smithy_client_1.expectString,
+        LoggingInfo: smithy_client_1._json,
+        MaxConcurrency: smithy_client_1.expectString,
+        MaxErrors: smithy_client_1.expectString,
+        Name: smithy_client_1.expectString,
+        Priority: smithy_client_1.expectInt32,
+        ServiceRoleArn: smithy_client_1.expectString,
+        Targets: smithy_client_1._json,
+        TaskArn: smithy_client_1.expectString,
+        TaskInvocationParameters: (_) => de_MaintenanceWindowTaskInvocationParameters(_, context),
+        TaskParameters: smithy_client_1._json,
+        WindowId: smithy_client_1.expectString,
+        WindowTaskId: smithy_client_1.expectString
+      });
     };
     var de_UpdatePatchBaselineResult = (output, context) => {
-      return {
-        ApprovalRules: output.ApprovalRules != null ? de_PatchRuleGroup(output.ApprovalRules, context) : void 0,
-        ApprovedPatches: output.ApprovedPatches != null ? de_PatchIdList(output.ApprovedPatches, context) : void 0,
-        ApprovedPatchesComplianceLevel: (0, smithy_client_1.expectString)(output.ApprovedPatchesComplianceLevel),
-        ApprovedPatchesEnableNonSecurity: (0, smithy_client_1.expectBoolean)(output.ApprovedPatchesEnableNonSecurity),
-        BaselineId: (0, smithy_client_1.expectString)(output.BaselineId),
-        CreatedDate: output.CreatedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.CreatedDate))) : void 0,
-        Description: (0, smithy_client_1.expectString)(output.Description),
-        GlobalFilters: output.GlobalFilters != null ? de_PatchFilterGroup(output.GlobalFilters, context) : void 0,
-        ModifiedDate: output.ModifiedDate != null ? (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(output.ModifiedDate))) : void 0,
-        Name: (0, smithy_client_1.expectString)(output.Name),
-        OperatingSystem: (0, smithy_client_1.expectString)(output.OperatingSystem),
-        RejectedPatches: output.RejectedPatches != null ? de_PatchIdList(output.RejectedPatches, context) : void 0,
-        RejectedPatchesAction: (0, smithy_client_1.expectString)(output.RejectedPatchesAction),
-        Sources: output.Sources != null ? de_PatchSourceList(output.Sources, context) : void 0
-      };
-    };
-    var de_UpdateResourceDataSyncResult = (output, context) => {
-      return {};
-    };
-    var de_UpdateServiceSettingResult = (output, context) => {
-      return {};
-    };
-    var de_ValidNextStepList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        if (entry === null) {
-          return null;
-        }
-        return (0, smithy_client_1.expectString)(entry);
+      return (0, smithy_client_1.take)(output, {
+        ApprovalRules: smithy_client_1._json,
+        ApprovedPatches: smithy_client_1._json,
+        ApprovedPatchesComplianceLevel: smithy_client_1.expectString,
+        ApprovedPatchesEnableNonSecurity: smithy_client_1.expectBoolean,
+        BaselineId: smithy_client_1.expectString,
+        CreatedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Description: smithy_client_1.expectString,
+        GlobalFilters: smithy_client_1._json,
+        ModifiedDate: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        Name: smithy_client_1.expectString,
+        OperatingSystem: smithy_client_1.expectString,
+        RejectedPatches: smithy_client_1._json,
+        RejectedPatchesAction: smithy_client_1.expectString,
+        Sources: smithy_client_1._json
       });
-      return retVal;
     };
     var deserializeMetadata = (output) => ({
       httpStatusCode: output.statusCode,
@@ -48213,6 +42734,7 @@ var require_Aws_json1_1 = __commonJS({
       return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
     };
     var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(SSMServiceException_1.SSMServiceException);
     var buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const contents = {
@@ -55375,7 +49897,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.312.0",
+      version: "3.315.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -55395,9 +49917,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.312.0",
+        "@aws-sdk/client-sts": "3.315.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.310.0",
+        "@aws-sdk/credential-provider-node": "3.315.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -55414,14 +49936,14 @@ var require_package5 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.310.0",
+        "@aws-sdk/smithy-client": "3.315.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.310.0",
-        "@aws-sdk/util-defaults-mode-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
+        "@aws-sdk/util-defaults-mode-node": "3.315.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
