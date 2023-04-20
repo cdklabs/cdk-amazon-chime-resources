@@ -496,5045 +496,6 @@ var init_tslib_es6 = __esm({
   }
 });
 
-// node_modules/@aws-sdk/util-config-provider/dist-cjs/booleanSelector.js
-var require_booleanSelector = __commonJS({
-  "node_modules/@aws-sdk/util-config-provider/dist-cjs/booleanSelector.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.booleanSelector = exports.SelectorType = void 0;
-    var SelectorType;
-    (function(SelectorType2) {
-      SelectorType2["ENV"] = "env";
-      SelectorType2["CONFIG"] = "shared config entry";
-    })(SelectorType = exports.SelectorType || (exports.SelectorType = {}));
-    var booleanSelector = (obj, key, type) => {
-      if (!(key in obj))
-        return void 0;
-      if (obj[key] === "true")
-        return true;
-      if (obj[key] === "false")
-        return false;
-      throw new Error(`Cannot load ${type} "${key}". Expected "true" or "false", got ${obj[key]}.`);
-    };
-    exports.booleanSelector = booleanSelector;
-  }
-});
-
-// node_modules/@aws-sdk/util-config-provider/dist-cjs/index.js
-var require_dist_cjs = __commonJS({
-  "node_modules/@aws-sdk/util-config-provider/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_booleanSelector(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js
-var require_NodeUseDualstackEndpointConfigOptions = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS = exports.DEFAULT_USE_DUALSTACK_ENDPOINT = exports.CONFIG_USE_DUALSTACK_ENDPOINT = exports.ENV_USE_DUALSTACK_ENDPOINT = void 0;
-    var util_config_provider_1 = require_dist_cjs();
-    exports.ENV_USE_DUALSTACK_ENDPOINT = "AWS_USE_DUALSTACK_ENDPOINT";
-    exports.CONFIG_USE_DUALSTACK_ENDPOINT = "use_dualstack_endpoint";
-    exports.DEFAULT_USE_DUALSTACK_ENDPOINT = false;
-    exports.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS = {
-      environmentVariableSelector: (env) => (0, util_config_provider_1.booleanSelector)(env, exports.ENV_USE_DUALSTACK_ENDPOINT, util_config_provider_1.SelectorType.ENV),
-      configFileSelector: (profile) => (0, util_config_provider_1.booleanSelector)(profile, exports.CONFIG_USE_DUALSTACK_ENDPOINT, util_config_provider_1.SelectorType.CONFIG),
-      default: false
-    };
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseFipsEndpointConfigOptions.js
-var require_NodeUseFipsEndpointConfigOptions = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseFipsEndpointConfigOptions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS = exports.DEFAULT_USE_FIPS_ENDPOINT = exports.CONFIG_USE_FIPS_ENDPOINT = exports.ENV_USE_FIPS_ENDPOINT = void 0;
-    var util_config_provider_1 = require_dist_cjs();
-    exports.ENV_USE_FIPS_ENDPOINT = "AWS_USE_FIPS_ENDPOINT";
-    exports.CONFIG_USE_FIPS_ENDPOINT = "use_fips_endpoint";
-    exports.DEFAULT_USE_FIPS_ENDPOINT = false;
-    exports.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS = {
-      environmentVariableSelector: (env) => (0, util_config_provider_1.booleanSelector)(env, exports.ENV_USE_FIPS_ENDPOINT, util_config_provider_1.SelectorType.ENV),
-      configFileSelector: (profile) => (0, util_config_provider_1.booleanSelector)(profile, exports.CONFIG_USE_FIPS_ENDPOINT, util_config_provider_1.SelectorType.CONFIG),
-      default: false
-    };
-  }
-});
-
-// node_modules/@aws-sdk/util-middleware/dist-cjs/normalizeProvider.js
-var require_normalizeProvider = __commonJS({
-  "node_modules/@aws-sdk/util-middleware/dist-cjs/normalizeProvider.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.normalizeProvider = void 0;
-    var normalizeProvider = (input) => {
-      if (typeof input === "function")
-        return input;
-      const promisified = Promise.resolve(input);
-      return () => promisified;
-    };
-    exports.normalizeProvider = normalizeProvider;
-  }
-});
-
-// node_modules/@aws-sdk/util-middleware/dist-cjs/index.js
-var require_dist_cjs2 = __commonJS({
-  "node_modules/@aws-sdk/util-middleware/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_normalizeProvider(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveCustomEndpointsConfig.js
-var require_resolveCustomEndpointsConfig = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveCustomEndpointsConfig.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveCustomEndpointsConfig = void 0;
-    var util_middleware_1 = require_dist_cjs2();
-    var resolveCustomEndpointsConfig = (input) => {
-      var _a, _b;
-      const { endpoint, urlParser } = input;
-      return {
-        ...input,
-        tls: (_a = input.tls) !== null && _a !== void 0 ? _a : true,
-        endpoint: (0, util_middleware_1.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint),
-        isCustomEndpoint: true,
-        useDualstackEndpoint: (0, util_middleware_1.normalizeProvider)((_b = input.useDualstackEndpoint) !== null && _b !== void 0 ? _b : false)
-      };
-    };
-    exports.resolveCustomEndpointsConfig = resolveCustomEndpointsConfig;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/utils/getEndpointFromRegion.js
-var require_getEndpointFromRegion = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/utils/getEndpointFromRegion.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointFromRegion = void 0;
-    var getEndpointFromRegion = async (input) => {
-      var _a;
-      const { tls = true } = input;
-      const region = await input.region();
-      const dnsHostRegex = new RegExp(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])$/);
-      if (!dnsHostRegex.test(region)) {
-        throw new Error("Invalid region in client config");
-      }
-      const useDualstackEndpoint = await input.useDualstackEndpoint();
-      const useFipsEndpoint = await input.useFipsEndpoint();
-      const { hostname } = (_a = await input.regionInfoProvider(region, { useDualstackEndpoint, useFipsEndpoint })) !== null && _a !== void 0 ? _a : {};
-      if (!hostname) {
-        throw new Error("Cannot resolve hostname from client config");
-      }
-      return input.urlParser(`${tls ? "https:" : "http:"}//${hostname}`);
-    };
-    exports.getEndpointFromRegion = getEndpointFromRegion;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveEndpointsConfig.js
-var require_resolveEndpointsConfig = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveEndpointsConfig.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveEndpointsConfig = void 0;
-    var util_middleware_1 = require_dist_cjs2();
-    var getEndpointFromRegion_1 = require_getEndpointFromRegion();
-    var resolveEndpointsConfig = (input) => {
-      var _a, _b;
-      const useDualstackEndpoint = (0, util_middleware_1.normalizeProvider)((_a = input.useDualstackEndpoint) !== null && _a !== void 0 ? _a : false);
-      const { endpoint, useFipsEndpoint, urlParser } = input;
-      return {
-        ...input,
-        tls: (_b = input.tls) !== null && _b !== void 0 ? _b : true,
-        endpoint: endpoint ? (0, util_middleware_1.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint) : () => (0, getEndpointFromRegion_1.getEndpointFromRegion)({ ...input, useDualstackEndpoint, useFipsEndpoint }),
-        isCustomEndpoint: !!endpoint,
-        useDualstackEndpoint
-      };
-    };
-    exports.resolveEndpointsConfig = resolveEndpointsConfig;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/index.js
-var require_endpointsConfig = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_NodeUseDualstackEndpointConfigOptions(), exports);
-    tslib_1.__exportStar(require_NodeUseFipsEndpointConfigOptions(), exports);
-    tslib_1.__exportStar(require_resolveCustomEndpointsConfig(), exports);
-    tslib_1.__exportStar(require_resolveEndpointsConfig(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/config.js
-var require_config = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/config.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODE_REGION_CONFIG_FILE_OPTIONS = exports.NODE_REGION_CONFIG_OPTIONS = exports.REGION_INI_NAME = exports.REGION_ENV_NAME = void 0;
-    exports.REGION_ENV_NAME = "AWS_REGION";
-    exports.REGION_INI_NAME = "region";
-    exports.NODE_REGION_CONFIG_OPTIONS = {
-      environmentVariableSelector: (env) => env[exports.REGION_ENV_NAME],
-      configFileSelector: (profile) => profile[exports.REGION_INI_NAME],
-      default: () => {
-        throw new Error("Region is missing");
-      }
-    };
-    exports.NODE_REGION_CONFIG_FILE_OPTIONS = {
-      preferredFile: "credentials"
-    };
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/isFipsRegion.js
-var require_isFipsRegion = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/isFipsRegion.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isFipsRegion = void 0;
-    var isFipsRegion = (region) => typeof region === "string" && (region.startsWith("fips-") || region.endsWith("-fips"));
-    exports.isFipsRegion = isFipsRegion;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/getRealRegion.js
-var require_getRealRegion = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/getRealRegion.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRealRegion = void 0;
-    var isFipsRegion_1 = require_isFipsRegion();
-    var getRealRegion = (region) => (0, isFipsRegion_1.isFipsRegion)(region) ? ["fips-aws-global", "aws-fips"].includes(region) ? "us-east-1" : region.replace(/fips-(dkr-|prod-)?|-fips/, "") : region;
-    exports.getRealRegion = getRealRegion;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/resolveRegionConfig.js
-var require_resolveRegionConfig = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/resolveRegionConfig.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveRegionConfig = void 0;
-    var getRealRegion_1 = require_getRealRegion();
-    var isFipsRegion_1 = require_isFipsRegion();
-    var resolveRegionConfig = (input) => {
-      const { region, useFipsEndpoint } = input;
-      if (!region) {
-        throw new Error("Region is missing");
-      }
-      return {
-        ...input,
-        region: async () => {
-          if (typeof region === "string") {
-            return (0, getRealRegion_1.getRealRegion)(region);
-          }
-          const providedRegion = await region();
-          return (0, getRealRegion_1.getRealRegion)(providedRegion);
-        },
-        useFipsEndpoint: async () => {
-          const providedRegion = typeof region === "string" ? region : await region();
-          if ((0, isFipsRegion_1.isFipsRegion)(providedRegion)) {
-            return true;
-          }
-          return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
-        }
-      };
-    };
-    exports.resolveRegionConfig = resolveRegionConfig;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/index.js
-var require_regionConfig = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_config(), exports);
-    tslib_1.__exportStar(require_resolveRegionConfig(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/PartitionHash.js
-var require_PartitionHash = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/PartitionHash.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/RegionHash.js
-var require_RegionHash = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/RegionHash.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getHostnameFromVariants.js
-var require_getHostnameFromVariants = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getHostnameFromVariants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getHostnameFromVariants = void 0;
-    var getHostnameFromVariants = (variants = [], { useFipsEndpoint, useDualstackEndpoint }) => {
-      var _a;
-      return (_a = variants.find(({ tags }) => useFipsEndpoint === tags.includes("fips") && useDualstackEndpoint === tags.includes("dualstack"))) === null || _a === void 0 ? void 0 : _a.hostname;
-    };
-    exports.getHostnameFromVariants = getHostnameFromVariants;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedHostname.js
-var require_getResolvedHostname = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedHostname.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getResolvedHostname = void 0;
-    var getResolvedHostname = (resolvedRegion, { regionHostname, partitionHostname }) => regionHostname ? regionHostname : partitionHostname ? partitionHostname.replace("{region}", resolvedRegion) : void 0;
-    exports.getResolvedHostname = getResolvedHostname;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedPartition.js
-var require_getResolvedPartition = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedPartition.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getResolvedPartition = void 0;
-    var getResolvedPartition = (region, { partitionHash }) => {
-      var _a;
-      return (_a = Object.keys(partitionHash || {}).find((key) => partitionHash[key].regions.includes(region))) !== null && _a !== void 0 ? _a : "aws";
-    };
-    exports.getResolvedPartition = getResolvedPartition;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedSigningRegion.js
-var require_getResolvedSigningRegion = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedSigningRegion.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getResolvedSigningRegion = void 0;
-    var getResolvedSigningRegion = (hostname, { signingRegion, regionRegex, useFipsEndpoint }) => {
-      if (signingRegion) {
-        return signingRegion;
-      } else if (useFipsEndpoint) {
-        const regionRegexJs = regionRegex.replace("\\\\", "\\").replace(/^\^/g, "\\.").replace(/\$$/g, "\\.");
-        const regionRegexmatchArray = hostname.match(regionRegexJs);
-        if (regionRegexmatchArray) {
-          return regionRegexmatchArray[0].slice(1, -1);
-        }
-      }
-    };
-    exports.getResolvedSigningRegion = getResolvedSigningRegion;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getRegionInfo.js
-var require_getRegionInfo = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getRegionInfo.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRegionInfo = void 0;
-    var getHostnameFromVariants_1 = require_getHostnameFromVariants();
-    var getResolvedHostname_1 = require_getResolvedHostname();
-    var getResolvedPartition_1 = require_getResolvedPartition();
-    var getResolvedSigningRegion_1 = require_getResolvedSigningRegion();
-    var getRegionInfo = (region, { useFipsEndpoint = false, useDualstackEndpoint = false, signingService, regionHash, partitionHash }) => {
-      var _a, _b, _c, _d, _e, _f;
-      const partition = (0, getResolvedPartition_1.getResolvedPartition)(region, { partitionHash });
-      const resolvedRegion = region in regionHash ? region : (_b = (_a = partitionHash[partition]) === null || _a === void 0 ? void 0 : _a.endpoint) !== null && _b !== void 0 ? _b : region;
-      const hostnameOptions = { useFipsEndpoint, useDualstackEndpoint };
-      const regionHostname = (0, getHostnameFromVariants_1.getHostnameFromVariants)((_c = regionHash[resolvedRegion]) === null || _c === void 0 ? void 0 : _c.variants, hostnameOptions);
-      const partitionHostname = (0, getHostnameFromVariants_1.getHostnameFromVariants)((_d = partitionHash[partition]) === null || _d === void 0 ? void 0 : _d.variants, hostnameOptions);
-      const hostname = (0, getResolvedHostname_1.getResolvedHostname)(resolvedRegion, { regionHostname, partitionHostname });
-      if (hostname === void 0) {
-        throw new Error(`Endpoint resolution failed for: ${{ resolvedRegion, useFipsEndpoint, useDualstackEndpoint }}`);
-      }
-      const signingRegion = (0, getResolvedSigningRegion_1.getResolvedSigningRegion)(hostname, {
-        signingRegion: (_e = regionHash[resolvedRegion]) === null || _e === void 0 ? void 0 : _e.signingRegion,
-        regionRegex: partitionHash[partition].regionRegex,
-        useFipsEndpoint
-      });
-      return {
-        partition,
-        signingService,
-        hostname,
-        ...signingRegion && { signingRegion },
-        ...((_f = regionHash[resolvedRegion]) === null || _f === void 0 ? void 0 : _f.signingService) && {
-          signingService: regionHash[resolvedRegion].signingService
-        }
-      };
-    };
-    exports.getRegionInfo = getRegionInfo;
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/index.js
-var require_regionInfo = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_PartitionHash(), exports);
-    tslib_1.__exportStar(require_RegionHash(), exports);
-    tslib_1.__exportStar(require_getRegionInfo(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/config-resolver/dist-cjs/index.js
-var require_dist_cjs3 = __commonJS({
-  "node_modules/@aws-sdk/config-resolver/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_endpointsConfig(), exports);
-    tslib_1.__exportStar(require_regionConfig(), exports);
-    tslib_1.__exportStar(require_regionInfo(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/FieldPosition.js
-var require_FieldPosition = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/FieldPosition.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.FieldPosition = void 0;
-    var FieldPosition;
-    (function(FieldPosition2) {
-      FieldPosition2[FieldPosition2["HEADER"] = 0] = "HEADER";
-      FieldPosition2[FieldPosition2["TRAILER"] = 1] = "TRAILER";
-    })(FieldPosition = exports.FieldPosition || (exports.FieldPosition = {}));
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/Field.js
-var require_Field = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/Field.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Field = void 0;
-    var FieldPosition_1 = require_FieldPosition();
-    var Field = class {
-      constructor({ name, kind = FieldPosition_1.FieldPosition.HEADER, values = [] }) {
-        this.name = name;
-        this.kind = kind;
-        this.values = values;
-      }
-      add(value) {
-        this.values.push(value);
-      }
-      set(values) {
-        this.values = values;
-      }
-      remove(value) {
-        this.values = this.values.filter((v) => v !== value);
-      }
-      toString() {
-        return this.values.map((v) => v.includes(",") || v.includes(" ") ? `"${v}"` : v).join(", ");
-      }
-      get() {
-        return this.values;
-      }
-    };
-    exports.Field = Field;
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/Fields.js
-var require_Fields = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/Fields.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Fields = void 0;
-    var Fields = class {
-      constructor({ fields = [], encoding = "utf-8" }) {
-        this.entries = {};
-        fields.forEach(this.setField.bind(this));
-        this.encoding = encoding;
-      }
-      setField(field) {
-        this.entries[field.name.toLowerCase()] = field;
-      }
-      getField(name) {
-        return this.entries[name.toLowerCase()];
-      }
-      removeField(name) {
-        delete this.entries[name.toLowerCase()];
-      }
-      getByType(kind) {
-        return Object.values(this.entries).filter((field) => field.kind === kind);
-      }
-    };
-    exports.Fields = Fields;
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/httpHandler.js
-var require_httpHandler = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpHandler.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/httpRequest.js
-var require_httpRequest = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpRequest.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.HttpRequest = void 0;
-    var HttpRequest = class {
-      constructor(options) {
-        this.method = options.method || "GET";
-        this.hostname = options.hostname || "localhost";
-        this.port = options.port;
-        this.query = options.query || {};
-        this.headers = options.headers || {};
-        this.body = options.body;
-        this.protocol = options.protocol ? options.protocol.slice(-1) !== ":" ? `${options.protocol}:` : options.protocol : "https:";
-        this.path = options.path ? options.path.charAt(0) !== "/" ? `/${options.path}` : options.path : "/";
-      }
-      static isInstance(request) {
-        if (!request)
-          return false;
-        const req = request;
-        return "method" in req && "protocol" in req && "hostname" in req && "path" in req && typeof req["query"] === "object" && typeof req["headers"] === "object";
-      }
-      clone() {
-        const cloned = new HttpRequest({
-          ...this,
-          headers: { ...this.headers }
-        });
-        if (cloned.query)
-          cloned.query = cloneQuery(cloned.query);
-        return cloned;
-      }
-    };
-    exports.HttpRequest = HttpRequest;
-    function cloneQuery(query) {
-      return Object.keys(query).reduce((carry, paramName) => {
-        const param = query[paramName];
-        return {
-          ...carry,
-          [paramName]: Array.isArray(param) ? [...param] : param
-        };
-      }, {});
-    }
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/httpResponse.js
-var require_httpResponse = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpResponse.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.HttpResponse = void 0;
-    var HttpResponse = class {
-      constructor(options) {
-        this.statusCode = options.statusCode;
-        this.headers = options.headers || {};
-        this.body = options.body;
-      }
-      static isInstance(response2) {
-        if (!response2)
-          return false;
-        const resp = response2;
-        return typeof resp.statusCode === "number" && typeof resp.headers === "object";
-      }
-    };
-    exports.HttpResponse = HttpResponse;
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/isValidHostname.js
-var require_isValidHostname = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/isValidHostname.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isValidHostname = void 0;
-    function isValidHostname(hostname) {
-      const hostPattern = /^[a-z0-9][a-z0-9\.\-]*[a-z0-9]$/;
-      return hostPattern.test(hostname);
-    }
-    exports.isValidHostname = isValidHostname;
-  }
-});
-
-// node_modules/@aws-sdk/protocol-http/dist-cjs/index.js
-var require_dist_cjs4 = __commonJS({
-  "node_modules/@aws-sdk/protocol-http/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_Field(), exports);
-    tslib_1.__exportStar(require_FieldPosition(), exports);
-    tslib_1.__exportStar(require_Fields(), exports);
-    tslib_1.__exportStar(require_httpHandler(), exports);
-    tslib_1.__exportStar(require_httpRequest(), exports);
-    tslib_1.__exportStar(require_httpResponse(), exports);
-    tslib_1.__exportStar(require_isValidHostname(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-content-length/dist-cjs/index.js
-var require_dist_cjs5 = __commonJS({
-  "node_modules/@aws-sdk/middleware-content-length/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getContentLengthPlugin = exports.contentLengthMiddlewareOptions = exports.contentLengthMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var CONTENT_LENGTH_HEADER = "content-length";
-    function contentLengthMiddleware(bodyLengthChecker) {
-      return (next) => async (args) => {
-        const request = args.request;
-        if (protocol_http_1.HttpRequest.isInstance(request)) {
-          const { body, headers } = request;
-          if (body && Object.keys(headers).map((str) => str.toLowerCase()).indexOf(CONTENT_LENGTH_HEADER) === -1) {
-            try {
-              const length = bodyLengthChecker(body);
-              request.headers = {
-                ...request.headers,
-                [CONTENT_LENGTH_HEADER]: String(length)
-              };
-            } catch (error) {
-            }
-          }
-        }
-        return next({
-          ...args,
-          request
-        });
-      };
-    }
-    exports.contentLengthMiddleware = contentLengthMiddleware;
-    exports.contentLengthMiddlewareOptions = {
-      step: "build",
-      tags: ["SET_CONTENT_LENGTH", "CONTENT_LENGTH"],
-      name: "contentLengthMiddleware",
-      override: true
-    };
-    var getContentLengthPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add(contentLengthMiddleware(options.bodyLengthChecker), exports.contentLengthMiddlewareOptions);
-      }
-    });
-    exports.getContentLengthPlugin = getContentLengthPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/s3.js
-var require_s3 = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/s3.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isArnBucketName = exports.isDnsCompatibleBucketName = exports.S3_HOSTNAME_PATTERN = exports.DOT_PATTERN = exports.resolveParamsForS3 = void 0;
-    var resolveParamsForS3 = async (endpointParams) => {
-      const bucket = (endpointParams === null || endpointParams === void 0 ? void 0 : endpointParams.Bucket) || "";
-      if (typeof endpointParams.Bucket === "string") {
-        endpointParams.Bucket = bucket.replace(/#/g, encodeURIComponent("#")).replace(/\?/g, encodeURIComponent("?"));
-      }
-      if ((0, exports.isArnBucketName)(bucket)) {
-        if (endpointParams.ForcePathStyle === true) {
-          throw new Error("Path-style addressing cannot be used with ARN buckets");
-        }
-      } else if (!(0, exports.isDnsCompatibleBucketName)(bucket) || bucket.indexOf(".") !== -1 && !String(endpointParams.Endpoint).startsWith("http:") || bucket.toLowerCase() !== bucket || bucket.length < 3) {
-        endpointParams.ForcePathStyle = true;
-      }
-      if (endpointParams.DisableMultiRegionAccessPoints) {
-        endpointParams.disableMultiRegionAccessPoints = true;
-        endpointParams.DisableMRAP = true;
-      }
-      return endpointParams;
-    };
-    exports.resolveParamsForS3 = resolveParamsForS3;
-    var DOMAIN_PATTERN = /^[a-z0-9][a-z0-9\.\-]{1,61}[a-z0-9]$/;
-    var IP_ADDRESS_PATTERN = /(\d+\.){3}\d+/;
-    var DOTS_PATTERN = /\.\./;
-    exports.DOT_PATTERN = /\./;
-    exports.S3_HOSTNAME_PATTERN = /^(.+\.)?s3(-fips)?(\.dualstack)?[.-]([a-z0-9-]+)\./;
-    var isDnsCompatibleBucketName = (bucketName) => DOMAIN_PATTERN.test(bucketName) && !IP_ADDRESS_PATTERN.test(bucketName) && !DOTS_PATTERN.test(bucketName);
-    exports.isDnsCompatibleBucketName = isDnsCompatibleBucketName;
-    var isArnBucketName = (bucketName) => {
-      const [arn, partition, service, region, account, typeOrId] = bucketName.split(":");
-      const isArn = arn === "arn" && bucketName.split(":").length >= 6;
-      const isValidArn = [arn, partition, service, account, typeOrId].filter(Boolean).length === 5;
-      if (isArn && !isValidArn) {
-        throw new Error(`Invalid ARN: ${bucketName} was an invalid ARN.`);
-      }
-      return arn === "arn" && !!partition && !!service && !!account && !!typeOrId;
-    };
-    exports.isArnBucketName = isArnBucketName;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/index.js
-var require_service_customizations = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_s3(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/createConfigValueProvider.js
-var require_createConfigValueProvider = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/createConfigValueProvider.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createConfigValueProvider = void 0;
-    var createConfigValueProvider = (configKey, canonicalEndpointParamKey, config) => {
-      const configProvider = async () => {
-        var _a;
-        const configValue = (_a = config[configKey]) !== null && _a !== void 0 ? _a : config[canonicalEndpointParamKey];
-        if (typeof configValue === "function") {
-          return configValue();
-        }
-        return configValue;
-      };
-      if (configKey === "endpoint" || canonicalEndpointParamKey === "endpoint") {
-        return async () => {
-          const endpoint = await configProvider();
-          if (endpoint && typeof endpoint === "object") {
-            if ("url" in endpoint) {
-              return endpoint.url.href;
-            }
-            if ("hostname" in endpoint) {
-              const { protocol, hostname, port, path } = endpoint;
-              return `${protocol}//${hostname}${port ? ":" + port : ""}${path}`;
-            }
-          }
-          return endpoint;
-        };
-      }
-      return configProvider;
-    };
-    exports.createConfigValueProvider = createConfigValueProvider;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/getEndpointFromInstructions.js
-var require_getEndpointFromInstructions = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/getEndpointFromInstructions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveParams = exports.getEndpointFromInstructions = void 0;
-    var service_customizations_1 = require_service_customizations();
-    var createConfigValueProvider_1 = require_createConfigValueProvider();
-    var getEndpointFromInstructions = async (commandInput, instructionsSupplier, clientConfig, context) => {
-      const endpointParams = await (0, exports.resolveParams)(commandInput, instructionsSupplier, clientConfig);
-      if (typeof clientConfig.endpointProvider !== "function") {
-        throw new Error("config.endpointProvider is not set.");
-      }
-      const endpoint = clientConfig.endpointProvider(endpointParams, context);
-      return endpoint;
-    };
-    exports.getEndpointFromInstructions = getEndpointFromInstructions;
-    var resolveParams = async (commandInput, instructionsSupplier, clientConfig) => {
-      var _a;
-      const endpointParams = {};
-      const instructions = ((_a = instructionsSupplier === null || instructionsSupplier === void 0 ? void 0 : instructionsSupplier.getEndpointParameterInstructions) === null || _a === void 0 ? void 0 : _a.call(instructionsSupplier)) || {};
-      for (const [name, instruction] of Object.entries(instructions)) {
-        switch (instruction.type) {
-          case "staticContextParams":
-            endpointParams[name] = instruction.value;
-            break;
-          case "contextParams":
-            endpointParams[name] = commandInput[instruction.name];
-            break;
-          case "clientContextParams":
-          case "builtInParams":
-            endpointParams[name] = await (0, createConfigValueProvider_1.createConfigValueProvider)(instruction.name, name, clientConfig)();
-            break;
-          default:
-            throw new Error("Unrecognized endpoint parameter instruction: " + JSON.stringify(instruction));
-        }
-      }
-      if (Object.keys(instructions).length === 0) {
-        Object.assign(endpointParams, clientConfig);
-      }
-      if (String(clientConfig.serviceId).toLowerCase() === "s3") {
-        await (0, service_customizations_1.resolveParamsForS3)(endpointParams);
-      }
-      return endpointParams;
-    };
-    exports.resolveParams = resolveParams;
-  }
-});
-
-// node_modules/@aws-sdk/querystring-parser/dist-cjs/index.js
-var require_dist_cjs6 = __commonJS({
-  "node_modules/@aws-sdk/querystring-parser/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.parseQueryString = void 0;
-    function parseQueryString(querystring) {
-      const query = {};
-      querystring = querystring.replace(/^\?/, "");
-      if (querystring) {
-        for (const pair of querystring.split("&")) {
-          let [key, value = null] = pair.split("=");
-          key = decodeURIComponent(key);
-          if (value) {
-            value = decodeURIComponent(value);
-          }
-          if (!(key in query)) {
-            query[key] = value;
-          } else if (Array.isArray(query[key])) {
-            query[key].push(value);
-          } else {
-            query[key] = [query[key], value];
-          }
-        }
-      }
-      return query;
-    }
-    exports.parseQueryString = parseQueryString;
-  }
-});
-
-// node_modules/@aws-sdk/url-parser/dist-cjs/index.js
-var require_dist_cjs7 = __commonJS({
-  "node_modules/@aws-sdk/url-parser/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.parseUrl = void 0;
-    var querystring_parser_1 = require_dist_cjs6();
-    var parseUrl = (url) => {
-      if (typeof url === "string") {
-        return (0, exports.parseUrl)(new URL(url));
-      }
-      const { hostname, pathname, port, protocol, search } = url;
-      let query;
-      if (search) {
-        query = (0, querystring_parser_1.parseQueryString)(search);
-      }
-      return {
-        hostname,
-        port: port ? parseInt(port) : void 0,
-        protocol,
-        path: pathname,
-        query
-      };
-    };
-    exports.parseUrl = parseUrl;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/toEndpointV1.js
-var require_toEndpointV1 = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/toEndpointV1.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toEndpointV1 = void 0;
-    var url_parser_1 = require_dist_cjs7();
-    var toEndpointV1 = (endpoint) => {
-      if (typeof endpoint === "object") {
-        if ("url" in endpoint) {
-          return (0, url_parser_1.parseUrl)(endpoint.url);
-        }
-        return endpoint;
-      }
-      return (0, url_parser_1.parseUrl)(endpoint);
-    };
-    exports.toEndpointV1 = toEndpointV1;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/index.js
-var require_adaptors = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_getEndpointFromInstructions(), exports);
-    tslib_1.__exportStar(require_toEndpointV1(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/endpointMiddleware.js
-var require_endpointMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/endpointMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.endpointMiddleware = void 0;
-    var getEndpointFromInstructions_1 = require_getEndpointFromInstructions();
-    var endpointMiddleware = ({ config, instructions }) => {
-      return (next, context) => async (args) => {
-        var _a, _b;
-        const endpoint = await (0, getEndpointFromInstructions_1.getEndpointFromInstructions)(args.input, {
-          getEndpointParameterInstructions() {
-            return instructions;
-          }
-        }, { ...config }, context);
-        context.endpointV2 = endpoint;
-        context.authSchemes = (_a = endpoint.properties) === null || _a === void 0 ? void 0 : _a.authSchemes;
-        const authScheme = (_b = context.authSchemes) === null || _b === void 0 ? void 0 : _b[0];
-        if (authScheme) {
-          context["signing_region"] = authScheme.signingRegion;
-          context["signing_service"] = authScheme.signingName;
-        }
-        return next({
-          ...args
-        });
-      };
-    };
-    exports.endpointMiddleware = endpointMiddleware;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js
-var require_deserializerMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.deserializerMiddleware = void 0;
-    var deserializerMiddleware = (options, deserializer) => (next, context) => async (args) => {
-      const { response: response2 } = await next(args);
-      try {
-        const parsed = await deserializer(response2, options);
-        return {
-          response: response2,
-          output: parsed
-        };
-      } catch (error) {
-        Object.defineProperty(error, "$response", {
-          value: response2
-        });
-        if (!("$metadata" in error)) {
-          const hint = `Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.`;
-          error.message += "\n  " + hint;
-        }
-        throw error;
-      }
-    };
-    exports.deserializerMiddleware = deserializerMiddleware;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-serde/dist-cjs/serializerMiddleware.js
-var require_serializerMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-serde/dist-cjs/serializerMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.serializerMiddleware = void 0;
-    var serializerMiddleware = (options, serializer) => (next, context) => async (args) => {
-      var _a;
-      const endpoint = ((_a = context.endpointV2) === null || _a === void 0 ? void 0 : _a.url) && options.urlParser ? async () => options.urlParser(context.endpointV2.url) : options.endpoint;
-      if (!endpoint) {
-        throw new Error("No valid endpoint provider available.");
-      }
-      const request = await serializer(args.input, { ...options, endpoint });
-      return next({
-        ...args,
-        request
-      });
-    };
-    exports.serializerMiddleware = serializerMiddleware;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-serde/dist-cjs/serdePlugin.js
-var require_serdePlugin = __commonJS({
-  "node_modules/@aws-sdk/middleware-serde/dist-cjs/serdePlugin.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getSerdePlugin = exports.serializerMiddlewareOption = exports.deserializerMiddlewareOption = void 0;
-    var deserializerMiddleware_1 = require_deserializerMiddleware();
-    var serializerMiddleware_1 = require_serializerMiddleware();
-    exports.deserializerMiddlewareOption = {
-      name: "deserializerMiddleware",
-      step: "deserialize",
-      tags: ["DESERIALIZER"],
-      override: true
-    };
-    exports.serializerMiddlewareOption = {
-      name: "serializerMiddleware",
-      step: "serialize",
-      tags: ["SERIALIZER"],
-      override: true
-    };
-    function getSerdePlugin(config, serializer, deserializer) {
-      return {
-        applyToStack: (commandStack) => {
-          commandStack.add((0, deserializerMiddleware_1.deserializerMiddleware)(config, deserializer), exports.deserializerMiddlewareOption);
-          commandStack.add((0, serializerMiddleware_1.serializerMiddleware)(config, serializer), exports.serializerMiddlewareOption);
-        }
-      };
-    }
-    exports.getSerdePlugin = getSerdePlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-serde/dist-cjs/index.js
-var require_dist_cjs8 = __commonJS({
-  "node_modules/@aws-sdk/middleware-serde/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_deserializerMiddleware(), exports);
-    tslib_1.__exportStar(require_serdePlugin(), exports);
-    tslib_1.__exportStar(require_serializerMiddleware(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/getEndpointPlugin.js
-var require_getEndpointPlugin = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/getEndpointPlugin.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointPlugin = exports.endpointMiddlewareOptions = void 0;
-    var middleware_serde_1 = require_dist_cjs8();
-    var endpointMiddleware_1 = require_endpointMiddleware();
-    exports.endpointMiddlewareOptions = {
-      step: "serialize",
-      tags: ["ENDPOINT_PARAMETERS", "ENDPOINT_V2", "ENDPOINT"],
-      name: "endpointV2Middleware",
-      override: true,
-      relation: "before",
-      toMiddleware: middleware_serde_1.serializerMiddlewareOption.name
-    };
-    var getEndpointPlugin = (config, instructions) => ({
-      applyToStack: (clientStack) => {
-        clientStack.addRelativeTo((0, endpointMiddleware_1.endpointMiddleware)({
-          config,
-          instructions
-        }), exports.endpointMiddlewareOptions);
-      }
-    });
-    exports.getEndpointPlugin = getEndpointPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/resolveEndpointConfig.js
-var require_resolveEndpointConfig = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/resolveEndpointConfig.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveEndpointConfig = void 0;
-    var util_middleware_1 = require_dist_cjs2();
-    var toEndpointV1_1 = require_toEndpointV1();
-    var resolveEndpointConfig = (input) => {
-      var _a, _b, _c;
-      const tls = (_a = input.tls) !== null && _a !== void 0 ? _a : true;
-      const { endpoint } = input;
-      const customEndpointProvider = endpoint != null ? async () => (0, toEndpointV1_1.toEndpointV1)(await (0, util_middleware_1.normalizeProvider)(endpoint)()) : void 0;
-      const isCustomEndpoint = !!endpoint;
-      return {
-        ...input,
-        endpoint: customEndpointProvider,
-        tls,
-        isCustomEndpoint,
-        useDualstackEndpoint: (0, util_middleware_1.normalizeProvider)((_b = input.useDualstackEndpoint) !== null && _b !== void 0 ? _b : false),
-        useFipsEndpoint: (0, util_middleware_1.normalizeProvider)((_c = input.useFipsEndpoint) !== null && _c !== void 0 ? _c : false)
-      };
-    };
-    exports.resolveEndpointConfig = resolveEndpointConfig;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/types.js
-var require_types = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/types.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/index.js
-var require_dist_cjs9 = __commonJS({
-  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_adaptors(), exports);
-    tslib_1.__exportStar(require_endpointMiddleware(), exports);
-    tslib_1.__exportStar(require_getEndpointPlugin(), exports);
-    tslib_1.__exportStar(require_resolveEndpointConfig(), exports);
-    tslib_1.__exportStar(require_types(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-host-header/dist-cjs/index.js
-var require_dist_cjs10 = __commonJS({
-  "node_modules/@aws-sdk/middleware-host-header/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getHostHeaderPlugin = exports.hostHeaderMiddlewareOptions = exports.hostHeaderMiddleware = exports.resolveHostHeaderConfig = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    function resolveHostHeaderConfig(input) {
-      return input;
-    }
-    exports.resolveHostHeaderConfig = resolveHostHeaderConfig;
-    var hostHeaderMiddleware = (options) => (next) => async (args) => {
-      if (!protocol_http_1.HttpRequest.isInstance(args.request))
-        return next(args);
-      const { request } = args;
-      const { handlerProtocol = "" } = options.requestHandler.metadata || {};
-      if (handlerProtocol.indexOf("h2") >= 0 && !request.headers[":authority"]) {
-        delete request.headers["host"];
-        request.headers[":authority"] = "";
-      } else if (!request.headers["host"]) {
-        let host = request.hostname;
-        if (request.port != null)
-          host += `:${request.port}`;
-        request.headers["host"] = host;
-      }
-      return next(args);
-    };
-    exports.hostHeaderMiddleware = hostHeaderMiddleware;
-    exports.hostHeaderMiddlewareOptions = {
-      name: "hostHeaderMiddleware",
-      step: "build",
-      priority: "low",
-      tags: ["HOST"],
-      override: true
-    };
-    var getHostHeaderPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add((0, exports.hostHeaderMiddleware)(options), exports.hostHeaderMiddlewareOptions);
-      }
-    });
-    exports.getHostHeaderPlugin = getHostHeaderPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js
-var require_loggerMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getLoggerPlugin = exports.loggerMiddlewareOptions = exports.loggerMiddleware = void 0;
-    var loggerMiddleware = () => (next, context) => async (args) => {
-      var _a, _b;
-      try {
-        const response2 = await next(args);
-        const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
-        const { overrideInputFilterSensitiveLog, overrideOutputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
-        const inputFilterSensitiveLog = overrideInputFilterSensitiveLog !== null && overrideInputFilterSensitiveLog !== void 0 ? overrideInputFilterSensitiveLog : context.inputFilterSensitiveLog;
-        const outputFilterSensitiveLog = overrideOutputFilterSensitiveLog !== null && overrideOutputFilterSensitiveLog !== void 0 ? overrideOutputFilterSensitiveLog : context.outputFilterSensitiveLog;
-        const { $metadata, ...outputWithoutMetadata } = response2.output;
-        (_a = logger === null || logger === void 0 ? void 0 : logger.info) === null || _a === void 0 ? void 0 : _a.call(logger, {
-          clientName,
-          commandName,
-          input: inputFilterSensitiveLog(args.input),
-          output: outputFilterSensitiveLog(outputWithoutMetadata),
-          metadata: $metadata
-        });
-        return response2;
-      } catch (error) {
-        const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
-        const { overrideInputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
-        const inputFilterSensitiveLog = overrideInputFilterSensitiveLog !== null && overrideInputFilterSensitiveLog !== void 0 ? overrideInputFilterSensitiveLog : context.inputFilterSensitiveLog;
-        (_b = logger === null || logger === void 0 ? void 0 : logger.error) === null || _b === void 0 ? void 0 : _b.call(logger, {
-          clientName,
-          commandName,
-          input: inputFilterSensitiveLog(args.input),
-          error,
-          metadata: error.$metadata
-        });
-        throw error;
-      }
-    };
-    exports.loggerMiddleware = loggerMiddleware;
-    exports.loggerMiddlewareOptions = {
-      name: "loggerMiddleware",
-      tags: ["LOGGER"],
-      step: "initialize",
-      override: true
-    };
-    var getLoggerPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add((0, exports.loggerMiddleware)(), exports.loggerMiddlewareOptions);
-      }
-    });
-    exports.getLoggerPlugin = getLoggerPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js
-var require_dist_cjs11 = __commonJS({
-  "node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_loggerMiddleware(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-recursion-detection/dist-cjs/index.js
-var require_dist_cjs12 = __commonJS({
-  "node_modules/@aws-sdk/middleware-recursion-detection/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRecursionDetectionPlugin = exports.addRecursionDetectionMiddlewareOptions = exports.recursionDetectionMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
-    var ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
-    var ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
-    var recursionDetectionMiddleware = (options) => (next) => async (args) => {
-      const { request } = args;
-      if (!protocol_http_1.HttpRequest.isInstance(request) || options.runtime !== "node" || request.headers.hasOwnProperty(TRACE_ID_HEADER_NAME)) {
-        return next(args);
-      }
-      const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
-      const traceId = process.env[ENV_TRACE_ID];
-      const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
-      if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
-        request.headers[TRACE_ID_HEADER_NAME] = traceId;
-      }
-      return next({
-        ...args,
-        request
-      });
-    };
-    exports.recursionDetectionMiddleware = recursionDetectionMiddleware;
-    exports.addRecursionDetectionMiddlewareOptions = {
-      step: "build",
-      tags: ["RECURSION_DETECTION"],
-      name: "recursionDetectionMiddleware",
-      override: true,
-      priority: "low"
-    };
-    var getRecursionDetectionPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add((0, exports.recursionDetectionMiddleware)(options), exports.addRecursionDetectionMiddlewareOptions);
-      }
-    });
-    exports.getRecursionDetectionPlugin = getRecursionDetectionPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/config.js
-var require_config2 = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/config.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DEFAULT_RETRY_MODE = exports.DEFAULT_MAX_ATTEMPTS = exports.RETRY_MODES = void 0;
-    var RETRY_MODES;
-    (function(RETRY_MODES2) {
-      RETRY_MODES2["STANDARD"] = "standard";
-      RETRY_MODES2["ADAPTIVE"] = "adaptive";
-    })(RETRY_MODES = exports.RETRY_MODES || (exports.RETRY_MODES = {}));
-    exports.DEFAULT_MAX_ATTEMPTS = 3;
-    exports.DEFAULT_RETRY_MODE = "STANDARD";
-  }
-});
-
-// node_modules/@aws-sdk/service-error-classification/dist-cjs/constants.js
-var require_constants = __commonJS({
-  "node_modules/@aws-sdk/service-error-classification/dist-cjs/constants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODEJS_TIMEOUT_ERROR_CODES = exports.TRANSIENT_ERROR_STATUS_CODES = exports.TRANSIENT_ERROR_CODES = exports.THROTTLING_ERROR_CODES = exports.CLOCK_SKEW_ERROR_CODES = void 0;
-    exports.CLOCK_SKEW_ERROR_CODES = [
-      "AuthFailure",
-      "InvalidSignatureException",
-      "RequestExpired",
-      "RequestInTheFuture",
-      "RequestTimeTooSkewed",
-      "SignatureDoesNotMatch"
-    ];
-    exports.THROTTLING_ERROR_CODES = [
-      "BandwidthLimitExceeded",
-      "EC2ThrottledException",
-      "LimitExceededException",
-      "PriorRequestNotComplete",
-      "ProvisionedThroughputExceededException",
-      "RequestLimitExceeded",
-      "RequestThrottled",
-      "RequestThrottledException",
-      "SlowDown",
-      "ThrottledException",
-      "Throttling",
-      "ThrottlingException",
-      "TooManyRequestsException",
-      "TransactionInProgressException"
-    ];
-    exports.TRANSIENT_ERROR_CODES = ["AbortError", "TimeoutError", "RequestTimeout", "RequestTimeoutException"];
-    exports.TRANSIENT_ERROR_STATUS_CODES = [500, 502, 503, 504];
-    exports.NODEJS_TIMEOUT_ERROR_CODES = ["ECONNRESET", "EPIPE", "ETIMEDOUT"];
-  }
-});
-
-// node_modules/@aws-sdk/service-error-classification/dist-cjs/index.js
-var require_dist_cjs13 = __commonJS({
-  "node_modules/@aws-sdk/service-error-classification/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isServerError = exports.isTransientError = exports.isThrottlingError = exports.isClockSkewError = exports.isRetryableByTrait = void 0;
-    var constants_1 = require_constants();
-    var isRetryableByTrait = (error) => error.$retryable !== void 0;
-    exports.isRetryableByTrait = isRetryableByTrait;
-    var isClockSkewError = (error) => constants_1.CLOCK_SKEW_ERROR_CODES.includes(error.name);
-    exports.isClockSkewError = isClockSkewError;
-    var isThrottlingError = (error) => {
-      var _a, _b;
-      return ((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) === 429 || constants_1.THROTTLING_ERROR_CODES.includes(error.name) || ((_b = error.$retryable) === null || _b === void 0 ? void 0 : _b.throttling) == true;
-    };
-    exports.isThrottlingError = isThrottlingError;
-    var isTransientError = (error) => {
-      var _a;
-      return constants_1.TRANSIENT_ERROR_CODES.includes(error.name) || constants_1.NODEJS_TIMEOUT_ERROR_CODES.includes((error === null || error === void 0 ? void 0 : error.code) || "") || constants_1.TRANSIENT_ERROR_STATUS_CODES.includes(((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) || 0);
-    };
-    exports.isTransientError = isTransientError;
-    var isServerError = (error) => {
-      var _a;
-      if (((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) !== void 0) {
-        const statusCode = error.$metadata.httpStatusCode;
-        if (500 <= statusCode && statusCode <= 599 && !(0, exports.isTransientError)(error)) {
-          return true;
-        }
-        return false;
-      }
-      return false;
-    };
-    exports.isServerError = isServerError;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/DefaultRateLimiter.js
-var require_DefaultRateLimiter = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/DefaultRateLimiter.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DefaultRateLimiter = void 0;
-    var service_error_classification_1 = require_dist_cjs13();
-    var DefaultRateLimiter = class {
-      constructor(options) {
-        var _a, _b, _c, _d, _e;
-        this.currentCapacity = 0;
-        this.enabled = false;
-        this.lastMaxRate = 0;
-        this.measuredTxRate = 0;
-        this.requestCount = 0;
-        this.lastTimestamp = 0;
-        this.timeWindow = 0;
-        this.beta = (_a = options === null || options === void 0 ? void 0 : options.beta) !== null && _a !== void 0 ? _a : 0.7;
-        this.minCapacity = (_b = options === null || options === void 0 ? void 0 : options.minCapacity) !== null && _b !== void 0 ? _b : 1;
-        this.minFillRate = (_c = options === null || options === void 0 ? void 0 : options.minFillRate) !== null && _c !== void 0 ? _c : 0.5;
-        this.scaleConstant = (_d = options === null || options === void 0 ? void 0 : options.scaleConstant) !== null && _d !== void 0 ? _d : 0.4;
-        this.smooth = (_e = options === null || options === void 0 ? void 0 : options.smooth) !== null && _e !== void 0 ? _e : 0.8;
-        const currentTimeInSeconds = this.getCurrentTimeInSeconds();
-        this.lastThrottleTime = currentTimeInSeconds;
-        this.lastTxRateBucket = Math.floor(this.getCurrentTimeInSeconds());
-        this.fillRate = this.minFillRate;
-        this.maxCapacity = this.minCapacity;
-      }
-      getCurrentTimeInSeconds() {
-        return Date.now() / 1e3;
-      }
-      async getSendToken() {
-        return this.acquireTokenBucket(1);
-      }
-      async acquireTokenBucket(amount) {
-        if (!this.enabled) {
-          return;
-        }
-        this.refillTokenBucket();
-        if (amount > this.currentCapacity) {
-          const delay = (amount - this.currentCapacity) / this.fillRate * 1e3;
-          await new Promise((resolve) => setTimeout(resolve, delay));
-        }
-        this.currentCapacity = this.currentCapacity - amount;
-      }
-      refillTokenBucket() {
-        const timestamp = this.getCurrentTimeInSeconds();
-        if (!this.lastTimestamp) {
-          this.lastTimestamp = timestamp;
-          return;
-        }
-        const fillAmount = (timestamp - this.lastTimestamp) * this.fillRate;
-        this.currentCapacity = Math.min(this.maxCapacity, this.currentCapacity + fillAmount);
-        this.lastTimestamp = timestamp;
-      }
-      updateClientSendingRate(response2) {
-        let calculatedRate;
-        this.updateMeasuredRate();
-        if ((0, service_error_classification_1.isThrottlingError)(response2)) {
-          const rateToUse = !this.enabled ? this.measuredTxRate : Math.min(this.measuredTxRate, this.fillRate);
-          this.lastMaxRate = rateToUse;
-          this.calculateTimeWindow();
-          this.lastThrottleTime = this.getCurrentTimeInSeconds();
-          calculatedRate = this.cubicThrottle(rateToUse);
-          this.enableTokenBucket();
-        } else {
-          this.calculateTimeWindow();
-          calculatedRate = this.cubicSuccess(this.getCurrentTimeInSeconds());
-        }
-        const newRate = Math.min(calculatedRate, 2 * this.measuredTxRate);
-        this.updateTokenBucketRate(newRate);
-      }
-      calculateTimeWindow() {
-        this.timeWindow = this.getPrecise(Math.pow(this.lastMaxRate * (1 - this.beta) / this.scaleConstant, 1 / 3));
-      }
-      cubicThrottle(rateToUse) {
-        return this.getPrecise(rateToUse * this.beta);
-      }
-      cubicSuccess(timestamp) {
-        return this.getPrecise(this.scaleConstant * Math.pow(timestamp - this.lastThrottleTime - this.timeWindow, 3) + this.lastMaxRate);
-      }
-      enableTokenBucket() {
-        this.enabled = true;
-      }
-      updateTokenBucketRate(newRate) {
-        this.refillTokenBucket();
-        this.fillRate = Math.max(newRate, this.minFillRate);
-        this.maxCapacity = Math.max(newRate, this.minCapacity);
-        this.currentCapacity = Math.min(this.currentCapacity, this.maxCapacity);
-      }
-      updateMeasuredRate() {
-        const t = this.getCurrentTimeInSeconds();
-        const timeBucket = Math.floor(t * 2) / 2;
-        this.requestCount++;
-        if (timeBucket > this.lastTxRateBucket) {
-          const currentRate = this.requestCount / (timeBucket - this.lastTxRateBucket);
-          this.measuredTxRate = this.getPrecise(currentRate * this.smooth + this.measuredTxRate * (1 - this.smooth));
-          this.requestCount = 0;
-          this.lastTxRateBucket = timeBucket;
-        }
-      }
-      getPrecise(num) {
-        return parseFloat(num.toFixed(8));
-      }
-    };
-    exports.DefaultRateLimiter = DefaultRateLimiter;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/constants.js
-var require_constants2 = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/constants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.REQUEST_HEADER = exports.INVOCATION_ID_HEADER = exports.NO_RETRY_INCREMENT = exports.TIMEOUT_RETRY_COST = exports.RETRY_COST = exports.INITIAL_RETRY_TOKENS = exports.THROTTLING_RETRY_DELAY_BASE = exports.MAXIMUM_RETRY_DELAY = exports.DEFAULT_RETRY_DELAY_BASE = void 0;
-    exports.DEFAULT_RETRY_DELAY_BASE = 100;
-    exports.MAXIMUM_RETRY_DELAY = 20 * 1e3;
-    exports.THROTTLING_RETRY_DELAY_BASE = 500;
-    exports.INITIAL_RETRY_TOKENS = 500;
-    exports.RETRY_COST = 5;
-    exports.TIMEOUT_RETRY_COST = 10;
-    exports.NO_RETRY_INCREMENT = 1;
-    exports.INVOCATION_ID_HEADER = "amz-sdk-invocation-id";
-    exports.REQUEST_HEADER = "amz-sdk-request";
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryBackoffStrategy.js
-var require_defaultRetryBackoffStrategy = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryBackoffStrategy.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getDefaultRetryBackoffStrategy = void 0;
-    var constants_1 = require_constants2();
-    var getDefaultRetryBackoffStrategy = () => {
-      let delayBase = constants_1.DEFAULT_RETRY_DELAY_BASE;
-      const computeNextBackoffDelay = (attempts) => {
-        return Math.floor(Math.min(constants_1.MAXIMUM_RETRY_DELAY, Math.random() * 2 ** attempts * delayBase));
-      };
-      const setDelayBase = (delay) => {
-        delayBase = delay;
-      };
-      return {
-        computeNextBackoffDelay,
-        setDelayBase
-      };
-    };
-    exports.getDefaultRetryBackoffStrategy = getDefaultRetryBackoffStrategy;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryToken.js
-var require_defaultRetryToken = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryToken.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getDefaultRetryToken = void 0;
-    var constants_1 = require_constants2();
-    var defaultRetryBackoffStrategy_1 = require_defaultRetryBackoffStrategy();
-    var getDefaultRetryToken = (initialRetryTokens, initialRetryDelay, initialRetryCount, options) => {
-      var _a, _b, _c;
-      const MAX_CAPACITY = initialRetryTokens;
-      const retryCost = (_a = options === null || options === void 0 ? void 0 : options.retryCost) !== null && _a !== void 0 ? _a : constants_1.RETRY_COST;
-      const timeoutRetryCost = (_b = options === null || options === void 0 ? void 0 : options.timeoutRetryCost) !== null && _b !== void 0 ? _b : constants_1.TIMEOUT_RETRY_COST;
-      const retryBackoffStrategy = (_c = options === null || options === void 0 ? void 0 : options.retryBackoffStrategy) !== null && _c !== void 0 ? _c : (0, defaultRetryBackoffStrategy_1.getDefaultRetryBackoffStrategy)();
-      let availableCapacity = initialRetryTokens;
-      let retryDelay = Math.min(constants_1.MAXIMUM_RETRY_DELAY, initialRetryDelay);
-      let lastRetryCost = void 0;
-      let retryCount = initialRetryCount !== null && initialRetryCount !== void 0 ? initialRetryCount : 0;
-      const getCapacityAmount = (errorType) => errorType === "TRANSIENT" ? timeoutRetryCost : retryCost;
-      const getRetryCount = () => retryCount;
-      const getRetryDelay = () => retryDelay;
-      const getLastRetryCost = () => lastRetryCost;
-      const hasRetryTokens = (errorType) => getCapacityAmount(errorType) <= availableCapacity;
-      const getRetryTokenCount = (errorInfo) => {
-        const errorType = errorInfo.errorType;
-        if (!hasRetryTokens(errorType)) {
-          throw new Error("No retry token available");
-        }
-        const capacityAmount = getCapacityAmount(errorType);
-        const delayBase = errorType === "THROTTLING" ? constants_1.THROTTLING_RETRY_DELAY_BASE : constants_1.DEFAULT_RETRY_DELAY_BASE;
-        retryBackoffStrategy.setDelayBase(delayBase);
-        const delayFromErrorType = retryBackoffStrategy.computeNextBackoffDelay(retryCount);
-        if (errorInfo.retryAfterHint) {
-          const delayFromRetryAfterHint = errorInfo.retryAfterHint.getTime() - Date.now();
-          retryDelay = Math.max(delayFromRetryAfterHint || 0, delayFromErrorType);
-        } else {
-          retryDelay = delayFromErrorType;
-        }
-        retryCount++;
-        lastRetryCost = capacityAmount;
-        availableCapacity -= capacityAmount;
-        return capacityAmount;
-      };
-      const releaseRetryTokens = (releaseAmount) => {
-        availableCapacity += releaseAmount !== null && releaseAmount !== void 0 ? releaseAmount : constants_1.NO_RETRY_INCREMENT;
-        availableCapacity = Math.min(availableCapacity, MAX_CAPACITY);
-      };
-      return {
-        getRetryCount,
-        getRetryDelay,
-        getLastRetryCost,
-        hasRetryTokens,
-        getRetryTokenCount,
-        releaseRetryTokens
-      };
-    };
-    exports.getDefaultRetryToken = getDefaultRetryToken;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/StandardRetryStrategy.js
-var require_StandardRetryStrategy = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/StandardRetryStrategy.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.StandardRetryStrategy = void 0;
-    var config_1 = require_config2();
-    var constants_1 = require_constants2();
-    var defaultRetryToken_1 = require_defaultRetryToken();
-    var StandardRetryStrategy = class {
-      constructor(maxAttemptsProvider) {
-        this.maxAttemptsProvider = maxAttemptsProvider;
-        this.mode = config_1.RETRY_MODES.STANDARD;
-        this.retryToken = (0, defaultRetryToken_1.getDefaultRetryToken)(constants_1.INITIAL_RETRY_TOKENS, constants_1.DEFAULT_RETRY_DELAY_BASE);
-        this.maxAttemptsProvider = maxAttemptsProvider;
-      }
-      async acquireInitialRetryToken(retryTokenScope) {
-        return this.retryToken;
-      }
-      async refreshRetryTokenForRetry(tokenToRenew, errorInfo) {
-        const maxAttempts = await this.getMaxAttempts();
-        if (this.shouldRetry(tokenToRenew, errorInfo, maxAttempts)) {
-          tokenToRenew.getRetryTokenCount(errorInfo);
-          return tokenToRenew;
-        }
-        throw new Error("No retry token available");
-      }
-      recordSuccess(token) {
-        this.retryToken.releaseRetryTokens(token.getLastRetryCost());
-      }
-      async getMaxAttempts() {
-        let maxAttempts;
-        try {
-          return await this.maxAttemptsProvider();
-        } catch (error) {
-          console.warn(`Max attempts provider could not resolve. Using default of ${config_1.DEFAULT_MAX_ATTEMPTS}`);
-          return config_1.DEFAULT_MAX_ATTEMPTS;
-        }
-      }
-      shouldRetry(tokenToRenew, errorInfo, maxAttempts) {
-        const attempts = tokenToRenew.getRetryCount();
-        return attempts < maxAttempts && tokenToRenew.hasRetryTokens(errorInfo.errorType) && this.isRetryableError(errorInfo.errorType);
-      }
-      isRetryableError(errorType) {
-        return errorType === "THROTTLING" || errorType === "TRANSIENT";
-      }
-    };
-    exports.StandardRetryStrategy = StandardRetryStrategy;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/AdaptiveRetryStrategy.js
-var require_AdaptiveRetryStrategy = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/AdaptiveRetryStrategy.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AdaptiveRetryStrategy = void 0;
-    var config_1 = require_config2();
-    var DefaultRateLimiter_1 = require_DefaultRateLimiter();
-    var StandardRetryStrategy_1 = require_StandardRetryStrategy();
-    var AdaptiveRetryStrategy = class {
-      constructor(maxAttemptsProvider, options) {
-        this.maxAttemptsProvider = maxAttemptsProvider;
-        this.mode = config_1.RETRY_MODES.ADAPTIVE;
-        const { rateLimiter } = options !== null && options !== void 0 ? options : {};
-        this.rateLimiter = rateLimiter !== null && rateLimiter !== void 0 ? rateLimiter : new DefaultRateLimiter_1.DefaultRateLimiter();
-        this.standardRetryStrategy = new StandardRetryStrategy_1.StandardRetryStrategy(maxAttemptsProvider);
-      }
-      async acquireInitialRetryToken(retryTokenScope) {
-        await this.rateLimiter.getSendToken();
-        return this.standardRetryStrategy.acquireInitialRetryToken(retryTokenScope);
-      }
-      async refreshRetryTokenForRetry(tokenToRenew, errorInfo) {
-        this.rateLimiter.updateClientSendingRate(errorInfo);
-        return this.standardRetryStrategy.refreshRetryTokenForRetry(tokenToRenew, errorInfo);
-      }
-      recordSuccess(token) {
-        this.rateLimiter.updateClientSendingRate({});
-        this.standardRetryStrategy.recordSuccess(token);
-      }
-    };
-    exports.AdaptiveRetryStrategy = AdaptiveRetryStrategy;
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/types.js
-var require_types2 = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/types.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-retry/dist-cjs/index.js
-var require_dist_cjs14 = __commonJS({
-  "node_modules/@aws-sdk/util-retry/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_AdaptiveRetryStrategy(), exports);
-    tslib_1.__exportStar(require_DefaultRateLimiter(), exports);
-    tslib_1.__exportStar(require_StandardRetryStrategy(), exports);
-    tslib_1.__exportStar(require_config2(), exports);
-    tslib_1.__exportStar(require_constants2(), exports);
-    tslib_1.__exportStar(require_types2(), exports);
-  }
-});
-
-// node_modules/uuid/dist/esm-node/rng.js
-function rng() {
-  if (poolPtr > rnds8Pool.length - 16) {
-    import_crypto.default.randomFillSync(rnds8Pool);
-    poolPtr = 0;
-  }
-  return rnds8Pool.slice(poolPtr, poolPtr += 16);
-}
-var import_crypto, rnds8Pool, poolPtr;
-var init_rng = __esm({
-  "node_modules/uuid/dist/esm-node/rng.js"() {
-    import_crypto = __toESM(require("crypto"));
-    rnds8Pool = new Uint8Array(256);
-    poolPtr = rnds8Pool.length;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/regex.js
-var regex_default;
-var init_regex = __esm({
-  "node_modules/uuid/dist/esm-node/regex.js"() {
-    regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/validate.js
-function validate(uuid) {
-  return typeof uuid === "string" && regex_default.test(uuid);
-}
-var validate_default;
-var init_validate = __esm({
-  "node_modules/uuid/dist/esm-node/validate.js"() {
-    init_regex();
-    validate_default = validate;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/stringify.js
-function stringify(arr, offset = 0) {
-  const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
-  if (!validate_default(uuid)) {
-    throw TypeError("Stringified UUID is invalid");
-  }
-  return uuid;
-}
-var byteToHex, stringify_default;
-var init_stringify = __esm({
-  "node_modules/uuid/dist/esm-node/stringify.js"() {
-    init_validate();
-    byteToHex = [];
-    for (let i = 0; i < 256; ++i) {
-      byteToHex.push((i + 256).toString(16).substr(1));
-    }
-    stringify_default = stringify;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/v1.js
-function v1(options, buf, offset) {
-  let i = buf && offset || 0;
-  const b = buf || new Array(16);
-  options = options || {};
-  let node = options.node || _nodeId;
-  let clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
-  if (node == null || clockseq == null) {
-    const seedBytes = options.random || (options.rng || rng)();
-    if (node == null) {
-      node = _nodeId = [seedBytes[0] | 1, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
-    }
-    if (clockseq == null) {
-      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
-    }
-  }
-  let msecs = options.msecs !== void 0 ? options.msecs : Date.now();
-  let nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
-  const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
-  if (dt < 0 && options.clockseq === void 0) {
-    clockseq = clockseq + 1 & 16383;
-  }
-  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
-    nsecs = 0;
-  }
-  if (nsecs >= 1e4) {
-    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
-  }
-  _lastMSecs = msecs;
-  _lastNSecs = nsecs;
-  _clockseq = clockseq;
-  msecs += 122192928e5;
-  const tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
-  b[i++] = tl >>> 24 & 255;
-  b[i++] = tl >>> 16 & 255;
-  b[i++] = tl >>> 8 & 255;
-  b[i++] = tl & 255;
-  const tmh = msecs / 4294967296 * 1e4 & 268435455;
-  b[i++] = tmh >>> 8 & 255;
-  b[i++] = tmh & 255;
-  b[i++] = tmh >>> 24 & 15 | 16;
-  b[i++] = tmh >>> 16 & 255;
-  b[i++] = clockseq >>> 8 | 128;
-  b[i++] = clockseq & 255;
-  for (let n = 0; n < 6; ++n) {
-    b[i + n] = node[n];
-  }
-  return buf || stringify_default(b);
-}
-var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
-var init_v1 = __esm({
-  "node_modules/uuid/dist/esm-node/v1.js"() {
-    init_rng();
-    init_stringify();
-    _lastMSecs = 0;
-    _lastNSecs = 0;
-    v1_default = v1;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/parse.js
-function parse(uuid) {
-  if (!validate_default(uuid)) {
-    throw TypeError("Invalid UUID");
-  }
-  let v;
-  const arr = new Uint8Array(16);
-  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
-  arr[1] = v >>> 16 & 255;
-  arr[2] = v >>> 8 & 255;
-  arr[3] = v & 255;
-  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
-  arr[5] = v & 255;
-  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
-  arr[7] = v & 255;
-  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
-  arr[9] = v & 255;
-  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255;
-  arr[11] = v / 4294967296 & 255;
-  arr[12] = v >>> 24 & 255;
-  arr[13] = v >>> 16 & 255;
-  arr[14] = v >>> 8 & 255;
-  arr[15] = v & 255;
-  return arr;
-}
-var parse_default;
-var init_parse = __esm({
-  "node_modules/uuid/dist/esm-node/parse.js"() {
-    init_validate();
-    parse_default = parse;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/v35.js
-function stringToBytes(str) {
-  str = unescape(encodeURIComponent(str));
-  const bytes = [];
-  for (let i = 0; i < str.length; ++i) {
-    bytes.push(str.charCodeAt(i));
-  }
-  return bytes;
-}
-function v35_default(name, version2, hashfunc) {
-  function generateUUID(value, namespace, buf, offset) {
-    if (typeof value === "string") {
-      value = stringToBytes(value);
-    }
-    if (typeof namespace === "string") {
-      namespace = parse_default(namespace);
-    }
-    if (namespace.length !== 16) {
-      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
-    }
-    let bytes = new Uint8Array(16 + value.length);
-    bytes.set(namespace);
-    bytes.set(value, namespace.length);
-    bytes = hashfunc(bytes);
-    bytes[6] = bytes[6] & 15 | version2;
-    bytes[8] = bytes[8] & 63 | 128;
-    if (buf) {
-      offset = offset || 0;
-      for (let i = 0; i < 16; ++i) {
-        buf[offset + i] = bytes[i];
-      }
-      return buf;
-    }
-    return stringify_default(bytes);
-  }
-  try {
-    generateUUID.name = name;
-  } catch (err) {
-  }
-  generateUUID.DNS = DNS;
-  generateUUID.URL = URL2;
-  return generateUUID;
-}
-var DNS, URL2;
-var init_v35 = __esm({
-  "node_modules/uuid/dist/esm-node/v35.js"() {
-    init_stringify();
-    init_parse();
-    DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
-    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
-  }
-});
-
-// node_modules/uuid/dist/esm-node/md5.js
-function md5(bytes) {
-  if (Array.isArray(bytes)) {
-    bytes = Buffer.from(bytes);
-  } else if (typeof bytes === "string") {
-    bytes = Buffer.from(bytes, "utf8");
-  }
-  return import_crypto2.default.createHash("md5").update(bytes).digest();
-}
-var import_crypto2, md5_default;
-var init_md5 = __esm({
-  "node_modules/uuid/dist/esm-node/md5.js"() {
-    import_crypto2 = __toESM(require("crypto"));
-    md5_default = md5;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/v3.js
-var v3, v3_default;
-var init_v3 = __esm({
-  "node_modules/uuid/dist/esm-node/v3.js"() {
-    init_v35();
-    init_md5();
-    v3 = v35_default("v3", 48, md5_default);
-    v3_default = v3;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/v4.js
-function v4(options, buf, offset) {
-  options = options || {};
-  const rnds = options.random || (options.rng || rng)();
-  rnds[6] = rnds[6] & 15 | 64;
-  rnds[8] = rnds[8] & 63 | 128;
-  if (buf) {
-    offset = offset || 0;
-    for (let i = 0; i < 16; ++i) {
-      buf[offset + i] = rnds[i];
-    }
-    return buf;
-  }
-  return stringify_default(rnds);
-}
-var v4_default;
-var init_v4 = __esm({
-  "node_modules/uuid/dist/esm-node/v4.js"() {
-    init_rng();
-    init_stringify();
-    v4_default = v4;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/sha1.js
-function sha1(bytes) {
-  if (Array.isArray(bytes)) {
-    bytes = Buffer.from(bytes);
-  } else if (typeof bytes === "string") {
-    bytes = Buffer.from(bytes, "utf8");
-  }
-  return import_crypto3.default.createHash("sha1").update(bytes).digest();
-}
-var import_crypto3, sha1_default;
-var init_sha1 = __esm({
-  "node_modules/uuid/dist/esm-node/sha1.js"() {
-    import_crypto3 = __toESM(require("crypto"));
-    sha1_default = sha1;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/v5.js
-var v5, v5_default;
-var init_v5 = __esm({
-  "node_modules/uuid/dist/esm-node/v5.js"() {
-    init_v35();
-    init_sha1();
-    v5 = v35_default("v5", 80, sha1_default);
-    v5_default = v5;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/nil.js
-var nil_default;
-var init_nil = __esm({
-  "node_modules/uuid/dist/esm-node/nil.js"() {
-    nil_default = "00000000-0000-0000-0000-000000000000";
-  }
-});
-
-// node_modules/uuid/dist/esm-node/version.js
-function version(uuid) {
-  if (!validate_default(uuid)) {
-    throw TypeError("Invalid UUID");
-  }
-  return parseInt(uuid.substr(14, 1), 16);
-}
-var version_default;
-var init_version = __esm({
-  "node_modules/uuid/dist/esm-node/version.js"() {
-    init_validate();
-    version_default = version;
-  }
-});
-
-// node_modules/uuid/dist/esm-node/index.js
-var esm_node_exports = {};
-__export(esm_node_exports, {
-  NIL: () => nil_default,
-  parse: () => parse_default,
-  stringify: () => stringify_default,
-  v1: () => v1_default,
-  v3: () => v3_default,
-  v4: () => v4_default,
-  v5: () => v5_default,
-  validate: () => validate_default,
-  version: () => version_default
-});
-var init_esm_node = __esm({
-  "node_modules/uuid/dist/esm-node/index.js"() {
-    init_v1();
-    init_v3();
-    init_v4();
-    init_v5();
-    init_nil();
-    init_version();
-    init_validate();
-    init_stringify();
-    init_parse();
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/defaultRetryQuota.js
-var require_defaultRetryQuota = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/defaultRetryQuota.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getDefaultRetryQuota = void 0;
-    var util_retry_1 = require_dist_cjs14();
-    var getDefaultRetryQuota = (initialRetryTokens, options) => {
-      var _a, _b, _c;
-      const MAX_CAPACITY = initialRetryTokens;
-      const noRetryIncrement = (_a = options === null || options === void 0 ? void 0 : options.noRetryIncrement) !== null && _a !== void 0 ? _a : util_retry_1.NO_RETRY_INCREMENT;
-      const retryCost = (_b = options === null || options === void 0 ? void 0 : options.retryCost) !== null && _b !== void 0 ? _b : util_retry_1.RETRY_COST;
-      const timeoutRetryCost = (_c = options === null || options === void 0 ? void 0 : options.timeoutRetryCost) !== null && _c !== void 0 ? _c : util_retry_1.TIMEOUT_RETRY_COST;
-      let availableCapacity = initialRetryTokens;
-      const getCapacityAmount = (error) => error.name === "TimeoutError" ? timeoutRetryCost : retryCost;
-      const hasRetryTokens = (error) => getCapacityAmount(error) <= availableCapacity;
-      const retrieveRetryTokens = (error) => {
-        if (!hasRetryTokens(error)) {
-          throw new Error("No retry token available");
-        }
-        const capacityAmount = getCapacityAmount(error);
-        availableCapacity -= capacityAmount;
-        return capacityAmount;
-      };
-      const releaseRetryTokens = (capacityReleaseAmount) => {
-        availableCapacity += capacityReleaseAmount !== null && capacityReleaseAmount !== void 0 ? capacityReleaseAmount : noRetryIncrement;
-        availableCapacity = Math.min(availableCapacity, MAX_CAPACITY);
-      };
-      return Object.freeze({
-        hasRetryTokens,
-        retrieveRetryTokens,
-        releaseRetryTokens
-      });
-    };
-    exports.getDefaultRetryQuota = getDefaultRetryQuota;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/delayDecider.js
-var require_delayDecider = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/delayDecider.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.defaultDelayDecider = void 0;
-    var util_retry_1 = require_dist_cjs14();
-    var defaultDelayDecider = (delayBase, attempts) => Math.floor(Math.min(util_retry_1.MAXIMUM_RETRY_DELAY, Math.random() * 2 ** attempts * delayBase));
-    exports.defaultDelayDecider = defaultDelayDecider;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/retryDecider.js
-var require_retryDecider = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/retryDecider.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.defaultRetryDecider = void 0;
-    var service_error_classification_1 = require_dist_cjs13();
-    var defaultRetryDecider = (error) => {
-      if (!error) {
-        return false;
-      }
-      return (0, service_error_classification_1.isRetryableByTrait)(error) || (0, service_error_classification_1.isClockSkewError)(error) || (0, service_error_classification_1.isThrottlingError)(error) || (0, service_error_classification_1.isTransientError)(error);
-    };
-    exports.defaultRetryDecider = defaultRetryDecider;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/util.js
-var require_util = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/util.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.asSdkError = void 0;
-    var asSdkError = (error) => {
-      if (error instanceof Error)
-        return error;
-      if (error instanceof Object)
-        return Object.assign(new Error(), error);
-      if (typeof error === "string")
-        return new Error(error);
-      return new Error(`AWS SDK error wrapper for ${error}`);
-    };
-    exports.asSdkError = asSdkError;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/StandardRetryStrategy.js
-var require_StandardRetryStrategy2 = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/StandardRetryStrategy.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.StandardRetryStrategy = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var service_error_classification_1 = require_dist_cjs13();
-    var util_retry_1 = require_dist_cjs14();
-    var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
-    var defaultRetryQuota_1 = require_defaultRetryQuota();
-    var delayDecider_1 = require_delayDecider();
-    var retryDecider_1 = require_retryDecider();
-    var util_1 = require_util();
-    var StandardRetryStrategy = class {
-      constructor(maxAttemptsProvider, options) {
-        var _a, _b, _c;
-        this.maxAttemptsProvider = maxAttemptsProvider;
-        this.mode = util_retry_1.RETRY_MODES.STANDARD;
-        this.retryDecider = (_a = options === null || options === void 0 ? void 0 : options.retryDecider) !== null && _a !== void 0 ? _a : retryDecider_1.defaultRetryDecider;
-        this.delayDecider = (_b = options === null || options === void 0 ? void 0 : options.delayDecider) !== null && _b !== void 0 ? _b : delayDecider_1.defaultDelayDecider;
-        this.retryQuota = (_c = options === null || options === void 0 ? void 0 : options.retryQuota) !== null && _c !== void 0 ? _c : (0, defaultRetryQuota_1.getDefaultRetryQuota)(util_retry_1.INITIAL_RETRY_TOKENS);
-      }
-      shouldRetry(error, attempts, maxAttempts) {
-        return attempts < maxAttempts && this.retryDecider(error) && this.retryQuota.hasRetryTokens(error);
-      }
-      async getMaxAttempts() {
-        let maxAttempts;
-        try {
-          maxAttempts = await this.maxAttemptsProvider();
-        } catch (error) {
-          maxAttempts = util_retry_1.DEFAULT_MAX_ATTEMPTS;
-        }
-        return maxAttempts;
-      }
-      async retry(next, args, options) {
-        let retryTokenAmount;
-        let attempts = 0;
-        let totalDelay = 0;
-        const maxAttempts = await this.getMaxAttempts();
-        const { request } = args;
-        if (protocol_http_1.HttpRequest.isInstance(request)) {
-          request.headers[util_retry_1.INVOCATION_ID_HEADER] = (0, uuid_1.v4)();
-        }
-        while (true) {
-          try {
-            if (protocol_http_1.HttpRequest.isInstance(request)) {
-              request.headers[util_retry_1.REQUEST_HEADER] = `attempt=${attempts + 1}; max=${maxAttempts}`;
-            }
-            if (options === null || options === void 0 ? void 0 : options.beforeRequest) {
-              await options.beforeRequest();
-            }
-            const { response: response2, output } = await next(args);
-            if (options === null || options === void 0 ? void 0 : options.afterRequest) {
-              options.afterRequest(response2);
-            }
-            this.retryQuota.releaseRetryTokens(retryTokenAmount);
-            output.$metadata.attempts = attempts + 1;
-            output.$metadata.totalRetryDelay = totalDelay;
-            return { response: response2, output };
-          } catch (e) {
-            const err = (0, util_1.asSdkError)(e);
-            attempts++;
-            if (this.shouldRetry(err, attempts, maxAttempts)) {
-              retryTokenAmount = this.retryQuota.retrieveRetryTokens(err);
-              const delayFromDecider = this.delayDecider((0, service_error_classification_1.isThrottlingError)(err) ? util_retry_1.THROTTLING_RETRY_DELAY_BASE : util_retry_1.DEFAULT_RETRY_DELAY_BASE, attempts);
-              const delayFromResponse = getDelayFromRetryAfterHeader(err.$response);
-              const delay = Math.max(delayFromResponse || 0, delayFromDecider);
-              totalDelay += delay;
-              await new Promise((resolve) => setTimeout(resolve, delay));
-              continue;
-            }
-            if (!err.$metadata) {
-              err.$metadata = {};
-            }
-            err.$metadata.attempts = attempts;
-            err.$metadata.totalRetryDelay = totalDelay;
-            throw err;
-          }
-        }
-      }
-    };
-    exports.StandardRetryStrategy = StandardRetryStrategy;
-    var getDelayFromRetryAfterHeader = (response2) => {
-      if (!protocol_http_1.HttpResponse.isInstance(response2))
-        return;
-      const retryAfterHeaderName = Object.keys(response2.headers).find((key) => key.toLowerCase() === "retry-after");
-      if (!retryAfterHeaderName)
-        return;
-      const retryAfter = response2.headers[retryAfterHeaderName];
-      const retryAfterSeconds = Number(retryAfter);
-      if (!Number.isNaN(retryAfterSeconds))
-        return retryAfterSeconds * 1e3;
-      const retryAfterDate = new Date(retryAfter);
-      return retryAfterDate.getTime() - Date.now();
-    };
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/AdaptiveRetryStrategy.js
-var require_AdaptiveRetryStrategy2 = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/AdaptiveRetryStrategy.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AdaptiveRetryStrategy = void 0;
-    var util_retry_1 = require_dist_cjs14();
-    var StandardRetryStrategy_1 = require_StandardRetryStrategy2();
-    var AdaptiveRetryStrategy = class extends StandardRetryStrategy_1.StandardRetryStrategy {
-      constructor(maxAttemptsProvider, options) {
-        const { rateLimiter, ...superOptions } = options !== null && options !== void 0 ? options : {};
-        super(maxAttemptsProvider, superOptions);
-        this.rateLimiter = rateLimiter !== null && rateLimiter !== void 0 ? rateLimiter : new util_retry_1.DefaultRateLimiter();
-        this.mode = util_retry_1.RETRY_MODES.ADAPTIVE;
-      }
-      async retry(next, args) {
-        return super.retry(next, args, {
-          beforeRequest: async () => {
-            return this.rateLimiter.getSendToken();
-          },
-          afterRequest: (response2) => {
-            this.rateLimiter.updateClientSendingRate(response2);
-          }
-        });
-      }
-    };
-    exports.AdaptiveRetryStrategy = AdaptiveRetryStrategy;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/configurations.js
-var require_configurations = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/configurations.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODE_RETRY_MODE_CONFIG_OPTIONS = exports.CONFIG_RETRY_MODE = exports.ENV_RETRY_MODE = exports.resolveRetryConfig = exports.NODE_MAX_ATTEMPT_CONFIG_OPTIONS = exports.CONFIG_MAX_ATTEMPTS = exports.ENV_MAX_ATTEMPTS = void 0;
-    var util_middleware_1 = require_dist_cjs2();
-    var util_retry_1 = require_dist_cjs14();
-    exports.ENV_MAX_ATTEMPTS = "AWS_MAX_ATTEMPTS";
-    exports.CONFIG_MAX_ATTEMPTS = "max_attempts";
-    exports.NODE_MAX_ATTEMPT_CONFIG_OPTIONS = {
-      environmentVariableSelector: (env) => {
-        const value = env[exports.ENV_MAX_ATTEMPTS];
-        if (!value)
-          return void 0;
-        const maxAttempt = parseInt(value);
-        if (Number.isNaN(maxAttempt)) {
-          throw new Error(`Environment variable ${exports.ENV_MAX_ATTEMPTS} mast be a number, got "${value}"`);
-        }
-        return maxAttempt;
-      },
-      configFileSelector: (profile) => {
-        const value = profile[exports.CONFIG_MAX_ATTEMPTS];
-        if (!value)
-          return void 0;
-        const maxAttempt = parseInt(value);
-        if (Number.isNaN(maxAttempt)) {
-          throw new Error(`Shared config file entry ${exports.CONFIG_MAX_ATTEMPTS} mast be a number, got "${value}"`);
-        }
-        return maxAttempt;
-      },
-      default: util_retry_1.DEFAULT_MAX_ATTEMPTS
-    };
-    var resolveRetryConfig = (input) => {
-      var _a;
-      const { retryStrategy } = input;
-      const maxAttempts = (0, util_middleware_1.normalizeProvider)((_a = input.maxAttempts) !== null && _a !== void 0 ? _a : util_retry_1.DEFAULT_MAX_ATTEMPTS);
-      return {
-        ...input,
-        maxAttempts,
-        retryStrategy: async () => {
-          if (retryStrategy) {
-            return retryStrategy;
-          }
-          const retryMode = await (0, util_middleware_1.normalizeProvider)(input.retryMode)();
-          if (retryMode === util_retry_1.RETRY_MODES.ADAPTIVE) {
-            return new util_retry_1.AdaptiveRetryStrategy(maxAttempts);
-          }
-          return new util_retry_1.StandardRetryStrategy(maxAttempts);
-        }
-      };
-    };
-    exports.resolveRetryConfig = resolveRetryConfig;
-    exports.ENV_RETRY_MODE = "AWS_RETRY_MODE";
-    exports.CONFIG_RETRY_MODE = "retry_mode";
-    exports.NODE_RETRY_MODE_CONFIG_OPTIONS = {
-      environmentVariableSelector: (env) => env[exports.ENV_RETRY_MODE],
-      configFileSelector: (profile) => profile[exports.CONFIG_RETRY_MODE],
-      default: util_retry_1.DEFAULT_RETRY_MODE
-    };
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/omitRetryHeadersMiddleware.js
-var require_omitRetryHeadersMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/omitRetryHeadersMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getOmitRetryHeadersPlugin = exports.omitRetryHeadersMiddlewareOptions = exports.omitRetryHeadersMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var util_retry_1 = require_dist_cjs14();
-    var omitRetryHeadersMiddleware = () => (next) => async (args) => {
-      const { request } = args;
-      if (protocol_http_1.HttpRequest.isInstance(request)) {
-        delete request.headers[util_retry_1.INVOCATION_ID_HEADER];
-        delete request.headers[util_retry_1.REQUEST_HEADER];
-      }
-      return next(args);
-    };
-    exports.omitRetryHeadersMiddleware = omitRetryHeadersMiddleware;
-    exports.omitRetryHeadersMiddlewareOptions = {
-      name: "omitRetryHeadersMiddleware",
-      tags: ["RETRY", "HEADERS", "OMIT_RETRY_HEADERS"],
-      relation: "before",
-      toMiddleware: "awsAuthMiddleware",
-      override: true
-    };
-    var getOmitRetryHeadersPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.addRelativeTo((0, exports.omitRetryHeadersMiddleware)(), exports.omitRetryHeadersMiddlewareOptions);
-      }
-    });
-    exports.getOmitRetryHeadersPlugin = getOmitRetryHeadersPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js
-var require_retryMiddleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRetryAfterHint = exports.getRetryPlugin = exports.retryMiddlewareOptions = exports.retryMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var service_error_classification_1 = require_dist_cjs13();
-    var util_retry_1 = require_dist_cjs14();
-    var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
-    var util_1 = require_util();
-    var retryMiddleware = (options) => (next, context) => async (args) => {
-      let retryStrategy = await options.retryStrategy();
-      const maxAttempts = await options.maxAttempts();
-      if (isRetryStrategyV2(retryStrategy)) {
-        retryStrategy = retryStrategy;
-        let retryToken = await retryStrategy.acquireInitialRetryToken(context["partition_id"]);
-        let lastError = new Error();
-        let attempts = 0;
-        let totalRetryDelay = 0;
-        const { request } = args;
-        if (protocol_http_1.HttpRequest.isInstance(request)) {
-          request.headers[util_retry_1.INVOCATION_ID_HEADER] = (0, uuid_1.v4)();
-        }
-        while (true) {
-          try {
-            if (protocol_http_1.HttpRequest.isInstance(request)) {
-              request.headers[util_retry_1.REQUEST_HEADER] = `attempt=${attempts + 1}; max=${maxAttempts}`;
-            }
-            const { response: response2, output } = await next(args);
-            retryStrategy.recordSuccess(retryToken);
-            output.$metadata.attempts = attempts + 1;
-            output.$metadata.totalRetryDelay = totalRetryDelay;
-            return { response: response2, output };
-          } catch (e) {
-            const retryErrorInfo = getRetyErrorInto(e);
-            lastError = (0, util_1.asSdkError)(e);
-            try {
-              retryToken = await retryStrategy.refreshRetryTokenForRetry(retryToken, retryErrorInfo);
-            } catch (refreshError) {
-              if (!lastError.$metadata) {
-                lastError.$metadata = {};
-              }
-              lastError.$metadata.attempts = attempts + 1;
-              lastError.$metadata.totalRetryDelay = totalRetryDelay;
-              throw lastError;
-            }
-            attempts = retryToken.getRetryCount();
-            const delay = retryToken.getRetryDelay();
-            totalRetryDelay += delay;
-            await new Promise((resolve) => setTimeout(resolve, delay));
-          }
-        }
-      } else {
-        retryStrategy = retryStrategy;
-        if (retryStrategy === null || retryStrategy === void 0 ? void 0 : retryStrategy.mode)
-          context.userAgent = [...context.userAgent || [], ["cfg/retry-mode", retryStrategy.mode]];
-        return retryStrategy.retry(next, args);
-      }
-    };
-    exports.retryMiddleware = retryMiddleware;
-    var isRetryStrategyV2 = (retryStrategy) => typeof retryStrategy.acquireInitialRetryToken !== "undefined" && typeof retryStrategy.refreshRetryTokenForRetry !== "undefined" && typeof retryStrategy.recordSuccess !== "undefined";
-    var getRetyErrorInto = (error) => {
-      const errorInfo = {
-        errorType: getRetryErrorType(error)
-      };
-      const retryAfterHint = (0, exports.getRetryAfterHint)(error.$response);
-      if (retryAfterHint) {
-        errorInfo.retryAfterHint = retryAfterHint;
-      }
-      return errorInfo;
-    };
-    var getRetryErrorType = (error) => {
-      if ((0, service_error_classification_1.isThrottlingError)(error))
-        return "THROTTLING";
-      if ((0, service_error_classification_1.isTransientError)(error))
-        return "TRANSIENT";
-      if ((0, service_error_classification_1.isServerError)(error))
-        return "SERVER_ERROR";
-      return "CLIENT_ERROR";
-    };
-    exports.retryMiddlewareOptions = {
-      name: "retryMiddleware",
-      tags: ["RETRY"],
-      step: "finalizeRequest",
-      priority: "high",
-      override: true
-    };
-    var getRetryPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add((0, exports.retryMiddleware)(options), exports.retryMiddlewareOptions);
-      }
-    });
-    exports.getRetryPlugin = getRetryPlugin;
-    var getRetryAfterHint = (response2) => {
-      if (!protocol_http_1.HttpResponse.isInstance(response2))
-        return;
-      const retryAfterHeaderName = Object.keys(response2.headers).find((key) => key.toLowerCase() === "retry-after");
-      if (!retryAfterHeaderName)
-        return;
-      const retryAfter = response2.headers[retryAfterHeaderName];
-      const retryAfterSeconds = Number(retryAfter);
-      if (!Number.isNaN(retryAfterSeconds))
-        return new Date(retryAfterSeconds * 1e3);
-      const retryAfterDate = new Date(retryAfter);
-      return retryAfterDate;
-    };
-    exports.getRetryAfterHint = getRetryAfterHint;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-retry/dist-cjs/index.js
-var require_dist_cjs15 = __commonJS({
-  "node_modules/@aws-sdk/middleware-retry/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_AdaptiveRetryStrategy2(), exports);
-    tslib_1.__exportStar(require_StandardRetryStrategy2(), exports);
-    tslib_1.__exportStar(require_configurations(), exports);
-    tslib_1.__exportStar(require_delayDecider(), exports);
-    tslib_1.__exportStar(require_omitRetryHeadersMiddleware(), exports);
-    tslib_1.__exportStar(require_retryDecider(), exports);
-    tslib_1.__exportStar(require_retryMiddleware(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/ProviderError.js
-var require_ProviderError = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/ProviderError.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ProviderError = void 0;
-    var ProviderError = class extends Error {
-      constructor(message, tryNextLink = true) {
-        super(message);
-        this.tryNextLink = tryNextLink;
-        this.name = "ProviderError";
-        Object.setPrototypeOf(this, ProviderError.prototype);
-      }
-      static from(error, tryNextLink = true) {
-        return Object.assign(new this(error.message, tryNextLink), error);
-      }
-    };
-    exports.ProviderError = ProviderError;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/CredentialsProviderError.js
-var require_CredentialsProviderError = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/CredentialsProviderError.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CredentialsProviderError = void 0;
-    var ProviderError_1 = require_ProviderError();
-    var CredentialsProviderError = class extends ProviderError_1.ProviderError {
-      constructor(message, tryNextLink = true) {
-        super(message, tryNextLink);
-        this.tryNextLink = tryNextLink;
-        this.name = "CredentialsProviderError";
-        Object.setPrototypeOf(this, CredentialsProviderError.prototype);
-      }
-    };
-    exports.CredentialsProviderError = CredentialsProviderError;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/TokenProviderError.js
-var require_TokenProviderError = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/TokenProviderError.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.TokenProviderError = void 0;
-    var ProviderError_1 = require_ProviderError();
-    var TokenProviderError = class extends ProviderError_1.ProviderError {
-      constructor(message, tryNextLink = true) {
-        super(message, tryNextLink);
-        this.tryNextLink = tryNextLink;
-        this.name = "TokenProviderError";
-        Object.setPrototypeOf(this, TokenProviderError.prototype);
-      }
-    };
-    exports.TokenProviderError = TokenProviderError;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/chain.js
-var require_chain = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/chain.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.chain = void 0;
-    var ProviderError_1 = require_ProviderError();
-    function chain(...providers) {
-      return () => {
-        let promise = Promise.reject(new ProviderError_1.ProviderError("No providers in chain"));
-        for (const provider of providers) {
-          promise = promise.catch((err) => {
-            if (err === null || err === void 0 ? void 0 : err.tryNextLink) {
-              return provider();
-            }
-            throw err;
-          });
-        }
-        return promise;
-      };
-    }
-    exports.chain = chain;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/fromStatic.js
-var require_fromStatic = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/fromStatic.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fromStatic = void 0;
-    var fromStatic = (staticValue) => () => Promise.resolve(staticValue);
-    exports.fromStatic = fromStatic;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/memoize.js
-var require_memoize = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/memoize.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.memoize = void 0;
-    var memoize = (provider, isExpired, requiresRefresh) => {
-      let resolved;
-      let pending;
-      let hasResult;
-      let isConstant = false;
-      const coalesceProvider = async () => {
-        if (!pending) {
-          pending = provider();
-        }
-        try {
-          resolved = await pending;
-          hasResult = true;
-          isConstant = false;
-        } finally {
-          pending = void 0;
-        }
-        return resolved;
-      };
-      if (isExpired === void 0) {
-        return async (options) => {
-          if (!hasResult || (options === null || options === void 0 ? void 0 : options.forceRefresh)) {
-            resolved = await coalesceProvider();
-          }
-          return resolved;
-        };
-      }
-      return async (options) => {
-        if (!hasResult || (options === null || options === void 0 ? void 0 : options.forceRefresh)) {
-          resolved = await coalesceProvider();
-        }
-        if (isConstant) {
-          return resolved;
-        }
-        if (requiresRefresh && !requiresRefresh(resolved)) {
-          isConstant = true;
-          return resolved;
-        }
-        if (isExpired(resolved)) {
-          await coalesceProvider();
-          return resolved;
-        }
-        return resolved;
-      };
-    };
-    exports.memoize = memoize;
-  }
-});
-
-// node_modules/@aws-sdk/property-provider/dist-cjs/index.js
-var require_dist_cjs16 = __commonJS({
-  "node_modules/@aws-sdk/property-provider/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_CredentialsProviderError(), exports);
-    tslib_1.__exportStar(require_ProviderError(), exports);
-    tslib_1.__exportStar(require_TokenProviderError(), exports);
-    tslib_1.__exportStar(require_chain(), exports);
-    tslib_1.__exportStar(require_fromStatic(), exports);
-    tslib_1.__exportStar(require_memoize(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-hex-encoding/dist-cjs/index.js
-var require_dist_cjs17 = __commonJS({
-  "node_modules/@aws-sdk/util-hex-encoding/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toHex = exports.fromHex = void 0;
-    var SHORT_TO_HEX = {};
-    var HEX_TO_SHORT = {};
-    for (let i = 0; i < 256; i++) {
-      let encodedByte = i.toString(16).toLowerCase();
-      if (encodedByte.length === 1) {
-        encodedByte = `0${encodedByte}`;
-      }
-      SHORT_TO_HEX[i] = encodedByte;
-      HEX_TO_SHORT[encodedByte] = i;
-    }
-    function fromHex(encoded) {
-      if (encoded.length % 2 !== 0) {
-        throw new Error("Hex encoded strings must have an even number length");
-      }
-      const out = new Uint8Array(encoded.length / 2);
-      for (let i = 0; i < encoded.length; i += 2) {
-        const encodedByte = encoded.slice(i, i + 2).toLowerCase();
-        if (encodedByte in HEX_TO_SHORT) {
-          out[i / 2] = HEX_TO_SHORT[encodedByte];
-        } else {
-          throw new Error(`Cannot decode unrecognized sequence ${encodedByte} as hexadecimal`);
-        }
-      }
-      return out;
-    }
-    exports.fromHex = fromHex;
-    function toHex(bytes) {
-      let out = "";
-      for (let i = 0; i < bytes.byteLength; i++) {
-        out += SHORT_TO_HEX[bytes[i]];
-      }
-      return out;
-    }
-    exports.toHex = toHex;
-  }
-});
-
-// node_modules/@aws-sdk/is-array-buffer/dist-cjs/index.js
-var require_dist_cjs18 = __commonJS({
-  "node_modules/@aws-sdk/is-array-buffer/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isArrayBuffer = void 0;
-    var isArrayBuffer = (arg) => typeof ArrayBuffer === "function" && arg instanceof ArrayBuffer || Object.prototype.toString.call(arg) === "[object ArrayBuffer]";
-    exports.isArrayBuffer = isArrayBuffer;
-  }
-});
-
-// node_modules/@aws-sdk/util-buffer-from/dist-cjs/index.js
-var require_dist_cjs19 = __commonJS({
-  "node_modules/@aws-sdk/util-buffer-from/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fromString = exports.fromArrayBuffer = void 0;
-    var is_array_buffer_1 = require_dist_cjs18();
-    var buffer_1 = require("buffer");
-    var fromArrayBuffer = (input, offset = 0, length = input.byteLength - offset) => {
-      if (!(0, is_array_buffer_1.isArrayBuffer)(input)) {
-        throw new TypeError(`The "input" argument must be ArrayBuffer. Received type ${typeof input} (${input})`);
-      }
-      return buffer_1.Buffer.from(input, offset, length);
-    };
-    exports.fromArrayBuffer = fromArrayBuffer;
-    var fromString = (input, encoding) => {
-      if (typeof input !== "string") {
-        throw new TypeError(`The "input" argument must be of type string. Received type ${typeof input} (${input})`);
-      }
-      return encoding ? buffer_1.Buffer.from(input, encoding) : buffer_1.Buffer.from(input);
-    };
-    exports.fromString = fromString;
-  }
-});
-
-// node_modules/@aws-sdk/util-utf8/dist-cjs/fromUtf8.js
-var require_fromUtf8 = __commonJS({
-  "node_modules/@aws-sdk/util-utf8/dist-cjs/fromUtf8.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fromUtf8 = void 0;
-    var util_buffer_from_1 = require_dist_cjs19();
-    var fromUtf8 = (input) => {
-      const buf = (0, util_buffer_from_1.fromString)(input, "utf8");
-      return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-    };
-    exports.fromUtf8 = fromUtf8;
-  }
-});
-
-// node_modules/@aws-sdk/util-utf8/dist-cjs/toUint8Array.js
-var require_toUint8Array = __commonJS({
-  "node_modules/@aws-sdk/util-utf8/dist-cjs/toUint8Array.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toUint8Array = void 0;
-    var fromUtf8_1 = require_fromUtf8();
-    var toUint8Array = (data) => {
-      if (typeof data === "string") {
-        return (0, fromUtf8_1.fromUtf8)(data);
-      }
-      if (ArrayBuffer.isView(data)) {
-        return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
-      }
-      return new Uint8Array(data);
-    };
-    exports.toUint8Array = toUint8Array;
-  }
-});
-
-// node_modules/@aws-sdk/util-utf8/dist-cjs/toUtf8.js
-var require_toUtf8 = __commonJS({
-  "node_modules/@aws-sdk/util-utf8/dist-cjs/toUtf8.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toUtf8 = void 0;
-    var util_buffer_from_1 = require_dist_cjs19();
-    var toUtf8 = (input) => (0, util_buffer_from_1.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("utf8");
-    exports.toUtf8 = toUtf8;
-  }
-});
-
-// node_modules/@aws-sdk/util-utf8/dist-cjs/index.js
-var require_dist_cjs20 = __commonJS({
-  "node_modules/@aws-sdk/util-utf8/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_fromUtf8(), exports);
-    tslib_1.__exportStar(require_toUint8Array(), exports);
-    tslib_1.__exportStar(require_toUtf8(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/constants.js
-var require_constants3 = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/constants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.MAX_PRESIGNED_TTL = exports.KEY_TYPE_IDENTIFIER = exports.MAX_CACHE_SIZE = exports.UNSIGNED_PAYLOAD = exports.EVENT_ALGORITHM_IDENTIFIER = exports.ALGORITHM_IDENTIFIER_V4A = exports.ALGORITHM_IDENTIFIER = exports.UNSIGNABLE_PATTERNS = exports.SEC_HEADER_PATTERN = exports.PROXY_HEADER_PATTERN = exports.ALWAYS_UNSIGNABLE_HEADERS = exports.HOST_HEADER = exports.TOKEN_HEADER = exports.SHA256_HEADER = exports.SIGNATURE_HEADER = exports.GENERATED_HEADERS = exports.DATE_HEADER = exports.AMZ_DATE_HEADER = exports.AUTH_HEADER = exports.REGION_SET_PARAM = exports.TOKEN_QUERY_PARAM = exports.SIGNATURE_QUERY_PARAM = exports.EXPIRES_QUERY_PARAM = exports.SIGNED_HEADERS_QUERY_PARAM = exports.AMZ_DATE_QUERY_PARAM = exports.CREDENTIAL_QUERY_PARAM = exports.ALGORITHM_QUERY_PARAM = void 0;
-    exports.ALGORITHM_QUERY_PARAM = "X-Amz-Algorithm";
-    exports.CREDENTIAL_QUERY_PARAM = "X-Amz-Credential";
-    exports.AMZ_DATE_QUERY_PARAM = "X-Amz-Date";
-    exports.SIGNED_HEADERS_QUERY_PARAM = "X-Amz-SignedHeaders";
-    exports.EXPIRES_QUERY_PARAM = "X-Amz-Expires";
-    exports.SIGNATURE_QUERY_PARAM = "X-Amz-Signature";
-    exports.TOKEN_QUERY_PARAM = "X-Amz-Security-Token";
-    exports.REGION_SET_PARAM = "X-Amz-Region-Set";
-    exports.AUTH_HEADER = "authorization";
-    exports.AMZ_DATE_HEADER = exports.AMZ_DATE_QUERY_PARAM.toLowerCase();
-    exports.DATE_HEADER = "date";
-    exports.GENERATED_HEADERS = [exports.AUTH_HEADER, exports.AMZ_DATE_HEADER, exports.DATE_HEADER];
-    exports.SIGNATURE_HEADER = exports.SIGNATURE_QUERY_PARAM.toLowerCase();
-    exports.SHA256_HEADER = "x-amz-content-sha256";
-    exports.TOKEN_HEADER = exports.TOKEN_QUERY_PARAM.toLowerCase();
-    exports.HOST_HEADER = "host";
-    exports.ALWAYS_UNSIGNABLE_HEADERS = {
-      authorization: true,
-      "cache-control": true,
-      connection: true,
-      expect: true,
-      from: true,
-      "keep-alive": true,
-      "max-forwards": true,
-      pragma: true,
-      referer: true,
-      te: true,
-      trailer: true,
-      "transfer-encoding": true,
-      upgrade: true,
-      "user-agent": true,
-      "x-amzn-trace-id": true
-    };
-    exports.PROXY_HEADER_PATTERN = /^proxy-/;
-    exports.SEC_HEADER_PATTERN = /^sec-/;
-    exports.UNSIGNABLE_PATTERNS = [/^proxy-/i, /^sec-/i];
-    exports.ALGORITHM_IDENTIFIER = "AWS4-HMAC-SHA256";
-    exports.ALGORITHM_IDENTIFIER_V4A = "AWS4-ECDSA-P256-SHA256";
-    exports.EVENT_ALGORITHM_IDENTIFIER = "AWS4-HMAC-SHA256-PAYLOAD";
-    exports.UNSIGNED_PAYLOAD = "UNSIGNED-PAYLOAD";
-    exports.MAX_CACHE_SIZE = 50;
-    exports.KEY_TYPE_IDENTIFIER = "aws4_request";
-    exports.MAX_PRESIGNED_TTL = 60 * 60 * 24 * 7;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/credentialDerivation.js
-var require_credentialDerivation = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/credentialDerivation.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.clearCredentialCache = exports.getSigningKey = exports.createScope = void 0;
-    var util_hex_encoding_1 = require_dist_cjs17();
-    var util_utf8_1 = require_dist_cjs20();
-    var constants_1 = require_constants3();
-    var signingKeyCache = {};
-    var cacheQueue = [];
-    var createScope = (shortDate, region, service) => `${shortDate}/${region}/${service}/${constants_1.KEY_TYPE_IDENTIFIER}`;
-    exports.createScope = createScope;
-    var getSigningKey = async (sha256Constructor, credentials, shortDate, region, service) => {
-      const credsHash = await hmac(sha256Constructor, credentials.secretAccessKey, credentials.accessKeyId);
-      const cacheKey = `${shortDate}:${region}:${service}:${(0, util_hex_encoding_1.toHex)(credsHash)}:${credentials.sessionToken}`;
-      if (cacheKey in signingKeyCache) {
-        return signingKeyCache[cacheKey];
-      }
-      cacheQueue.push(cacheKey);
-      while (cacheQueue.length > constants_1.MAX_CACHE_SIZE) {
-        delete signingKeyCache[cacheQueue.shift()];
-      }
-      let key = `AWS4${credentials.secretAccessKey}`;
-      for (const signable of [shortDate, region, service, constants_1.KEY_TYPE_IDENTIFIER]) {
-        key = await hmac(sha256Constructor, key, signable);
-      }
-      return signingKeyCache[cacheKey] = key;
-    };
-    exports.getSigningKey = getSigningKey;
-    var clearCredentialCache = () => {
-      cacheQueue.length = 0;
-      Object.keys(signingKeyCache).forEach((cacheKey) => {
-        delete signingKeyCache[cacheKey];
-      });
-    };
-    exports.clearCredentialCache = clearCredentialCache;
-    var hmac = (ctor, secret, data) => {
-      const hash = new ctor(secret);
-      hash.update((0, util_utf8_1.toUint8Array)(data));
-      return hash.digest();
-    };
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalHeaders.js
-var require_getCanonicalHeaders = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalHeaders.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getCanonicalHeaders = void 0;
-    var constants_1 = require_constants3();
-    var getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) => {
-      const canonical = {};
-      for (const headerName of Object.keys(headers).sort()) {
-        if (headers[headerName] == void 0) {
-          continue;
-        }
-        const canonicalHeaderName = headerName.toLowerCase();
-        if (canonicalHeaderName in constants_1.ALWAYS_UNSIGNABLE_HEADERS || (unsignableHeaders === null || unsignableHeaders === void 0 ? void 0 : unsignableHeaders.has(canonicalHeaderName)) || constants_1.PROXY_HEADER_PATTERN.test(canonicalHeaderName) || constants_1.SEC_HEADER_PATTERN.test(canonicalHeaderName)) {
-          if (!signableHeaders || signableHeaders && !signableHeaders.has(canonicalHeaderName)) {
-            continue;
-          }
-        }
-        canonical[canonicalHeaderName] = headers[headerName].trim().replace(/\s+/g, " ");
-      }
-      return canonical;
-    };
-    exports.getCanonicalHeaders = getCanonicalHeaders;
-  }
-});
-
-// node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri.js
-var require_escape_uri = __commonJS({
-  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.escapeUri = void 0;
-    var escapeUri = (uri) => encodeURIComponent(uri).replace(/[!'()*]/g, hexEncode);
-    exports.escapeUri = escapeUri;
-    var hexEncode = (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`;
-  }
-});
-
-// node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri-path.js
-var require_escape_uri_path = __commonJS({
-  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri-path.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.escapeUriPath = void 0;
-    var escape_uri_1 = require_escape_uri();
-    var escapeUriPath = (uri) => uri.split("/").map(escape_uri_1.escapeUri).join("/");
-    exports.escapeUriPath = escapeUriPath;
-  }
-});
-
-// node_modules/@aws-sdk/util-uri-escape/dist-cjs/index.js
-var require_dist_cjs21 = __commonJS({
-  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_escape_uri(), exports);
-    tslib_1.__exportStar(require_escape_uri_path(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalQuery.js
-var require_getCanonicalQuery = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalQuery.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getCanonicalQuery = void 0;
-    var util_uri_escape_1 = require_dist_cjs21();
-    var constants_1 = require_constants3();
-    var getCanonicalQuery = ({ query = {} }) => {
-      const keys = [];
-      const serialized = {};
-      for (const key of Object.keys(query).sort()) {
-        if (key.toLowerCase() === constants_1.SIGNATURE_HEADER) {
-          continue;
-        }
-        keys.push(key);
-        const value = query[key];
-        if (typeof value === "string") {
-          serialized[key] = `${(0, util_uri_escape_1.escapeUri)(key)}=${(0, util_uri_escape_1.escapeUri)(value)}`;
-        } else if (Array.isArray(value)) {
-          serialized[key] = value.slice(0).sort().reduce((encoded, value2) => encoded.concat([`${(0, util_uri_escape_1.escapeUri)(key)}=${(0, util_uri_escape_1.escapeUri)(value2)}`]), []).join("&");
-        }
-      }
-      return keys.map((key) => serialized[key]).filter((serialized2) => serialized2).join("&");
-    };
-    exports.getCanonicalQuery = getCanonicalQuery;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/getPayloadHash.js
-var require_getPayloadHash = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/getPayloadHash.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getPayloadHash = void 0;
-    var is_array_buffer_1 = require_dist_cjs18();
-    var util_hex_encoding_1 = require_dist_cjs17();
-    var util_utf8_1 = require_dist_cjs20();
-    var constants_1 = require_constants3();
-    var getPayloadHash = async ({ headers, body }, hashConstructor) => {
-      for (const headerName of Object.keys(headers)) {
-        if (headerName.toLowerCase() === constants_1.SHA256_HEADER) {
-          return headers[headerName];
-        }
-      }
-      if (body == void 0) {
-        return "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
-      } else if (typeof body === "string" || ArrayBuffer.isView(body) || (0, is_array_buffer_1.isArrayBuffer)(body)) {
-        const hashCtor = new hashConstructor();
-        hashCtor.update((0, util_utf8_1.toUint8Array)(body));
-        return (0, util_hex_encoding_1.toHex)(await hashCtor.digest());
-      }
-      return constants_1.UNSIGNED_PAYLOAD;
-    };
-    exports.getPayloadHash = getPayloadHash;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/headerUtil.js
-var require_headerUtil = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/headerUtil.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.deleteHeader = exports.getHeaderValue = exports.hasHeader = void 0;
-    var hasHeader = (soughtHeader, headers) => {
-      soughtHeader = soughtHeader.toLowerCase();
-      for (const headerName of Object.keys(headers)) {
-        if (soughtHeader === headerName.toLowerCase()) {
-          return true;
-        }
-      }
-      return false;
-    };
-    exports.hasHeader = hasHeader;
-    var getHeaderValue = (soughtHeader, headers) => {
-      soughtHeader = soughtHeader.toLowerCase();
-      for (const headerName of Object.keys(headers)) {
-        if (soughtHeader === headerName.toLowerCase()) {
-          return headers[headerName];
-        }
-      }
-      return void 0;
-    };
-    exports.getHeaderValue = getHeaderValue;
-    var deleteHeader = (soughtHeader, headers) => {
-      soughtHeader = soughtHeader.toLowerCase();
-      for (const headerName of Object.keys(headers)) {
-        if (soughtHeader === headerName.toLowerCase()) {
-          delete headers[headerName];
-        }
-      }
-    };
-    exports.deleteHeader = deleteHeader;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/cloneRequest.js
-var require_cloneRequest = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/cloneRequest.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.cloneQuery = exports.cloneRequest = void 0;
-    var cloneRequest = ({ headers, query, ...rest }) => ({
-      ...rest,
-      headers: { ...headers },
-      query: query ? (0, exports.cloneQuery)(query) : void 0
-    });
-    exports.cloneRequest = cloneRequest;
-    var cloneQuery = (query) => Object.keys(query).reduce((carry, paramName) => {
-      const param = query[paramName];
-      return {
-        ...carry,
-        [paramName]: Array.isArray(param) ? [...param] : param
-      };
-    }, {});
-    exports.cloneQuery = cloneQuery;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/moveHeadersToQuery.js
-var require_moveHeadersToQuery = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/moveHeadersToQuery.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.moveHeadersToQuery = void 0;
-    var cloneRequest_1 = require_cloneRequest();
-    var moveHeadersToQuery = (request, options = {}) => {
-      var _a;
-      const { headers, query = {} } = typeof request.clone === "function" ? request.clone() : (0, cloneRequest_1.cloneRequest)(request);
-      for (const name of Object.keys(headers)) {
-        const lname = name.toLowerCase();
-        if (lname.slice(0, 6) === "x-amz-" && !((_a = options.unhoistableHeaders) === null || _a === void 0 ? void 0 : _a.has(lname))) {
-          query[name] = headers[name];
-          delete headers[name];
-        }
-      }
-      return {
-        ...request,
-        headers,
-        query
-      };
-    };
-    exports.moveHeadersToQuery = moveHeadersToQuery;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/prepareRequest.js
-var require_prepareRequest = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/prepareRequest.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.prepareRequest = void 0;
-    var cloneRequest_1 = require_cloneRequest();
-    var constants_1 = require_constants3();
-    var prepareRequest = (request) => {
-      request = typeof request.clone === "function" ? request.clone() : (0, cloneRequest_1.cloneRequest)(request);
-      for (const headerName of Object.keys(request.headers)) {
-        if (constants_1.GENERATED_HEADERS.indexOf(headerName.toLowerCase()) > -1) {
-          delete request.headers[headerName];
-        }
-      }
-      return request;
-    };
-    exports.prepareRequest = prepareRequest;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/utilDate.js
-var require_utilDate = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/utilDate.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toDate = exports.iso8601 = void 0;
-    var iso8601 = (time) => (0, exports.toDate)(time).toISOString().replace(/\.\d{3}Z$/, "Z");
-    exports.iso8601 = iso8601;
-    var toDate = (time) => {
-      if (typeof time === "number") {
-        return new Date(time * 1e3);
-      }
-      if (typeof time === "string") {
-        if (Number(time)) {
-          return new Date(Number(time) * 1e3);
-        }
-        return new Date(time);
-      }
-      return time;
-    };
-    exports.toDate = toDate;
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/SignatureV4.js
-var require_SignatureV4 = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/SignatureV4.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.SignatureV4 = void 0;
-    var util_hex_encoding_1 = require_dist_cjs17();
-    var util_middleware_1 = require_dist_cjs2();
-    var util_utf8_1 = require_dist_cjs20();
-    var constants_1 = require_constants3();
-    var credentialDerivation_1 = require_credentialDerivation();
-    var getCanonicalHeaders_1 = require_getCanonicalHeaders();
-    var getCanonicalQuery_1 = require_getCanonicalQuery();
-    var getPayloadHash_1 = require_getPayloadHash();
-    var headerUtil_1 = require_headerUtil();
-    var moveHeadersToQuery_1 = require_moveHeadersToQuery();
-    var prepareRequest_1 = require_prepareRequest();
-    var utilDate_1 = require_utilDate();
-    var SignatureV4 = class {
-      constructor({ applyChecksum, credentials, region, service, sha256, uriEscapePath = true }) {
-        this.service = service;
-        this.sha256 = sha256;
-        this.uriEscapePath = uriEscapePath;
-        this.applyChecksum = typeof applyChecksum === "boolean" ? applyChecksum : true;
-        this.regionProvider = (0, util_middleware_1.normalizeProvider)(region);
-        this.credentialProvider = (0, util_middleware_1.normalizeProvider)(credentials);
-      }
-      async presign(originalRequest, options = {}) {
-        const { signingDate = /* @__PURE__ */ new Date(), expiresIn = 3600, unsignableHeaders, unhoistableHeaders, signableHeaders, signingRegion, signingService } = options;
-        const credentials = await this.credentialProvider();
-        this.validateResolvedCredentials(credentials);
-        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
-        const { longDate, shortDate } = formatDate(signingDate);
-        if (expiresIn > constants_1.MAX_PRESIGNED_TTL) {
-          return Promise.reject("Signature version 4 presigned URLs must have an expiration date less than one week in the future");
-        }
-        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
-        const request = (0, moveHeadersToQuery_1.moveHeadersToQuery)((0, prepareRequest_1.prepareRequest)(originalRequest), { unhoistableHeaders });
-        if (credentials.sessionToken) {
-          request.query[constants_1.TOKEN_QUERY_PARAM] = credentials.sessionToken;
-        }
-        request.query[constants_1.ALGORITHM_QUERY_PARAM] = constants_1.ALGORITHM_IDENTIFIER;
-        request.query[constants_1.CREDENTIAL_QUERY_PARAM] = `${credentials.accessKeyId}/${scope}`;
-        request.query[constants_1.AMZ_DATE_QUERY_PARAM] = longDate;
-        request.query[constants_1.EXPIRES_QUERY_PARAM] = expiresIn.toString(10);
-        const canonicalHeaders = (0, getCanonicalHeaders_1.getCanonicalHeaders)(request, unsignableHeaders, signableHeaders);
-        request.query[constants_1.SIGNED_HEADERS_QUERY_PARAM] = getCanonicalHeaderList(canonicalHeaders);
-        request.query[constants_1.SIGNATURE_QUERY_PARAM] = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, await (0, getPayloadHash_1.getPayloadHash)(originalRequest, this.sha256)));
-        return request;
-      }
-      async sign(toSign, options) {
-        if (typeof toSign === "string") {
-          return this.signString(toSign, options);
-        } else if (toSign.headers && toSign.payload) {
-          return this.signEvent(toSign, options);
-        } else {
-          return this.signRequest(toSign, options);
-        }
-      }
-      async signEvent({ headers, payload }, { signingDate = /* @__PURE__ */ new Date(), priorSignature, signingRegion, signingService }) {
-        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
-        const { shortDate, longDate } = formatDate(signingDate);
-        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
-        const hashedPayload = await (0, getPayloadHash_1.getPayloadHash)({ headers: {}, body: payload }, this.sha256);
-        const hash = new this.sha256();
-        hash.update(headers);
-        const hashedHeaders = (0, util_hex_encoding_1.toHex)(await hash.digest());
-        const stringToSign = [
-          constants_1.EVENT_ALGORITHM_IDENTIFIER,
-          longDate,
-          scope,
-          priorSignature,
-          hashedHeaders,
-          hashedPayload
-        ].join("\n");
-        return this.signString(stringToSign, { signingDate, signingRegion: region, signingService });
-      }
-      async signString(stringToSign, { signingDate = /* @__PURE__ */ new Date(), signingRegion, signingService } = {}) {
-        const credentials = await this.credentialProvider();
-        this.validateResolvedCredentials(credentials);
-        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
-        const { shortDate } = formatDate(signingDate);
-        const hash = new this.sha256(await this.getSigningKey(credentials, region, shortDate, signingService));
-        hash.update((0, util_utf8_1.toUint8Array)(stringToSign));
-        return (0, util_hex_encoding_1.toHex)(await hash.digest());
-      }
-      async signRequest(requestToSign, { signingDate = /* @__PURE__ */ new Date(), signableHeaders, unsignableHeaders, signingRegion, signingService } = {}) {
-        const credentials = await this.credentialProvider();
-        this.validateResolvedCredentials(credentials);
-        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
-        const request = (0, prepareRequest_1.prepareRequest)(requestToSign);
-        const { longDate, shortDate } = formatDate(signingDate);
-        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
-        request.headers[constants_1.AMZ_DATE_HEADER] = longDate;
-        if (credentials.sessionToken) {
-          request.headers[constants_1.TOKEN_HEADER] = credentials.sessionToken;
-        }
-        const payloadHash = await (0, getPayloadHash_1.getPayloadHash)(request, this.sha256);
-        if (!(0, headerUtil_1.hasHeader)(constants_1.SHA256_HEADER, request.headers) && this.applyChecksum) {
-          request.headers[constants_1.SHA256_HEADER] = payloadHash;
-        }
-        const canonicalHeaders = (0, getCanonicalHeaders_1.getCanonicalHeaders)(request, unsignableHeaders, signableHeaders);
-        const signature = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, payloadHash));
-        request.headers[constants_1.AUTH_HEADER] = `${constants_1.ALGORITHM_IDENTIFIER} Credential=${credentials.accessKeyId}/${scope}, SignedHeaders=${getCanonicalHeaderList(canonicalHeaders)}, Signature=${signature}`;
-        return request;
-      }
-      createCanonicalRequest(request, canonicalHeaders, payloadHash) {
-        const sortedHeaders = Object.keys(canonicalHeaders).sort();
-        return `${request.method}
-${this.getCanonicalPath(request)}
-${(0, getCanonicalQuery_1.getCanonicalQuery)(request)}
-${sortedHeaders.map((name) => `${name}:${canonicalHeaders[name]}`).join("\n")}
-
-${sortedHeaders.join(";")}
-${payloadHash}`;
-      }
-      async createStringToSign(longDate, credentialScope, canonicalRequest) {
-        const hash = new this.sha256();
-        hash.update((0, util_utf8_1.toUint8Array)(canonicalRequest));
-        const hashedRequest = await hash.digest();
-        return `${constants_1.ALGORITHM_IDENTIFIER}
-${longDate}
-${credentialScope}
-${(0, util_hex_encoding_1.toHex)(hashedRequest)}`;
-      }
-      getCanonicalPath({ path }) {
-        if (this.uriEscapePath) {
-          const normalizedPathSegments = [];
-          for (const pathSegment of path.split("/")) {
-            if ((pathSegment === null || pathSegment === void 0 ? void 0 : pathSegment.length) === 0)
-              continue;
-            if (pathSegment === ".")
-              continue;
-            if (pathSegment === "..") {
-              normalizedPathSegments.pop();
-            } else {
-              normalizedPathSegments.push(pathSegment);
-            }
-          }
-          const normalizedPath = `${(path === null || path === void 0 ? void 0 : path.startsWith("/")) ? "/" : ""}${normalizedPathSegments.join("/")}${normalizedPathSegments.length > 0 && (path === null || path === void 0 ? void 0 : path.endsWith("/")) ? "/" : ""}`;
-          const doubleEncoded = encodeURIComponent(normalizedPath);
-          return doubleEncoded.replace(/%2F/g, "/");
-        }
-        return path;
-      }
-      async getSignature(longDate, credentialScope, keyPromise, canonicalRequest) {
-        const stringToSign = await this.createStringToSign(longDate, credentialScope, canonicalRequest);
-        const hash = new this.sha256(await keyPromise);
-        hash.update((0, util_utf8_1.toUint8Array)(stringToSign));
-        return (0, util_hex_encoding_1.toHex)(await hash.digest());
-      }
-      getSigningKey(credentials, region, shortDate, service) {
-        return (0, credentialDerivation_1.getSigningKey)(this.sha256, credentials, shortDate, region, service || this.service);
-      }
-      validateResolvedCredentials(credentials) {
-        if (typeof credentials !== "object" || typeof credentials.accessKeyId !== "string" || typeof credentials.secretAccessKey !== "string") {
-          throw new Error("Resolved credential object is not valid");
-        }
-      }
-    };
-    exports.SignatureV4 = SignatureV4;
-    var formatDate = (now) => {
-      const longDate = (0, utilDate_1.iso8601)(now).replace(/[\-:]/g, "");
-      return {
-        longDate,
-        shortDate: longDate.slice(0, 8)
-      };
-    };
-    var getCanonicalHeaderList = (headers) => Object.keys(headers).sort().join(";");
-  }
-});
-
-// node_modules/@aws-sdk/signature-v4/dist-cjs/index.js
-var require_dist_cjs22 = __commonJS({
-  "node_modules/@aws-sdk/signature-v4/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.prepareRequest = exports.moveHeadersToQuery = exports.getPayloadHash = exports.getCanonicalQuery = exports.getCanonicalHeaders = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_SignatureV4(), exports);
-    var getCanonicalHeaders_1 = require_getCanonicalHeaders();
-    Object.defineProperty(exports, "getCanonicalHeaders", { enumerable: true, get: function() {
-      return getCanonicalHeaders_1.getCanonicalHeaders;
-    } });
-    var getCanonicalQuery_1 = require_getCanonicalQuery();
-    Object.defineProperty(exports, "getCanonicalQuery", { enumerable: true, get: function() {
-      return getCanonicalQuery_1.getCanonicalQuery;
-    } });
-    var getPayloadHash_1 = require_getPayloadHash();
-    Object.defineProperty(exports, "getPayloadHash", { enumerable: true, get: function() {
-      return getPayloadHash_1.getPayloadHash;
-    } });
-    var moveHeadersToQuery_1 = require_moveHeadersToQuery();
-    Object.defineProperty(exports, "moveHeadersToQuery", { enumerable: true, get: function() {
-      return moveHeadersToQuery_1.moveHeadersToQuery;
-    } });
-    var prepareRequest_1 = require_prepareRequest();
-    Object.defineProperty(exports, "prepareRequest", { enumerable: true, get: function() {
-      return prepareRequest_1.prepareRequest;
-    } });
-    tslib_1.__exportStar(require_credentialDerivation(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/configurations.js
-var require_configurations2 = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/configurations.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveSigV4AuthConfig = exports.resolveAwsAuthConfig = void 0;
-    var property_provider_1 = require_dist_cjs16();
-    var signature_v4_1 = require_dist_cjs22();
-    var util_middleware_1 = require_dist_cjs2();
-    var CREDENTIAL_EXPIRE_WINDOW = 3e5;
-    var resolveAwsAuthConfig = (input) => {
-      const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
-      const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
-      let signer;
-      if (input.signer) {
-        signer = (0, util_middleware_1.normalizeProvider)(input.signer);
-      } else if (input.regionInfoProvider) {
-        signer = () => (0, util_middleware_1.normalizeProvider)(input.region)().then(async (region) => [
-          await input.regionInfoProvider(region, {
-            useFipsEndpoint: await input.useFipsEndpoint(),
-            useDualstackEndpoint: await input.useDualstackEndpoint()
-          }) || {},
-          region
-        ]).then(([regionInfo, region]) => {
-          const { signingRegion, signingService } = regionInfo;
-          input.signingRegion = input.signingRegion || signingRegion || region;
-          input.signingName = input.signingName || signingService || input.serviceId;
-          const params = {
-            ...input,
-            credentials: normalizedCreds,
-            region: input.signingRegion,
-            service: input.signingName,
-            sha256,
-            uriEscapePath: signingEscapePath
-          };
-          const SignerCtor = input.signerConstructor || signature_v4_1.SignatureV4;
-          return new SignerCtor(params);
-        });
-      } else {
-        signer = async (authScheme) => {
-          authScheme = Object.assign({}, {
-            name: "sigv4",
-            signingName: input.signingName || input.defaultSigningName,
-            signingRegion: await (0, util_middleware_1.normalizeProvider)(input.region)(),
-            properties: {}
-          }, authScheme);
-          const signingRegion = authScheme.signingRegion;
-          const signingService = authScheme.signingName;
-          input.signingRegion = input.signingRegion || signingRegion;
-          input.signingName = input.signingName || signingService || input.serviceId;
-          const params = {
-            ...input,
-            credentials: normalizedCreds,
-            region: input.signingRegion,
-            service: input.signingName,
-            sha256,
-            uriEscapePath: signingEscapePath
-          };
-          const SignerCtor = input.signerConstructor || signature_v4_1.SignatureV4;
-          return new SignerCtor(params);
-        };
-      }
-      return {
-        ...input,
-        systemClockOffset,
-        signingEscapePath,
-        credentials: normalizedCreds,
-        signer
-      };
-    };
-    exports.resolveAwsAuthConfig = resolveAwsAuthConfig;
-    var resolveSigV4AuthConfig = (input) => {
-      const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
-      const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
-      let signer;
-      if (input.signer) {
-        signer = (0, util_middleware_1.normalizeProvider)(input.signer);
-      } else {
-        signer = (0, util_middleware_1.normalizeProvider)(new signature_v4_1.SignatureV4({
-          credentials: normalizedCreds,
-          region: input.region,
-          service: input.signingName,
-          sha256,
-          uriEscapePath: signingEscapePath
-        }));
-      }
-      return {
-        ...input,
-        systemClockOffset,
-        signingEscapePath,
-        credentials: normalizedCreds,
-        signer
-      };
-    };
-    exports.resolveSigV4AuthConfig = resolveSigV4AuthConfig;
-    var normalizeCredentialProvider = (credentials) => {
-      if (typeof credentials === "function") {
-        return (0, property_provider_1.memoize)(credentials, (credentials2) => credentials2.expiration !== void 0 && credentials2.expiration.getTime() - Date.now() < CREDENTIAL_EXPIRE_WINDOW, (credentials2) => credentials2.expiration !== void 0);
-      }
-      return (0, util_middleware_1.normalizeProvider)(credentials);
-    };
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getSkewCorrectedDate.js
-var require_getSkewCorrectedDate = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getSkewCorrectedDate.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getSkewCorrectedDate = void 0;
-    var getSkewCorrectedDate = (systemClockOffset) => new Date(Date.now() + systemClockOffset);
-    exports.getSkewCorrectedDate = getSkewCorrectedDate;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/isClockSkewed.js
-var require_isClockSkewed = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/isClockSkewed.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isClockSkewed = void 0;
-    var getSkewCorrectedDate_1 = require_getSkewCorrectedDate();
-    var isClockSkewed = (clockTime, systemClockOffset) => Math.abs((0, getSkewCorrectedDate_1.getSkewCorrectedDate)(systemClockOffset).getTime() - clockTime) >= 3e5;
-    exports.isClockSkewed = isClockSkewed;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getUpdatedSystemClockOffset.js
-var require_getUpdatedSystemClockOffset = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getUpdatedSystemClockOffset.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getUpdatedSystemClockOffset = void 0;
-    var isClockSkewed_1 = require_isClockSkewed();
-    var getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset) => {
-      const clockTimeInMs = Date.parse(clockTime);
-      if ((0, isClockSkewed_1.isClockSkewed)(clockTimeInMs, currentSystemClockOffset)) {
-        return clockTimeInMs - Date.now();
-      }
-      return currentSystemClockOffset;
-    };
-    exports.getUpdatedSystemClockOffset = getUpdatedSystemClockOffset;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js
-var require_middleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getSigV4AuthPlugin = exports.getAwsAuthPlugin = exports.awsAuthMiddlewareOptions = exports.awsAuthMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var getSkewCorrectedDate_1 = require_getSkewCorrectedDate();
-    var getUpdatedSystemClockOffset_1 = require_getUpdatedSystemClockOffset();
-    var awsAuthMiddleware = (options) => (next, context) => async function(args) {
-      var _a, _b, _c, _d;
-      if (!protocol_http_1.HttpRequest.isInstance(args.request))
-        return next(args);
-      const authScheme = (_c = (_b = (_a = context.endpointV2) === null || _a === void 0 ? void 0 : _a.properties) === null || _b === void 0 ? void 0 : _b.authSchemes) === null || _c === void 0 ? void 0 : _c[0];
-      const multiRegionOverride = (authScheme === null || authScheme === void 0 ? void 0 : authScheme.name) === "sigv4a" ? (_d = authScheme === null || authScheme === void 0 ? void 0 : authScheme.signingRegionSet) === null || _d === void 0 ? void 0 : _d.join(",") : void 0;
-      const signer = await options.signer(authScheme);
-      const output = await next({
-        ...args,
-        request: await signer.sign(args.request, {
-          signingDate: (0, getSkewCorrectedDate_1.getSkewCorrectedDate)(options.systemClockOffset),
-          signingRegion: multiRegionOverride || context["signing_region"],
-          signingService: context["signing_service"]
-        })
-      }).catch((error) => {
-        var _a2;
-        const serverTime = (_a2 = error.ServerTime) !== null && _a2 !== void 0 ? _a2 : getDateHeader(error.$response);
-        if (serverTime) {
-          options.systemClockOffset = (0, getUpdatedSystemClockOffset_1.getUpdatedSystemClockOffset)(serverTime, options.systemClockOffset);
-        }
-        throw error;
-      });
-      const dateHeader = getDateHeader(output.response);
-      if (dateHeader) {
-        options.systemClockOffset = (0, getUpdatedSystemClockOffset_1.getUpdatedSystemClockOffset)(dateHeader, options.systemClockOffset);
-      }
-      return output;
-    };
-    exports.awsAuthMiddleware = awsAuthMiddleware;
-    var getDateHeader = (response2) => {
-      var _a, _b, _c;
-      return protocol_http_1.HttpResponse.isInstance(response2) ? (_b = (_a = response2.headers) === null || _a === void 0 ? void 0 : _a.date) !== null && _b !== void 0 ? _b : (_c = response2.headers) === null || _c === void 0 ? void 0 : _c.Date : void 0;
-    };
-    exports.awsAuthMiddlewareOptions = {
-      name: "awsAuthMiddleware",
-      tags: ["SIGNATURE", "AWSAUTH"],
-      relation: "after",
-      toMiddleware: "retryMiddleware",
-      override: true
-    };
-    var getAwsAuthPlugin = (options) => ({
-      applyToStack: (clientStack) => {
-        clientStack.addRelativeTo((0, exports.awsAuthMiddleware)(options), exports.awsAuthMiddlewareOptions);
-      }
-    });
-    exports.getAwsAuthPlugin = getAwsAuthPlugin;
-    exports.getSigV4AuthPlugin = exports.getAwsAuthPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-signing/dist-cjs/index.js
-var require_dist_cjs23 = __commonJS({
-  "node_modules/@aws-sdk/middleware-signing/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_configurations2(), exports);
-    tslib_1.__exportStar(require_middleware(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/configurations.js
-var require_configurations3 = __commonJS({
-  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/configurations.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveUserAgentConfig = void 0;
-    function resolveUserAgentConfig(input) {
-      return {
-        ...input,
-        customUserAgent: typeof input.customUserAgent === "string" ? [[input.customUserAgent]] : input.customUserAgent
-      };
-    }
-    exports.resolveUserAgentConfig = resolveUserAgentConfig;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partitions.json
-var require_partitions = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partitions.json"(exports, module2) {
-    module2.exports = {
-      partitions: [{
-        id: "aws",
-        outputs: {
-          dnsSuffix: "amazonaws.com",
-          dualStackDnsSuffix: "api.aws",
-          name: "aws",
-          supportsDualStack: true,
-          supportsFIPS: true
-        },
-        regionRegex: "^(us|eu|ap|sa|ca|me|af)\\-\\w+\\-\\d+$",
-        regions: {
-          "af-south-1": {
-            description: "Africa (Cape Town)"
-          },
-          "ap-east-1": {
-            description: "Asia Pacific (Hong Kong)"
-          },
-          "ap-northeast-1": {
-            description: "Asia Pacific (Tokyo)"
-          },
-          "ap-northeast-2": {
-            description: "Asia Pacific (Seoul)"
-          },
-          "ap-northeast-3": {
-            description: "Asia Pacific (Osaka)"
-          },
-          "ap-south-1": {
-            description: "Asia Pacific (Mumbai)"
-          },
-          "ap-south-2": {
-            description: "Asia Pacific (Hyderabad)"
-          },
-          "ap-southeast-1": {
-            description: "Asia Pacific (Singapore)"
-          },
-          "ap-southeast-2": {
-            description: "Asia Pacific (Sydney)"
-          },
-          "ap-southeast-3": {
-            description: "Asia Pacific (Jakarta)"
-          },
-          "ap-southeast-4": {
-            description: "Asia Pacific (Melbourne)"
-          },
-          "aws-global": {
-            description: "AWS Standard global region"
-          },
-          "ca-central-1": {
-            description: "Canada (Central)"
-          },
-          "eu-central-1": {
-            description: "Europe (Frankfurt)"
-          },
-          "eu-central-2": {
-            description: "Europe (Zurich)"
-          },
-          "eu-north-1": {
-            description: "Europe (Stockholm)"
-          },
-          "eu-south-1": {
-            description: "Europe (Milan)"
-          },
-          "eu-south-2": {
-            description: "Europe (Spain)"
-          },
-          "eu-west-1": {
-            description: "Europe (Ireland)"
-          },
-          "eu-west-2": {
-            description: "Europe (London)"
-          },
-          "eu-west-3": {
-            description: "Europe (Paris)"
-          },
-          "me-central-1": {
-            description: "Middle East (UAE)"
-          },
-          "me-south-1": {
-            description: "Middle East (Bahrain)"
-          },
-          "sa-east-1": {
-            description: "South America (Sao Paulo)"
-          },
-          "us-east-1": {
-            description: "US East (N. Virginia)"
-          },
-          "us-east-2": {
-            description: "US East (Ohio)"
-          },
-          "us-west-1": {
-            description: "US West (N. California)"
-          },
-          "us-west-2": {
-            description: "US West (Oregon)"
-          }
-        }
-      }, {
-        id: "aws-cn",
-        outputs: {
-          dnsSuffix: "amazonaws.com.cn",
-          dualStackDnsSuffix: "api.amazonwebservices.com.cn",
-          name: "aws-cn",
-          supportsDualStack: true,
-          supportsFIPS: true
-        },
-        regionRegex: "^cn\\-\\w+\\-\\d+$",
-        regions: {
-          "aws-cn-global": {
-            description: "AWS China global region"
-          },
-          "cn-north-1": {
-            description: "China (Beijing)"
-          },
-          "cn-northwest-1": {
-            description: "China (Ningxia)"
-          }
-        }
-      }, {
-        id: "aws-us-gov",
-        outputs: {
-          dnsSuffix: "amazonaws.com",
-          dualStackDnsSuffix: "api.aws",
-          name: "aws-us-gov",
-          supportsDualStack: true,
-          supportsFIPS: true
-        },
-        regionRegex: "^us\\-gov\\-\\w+\\-\\d+$",
-        regions: {
-          "aws-us-gov-global": {
-            description: "AWS GovCloud (US) global region"
-          },
-          "us-gov-east-1": {
-            description: "AWS GovCloud (US-East)"
-          },
-          "us-gov-west-1": {
-            description: "AWS GovCloud (US-West)"
-          }
-        }
-      }, {
-        id: "aws-iso",
-        outputs: {
-          dnsSuffix: "c2s.ic.gov",
-          dualStackDnsSuffix: "c2s.ic.gov",
-          name: "aws-iso",
-          supportsDualStack: false,
-          supportsFIPS: true
-        },
-        regionRegex: "^us\\-iso\\-\\w+\\-\\d+$",
-        regions: {
-          "aws-iso-global": {
-            description: "AWS ISO (US) global region"
-          },
-          "us-iso-east-1": {
-            description: "US ISO East"
-          },
-          "us-iso-west-1": {
-            description: "US ISO WEST"
-          }
-        }
-      }, {
-        id: "aws-iso-b",
-        outputs: {
-          dnsSuffix: "sc2s.sgov.gov",
-          dualStackDnsSuffix: "sc2s.sgov.gov",
-          name: "aws-iso-b",
-          supportsDualStack: false,
-          supportsFIPS: true
-        },
-        regionRegex: "^us\\-isob\\-\\w+\\-\\d+$",
-        regions: {
-          "aws-iso-b-global": {
-            description: "AWS ISOB (US) global region"
-          },
-          "us-isob-east-1": {
-            description: "US ISOB East (Ohio)"
-          }
-        }
-      }],
-      version: "1.1"
-    };
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partition.js
-var require_partition = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partition.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getUserAgentPrefix = exports.useDefaultPartitionInfo = exports.setPartitionInfo = exports.partition = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    var partitions_json_1 = tslib_1.__importDefault(require_partitions());
-    var selectedPartitionsInfo = partitions_json_1.default;
-    var selectedUserAgentPrefix = "";
-    var partition = (value) => {
-      const { partitions } = selectedPartitionsInfo;
-      for (const partition2 of partitions) {
-        const { regions, outputs } = partition2;
-        for (const [region, regionData] of Object.entries(regions)) {
-          if (region === value) {
-            return {
-              ...outputs,
-              ...regionData
-            };
-          }
-        }
-      }
-      for (const partition2 of partitions) {
-        const { regionRegex, outputs } = partition2;
-        if (new RegExp(regionRegex).test(value)) {
-          return {
-            ...outputs
-          };
-        }
-      }
-      const DEFAULT_PARTITION = partitions.find((partition2) => partition2.id === "aws");
-      if (!DEFAULT_PARTITION) {
-        throw new Error("Provided region was not found in the partition array or regex, and default partition with id 'aws' doesn't exist.");
-      }
-      return {
-        ...DEFAULT_PARTITION.outputs
-      };
-    };
-    exports.partition = partition;
-    var setPartitionInfo = (partitionsInfo, userAgentPrefix = "") => {
-      selectedPartitionsInfo = partitionsInfo;
-      selectedUserAgentPrefix = userAgentPrefix;
-    };
-    exports.setPartitionInfo = setPartitionInfo;
-    var useDefaultPartitionInfo = () => {
-      (0, exports.setPartitionInfo)(partitions_json_1.default, "");
-    };
-    exports.useDefaultPartitionInfo = useDefaultPartitionInfo;
-    var getUserAgentPrefix = () => selectedUserAgentPrefix;
-    exports.getUserAgentPrefix = getUserAgentPrefix;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/debugId.js
-var require_debugId = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/debugId.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.debugId = void 0;
-    exports.debugId = "endpoints";
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/toDebugString.js
-var require_toDebugString = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/toDebugString.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toDebugString = void 0;
-    function toDebugString(input) {
-      if (typeof input !== "object" || input == null) {
-        return input;
-      }
-      if ("ref" in input) {
-        return `$${toDebugString(input.ref)}`;
-      }
-      if ("fn" in input) {
-        return `${input.fn}(${(input.argv || []).map(toDebugString).join(", ")})`;
-      }
-      return JSON.stringify(input, null, 2);
-    }
-    exports.toDebugString = toDebugString;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/index.js
-var require_debug = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_debugId(), exports);
-    tslib_1.__exportStar(require_toDebugString(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointError.js
-var require_EndpointError = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointError.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.EndpointError = void 0;
-    var EndpointError = class extends Error {
-      constructor(message) {
-        super(message);
-        this.name = "EndpointError";
-      }
-    };
-    exports.EndpointError = EndpointError;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointRuleObject.js
-var require_EndpointRuleObject = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointRuleObject.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/ErrorRuleObject.js
-var require_ErrorRuleObject = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/ErrorRuleObject.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/RuleSetObject.js
-var require_RuleSetObject = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/RuleSetObject.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/TreeRuleObject.js
-var require_TreeRuleObject = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/TreeRuleObject.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/shared.js
-var require_shared = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/shared.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/index.js
-var require_types3 = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_EndpointError(), exports);
-    tslib_1.__exportStar(require_EndpointRuleObject(), exports);
-    tslib_1.__exportStar(require_ErrorRuleObject(), exports);
-    tslib_1.__exportStar(require_RuleSetObject(), exports);
-    tslib_1.__exportStar(require_TreeRuleObject(), exports);
-    tslib_1.__exportStar(require_shared(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isIpAddress.js
-var require_isIpAddress = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isIpAddress.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isIpAddress = void 0;
-    var IP_V4_REGEX = new RegExp(`^(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$`);
-    var isIpAddress = (value) => IP_V4_REGEX.test(value) || value.startsWith("[") && value.endsWith("]");
-    exports.isIpAddress = isIpAddress;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isValidHostLabel.js
-var require_isValidHostLabel = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isValidHostLabel.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isValidHostLabel = void 0;
-    var VALID_HOST_LABEL_REGEX = new RegExp(`^(?!.*-$)(?!-)[a-zA-Z0-9-]{1,63}$`);
-    var isValidHostLabel = (value, allowSubDomains = false) => {
-      if (!allowSubDomains) {
-        return VALID_HOST_LABEL_REGEX.test(value);
-      }
-      const labels = value.split(".");
-      for (const label of labels) {
-        if (!(0, exports.isValidHostLabel)(label)) {
-          return false;
-        }
-      }
-      return true;
-    };
-    exports.isValidHostLabel = isValidHostLabel;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/isVirtualHostableS3Bucket.js
-var require_isVirtualHostableS3Bucket = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/isVirtualHostableS3Bucket.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isVirtualHostableS3Bucket = void 0;
-    var isIpAddress_1 = require_isIpAddress();
-    var isValidHostLabel_1 = require_isValidHostLabel();
-    var isVirtualHostableS3Bucket = (value, allowSubDomains = false) => {
-      if (allowSubDomains) {
-        for (const label of value.split(".")) {
-          if (!(0, exports.isVirtualHostableS3Bucket)(label)) {
-            return false;
-          }
-        }
-        return true;
-      }
-      if (!(0, isValidHostLabel_1.isValidHostLabel)(value)) {
-        return false;
-      }
-      if (value.length < 3 || value.length > 63) {
-        return false;
-      }
-      if (value !== value.toLowerCase()) {
-        return false;
-      }
-      if ((0, isIpAddress_1.isIpAddress)(value)) {
-        return false;
-      }
-      return true;
-    };
-    exports.isVirtualHostableS3Bucket = isVirtualHostableS3Bucket;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/parseArn.js
-var require_parseArn = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/parseArn.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.parseArn = void 0;
-    var parseArn = (value) => {
-      const segments = value.split(":");
-      if (segments.length < 6)
-        return null;
-      const [arn, partition, service, region, accountId, ...resourceId] = segments;
-      if (arn !== "arn" || partition === "" || service === "" || resourceId[0] === "")
-        return null;
-      return {
-        partition,
-        service,
-        region,
-        accountId,
-        resourceId: resourceId[0].includes("/") ? resourceId[0].split("/") : resourceId
-      };
-    };
-    exports.parseArn = parseArn;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/index.js
-var require_aws = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_isVirtualHostableS3Bucket(), exports);
-    tslib_1.__exportStar(require_parseArn(), exports);
-    tslib_1.__exportStar(require_partition(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/booleanEquals.js
-var require_booleanEquals = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/booleanEquals.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.booleanEquals = void 0;
-    var booleanEquals = (value1, value2) => value1 === value2;
-    exports.booleanEquals = booleanEquals;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttrPathList.js
-var require_getAttrPathList = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttrPathList.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getAttrPathList = void 0;
-    var types_1 = require_types3();
-    var getAttrPathList = (path) => {
-      const parts = path.split(".");
-      const pathList = [];
-      for (const part of parts) {
-        const squareBracketIndex = part.indexOf("[");
-        if (squareBracketIndex !== -1) {
-          if (part.indexOf("]") !== part.length - 1) {
-            throw new types_1.EndpointError(`Path: '${path}' does not end with ']'`);
-          }
-          const arrayIndex = part.slice(squareBracketIndex + 1, -1);
-          if (Number.isNaN(parseInt(arrayIndex))) {
-            throw new types_1.EndpointError(`Invalid array index: '${arrayIndex}' in path: '${path}'`);
-          }
-          if (squareBracketIndex !== 0) {
-            pathList.push(part.slice(0, squareBracketIndex));
-          }
-          pathList.push(arrayIndex);
-        } else {
-          pathList.push(part);
-        }
-      }
-      return pathList;
-    };
-    exports.getAttrPathList = getAttrPathList;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttr.js
-var require_getAttr = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttr.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getAttr = void 0;
-    var types_1 = require_types3();
-    var getAttrPathList_1 = require_getAttrPathList();
-    var getAttr = (value, path) => (0, getAttrPathList_1.getAttrPathList)(path).reduce((acc, index) => {
-      if (typeof acc !== "object") {
-        throw new types_1.EndpointError(`Index '${index}' in '${path}' not found in '${JSON.stringify(value)}'`);
-      } else if (Array.isArray(acc)) {
-        return acc[parseInt(index)];
-      }
-      return acc[index];
-    }, value);
-    exports.getAttr = getAttr;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isSet.js
-var require_isSet = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isSet.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isSet = void 0;
-    var isSet = (value) => value != null;
-    exports.isSet = isSet;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/not.js
-var require_not = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/not.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.not = void 0;
-    var not = (value) => !value;
-    exports.not = not;
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/abort.js
-var require_abort = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/abort.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/auth.js
-var require_auth = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/auth.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.HttpAuthLocation = void 0;
-    var HttpAuthLocation;
-    (function(HttpAuthLocation2) {
-      HttpAuthLocation2["HEADER"] = "header";
-      HttpAuthLocation2["QUERY"] = "query";
-    })(HttpAuthLocation = exports.HttpAuthLocation || (exports.HttpAuthLocation = {}));
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/checksum.js
-var require_checksum = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/checksum.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/client.js
-var require_client = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/client.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/command.js
-var require_command = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/command.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/connection/config.js
-var require_config3 = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/connection/config.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/connection/manager.js
-var require_manager = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/connection/manager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/connection/pool.js
-var require_pool = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/connection/pool.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/connection/index.js
-var require_connection = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/connection/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_config3(), exports);
-    tslib_1.__exportStar(require_manager(), exports);
-    tslib_1.__exportStar(require_pool(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/credentials.js
-var require_credentials = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/credentials.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/crypto.js
-var require_crypto = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/crypto.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/dns.js
-var require_dns = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/dns.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.HostAddressType = void 0;
-    var HostAddressType;
-    (function(HostAddressType2) {
-      HostAddressType2["AAAA"] = "AAAA";
-      HostAddressType2["A"] = "A";
-    })(HostAddressType = exports.HostAddressType || (exports.HostAddressType = {}));
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/endpoint.js
-var require_endpoint = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/endpoint.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.EndpointURLScheme = void 0;
-    var EndpointURLScheme;
-    (function(EndpointURLScheme2) {
-      EndpointURLScheme2["HTTP"] = "http";
-      EndpointURLScheme2["HTTPS"] = "https";
-    })(EndpointURLScheme = exports.EndpointURLScheme || (exports.EndpointURLScheme = {}));
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/eventStream.js
-var require_eventStream = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/eventStream.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/http.js
-var require_http = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/http.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/AnonymousIdentity.js
-var require_AnonymousIdentity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/AnonymousIdentity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/AwsCredentialIdentity.js
-var require_AwsCredentialIdentity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/AwsCredentialIdentity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/Identity.js
-var require_Identity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/Identity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/LoginIdentity.js
-var require_LoginIdentity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/LoginIdentity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/TokenIdentity.js
-var require_TokenIdentity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/TokenIdentity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/identity/index.js
-var require_identity = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/identity/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_AnonymousIdentity(), exports);
-    tslib_1.__exportStar(require_AwsCredentialIdentity(), exports);
-    tslib_1.__exportStar(require_Identity(), exports);
-    tslib_1.__exportStar(require_LoginIdentity(), exports);
-    tslib_1.__exportStar(require_TokenIdentity(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/logger.js
-var require_logger = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/logger.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/middleware.js
-var require_middleware2 = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/middleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/pagination.js
-var require_pagination = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/pagination.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/profile.js
-var require_profile = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/profile.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/request.js
-var require_request = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/request.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/response.js
-var require_response = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/response.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/retry.js
-var require_retry = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/retry.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/serde.js
-var require_serde = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/serde.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/shapes.js
-var require_shapes = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/shapes.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/signature.js
-var require_signature = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/signature.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/stream.js
-var require_stream = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/stream.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/token.js
-var require_token = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/token.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/transfer.js
-var require_transfer = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/transfer.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.RequestHandlerProtocol = void 0;
-    var RequestHandlerProtocol;
-    (function(RequestHandlerProtocol2) {
-      RequestHandlerProtocol2["HTTP_0_9"] = "http/0.9";
-      RequestHandlerProtocol2["HTTP_1_0"] = "http/1.0";
-      RequestHandlerProtocol2["TDS_8_0"] = "tds/8.0";
-    })(RequestHandlerProtocol = exports.RequestHandlerProtocol || (exports.RequestHandlerProtocol = {}));
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/util.js
-var require_util2 = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/util.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/waiter.js
-var require_waiter = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/waiter.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/types/dist-cjs/index.js
-var require_dist_cjs24 = __commonJS({
-  "node_modules/@aws-sdk/types/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_abort(), exports);
-    tslib_1.__exportStar(require_auth(), exports);
-    tslib_1.__exportStar(require_checksum(), exports);
-    tslib_1.__exportStar(require_client(), exports);
-    tslib_1.__exportStar(require_command(), exports);
-    tslib_1.__exportStar(require_connection(), exports);
-    tslib_1.__exportStar(require_credentials(), exports);
-    tslib_1.__exportStar(require_crypto(), exports);
-    tslib_1.__exportStar(require_dns(), exports);
-    tslib_1.__exportStar(require_endpoint(), exports);
-    tslib_1.__exportStar(require_eventStream(), exports);
-    tslib_1.__exportStar(require_http(), exports);
-    tslib_1.__exportStar(require_identity(), exports);
-    tslib_1.__exportStar(require_logger(), exports);
-    tslib_1.__exportStar(require_middleware2(), exports);
-    tslib_1.__exportStar(require_pagination(), exports);
-    tslib_1.__exportStar(require_profile(), exports);
-    tslib_1.__exportStar(require_request(), exports);
-    tslib_1.__exportStar(require_response(), exports);
-    tslib_1.__exportStar(require_retry(), exports);
-    tslib_1.__exportStar(require_serde(), exports);
-    tslib_1.__exportStar(require_shapes(), exports);
-    tslib_1.__exportStar(require_signature(), exports);
-    tslib_1.__exportStar(require_stream(), exports);
-    tslib_1.__exportStar(require_token(), exports);
-    tslib_1.__exportStar(require_transfer(), exports);
-    tslib_1.__exportStar(require_util2(), exports);
-    tslib_1.__exportStar(require_waiter(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/parseURL.js
-var require_parseURL = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/parseURL.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.parseURL = void 0;
-    var types_1 = require_dist_cjs24();
-    var isIpAddress_1 = require_isIpAddress();
-    var DEFAULT_PORTS = {
-      [types_1.EndpointURLScheme.HTTP]: 80,
-      [types_1.EndpointURLScheme.HTTPS]: 443
-    };
-    var parseURL = (value) => {
-      const whatwgURL = (() => {
-        try {
-          if (value instanceof URL) {
-            return value;
-          }
-          if (typeof value === "object" && "hostname" in value) {
-            const { hostname: hostname2, port, protocol: protocol2 = "", path = "", query = {} } = value;
-            const url = new URL(`${protocol2}//${hostname2}${port ? `:${port}` : ""}${path}`);
-            url.search = Object.entries(query).map(([k, v]) => `${k}=${v}`).join("&");
-            return url;
-          }
-          return new URL(value);
-        } catch (error) {
-          return null;
-        }
-      })();
-      if (!whatwgURL) {
-        console.error(`Unable to parse ${JSON.stringify(value)} as a whatwg URL.`);
-        return null;
-      }
-      const urlString = whatwgURL.href;
-      const { host, hostname, pathname, protocol, search } = whatwgURL;
-      if (search) {
-        return null;
-      }
-      const scheme = protocol.slice(0, -1);
-      if (!Object.values(types_1.EndpointURLScheme).includes(scheme)) {
-        return null;
-      }
-      const isIp = (0, isIpAddress_1.isIpAddress)(hostname);
-      const inputContainsDefaultPort = urlString.includes(`${host}:${DEFAULT_PORTS[scheme]}`) || typeof value === "string" && value.includes(`${host}:${DEFAULT_PORTS[scheme]}`);
-      const authority = `${host}${inputContainsDefaultPort ? `:${DEFAULT_PORTS[scheme]}` : ``}`;
-      return {
-        scheme,
-        authority,
-        path: pathname,
-        normalizedPath: pathname.endsWith("/") ? pathname : `${pathname}/`,
-        isIp
-      };
-    };
-    exports.parseURL = parseURL;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/stringEquals.js
-var require_stringEquals = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/stringEquals.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.stringEquals = void 0;
-    var stringEquals = (value1, value2) => value1 === value2;
-    exports.stringEquals = stringEquals;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/substring.js
-var require_substring = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/substring.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.substring = void 0;
-    var substring = (input, start, stop, reverse) => {
-      if (start >= stop || input.length < stop) {
-        return null;
-      }
-      if (!reverse) {
-        return input.substring(start, stop);
-      }
-      return input.substring(input.length - stop, input.length - start);
-    };
-    exports.substring = substring;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/uriEncode.js
-var require_uriEncode = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/uriEncode.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.uriEncode = void 0;
-    var uriEncode = (value) => encodeURIComponent(value).replace(/[!*'()]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
-    exports.uriEncode = uriEncode;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/index.js
-var require_lib = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.aws = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    exports.aws = tslib_1.__importStar(require_aws());
-    tslib_1.__exportStar(require_booleanEquals(), exports);
-    tslib_1.__exportStar(require_getAttr(), exports);
-    tslib_1.__exportStar(require_isSet(), exports);
-    tslib_1.__exportStar(require_isValidHostLabel(), exports);
-    tslib_1.__exportStar(require_not(), exports);
-    tslib_1.__exportStar(require_parseURL(), exports);
-    tslib_1.__exportStar(require_stringEquals(), exports);
-    tslib_1.__exportStar(require_substring(), exports);
-    tslib_1.__exportStar(require_uriEncode(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTemplate.js
-var require_evaluateTemplate = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTemplate.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateTemplate = void 0;
-    var lib_1 = require_lib();
-    var evaluateTemplate = (template, options) => {
-      const evaluatedTemplateArr = [];
-      const templateContext = {
-        ...options.endpointParams,
-        ...options.referenceRecord
-      };
-      let currentIndex = 0;
-      while (currentIndex < template.length) {
-        const openingBraceIndex = template.indexOf("{", currentIndex);
-        if (openingBraceIndex === -1) {
-          evaluatedTemplateArr.push(template.slice(currentIndex));
-          break;
-        }
-        evaluatedTemplateArr.push(template.slice(currentIndex, openingBraceIndex));
-        const closingBraceIndex = template.indexOf("}", openingBraceIndex);
-        if (closingBraceIndex === -1) {
-          evaluatedTemplateArr.push(template.slice(openingBraceIndex));
-          break;
-        }
-        if (template[openingBraceIndex + 1] === "{" && template[closingBraceIndex + 1] === "}") {
-          evaluatedTemplateArr.push(template.slice(openingBraceIndex + 1, closingBraceIndex));
-          currentIndex = closingBraceIndex + 2;
-        }
-        const parameterName = template.substring(openingBraceIndex + 1, closingBraceIndex);
-        if (parameterName.includes("#")) {
-          const [refName, attrName] = parameterName.split("#");
-          evaluatedTemplateArr.push((0, lib_1.getAttr)(templateContext[refName], attrName));
-        } else {
-          evaluatedTemplateArr.push(templateContext[parameterName]);
-        }
-        currentIndex = closingBraceIndex + 1;
-      }
-      return evaluatedTemplateArr.join("");
-    };
-    exports.evaluateTemplate = evaluateTemplate;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getReferenceValue.js
-var require_getReferenceValue = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getReferenceValue.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getReferenceValue = void 0;
-    var getReferenceValue = ({ ref }, options) => {
-      const referenceRecord = {
-        ...options.endpointParams,
-        ...options.referenceRecord
-      };
-      return referenceRecord[ref];
-    };
-    exports.getReferenceValue = getReferenceValue;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateExpression.js
-var require_evaluateExpression = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateExpression.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateExpression = void 0;
-    var types_1 = require_types3();
-    var callFunction_1 = require_callFunction();
-    var evaluateTemplate_1 = require_evaluateTemplate();
-    var getReferenceValue_1 = require_getReferenceValue();
-    var evaluateExpression = (obj, keyName, options) => {
-      if (typeof obj === "string") {
-        return (0, evaluateTemplate_1.evaluateTemplate)(obj, options);
-      } else if (obj["fn"]) {
-        return (0, callFunction_1.callFunction)(obj, options);
-      } else if (obj["ref"]) {
-        return (0, getReferenceValue_1.getReferenceValue)(obj, options);
-      }
-      throw new types_1.EndpointError(`'${keyName}': ${String(obj)} is not a string, function or reference.`);
-    };
-    exports.evaluateExpression = evaluateExpression;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/callFunction.js
-var require_callFunction = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/callFunction.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.callFunction = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    var lib = tslib_1.__importStar(require_lib());
-    var evaluateExpression_1 = require_evaluateExpression();
-    var callFunction = ({ fn, argv }, options) => {
-      const evaluatedArgs = argv.map((arg) => ["boolean", "number"].includes(typeof arg) ? arg : (0, evaluateExpression_1.evaluateExpression)(arg, "arg", options));
-      return fn.split(".").reduce((acc, key) => acc[key], lib)(...evaluatedArgs);
-    };
-    exports.callFunction = callFunction;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateCondition.js
-var require_evaluateCondition = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateCondition.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateCondition = void 0;
-    var debug_1 = require_debug();
-    var types_1 = require_types3();
-    var callFunction_1 = require_callFunction();
-    var evaluateCondition = ({ assign, ...fnArgs }, options) => {
-      var _a, _b;
-      if (assign && assign in options.referenceRecord) {
-        throw new types_1.EndpointError(`'${assign}' is already defined in Reference Record.`);
-      }
-      const value = (0, callFunction_1.callFunction)(fnArgs, options);
-      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `evaluateCondition: ${(0, debug_1.toDebugString)(fnArgs)} = ${(0, debug_1.toDebugString)(value)}`);
-      return {
-        result: value === "" ? true : !!value,
-        ...assign != null && { toAssign: { name: assign, value } }
-      };
-    };
-    exports.evaluateCondition = evaluateCondition;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateConditions.js
-var require_evaluateConditions = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateConditions.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateConditions = void 0;
-    var debug_1 = require_debug();
-    var evaluateCondition_1 = require_evaluateCondition();
-    var evaluateConditions = (conditions = [], options) => {
-      var _a, _b;
-      const conditionsReferenceRecord = {};
-      for (const condition of conditions) {
-        const { result, toAssign } = (0, evaluateCondition_1.evaluateCondition)(condition, {
-          ...options,
-          referenceRecord: {
-            ...options.referenceRecord,
-            ...conditionsReferenceRecord
-          }
-        });
-        if (!result) {
-          return { result };
-        }
-        if (toAssign) {
-          conditionsReferenceRecord[toAssign.name] = toAssign.value;
-          (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `assign: ${toAssign.name} := ${(0, debug_1.toDebugString)(toAssign.value)}`);
-        }
-      }
-      return { result: true, referenceRecord: conditionsReferenceRecord };
-    };
-    exports.evaluateConditions = evaluateConditions;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointHeaders.js
-var require_getEndpointHeaders = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointHeaders.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointHeaders = void 0;
-    var types_1 = require_types3();
-    var evaluateExpression_1 = require_evaluateExpression();
-    var getEndpointHeaders = (headers, options) => Object.entries(headers).reduce((acc, [headerKey, headerVal]) => ({
-      ...acc,
-      [headerKey]: headerVal.map((headerValEntry) => {
-        const processedExpr = (0, evaluateExpression_1.evaluateExpression)(headerValEntry, "Header value entry", options);
-        if (typeof processedExpr !== "string") {
-          throw new types_1.EndpointError(`Header '${headerKey}' value '${processedExpr}' is not a string`);
-        }
-        return processedExpr;
-      })
-    }), {});
-    exports.getEndpointHeaders = getEndpointHeaders;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperty.js
-var require_getEndpointProperty = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperty.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointProperty = void 0;
-    var types_1 = require_types3();
-    var evaluateTemplate_1 = require_evaluateTemplate();
-    var getEndpointProperties_1 = require_getEndpointProperties();
-    var getEndpointProperty = (property, options) => {
-      if (Array.isArray(property)) {
-        return property.map((propertyEntry) => (0, exports.getEndpointProperty)(propertyEntry, options));
-      }
-      switch (typeof property) {
-        case "string":
-          return (0, evaluateTemplate_1.evaluateTemplate)(property, options);
-        case "object":
-          if (property === null) {
-            throw new types_1.EndpointError(`Unexpected endpoint property: ${property}`);
-          }
-          return (0, getEndpointProperties_1.getEndpointProperties)(property, options);
-        case "boolean":
-          return property;
-        default:
-          throw new types_1.EndpointError(`Unexpected endpoint property type: ${typeof property}`);
-      }
-    };
-    exports.getEndpointProperty = getEndpointProperty;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperties.js
-var require_getEndpointProperties = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperties.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointProperties = void 0;
-    var getEndpointProperty_1 = require_getEndpointProperty();
-    var getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => ({
-      ...acc,
-      [propertyKey]: (0, getEndpointProperty_1.getEndpointProperty)(propertyVal, options)
-    }), {});
-    exports.getEndpointProperties = getEndpointProperties;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointUrl.js
-var require_getEndpointUrl = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointUrl.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getEndpointUrl = void 0;
-    var types_1 = require_types3();
-    var evaluateExpression_1 = require_evaluateExpression();
-    var getEndpointUrl = (endpointUrl, options) => {
-      const expression = (0, evaluateExpression_1.evaluateExpression)(endpointUrl, "Endpoint URL", options);
-      if (typeof expression === "string") {
-        try {
-          return new URL(expression);
-        } catch (error) {
-          console.error(`Failed to construct URL with ${expression}`, error);
-          throw error;
-        }
-      }
-      throw new types_1.EndpointError(`Endpoint URL must be a string, got ${typeof expression}`);
-    };
-    exports.getEndpointUrl = getEndpointUrl;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateEndpointRule.js
-var require_evaluateEndpointRule = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateEndpointRule.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateEndpointRule = void 0;
-    var debug_1 = require_debug();
-    var evaluateConditions_1 = require_evaluateConditions();
-    var getEndpointHeaders_1 = require_getEndpointHeaders();
-    var getEndpointProperties_1 = require_getEndpointProperties();
-    var getEndpointUrl_1 = require_getEndpointUrl();
-    var evaluateEndpointRule = (endpointRule, options) => {
-      var _a, _b;
-      const { conditions, endpoint } = endpointRule;
-      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
-      if (!result) {
-        return;
-      }
-      const endpointRuleOptions = {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
-      };
-      const { url, properties, headers } = endpoint;
-      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `Resolving endpoint from template: ${(0, debug_1.toDebugString)(endpoint)}`);
-      return {
-        ...headers != void 0 && {
-          headers: (0, getEndpointHeaders_1.getEndpointHeaders)(headers, endpointRuleOptions)
-        },
-        ...properties != void 0 && {
-          properties: (0, getEndpointProperties_1.getEndpointProperties)(properties, endpointRuleOptions)
-        },
-        url: (0, getEndpointUrl_1.getEndpointUrl)(url, endpointRuleOptions)
-      };
-    };
-    exports.evaluateEndpointRule = evaluateEndpointRule;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateErrorRule.js
-var require_evaluateErrorRule = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateErrorRule.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateErrorRule = void 0;
-    var types_1 = require_types3();
-    var evaluateConditions_1 = require_evaluateConditions();
-    var evaluateExpression_1 = require_evaluateExpression();
-    var evaluateErrorRule = (errorRule, options) => {
-      const { conditions, error } = errorRule;
-      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
-      if (!result) {
-        return;
-      }
-      throw new types_1.EndpointError((0, evaluateExpression_1.evaluateExpression)(error, "Error", {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
-      }));
-    };
-    exports.evaluateErrorRule = evaluateErrorRule;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTreeRule.js
-var require_evaluateTreeRule = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTreeRule.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateTreeRule = void 0;
-    var evaluateConditions_1 = require_evaluateConditions();
-    var evaluateRules_1 = require_evaluateRules();
-    var evaluateTreeRule = (treeRule, options) => {
-      const { conditions, rules } = treeRule;
-      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
-      if (!result) {
-        return;
-      }
-      return (0, evaluateRules_1.evaluateRules)(rules, {
-        ...options,
-        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
-      });
-    };
-    exports.evaluateTreeRule = evaluateTreeRule;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateRules.js
-var require_evaluateRules = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateRules.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.evaluateRules = void 0;
-    var types_1 = require_types3();
-    var evaluateEndpointRule_1 = require_evaluateEndpointRule();
-    var evaluateErrorRule_1 = require_evaluateErrorRule();
-    var evaluateTreeRule_1 = require_evaluateTreeRule();
-    var evaluateRules = (rules, options) => {
-      for (const rule of rules) {
-        if (rule.type === "endpoint") {
-          const endpointOrUndefined = (0, evaluateEndpointRule_1.evaluateEndpointRule)(rule, options);
-          if (endpointOrUndefined) {
-            return endpointOrUndefined;
-          }
-        } else if (rule.type === "error") {
-          (0, evaluateErrorRule_1.evaluateErrorRule)(rule, options);
-        } else if (rule.type === "tree") {
-          const endpointOrUndefined = (0, evaluateTreeRule_1.evaluateTreeRule)(rule, options);
-          if (endpointOrUndefined) {
-            return endpointOrUndefined;
-          }
-        } else {
-          throw new types_1.EndpointError(`Unknown endpoint rule: ${rule}`);
-        }
-      }
-      throw new types_1.EndpointError(`Rules evaluation failed`);
-    };
-    exports.evaluateRules = evaluateRules;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/index.js
-var require_utils = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_evaluateRules(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/resolveEndpoint.js
-var require_resolveEndpoint = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/resolveEndpoint.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveEndpoint = void 0;
-    var debug_1 = require_debug();
-    var types_1 = require_types3();
-    var utils_1 = require_utils();
-    var resolveEndpoint = (ruleSetObject, options) => {
-      var _a, _b, _c, _d, _e, _f;
-      const { endpointParams, logger } = options;
-      const { parameters, rules } = ruleSetObject;
-      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `Initial EndpointParams: ${(0, debug_1.toDebugString)(endpointParams)}`);
-      const paramsWithDefault = Object.entries(parameters).filter(([, v]) => v.default != null).map(([k, v]) => [k, v.default]);
-      if (paramsWithDefault.length > 0) {
-        for (const [paramKey, paramDefaultValue] of paramsWithDefault) {
-          endpointParams[paramKey] = (_c = endpointParams[paramKey]) !== null && _c !== void 0 ? _c : paramDefaultValue;
-        }
-      }
-      const requiredParams = Object.entries(parameters).filter(([, v]) => v.required).map(([k]) => k);
-      for (const requiredParam of requiredParams) {
-        if (endpointParams[requiredParam] == null) {
-          throw new types_1.EndpointError(`Missing required parameter: '${requiredParam}'`);
-        }
-      }
-      const endpoint = (0, utils_1.evaluateRules)(rules, { endpointParams, logger, referenceRecord: {} });
-      if ((_d = options.endpointParams) === null || _d === void 0 ? void 0 : _d.Endpoint) {
-        try {
-          const givenEndpoint = new URL(options.endpointParams.Endpoint);
-          const { protocol, port } = givenEndpoint;
-          endpoint.url.protocol = protocol;
-          endpoint.url.port = port;
-        } catch (e) {
-        }
-      }
-      (_f = (_e = options.logger) === null || _e === void 0 ? void 0 : _e.debug) === null || _f === void 0 ? void 0 : _f.call(_e, debug_1.debugId, `Resolved endpoint: ${(0, debug_1.toDebugString)(endpoint)}`);
-      return endpoint;
-    };
-    exports.resolveEndpoint = resolveEndpoint;
-  }
-});
-
-// node_modules/@aws-sdk/util-endpoints/dist-cjs/index.js
-var require_dist_cjs25 = __commonJS({
-  "node_modules/@aws-sdk/util-endpoints/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_partition(), exports);
-    tslib_1.__exportStar(require_resolveEndpoint(), exports);
-    tslib_1.__exportStar(require_types3(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/constants.js
-var require_constants4 = __commonJS({
-  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/constants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UA_ESCAPE_REGEX = exports.SPACE = exports.X_AMZ_USER_AGENT = exports.USER_AGENT = void 0;
-    exports.USER_AGENT = "user-agent";
-    exports.X_AMZ_USER_AGENT = "x-amz-user-agent";
-    exports.SPACE = " ";
-    exports.UA_ESCAPE_REGEX = /[^\!\#\$\%\&\'\*\+\-\.\^\_\`\|\~\d\w]/g;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/user-agent-middleware.js
-var require_user_agent_middleware = __commonJS({
-  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/user-agent-middleware.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getUserAgentPlugin = exports.getUserAgentMiddlewareOptions = exports.userAgentMiddleware = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var util_endpoints_1 = require_dist_cjs25();
-    var constants_1 = require_constants4();
-    var userAgentMiddleware = (options) => (next, context) => async (args) => {
-      var _a, _b;
-      const { request } = args;
-      if (!protocol_http_1.HttpRequest.isInstance(request))
-        return next(args);
-      const { headers } = request;
-      const userAgent = ((_a = context === null || context === void 0 ? void 0 : context.userAgent) === null || _a === void 0 ? void 0 : _a.map(escapeUserAgent)) || [];
-      const defaultUserAgent = (await options.defaultUserAgentProvider()).map(escapeUserAgent);
-      const customUserAgent = ((_b = options === null || options === void 0 ? void 0 : options.customUserAgent) === null || _b === void 0 ? void 0 : _b.map(escapeUserAgent)) || [];
-      const prefix = (0, util_endpoints_1.getUserAgentPrefix)();
-      const sdkUserAgentValue = (prefix ? [prefix] : []).concat([...defaultUserAgent, ...userAgent, ...customUserAgent]).join(constants_1.SPACE);
-      const normalUAValue = [
-        ...defaultUserAgent.filter((section) => section.startsWith("aws-sdk-")),
-        ...customUserAgent
-      ].join(constants_1.SPACE);
-      if (options.runtime !== "browser") {
-        if (normalUAValue) {
-          headers[constants_1.X_AMZ_USER_AGENT] = headers[constants_1.X_AMZ_USER_AGENT] ? `${headers[constants_1.USER_AGENT]} ${normalUAValue}` : normalUAValue;
-        }
-        headers[constants_1.USER_AGENT] = sdkUserAgentValue;
-      } else {
-        headers[constants_1.X_AMZ_USER_AGENT] = sdkUserAgentValue;
-      }
-      return next({
-        ...args,
-        request
-      });
-    };
-    exports.userAgentMiddleware = userAgentMiddleware;
-    var escapeUserAgent = ([name, version2]) => {
-      const prefixSeparatorIndex = name.indexOf("/");
-      const prefix = name.substring(0, prefixSeparatorIndex);
-      let uaName = name.substring(prefixSeparatorIndex + 1);
-      if (prefix === "api") {
-        uaName = uaName.toLowerCase();
-      }
-      return [prefix, uaName, version2].filter((item) => item && item.length > 0).map((item) => item === null || item === void 0 ? void 0 : item.replace(constants_1.UA_ESCAPE_REGEX, "_")).join("/");
-    };
-    exports.getUserAgentMiddlewareOptions = {
-      name: "getUserAgentMiddleware",
-      step: "build",
-      priority: "low",
-      tags: ["SET_USER_AGENT", "USER_AGENT"],
-      override: true
-    };
-    var getUserAgentPlugin = (config) => ({
-      applyToStack: (clientStack) => {
-        clientStack.add((0, exports.userAgentMiddleware)(config), exports.getUserAgentMiddlewareOptions);
-      }
-    });
-    exports.getUserAgentPlugin = getUserAgentPlugin;
-  }
-});
-
-// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/index.js
-var require_dist_cjs26 = __commonJS({
-  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_configurations3(), exports);
-    tslib_1.__exportStar(require_user_agent_middleware(), exports);
-  }
-});
-
 // node_modules/@aws-sdk/smithy-client/dist-cjs/NoOpLogger.js
 var require_NoOpLogger = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/NoOpLogger.js"(exports) {
@@ -5780,7 +741,7 @@ var require_MiddlewareStack = __commonJS({
 });
 
 // node_modules/@aws-sdk/middleware-stack/dist-cjs/index.js
-var require_dist_cjs27 = __commonJS({
+var require_dist_cjs = __commonJS({
   "node_modules/@aws-sdk/middleware-stack/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -5790,12 +751,12 @@ var require_dist_cjs27 = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/client.js
-var require_client2 = __commonJS({
+var require_client = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Client = void 0;
-    var middleware_stack_1 = require_dist_cjs27();
+    var middleware_stack_1 = require_dist_cjs();
     var Client = class {
       constructor(config) {
         this.middlewareStack = (0, middleware_stack_1.constructStack)();
@@ -5822,12 +783,12 @@ var require_client2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/command.js
-var require_command2 = __commonJS({
+var require_command = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/command.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Command = void 0;
-    var middleware_stack_1 = require_dist_cjs27();
+    var middleware_stack_1 = require_dist_cjs();
     var Command = class {
       constructor() {
         this.middlewareStack = (0, middleware_stack_1.constructStack)();
@@ -5838,12 +799,41 @@ var require_command2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/constants.js
-var require_constants5 = __commonJS({
+var require_constants = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/constants.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SENSITIVE_STRING = void 0;
     exports.SENSITIVE_STRING = "***SensitiveInformation***";
+  }
+});
+
+// node_modules/@aws-sdk/smithy-client/dist-cjs/create-aggregated-client.js
+var require_create_aggregated_client = __commonJS({
+  "node_modules/@aws-sdk/smithy-client/dist-cjs/create-aggregated-client.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.createAggregatedClient = void 0;
+    var createAggregatedClient = (commands, Client) => {
+      for (const command of Object.keys(commands)) {
+        const CommandCtor = commands[command];
+        const methodImpl = async function(args, optionsOrCb, cb) {
+          const command2 = new CommandCtor(args);
+          if (typeof optionsOrCb === "function") {
+            this.send(command2, optionsOrCb);
+          } else if (typeof cb === "function") {
+            if (typeof optionsOrCb !== "object")
+              throw new Error(`Expected http options but got ${typeof optionsOrCb}`);
+            this.send(command2, optionsOrCb || {}, cb);
+          } else {
+            return this.send(command2, optionsOrCb);
+          }
+        };
+        const methodName = (command[0].toLowerCase() + command.slice(1)).replace(/Command$/, "");
+        Client.prototype[methodName] = methodImpl;
+      }
+    };
+    exports.createAggregatedClient = createAggregatedClient;
   }
 });
 
@@ -6716,15 +1706,16 @@ var require_split_every = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/index.js
-var require_dist_cjs28 = __commonJS({
+var require_dist_cjs2 = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_NoOpLogger(), exports);
-    tslib_1.__exportStar(require_client2(), exports);
-    tslib_1.__exportStar(require_command2(), exports);
-    tslib_1.__exportStar(require_constants5(), exports);
+    tslib_1.__exportStar(require_client(), exports);
+    tslib_1.__exportStar(require_command(), exports);
+    tslib_1.__exportStar(require_constants(), exports);
+    tslib_1.__exportStar(require_create_aggregated_client(), exports);
     tslib_1.__exportStar(require_date_utils(), exports);
     tslib_1.__exportStar(require_default_error_handler(), exports);
     tslib_1.__exportStar(require_defaults_mode(), exports);
@@ -6740,6 +1731,5045 @@ var require_dist_cjs28 = __commonJS({
     tslib_1.__exportStar(require_ser_utils(), exports);
     tslib_1.__exportStar(require_serde_json(), exports);
     tslib_1.__exportStar(require_split_every(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-config-provider/dist-cjs/booleanSelector.js
+var require_booleanSelector = __commonJS({
+  "node_modules/@aws-sdk/util-config-provider/dist-cjs/booleanSelector.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.booleanSelector = exports.SelectorType = void 0;
+    var SelectorType;
+    (function(SelectorType2) {
+      SelectorType2["ENV"] = "env";
+      SelectorType2["CONFIG"] = "shared config entry";
+    })(SelectorType = exports.SelectorType || (exports.SelectorType = {}));
+    var booleanSelector = (obj, key, type) => {
+      if (!(key in obj))
+        return void 0;
+      if (obj[key] === "true")
+        return true;
+      if (obj[key] === "false")
+        return false;
+      throw new Error(`Cannot load ${type} "${key}". Expected "true" or "false", got ${obj[key]}.`);
+    };
+    exports.booleanSelector = booleanSelector;
+  }
+});
+
+// node_modules/@aws-sdk/util-config-provider/dist-cjs/index.js
+var require_dist_cjs3 = __commonJS({
+  "node_modules/@aws-sdk/util-config-provider/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_booleanSelector(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js
+var require_NodeUseDualstackEndpointConfigOptions = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseDualstackEndpointConfigOptions.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS = exports.DEFAULT_USE_DUALSTACK_ENDPOINT = exports.CONFIG_USE_DUALSTACK_ENDPOINT = exports.ENV_USE_DUALSTACK_ENDPOINT = void 0;
+    var util_config_provider_1 = require_dist_cjs3();
+    exports.ENV_USE_DUALSTACK_ENDPOINT = "AWS_USE_DUALSTACK_ENDPOINT";
+    exports.CONFIG_USE_DUALSTACK_ENDPOINT = "use_dualstack_endpoint";
+    exports.DEFAULT_USE_DUALSTACK_ENDPOINT = false;
+    exports.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS = {
+      environmentVariableSelector: (env) => (0, util_config_provider_1.booleanSelector)(env, exports.ENV_USE_DUALSTACK_ENDPOINT, util_config_provider_1.SelectorType.ENV),
+      configFileSelector: (profile) => (0, util_config_provider_1.booleanSelector)(profile, exports.CONFIG_USE_DUALSTACK_ENDPOINT, util_config_provider_1.SelectorType.CONFIG),
+      default: false
+    };
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseFipsEndpointConfigOptions.js
+var require_NodeUseFipsEndpointConfigOptions = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/NodeUseFipsEndpointConfigOptions.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS = exports.DEFAULT_USE_FIPS_ENDPOINT = exports.CONFIG_USE_FIPS_ENDPOINT = exports.ENV_USE_FIPS_ENDPOINT = void 0;
+    var util_config_provider_1 = require_dist_cjs3();
+    exports.ENV_USE_FIPS_ENDPOINT = "AWS_USE_FIPS_ENDPOINT";
+    exports.CONFIG_USE_FIPS_ENDPOINT = "use_fips_endpoint";
+    exports.DEFAULT_USE_FIPS_ENDPOINT = false;
+    exports.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS = {
+      environmentVariableSelector: (env) => (0, util_config_provider_1.booleanSelector)(env, exports.ENV_USE_FIPS_ENDPOINT, util_config_provider_1.SelectorType.ENV),
+      configFileSelector: (profile) => (0, util_config_provider_1.booleanSelector)(profile, exports.CONFIG_USE_FIPS_ENDPOINT, util_config_provider_1.SelectorType.CONFIG),
+      default: false
+    };
+  }
+});
+
+// node_modules/@aws-sdk/util-middleware/dist-cjs/normalizeProvider.js
+var require_normalizeProvider = __commonJS({
+  "node_modules/@aws-sdk/util-middleware/dist-cjs/normalizeProvider.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.normalizeProvider = void 0;
+    var normalizeProvider = (input) => {
+      if (typeof input === "function")
+        return input;
+      const promisified = Promise.resolve(input);
+      return () => promisified;
+    };
+    exports.normalizeProvider = normalizeProvider;
+  }
+});
+
+// node_modules/@aws-sdk/util-middleware/dist-cjs/index.js
+var require_dist_cjs4 = __commonJS({
+  "node_modules/@aws-sdk/util-middleware/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_normalizeProvider(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveCustomEndpointsConfig.js
+var require_resolveCustomEndpointsConfig = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveCustomEndpointsConfig.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveCustomEndpointsConfig = void 0;
+    var util_middleware_1 = require_dist_cjs4();
+    var resolveCustomEndpointsConfig = (input) => {
+      var _a, _b;
+      const { endpoint, urlParser } = input;
+      return {
+        ...input,
+        tls: (_a = input.tls) !== null && _a !== void 0 ? _a : true,
+        endpoint: (0, util_middleware_1.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint),
+        isCustomEndpoint: true,
+        useDualstackEndpoint: (0, util_middleware_1.normalizeProvider)((_b = input.useDualstackEndpoint) !== null && _b !== void 0 ? _b : false)
+      };
+    };
+    exports.resolveCustomEndpointsConfig = resolveCustomEndpointsConfig;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/utils/getEndpointFromRegion.js
+var require_getEndpointFromRegion = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/utils/getEndpointFromRegion.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointFromRegion = void 0;
+    var getEndpointFromRegion = async (input) => {
+      var _a;
+      const { tls = true } = input;
+      const region = await input.region();
+      const dnsHostRegex = new RegExp(/^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])$/);
+      if (!dnsHostRegex.test(region)) {
+        throw new Error("Invalid region in client config");
+      }
+      const useDualstackEndpoint = await input.useDualstackEndpoint();
+      const useFipsEndpoint = await input.useFipsEndpoint();
+      const { hostname } = (_a = await input.regionInfoProvider(region, { useDualstackEndpoint, useFipsEndpoint })) !== null && _a !== void 0 ? _a : {};
+      if (!hostname) {
+        throw new Error("Cannot resolve hostname from client config");
+      }
+      return input.urlParser(`${tls ? "https:" : "http:"}//${hostname}`);
+    };
+    exports.getEndpointFromRegion = getEndpointFromRegion;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveEndpointsConfig.js
+var require_resolveEndpointsConfig = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/resolveEndpointsConfig.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveEndpointsConfig = void 0;
+    var util_middleware_1 = require_dist_cjs4();
+    var getEndpointFromRegion_1 = require_getEndpointFromRegion();
+    var resolveEndpointsConfig = (input) => {
+      var _a, _b;
+      const useDualstackEndpoint = (0, util_middleware_1.normalizeProvider)((_a = input.useDualstackEndpoint) !== null && _a !== void 0 ? _a : false);
+      const { endpoint, useFipsEndpoint, urlParser } = input;
+      return {
+        ...input,
+        tls: (_b = input.tls) !== null && _b !== void 0 ? _b : true,
+        endpoint: endpoint ? (0, util_middleware_1.normalizeProvider)(typeof endpoint === "string" ? urlParser(endpoint) : endpoint) : () => (0, getEndpointFromRegion_1.getEndpointFromRegion)({ ...input, useDualstackEndpoint, useFipsEndpoint }),
+        isCustomEndpoint: !!endpoint,
+        useDualstackEndpoint
+      };
+    };
+    exports.resolveEndpointsConfig = resolveEndpointsConfig;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/index.js
+var require_endpointsConfig = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/endpointsConfig/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_NodeUseDualstackEndpointConfigOptions(), exports);
+    tslib_1.__exportStar(require_NodeUseFipsEndpointConfigOptions(), exports);
+    tslib_1.__exportStar(require_resolveCustomEndpointsConfig(), exports);
+    tslib_1.__exportStar(require_resolveEndpointsConfig(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/config.js
+var require_config = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/config.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODE_REGION_CONFIG_FILE_OPTIONS = exports.NODE_REGION_CONFIG_OPTIONS = exports.REGION_INI_NAME = exports.REGION_ENV_NAME = void 0;
+    exports.REGION_ENV_NAME = "AWS_REGION";
+    exports.REGION_INI_NAME = "region";
+    exports.NODE_REGION_CONFIG_OPTIONS = {
+      environmentVariableSelector: (env) => env[exports.REGION_ENV_NAME],
+      configFileSelector: (profile) => profile[exports.REGION_INI_NAME],
+      default: () => {
+        throw new Error("Region is missing");
+      }
+    };
+    exports.NODE_REGION_CONFIG_FILE_OPTIONS = {
+      preferredFile: "credentials"
+    };
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/isFipsRegion.js
+var require_isFipsRegion = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/isFipsRegion.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isFipsRegion = void 0;
+    var isFipsRegion = (region) => typeof region === "string" && (region.startsWith("fips-") || region.endsWith("-fips"));
+    exports.isFipsRegion = isFipsRegion;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/getRealRegion.js
+var require_getRealRegion = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/getRealRegion.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getRealRegion = void 0;
+    var isFipsRegion_1 = require_isFipsRegion();
+    var getRealRegion = (region) => (0, isFipsRegion_1.isFipsRegion)(region) ? ["fips-aws-global", "aws-fips"].includes(region) ? "us-east-1" : region.replace(/fips-(dkr-|prod-)?|-fips/, "") : region;
+    exports.getRealRegion = getRealRegion;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/resolveRegionConfig.js
+var require_resolveRegionConfig = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/resolveRegionConfig.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveRegionConfig = void 0;
+    var getRealRegion_1 = require_getRealRegion();
+    var isFipsRegion_1 = require_isFipsRegion();
+    var resolveRegionConfig = (input) => {
+      const { region, useFipsEndpoint } = input;
+      if (!region) {
+        throw new Error("Region is missing");
+      }
+      return {
+        ...input,
+        region: async () => {
+          if (typeof region === "string") {
+            return (0, getRealRegion_1.getRealRegion)(region);
+          }
+          const providedRegion = await region();
+          return (0, getRealRegion_1.getRealRegion)(providedRegion);
+        },
+        useFipsEndpoint: async () => {
+          const providedRegion = typeof region === "string" ? region : await region();
+          if ((0, isFipsRegion_1.isFipsRegion)(providedRegion)) {
+            return true;
+          }
+          return typeof useFipsEndpoint !== "function" ? Promise.resolve(!!useFipsEndpoint) : useFipsEndpoint();
+        }
+      };
+    };
+    exports.resolveRegionConfig = resolveRegionConfig;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/index.js
+var require_regionConfig = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionConfig/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_config(), exports);
+    tslib_1.__exportStar(require_resolveRegionConfig(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/PartitionHash.js
+var require_PartitionHash = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/PartitionHash.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/RegionHash.js
+var require_RegionHash = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/RegionHash.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getHostnameFromVariants.js
+var require_getHostnameFromVariants = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getHostnameFromVariants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getHostnameFromVariants = void 0;
+    var getHostnameFromVariants = (variants = [], { useFipsEndpoint, useDualstackEndpoint }) => {
+      var _a;
+      return (_a = variants.find(({ tags }) => useFipsEndpoint === tags.includes("fips") && useDualstackEndpoint === tags.includes("dualstack"))) === null || _a === void 0 ? void 0 : _a.hostname;
+    };
+    exports.getHostnameFromVariants = getHostnameFromVariants;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedHostname.js
+var require_getResolvedHostname = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedHostname.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getResolvedHostname = void 0;
+    var getResolvedHostname = (resolvedRegion, { regionHostname, partitionHostname }) => regionHostname ? regionHostname : partitionHostname ? partitionHostname.replace("{region}", resolvedRegion) : void 0;
+    exports.getResolvedHostname = getResolvedHostname;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedPartition.js
+var require_getResolvedPartition = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedPartition.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getResolvedPartition = void 0;
+    var getResolvedPartition = (region, { partitionHash }) => {
+      var _a;
+      return (_a = Object.keys(partitionHash || {}).find((key) => partitionHash[key].regions.includes(region))) !== null && _a !== void 0 ? _a : "aws";
+    };
+    exports.getResolvedPartition = getResolvedPartition;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedSigningRegion.js
+var require_getResolvedSigningRegion = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getResolvedSigningRegion.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getResolvedSigningRegion = void 0;
+    var getResolvedSigningRegion = (hostname, { signingRegion, regionRegex, useFipsEndpoint }) => {
+      if (signingRegion) {
+        return signingRegion;
+      } else if (useFipsEndpoint) {
+        const regionRegexJs = regionRegex.replace("\\\\", "\\").replace(/^\^/g, "\\.").replace(/\$$/g, "\\.");
+        const regionRegexmatchArray = hostname.match(regionRegexJs);
+        if (regionRegexmatchArray) {
+          return regionRegexmatchArray[0].slice(1, -1);
+        }
+      }
+    };
+    exports.getResolvedSigningRegion = getResolvedSigningRegion;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getRegionInfo.js
+var require_getRegionInfo = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/getRegionInfo.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getRegionInfo = void 0;
+    var getHostnameFromVariants_1 = require_getHostnameFromVariants();
+    var getResolvedHostname_1 = require_getResolvedHostname();
+    var getResolvedPartition_1 = require_getResolvedPartition();
+    var getResolvedSigningRegion_1 = require_getResolvedSigningRegion();
+    var getRegionInfo = (region, { useFipsEndpoint = false, useDualstackEndpoint = false, signingService, regionHash, partitionHash }) => {
+      var _a, _b, _c, _d, _e, _f;
+      const partition = (0, getResolvedPartition_1.getResolvedPartition)(region, { partitionHash });
+      const resolvedRegion = region in regionHash ? region : (_b = (_a = partitionHash[partition]) === null || _a === void 0 ? void 0 : _a.endpoint) !== null && _b !== void 0 ? _b : region;
+      const hostnameOptions = { useFipsEndpoint, useDualstackEndpoint };
+      const regionHostname = (0, getHostnameFromVariants_1.getHostnameFromVariants)((_c = regionHash[resolvedRegion]) === null || _c === void 0 ? void 0 : _c.variants, hostnameOptions);
+      const partitionHostname = (0, getHostnameFromVariants_1.getHostnameFromVariants)((_d = partitionHash[partition]) === null || _d === void 0 ? void 0 : _d.variants, hostnameOptions);
+      const hostname = (0, getResolvedHostname_1.getResolvedHostname)(resolvedRegion, { regionHostname, partitionHostname });
+      if (hostname === void 0) {
+        throw new Error(`Endpoint resolution failed for: ${{ resolvedRegion, useFipsEndpoint, useDualstackEndpoint }}`);
+      }
+      const signingRegion = (0, getResolvedSigningRegion_1.getResolvedSigningRegion)(hostname, {
+        signingRegion: (_e = regionHash[resolvedRegion]) === null || _e === void 0 ? void 0 : _e.signingRegion,
+        regionRegex: partitionHash[partition].regionRegex,
+        useFipsEndpoint
+      });
+      return {
+        partition,
+        signingService,
+        hostname,
+        ...signingRegion && { signingRegion },
+        ...((_f = regionHash[resolvedRegion]) === null || _f === void 0 ? void 0 : _f.signingService) && {
+          signingService: regionHash[resolvedRegion].signingService
+        }
+      };
+    };
+    exports.getRegionInfo = getRegionInfo;
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/index.js
+var require_regionInfo = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/regionInfo/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_PartitionHash(), exports);
+    tslib_1.__exportStar(require_RegionHash(), exports);
+    tslib_1.__exportStar(require_getRegionInfo(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/config-resolver/dist-cjs/index.js
+var require_dist_cjs5 = __commonJS({
+  "node_modules/@aws-sdk/config-resolver/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_endpointsConfig(), exports);
+    tslib_1.__exportStar(require_regionConfig(), exports);
+    tslib_1.__exportStar(require_regionInfo(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/FieldPosition.js
+var require_FieldPosition = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/FieldPosition.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.FieldPosition = void 0;
+    var FieldPosition;
+    (function(FieldPosition2) {
+      FieldPosition2[FieldPosition2["HEADER"] = 0] = "HEADER";
+      FieldPosition2[FieldPosition2["TRAILER"] = 1] = "TRAILER";
+    })(FieldPosition = exports.FieldPosition || (exports.FieldPosition = {}));
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/Field.js
+var require_Field = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/Field.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Field = void 0;
+    var FieldPosition_1 = require_FieldPosition();
+    var Field = class {
+      constructor({ name, kind = FieldPosition_1.FieldPosition.HEADER, values = [] }) {
+        this.name = name;
+        this.kind = kind;
+        this.values = values;
+      }
+      add(value) {
+        this.values.push(value);
+      }
+      set(values) {
+        this.values = values;
+      }
+      remove(value) {
+        this.values = this.values.filter((v) => v !== value);
+      }
+      toString() {
+        return this.values.map((v) => v.includes(",") || v.includes(" ") ? `"${v}"` : v).join(", ");
+      }
+      get() {
+        return this.values;
+      }
+    };
+    exports.Field = Field;
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/Fields.js
+var require_Fields = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/Fields.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Fields = void 0;
+    var Fields = class {
+      constructor({ fields = [], encoding = "utf-8" }) {
+        this.entries = {};
+        fields.forEach(this.setField.bind(this));
+        this.encoding = encoding;
+      }
+      setField(field) {
+        this.entries[field.name.toLowerCase()] = field;
+      }
+      getField(name) {
+        return this.entries[name.toLowerCase()];
+      }
+      removeField(name) {
+        delete this.entries[name.toLowerCase()];
+      }
+      getByType(kind) {
+        return Object.values(this.entries).filter((field) => field.kind === kind);
+      }
+    };
+    exports.Fields = Fields;
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/httpHandler.js
+var require_httpHandler = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpHandler.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/httpRequest.js
+var require_httpRequest = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpRequest.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HttpRequest = void 0;
+    var HttpRequest = class {
+      constructor(options) {
+        this.method = options.method || "GET";
+        this.hostname = options.hostname || "localhost";
+        this.port = options.port;
+        this.query = options.query || {};
+        this.headers = options.headers || {};
+        this.body = options.body;
+        this.protocol = options.protocol ? options.protocol.slice(-1) !== ":" ? `${options.protocol}:` : options.protocol : "https:";
+        this.path = options.path ? options.path.charAt(0) !== "/" ? `/${options.path}` : options.path : "/";
+      }
+      static isInstance(request) {
+        if (!request)
+          return false;
+        const req = request;
+        return "method" in req && "protocol" in req && "hostname" in req && "path" in req && typeof req["query"] === "object" && typeof req["headers"] === "object";
+      }
+      clone() {
+        const cloned = new HttpRequest({
+          ...this,
+          headers: { ...this.headers }
+        });
+        if (cloned.query)
+          cloned.query = cloneQuery(cloned.query);
+        return cloned;
+      }
+    };
+    exports.HttpRequest = HttpRequest;
+    function cloneQuery(query) {
+      return Object.keys(query).reduce((carry, paramName) => {
+        const param = query[paramName];
+        return {
+          ...carry,
+          [paramName]: Array.isArray(param) ? [...param] : param
+        };
+      }, {});
+    }
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/httpResponse.js
+var require_httpResponse = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/httpResponse.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HttpResponse = void 0;
+    var HttpResponse = class {
+      constructor(options) {
+        this.statusCode = options.statusCode;
+        this.headers = options.headers || {};
+        this.body = options.body;
+      }
+      static isInstance(response2) {
+        if (!response2)
+          return false;
+        const resp = response2;
+        return typeof resp.statusCode === "number" && typeof resp.headers === "object";
+      }
+    };
+    exports.HttpResponse = HttpResponse;
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/isValidHostname.js
+var require_isValidHostname = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/isValidHostname.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isValidHostname = void 0;
+    function isValidHostname(hostname) {
+      const hostPattern = /^[a-z0-9][a-z0-9\.\-]*[a-z0-9]$/;
+      return hostPattern.test(hostname);
+    }
+    exports.isValidHostname = isValidHostname;
+  }
+});
+
+// node_modules/@aws-sdk/protocol-http/dist-cjs/index.js
+var require_dist_cjs6 = __commonJS({
+  "node_modules/@aws-sdk/protocol-http/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_Field(), exports);
+    tslib_1.__exportStar(require_FieldPosition(), exports);
+    tslib_1.__exportStar(require_Fields(), exports);
+    tslib_1.__exportStar(require_httpHandler(), exports);
+    tslib_1.__exportStar(require_httpRequest(), exports);
+    tslib_1.__exportStar(require_httpResponse(), exports);
+    tslib_1.__exportStar(require_isValidHostname(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-content-length/dist-cjs/index.js
+var require_dist_cjs7 = __commonJS({
+  "node_modules/@aws-sdk/middleware-content-length/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getContentLengthPlugin = exports.contentLengthMiddlewareOptions = exports.contentLengthMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var CONTENT_LENGTH_HEADER = "content-length";
+    function contentLengthMiddleware(bodyLengthChecker) {
+      return (next) => async (args) => {
+        const request = args.request;
+        if (protocol_http_1.HttpRequest.isInstance(request)) {
+          const { body, headers } = request;
+          if (body && Object.keys(headers).map((str) => str.toLowerCase()).indexOf(CONTENT_LENGTH_HEADER) === -1) {
+            try {
+              const length = bodyLengthChecker(body);
+              request.headers = {
+                ...request.headers,
+                [CONTENT_LENGTH_HEADER]: String(length)
+              };
+            } catch (error) {
+            }
+          }
+        }
+        return next({
+          ...args,
+          request
+        });
+      };
+    }
+    exports.contentLengthMiddleware = contentLengthMiddleware;
+    exports.contentLengthMiddlewareOptions = {
+      step: "build",
+      tags: ["SET_CONTENT_LENGTH", "CONTENT_LENGTH"],
+      name: "contentLengthMiddleware",
+      override: true
+    };
+    var getContentLengthPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add(contentLengthMiddleware(options.bodyLengthChecker), exports.contentLengthMiddlewareOptions);
+      }
+    });
+    exports.getContentLengthPlugin = getContentLengthPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/s3.js
+var require_s3 = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/s3.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isArnBucketName = exports.isDnsCompatibleBucketName = exports.S3_HOSTNAME_PATTERN = exports.DOT_PATTERN = exports.resolveParamsForS3 = void 0;
+    var resolveParamsForS3 = async (endpointParams) => {
+      const bucket = (endpointParams === null || endpointParams === void 0 ? void 0 : endpointParams.Bucket) || "";
+      if (typeof endpointParams.Bucket === "string") {
+        endpointParams.Bucket = bucket.replace(/#/g, encodeURIComponent("#")).replace(/\?/g, encodeURIComponent("?"));
+      }
+      if ((0, exports.isArnBucketName)(bucket)) {
+        if (endpointParams.ForcePathStyle === true) {
+          throw new Error("Path-style addressing cannot be used with ARN buckets");
+        }
+      } else if (!(0, exports.isDnsCompatibleBucketName)(bucket) || bucket.indexOf(".") !== -1 && !String(endpointParams.Endpoint).startsWith("http:") || bucket.toLowerCase() !== bucket || bucket.length < 3) {
+        endpointParams.ForcePathStyle = true;
+      }
+      if (endpointParams.DisableMultiRegionAccessPoints) {
+        endpointParams.disableMultiRegionAccessPoints = true;
+        endpointParams.DisableMRAP = true;
+      }
+      return endpointParams;
+    };
+    exports.resolveParamsForS3 = resolveParamsForS3;
+    var DOMAIN_PATTERN = /^[a-z0-9][a-z0-9\.\-]{1,61}[a-z0-9]$/;
+    var IP_ADDRESS_PATTERN = /(\d+\.){3}\d+/;
+    var DOTS_PATTERN = /\.\./;
+    exports.DOT_PATTERN = /\./;
+    exports.S3_HOSTNAME_PATTERN = /^(.+\.)?s3(-fips)?(\.dualstack)?[.-]([a-z0-9-]+)\./;
+    var isDnsCompatibleBucketName = (bucketName) => DOMAIN_PATTERN.test(bucketName) && !IP_ADDRESS_PATTERN.test(bucketName) && !DOTS_PATTERN.test(bucketName);
+    exports.isDnsCompatibleBucketName = isDnsCompatibleBucketName;
+    var isArnBucketName = (bucketName) => {
+      const [arn, partition, service, region, account, typeOrId] = bucketName.split(":");
+      const isArn = arn === "arn" && bucketName.split(":").length >= 6;
+      const isValidArn = [arn, partition, service, account, typeOrId].filter(Boolean).length === 5;
+      if (isArn && !isValidArn) {
+        throw new Error(`Invalid ARN: ${bucketName} was an invalid ARN.`);
+      }
+      return arn === "arn" && !!partition && !!service && !!account && !!typeOrId;
+    };
+    exports.isArnBucketName = isArnBucketName;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/index.js
+var require_service_customizations = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/service-customizations/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_s3(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/createConfigValueProvider.js
+var require_createConfigValueProvider = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/createConfigValueProvider.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.createConfigValueProvider = void 0;
+    var createConfigValueProvider = (configKey, canonicalEndpointParamKey, config) => {
+      const configProvider = async () => {
+        var _a;
+        const configValue = (_a = config[configKey]) !== null && _a !== void 0 ? _a : config[canonicalEndpointParamKey];
+        if (typeof configValue === "function") {
+          return configValue();
+        }
+        return configValue;
+      };
+      if (configKey === "endpoint" || canonicalEndpointParamKey === "endpoint") {
+        return async () => {
+          const endpoint = await configProvider();
+          if (endpoint && typeof endpoint === "object") {
+            if ("url" in endpoint) {
+              return endpoint.url.href;
+            }
+            if ("hostname" in endpoint) {
+              const { protocol, hostname, port, path } = endpoint;
+              return `${protocol}//${hostname}${port ? ":" + port : ""}${path}`;
+            }
+          }
+          return endpoint;
+        };
+      }
+      return configProvider;
+    };
+    exports.createConfigValueProvider = createConfigValueProvider;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/getEndpointFromInstructions.js
+var require_getEndpointFromInstructions = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/getEndpointFromInstructions.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveParams = exports.getEndpointFromInstructions = void 0;
+    var service_customizations_1 = require_service_customizations();
+    var createConfigValueProvider_1 = require_createConfigValueProvider();
+    var getEndpointFromInstructions = async (commandInput, instructionsSupplier, clientConfig, context) => {
+      const endpointParams = await (0, exports.resolveParams)(commandInput, instructionsSupplier, clientConfig);
+      if (typeof clientConfig.endpointProvider !== "function") {
+        throw new Error("config.endpointProvider is not set.");
+      }
+      const endpoint = clientConfig.endpointProvider(endpointParams, context);
+      return endpoint;
+    };
+    exports.getEndpointFromInstructions = getEndpointFromInstructions;
+    var resolveParams = async (commandInput, instructionsSupplier, clientConfig) => {
+      var _a;
+      const endpointParams = {};
+      const instructions = ((_a = instructionsSupplier === null || instructionsSupplier === void 0 ? void 0 : instructionsSupplier.getEndpointParameterInstructions) === null || _a === void 0 ? void 0 : _a.call(instructionsSupplier)) || {};
+      for (const [name, instruction] of Object.entries(instructions)) {
+        switch (instruction.type) {
+          case "staticContextParams":
+            endpointParams[name] = instruction.value;
+            break;
+          case "contextParams":
+            endpointParams[name] = commandInput[instruction.name];
+            break;
+          case "clientContextParams":
+          case "builtInParams":
+            endpointParams[name] = await (0, createConfigValueProvider_1.createConfigValueProvider)(instruction.name, name, clientConfig)();
+            break;
+          default:
+            throw new Error("Unrecognized endpoint parameter instruction: " + JSON.stringify(instruction));
+        }
+      }
+      if (Object.keys(instructions).length === 0) {
+        Object.assign(endpointParams, clientConfig);
+      }
+      if (String(clientConfig.serviceId).toLowerCase() === "s3") {
+        await (0, service_customizations_1.resolveParamsForS3)(endpointParams);
+      }
+      return endpointParams;
+    };
+    exports.resolveParams = resolveParams;
+  }
+});
+
+// node_modules/@aws-sdk/querystring-parser/dist-cjs/index.js
+var require_dist_cjs8 = __commonJS({
+  "node_modules/@aws-sdk/querystring-parser/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.parseQueryString = void 0;
+    function parseQueryString(querystring) {
+      const query = {};
+      querystring = querystring.replace(/^\?/, "");
+      if (querystring) {
+        for (const pair of querystring.split("&")) {
+          let [key, value = null] = pair.split("=");
+          key = decodeURIComponent(key);
+          if (value) {
+            value = decodeURIComponent(value);
+          }
+          if (!(key in query)) {
+            query[key] = value;
+          } else if (Array.isArray(query[key])) {
+            query[key].push(value);
+          } else {
+            query[key] = [query[key], value];
+          }
+        }
+      }
+      return query;
+    }
+    exports.parseQueryString = parseQueryString;
+  }
+});
+
+// node_modules/@aws-sdk/url-parser/dist-cjs/index.js
+var require_dist_cjs9 = __commonJS({
+  "node_modules/@aws-sdk/url-parser/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.parseUrl = void 0;
+    var querystring_parser_1 = require_dist_cjs8();
+    var parseUrl = (url) => {
+      if (typeof url === "string") {
+        return (0, exports.parseUrl)(new URL(url));
+      }
+      const { hostname, pathname, port, protocol, search } = url;
+      let query;
+      if (search) {
+        query = (0, querystring_parser_1.parseQueryString)(search);
+      }
+      return {
+        hostname,
+        port: port ? parseInt(port) : void 0,
+        protocol,
+        path: pathname,
+        query
+      };
+    };
+    exports.parseUrl = parseUrl;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/toEndpointV1.js
+var require_toEndpointV1 = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/toEndpointV1.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toEndpointV1 = void 0;
+    var url_parser_1 = require_dist_cjs9();
+    var toEndpointV1 = (endpoint) => {
+      if (typeof endpoint === "object") {
+        if ("url" in endpoint) {
+          return (0, url_parser_1.parseUrl)(endpoint.url);
+        }
+        return endpoint;
+      }
+      return (0, url_parser_1.parseUrl)(endpoint);
+    };
+    exports.toEndpointV1 = toEndpointV1;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/index.js
+var require_adaptors = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/adaptors/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_getEndpointFromInstructions(), exports);
+    tslib_1.__exportStar(require_toEndpointV1(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/endpointMiddleware.js
+var require_endpointMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/endpointMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.endpointMiddleware = void 0;
+    var getEndpointFromInstructions_1 = require_getEndpointFromInstructions();
+    var endpointMiddleware = ({ config, instructions }) => {
+      return (next, context) => async (args) => {
+        var _a, _b;
+        const endpoint = await (0, getEndpointFromInstructions_1.getEndpointFromInstructions)(args.input, {
+          getEndpointParameterInstructions() {
+            return instructions;
+          }
+        }, { ...config }, context);
+        context.endpointV2 = endpoint;
+        context.authSchemes = (_a = endpoint.properties) === null || _a === void 0 ? void 0 : _a.authSchemes;
+        const authScheme = (_b = context.authSchemes) === null || _b === void 0 ? void 0 : _b[0];
+        if (authScheme) {
+          context["signing_region"] = authScheme.signingRegion;
+          context["signing_service"] = authScheme.signingName;
+        }
+        return next({
+          ...args
+        });
+      };
+    };
+    exports.endpointMiddleware = endpointMiddleware;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js
+var require_deserializerMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-serde/dist-cjs/deserializerMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.deserializerMiddleware = void 0;
+    var deserializerMiddleware = (options, deserializer) => (next, context) => async (args) => {
+      const { response: response2 } = await next(args);
+      try {
+        const parsed = await deserializer(response2, options);
+        return {
+          response: response2,
+          output: parsed
+        };
+      } catch (error) {
+        Object.defineProperty(error, "$response", {
+          value: response2
+        });
+        if (!("$metadata" in error)) {
+          const hint = `Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.`;
+          error.message += "\n  " + hint;
+        }
+        throw error;
+      }
+    };
+    exports.deserializerMiddleware = deserializerMiddleware;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-serde/dist-cjs/serializerMiddleware.js
+var require_serializerMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-serde/dist-cjs/serializerMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.serializerMiddleware = void 0;
+    var serializerMiddleware = (options, serializer) => (next, context) => async (args) => {
+      var _a;
+      const endpoint = ((_a = context.endpointV2) === null || _a === void 0 ? void 0 : _a.url) && options.urlParser ? async () => options.urlParser(context.endpointV2.url) : options.endpoint;
+      if (!endpoint) {
+        throw new Error("No valid endpoint provider available.");
+      }
+      const request = await serializer(args.input, { ...options, endpoint });
+      return next({
+        ...args,
+        request
+      });
+    };
+    exports.serializerMiddleware = serializerMiddleware;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-serde/dist-cjs/serdePlugin.js
+var require_serdePlugin = __commonJS({
+  "node_modules/@aws-sdk/middleware-serde/dist-cjs/serdePlugin.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getSerdePlugin = exports.serializerMiddlewareOption = exports.deserializerMiddlewareOption = void 0;
+    var deserializerMiddleware_1 = require_deserializerMiddleware();
+    var serializerMiddleware_1 = require_serializerMiddleware();
+    exports.deserializerMiddlewareOption = {
+      name: "deserializerMiddleware",
+      step: "deserialize",
+      tags: ["DESERIALIZER"],
+      override: true
+    };
+    exports.serializerMiddlewareOption = {
+      name: "serializerMiddleware",
+      step: "serialize",
+      tags: ["SERIALIZER"],
+      override: true
+    };
+    function getSerdePlugin(config, serializer, deserializer) {
+      return {
+        applyToStack: (commandStack) => {
+          commandStack.add((0, deserializerMiddleware_1.deserializerMiddleware)(config, deserializer), exports.deserializerMiddlewareOption);
+          commandStack.add((0, serializerMiddleware_1.serializerMiddleware)(config, serializer), exports.serializerMiddlewareOption);
+        }
+      };
+    }
+    exports.getSerdePlugin = getSerdePlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-serde/dist-cjs/index.js
+var require_dist_cjs10 = __commonJS({
+  "node_modules/@aws-sdk/middleware-serde/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_deserializerMiddleware(), exports);
+    tslib_1.__exportStar(require_serdePlugin(), exports);
+    tslib_1.__exportStar(require_serializerMiddleware(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/getEndpointPlugin.js
+var require_getEndpointPlugin = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/getEndpointPlugin.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointPlugin = exports.endpointMiddlewareOptions = void 0;
+    var middleware_serde_1 = require_dist_cjs10();
+    var endpointMiddleware_1 = require_endpointMiddleware();
+    exports.endpointMiddlewareOptions = {
+      step: "serialize",
+      tags: ["ENDPOINT_PARAMETERS", "ENDPOINT_V2", "ENDPOINT"],
+      name: "endpointV2Middleware",
+      override: true,
+      relation: "before",
+      toMiddleware: middleware_serde_1.serializerMiddlewareOption.name
+    };
+    var getEndpointPlugin = (config, instructions) => ({
+      applyToStack: (clientStack) => {
+        clientStack.addRelativeTo((0, endpointMiddleware_1.endpointMiddleware)({
+          config,
+          instructions
+        }), exports.endpointMiddlewareOptions);
+      }
+    });
+    exports.getEndpointPlugin = getEndpointPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/resolveEndpointConfig.js
+var require_resolveEndpointConfig = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/resolveEndpointConfig.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveEndpointConfig = void 0;
+    var util_middleware_1 = require_dist_cjs4();
+    var toEndpointV1_1 = require_toEndpointV1();
+    var resolveEndpointConfig = (input) => {
+      var _a, _b, _c;
+      const tls = (_a = input.tls) !== null && _a !== void 0 ? _a : true;
+      const { endpoint } = input;
+      const customEndpointProvider = endpoint != null ? async () => (0, toEndpointV1_1.toEndpointV1)(await (0, util_middleware_1.normalizeProvider)(endpoint)()) : void 0;
+      const isCustomEndpoint = !!endpoint;
+      return {
+        ...input,
+        endpoint: customEndpointProvider,
+        tls,
+        isCustomEndpoint,
+        useDualstackEndpoint: (0, util_middleware_1.normalizeProvider)((_b = input.useDualstackEndpoint) !== null && _b !== void 0 ? _b : false),
+        useFipsEndpoint: (0, util_middleware_1.normalizeProvider)((_c = input.useFipsEndpoint) !== null && _c !== void 0 ? _c : false)
+      };
+    };
+    exports.resolveEndpointConfig = resolveEndpointConfig;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/types.js
+var require_types = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/middleware-endpoint/dist-cjs/index.js
+var require_dist_cjs11 = __commonJS({
+  "node_modules/@aws-sdk/middleware-endpoint/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_adaptors(), exports);
+    tslib_1.__exportStar(require_endpointMiddleware(), exports);
+    tslib_1.__exportStar(require_getEndpointPlugin(), exports);
+    tslib_1.__exportStar(require_resolveEndpointConfig(), exports);
+    tslib_1.__exportStar(require_types(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-host-header/dist-cjs/index.js
+var require_dist_cjs12 = __commonJS({
+  "node_modules/@aws-sdk/middleware-host-header/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getHostHeaderPlugin = exports.hostHeaderMiddlewareOptions = exports.hostHeaderMiddleware = exports.resolveHostHeaderConfig = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    function resolveHostHeaderConfig(input) {
+      return input;
+    }
+    exports.resolveHostHeaderConfig = resolveHostHeaderConfig;
+    var hostHeaderMiddleware = (options) => (next) => async (args) => {
+      if (!protocol_http_1.HttpRequest.isInstance(args.request))
+        return next(args);
+      const { request } = args;
+      const { handlerProtocol = "" } = options.requestHandler.metadata || {};
+      if (handlerProtocol.indexOf("h2") >= 0 && !request.headers[":authority"]) {
+        delete request.headers["host"];
+        request.headers[":authority"] = "";
+      } else if (!request.headers["host"]) {
+        let host = request.hostname;
+        if (request.port != null)
+          host += `:${request.port}`;
+        request.headers["host"] = host;
+      }
+      return next(args);
+    };
+    exports.hostHeaderMiddleware = hostHeaderMiddleware;
+    exports.hostHeaderMiddlewareOptions = {
+      name: "hostHeaderMiddleware",
+      step: "build",
+      priority: "low",
+      tags: ["HOST"],
+      override: true
+    };
+    var getHostHeaderPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add((0, exports.hostHeaderMiddleware)(options), exports.hostHeaderMiddlewareOptions);
+      }
+    });
+    exports.getHostHeaderPlugin = getHostHeaderPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js
+var require_loggerMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getLoggerPlugin = exports.loggerMiddlewareOptions = exports.loggerMiddleware = void 0;
+    var loggerMiddleware = () => (next, context) => async (args) => {
+      var _a, _b;
+      try {
+        const response2 = await next(args);
+        const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
+        const { overrideInputFilterSensitiveLog, overrideOutputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
+        const inputFilterSensitiveLog = overrideInputFilterSensitiveLog !== null && overrideInputFilterSensitiveLog !== void 0 ? overrideInputFilterSensitiveLog : context.inputFilterSensitiveLog;
+        const outputFilterSensitiveLog = overrideOutputFilterSensitiveLog !== null && overrideOutputFilterSensitiveLog !== void 0 ? overrideOutputFilterSensitiveLog : context.outputFilterSensitiveLog;
+        const { $metadata, ...outputWithoutMetadata } = response2.output;
+        (_a = logger === null || logger === void 0 ? void 0 : logger.info) === null || _a === void 0 ? void 0 : _a.call(logger, {
+          clientName,
+          commandName,
+          input: inputFilterSensitiveLog(args.input),
+          output: outputFilterSensitiveLog(outputWithoutMetadata),
+          metadata: $metadata
+        });
+        return response2;
+      } catch (error) {
+        const { clientName, commandName, logger, dynamoDbDocumentClientOptions = {} } = context;
+        const { overrideInputFilterSensitiveLog } = dynamoDbDocumentClientOptions;
+        const inputFilterSensitiveLog = overrideInputFilterSensitiveLog !== null && overrideInputFilterSensitiveLog !== void 0 ? overrideInputFilterSensitiveLog : context.inputFilterSensitiveLog;
+        (_b = logger === null || logger === void 0 ? void 0 : logger.error) === null || _b === void 0 ? void 0 : _b.call(logger, {
+          clientName,
+          commandName,
+          input: inputFilterSensitiveLog(args.input),
+          error,
+          metadata: error.$metadata
+        });
+        throw error;
+      }
+    };
+    exports.loggerMiddleware = loggerMiddleware;
+    exports.loggerMiddlewareOptions = {
+      name: "loggerMiddleware",
+      tags: ["LOGGER"],
+      step: "initialize",
+      override: true
+    };
+    var getLoggerPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add((0, exports.loggerMiddleware)(), exports.loggerMiddlewareOptions);
+      }
+    });
+    exports.getLoggerPlugin = getLoggerPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js
+var require_dist_cjs13 = __commonJS({
+  "node_modules/@aws-sdk/middleware-logger/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_loggerMiddleware(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-recursion-detection/dist-cjs/index.js
+var require_dist_cjs14 = __commonJS({
+  "node_modules/@aws-sdk/middleware-recursion-detection/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getRecursionDetectionPlugin = exports.addRecursionDetectionMiddlewareOptions = exports.recursionDetectionMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var TRACE_ID_HEADER_NAME = "X-Amzn-Trace-Id";
+    var ENV_LAMBDA_FUNCTION_NAME = "AWS_LAMBDA_FUNCTION_NAME";
+    var ENV_TRACE_ID = "_X_AMZN_TRACE_ID";
+    var recursionDetectionMiddleware = (options) => (next) => async (args) => {
+      const { request } = args;
+      if (!protocol_http_1.HttpRequest.isInstance(request) || options.runtime !== "node" || request.headers.hasOwnProperty(TRACE_ID_HEADER_NAME)) {
+        return next(args);
+      }
+      const functionName = process.env[ENV_LAMBDA_FUNCTION_NAME];
+      const traceId = process.env[ENV_TRACE_ID];
+      const nonEmptyString = (str) => typeof str === "string" && str.length > 0;
+      if (nonEmptyString(functionName) && nonEmptyString(traceId)) {
+        request.headers[TRACE_ID_HEADER_NAME] = traceId;
+      }
+      return next({
+        ...args,
+        request
+      });
+    };
+    exports.recursionDetectionMiddleware = recursionDetectionMiddleware;
+    exports.addRecursionDetectionMiddlewareOptions = {
+      step: "build",
+      tags: ["RECURSION_DETECTION"],
+      name: "recursionDetectionMiddleware",
+      override: true,
+      priority: "low"
+    };
+    var getRecursionDetectionPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add((0, exports.recursionDetectionMiddleware)(options), exports.addRecursionDetectionMiddlewareOptions);
+      }
+    });
+    exports.getRecursionDetectionPlugin = getRecursionDetectionPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/config.js
+var require_config2 = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/config.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.DEFAULT_RETRY_MODE = exports.DEFAULT_MAX_ATTEMPTS = exports.RETRY_MODES = void 0;
+    var RETRY_MODES;
+    (function(RETRY_MODES2) {
+      RETRY_MODES2["STANDARD"] = "standard";
+      RETRY_MODES2["ADAPTIVE"] = "adaptive";
+    })(RETRY_MODES = exports.RETRY_MODES || (exports.RETRY_MODES = {}));
+    exports.DEFAULT_MAX_ATTEMPTS = 3;
+    exports.DEFAULT_RETRY_MODE = "STANDARD";
+  }
+});
+
+// node_modules/@aws-sdk/service-error-classification/dist-cjs/constants.js
+var require_constants2 = __commonJS({
+  "node_modules/@aws-sdk/service-error-classification/dist-cjs/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODEJS_TIMEOUT_ERROR_CODES = exports.TRANSIENT_ERROR_STATUS_CODES = exports.TRANSIENT_ERROR_CODES = exports.THROTTLING_ERROR_CODES = exports.CLOCK_SKEW_ERROR_CODES = void 0;
+    exports.CLOCK_SKEW_ERROR_CODES = [
+      "AuthFailure",
+      "InvalidSignatureException",
+      "RequestExpired",
+      "RequestInTheFuture",
+      "RequestTimeTooSkewed",
+      "SignatureDoesNotMatch"
+    ];
+    exports.THROTTLING_ERROR_CODES = [
+      "BandwidthLimitExceeded",
+      "EC2ThrottledException",
+      "LimitExceededException",
+      "PriorRequestNotComplete",
+      "ProvisionedThroughputExceededException",
+      "RequestLimitExceeded",
+      "RequestThrottled",
+      "RequestThrottledException",
+      "SlowDown",
+      "ThrottledException",
+      "Throttling",
+      "ThrottlingException",
+      "TooManyRequestsException",
+      "TransactionInProgressException"
+    ];
+    exports.TRANSIENT_ERROR_CODES = ["AbortError", "TimeoutError", "RequestTimeout", "RequestTimeoutException"];
+    exports.TRANSIENT_ERROR_STATUS_CODES = [500, 502, 503, 504];
+    exports.NODEJS_TIMEOUT_ERROR_CODES = ["ECONNRESET", "EPIPE", "ETIMEDOUT"];
+  }
+});
+
+// node_modules/@aws-sdk/service-error-classification/dist-cjs/index.js
+var require_dist_cjs15 = __commonJS({
+  "node_modules/@aws-sdk/service-error-classification/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isServerError = exports.isTransientError = exports.isThrottlingError = exports.isClockSkewError = exports.isRetryableByTrait = void 0;
+    var constants_1 = require_constants2();
+    var isRetryableByTrait = (error) => error.$retryable !== void 0;
+    exports.isRetryableByTrait = isRetryableByTrait;
+    var isClockSkewError = (error) => constants_1.CLOCK_SKEW_ERROR_CODES.includes(error.name);
+    exports.isClockSkewError = isClockSkewError;
+    var isThrottlingError = (error) => {
+      var _a, _b;
+      return ((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) === 429 || constants_1.THROTTLING_ERROR_CODES.includes(error.name) || ((_b = error.$retryable) === null || _b === void 0 ? void 0 : _b.throttling) == true;
+    };
+    exports.isThrottlingError = isThrottlingError;
+    var isTransientError = (error) => {
+      var _a;
+      return constants_1.TRANSIENT_ERROR_CODES.includes(error.name) || constants_1.NODEJS_TIMEOUT_ERROR_CODES.includes((error === null || error === void 0 ? void 0 : error.code) || "") || constants_1.TRANSIENT_ERROR_STATUS_CODES.includes(((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) || 0);
+    };
+    exports.isTransientError = isTransientError;
+    var isServerError = (error) => {
+      var _a;
+      if (((_a = error.$metadata) === null || _a === void 0 ? void 0 : _a.httpStatusCode) !== void 0) {
+        const statusCode = error.$metadata.httpStatusCode;
+        if (500 <= statusCode && statusCode <= 599 && !(0, exports.isTransientError)(error)) {
+          return true;
+        }
+        return false;
+      }
+      return false;
+    };
+    exports.isServerError = isServerError;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/DefaultRateLimiter.js
+var require_DefaultRateLimiter = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/DefaultRateLimiter.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.DefaultRateLimiter = void 0;
+    var service_error_classification_1 = require_dist_cjs15();
+    var DefaultRateLimiter = class {
+      constructor(options) {
+        var _a, _b, _c, _d, _e;
+        this.currentCapacity = 0;
+        this.enabled = false;
+        this.lastMaxRate = 0;
+        this.measuredTxRate = 0;
+        this.requestCount = 0;
+        this.lastTimestamp = 0;
+        this.timeWindow = 0;
+        this.beta = (_a = options === null || options === void 0 ? void 0 : options.beta) !== null && _a !== void 0 ? _a : 0.7;
+        this.minCapacity = (_b = options === null || options === void 0 ? void 0 : options.minCapacity) !== null && _b !== void 0 ? _b : 1;
+        this.minFillRate = (_c = options === null || options === void 0 ? void 0 : options.minFillRate) !== null && _c !== void 0 ? _c : 0.5;
+        this.scaleConstant = (_d = options === null || options === void 0 ? void 0 : options.scaleConstant) !== null && _d !== void 0 ? _d : 0.4;
+        this.smooth = (_e = options === null || options === void 0 ? void 0 : options.smooth) !== null && _e !== void 0 ? _e : 0.8;
+        const currentTimeInSeconds = this.getCurrentTimeInSeconds();
+        this.lastThrottleTime = currentTimeInSeconds;
+        this.lastTxRateBucket = Math.floor(this.getCurrentTimeInSeconds());
+        this.fillRate = this.minFillRate;
+        this.maxCapacity = this.minCapacity;
+      }
+      getCurrentTimeInSeconds() {
+        return Date.now() / 1e3;
+      }
+      async getSendToken() {
+        return this.acquireTokenBucket(1);
+      }
+      async acquireTokenBucket(amount) {
+        if (!this.enabled) {
+          return;
+        }
+        this.refillTokenBucket();
+        if (amount > this.currentCapacity) {
+          const delay = (amount - this.currentCapacity) / this.fillRate * 1e3;
+          await new Promise((resolve) => setTimeout(resolve, delay));
+        }
+        this.currentCapacity = this.currentCapacity - amount;
+      }
+      refillTokenBucket() {
+        const timestamp = this.getCurrentTimeInSeconds();
+        if (!this.lastTimestamp) {
+          this.lastTimestamp = timestamp;
+          return;
+        }
+        const fillAmount = (timestamp - this.lastTimestamp) * this.fillRate;
+        this.currentCapacity = Math.min(this.maxCapacity, this.currentCapacity + fillAmount);
+        this.lastTimestamp = timestamp;
+      }
+      updateClientSendingRate(response2) {
+        let calculatedRate;
+        this.updateMeasuredRate();
+        if ((0, service_error_classification_1.isThrottlingError)(response2)) {
+          const rateToUse = !this.enabled ? this.measuredTxRate : Math.min(this.measuredTxRate, this.fillRate);
+          this.lastMaxRate = rateToUse;
+          this.calculateTimeWindow();
+          this.lastThrottleTime = this.getCurrentTimeInSeconds();
+          calculatedRate = this.cubicThrottle(rateToUse);
+          this.enableTokenBucket();
+        } else {
+          this.calculateTimeWindow();
+          calculatedRate = this.cubicSuccess(this.getCurrentTimeInSeconds());
+        }
+        const newRate = Math.min(calculatedRate, 2 * this.measuredTxRate);
+        this.updateTokenBucketRate(newRate);
+      }
+      calculateTimeWindow() {
+        this.timeWindow = this.getPrecise(Math.pow(this.lastMaxRate * (1 - this.beta) / this.scaleConstant, 1 / 3));
+      }
+      cubicThrottle(rateToUse) {
+        return this.getPrecise(rateToUse * this.beta);
+      }
+      cubicSuccess(timestamp) {
+        return this.getPrecise(this.scaleConstant * Math.pow(timestamp - this.lastThrottleTime - this.timeWindow, 3) + this.lastMaxRate);
+      }
+      enableTokenBucket() {
+        this.enabled = true;
+      }
+      updateTokenBucketRate(newRate) {
+        this.refillTokenBucket();
+        this.fillRate = Math.max(newRate, this.minFillRate);
+        this.maxCapacity = Math.max(newRate, this.minCapacity);
+        this.currentCapacity = Math.min(this.currentCapacity, this.maxCapacity);
+      }
+      updateMeasuredRate() {
+        const t = this.getCurrentTimeInSeconds();
+        const timeBucket = Math.floor(t * 2) / 2;
+        this.requestCount++;
+        if (timeBucket > this.lastTxRateBucket) {
+          const currentRate = this.requestCount / (timeBucket - this.lastTxRateBucket);
+          this.measuredTxRate = this.getPrecise(currentRate * this.smooth + this.measuredTxRate * (1 - this.smooth));
+          this.requestCount = 0;
+          this.lastTxRateBucket = timeBucket;
+        }
+      }
+      getPrecise(num) {
+        return parseFloat(num.toFixed(8));
+      }
+    };
+    exports.DefaultRateLimiter = DefaultRateLimiter;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/constants.js
+var require_constants3 = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.REQUEST_HEADER = exports.INVOCATION_ID_HEADER = exports.NO_RETRY_INCREMENT = exports.TIMEOUT_RETRY_COST = exports.RETRY_COST = exports.INITIAL_RETRY_TOKENS = exports.THROTTLING_RETRY_DELAY_BASE = exports.MAXIMUM_RETRY_DELAY = exports.DEFAULT_RETRY_DELAY_BASE = void 0;
+    exports.DEFAULT_RETRY_DELAY_BASE = 100;
+    exports.MAXIMUM_RETRY_DELAY = 20 * 1e3;
+    exports.THROTTLING_RETRY_DELAY_BASE = 500;
+    exports.INITIAL_RETRY_TOKENS = 500;
+    exports.RETRY_COST = 5;
+    exports.TIMEOUT_RETRY_COST = 10;
+    exports.NO_RETRY_INCREMENT = 1;
+    exports.INVOCATION_ID_HEADER = "amz-sdk-invocation-id";
+    exports.REQUEST_HEADER = "amz-sdk-request";
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryBackoffStrategy.js
+var require_defaultRetryBackoffStrategy = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryBackoffStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getDefaultRetryBackoffStrategy = void 0;
+    var constants_1 = require_constants3();
+    var getDefaultRetryBackoffStrategy = () => {
+      let delayBase = constants_1.DEFAULT_RETRY_DELAY_BASE;
+      const computeNextBackoffDelay = (attempts) => {
+        return Math.floor(Math.min(constants_1.MAXIMUM_RETRY_DELAY, Math.random() * 2 ** attempts * delayBase));
+      };
+      const setDelayBase = (delay) => {
+        delayBase = delay;
+      };
+      return {
+        computeNextBackoffDelay,
+        setDelayBase
+      };
+    };
+    exports.getDefaultRetryBackoffStrategy = getDefaultRetryBackoffStrategy;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryToken.js
+var require_defaultRetryToken = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/defaultRetryToken.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getDefaultRetryToken = void 0;
+    var constants_1 = require_constants3();
+    var defaultRetryBackoffStrategy_1 = require_defaultRetryBackoffStrategy();
+    var getDefaultRetryToken = (initialRetryTokens, initialRetryDelay, initialRetryCount, options) => {
+      var _a, _b, _c;
+      const MAX_CAPACITY = initialRetryTokens;
+      const retryCost = (_a = options === null || options === void 0 ? void 0 : options.retryCost) !== null && _a !== void 0 ? _a : constants_1.RETRY_COST;
+      const timeoutRetryCost = (_b = options === null || options === void 0 ? void 0 : options.timeoutRetryCost) !== null && _b !== void 0 ? _b : constants_1.TIMEOUT_RETRY_COST;
+      const retryBackoffStrategy = (_c = options === null || options === void 0 ? void 0 : options.retryBackoffStrategy) !== null && _c !== void 0 ? _c : (0, defaultRetryBackoffStrategy_1.getDefaultRetryBackoffStrategy)();
+      let availableCapacity = initialRetryTokens;
+      let retryDelay = Math.min(constants_1.MAXIMUM_RETRY_DELAY, initialRetryDelay);
+      let lastRetryCost = void 0;
+      let retryCount = initialRetryCount !== null && initialRetryCount !== void 0 ? initialRetryCount : 0;
+      const getCapacityAmount = (errorType) => errorType === "TRANSIENT" ? timeoutRetryCost : retryCost;
+      const getRetryCount = () => retryCount;
+      const getRetryDelay = () => retryDelay;
+      const getLastRetryCost = () => lastRetryCost;
+      const hasRetryTokens = (errorType) => getCapacityAmount(errorType) <= availableCapacity;
+      const getRetryTokenCount = (errorInfo) => {
+        const errorType = errorInfo.errorType;
+        if (!hasRetryTokens(errorType)) {
+          throw new Error("No retry token available");
+        }
+        const capacityAmount = getCapacityAmount(errorType);
+        const delayBase = errorType === "THROTTLING" ? constants_1.THROTTLING_RETRY_DELAY_BASE : constants_1.DEFAULT_RETRY_DELAY_BASE;
+        retryBackoffStrategy.setDelayBase(delayBase);
+        const delayFromErrorType = retryBackoffStrategy.computeNextBackoffDelay(retryCount);
+        if (errorInfo.retryAfterHint) {
+          const delayFromRetryAfterHint = errorInfo.retryAfterHint.getTime() - Date.now();
+          retryDelay = Math.max(delayFromRetryAfterHint || 0, delayFromErrorType);
+        } else {
+          retryDelay = delayFromErrorType;
+        }
+        retryCount++;
+        lastRetryCost = capacityAmount;
+        availableCapacity -= capacityAmount;
+        return capacityAmount;
+      };
+      const releaseRetryTokens = (releaseAmount) => {
+        availableCapacity += releaseAmount !== null && releaseAmount !== void 0 ? releaseAmount : constants_1.NO_RETRY_INCREMENT;
+        availableCapacity = Math.min(availableCapacity, MAX_CAPACITY);
+      };
+      return {
+        getRetryCount,
+        getRetryDelay,
+        getLastRetryCost,
+        hasRetryTokens,
+        getRetryTokenCount,
+        releaseRetryTokens
+      };
+    };
+    exports.getDefaultRetryToken = getDefaultRetryToken;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/StandardRetryStrategy.js
+var require_StandardRetryStrategy = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/StandardRetryStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StandardRetryStrategy = void 0;
+    var config_1 = require_config2();
+    var constants_1 = require_constants3();
+    var defaultRetryToken_1 = require_defaultRetryToken();
+    var StandardRetryStrategy = class {
+      constructor(maxAttemptsProvider) {
+        this.maxAttemptsProvider = maxAttemptsProvider;
+        this.mode = config_1.RETRY_MODES.STANDARD;
+        this.retryToken = (0, defaultRetryToken_1.getDefaultRetryToken)(constants_1.INITIAL_RETRY_TOKENS, constants_1.DEFAULT_RETRY_DELAY_BASE);
+        this.maxAttemptsProvider = maxAttemptsProvider;
+      }
+      async acquireInitialRetryToken(retryTokenScope) {
+        return this.retryToken;
+      }
+      async refreshRetryTokenForRetry(tokenToRenew, errorInfo) {
+        const maxAttempts = await this.getMaxAttempts();
+        if (this.shouldRetry(tokenToRenew, errorInfo, maxAttempts)) {
+          tokenToRenew.getRetryTokenCount(errorInfo);
+          return tokenToRenew;
+        }
+        throw new Error("No retry token available");
+      }
+      recordSuccess(token) {
+        this.retryToken.releaseRetryTokens(token.getLastRetryCost());
+      }
+      async getMaxAttempts() {
+        let maxAttempts;
+        try {
+          return await this.maxAttemptsProvider();
+        } catch (error) {
+          console.warn(`Max attempts provider could not resolve. Using default of ${config_1.DEFAULT_MAX_ATTEMPTS}`);
+          return config_1.DEFAULT_MAX_ATTEMPTS;
+        }
+      }
+      shouldRetry(tokenToRenew, errorInfo, maxAttempts) {
+        const attempts = tokenToRenew.getRetryCount();
+        return attempts < maxAttempts && tokenToRenew.hasRetryTokens(errorInfo.errorType) && this.isRetryableError(errorInfo.errorType);
+      }
+      isRetryableError(errorType) {
+        return errorType === "THROTTLING" || errorType === "TRANSIENT";
+      }
+    };
+    exports.StandardRetryStrategy = StandardRetryStrategy;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/AdaptiveRetryStrategy.js
+var require_AdaptiveRetryStrategy = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/AdaptiveRetryStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AdaptiveRetryStrategy = void 0;
+    var config_1 = require_config2();
+    var DefaultRateLimiter_1 = require_DefaultRateLimiter();
+    var StandardRetryStrategy_1 = require_StandardRetryStrategy();
+    var AdaptiveRetryStrategy = class {
+      constructor(maxAttemptsProvider, options) {
+        this.maxAttemptsProvider = maxAttemptsProvider;
+        this.mode = config_1.RETRY_MODES.ADAPTIVE;
+        const { rateLimiter } = options !== null && options !== void 0 ? options : {};
+        this.rateLimiter = rateLimiter !== null && rateLimiter !== void 0 ? rateLimiter : new DefaultRateLimiter_1.DefaultRateLimiter();
+        this.standardRetryStrategy = new StandardRetryStrategy_1.StandardRetryStrategy(maxAttemptsProvider);
+      }
+      async acquireInitialRetryToken(retryTokenScope) {
+        await this.rateLimiter.getSendToken();
+        return this.standardRetryStrategy.acquireInitialRetryToken(retryTokenScope);
+      }
+      async refreshRetryTokenForRetry(tokenToRenew, errorInfo) {
+        this.rateLimiter.updateClientSendingRate(errorInfo);
+        return this.standardRetryStrategy.refreshRetryTokenForRetry(tokenToRenew, errorInfo);
+      }
+      recordSuccess(token) {
+        this.rateLimiter.updateClientSendingRate({});
+        this.standardRetryStrategy.recordSuccess(token);
+      }
+    };
+    exports.AdaptiveRetryStrategy = AdaptiveRetryStrategy;
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/types.js
+var require_types2 = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-retry/dist-cjs/index.js
+var require_dist_cjs16 = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_AdaptiveRetryStrategy(), exports);
+    tslib_1.__exportStar(require_DefaultRateLimiter(), exports);
+    tslib_1.__exportStar(require_StandardRetryStrategy(), exports);
+    tslib_1.__exportStar(require_config2(), exports);
+    tslib_1.__exportStar(require_constants3(), exports);
+    tslib_1.__exportStar(require_types2(), exports);
+  }
+});
+
+// node_modules/uuid/dist/esm-node/rng.js
+function rng() {
+  if (poolPtr > rnds8Pool.length - 16) {
+    import_crypto.default.randomFillSync(rnds8Pool);
+    poolPtr = 0;
+  }
+  return rnds8Pool.slice(poolPtr, poolPtr += 16);
+}
+var import_crypto, rnds8Pool, poolPtr;
+var init_rng = __esm({
+  "node_modules/uuid/dist/esm-node/rng.js"() {
+    import_crypto = __toESM(require("crypto"));
+    rnds8Pool = new Uint8Array(256);
+    poolPtr = rnds8Pool.length;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/regex.js
+var regex_default;
+var init_regex = __esm({
+  "node_modules/uuid/dist/esm-node/regex.js"() {
+    regex_default = /^(?:[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}|00000000-0000-0000-0000-000000000000)$/i;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/validate.js
+function validate(uuid) {
+  return typeof uuid === "string" && regex_default.test(uuid);
+}
+var validate_default;
+var init_validate = __esm({
+  "node_modules/uuid/dist/esm-node/validate.js"() {
+    init_regex();
+    validate_default = validate;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/stringify.js
+function stringify(arr, offset = 0) {
+  const uuid = (byteToHex[arr[offset + 0]] + byteToHex[arr[offset + 1]] + byteToHex[arr[offset + 2]] + byteToHex[arr[offset + 3]] + "-" + byteToHex[arr[offset + 4]] + byteToHex[arr[offset + 5]] + "-" + byteToHex[arr[offset + 6]] + byteToHex[arr[offset + 7]] + "-" + byteToHex[arr[offset + 8]] + byteToHex[arr[offset + 9]] + "-" + byteToHex[arr[offset + 10]] + byteToHex[arr[offset + 11]] + byteToHex[arr[offset + 12]] + byteToHex[arr[offset + 13]] + byteToHex[arr[offset + 14]] + byteToHex[arr[offset + 15]]).toLowerCase();
+  if (!validate_default(uuid)) {
+    throw TypeError("Stringified UUID is invalid");
+  }
+  return uuid;
+}
+var byteToHex, stringify_default;
+var init_stringify = __esm({
+  "node_modules/uuid/dist/esm-node/stringify.js"() {
+    init_validate();
+    byteToHex = [];
+    for (let i = 0; i < 256; ++i) {
+      byteToHex.push((i + 256).toString(16).substr(1));
+    }
+    stringify_default = stringify;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v1.js
+function v1(options, buf, offset) {
+  let i = buf && offset || 0;
+  const b = buf || new Array(16);
+  options = options || {};
+  let node = options.node || _nodeId;
+  let clockseq = options.clockseq !== void 0 ? options.clockseq : _clockseq;
+  if (node == null || clockseq == null) {
+    const seedBytes = options.random || (options.rng || rng)();
+    if (node == null) {
+      node = _nodeId = [seedBytes[0] | 1, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]];
+    }
+    if (clockseq == null) {
+      clockseq = _clockseq = (seedBytes[6] << 8 | seedBytes[7]) & 16383;
+    }
+  }
+  let msecs = options.msecs !== void 0 ? options.msecs : Date.now();
+  let nsecs = options.nsecs !== void 0 ? options.nsecs : _lastNSecs + 1;
+  const dt = msecs - _lastMSecs + (nsecs - _lastNSecs) / 1e4;
+  if (dt < 0 && options.clockseq === void 0) {
+    clockseq = clockseq + 1 & 16383;
+  }
+  if ((dt < 0 || msecs > _lastMSecs) && options.nsecs === void 0) {
+    nsecs = 0;
+  }
+  if (nsecs >= 1e4) {
+    throw new Error("uuid.v1(): Can't create more than 10M uuids/sec");
+  }
+  _lastMSecs = msecs;
+  _lastNSecs = nsecs;
+  _clockseq = clockseq;
+  msecs += 122192928e5;
+  const tl = ((msecs & 268435455) * 1e4 + nsecs) % 4294967296;
+  b[i++] = tl >>> 24 & 255;
+  b[i++] = tl >>> 16 & 255;
+  b[i++] = tl >>> 8 & 255;
+  b[i++] = tl & 255;
+  const tmh = msecs / 4294967296 * 1e4 & 268435455;
+  b[i++] = tmh >>> 8 & 255;
+  b[i++] = tmh & 255;
+  b[i++] = tmh >>> 24 & 15 | 16;
+  b[i++] = tmh >>> 16 & 255;
+  b[i++] = clockseq >>> 8 | 128;
+  b[i++] = clockseq & 255;
+  for (let n = 0; n < 6; ++n) {
+    b[i + n] = node[n];
+  }
+  return buf || stringify_default(b);
+}
+var _nodeId, _clockseq, _lastMSecs, _lastNSecs, v1_default;
+var init_v1 = __esm({
+  "node_modules/uuid/dist/esm-node/v1.js"() {
+    init_rng();
+    init_stringify();
+    _lastMSecs = 0;
+    _lastNSecs = 0;
+    v1_default = v1;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/parse.js
+function parse(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  let v;
+  const arr = new Uint8Array(16);
+  arr[0] = (v = parseInt(uuid.slice(0, 8), 16)) >>> 24;
+  arr[1] = v >>> 16 & 255;
+  arr[2] = v >>> 8 & 255;
+  arr[3] = v & 255;
+  arr[4] = (v = parseInt(uuid.slice(9, 13), 16)) >>> 8;
+  arr[5] = v & 255;
+  arr[6] = (v = parseInt(uuid.slice(14, 18), 16)) >>> 8;
+  arr[7] = v & 255;
+  arr[8] = (v = parseInt(uuid.slice(19, 23), 16)) >>> 8;
+  arr[9] = v & 255;
+  arr[10] = (v = parseInt(uuid.slice(24, 36), 16)) / 1099511627776 & 255;
+  arr[11] = v / 4294967296 & 255;
+  arr[12] = v >>> 24 & 255;
+  arr[13] = v >>> 16 & 255;
+  arr[14] = v >>> 8 & 255;
+  arr[15] = v & 255;
+  return arr;
+}
+var parse_default;
+var init_parse = __esm({
+  "node_modules/uuid/dist/esm-node/parse.js"() {
+    init_validate();
+    parse_default = parse;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v35.js
+function stringToBytes(str) {
+  str = unescape(encodeURIComponent(str));
+  const bytes = [];
+  for (let i = 0; i < str.length; ++i) {
+    bytes.push(str.charCodeAt(i));
+  }
+  return bytes;
+}
+function v35_default(name, version2, hashfunc) {
+  function generateUUID(value, namespace, buf, offset) {
+    if (typeof value === "string") {
+      value = stringToBytes(value);
+    }
+    if (typeof namespace === "string") {
+      namespace = parse_default(namespace);
+    }
+    if (namespace.length !== 16) {
+      throw TypeError("Namespace must be array-like (16 iterable integer values, 0-255)");
+    }
+    let bytes = new Uint8Array(16 + value.length);
+    bytes.set(namespace);
+    bytes.set(value, namespace.length);
+    bytes = hashfunc(bytes);
+    bytes[6] = bytes[6] & 15 | version2;
+    bytes[8] = bytes[8] & 63 | 128;
+    if (buf) {
+      offset = offset || 0;
+      for (let i = 0; i < 16; ++i) {
+        buf[offset + i] = bytes[i];
+      }
+      return buf;
+    }
+    return stringify_default(bytes);
+  }
+  try {
+    generateUUID.name = name;
+  } catch (err) {
+  }
+  generateUUID.DNS = DNS;
+  generateUUID.URL = URL2;
+  return generateUUID;
+}
+var DNS, URL2;
+var init_v35 = __esm({
+  "node_modules/uuid/dist/esm-node/v35.js"() {
+    init_stringify();
+    init_parse();
+    DNS = "6ba7b810-9dad-11d1-80b4-00c04fd430c8";
+    URL2 = "6ba7b811-9dad-11d1-80b4-00c04fd430c8";
+  }
+});
+
+// node_modules/uuid/dist/esm-node/md5.js
+function md5(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto2.default.createHash("md5").update(bytes).digest();
+}
+var import_crypto2, md5_default;
+var init_md5 = __esm({
+  "node_modules/uuid/dist/esm-node/md5.js"() {
+    import_crypto2 = __toESM(require("crypto"));
+    md5_default = md5;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v3.js
+var v3, v3_default;
+var init_v3 = __esm({
+  "node_modules/uuid/dist/esm-node/v3.js"() {
+    init_v35();
+    init_md5();
+    v3 = v35_default("v3", 48, md5_default);
+    v3_default = v3;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v4.js
+function v4(options, buf, offset) {
+  options = options || {};
+  const rnds = options.random || (options.rng || rng)();
+  rnds[6] = rnds[6] & 15 | 64;
+  rnds[8] = rnds[8] & 63 | 128;
+  if (buf) {
+    offset = offset || 0;
+    for (let i = 0; i < 16; ++i) {
+      buf[offset + i] = rnds[i];
+    }
+    return buf;
+  }
+  return stringify_default(rnds);
+}
+var v4_default;
+var init_v4 = __esm({
+  "node_modules/uuid/dist/esm-node/v4.js"() {
+    init_rng();
+    init_stringify();
+    v4_default = v4;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/sha1.js
+function sha1(bytes) {
+  if (Array.isArray(bytes)) {
+    bytes = Buffer.from(bytes);
+  } else if (typeof bytes === "string") {
+    bytes = Buffer.from(bytes, "utf8");
+  }
+  return import_crypto3.default.createHash("sha1").update(bytes).digest();
+}
+var import_crypto3, sha1_default;
+var init_sha1 = __esm({
+  "node_modules/uuid/dist/esm-node/sha1.js"() {
+    import_crypto3 = __toESM(require("crypto"));
+    sha1_default = sha1;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/v5.js
+var v5, v5_default;
+var init_v5 = __esm({
+  "node_modules/uuid/dist/esm-node/v5.js"() {
+    init_v35();
+    init_sha1();
+    v5 = v35_default("v5", 80, sha1_default);
+    v5_default = v5;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/nil.js
+var nil_default;
+var init_nil = __esm({
+  "node_modules/uuid/dist/esm-node/nil.js"() {
+    nil_default = "00000000-0000-0000-0000-000000000000";
+  }
+});
+
+// node_modules/uuid/dist/esm-node/version.js
+function version(uuid) {
+  if (!validate_default(uuid)) {
+    throw TypeError("Invalid UUID");
+  }
+  return parseInt(uuid.substr(14, 1), 16);
+}
+var version_default;
+var init_version = __esm({
+  "node_modules/uuid/dist/esm-node/version.js"() {
+    init_validate();
+    version_default = version;
+  }
+});
+
+// node_modules/uuid/dist/esm-node/index.js
+var esm_node_exports = {};
+__export(esm_node_exports, {
+  NIL: () => nil_default,
+  parse: () => parse_default,
+  stringify: () => stringify_default,
+  v1: () => v1_default,
+  v3: () => v3_default,
+  v4: () => v4_default,
+  v5: () => v5_default,
+  validate: () => validate_default,
+  version: () => version_default
+});
+var init_esm_node = __esm({
+  "node_modules/uuid/dist/esm-node/index.js"() {
+    init_v1();
+    init_v3();
+    init_v4();
+    init_v5();
+    init_nil();
+    init_version();
+    init_validate();
+    init_stringify();
+    init_parse();
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/defaultRetryQuota.js
+var require_defaultRetryQuota = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/defaultRetryQuota.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getDefaultRetryQuota = void 0;
+    var util_retry_1 = require_dist_cjs16();
+    var getDefaultRetryQuota = (initialRetryTokens, options) => {
+      var _a, _b, _c;
+      const MAX_CAPACITY = initialRetryTokens;
+      const noRetryIncrement = (_a = options === null || options === void 0 ? void 0 : options.noRetryIncrement) !== null && _a !== void 0 ? _a : util_retry_1.NO_RETRY_INCREMENT;
+      const retryCost = (_b = options === null || options === void 0 ? void 0 : options.retryCost) !== null && _b !== void 0 ? _b : util_retry_1.RETRY_COST;
+      const timeoutRetryCost = (_c = options === null || options === void 0 ? void 0 : options.timeoutRetryCost) !== null && _c !== void 0 ? _c : util_retry_1.TIMEOUT_RETRY_COST;
+      let availableCapacity = initialRetryTokens;
+      const getCapacityAmount = (error) => error.name === "TimeoutError" ? timeoutRetryCost : retryCost;
+      const hasRetryTokens = (error) => getCapacityAmount(error) <= availableCapacity;
+      const retrieveRetryTokens = (error) => {
+        if (!hasRetryTokens(error)) {
+          throw new Error("No retry token available");
+        }
+        const capacityAmount = getCapacityAmount(error);
+        availableCapacity -= capacityAmount;
+        return capacityAmount;
+      };
+      const releaseRetryTokens = (capacityReleaseAmount) => {
+        availableCapacity += capacityReleaseAmount !== null && capacityReleaseAmount !== void 0 ? capacityReleaseAmount : noRetryIncrement;
+        availableCapacity = Math.min(availableCapacity, MAX_CAPACITY);
+      };
+      return Object.freeze({
+        hasRetryTokens,
+        retrieveRetryTokens,
+        releaseRetryTokens
+      });
+    };
+    exports.getDefaultRetryQuota = getDefaultRetryQuota;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/delayDecider.js
+var require_delayDecider = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/delayDecider.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.defaultDelayDecider = void 0;
+    var util_retry_1 = require_dist_cjs16();
+    var defaultDelayDecider = (delayBase, attempts) => Math.floor(Math.min(util_retry_1.MAXIMUM_RETRY_DELAY, Math.random() * 2 ** attempts * delayBase));
+    exports.defaultDelayDecider = defaultDelayDecider;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/retryDecider.js
+var require_retryDecider = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/retryDecider.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.defaultRetryDecider = void 0;
+    var service_error_classification_1 = require_dist_cjs15();
+    var defaultRetryDecider = (error) => {
+      if (!error) {
+        return false;
+      }
+      return (0, service_error_classification_1.isRetryableByTrait)(error) || (0, service_error_classification_1.isClockSkewError)(error) || (0, service_error_classification_1.isThrottlingError)(error) || (0, service_error_classification_1.isTransientError)(error);
+    };
+    exports.defaultRetryDecider = defaultRetryDecider;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/util.js
+var require_util = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/util.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.asSdkError = void 0;
+    var asSdkError = (error) => {
+      if (error instanceof Error)
+        return error;
+      if (error instanceof Object)
+        return Object.assign(new Error(), error);
+      if (typeof error === "string")
+        return new Error(error);
+      return new Error(`AWS SDK error wrapper for ${error}`);
+    };
+    exports.asSdkError = asSdkError;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/StandardRetryStrategy.js
+var require_StandardRetryStrategy2 = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/StandardRetryStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.StandardRetryStrategy = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var service_error_classification_1 = require_dist_cjs15();
+    var util_retry_1 = require_dist_cjs16();
+    var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
+    var defaultRetryQuota_1 = require_defaultRetryQuota();
+    var delayDecider_1 = require_delayDecider();
+    var retryDecider_1 = require_retryDecider();
+    var util_1 = require_util();
+    var StandardRetryStrategy = class {
+      constructor(maxAttemptsProvider, options) {
+        var _a, _b, _c;
+        this.maxAttemptsProvider = maxAttemptsProvider;
+        this.mode = util_retry_1.RETRY_MODES.STANDARD;
+        this.retryDecider = (_a = options === null || options === void 0 ? void 0 : options.retryDecider) !== null && _a !== void 0 ? _a : retryDecider_1.defaultRetryDecider;
+        this.delayDecider = (_b = options === null || options === void 0 ? void 0 : options.delayDecider) !== null && _b !== void 0 ? _b : delayDecider_1.defaultDelayDecider;
+        this.retryQuota = (_c = options === null || options === void 0 ? void 0 : options.retryQuota) !== null && _c !== void 0 ? _c : (0, defaultRetryQuota_1.getDefaultRetryQuota)(util_retry_1.INITIAL_RETRY_TOKENS);
+      }
+      shouldRetry(error, attempts, maxAttempts) {
+        return attempts < maxAttempts && this.retryDecider(error) && this.retryQuota.hasRetryTokens(error);
+      }
+      async getMaxAttempts() {
+        let maxAttempts;
+        try {
+          maxAttempts = await this.maxAttemptsProvider();
+        } catch (error) {
+          maxAttempts = util_retry_1.DEFAULT_MAX_ATTEMPTS;
+        }
+        return maxAttempts;
+      }
+      async retry(next, args, options) {
+        let retryTokenAmount;
+        let attempts = 0;
+        let totalDelay = 0;
+        const maxAttempts = await this.getMaxAttempts();
+        const { request } = args;
+        if (protocol_http_1.HttpRequest.isInstance(request)) {
+          request.headers[util_retry_1.INVOCATION_ID_HEADER] = (0, uuid_1.v4)();
+        }
+        while (true) {
+          try {
+            if (protocol_http_1.HttpRequest.isInstance(request)) {
+              request.headers[util_retry_1.REQUEST_HEADER] = `attempt=${attempts + 1}; max=${maxAttempts}`;
+            }
+            if (options === null || options === void 0 ? void 0 : options.beforeRequest) {
+              await options.beforeRequest();
+            }
+            const { response: response2, output } = await next(args);
+            if (options === null || options === void 0 ? void 0 : options.afterRequest) {
+              options.afterRequest(response2);
+            }
+            this.retryQuota.releaseRetryTokens(retryTokenAmount);
+            output.$metadata.attempts = attempts + 1;
+            output.$metadata.totalRetryDelay = totalDelay;
+            return { response: response2, output };
+          } catch (e) {
+            const err = (0, util_1.asSdkError)(e);
+            attempts++;
+            if (this.shouldRetry(err, attempts, maxAttempts)) {
+              retryTokenAmount = this.retryQuota.retrieveRetryTokens(err);
+              const delayFromDecider = this.delayDecider((0, service_error_classification_1.isThrottlingError)(err) ? util_retry_1.THROTTLING_RETRY_DELAY_BASE : util_retry_1.DEFAULT_RETRY_DELAY_BASE, attempts);
+              const delayFromResponse = getDelayFromRetryAfterHeader(err.$response);
+              const delay = Math.max(delayFromResponse || 0, delayFromDecider);
+              totalDelay += delay;
+              await new Promise((resolve) => setTimeout(resolve, delay));
+              continue;
+            }
+            if (!err.$metadata) {
+              err.$metadata = {};
+            }
+            err.$metadata.attempts = attempts;
+            err.$metadata.totalRetryDelay = totalDelay;
+            throw err;
+          }
+        }
+      }
+    };
+    exports.StandardRetryStrategy = StandardRetryStrategy;
+    var getDelayFromRetryAfterHeader = (response2) => {
+      if (!protocol_http_1.HttpResponse.isInstance(response2))
+        return;
+      const retryAfterHeaderName = Object.keys(response2.headers).find((key) => key.toLowerCase() === "retry-after");
+      if (!retryAfterHeaderName)
+        return;
+      const retryAfter = response2.headers[retryAfterHeaderName];
+      const retryAfterSeconds = Number(retryAfter);
+      if (!Number.isNaN(retryAfterSeconds))
+        return retryAfterSeconds * 1e3;
+      const retryAfterDate = new Date(retryAfter);
+      return retryAfterDate.getTime() - Date.now();
+    };
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/AdaptiveRetryStrategy.js
+var require_AdaptiveRetryStrategy2 = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/AdaptiveRetryStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.AdaptiveRetryStrategy = void 0;
+    var util_retry_1 = require_dist_cjs16();
+    var StandardRetryStrategy_1 = require_StandardRetryStrategy2();
+    var AdaptiveRetryStrategy = class extends StandardRetryStrategy_1.StandardRetryStrategy {
+      constructor(maxAttemptsProvider, options) {
+        const { rateLimiter, ...superOptions } = options !== null && options !== void 0 ? options : {};
+        super(maxAttemptsProvider, superOptions);
+        this.rateLimiter = rateLimiter !== null && rateLimiter !== void 0 ? rateLimiter : new util_retry_1.DefaultRateLimiter();
+        this.mode = util_retry_1.RETRY_MODES.ADAPTIVE;
+      }
+      async retry(next, args) {
+        return super.retry(next, args, {
+          beforeRequest: async () => {
+            return this.rateLimiter.getSendToken();
+          },
+          afterRequest: (response2) => {
+            this.rateLimiter.updateClientSendingRate(response2);
+          }
+        });
+      }
+    };
+    exports.AdaptiveRetryStrategy = AdaptiveRetryStrategy;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/configurations.js
+var require_configurations = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/configurations.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODE_RETRY_MODE_CONFIG_OPTIONS = exports.CONFIG_RETRY_MODE = exports.ENV_RETRY_MODE = exports.resolveRetryConfig = exports.NODE_MAX_ATTEMPT_CONFIG_OPTIONS = exports.CONFIG_MAX_ATTEMPTS = exports.ENV_MAX_ATTEMPTS = void 0;
+    var util_middleware_1 = require_dist_cjs4();
+    var util_retry_1 = require_dist_cjs16();
+    exports.ENV_MAX_ATTEMPTS = "AWS_MAX_ATTEMPTS";
+    exports.CONFIG_MAX_ATTEMPTS = "max_attempts";
+    exports.NODE_MAX_ATTEMPT_CONFIG_OPTIONS = {
+      environmentVariableSelector: (env) => {
+        const value = env[exports.ENV_MAX_ATTEMPTS];
+        if (!value)
+          return void 0;
+        const maxAttempt = parseInt(value);
+        if (Number.isNaN(maxAttempt)) {
+          throw new Error(`Environment variable ${exports.ENV_MAX_ATTEMPTS} mast be a number, got "${value}"`);
+        }
+        return maxAttempt;
+      },
+      configFileSelector: (profile) => {
+        const value = profile[exports.CONFIG_MAX_ATTEMPTS];
+        if (!value)
+          return void 0;
+        const maxAttempt = parseInt(value);
+        if (Number.isNaN(maxAttempt)) {
+          throw new Error(`Shared config file entry ${exports.CONFIG_MAX_ATTEMPTS} mast be a number, got "${value}"`);
+        }
+        return maxAttempt;
+      },
+      default: util_retry_1.DEFAULT_MAX_ATTEMPTS
+    };
+    var resolveRetryConfig = (input) => {
+      var _a;
+      const { retryStrategy } = input;
+      const maxAttempts = (0, util_middleware_1.normalizeProvider)((_a = input.maxAttempts) !== null && _a !== void 0 ? _a : util_retry_1.DEFAULT_MAX_ATTEMPTS);
+      return {
+        ...input,
+        maxAttempts,
+        retryStrategy: async () => {
+          if (retryStrategy) {
+            return retryStrategy;
+          }
+          const retryMode = await (0, util_middleware_1.normalizeProvider)(input.retryMode)();
+          if (retryMode === util_retry_1.RETRY_MODES.ADAPTIVE) {
+            return new util_retry_1.AdaptiveRetryStrategy(maxAttempts);
+          }
+          return new util_retry_1.StandardRetryStrategy(maxAttempts);
+        }
+      };
+    };
+    exports.resolveRetryConfig = resolveRetryConfig;
+    exports.ENV_RETRY_MODE = "AWS_RETRY_MODE";
+    exports.CONFIG_RETRY_MODE = "retry_mode";
+    exports.NODE_RETRY_MODE_CONFIG_OPTIONS = {
+      environmentVariableSelector: (env) => env[exports.ENV_RETRY_MODE],
+      configFileSelector: (profile) => profile[exports.CONFIG_RETRY_MODE],
+      default: util_retry_1.DEFAULT_RETRY_MODE
+    };
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/omitRetryHeadersMiddleware.js
+var require_omitRetryHeadersMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/omitRetryHeadersMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getOmitRetryHeadersPlugin = exports.omitRetryHeadersMiddlewareOptions = exports.omitRetryHeadersMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var util_retry_1 = require_dist_cjs16();
+    var omitRetryHeadersMiddleware = () => (next) => async (args) => {
+      const { request } = args;
+      if (protocol_http_1.HttpRequest.isInstance(request)) {
+        delete request.headers[util_retry_1.INVOCATION_ID_HEADER];
+        delete request.headers[util_retry_1.REQUEST_HEADER];
+      }
+      return next(args);
+    };
+    exports.omitRetryHeadersMiddleware = omitRetryHeadersMiddleware;
+    exports.omitRetryHeadersMiddlewareOptions = {
+      name: "omitRetryHeadersMiddleware",
+      tags: ["RETRY", "HEADERS", "OMIT_RETRY_HEADERS"],
+      relation: "before",
+      toMiddleware: "awsAuthMiddleware",
+      override: true
+    };
+    var getOmitRetryHeadersPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.addRelativeTo((0, exports.omitRetryHeadersMiddleware)(), exports.omitRetryHeadersMiddlewareOptions);
+      }
+    });
+    exports.getOmitRetryHeadersPlugin = getOmitRetryHeadersPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js
+var require_retryMiddleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/retryMiddleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getRetryAfterHint = exports.getRetryPlugin = exports.retryMiddlewareOptions = exports.retryMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var service_error_classification_1 = require_dist_cjs15();
+    var util_retry_1 = require_dist_cjs16();
+    var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
+    var util_1 = require_util();
+    var retryMiddleware = (options) => (next, context) => async (args) => {
+      let retryStrategy = await options.retryStrategy();
+      const maxAttempts = await options.maxAttempts();
+      if (isRetryStrategyV2(retryStrategy)) {
+        retryStrategy = retryStrategy;
+        let retryToken = await retryStrategy.acquireInitialRetryToken(context["partition_id"]);
+        let lastError = new Error();
+        let attempts = 0;
+        let totalRetryDelay = 0;
+        const { request } = args;
+        if (protocol_http_1.HttpRequest.isInstance(request)) {
+          request.headers[util_retry_1.INVOCATION_ID_HEADER] = (0, uuid_1.v4)();
+        }
+        while (true) {
+          try {
+            if (protocol_http_1.HttpRequest.isInstance(request)) {
+              request.headers[util_retry_1.REQUEST_HEADER] = `attempt=${attempts + 1}; max=${maxAttempts}`;
+            }
+            const { response: response2, output } = await next(args);
+            retryStrategy.recordSuccess(retryToken);
+            output.$metadata.attempts = attempts + 1;
+            output.$metadata.totalRetryDelay = totalRetryDelay;
+            return { response: response2, output };
+          } catch (e) {
+            const retryErrorInfo = getRetyErrorInto(e);
+            lastError = (0, util_1.asSdkError)(e);
+            try {
+              retryToken = await retryStrategy.refreshRetryTokenForRetry(retryToken, retryErrorInfo);
+            } catch (refreshError) {
+              if (!lastError.$metadata) {
+                lastError.$metadata = {};
+              }
+              lastError.$metadata.attempts = attempts + 1;
+              lastError.$metadata.totalRetryDelay = totalRetryDelay;
+              throw lastError;
+            }
+            attempts = retryToken.getRetryCount();
+            const delay = retryToken.getRetryDelay();
+            totalRetryDelay += delay;
+            await new Promise((resolve) => setTimeout(resolve, delay));
+          }
+        }
+      } else {
+        retryStrategy = retryStrategy;
+        if (retryStrategy === null || retryStrategy === void 0 ? void 0 : retryStrategy.mode)
+          context.userAgent = [...context.userAgent || [], ["cfg/retry-mode", retryStrategy.mode]];
+        return retryStrategy.retry(next, args);
+      }
+    };
+    exports.retryMiddleware = retryMiddleware;
+    var isRetryStrategyV2 = (retryStrategy) => typeof retryStrategy.acquireInitialRetryToken !== "undefined" && typeof retryStrategy.refreshRetryTokenForRetry !== "undefined" && typeof retryStrategy.recordSuccess !== "undefined";
+    var getRetyErrorInto = (error) => {
+      const errorInfo = {
+        errorType: getRetryErrorType(error)
+      };
+      const retryAfterHint = (0, exports.getRetryAfterHint)(error.$response);
+      if (retryAfterHint) {
+        errorInfo.retryAfterHint = retryAfterHint;
+      }
+      return errorInfo;
+    };
+    var getRetryErrorType = (error) => {
+      if ((0, service_error_classification_1.isThrottlingError)(error))
+        return "THROTTLING";
+      if ((0, service_error_classification_1.isTransientError)(error))
+        return "TRANSIENT";
+      if ((0, service_error_classification_1.isServerError)(error))
+        return "SERVER_ERROR";
+      return "CLIENT_ERROR";
+    };
+    exports.retryMiddlewareOptions = {
+      name: "retryMiddleware",
+      tags: ["RETRY"],
+      step: "finalizeRequest",
+      priority: "high",
+      override: true
+    };
+    var getRetryPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add((0, exports.retryMiddleware)(options), exports.retryMiddlewareOptions);
+      }
+    });
+    exports.getRetryPlugin = getRetryPlugin;
+    var getRetryAfterHint = (response2) => {
+      if (!protocol_http_1.HttpResponse.isInstance(response2))
+        return;
+      const retryAfterHeaderName = Object.keys(response2.headers).find((key) => key.toLowerCase() === "retry-after");
+      if (!retryAfterHeaderName)
+        return;
+      const retryAfter = response2.headers[retryAfterHeaderName];
+      const retryAfterSeconds = Number(retryAfter);
+      if (!Number.isNaN(retryAfterSeconds))
+        return new Date(retryAfterSeconds * 1e3);
+      const retryAfterDate = new Date(retryAfter);
+      return retryAfterDate;
+    };
+    exports.getRetryAfterHint = getRetryAfterHint;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-retry/dist-cjs/index.js
+var require_dist_cjs17 = __commonJS({
+  "node_modules/@aws-sdk/middleware-retry/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_AdaptiveRetryStrategy2(), exports);
+    tslib_1.__exportStar(require_StandardRetryStrategy2(), exports);
+    tslib_1.__exportStar(require_configurations(), exports);
+    tslib_1.__exportStar(require_delayDecider(), exports);
+    tslib_1.__exportStar(require_omitRetryHeadersMiddleware(), exports);
+    tslib_1.__exportStar(require_retryDecider(), exports);
+    tslib_1.__exportStar(require_retryMiddleware(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/ProviderError.js
+var require_ProviderError = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/ProviderError.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ProviderError = void 0;
+    var ProviderError = class extends Error {
+      constructor(message, tryNextLink = true) {
+        super(message);
+        this.tryNextLink = tryNextLink;
+        this.name = "ProviderError";
+        Object.setPrototypeOf(this, ProviderError.prototype);
+      }
+      static from(error, tryNextLink = true) {
+        return Object.assign(new this(error.message, tryNextLink), error);
+      }
+    };
+    exports.ProviderError = ProviderError;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/CredentialsProviderError.js
+var require_CredentialsProviderError = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/CredentialsProviderError.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.CredentialsProviderError = void 0;
+    var ProviderError_1 = require_ProviderError();
+    var CredentialsProviderError = class extends ProviderError_1.ProviderError {
+      constructor(message, tryNextLink = true) {
+        super(message, tryNextLink);
+        this.tryNextLink = tryNextLink;
+        this.name = "CredentialsProviderError";
+        Object.setPrototypeOf(this, CredentialsProviderError.prototype);
+      }
+    };
+    exports.CredentialsProviderError = CredentialsProviderError;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/TokenProviderError.js
+var require_TokenProviderError = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/TokenProviderError.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.TokenProviderError = void 0;
+    var ProviderError_1 = require_ProviderError();
+    var TokenProviderError = class extends ProviderError_1.ProviderError {
+      constructor(message, tryNextLink = true) {
+        super(message, tryNextLink);
+        this.tryNextLink = tryNextLink;
+        this.name = "TokenProviderError";
+        Object.setPrototypeOf(this, TokenProviderError.prototype);
+      }
+    };
+    exports.TokenProviderError = TokenProviderError;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/chain.js
+var require_chain = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/chain.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.chain = void 0;
+    var ProviderError_1 = require_ProviderError();
+    function chain(...providers) {
+      return () => {
+        let promise = Promise.reject(new ProviderError_1.ProviderError("No providers in chain"));
+        for (const provider of providers) {
+          promise = promise.catch((err) => {
+            if (err === null || err === void 0 ? void 0 : err.tryNextLink) {
+              return provider();
+            }
+            throw err;
+          });
+        }
+        return promise;
+      };
+    }
+    exports.chain = chain;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/fromStatic.js
+var require_fromStatic = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/fromStatic.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.fromStatic = void 0;
+    var fromStatic = (staticValue) => () => Promise.resolve(staticValue);
+    exports.fromStatic = fromStatic;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/memoize.js
+var require_memoize = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/memoize.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.memoize = void 0;
+    var memoize = (provider, isExpired, requiresRefresh) => {
+      let resolved;
+      let pending;
+      let hasResult;
+      let isConstant = false;
+      const coalesceProvider = async () => {
+        if (!pending) {
+          pending = provider();
+        }
+        try {
+          resolved = await pending;
+          hasResult = true;
+          isConstant = false;
+        } finally {
+          pending = void 0;
+        }
+        return resolved;
+      };
+      if (isExpired === void 0) {
+        return async (options) => {
+          if (!hasResult || (options === null || options === void 0 ? void 0 : options.forceRefresh)) {
+            resolved = await coalesceProvider();
+          }
+          return resolved;
+        };
+      }
+      return async (options) => {
+        if (!hasResult || (options === null || options === void 0 ? void 0 : options.forceRefresh)) {
+          resolved = await coalesceProvider();
+        }
+        if (isConstant) {
+          return resolved;
+        }
+        if (requiresRefresh && !requiresRefresh(resolved)) {
+          isConstant = true;
+          return resolved;
+        }
+        if (isExpired(resolved)) {
+          await coalesceProvider();
+          return resolved;
+        }
+        return resolved;
+      };
+    };
+    exports.memoize = memoize;
+  }
+});
+
+// node_modules/@aws-sdk/property-provider/dist-cjs/index.js
+var require_dist_cjs18 = __commonJS({
+  "node_modules/@aws-sdk/property-provider/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_CredentialsProviderError(), exports);
+    tslib_1.__exportStar(require_ProviderError(), exports);
+    tslib_1.__exportStar(require_TokenProviderError(), exports);
+    tslib_1.__exportStar(require_chain(), exports);
+    tslib_1.__exportStar(require_fromStatic(), exports);
+    tslib_1.__exportStar(require_memoize(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-hex-encoding/dist-cjs/index.js
+var require_dist_cjs19 = __commonJS({
+  "node_modules/@aws-sdk/util-hex-encoding/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toHex = exports.fromHex = void 0;
+    var SHORT_TO_HEX = {};
+    var HEX_TO_SHORT = {};
+    for (let i = 0; i < 256; i++) {
+      let encodedByte = i.toString(16).toLowerCase();
+      if (encodedByte.length === 1) {
+        encodedByte = `0${encodedByte}`;
+      }
+      SHORT_TO_HEX[i] = encodedByte;
+      HEX_TO_SHORT[encodedByte] = i;
+    }
+    function fromHex(encoded) {
+      if (encoded.length % 2 !== 0) {
+        throw new Error("Hex encoded strings must have an even number length");
+      }
+      const out = new Uint8Array(encoded.length / 2);
+      for (let i = 0; i < encoded.length; i += 2) {
+        const encodedByte = encoded.slice(i, i + 2).toLowerCase();
+        if (encodedByte in HEX_TO_SHORT) {
+          out[i / 2] = HEX_TO_SHORT[encodedByte];
+        } else {
+          throw new Error(`Cannot decode unrecognized sequence ${encodedByte} as hexadecimal`);
+        }
+      }
+      return out;
+    }
+    exports.fromHex = fromHex;
+    function toHex(bytes) {
+      let out = "";
+      for (let i = 0; i < bytes.byteLength; i++) {
+        out += SHORT_TO_HEX[bytes[i]];
+      }
+      return out;
+    }
+    exports.toHex = toHex;
+  }
+});
+
+// node_modules/@aws-sdk/is-array-buffer/dist-cjs/index.js
+var require_dist_cjs20 = __commonJS({
+  "node_modules/@aws-sdk/is-array-buffer/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isArrayBuffer = void 0;
+    var isArrayBuffer = (arg) => typeof ArrayBuffer === "function" && arg instanceof ArrayBuffer || Object.prototype.toString.call(arg) === "[object ArrayBuffer]";
+    exports.isArrayBuffer = isArrayBuffer;
+  }
+});
+
+// node_modules/@aws-sdk/util-buffer-from/dist-cjs/index.js
+var require_dist_cjs21 = __commonJS({
+  "node_modules/@aws-sdk/util-buffer-from/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.fromString = exports.fromArrayBuffer = void 0;
+    var is_array_buffer_1 = require_dist_cjs20();
+    var buffer_1 = require("buffer");
+    var fromArrayBuffer = (input, offset = 0, length = input.byteLength - offset) => {
+      if (!(0, is_array_buffer_1.isArrayBuffer)(input)) {
+        throw new TypeError(`The "input" argument must be ArrayBuffer. Received type ${typeof input} (${input})`);
+      }
+      return buffer_1.Buffer.from(input, offset, length);
+    };
+    exports.fromArrayBuffer = fromArrayBuffer;
+    var fromString = (input, encoding) => {
+      if (typeof input !== "string") {
+        throw new TypeError(`The "input" argument must be of type string. Received type ${typeof input} (${input})`);
+      }
+      return encoding ? buffer_1.Buffer.from(input, encoding) : buffer_1.Buffer.from(input);
+    };
+    exports.fromString = fromString;
+  }
+});
+
+// node_modules/@aws-sdk/util-utf8/dist-cjs/fromUtf8.js
+var require_fromUtf8 = __commonJS({
+  "node_modules/@aws-sdk/util-utf8/dist-cjs/fromUtf8.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.fromUtf8 = void 0;
+    var util_buffer_from_1 = require_dist_cjs21();
+    var fromUtf8 = (input) => {
+      const buf = (0, util_buffer_from_1.fromString)(input, "utf8");
+      return new Uint8Array(buf.buffer, buf.byteOffset, buf.byteLength / Uint8Array.BYTES_PER_ELEMENT);
+    };
+    exports.fromUtf8 = fromUtf8;
+  }
+});
+
+// node_modules/@aws-sdk/util-utf8/dist-cjs/toUint8Array.js
+var require_toUint8Array = __commonJS({
+  "node_modules/@aws-sdk/util-utf8/dist-cjs/toUint8Array.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toUint8Array = void 0;
+    var fromUtf8_1 = require_fromUtf8();
+    var toUint8Array = (data) => {
+      if (typeof data === "string") {
+        return (0, fromUtf8_1.fromUtf8)(data);
+      }
+      if (ArrayBuffer.isView(data)) {
+        return new Uint8Array(data.buffer, data.byteOffset, data.byteLength / Uint8Array.BYTES_PER_ELEMENT);
+      }
+      return new Uint8Array(data);
+    };
+    exports.toUint8Array = toUint8Array;
+  }
+});
+
+// node_modules/@aws-sdk/util-utf8/dist-cjs/toUtf8.js
+var require_toUtf8 = __commonJS({
+  "node_modules/@aws-sdk/util-utf8/dist-cjs/toUtf8.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toUtf8 = void 0;
+    var util_buffer_from_1 = require_dist_cjs21();
+    var toUtf8 = (input) => (0, util_buffer_from_1.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("utf8");
+    exports.toUtf8 = toUtf8;
+  }
+});
+
+// node_modules/@aws-sdk/util-utf8/dist-cjs/index.js
+var require_dist_cjs22 = __commonJS({
+  "node_modules/@aws-sdk/util-utf8/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_fromUtf8(), exports);
+    tslib_1.__exportStar(require_toUint8Array(), exports);
+    tslib_1.__exportStar(require_toUtf8(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/constants.js
+var require_constants4 = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.MAX_PRESIGNED_TTL = exports.KEY_TYPE_IDENTIFIER = exports.MAX_CACHE_SIZE = exports.UNSIGNED_PAYLOAD = exports.EVENT_ALGORITHM_IDENTIFIER = exports.ALGORITHM_IDENTIFIER_V4A = exports.ALGORITHM_IDENTIFIER = exports.UNSIGNABLE_PATTERNS = exports.SEC_HEADER_PATTERN = exports.PROXY_HEADER_PATTERN = exports.ALWAYS_UNSIGNABLE_HEADERS = exports.HOST_HEADER = exports.TOKEN_HEADER = exports.SHA256_HEADER = exports.SIGNATURE_HEADER = exports.GENERATED_HEADERS = exports.DATE_HEADER = exports.AMZ_DATE_HEADER = exports.AUTH_HEADER = exports.REGION_SET_PARAM = exports.TOKEN_QUERY_PARAM = exports.SIGNATURE_QUERY_PARAM = exports.EXPIRES_QUERY_PARAM = exports.SIGNED_HEADERS_QUERY_PARAM = exports.AMZ_DATE_QUERY_PARAM = exports.CREDENTIAL_QUERY_PARAM = exports.ALGORITHM_QUERY_PARAM = void 0;
+    exports.ALGORITHM_QUERY_PARAM = "X-Amz-Algorithm";
+    exports.CREDENTIAL_QUERY_PARAM = "X-Amz-Credential";
+    exports.AMZ_DATE_QUERY_PARAM = "X-Amz-Date";
+    exports.SIGNED_HEADERS_QUERY_PARAM = "X-Amz-SignedHeaders";
+    exports.EXPIRES_QUERY_PARAM = "X-Amz-Expires";
+    exports.SIGNATURE_QUERY_PARAM = "X-Amz-Signature";
+    exports.TOKEN_QUERY_PARAM = "X-Amz-Security-Token";
+    exports.REGION_SET_PARAM = "X-Amz-Region-Set";
+    exports.AUTH_HEADER = "authorization";
+    exports.AMZ_DATE_HEADER = exports.AMZ_DATE_QUERY_PARAM.toLowerCase();
+    exports.DATE_HEADER = "date";
+    exports.GENERATED_HEADERS = [exports.AUTH_HEADER, exports.AMZ_DATE_HEADER, exports.DATE_HEADER];
+    exports.SIGNATURE_HEADER = exports.SIGNATURE_QUERY_PARAM.toLowerCase();
+    exports.SHA256_HEADER = "x-amz-content-sha256";
+    exports.TOKEN_HEADER = exports.TOKEN_QUERY_PARAM.toLowerCase();
+    exports.HOST_HEADER = "host";
+    exports.ALWAYS_UNSIGNABLE_HEADERS = {
+      authorization: true,
+      "cache-control": true,
+      connection: true,
+      expect: true,
+      from: true,
+      "keep-alive": true,
+      "max-forwards": true,
+      pragma: true,
+      referer: true,
+      te: true,
+      trailer: true,
+      "transfer-encoding": true,
+      upgrade: true,
+      "user-agent": true,
+      "x-amzn-trace-id": true
+    };
+    exports.PROXY_HEADER_PATTERN = /^proxy-/;
+    exports.SEC_HEADER_PATTERN = /^sec-/;
+    exports.UNSIGNABLE_PATTERNS = [/^proxy-/i, /^sec-/i];
+    exports.ALGORITHM_IDENTIFIER = "AWS4-HMAC-SHA256";
+    exports.ALGORITHM_IDENTIFIER_V4A = "AWS4-ECDSA-P256-SHA256";
+    exports.EVENT_ALGORITHM_IDENTIFIER = "AWS4-HMAC-SHA256-PAYLOAD";
+    exports.UNSIGNED_PAYLOAD = "UNSIGNED-PAYLOAD";
+    exports.MAX_CACHE_SIZE = 50;
+    exports.KEY_TYPE_IDENTIFIER = "aws4_request";
+    exports.MAX_PRESIGNED_TTL = 60 * 60 * 24 * 7;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/credentialDerivation.js
+var require_credentialDerivation = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/credentialDerivation.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.clearCredentialCache = exports.getSigningKey = exports.createScope = void 0;
+    var util_hex_encoding_1 = require_dist_cjs19();
+    var util_utf8_1 = require_dist_cjs22();
+    var constants_1 = require_constants4();
+    var signingKeyCache = {};
+    var cacheQueue = [];
+    var createScope = (shortDate, region, service) => `${shortDate}/${region}/${service}/${constants_1.KEY_TYPE_IDENTIFIER}`;
+    exports.createScope = createScope;
+    var getSigningKey = async (sha256Constructor, credentials, shortDate, region, service) => {
+      const credsHash = await hmac(sha256Constructor, credentials.secretAccessKey, credentials.accessKeyId);
+      const cacheKey = `${shortDate}:${region}:${service}:${(0, util_hex_encoding_1.toHex)(credsHash)}:${credentials.sessionToken}`;
+      if (cacheKey in signingKeyCache) {
+        return signingKeyCache[cacheKey];
+      }
+      cacheQueue.push(cacheKey);
+      while (cacheQueue.length > constants_1.MAX_CACHE_SIZE) {
+        delete signingKeyCache[cacheQueue.shift()];
+      }
+      let key = `AWS4${credentials.secretAccessKey}`;
+      for (const signable of [shortDate, region, service, constants_1.KEY_TYPE_IDENTIFIER]) {
+        key = await hmac(sha256Constructor, key, signable);
+      }
+      return signingKeyCache[cacheKey] = key;
+    };
+    exports.getSigningKey = getSigningKey;
+    var clearCredentialCache = () => {
+      cacheQueue.length = 0;
+      Object.keys(signingKeyCache).forEach((cacheKey) => {
+        delete signingKeyCache[cacheKey];
+      });
+    };
+    exports.clearCredentialCache = clearCredentialCache;
+    var hmac = (ctor, secret, data) => {
+      const hash = new ctor(secret);
+      hash.update((0, util_utf8_1.toUint8Array)(data));
+      return hash.digest();
+    };
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalHeaders.js
+var require_getCanonicalHeaders = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalHeaders.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getCanonicalHeaders = void 0;
+    var constants_1 = require_constants4();
+    var getCanonicalHeaders = ({ headers }, unsignableHeaders, signableHeaders) => {
+      const canonical = {};
+      for (const headerName of Object.keys(headers).sort()) {
+        if (headers[headerName] == void 0) {
+          continue;
+        }
+        const canonicalHeaderName = headerName.toLowerCase();
+        if (canonicalHeaderName in constants_1.ALWAYS_UNSIGNABLE_HEADERS || (unsignableHeaders === null || unsignableHeaders === void 0 ? void 0 : unsignableHeaders.has(canonicalHeaderName)) || constants_1.PROXY_HEADER_PATTERN.test(canonicalHeaderName) || constants_1.SEC_HEADER_PATTERN.test(canonicalHeaderName)) {
+          if (!signableHeaders || signableHeaders && !signableHeaders.has(canonicalHeaderName)) {
+            continue;
+          }
+        }
+        canonical[canonicalHeaderName] = headers[headerName].trim().replace(/\s+/g, " ");
+      }
+      return canonical;
+    };
+    exports.getCanonicalHeaders = getCanonicalHeaders;
+  }
+});
+
+// node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri.js
+var require_escape_uri = __commonJS({
+  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.escapeUri = void 0;
+    var escapeUri = (uri) => encodeURIComponent(uri).replace(/[!'()*]/g, hexEncode);
+    exports.escapeUri = escapeUri;
+    var hexEncode = (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`;
+  }
+});
+
+// node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri-path.js
+var require_escape_uri_path = __commonJS({
+  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/escape-uri-path.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.escapeUriPath = void 0;
+    var escape_uri_1 = require_escape_uri();
+    var escapeUriPath = (uri) => uri.split("/").map(escape_uri_1.escapeUri).join("/");
+    exports.escapeUriPath = escapeUriPath;
+  }
+});
+
+// node_modules/@aws-sdk/util-uri-escape/dist-cjs/index.js
+var require_dist_cjs23 = __commonJS({
+  "node_modules/@aws-sdk/util-uri-escape/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_escape_uri(), exports);
+    tslib_1.__exportStar(require_escape_uri_path(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalQuery.js
+var require_getCanonicalQuery = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/getCanonicalQuery.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getCanonicalQuery = void 0;
+    var util_uri_escape_1 = require_dist_cjs23();
+    var constants_1 = require_constants4();
+    var getCanonicalQuery = ({ query = {} }) => {
+      const keys = [];
+      const serialized = {};
+      for (const key of Object.keys(query).sort()) {
+        if (key.toLowerCase() === constants_1.SIGNATURE_HEADER) {
+          continue;
+        }
+        keys.push(key);
+        const value = query[key];
+        if (typeof value === "string") {
+          serialized[key] = `${(0, util_uri_escape_1.escapeUri)(key)}=${(0, util_uri_escape_1.escapeUri)(value)}`;
+        } else if (Array.isArray(value)) {
+          serialized[key] = value.slice(0).sort().reduce((encoded, value2) => encoded.concat([`${(0, util_uri_escape_1.escapeUri)(key)}=${(0, util_uri_escape_1.escapeUri)(value2)}`]), []).join("&");
+        }
+      }
+      return keys.map((key) => serialized[key]).filter((serialized2) => serialized2).join("&");
+    };
+    exports.getCanonicalQuery = getCanonicalQuery;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/getPayloadHash.js
+var require_getPayloadHash = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/getPayloadHash.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getPayloadHash = void 0;
+    var is_array_buffer_1 = require_dist_cjs20();
+    var util_hex_encoding_1 = require_dist_cjs19();
+    var util_utf8_1 = require_dist_cjs22();
+    var constants_1 = require_constants4();
+    var getPayloadHash = async ({ headers, body }, hashConstructor) => {
+      for (const headerName of Object.keys(headers)) {
+        if (headerName.toLowerCase() === constants_1.SHA256_HEADER) {
+          return headers[headerName];
+        }
+      }
+      if (body == void 0) {
+        return "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+      } else if (typeof body === "string" || ArrayBuffer.isView(body) || (0, is_array_buffer_1.isArrayBuffer)(body)) {
+        const hashCtor = new hashConstructor();
+        hashCtor.update((0, util_utf8_1.toUint8Array)(body));
+        return (0, util_hex_encoding_1.toHex)(await hashCtor.digest());
+      }
+      return constants_1.UNSIGNED_PAYLOAD;
+    };
+    exports.getPayloadHash = getPayloadHash;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/headerUtil.js
+var require_headerUtil = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/headerUtil.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.deleteHeader = exports.getHeaderValue = exports.hasHeader = void 0;
+    var hasHeader = (soughtHeader, headers) => {
+      soughtHeader = soughtHeader.toLowerCase();
+      for (const headerName of Object.keys(headers)) {
+        if (soughtHeader === headerName.toLowerCase()) {
+          return true;
+        }
+      }
+      return false;
+    };
+    exports.hasHeader = hasHeader;
+    var getHeaderValue = (soughtHeader, headers) => {
+      soughtHeader = soughtHeader.toLowerCase();
+      for (const headerName of Object.keys(headers)) {
+        if (soughtHeader === headerName.toLowerCase()) {
+          return headers[headerName];
+        }
+      }
+      return void 0;
+    };
+    exports.getHeaderValue = getHeaderValue;
+    var deleteHeader = (soughtHeader, headers) => {
+      soughtHeader = soughtHeader.toLowerCase();
+      for (const headerName of Object.keys(headers)) {
+        if (soughtHeader === headerName.toLowerCase()) {
+          delete headers[headerName];
+        }
+      }
+    };
+    exports.deleteHeader = deleteHeader;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/cloneRequest.js
+var require_cloneRequest = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/cloneRequest.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.cloneQuery = exports.cloneRequest = void 0;
+    var cloneRequest = ({ headers, query, ...rest }) => ({
+      ...rest,
+      headers: { ...headers },
+      query: query ? (0, exports.cloneQuery)(query) : void 0
+    });
+    exports.cloneRequest = cloneRequest;
+    var cloneQuery = (query) => Object.keys(query).reduce((carry, paramName) => {
+      const param = query[paramName];
+      return {
+        ...carry,
+        [paramName]: Array.isArray(param) ? [...param] : param
+      };
+    }, {});
+    exports.cloneQuery = cloneQuery;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/moveHeadersToQuery.js
+var require_moveHeadersToQuery = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/moveHeadersToQuery.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.moveHeadersToQuery = void 0;
+    var cloneRequest_1 = require_cloneRequest();
+    var moveHeadersToQuery = (request, options = {}) => {
+      var _a;
+      const { headers, query = {} } = typeof request.clone === "function" ? request.clone() : (0, cloneRequest_1.cloneRequest)(request);
+      for (const name of Object.keys(headers)) {
+        const lname = name.toLowerCase();
+        if (lname.slice(0, 6) === "x-amz-" && !((_a = options.unhoistableHeaders) === null || _a === void 0 ? void 0 : _a.has(lname))) {
+          query[name] = headers[name];
+          delete headers[name];
+        }
+      }
+      return {
+        ...request,
+        headers,
+        query
+      };
+    };
+    exports.moveHeadersToQuery = moveHeadersToQuery;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/prepareRequest.js
+var require_prepareRequest = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/prepareRequest.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.prepareRequest = void 0;
+    var cloneRequest_1 = require_cloneRequest();
+    var constants_1 = require_constants4();
+    var prepareRequest = (request) => {
+      request = typeof request.clone === "function" ? request.clone() : (0, cloneRequest_1.cloneRequest)(request);
+      for (const headerName of Object.keys(request.headers)) {
+        if (constants_1.GENERATED_HEADERS.indexOf(headerName.toLowerCase()) > -1) {
+          delete request.headers[headerName];
+        }
+      }
+      return request;
+    };
+    exports.prepareRequest = prepareRequest;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/utilDate.js
+var require_utilDate = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/utilDate.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toDate = exports.iso8601 = void 0;
+    var iso8601 = (time) => (0, exports.toDate)(time).toISOString().replace(/\.\d{3}Z$/, "Z");
+    exports.iso8601 = iso8601;
+    var toDate = (time) => {
+      if (typeof time === "number") {
+        return new Date(time * 1e3);
+      }
+      if (typeof time === "string") {
+        if (Number(time)) {
+          return new Date(Number(time) * 1e3);
+        }
+        return new Date(time);
+      }
+      return time;
+    };
+    exports.toDate = toDate;
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/SignatureV4.js
+var require_SignatureV4 = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/SignatureV4.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.SignatureV4 = void 0;
+    var util_hex_encoding_1 = require_dist_cjs19();
+    var util_middleware_1 = require_dist_cjs4();
+    var util_utf8_1 = require_dist_cjs22();
+    var constants_1 = require_constants4();
+    var credentialDerivation_1 = require_credentialDerivation();
+    var getCanonicalHeaders_1 = require_getCanonicalHeaders();
+    var getCanonicalQuery_1 = require_getCanonicalQuery();
+    var getPayloadHash_1 = require_getPayloadHash();
+    var headerUtil_1 = require_headerUtil();
+    var moveHeadersToQuery_1 = require_moveHeadersToQuery();
+    var prepareRequest_1 = require_prepareRequest();
+    var utilDate_1 = require_utilDate();
+    var SignatureV4 = class {
+      constructor({ applyChecksum, credentials, region, service, sha256, uriEscapePath = true }) {
+        this.service = service;
+        this.sha256 = sha256;
+        this.uriEscapePath = uriEscapePath;
+        this.applyChecksum = typeof applyChecksum === "boolean" ? applyChecksum : true;
+        this.regionProvider = (0, util_middleware_1.normalizeProvider)(region);
+        this.credentialProvider = (0, util_middleware_1.normalizeProvider)(credentials);
+      }
+      async presign(originalRequest, options = {}) {
+        const { signingDate = /* @__PURE__ */ new Date(), expiresIn = 3600, unsignableHeaders, unhoistableHeaders, signableHeaders, signingRegion, signingService } = options;
+        const credentials = await this.credentialProvider();
+        this.validateResolvedCredentials(credentials);
+        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
+        const { longDate, shortDate } = formatDate(signingDate);
+        if (expiresIn > constants_1.MAX_PRESIGNED_TTL) {
+          return Promise.reject("Signature version 4 presigned URLs must have an expiration date less than one week in the future");
+        }
+        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
+        const request = (0, moveHeadersToQuery_1.moveHeadersToQuery)((0, prepareRequest_1.prepareRequest)(originalRequest), { unhoistableHeaders });
+        if (credentials.sessionToken) {
+          request.query[constants_1.TOKEN_QUERY_PARAM] = credentials.sessionToken;
+        }
+        request.query[constants_1.ALGORITHM_QUERY_PARAM] = constants_1.ALGORITHM_IDENTIFIER;
+        request.query[constants_1.CREDENTIAL_QUERY_PARAM] = `${credentials.accessKeyId}/${scope}`;
+        request.query[constants_1.AMZ_DATE_QUERY_PARAM] = longDate;
+        request.query[constants_1.EXPIRES_QUERY_PARAM] = expiresIn.toString(10);
+        const canonicalHeaders = (0, getCanonicalHeaders_1.getCanonicalHeaders)(request, unsignableHeaders, signableHeaders);
+        request.query[constants_1.SIGNED_HEADERS_QUERY_PARAM] = getCanonicalHeaderList(canonicalHeaders);
+        request.query[constants_1.SIGNATURE_QUERY_PARAM] = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, await (0, getPayloadHash_1.getPayloadHash)(originalRequest, this.sha256)));
+        return request;
+      }
+      async sign(toSign, options) {
+        if (typeof toSign === "string") {
+          return this.signString(toSign, options);
+        } else if (toSign.headers && toSign.payload) {
+          return this.signEvent(toSign, options);
+        } else {
+          return this.signRequest(toSign, options);
+        }
+      }
+      async signEvent({ headers, payload }, { signingDate = /* @__PURE__ */ new Date(), priorSignature, signingRegion, signingService }) {
+        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
+        const { shortDate, longDate } = formatDate(signingDate);
+        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
+        const hashedPayload = await (0, getPayloadHash_1.getPayloadHash)({ headers: {}, body: payload }, this.sha256);
+        const hash = new this.sha256();
+        hash.update(headers);
+        const hashedHeaders = (0, util_hex_encoding_1.toHex)(await hash.digest());
+        const stringToSign = [
+          constants_1.EVENT_ALGORITHM_IDENTIFIER,
+          longDate,
+          scope,
+          priorSignature,
+          hashedHeaders,
+          hashedPayload
+        ].join("\n");
+        return this.signString(stringToSign, { signingDate, signingRegion: region, signingService });
+      }
+      async signString(stringToSign, { signingDate = /* @__PURE__ */ new Date(), signingRegion, signingService } = {}) {
+        const credentials = await this.credentialProvider();
+        this.validateResolvedCredentials(credentials);
+        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
+        const { shortDate } = formatDate(signingDate);
+        const hash = new this.sha256(await this.getSigningKey(credentials, region, shortDate, signingService));
+        hash.update((0, util_utf8_1.toUint8Array)(stringToSign));
+        return (0, util_hex_encoding_1.toHex)(await hash.digest());
+      }
+      async signRequest(requestToSign, { signingDate = /* @__PURE__ */ new Date(), signableHeaders, unsignableHeaders, signingRegion, signingService } = {}) {
+        const credentials = await this.credentialProvider();
+        this.validateResolvedCredentials(credentials);
+        const region = signingRegion !== null && signingRegion !== void 0 ? signingRegion : await this.regionProvider();
+        const request = (0, prepareRequest_1.prepareRequest)(requestToSign);
+        const { longDate, shortDate } = formatDate(signingDate);
+        const scope = (0, credentialDerivation_1.createScope)(shortDate, region, signingService !== null && signingService !== void 0 ? signingService : this.service);
+        request.headers[constants_1.AMZ_DATE_HEADER] = longDate;
+        if (credentials.sessionToken) {
+          request.headers[constants_1.TOKEN_HEADER] = credentials.sessionToken;
+        }
+        const payloadHash = await (0, getPayloadHash_1.getPayloadHash)(request, this.sha256);
+        if (!(0, headerUtil_1.hasHeader)(constants_1.SHA256_HEADER, request.headers) && this.applyChecksum) {
+          request.headers[constants_1.SHA256_HEADER] = payloadHash;
+        }
+        const canonicalHeaders = (0, getCanonicalHeaders_1.getCanonicalHeaders)(request, unsignableHeaders, signableHeaders);
+        const signature = await this.getSignature(longDate, scope, this.getSigningKey(credentials, region, shortDate, signingService), this.createCanonicalRequest(request, canonicalHeaders, payloadHash));
+        request.headers[constants_1.AUTH_HEADER] = `${constants_1.ALGORITHM_IDENTIFIER} Credential=${credentials.accessKeyId}/${scope}, SignedHeaders=${getCanonicalHeaderList(canonicalHeaders)}, Signature=${signature}`;
+        return request;
+      }
+      createCanonicalRequest(request, canonicalHeaders, payloadHash) {
+        const sortedHeaders = Object.keys(canonicalHeaders).sort();
+        return `${request.method}
+${this.getCanonicalPath(request)}
+${(0, getCanonicalQuery_1.getCanonicalQuery)(request)}
+${sortedHeaders.map((name) => `${name}:${canonicalHeaders[name]}`).join("\n")}
+
+${sortedHeaders.join(";")}
+${payloadHash}`;
+      }
+      async createStringToSign(longDate, credentialScope, canonicalRequest) {
+        const hash = new this.sha256();
+        hash.update((0, util_utf8_1.toUint8Array)(canonicalRequest));
+        const hashedRequest = await hash.digest();
+        return `${constants_1.ALGORITHM_IDENTIFIER}
+${longDate}
+${credentialScope}
+${(0, util_hex_encoding_1.toHex)(hashedRequest)}`;
+      }
+      getCanonicalPath({ path }) {
+        if (this.uriEscapePath) {
+          const normalizedPathSegments = [];
+          for (const pathSegment of path.split("/")) {
+            if ((pathSegment === null || pathSegment === void 0 ? void 0 : pathSegment.length) === 0)
+              continue;
+            if (pathSegment === ".")
+              continue;
+            if (pathSegment === "..") {
+              normalizedPathSegments.pop();
+            } else {
+              normalizedPathSegments.push(pathSegment);
+            }
+          }
+          const normalizedPath = `${(path === null || path === void 0 ? void 0 : path.startsWith("/")) ? "/" : ""}${normalizedPathSegments.join("/")}${normalizedPathSegments.length > 0 && (path === null || path === void 0 ? void 0 : path.endsWith("/")) ? "/" : ""}`;
+          const doubleEncoded = encodeURIComponent(normalizedPath);
+          return doubleEncoded.replace(/%2F/g, "/");
+        }
+        return path;
+      }
+      async getSignature(longDate, credentialScope, keyPromise, canonicalRequest) {
+        const stringToSign = await this.createStringToSign(longDate, credentialScope, canonicalRequest);
+        const hash = new this.sha256(await keyPromise);
+        hash.update((0, util_utf8_1.toUint8Array)(stringToSign));
+        return (0, util_hex_encoding_1.toHex)(await hash.digest());
+      }
+      getSigningKey(credentials, region, shortDate, service) {
+        return (0, credentialDerivation_1.getSigningKey)(this.sha256, credentials, shortDate, region, service || this.service);
+      }
+      validateResolvedCredentials(credentials) {
+        if (typeof credentials !== "object" || typeof credentials.accessKeyId !== "string" || typeof credentials.secretAccessKey !== "string") {
+          throw new Error("Resolved credential object is not valid");
+        }
+      }
+    };
+    exports.SignatureV4 = SignatureV4;
+    var formatDate = (now) => {
+      const longDate = (0, utilDate_1.iso8601)(now).replace(/[\-:]/g, "");
+      return {
+        longDate,
+        shortDate: longDate.slice(0, 8)
+      };
+    };
+    var getCanonicalHeaderList = (headers) => Object.keys(headers).sort().join(";");
+  }
+});
+
+// node_modules/@aws-sdk/signature-v4/dist-cjs/index.js
+var require_dist_cjs24 = __commonJS({
+  "node_modules/@aws-sdk/signature-v4/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.prepareRequest = exports.moveHeadersToQuery = exports.getPayloadHash = exports.getCanonicalQuery = exports.getCanonicalHeaders = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_SignatureV4(), exports);
+    var getCanonicalHeaders_1 = require_getCanonicalHeaders();
+    Object.defineProperty(exports, "getCanonicalHeaders", { enumerable: true, get: function() {
+      return getCanonicalHeaders_1.getCanonicalHeaders;
+    } });
+    var getCanonicalQuery_1 = require_getCanonicalQuery();
+    Object.defineProperty(exports, "getCanonicalQuery", { enumerable: true, get: function() {
+      return getCanonicalQuery_1.getCanonicalQuery;
+    } });
+    var getPayloadHash_1 = require_getPayloadHash();
+    Object.defineProperty(exports, "getPayloadHash", { enumerable: true, get: function() {
+      return getPayloadHash_1.getPayloadHash;
+    } });
+    var moveHeadersToQuery_1 = require_moveHeadersToQuery();
+    Object.defineProperty(exports, "moveHeadersToQuery", { enumerable: true, get: function() {
+      return moveHeadersToQuery_1.moveHeadersToQuery;
+    } });
+    var prepareRequest_1 = require_prepareRequest();
+    Object.defineProperty(exports, "prepareRequest", { enumerable: true, get: function() {
+      return prepareRequest_1.prepareRequest;
+    } });
+    tslib_1.__exportStar(require_credentialDerivation(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/configurations.js
+var require_configurations2 = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/configurations.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveSigV4AuthConfig = exports.resolveAwsAuthConfig = void 0;
+    var property_provider_1 = require_dist_cjs18();
+    var signature_v4_1 = require_dist_cjs24();
+    var util_middleware_1 = require_dist_cjs4();
+    var CREDENTIAL_EXPIRE_WINDOW = 3e5;
+    var resolveAwsAuthConfig = (input) => {
+      const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
+      const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
+      let signer;
+      if (input.signer) {
+        signer = (0, util_middleware_1.normalizeProvider)(input.signer);
+      } else if (input.regionInfoProvider) {
+        signer = () => (0, util_middleware_1.normalizeProvider)(input.region)().then(async (region) => [
+          await input.regionInfoProvider(region, {
+            useFipsEndpoint: await input.useFipsEndpoint(),
+            useDualstackEndpoint: await input.useDualstackEndpoint()
+          }) || {},
+          region
+        ]).then(([regionInfo, region]) => {
+          const { signingRegion, signingService } = regionInfo;
+          input.signingRegion = input.signingRegion || signingRegion || region;
+          input.signingName = input.signingName || signingService || input.serviceId;
+          const params = {
+            ...input,
+            credentials: normalizedCreds,
+            region: input.signingRegion,
+            service: input.signingName,
+            sha256,
+            uriEscapePath: signingEscapePath
+          };
+          const SignerCtor = input.signerConstructor || signature_v4_1.SignatureV4;
+          return new SignerCtor(params);
+        });
+      } else {
+        signer = async (authScheme) => {
+          authScheme = Object.assign({}, {
+            name: "sigv4",
+            signingName: input.signingName || input.defaultSigningName,
+            signingRegion: await (0, util_middleware_1.normalizeProvider)(input.region)(),
+            properties: {}
+          }, authScheme);
+          const signingRegion = authScheme.signingRegion;
+          const signingService = authScheme.signingName;
+          input.signingRegion = input.signingRegion || signingRegion;
+          input.signingName = input.signingName || signingService || input.serviceId;
+          const params = {
+            ...input,
+            credentials: normalizedCreds,
+            region: input.signingRegion,
+            service: input.signingName,
+            sha256,
+            uriEscapePath: signingEscapePath
+          };
+          const SignerCtor = input.signerConstructor || signature_v4_1.SignatureV4;
+          return new SignerCtor(params);
+        };
+      }
+      return {
+        ...input,
+        systemClockOffset,
+        signingEscapePath,
+        credentials: normalizedCreds,
+        signer
+      };
+    };
+    exports.resolveAwsAuthConfig = resolveAwsAuthConfig;
+    var resolveSigV4AuthConfig = (input) => {
+      const normalizedCreds = input.credentials ? normalizeCredentialProvider(input.credentials) : input.credentialDefaultProvider(input);
+      const { signingEscapePath = true, systemClockOffset = input.systemClockOffset || 0, sha256 } = input;
+      let signer;
+      if (input.signer) {
+        signer = (0, util_middleware_1.normalizeProvider)(input.signer);
+      } else {
+        signer = (0, util_middleware_1.normalizeProvider)(new signature_v4_1.SignatureV4({
+          credentials: normalizedCreds,
+          region: input.region,
+          service: input.signingName,
+          sha256,
+          uriEscapePath: signingEscapePath
+        }));
+      }
+      return {
+        ...input,
+        systemClockOffset,
+        signingEscapePath,
+        credentials: normalizedCreds,
+        signer
+      };
+    };
+    exports.resolveSigV4AuthConfig = resolveSigV4AuthConfig;
+    var normalizeCredentialProvider = (credentials) => {
+      if (typeof credentials === "function") {
+        return (0, property_provider_1.memoize)(credentials, (credentials2) => credentials2.expiration !== void 0 && credentials2.expiration.getTime() - Date.now() < CREDENTIAL_EXPIRE_WINDOW, (credentials2) => credentials2.expiration !== void 0);
+      }
+      return (0, util_middleware_1.normalizeProvider)(credentials);
+    };
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getSkewCorrectedDate.js
+var require_getSkewCorrectedDate = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getSkewCorrectedDate.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getSkewCorrectedDate = void 0;
+    var getSkewCorrectedDate = (systemClockOffset) => new Date(Date.now() + systemClockOffset);
+    exports.getSkewCorrectedDate = getSkewCorrectedDate;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/isClockSkewed.js
+var require_isClockSkewed = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/isClockSkewed.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isClockSkewed = void 0;
+    var getSkewCorrectedDate_1 = require_getSkewCorrectedDate();
+    var isClockSkewed = (clockTime, systemClockOffset) => Math.abs((0, getSkewCorrectedDate_1.getSkewCorrectedDate)(systemClockOffset).getTime() - clockTime) >= 3e5;
+    exports.isClockSkewed = isClockSkewed;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getUpdatedSystemClockOffset.js
+var require_getUpdatedSystemClockOffset = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/utils/getUpdatedSystemClockOffset.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getUpdatedSystemClockOffset = void 0;
+    var isClockSkewed_1 = require_isClockSkewed();
+    var getUpdatedSystemClockOffset = (clockTime, currentSystemClockOffset) => {
+      const clockTimeInMs = Date.parse(clockTime);
+      if ((0, isClockSkewed_1.isClockSkewed)(clockTimeInMs, currentSystemClockOffset)) {
+        return clockTimeInMs - Date.now();
+      }
+      return currentSystemClockOffset;
+    };
+    exports.getUpdatedSystemClockOffset = getUpdatedSystemClockOffset;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js
+var require_middleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/middleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getSigV4AuthPlugin = exports.getAwsAuthPlugin = exports.awsAuthMiddlewareOptions = exports.awsAuthMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var getSkewCorrectedDate_1 = require_getSkewCorrectedDate();
+    var getUpdatedSystemClockOffset_1 = require_getUpdatedSystemClockOffset();
+    var awsAuthMiddleware = (options) => (next, context) => async function(args) {
+      var _a, _b, _c, _d;
+      if (!protocol_http_1.HttpRequest.isInstance(args.request))
+        return next(args);
+      const authScheme = (_c = (_b = (_a = context.endpointV2) === null || _a === void 0 ? void 0 : _a.properties) === null || _b === void 0 ? void 0 : _b.authSchemes) === null || _c === void 0 ? void 0 : _c[0];
+      const multiRegionOverride = (authScheme === null || authScheme === void 0 ? void 0 : authScheme.name) === "sigv4a" ? (_d = authScheme === null || authScheme === void 0 ? void 0 : authScheme.signingRegionSet) === null || _d === void 0 ? void 0 : _d.join(",") : void 0;
+      const signer = await options.signer(authScheme);
+      const output = await next({
+        ...args,
+        request: await signer.sign(args.request, {
+          signingDate: (0, getSkewCorrectedDate_1.getSkewCorrectedDate)(options.systemClockOffset),
+          signingRegion: multiRegionOverride || context["signing_region"],
+          signingService: context["signing_service"]
+        })
+      }).catch((error) => {
+        var _a2;
+        const serverTime = (_a2 = error.ServerTime) !== null && _a2 !== void 0 ? _a2 : getDateHeader(error.$response);
+        if (serverTime) {
+          options.systemClockOffset = (0, getUpdatedSystemClockOffset_1.getUpdatedSystemClockOffset)(serverTime, options.systemClockOffset);
+        }
+        throw error;
+      });
+      const dateHeader = getDateHeader(output.response);
+      if (dateHeader) {
+        options.systemClockOffset = (0, getUpdatedSystemClockOffset_1.getUpdatedSystemClockOffset)(dateHeader, options.systemClockOffset);
+      }
+      return output;
+    };
+    exports.awsAuthMiddleware = awsAuthMiddleware;
+    var getDateHeader = (response2) => {
+      var _a, _b, _c;
+      return protocol_http_1.HttpResponse.isInstance(response2) ? (_b = (_a = response2.headers) === null || _a === void 0 ? void 0 : _a.date) !== null && _b !== void 0 ? _b : (_c = response2.headers) === null || _c === void 0 ? void 0 : _c.Date : void 0;
+    };
+    exports.awsAuthMiddlewareOptions = {
+      name: "awsAuthMiddleware",
+      tags: ["SIGNATURE", "AWSAUTH"],
+      relation: "after",
+      toMiddleware: "retryMiddleware",
+      override: true
+    };
+    var getAwsAuthPlugin = (options) => ({
+      applyToStack: (clientStack) => {
+        clientStack.addRelativeTo((0, exports.awsAuthMiddleware)(options), exports.awsAuthMiddlewareOptions);
+      }
+    });
+    exports.getAwsAuthPlugin = getAwsAuthPlugin;
+    exports.getSigV4AuthPlugin = exports.getAwsAuthPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-signing/dist-cjs/index.js
+var require_dist_cjs25 = __commonJS({
+  "node_modules/@aws-sdk/middleware-signing/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_configurations2(), exports);
+    tslib_1.__exportStar(require_middleware(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/configurations.js
+var require_configurations3 = __commonJS({
+  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/configurations.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveUserAgentConfig = void 0;
+    function resolveUserAgentConfig(input) {
+      return {
+        ...input,
+        customUserAgent: typeof input.customUserAgent === "string" ? [[input.customUserAgent]] : input.customUserAgent
+      };
+    }
+    exports.resolveUserAgentConfig = resolveUserAgentConfig;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partitions.json
+var require_partitions = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partitions.json"(exports, module2) {
+    module2.exports = {
+      partitions: [{
+        id: "aws",
+        outputs: {
+          dnsSuffix: "amazonaws.com",
+          dualStackDnsSuffix: "api.aws",
+          name: "aws",
+          supportsDualStack: true,
+          supportsFIPS: true
+        },
+        regionRegex: "^(us|eu|ap|sa|ca|me|af)\\-\\w+\\-\\d+$",
+        regions: {
+          "af-south-1": {
+            description: "Africa (Cape Town)"
+          },
+          "ap-east-1": {
+            description: "Asia Pacific (Hong Kong)"
+          },
+          "ap-northeast-1": {
+            description: "Asia Pacific (Tokyo)"
+          },
+          "ap-northeast-2": {
+            description: "Asia Pacific (Seoul)"
+          },
+          "ap-northeast-3": {
+            description: "Asia Pacific (Osaka)"
+          },
+          "ap-south-1": {
+            description: "Asia Pacific (Mumbai)"
+          },
+          "ap-south-2": {
+            description: "Asia Pacific (Hyderabad)"
+          },
+          "ap-southeast-1": {
+            description: "Asia Pacific (Singapore)"
+          },
+          "ap-southeast-2": {
+            description: "Asia Pacific (Sydney)"
+          },
+          "ap-southeast-3": {
+            description: "Asia Pacific (Jakarta)"
+          },
+          "ap-southeast-4": {
+            description: "Asia Pacific (Melbourne)"
+          },
+          "aws-global": {
+            description: "AWS Standard global region"
+          },
+          "ca-central-1": {
+            description: "Canada (Central)"
+          },
+          "eu-central-1": {
+            description: "Europe (Frankfurt)"
+          },
+          "eu-central-2": {
+            description: "Europe (Zurich)"
+          },
+          "eu-north-1": {
+            description: "Europe (Stockholm)"
+          },
+          "eu-south-1": {
+            description: "Europe (Milan)"
+          },
+          "eu-south-2": {
+            description: "Europe (Spain)"
+          },
+          "eu-west-1": {
+            description: "Europe (Ireland)"
+          },
+          "eu-west-2": {
+            description: "Europe (London)"
+          },
+          "eu-west-3": {
+            description: "Europe (Paris)"
+          },
+          "me-central-1": {
+            description: "Middle East (UAE)"
+          },
+          "me-south-1": {
+            description: "Middle East (Bahrain)"
+          },
+          "sa-east-1": {
+            description: "South America (Sao Paulo)"
+          },
+          "us-east-1": {
+            description: "US East (N. Virginia)"
+          },
+          "us-east-2": {
+            description: "US East (Ohio)"
+          },
+          "us-west-1": {
+            description: "US West (N. California)"
+          },
+          "us-west-2": {
+            description: "US West (Oregon)"
+          }
+        }
+      }, {
+        id: "aws-cn",
+        outputs: {
+          dnsSuffix: "amazonaws.com.cn",
+          dualStackDnsSuffix: "api.amazonwebservices.com.cn",
+          name: "aws-cn",
+          supportsDualStack: true,
+          supportsFIPS: true
+        },
+        regionRegex: "^cn\\-\\w+\\-\\d+$",
+        regions: {
+          "aws-cn-global": {
+            description: "AWS China global region"
+          },
+          "cn-north-1": {
+            description: "China (Beijing)"
+          },
+          "cn-northwest-1": {
+            description: "China (Ningxia)"
+          }
+        }
+      }, {
+        id: "aws-us-gov",
+        outputs: {
+          dnsSuffix: "amazonaws.com",
+          dualStackDnsSuffix: "api.aws",
+          name: "aws-us-gov",
+          supportsDualStack: true,
+          supportsFIPS: true
+        },
+        regionRegex: "^us\\-gov\\-\\w+\\-\\d+$",
+        regions: {
+          "aws-us-gov-global": {
+            description: "AWS GovCloud (US) global region"
+          },
+          "us-gov-east-1": {
+            description: "AWS GovCloud (US-East)"
+          },
+          "us-gov-west-1": {
+            description: "AWS GovCloud (US-West)"
+          }
+        }
+      }, {
+        id: "aws-iso",
+        outputs: {
+          dnsSuffix: "c2s.ic.gov",
+          dualStackDnsSuffix: "c2s.ic.gov",
+          name: "aws-iso",
+          supportsDualStack: false,
+          supportsFIPS: true
+        },
+        regionRegex: "^us\\-iso\\-\\w+\\-\\d+$",
+        regions: {
+          "aws-iso-global": {
+            description: "AWS ISO (US) global region"
+          },
+          "us-iso-east-1": {
+            description: "US ISO East"
+          },
+          "us-iso-west-1": {
+            description: "US ISO WEST"
+          }
+        }
+      }, {
+        id: "aws-iso-b",
+        outputs: {
+          dnsSuffix: "sc2s.sgov.gov",
+          dualStackDnsSuffix: "sc2s.sgov.gov",
+          name: "aws-iso-b",
+          supportsDualStack: false,
+          supportsFIPS: true
+        },
+        regionRegex: "^us\\-isob\\-\\w+\\-\\d+$",
+        regions: {
+          "aws-iso-b-global": {
+            description: "AWS ISOB (US) global region"
+          },
+          "us-isob-east-1": {
+            description: "US ISOB East (Ohio)"
+          }
+        }
+      }],
+      version: "1.1"
+    };
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partition.js
+var require_partition = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/partition.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getUserAgentPrefix = exports.useDefaultPartitionInfo = exports.setPartitionInfo = exports.partition = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    var partitions_json_1 = tslib_1.__importDefault(require_partitions());
+    var selectedPartitionsInfo = partitions_json_1.default;
+    var selectedUserAgentPrefix = "";
+    var partition = (value) => {
+      const { partitions } = selectedPartitionsInfo;
+      for (const partition2 of partitions) {
+        const { regions, outputs } = partition2;
+        for (const [region, regionData] of Object.entries(regions)) {
+          if (region === value) {
+            return {
+              ...outputs,
+              ...regionData
+            };
+          }
+        }
+      }
+      for (const partition2 of partitions) {
+        const { regionRegex, outputs } = partition2;
+        if (new RegExp(regionRegex).test(value)) {
+          return {
+            ...outputs
+          };
+        }
+      }
+      const DEFAULT_PARTITION = partitions.find((partition2) => partition2.id === "aws");
+      if (!DEFAULT_PARTITION) {
+        throw new Error("Provided region was not found in the partition array or regex, and default partition with id 'aws' doesn't exist.");
+      }
+      return {
+        ...DEFAULT_PARTITION.outputs
+      };
+    };
+    exports.partition = partition;
+    var setPartitionInfo = (partitionsInfo, userAgentPrefix = "") => {
+      selectedPartitionsInfo = partitionsInfo;
+      selectedUserAgentPrefix = userAgentPrefix;
+    };
+    exports.setPartitionInfo = setPartitionInfo;
+    var useDefaultPartitionInfo = () => {
+      (0, exports.setPartitionInfo)(partitions_json_1.default, "");
+    };
+    exports.useDefaultPartitionInfo = useDefaultPartitionInfo;
+    var getUserAgentPrefix = () => selectedUserAgentPrefix;
+    exports.getUserAgentPrefix = getUserAgentPrefix;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/debugId.js
+var require_debugId = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/debugId.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.debugId = void 0;
+    exports.debugId = "endpoints";
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/toDebugString.js
+var require_toDebugString = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/toDebugString.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toDebugString = void 0;
+    function toDebugString(input) {
+      if (typeof input !== "object" || input == null) {
+        return input;
+      }
+      if ("ref" in input) {
+        return `$${toDebugString(input.ref)}`;
+      }
+      if ("fn" in input) {
+        return `${input.fn}(${(input.argv || []).map(toDebugString).join(", ")})`;
+      }
+      return JSON.stringify(input, null, 2);
+    }
+    exports.toDebugString = toDebugString;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/index.js
+var require_debug = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/debug/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_debugId(), exports);
+    tslib_1.__exportStar(require_toDebugString(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointError.js
+var require_EndpointError = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointError.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.EndpointError = void 0;
+    var EndpointError = class extends Error {
+      constructor(message) {
+        super(message);
+        this.name = "EndpointError";
+      }
+    };
+    exports.EndpointError = EndpointError;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointRuleObject.js
+var require_EndpointRuleObject = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/EndpointRuleObject.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/ErrorRuleObject.js
+var require_ErrorRuleObject = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/ErrorRuleObject.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/RuleSetObject.js
+var require_RuleSetObject = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/RuleSetObject.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/TreeRuleObject.js
+var require_TreeRuleObject = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/TreeRuleObject.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/shared.js
+var require_shared = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/shared.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/types/index.js
+var require_types3 = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/types/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_EndpointError(), exports);
+    tslib_1.__exportStar(require_EndpointRuleObject(), exports);
+    tslib_1.__exportStar(require_ErrorRuleObject(), exports);
+    tslib_1.__exportStar(require_RuleSetObject(), exports);
+    tslib_1.__exportStar(require_TreeRuleObject(), exports);
+    tslib_1.__exportStar(require_shared(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isIpAddress.js
+var require_isIpAddress = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isIpAddress.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isIpAddress = void 0;
+    var IP_V4_REGEX = new RegExp(`^(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}$`);
+    var isIpAddress = (value) => IP_V4_REGEX.test(value) || value.startsWith("[") && value.endsWith("]");
+    exports.isIpAddress = isIpAddress;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isValidHostLabel.js
+var require_isValidHostLabel = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isValidHostLabel.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isValidHostLabel = void 0;
+    var VALID_HOST_LABEL_REGEX = new RegExp(`^(?!.*-$)(?!-)[a-zA-Z0-9-]{1,63}$`);
+    var isValidHostLabel = (value, allowSubDomains = false) => {
+      if (!allowSubDomains) {
+        return VALID_HOST_LABEL_REGEX.test(value);
+      }
+      const labels = value.split(".");
+      for (const label of labels) {
+        if (!(0, exports.isValidHostLabel)(label)) {
+          return false;
+        }
+      }
+      return true;
+    };
+    exports.isValidHostLabel = isValidHostLabel;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/isVirtualHostableS3Bucket.js
+var require_isVirtualHostableS3Bucket = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/isVirtualHostableS3Bucket.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isVirtualHostableS3Bucket = void 0;
+    var isIpAddress_1 = require_isIpAddress();
+    var isValidHostLabel_1 = require_isValidHostLabel();
+    var isVirtualHostableS3Bucket = (value, allowSubDomains = false) => {
+      if (allowSubDomains) {
+        for (const label of value.split(".")) {
+          if (!(0, exports.isVirtualHostableS3Bucket)(label)) {
+            return false;
+          }
+        }
+        return true;
+      }
+      if (!(0, isValidHostLabel_1.isValidHostLabel)(value)) {
+        return false;
+      }
+      if (value.length < 3 || value.length > 63) {
+        return false;
+      }
+      if (value !== value.toLowerCase()) {
+        return false;
+      }
+      if ((0, isIpAddress_1.isIpAddress)(value)) {
+        return false;
+      }
+      return true;
+    };
+    exports.isVirtualHostableS3Bucket = isVirtualHostableS3Bucket;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/parseArn.js
+var require_parseArn = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/parseArn.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.parseArn = void 0;
+    var parseArn = (value) => {
+      const segments = value.split(":");
+      if (segments.length < 6)
+        return null;
+      const [arn, partition, service, region, accountId, ...resourceId] = segments;
+      if (arn !== "arn" || partition === "" || service === "" || resourceId[0] === "")
+        return null;
+      return {
+        partition,
+        service,
+        region,
+        accountId,
+        resourceId: resourceId[0].includes("/") ? resourceId[0].split("/") : resourceId
+      };
+    };
+    exports.parseArn = parseArn;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/index.js
+var require_aws = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/aws/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_isVirtualHostableS3Bucket(), exports);
+    tslib_1.__exportStar(require_parseArn(), exports);
+    tslib_1.__exportStar(require_partition(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/booleanEquals.js
+var require_booleanEquals = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/booleanEquals.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.booleanEquals = void 0;
+    var booleanEquals = (value1, value2) => value1 === value2;
+    exports.booleanEquals = booleanEquals;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttrPathList.js
+var require_getAttrPathList = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttrPathList.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getAttrPathList = void 0;
+    var types_1 = require_types3();
+    var getAttrPathList = (path) => {
+      const parts = path.split(".");
+      const pathList = [];
+      for (const part of parts) {
+        const squareBracketIndex = part.indexOf("[");
+        if (squareBracketIndex !== -1) {
+          if (part.indexOf("]") !== part.length - 1) {
+            throw new types_1.EndpointError(`Path: '${path}' does not end with ']'`);
+          }
+          const arrayIndex = part.slice(squareBracketIndex + 1, -1);
+          if (Number.isNaN(parseInt(arrayIndex))) {
+            throw new types_1.EndpointError(`Invalid array index: '${arrayIndex}' in path: '${path}'`);
+          }
+          if (squareBracketIndex !== 0) {
+            pathList.push(part.slice(0, squareBracketIndex));
+          }
+          pathList.push(arrayIndex);
+        } else {
+          pathList.push(part);
+        }
+      }
+      return pathList;
+    };
+    exports.getAttrPathList = getAttrPathList;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttr.js
+var require_getAttr = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/getAttr.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getAttr = void 0;
+    var types_1 = require_types3();
+    var getAttrPathList_1 = require_getAttrPathList();
+    var getAttr = (value, path) => (0, getAttrPathList_1.getAttrPathList)(path).reduce((acc, index) => {
+      if (typeof acc !== "object") {
+        throw new types_1.EndpointError(`Index '${index}' in '${path}' not found in '${JSON.stringify(value)}'`);
+      } else if (Array.isArray(acc)) {
+        return acc[parseInt(index)];
+      }
+      return acc[index];
+    }, value);
+    exports.getAttr = getAttr;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isSet.js
+var require_isSet = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/isSet.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isSet = void 0;
+    var isSet = (value) => value != null;
+    exports.isSet = isSet;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/not.js
+var require_not = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/not.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.not = void 0;
+    var not = (value) => !value;
+    exports.not = not;
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/abort.js
+var require_abort = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/abort.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/auth.js
+var require_auth = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/auth.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HttpAuthLocation = void 0;
+    var HttpAuthLocation;
+    (function(HttpAuthLocation2) {
+      HttpAuthLocation2["HEADER"] = "header";
+      HttpAuthLocation2["QUERY"] = "query";
+    })(HttpAuthLocation = exports.HttpAuthLocation || (exports.HttpAuthLocation = {}));
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/checksum.js
+var require_checksum = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/checksum.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/client.js
+var require_client2 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/client.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/command.js
+var require_command2 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/command.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/connection/config.js
+var require_config3 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/connection/config.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/connection/manager.js
+var require_manager = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/connection/manager.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/connection/pool.js
+var require_pool = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/connection/pool.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/connection/index.js
+var require_connection = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/connection/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_config3(), exports);
+    tslib_1.__exportStar(require_manager(), exports);
+    tslib_1.__exportStar(require_pool(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/credentials.js
+var require_credentials = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/credentials.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/crypto.js
+var require_crypto = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/crypto.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/dns.js
+var require_dns = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/dns.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HostAddressType = void 0;
+    var HostAddressType;
+    (function(HostAddressType2) {
+      HostAddressType2["AAAA"] = "AAAA";
+      HostAddressType2["A"] = "A";
+    })(HostAddressType = exports.HostAddressType || (exports.HostAddressType = {}));
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/endpoint.js
+var require_endpoint = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/endpoint.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.EndpointURLScheme = void 0;
+    var EndpointURLScheme;
+    (function(EndpointURLScheme2) {
+      EndpointURLScheme2["HTTP"] = "http";
+      EndpointURLScheme2["HTTPS"] = "https";
+    })(EndpointURLScheme = exports.EndpointURLScheme || (exports.EndpointURLScheme = {}));
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/eventStream.js
+var require_eventStream = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/eventStream.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/http.js
+var require_http = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/http.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/AnonymousIdentity.js
+var require_AnonymousIdentity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/AnonymousIdentity.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/AwsCredentialIdentity.js
+var require_AwsCredentialIdentity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/AwsCredentialIdentity.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/Identity.js
+var require_Identity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/Identity.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/LoginIdentity.js
+var require_LoginIdentity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/LoginIdentity.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/TokenIdentity.js
+var require_TokenIdentity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/TokenIdentity.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/identity/index.js
+var require_identity = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/identity/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_AnonymousIdentity(), exports);
+    tslib_1.__exportStar(require_AwsCredentialIdentity(), exports);
+    tslib_1.__exportStar(require_Identity(), exports);
+    tslib_1.__exportStar(require_LoginIdentity(), exports);
+    tslib_1.__exportStar(require_TokenIdentity(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/logger.js
+var require_logger = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/logger.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/middleware.js
+var require_middleware2 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/middleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/pagination.js
+var require_pagination = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/pagination.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/profile.js
+var require_profile = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/profile.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/request.js
+var require_request = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/request.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/response.js
+var require_response = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/response.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/retry.js
+var require_retry = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/retry.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/serde.js
+var require_serde = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/serde.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/shapes.js
+var require_shapes = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/shapes.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/signature.js
+var require_signature = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/signature.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/stream.js
+var require_stream = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/stream.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/token.js
+var require_token = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/token.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/transfer.js
+var require_transfer = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/transfer.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.RequestHandlerProtocol = void 0;
+    var RequestHandlerProtocol;
+    (function(RequestHandlerProtocol2) {
+      RequestHandlerProtocol2["HTTP_0_9"] = "http/0.9";
+      RequestHandlerProtocol2["HTTP_1_0"] = "http/1.0";
+      RequestHandlerProtocol2["TDS_8_0"] = "tds/8.0";
+    })(RequestHandlerProtocol = exports.RequestHandlerProtocol || (exports.RequestHandlerProtocol = {}));
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/util.js
+var require_util2 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/util.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/waiter.js
+var require_waiter = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/waiter.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@aws-sdk/types/dist-cjs/index.js
+var require_dist_cjs26 = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_abort(), exports);
+    tslib_1.__exportStar(require_auth(), exports);
+    tslib_1.__exportStar(require_checksum(), exports);
+    tslib_1.__exportStar(require_client2(), exports);
+    tslib_1.__exportStar(require_command2(), exports);
+    tslib_1.__exportStar(require_connection(), exports);
+    tslib_1.__exportStar(require_credentials(), exports);
+    tslib_1.__exportStar(require_crypto(), exports);
+    tslib_1.__exportStar(require_dns(), exports);
+    tslib_1.__exportStar(require_endpoint(), exports);
+    tslib_1.__exportStar(require_eventStream(), exports);
+    tslib_1.__exportStar(require_http(), exports);
+    tslib_1.__exportStar(require_identity(), exports);
+    tslib_1.__exportStar(require_logger(), exports);
+    tslib_1.__exportStar(require_middleware2(), exports);
+    tslib_1.__exportStar(require_pagination(), exports);
+    tslib_1.__exportStar(require_profile(), exports);
+    tslib_1.__exportStar(require_request(), exports);
+    tslib_1.__exportStar(require_response(), exports);
+    tslib_1.__exportStar(require_retry(), exports);
+    tslib_1.__exportStar(require_serde(), exports);
+    tslib_1.__exportStar(require_shapes(), exports);
+    tslib_1.__exportStar(require_signature(), exports);
+    tslib_1.__exportStar(require_stream(), exports);
+    tslib_1.__exportStar(require_token(), exports);
+    tslib_1.__exportStar(require_transfer(), exports);
+    tslib_1.__exportStar(require_util2(), exports);
+    tslib_1.__exportStar(require_waiter(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/parseURL.js
+var require_parseURL = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/parseURL.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.parseURL = void 0;
+    var types_1 = require_dist_cjs26();
+    var isIpAddress_1 = require_isIpAddress();
+    var DEFAULT_PORTS = {
+      [types_1.EndpointURLScheme.HTTP]: 80,
+      [types_1.EndpointURLScheme.HTTPS]: 443
+    };
+    var parseURL = (value) => {
+      const whatwgURL = (() => {
+        try {
+          if (value instanceof URL) {
+            return value;
+          }
+          if (typeof value === "object" && "hostname" in value) {
+            const { hostname: hostname2, port, protocol: protocol2 = "", path = "", query = {} } = value;
+            const url = new URL(`${protocol2}//${hostname2}${port ? `:${port}` : ""}${path}`);
+            url.search = Object.entries(query).map(([k, v]) => `${k}=${v}`).join("&");
+            return url;
+          }
+          return new URL(value);
+        } catch (error) {
+          return null;
+        }
+      })();
+      if (!whatwgURL) {
+        console.error(`Unable to parse ${JSON.stringify(value)} as a whatwg URL.`);
+        return null;
+      }
+      const urlString = whatwgURL.href;
+      const { host, hostname, pathname, protocol, search } = whatwgURL;
+      if (search) {
+        return null;
+      }
+      const scheme = protocol.slice(0, -1);
+      if (!Object.values(types_1.EndpointURLScheme).includes(scheme)) {
+        return null;
+      }
+      const isIp = (0, isIpAddress_1.isIpAddress)(hostname);
+      const inputContainsDefaultPort = urlString.includes(`${host}:${DEFAULT_PORTS[scheme]}`) || typeof value === "string" && value.includes(`${host}:${DEFAULT_PORTS[scheme]}`);
+      const authority = `${host}${inputContainsDefaultPort ? `:${DEFAULT_PORTS[scheme]}` : ``}`;
+      return {
+        scheme,
+        authority,
+        path: pathname,
+        normalizedPath: pathname.endsWith("/") ? pathname : `${pathname}/`,
+        isIp
+      };
+    };
+    exports.parseURL = parseURL;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/stringEquals.js
+var require_stringEquals = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/stringEquals.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.stringEquals = void 0;
+    var stringEquals = (value1, value2) => value1 === value2;
+    exports.stringEquals = stringEquals;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/substring.js
+var require_substring = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/substring.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.substring = void 0;
+    var substring = (input, start, stop, reverse) => {
+      if (start >= stop || input.length < stop) {
+        return null;
+      }
+      if (!reverse) {
+        return input.substring(start, stop);
+      }
+      return input.substring(input.length - stop, input.length - start);
+    };
+    exports.substring = substring;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/uriEncode.js
+var require_uriEncode = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/uriEncode.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.uriEncode = void 0;
+    var uriEncode = (value) => encodeURIComponent(value).replace(/[!*'()]/g, (c) => `%${c.charCodeAt(0).toString(16).toUpperCase()}`);
+    exports.uriEncode = uriEncode;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/index.js
+var require_lib = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/lib/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.aws = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    exports.aws = tslib_1.__importStar(require_aws());
+    tslib_1.__exportStar(require_booleanEquals(), exports);
+    tslib_1.__exportStar(require_getAttr(), exports);
+    tslib_1.__exportStar(require_isSet(), exports);
+    tslib_1.__exportStar(require_isValidHostLabel(), exports);
+    tslib_1.__exportStar(require_not(), exports);
+    tslib_1.__exportStar(require_parseURL(), exports);
+    tslib_1.__exportStar(require_stringEquals(), exports);
+    tslib_1.__exportStar(require_substring(), exports);
+    tslib_1.__exportStar(require_uriEncode(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTemplate.js
+var require_evaluateTemplate = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTemplate.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateTemplate = void 0;
+    var lib_1 = require_lib();
+    var evaluateTemplate = (template, options) => {
+      const evaluatedTemplateArr = [];
+      const templateContext = {
+        ...options.endpointParams,
+        ...options.referenceRecord
+      };
+      let currentIndex = 0;
+      while (currentIndex < template.length) {
+        const openingBraceIndex = template.indexOf("{", currentIndex);
+        if (openingBraceIndex === -1) {
+          evaluatedTemplateArr.push(template.slice(currentIndex));
+          break;
+        }
+        evaluatedTemplateArr.push(template.slice(currentIndex, openingBraceIndex));
+        const closingBraceIndex = template.indexOf("}", openingBraceIndex);
+        if (closingBraceIndex === -1) {
+          evaluatedTemplateArr.push(template.slice(openingBraceIndex));
+          break;
+        }
+        if (template[openingBraceIndex + 1] === "{" && template[closingBraceIndex + 1] === "}") {
+          evaluatedTemplateArr.push(template.slice(openingBraceIndex + 1, closingBraceIndex));
+          currentIndex = closingBraceIndex + 2;
+        }
+        const parameterName = template.substring(openingBraceIndex + 1, closingBraceIndex);
+        if (parameterName.includes("#")) {
+          const [refName, attrName] = parameterName.split("#");
+          evaluatedTemplateArr.push((0, lib_1.getAttr)(templateContext[refName], attrName));
+        } else {
+          evaluatedTemplateArr.push(templateContext[parameterName]);
+        }
+        currentIndex = closingBraceIndex + 1;
+      }
+      return evaluatedTemplateArr.join("");
+    };
+    exports.evaluateTemplate = evaluateTemplate;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getReferenceValue.js
+var require_getReferenceValue = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getReferenceValue.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getReferenceValue = void 0;
+    var getReferenceValue = ({ ref }, options) => {
+      const referenceRecord = {
+        ...options.endpointParams,
+        ...options.referenceRecord
+      };
+      return referenceRecord[ref];
+    };
+    exports.getReferenceValue = getReferenceValue;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateExpression.js
+var require_evaluateExpression = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateExpression.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateExpression = void 0;
+    var types_1 = require_types3();
+    var callFunction_1 = require_callFunction();
+    var evaluateTemplate_1 = require_evaluateTemplate();
+    var getReferenceValue_1 = require_getReferenceValue();
+    var evaluateExpression = (obj, keyName, options) => {
+      if (typeof obj === "string") {
+        return (0, evaluateTemplate_1.evaluateTemplate)(obj, options);
+      } else if (obj["fn"]) {
+        return (0, callFunction_1.callFunction)(obj, options);
+      } else if (obj["ref"]) {
+        return (0, getReferenceValue_1.getReferenceValue)(obj, options);
+      }
+      throw new types_1.EndpointError(`'${keyName}': ${String(obj)} is not a string, function or reference.`);
+    };
+    exports.evaluateExpression = evaluateExpression;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/callFunction.js
+var require_callFunction = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/callFunction.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.callFunction = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    var lib = tslib_1.__importStar(require_lib());
+    var evaluateExpression_1 = require_evaluateExpression();
+    var callFunction = ({ fn, argv }, options) => {
+      const evaluatedArgs = argv.map((arg) => ["boolean", "number"].includes(typeof arg) ? arg : (0, evaluateExpression_1.evaluateExpression)(arg, "arg", options));
+      return fn.split(".").reduce((acc, key) => acc[key], lib)(...evaluatedArgs);
+    };
+    exports.callFunction = callFunction;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateCondition.js
+var require_evaluateCondition = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateCondition.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateCondition = void 0;
+    var debug_1 = require_debug();
+    var types_1 = require_types3();
+    var callFunction_1 = require_callFunction();
+    var evaluateCondition = ({ assign, ...fnArgs }, options) => {
+      var _a, _b;
+      if (assign && assign in options.referenceRecord) {
+        throw new types_1.EndpointError(`'${assign}' is already defined in Reference Record.`);
+      }
+      const value = (0, callFunction_1.callFunction)(fnArgs, options);
+      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `evaluateCondition: ${(0, debug_1.toDebugString)(fnArgs)} = ${(0, debug_1.toDebugString)(value)}`);
+      return {
+        result: value === "" ? true : !!value,
+        ...assign != null && { toAssign: { name: assign, value } }
+      };
+    };
+    exports.evaluateCondition = evaluateCondition;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateConditions.js
+var require_evaluateConditions = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateConditions.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateConditions = void 0;
+    var debug_1 = require_debug();
+    var evaluateCondition_1 = require_evaluateCondition();
+    var evaluateConditions = (conditions = [], options) => {
+      var _a, _b;
+      const conditionsReferenceRecord = {};
+      for (const condition of conditions) {
+        const { result, toAssign } = (0, evaluateCondition_1.evaluateCondition)(condition, {
+          ...options,
+          referenceRecord: {
+            ...options.referenceRecord,
+            ...conditionsReferenceRecord
+          }
+        });
+        if (!result) {
+          return { result };
+        }
+        if (toAssign) {
+          conditionsReferenceRecord[toAssign.name] = toAssign.value;
+          (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `assign: ${toAssign.name} := ${(0, debug_1.toDebugString)(toAssign.value)}`);
+        }
+      }
+      return { result: true, referenceRecord: conditionsReferenceRecord };
+    };
+    exports.evaluateConditions = evaluateConditions;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointHeaders.js
+var require_getEndpointHeaders = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointHeaders.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointHeaders = void 0;
+    var types_1 = require_types3();
+    var evaluateExpression_1 = require_evaluateExpression();
+    var getEndpointHeaders = (headers, options) => Object.entries(headers).reduce((acc, [headerKey, headerVal]) => ({
+      ...acc,
+      [headerKey]: headerVal.map((headerValEntry) => {
+        const processedExpr = (0, evaluateExpression_1.evaluateExpression)(headerValEntry, "Header value entry", options);
+        if (typeof processedExpr !== "string") {
+          throw new types_1.EndpointError(`Header '${headerKey}' value '${processedExpr}' is not a string`);
+        }
+        return processedExpr;
+      })
+    }), {});
+    exports.getEndpointHeaders = getEndpointHeaders;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperty.js
+var require_getEndpointProperty = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperty.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointProperty = void 0;
+    var types_1 = require_types3();
+    var evaluateTemplate_1 = require_evaluateTemplate();
+    var getEndpointProperties_1 = require_getEndpointProperties();
+    var getEndpointProperty = (property, options) => {
+      if (Array.isArray(property)) {
+        return property.map((propertyEntry) => (0, exports.getEndpointProperty)(propertyEntry, options));
+      }
+      switch (typeof property) {
+        case "string":
+          return (0, evaluateTemplate_1.evaluateTemplate)(property, options);
+        case "object":
+          if (property === null) {
+            throw new types_1.EndpointError(`Unexpected endpoint property: ${property}`);
+          }
+          return (0, getEndpointProperties_1.getEndpointProperties)(property, options);
+        case "boolean":
+          return property;
+        default:
+          throw new types_1.EndpointError(`Unexpected endpoint property type: ${typeof property}`);
+      }
+    };
+    exports.getEndpointProperty = getEndpointProperty;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperties.js
+var require_getEndpointProperties = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointProperties.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointProperties = void 0;
+    var getEndpointProperty_1 = require_getEndpointProperty();
+    var getEndpointProperties = (properties, options) => Object.entries(properties).reduce((acc, [propertyKey, propertyVal]) => ({
+      ...acc,
+      [propertyKey]: (0, getEndpointProperty_1.getEndpointProperty)(propertyVal, options)
+    }), {});
+    exports.getEndpointProperties = getEndpointProperties;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointUrl.js
+var require_getEndpointUrl = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/getEndpointUrl.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getEndpointUrl = void 0;
+    var types_1 = require_types3();
+    var evaluateExpression_1 = require_evaluateExpression();
+    var getEndpointUrl = (endpointUrl, options) => {
+      const expression = (0, evaluateExpression_1.evaluateExpression)(endpointUrl, "Endpoint URL", options);
+      if (typeof expression === "string") {
+        try {
+          return new URL(expression);
+        } catch (error) {
+          console.error(`Failed to construct URL with ${expression}`, error);
+          throw error;
+        }
+      }
+      throw new types_1.EndpointError(`Endpoint URL must be a string, got ${typeof expression}`);
+    };
+    exports.getEndpointUrl = getEndpointUrl;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateEndpointRule.js
+var require_evaluateEndpointRule = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateEndpointRule.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateEndpointRule = void 0;
+    var debug_1 = require_debug();
+    var evaluateConditions_1 = require_evaluateConditions();
+    var getEndpointHeaders_1 = require_getEndpointHeaders();
+    var getEndpointProperties_1 = require_getEndpointProperties();
+    var getEndpointUrl_1 = require_getEndpointUrl();
+    var evaluateEndpointRule = (endpointRule, options) => {
+      var _a, _b;
+      const { conditions, endpoint } = endpointRule;
+      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
+      if (!result) {
+        return;
+      }
+      const endpointRuleOptions = {
+        ...options,
+        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
+      };
+      const { url, properties, headers } = endpoint;
+      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `Resolving endpoint from template: ${(0, debug_1.toDebugString)(endpoint)}`);
+      return {
+        ...headers != void 0 && {
+          headers: (0, getEndpointHeaders_1.getEndpointHeaders)(headers, endpointRuleOptions)
+        },
+        ...properties != void 0 && {
+          properties: (0, getEndpointProperties_1.getEndpointProperties)(properties, endpointRuleOptions)
+        },
+        url: (0, getEndpointUrl_1.getEndpointUrl)(url, endpointRuleOptions)
+      };
+    };
+    exports.evaluateEndpointRule = evaluateEndpointRule;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateErrorRule.js
+var require_evaluateErrorRule = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateErrorRule.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateErrorRule = void 0;
+    var types_1 = require_types3();
+    var evaluateConditions_1 = require_evaluateConditions();
+    var evaluateExpression_1 = require_evaluateExpression();
+    var evaluateErrorRule = (errorRule, options) => {
+      const { conditions, error } = errorRule;
+      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
+      if (!result) {
+        return;
+      }
+      throw new types_1.EndpointError((0, evaluateExpression_1.evaluateExpression)(error, "Error", {
+        ...options,
+        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
+      }));
+    };
+    exports.evaluateErrorRule = evaluateErrorRule;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTreeRule.js
+var require_evaluateTreeRule = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateTreeRule.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateTreeRule = void 0;
+    var evaluateConditions_1 = require_evaluateConditions();
+    var evaluateRules_1 = require_evaluateRules();
+    var evaluateTreeRule = (treeRule, options) => {
+      const { conditions, rules } = treeRule;
+      const { result, referenceRecord } = (0, evaluateConditions_1.evaluateConditions)(conditions, options);
+      if (!result) {
+        return;
+      }
+      return (0, evaluateRules_1.evaluateRules)(rules, {
+        ...options,
+        referenceRecord: { ...options.referenceRecord, ...referenceRecord }
+      });
+    };
+    exports.evaluateTreeRule = evaluateTreeRule;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateRules.js
+var require_evaluateRules = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/evaluateRules.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.evaluateRules = void 0;
+    var types_1 = require_types3();
+    var evaluateEndpointRule_1 = require_evaluateEndpointRule();
+    var evaluateErrorRule_1 = require_evaluateErrorRule();
+    var evaluateTreeRule_1 = require_evaluateTreeRule();
+    var evaluateRules = (rules, options) => {
+      for (const rule of rules) {
+        if (rule.type === "endpoint") {
+          const endpointOrUndefined = (0, evaluateEndpointRule_1.evaluateEndpointRule)(rule, options);
+          if (endpointOrUndefined) {
+            return endpointOrUndefined;
+          }
+        } else if (rule.type === "error") {
+          (0, evaluateErrorRule_1.evaluateErrorRule)(rule, options);
+        } else if (rule.type === "tree") {
+          const endpointOrUndefined = (0, evaluateTreeRule_1.evaluateTreeRule)(rule, options);
+          if (endpointOrUndefined) {
+            return endpointOrUndefined;
+          }
+        } else {
+          throw new types_1.EndpointError(`Unknown endpoint rule: ${rule}`);
+        }
+      }
+      throw new types_1.EndpointError(`Rules evaluation failed`);
+    };
+    exports.evaluateRules = evaluateRules;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/index.js
+var require_utils = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/utils/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_evaluateRules(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/resolveEndpoint.js
+var require_resolveEndpoint = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/resolveEndpoint.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.resolveEndpoint = void 0;
+    var debug_1 = require_debug();
+    var types_1 = require_types3();
+    var utils_1 = require_utils();
+    var resolveEndpoint = (ruleSetObject, options) => {
+      var _a, _b, _c, _d, _e, _f;
+      const { endpointParams, logger } = options;
+      const { parameters, rules } = ruleSetObject;
+      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `Initial EndpointParams: ${(0, debug_1.toDebugString)(endpointParams)}`);
+      const paramsWithDefault = Object.entries(parameters).filter(([, v]) => v.default != null).map(([k, v]) => [k, v.default]);
+      if (paramsWithDefault.length > 0) {
+        for (const [paramKey, paramDefaultValue] of paramsWithDefault) {
+          endpointParams[paramKey] = (_c = endpointParams[paramKey]) !== null && _c !== void 0 ? _c : paramDefaultValue;
+        }
+      }
+      const requiredParams = Object.entries(parameters).filter(([, v]) => v.required).map(([k]) => k);
+      for (const requiredParam of requiredParams) {
+        if (endpointParams[requiredParam] == null) {
+          throw new types_1.EndpointError(`Missing required parameter: '${requiredParam}'`);
+        }
+      }
+      const endpoint = (0, utils_1.evaluateRules)(rules, { endpointParams, logger, referenceRecord: {} });
+      if ((_d = options.endpointParams) === null || _d === void 0 ? void 0 : _d.Endpoint) {
+        try {
+          const givenEndpoint = new URL(options.endpointParams.Endpoint);
+          const { protocol, port } = givenEndpoint;
+          endpoint.url.protocol = protocol;
+          endpoint.url.port = port;
+        } catch (e) {
+        }
+      }
+      (_f = (_e = options.logger) === null || _e === void 0 ? void 0 : _e.debug) === null || _f === void 0 ? void 0 : _f.call(_e, debug_1.debugId, `Resolved endpoint: ${(0, debug_1.toDebugString)(endpoint)}`);
+      return endpoint;
+    };
+    exports.resolveEndpoint = resolveEndpoint;
+  }
+});
+
+// node_modules/@aws-sdk/util-endpoints/dist-cjs/index.js
+var require_dist_cjs27 = __commonJS({
+  "node_modules/@aws-sdk/util-endpoints/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_partition(), exports);
+    tslib_1.__exportStar(require_resolveEndpoint(), exports);
+    tslib_1.__exportStar(require_types3(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/constants.js
+var require_constants5 = __commonJS({
+  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.UA_ESCAPE_REGEX = exports.SPACE = exports.X_AMZ_USER_AGENT = exports.USER_AGENT = void 0;
+    exports.USER_AGENT = "user-agent";
+    exports.X_AMZ_USER_AGENT = "x-amz-user-agent";
+    exports.SPACE = " ";
+    exports.UA_ESCAPE_REGEX = /[^\!\#\$\%\&\'\*\+\-\.\^\_\`\|\~\d\w]/g;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/user-agent-middleware.js
+var require_user_agent_middleware = __commonJS({
+  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/user-agent-middleware.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getUserAgentPlugin = exports.getUserAgentMiddlewareOptions = exports.userAgentMiddleware = void 0;
+    var protocol_http_1 = require_dist_cjs6();
+    var util_endpoints_1 = require_dist_cjs27();
+    var constants_1 = require_constants5();
+    var userAgentMiddleware = (options) => (next, context) => async (args) => {
+      var _a, _b;
+      const { request } = args;
+      if (!protocol_http_1.HttpRequest.isInstance(request))
+        return next(args);
+      const { headers } = request;
+      const userAgent = ((_a = context === null || context === void 0 ? void 0 : context.userAgent) === null || _a === void 0 ? void 0 : _a.map(escapeUserAgent)) || [];
+      const defaultUserAgent = (await options.defaultUserAgentProvider()).map(escapeUserAgent);
+      const customUserAgent = ((_b = options === null || options === void 0 ? void 0 : options.customUserAgent) === null || _b === void 0 ? void 0 : _b.map(escapeUserAgent)) || [];
+      const prefix = (0, util_endpoints_1.getUserAgentPrefix)();
+      const sdkUserAgentValue = (prefix ? [prefix] : []).concat([...defaultUserAgent, ...userAgent, ...customUserAgent]).join(constants_1.SPACE);
+      const normalUAValue = [
+        ...defaultUserAgent.filter((section) => section.startsWith("aws-sdk-")),
+        ...customUserAgent
+      ].join(constants_1.SPACE);
+      if (options.runtime !== "browser") {
+        if (normalUAValue) {
+          headers[constants_1.X_AMZ_USER_AGENT] = headers[constants_1.X_AMZ_USER_AGENT] ? `${headers[constants_1.USER_AGENT]} ${normalUAValue}` : normalUAValue;
+        }
+        headers[constants_1.USER_AGENT] = sdkUserAgentValue;
+      } else {
+        headers[constants_1.X_AMZ_USER_AGENT] = sdkUserAgentValue;
+      }
+      return next({
+        ...args,
+        request
+      });
+    };
+    exports.userAgentMiddleware = userAgentMiddleware;
+    var escapeUserAgent = ([name, version2]) => {
+      const prefixSeparatorIndex = name.indexOf("/");
+      const prefix = name.substring(0, prefixSeparatorIndex);
+      let uaName = name.substring(prefixSeparatorIndex + 1);
+      if (prefix === "api") {
+        uaName = uaName.toLowerCase();
+      }
+      return [prefix, uaName, version2].filter((item) => item && item.length > 0).map((item) => item === null || item === void 0 ? void 0 : item.replace(constants_1.UA_ESCAPE_REGEX, "_")).join("/");
+    };
+    exports.getUserAgentMiddlewareOptions = {
+      name: "getUserAgentMiddleware",
+      step: "build",
+      priority: "low",
+      tags: ["SET_USER_AGENT", "USER_AGENT"],
+      override: true
+    };
+    var getUserAgentPlugin = (config) => ({
+      applyToStack: (clientStack) => {
+        clientStack.add((0, exports.userAgentMiddleware)(config), exports.getUserAgentMiddlewareOptions);
+      }
+    });
+    exports.getUserAgentPlugin = getUserAgentPlugin;
+  }
+});
+
+// node_modules/@aws-sdk/middleware-user-agent/dist-cjs/index.js
+var require_dist_cjs28 = __commonJS({
+  "node_modules/@aws-sdk/middleware-user-agent/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_configurations3(), exports);
+    tslib_1.__exportStar(require_user_agent_middleware(), exports);
   }
 });
 
@@ -6767,7 +6797,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.315.0",
+      version: "3.316.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6787,9 +6817,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.315.0",
+        "@aws-sdk/client-sts": "3.316.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.315.0",
+        "@aws-sdk/credential-provider-node": "3.316.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -6806,14 +6836,14 @@ var require_package = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.315.0",
+        "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
-        "@aws-sdk/util-defaults-mode-node": "3.315.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.316.0",
+        "@aws-sdk/util-defaults-mode-node": "3.316.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -8474,7 +8504,7 @@ var require_STSServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.STSServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var STSServiceException = class extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
@@ -8605,8 +8635,8 @@ var require_Aws_query = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_GetSessionTokenCommand = exports.de_GetFederationTokenCommand = exports.de_GetCallerIdentityCommand = exports.de_GetAccessKeyInfoCommand = exports.de_DecodeAuthorizationMessageCommand = exports.de_AssumeRoleWithWebIdentityCommand = exports.de_AssumeRoleWithSAMLCommand = exports.de_AssumeRoleCommand = exports.se_GetSessionTokenCommand = exports.se_GetFederationTokenCommand = exports.se_GetCallerIdentityCommand = exports.se_GetAccessKeyInfoCommand = exports.se_DecodeAuthorizationMessageCommand = exports.se_AssumeRoleWithWebIdentityCommand = exports.se_AssumeRoleWithSAMLCommand = exports.se_AssumeRoleCommand = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var smithy_client_1 = require_dist_cjs28();
+    var protocol_http_1 = require_dist_cjs6();
+    var smithy_client_1 = require_dist_cjs2();
     var fast_xml_parser_1 = require_fxp();
     var models_0_1 = require_models_0();
     var STSServiceException_1 = require_STSServiceException();
@@ -9608,10 +9638,10 @@ var require_AssumeRoleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssumeRoleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9662,9 +9692,9 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssumeRoleWithSAMLCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithSAMLCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9714,9 +9744,9 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssumeRoleWithWebIdentityCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithWebIdentityCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9766,10 +9796,10 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DecodeAuthorizationMessageCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var DecodeAuthorizationMessageCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9820,10 +9850,10 @@ var require_GetAccessKeyInfoCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetAccessKeyInfoCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var GetAccessKeyInfoCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9874,10 +9904,10 @@ var require_GetCallerIdentityCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetCallerIdentityCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var GetCallerIdentityCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9928,10 +9958,10 @@ var require_GetFederationTokenCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetFederationTokenCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var GetFederationTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9982,10 +10012,10 @@ var require_GetSessionTokenCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSessionTokenCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var middleware_signing_1 = require_dist_cjs23();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var middleware_signing_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_query_1 = require_Aws_query();
     var GetSessionTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -10036,7 +10066,7 @@ var require_dist_cjs29 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveStsAuthConfig = void 0;
-    var middleware_signing_1 = require_dist_cjs23();
+    var middleware_signing_1 = require_dist_cjs25();
     var resolveStsAuthConfig = (input, { stsClientCtor }) => (0, middleware_signing_1.resolveAwsAuthConfig)({
       ...input,
       stsClientCtor
@@ -10070,7 +10100,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.315.0",
+      version: "3.316.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10093,7 +10123,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.315.0",
+        "@aws-sdk/credential-provider-node": "3.316.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -10111,14 +10141,14 @@ var require_package2 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.315.0",
+        "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
-        "@aws-sdk/util-defaults-mode-node": "3.315.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.316.0",
+        "@aws-sdk/util-defaults-mode-node": "3.316.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -10258,7 +10288,7 @@ var require_fromEnv = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromEnv = exports.ENV_EXPIRATION = exports.ENV_SESSION = exports.ENV_SECRET = exports.ENV_KEY = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     exports.ENV_KEY = "AWS_ACCESS_KEY_ID";
     exports.ENV_SECRET = "AWS_SECRET_ACCESS_KEY";
     exports.ENV_SESSION = "AWS_SESSION_TOKEN";
@@ -10595,7 +10625,7 @@ var require_httpRequest2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.httpRequest = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var buffer_1 = require("buffer");
     var http_1 = require("http");
     function httpRequest(options) {
@@ -10690,7 +10720,7 @@ var require_fromContainerMetadata = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromContainerMetadata = exports.ENV_CMDS_AUTH_TOKEN = exports.ENV_CMDS_RELATIVE_URI = exports.ENV_CMDS_FULL_URI = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var url_1 = require("url");
     var httpRequest_1 = require_httpRequest2();
     var ImdsCredentials_1 = require_ImdsCredentials();
@@ -10764,7 +10794,7 @@ var require_fromEnv2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromEnv = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fromEnv = (envVarSelector) => async () => {
       try {
         const config = envVarSelector(process.env);
@@ -10786,7 +10816,7 @@ var require_fromSharedConfigFiles = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSharedConfigFiles = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var fromSharedConfigFiles = (configSelector, { preferredFile = "config", ...init } = {}) => async () => {
       const profile = (0, shared_ini_file_loader_1.getProfileName)(init);
@@ -10814,7 +10844,7 @@ var require_fromStatic2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromStatic = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var isFunction = (func) => typeof func === "function";
     var fromStatic = (defaultValue) => isFunction(defaultValue) ? async () => await defaultValue() : (0, property_provider_1.fromStatic)(defaultValue);
     exports.fromStatic = fromStatic;
@@ -10827,7 +10857,7 @@ var require_configLoader = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.loadConfig = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fromEnv_1 = require_fromEnv2();
     var fromSharedConfigFiles_1 = require_fromSharedConfigFiles();
     var fromStatic_1 = require_fromStatic2();
@@ -10914,7 +10944,7 @@ var require_getInstanceMetadataEndpoint = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getInstanceMetadataEndpoint = void 0;
     var node_config_provider_1 = require_dist_cjs32();
-    var url_parser_1 = require_dist_cjs7();
+    var url_parser_1 = require_dist_cjs9();
     var Endpoint_1 = require_Endpoint();
     var EndpointConfigOptions_1 = require_EndpointConfigOptions();
     var EndpointMode_1 = require_EndpointMode();
@@ -11000,7 +11030,7 @@ var require_fromInstanceMetadata = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromInstanceMetadata = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var httpRequest_1 = require_httpRequest2();
     var ImdsCredentials_1 = require_ImdsCredentials();
     var RemoteProviderInit_1 = require_RemoteProviderInit();
@@ -11128,7 +11158,7 @@ var require_resolveCredentialSource = __commonJS({
     exports.resolveCredentialSource = void 0;
     var credential_provider_env_1 = require_dist_cjs30();
     var credential_provider_imds_1 = require_dist_cjs33();
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var resolveCredentialSource = (credentialSource, profileName) => {
       const sourceProvidersMap = {
         EcsContainer: credential_provider_imds_1.fromContainerMetadata,
@@ -11151,7 +11181,7 @@ var require_resolveAssumeRoleCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveAssumeRoleCredentials = exports.isAssumeRoleProfile = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var resolveCredentialSource_1 = require_resolveCredentialSource();
     var resolveProfileData_1 = require_resolveProfileData();
@@ -11229,7 +11259,7 @@ var require_resolveProcessCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveProcessCredentials = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var child_process_1 = require("child_process");
     var util_1 = require("util");
     var getValidatedProcessCredentials_1 = require_getValidatedProcessCredentials();
@@ -11322,7 +11352,7 @@ var require_SSOServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var SSOServiceException = class extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
@@ -11339,7 +11369,7 @@ var require_models_02 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LogoutRequestFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.ListAccountRolesRequestFilterSensitiveLog = exports.GetRoleCredentialsResponseFilterSensitiveLog = exports.RoleCredentialsFilterSensitiveLog = exports.GetRoleCredentialsRequestFilterSensitiveLog = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var SSOServiceException_1 = require_SSOServiceException();
     var InvalidRequestException = class extends SSOServiceException_1.SSOServiceException {
       constructor(opts) {
@@ -11433,8 +11463,8 @@ var require_Aws_restJson1 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_LogoutCommand = exports.de_ListAccountsCommand = exports.de_ListAccountRolesCommand = exports.de_GetRoleCredentialsCommand = exports.se_LogoutCommand = exports.se_ListAccountsCommand = exports.se_ListAccountRolesCommand = exports.se_GetRoleCredentialsCommand = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var smithy_client_1 = require_dist_cjs28();
+    var protocol_http_1 = require_dist_cjs6();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_02();
     var SSOServiceException_1 = require_SSOServiceException();
     var se_GetRoleCredentialsCommand = async (input, context) => {
@@ -11808,9 +11838,9 @@ var require_GetRoleCredentialsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetRoleCredentialsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var GetRoleCredentialsCommand = class extends smithy_client_1.Command {
@@ -11860,9 +11890,9 @@ var require_ListAccountRolesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAccountRolesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var ListAccountRolesCommand = class extends smithy_client_1.Command {
@@ -11912,9 +11942,9 @@ var require_ListAccountsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAccountsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var ListAccountsCommand = class extends smithy_client_1.Command {
@@ -11964,9 +11994,9 @@ var require_LogoutCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LogoutCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_02();
     var Aws_restJson1_1 = require_Aws_restJson1();
     var LogoutCommand = class extends smithy_client_1.Command {
@@ -12034,7 +12064,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.315.0",
+      version: "3.316.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12070,14 +12100,14 @@ var require_package3 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.315.0",
+        "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
-        "@aws-sdk/util-defaults-mode-node": "3.315.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.316.0",
+        "@aws-sdk/util-defaults-mode-node": "3.316.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -12135,8 +12165,8 @@ var require_dist_cjs35 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Hash = void 0;
-    var util_buffer_from_1 = require_dist_cjs19();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_buffer_from_1 = require_dist_cjs21();
+    var util_utf8_1 = require_dist_cjs22();
     var buffer_1 = require("buffer");
     var crypto_1 = require("crypto");
     var Hash = class {
@@ -12177,7 +12207,7 @@ var require_dist_cjs36 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.buildQueryString = void 0;
-    var util_uri_escape_1 = require_dist_cjs21();
+    var util_uri_escape_1 = require_dist_cjs23();
     function buildQueryString(query) {
       const parts = [];
       for (let key of Object.keys(query).sort()) {
@@ -12265,7 +12295,7 @@ var require_node_http_handler = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeHttpHandler = exports.DEFAULT_REQUEST_TIMEOUT = void 0;
-    var protocol_http_1 = require_dist_cjs4();
+    var protocol_http_1 = require_dist_cjs6();
     var querystring_builder_1 = require_dist_cjs36();
     var http_1 = require("http");
     var https_1 = require("https");
@@ -12509,7 +12539,7 @@ var require_node_http2_handler = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeHttp2Handler = void 0;
-    var protocol_http_1 = require_dist_cjs4();
+    var protocol_http_1 = require_dist_cjs6();
     var querystring_builder_1 = require_dist_cjs36();
     var http2_1 = require("http2");
     var get_transformed_headers_1 = require_get_transformed_headers();
@@ -12798,7 +12828,7 @@ var require_fromBase64 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromBase64 = void 0;
-    var util_buffer_from_1 = require_dist_cjs19();
+    var util_buffer_from_1 = require_dist_cjs21();
     var BASE64_REGEX = /^[A-Za-z0-9+/]*={0,2}$/;
     var fromBase64 = (input) => {
       if (input.length * 3 % 4 !== 0) {
@@ -12820,7 +12850,7 @@ var require_toBase64 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.toBase64 = void 0;
-    var util_buffer_from_1 = require_dist_cjs19();
+    var util_buffer_from_1 = require_dist_cjs21();
     var toBase64 = (input) => (0, util_buffer_from_1.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("base64");
     exports.toBase64 = toBase64;
   }
@@ -12873,7 +12903,7 @@ var require_endpointResolver = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs25();
+    var util_endpoints_1 = require_dist_cjs27();
     var ruleset_1 = require_ruleset();
     var defaultEndpointResolver = (endpointParams, context = {}) => {
       return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
@@ -12891,10 +12921,10 @@ var require_runtimeConfig_shared = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var url_parser_1 = require_dist_cjs7();
+    var smithy_client_1 = require_dist_cjs2();
+    var url_parser_1 = require_dist_cjs9();
     var util_base64_1 = require_dist_cjs40();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver();
     var getRuntimeConfig = (config) => ({
       apiVersion: "2019-06-10",
@@ -12953,10 +12983,10 @@ var require_resolveDefaultsModeConfig = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveDefaultsModeConfig = void 0;
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var credential_provider_imds_1 = require_dist_cjs33();
     var node_config_provider_1 = require_dist_cjs32();
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var constants_1 = require_constants7();
     var defaultsModeConfig_1 = require_defaultsModeConfig();
     var resolveDefaultsModeConfig = ({ region = (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS), defaultsMode = (0, node_config_provider_1.loadConfig)(defaultsModeConfig_1.NODE_DEFAULTS_MODE_CONFIG_OPTIONS) } = {}) => (0, property_provider_1.memoize)(async () => {
@@ -13026,18 +13056,18 @@ var require_runtimeConfig = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package3());
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var hash_node_1 = require_dist_cjs35();
-    var middleware_retry_1 = require_dist_cjs15();
+    var middleware_retry_1 = require_dist_cjs17();
     var node_config_provider_1 = require_dist_cjs32();
     var node_http_handler_1 = require_dist_cjs37();
     var util_body_length_node_1 = require_dist_cjs38();
-    var util_retry_1 = require_dist_cjs14();
+    var util_retry_1 = require_dist_cjs16();
     var util_user_agent_node_1 = require_dist_cjs39();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared();
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var util_defaults_mode_node_1 = require_dist_cjs41();
-    var smithy_client_2 = require_dist_cjs28();
+    var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -13073,15 +13103,15 @@ var require_SSOClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOClient = void 0;
-    var config_resolver_1 = require_dist_cjs3();
-    var middleware_content_length_1 = require_dist_cjs5();
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_host_header_1 = require_dist_cjs10();
-    var middleware_logger_1 = require_dist_cjs11();
-    var middleware_recursion_detection_1 = require_dist_cjs12();
-    var middleware_retry_1 = require_dist_cjs15();
-    var middleware_user_agent_1 = require_dist_cjs26();
-    var smithy_client_1 = require_dist_cjs28();
+    var config_resolver_1 = require_dist_cjs5();
+    var middleware_content_length_1 = require_dist_cjs7();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_host_header_1 = require_dist_cjs12();
+    var middleware_logger_1 = require_dist_cjs13();
+    var middleware_recursion_detection_1 = require_dist_cjs14();
+    var middleware_retry_1 = require_dist_cjs17();
+    var middleware_user_agent_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters3();
     var runtimeConfig_1 = require_runtimeConfig();
     var SSOClient = class extends smithy_client_1.Client {
@@ -13116,62 +13146,22 @@ var require_SSO = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSO = void 0;
+    var smithy_client_1 = require_dist_cjs2();
     var GetRoleCredentialsCommand_1 = require_GetRoleCredentialsCommand();
     var ListAccountRolesCommand_1 = require_ListAccountRolesCommand();
     var ListAccountsCommand_1 = require_ListAccountsCommand();
     var LogoutCommand_1 = require_LogoutCommand();
     var SSOClient_1 = require_SSOClient();
+    var commands = {
+      GetRoleCredentialsCommand: GetRoleCredentialsCommand_1.GetRoleCredentialsCommand,
+      ListAccountRolesCommand: ListAccountRolesCommand_1.ListAccountRolesCommand,
+      ListAccountsCommand: ListAccountsCommand_1.ListAccountsCommand,
+      LogoutCommand: LogoutCommand_1.LogoutCommand
+    };
     var SSO = class extends SSOClient_1.SSOClient {
-      getRoleCredentials(args, optionsOrCb, cb) {
-        const command = new GetRoleCredentialsCommand_1.GetRoleCredentialsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listAccountRoles(args, optionsOrCb, cb) {
-        const command = new ListAccountRolesCommand_1.ListAccountRolesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listAccounts(args, optionsOrCb, cb) {
-        const command = new ListAccountsCommand_1.ListAccountsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      logout(args, optionsOrCb, cb) {
-        const command = new LogoutCommand_1.LogoutCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
     };
     exports.SSO = SSO;
+    (0, smithy_client_1.createAggregatedClient)(commands, SSO);
   }
 });
 
@@ -13322,7 +13312,7 @@ var require_SSOOIDCServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOOIDCServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var SSOOIDCServiceException = class extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
@@ -13529,8 +13519,8 @@ var require_Aws_restJson12 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_StartDeviceAuthorizationCommand = exports.de_RegisterClientCommand = exports.de_CreateTokenCommand = exports.se_StartDeviceAuthorizationCommand = exports.se_RegisterClientCommand = exports.se_CreateTokenCommand = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var smithy_client_1 = require_dist_cjs28();
+    var protocol_http_1 = require_dist_cjs6();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_03();
     var SSOOIDCServiceException_1 = require_SSOOIDCServiceException();
     var se_CreateTokenCommand = async (input, context) => {
@@ -14005,9 +13995,9 @@ var require_CreateTokenCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateTokenCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var CreateTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14056,9 +14046,9 @@ var require_RegisterClientCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RegisterClientCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var RegisterClientCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14107,9 +14097,9 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartDeviceAuthorizationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var StartDeviceAuthorizationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -14176,7 +14166,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.315.0",
+      version: "3.316.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14212,14 +14202,14 @@ var require_package4 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.315.0",
+        "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
-        "@aws-sdk/util-defaults-mode-node": "3.315.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.316.0",
+        "@aws-sdk/util-defaults-mode-node": "3.316.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -14307,7 +14297,7 @@ var require_endpointResolver2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs25();
+    var util_endpoints_1 = require_dist_cjs27();
     var ruleset_1 = require_ruleset2();
     var defaultEndpointResolver = (endpointParams, context = {}) => {
       return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
@@ -14325,10 +14315,10 @@ var require_runtimeConfig_shared2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var url_parser_1 = require_dist_cjs7();
+    var smithy_client_1 = require_dist_cjs2();
+    var url_parser_1 = require_dist_cjs9();
     var util_base64_1 = require_dist_cjs40();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver2();
     var getRuntimeConfig = (config) => ({
       apiVersion: "2019-06-10",
@@ -14354,18 +14344,18 @@ var require_runtimeConfig2 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package4());
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var hash_node_1 = require_dist_cjs35();
-    var middleware_retry_1 = require_dist_cjs15();
+    var middleware_retry_1 = require_dist_cjs17();
     var node_config_provider_1 = require_dist_cjs32();
     var node_http_handler_1 = require_dist_cjs37();
     var util_body_length_node_1 = require_dist_cjs38();
-    var util_retry_1 = require_dist_cjs14();
+    var util_retry_1 = require_dist_cjs16();
     var util_user_agent_node_1 = require_dist_cjs39();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared2();
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var util_defaults_mode_node_1 = require_dist_cjs41();
-    var smithy_client_2 = require_dist_cjs28();
+    var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -14401,15 +14391,15 @@ var require_SSOOIDCClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOOIDCClient = void 0;
-    var config_resolver_1 = require_dist_cjs3();
-    var middleware_content_length_1 = require_dist_cjs5();
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_host_header_1 = require_dist_cjs10();
-    var middleware_logger_1 = require_dist_cjs11();
-    var middleware_recursion_detection_1 = require_dist_cjs12();
-    var middleware_retry_1 = require_dist_cjs15();
-    var middleware_user_agent_1 = require_dist_cjs26();
-    var smithy_client_1 = require_dist_cjs28();
+    var config_resolver_1 = require_dist_cjs5();
+    var middleware_content_length_1 = require_dist_cjs7();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_host_header_1 = require_dist_cjs12();
+    var middleware_logger_1 = require_dist_cjs13();
+    var middleware_recursion_detection_1 = require_dist_cjs14();
+    var middleware_retry_1 = require_dist_cjs17();
+    var middleware_user_agent_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters4();
     var runtimeConfig_1 = require_runtimeConfig2();
     var SSOOIDCClient = class extends smithy_client_1.Client {
@@ -14444,49 +14434,20 @@ var require_SSOOIDC = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOOIDC = void 0;
+    var smithy_client_1 = require_dist_cjs2();
     var CreateTokenCommand_1 = require_CreateTokenCommand();
     var RegisterClientCommand_1 = require_RegisterClientCommand();
     var StartDeviceAuthorizationCommand_1 = require_StartDeviceAuthorizationCommand();
     var SSOOIDCClient_1 = require_SSOOIDCClient();
+    var commands = {
+      CreateTokenCommand: CreateTokenCommand_1.CreateTokenCommand,
+      RegisterClientCommand: RegisterClientCommand_1.RegisterClientCommand,
+      StartDeviceAuthorizationCommand: StartDeviceAuthorizationCommand_1.StartDeviceAuthorizationCommand
+    };
     var SSOOIDC = class extends SSOOIDCClient_1.SSOOIDCClient {
-      createToken(args, optionsOrCb, cb) {
-        const command = new CreateTokenCommand_1.CreateTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      registerClient(args, optionsOrCb, cb) {
-        const command = new RegisterClientCommand_1.RegisterClientCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startDeviceAuthorization(args, optionsOrCb, cb) {
-        const command = new StartDeviceAuthorizationCommand_1.StartDeviceAuthorizationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
     };
     exports.SSOOIDC = SSOOIDC;
+    (0, smithy_client_1.createAggregatedClient)(commands, SSOOIDC);
   }
 });
 
@@ -14577,7 +14538,7 @@ var require_validateTokenExpiry = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateTokenExpiry = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var constants_1 = require_constants8();
     var validateTokenExpiry = (token) => {
       if (token.expiration && token.expiration.getTime() < Date.now()) {
@@ -14594,7 +14555,7 @@ var require_validateTokenKey = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateTokenKey = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var constants_1 = require_constants8();
     var validateTokenKey = (key, value, forRefresh = false) => {
       if (typeof value === "undefined") {
@@ -14629,7 +14590,7 @@ var require_fromSso = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSso = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var constants_1 = require_constants8();
     var getNewSsoOidcToken_1 = require_getNewSsoOidcToken();
@@ -14713,7 +14674,7 @@ var require_fromStatic3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromStatic = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fromStatic = ({ token }) => async () => {
       if (!token || !token.token) {
         throw new property_provider_1.TokenProviderError(`Please pass a valid token to fromStatic`, false);
@@ -14730,7 +14691,7 @@ var require_nodeProvider = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.nodeProvider = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fromSso_1 = require_fromSso();
     var nodeProvider = (init = {}) => (0, property_provider_1.memoize)((0, property_provider_1.chain)((0, fromSso_1.fromSso)(init), async () => {
       throw new property_provider_1.TokenProviderError("Could not load token from any providers", false);
@@ -14758,7 +14719,7 @@ var require_resolveSSOCredentials = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSSOCredentials = void 0;
     var client_sso_1 = require_dist_cjs42();
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var token_providers_1 = require_dist_cjs44();
     var EXPIRE_WINDOW_MS = 15 * 60 * 1e3;
@@ -14814,7 +14775,7 @@ var require_validateSsoProfile = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validateSsoProfile = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var validateSsoProfile = (profile) => {
       const { sso_start_url, sso_account_id, sso_region, sso_role_name } = profile;
       if (!sso_start_url || !sso_account_id || !sso_region || !sso_role_name) {
@@ -14833,7 +14794,7 @@ var require_fromSSO = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSSO = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var isSsoProfile_1 = require_isSsoProfile();
     var resolveSSOCredentials_1 = require_resolveSSOCredentials();
@@ -14960,7 +14921,7 @@ var require_fromWebToken = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromWebToken = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fromWebToken = (init) => () => {
       const { roleArn, roleSessionName, webIdentityToken, providerId, policyArns, policy, durationSeconds, roleAssumerWithWebIdentity } = init;
       if (!roleAssumerWithWebIdentity) {
@@ -14986,7 +14947,7 @@ var require_fromTokenFile = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromTokenFile = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var fs_1 = require("fs");
     var fromWebToken_1 = require_fromWebToken();
     var ENV_TOKEN_FILE = "AWS_WEB_IDENTITY_TOKEN_FILE";
@@ -15050,7 +15011,7 @@ var require_resolveProfileData = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveProfileData = void 0;
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var resolveAssumeRoleCredentials_1 = require_resolveAssumeRoleCredentials();
     var resolveProcessCredentials_1 = require_resolveProcessCredentials2();
     var resolveSsoCredentials_1 = require_resolveSsoCredentials();
@@ -15115,7 +15076,7 @@ var require_remoteProvider = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.remoteProvider = exports.ENV_IMDS_DISABLED = void 0;
     var credential_provider_imds_1 = require_dist_cjs33();
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     exports.ENV_IMDS_DISABLED = "AWS_EC2_METADATA_DISABLED";
     var remoteProvider = (init) => {
       if (process.env[credential_provider_imds_1.ENV_CMDS_RELATIVE_URI] || process.env[credential_provider_imds_1.ENV_CMDS_FULL_URI]) {
@@ -15143,7 +15104,7 @@ var require_defaultProvider = __commonJS({
     var credential_provider_process_1 = require_dist_cjs34();
     var credential_provider_sso_1 = require_dist_cjs45();
     var credential_provider_web_identity_1 = require_dist_cjs46();
-    var property_provider_1 = require_dist_cjs16();
+    var property_provider_1 = require_dist_cjs18();
     var shared_ini_file_loader_1 = require_dist_cjs31();
     var remoteProvider_1 = require_remoteProvider();
     var defaultProvider = (init = {}) => (0, property_provider_1.memoize)((0, property_provider_1.chain)(...init.profile || process.env[shared_ini_file_loader_1.ENV_PROFILE] ? [] : [(0, credential_provider_env_1.fromEnv)()], (0, credential_provider_sso_1.fromSSO)(init), (0, credential_provider_ini_1.fromIni)(init), (0, credential_provider_process_1.fromProcess)(init), (0, credential_provider_web_identity_1.fromTokenFile)(init), (0, remoteProvider_1.remoteProvider)(init), async () => {
@@ -15219,7 +15180,7 @@ var require_endpointResolver3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs25();
+    var util_endpoints_1 = require_dist_cjs27();
     var ruleset_1 = require_ruleset3();
     var defaultEndpointResolver = (endpointParams, context = {}) => {
       return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
@@ -15237,10 +15198,10 @@ var require_runtimeConfig_shared3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var url_parser_1 = require_dist_cjs7();
+    var smithy_client_1 = require_dist_cjs2();
+    var url_parser_1 = require_dist_cjs9();
     var util_base64_1 = require_dist_cjs40();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver3();
     var getRuntimeConfig = (config) => ({
       apiVersion: "2011-06-15",
@@ -15267,19 +15228,19 @@ var require_runtimeConfig3 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package2());
     var defaultStsRoleAssumers_1 = require_defaultStsRoleAssumers();
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var credential_provider_node_1 = require_dist_cjs48();
     var hash_node_1 = require_dist_cjs35();
-    var middleware_retry_1 = require_dist_cjs15();
+    var middleware_retry_1 = require_dist_cjs17();
     var node_config_provider_1 = require_dist_cjs32();
     var node_http_handler_1 = require_dist_cjs37();
     var util_body_length_node_1 = require_dist_cjs38();
-    var util_retry_1 = require_dist_cjs14();
+    var util_retry_1 = require_dist_cjs16();
     var util_user_agent_node_1 = require_dist_cjs39();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared3();
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var util_defaults_mode_node_1 = require_dist_cjs41();
-    var smithy_client_2 = require_dist_cjs28();
+    var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -15316,16 +15277,16 @@ var require_STSClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.STSClient = void 0;
-    var config_resolver_1 = require_dist_cjs3();
-    var middleware_content_length_1 = require_dist_cjs5();
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_host_header_1 = require_dist_cjs10();
-    var middleware_logger_1 = require_dist_cjs11();
-    var middleware_recursion_detection_1 = require_dist_cjs12();
-    var middleware_retry_1 = require_dist_cjs15();
+    var config_resolver_1 = require_dist_cjs5();
+    var middleware_content_length_1 = require_dist_cjs7();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_host_header_1 = require_dist_cjs12();
+    var middleware_logger_1 = require_dist_cjs13();
+    var middleware_recursion_detection_1 = require_dist_cjs14();
+    var middleware_retry_1 = require_dist_cjs17();
     var middleware_sdk_sts_1 = require_dist_cjs29();
-    var middleware_user_agent_1 = require_dist_cjs26();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_user_agent_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters2();
     var runtimeConfig_1 = require_runtimeConfig3();
     var STSClient = class extends smithy_client_1.Client {
@@ -15361,6 +15322,7 @@ var require_STS = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.STS = void 0;
+    var smithy_client_1 = require_dist_cjs2();
     var AssumeRoleCommand_1 = require_AssumeRoleCommand();
     var AssumeRoleWithSAMLCommand_1 = require_AssumeRoleWithSAMLCommand();
     var AssumeRoleWithWebIdentityCommand_1 = require_AssumeRoleWithWebIdentityCommand();
@@ -15370,105 +15332,20 @@ var require_STS = __commonJS({
     var GetFederationTokenCommand_1 = require_GetFederationTokenCommand();
     var GetSessionTokenCommand_1 = require_GetSessionTokenCommand();
     var STSClient_1 = require_STSClient();
+    var commands = {
+      AssumeRoleCommand: AssumeRoleCommand_1.AssumeRoleCommand,
+      AssumeRoleWithSAMLCommand: AssumeRoleWithSAMLCommand_1.AssumeRoleWithSAMLCommand,
+      AssumeRoleWithWebIdentityCommand: AssumeRoleWithWebIdentityCommand_1.AssumeRoleWithWebIdentityCommand,
+      DecodeAuthorizationMessageCommand: DecodeAuthorizationMessageCommand_1.DecodeAuthorizationMessageCommand,
+      GetAccessKeyInfoCommand: GetAccessKeyInfoCommand_1.GetAccessKeyInfoCommand,
+      GetCallerIdentityCommand: GetCallerIdentityCommand_1.GetCallerIdentityCommand,
+      GetFederationTokenCommand: GetFederationTokenCommand_1.GetFederationTokenCommand,
+      GetSessionTokenCommand: GetSessionTokenCommand_1.GetSessionTokenCommand
+    };
     var STS = class extends STSClient_1.STSClient {
-      assumeRole(args, optionsOrCb, cb) {
-        const command = new AssumeRoleCommand_1.AssumeRoleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      assumeRoleWithSAML(args, optionsOrCb, cb) {
-        const command = new AssumeRoleWithSAMLCommand_1.AssumeRoleWithSAMLCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      assumeRoleWithWebIdentity(args, optionsOrCb, cb) {
-        const command = new AssumeRoleWithWebIdentityCommand_1.AssumeRoleWithWebIdentityCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      decodeAuthorizationMessage(args, optionsOrCb, cb) {
-        const command = new DecodeAuthorizationMessageCommand_1.DecodeAuthorizationMessageCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getAccessKeyInfo(args, optionsOrCb, cb) {
-        const command = new GetAccessKeyInfoCommand_1.GetAccessKeyInfoCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getCallerIdentity(args, optionsOrCb, cb) {
-        const command = new GetCallerIdentityCommand_1.GetCallerIdentityCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getFederationToken(args, optionsOrCb, cb) {
-        const command = new GetFederationTokenCommand_1.GetFederationTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSessionToken(args, optionsOrCb, cb) {
-        const command = new GetSessionTokenCommand_1.GetSessionTokenCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
     };
     exports.STS = STS;
+    (0, smithy_client_1.createAggregatedClient)(commands, STS);
   }
 });
 
@@ -15589,7 +15466,7 @@ var require_endpointResolver4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs25();
+    var util_endpoints_1 = require_dist_cjs27();
     var ruleset_1 = require_ruleset4();
     var defaultEndpointResolver = (endpointParams, context = {}) => {
       return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
@@ -15607,10 +15484,10 @@ var require_runtimeConfig_shared4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var url_parser_1 = require_dist_cjs7();
+    var smithy_client_1 = require_dist_cjs2();
+    var url_parser_1 = require_dist_cjs9();
     var util_base64_1 = require_dist_cjs40();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver4();
     var getRuntimeConfig = (config) => ({
       apiVersion: "2022-08-03",
@@ -15637,19 +15514,19 @@ var require_runtimeConfig4 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package());
     var client_sts_1 = require_dist_cjs49();
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var credential_provider_node_1 = require_dist_cjs48();
     var hash_node_1 = require_dist_cjs35();
-    var middleware_retry_1 = require_dist_cjs15();
+    var middleware_retry_1 = require_dist_cjs17();
     var node_config_provider_1 = require_dist_cjs32();
     var node_http_handler_1 = require_dist_cjs37();
     var util_body_length_node_1 = require_dist_cjs38();
-    var util_retry_1 = require_dist_cjs14();
+    var util_retry_1 = require_dist_cjs16();
     var util_user_agent_node_1 = require_dist_cjs39();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared4();
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var util_defaults_mode_node_1 = require_dist_cjs41();
-    var smithy_client_2 = require_dist_cjs28();
+    var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -15686,16 +15563,16 @@ var require_ChimeSDKVoiceClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKVoiceClient = void 0;
-    var config_resolver_1 = require_dist_cjs3();
-    var middleware_content_length_1 = require_dist_cjs5();
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_host_header_1 = require_dist_cjs10();
-    var middleware_logger_1 = require_dist_cjs11();
-    var middleware_recursion_detection_1 = require_dist_cjs12();
-    var middleware_retry_1 = require_dist_cjs15();
-    var middleware_signing_1 = require_dist_cjs23();
-    var middleware_user_agent_1 = require_dist_cjs26();
-    var smithy_client_1 = require_dist_cjs28();
+    var config_resolver_1 = require_dist_cjs5();
+    var middleware_content_length_1 = require_dist_cjs7();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_host_header_1 = require_dist_cjs12();
+    var middleware_logger_1 = require_dist_cjs13();
+    var middleware_recursion_detection_1 = require_dist_cjs14();
+    var middleware_retry_1 = require_dist_cjs17();
+    var middleware_signing_1 = require_dist_cjs25();
+    var middleware_user_agent_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters();
     var runtimeConfig_1 = require_runtimeConfig4();
     var ChimeSDKVoiceClient6 = class extends smithy_client_1.Client {
@@ -15732,7 +15609,7 @@ var require_ChimeSDKVoiceServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKVoiceServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var ChimeSDKVoiceServiceException = class extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
@@ -15751,7 +15628,7 @@ var require_models_04 = __commonJS({
     exports.CreateProxySessionResponseFilterSensitiveLog = exports.ProxySessionFilterSensitiveLog = exports.ParticipantFilterSensitiveLog = exports.CreateProxySessionRequestFilterSensitiveLog = exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = exports.PhoneNumberOrderFilterSensitiveLog = exports.OrderedPhoneNumberFilterSensitiveLog = exports.CreatePhoneNumberOrderRequestFilterSensitiveLog = exports.CandidateAddressFilterSensitiveLog = exports.BatchUpdatePhoneNumberResponseFilterSensitiveLog = exports.BatchUpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdatePhoneNumberRequestItemFilterSensitiveLog = exports.BatchDeletePhoneNumberResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupResponseFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorResponseFilterSensitiveLog = exports.PhoneNumberErrorFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorRequestFilterSensitiveLog = exports.AddressFilterSensitiveLog = exports.LanguageCode = exports.UnprocessableEntityException = exports.NotificationTarget = exports.OriginationRouteProtocol = exports.PhoneNumberType = exports.PhoneNumberStatus = exports.PhoneNumberAssociationName = exports.GoneException = exports.VoiceConnectorAwsRegion = exports.SipRuleTriggerType = exports.ConflictException = exports.ProxySessionStatus = exports.NumberSelectionBehavior = exports.GeoMatchLevel = exports.ResourceLimitExceededException = exports.PhoneNumberOrderStatus = exports.PhoneNumberOrderType = exports.OrderedPhoneNumberStatus = exports.Capability = exports.CallingNameStatus = exports.PhoneNumberProductType = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.BadRequestException = exports.AlexaSkillStatus = exports.AccessDeniedException = exports.ErrorCode = void 0;
     exports.VoiceProfileSummaryFilterSensitiveLog = exports.ListVoiceProfileDomainsResponseFilterSensitiveLog = exports.VoiceProfileDomainSummaryFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.GetVoiceProfileDomainResponseFilterSensitiveLog = exports.GetVoiceProfileResponseFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.StreamingConfigurationFilterSensitiveLog = exports.MediaInsightsConfigurationFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.SipMediaApplicationAlexaSkillConfigurationFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetProxySessionResponseFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.GetPhoneNumberRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorResponseFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.DeletePhoneNumberRequestFilterSensitiveLog = exports.CreateVoiceProfileDomainResponseFilterSensitiveLog = exports.VoiceProfileDomainFilterSensitiveLog = exports.CreateVoiceProfileDomainRequestFilterSensitiveLog = exports.ServerSideEncryptionConfigurationFilterSensitiveLog = exports.CreateVoiceProfileResponseFilterSensitiveLog = exports.VoiceProfileFilterSensitiveLog = exports.CreateVoiceConnectorRequestFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.SipMediaApplicationEndpointFilterSensitiveLog = void 0;
     exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateVoiceProfileDomainResponseFilterSensitiveLog = exports.UpdateVoiceProfileResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.RestorePhoneNumberRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorStreamingConfigurationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationResponseFilterSensitiveLog = exports.PutSipMediaApplicationAlexaSkillConfigurationRequestFilterSensitiveLog = exports.ListVoiceProfilesResponseFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
     exports.ErrorCode = {
       AccessDenied: "AccessDenied",
@@ -16643,8 +16520,8 @@ var require_Aws_restJson13 = __commonJS({
     exports.de_CreateSipMediaApplicationCommand = exports.de_CreateProxySessionCommand = exports.de_CreatePhoneNumberOrderCommand = exports.de_BatchUpdatePhoneNumberCommand = exports.de_BatchDeletePhoneNumberCommand = exports.de_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.de_AssociatePhoneNumbersWithVoiceConnectorCommand = exports.se_ValidateE911AddressCommand = exports.se_UpdateVoiceProfileDomainCommand = exports.se_UpdateVoiceProfileCommand = exports.se_UpdateVoiceConnectorGroupCommand = exports.se_UpdateVoiceConnectorCommand = exports.se_UpdateSipRuleCommand = exports.se_UpdateSipMediaApplicationCallCommand = exports.se_UpdateSipMediaApplicationCommand = exports.se_UpdateProxySessionCommand = exports.se_UpdatePhoneNumberSettingsCommand = exports.se_UpdatePhoneNumberCommand = exports.se_UpdateGlobalSettingsCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_StopVoiceToneAnalysisTaskCommand = exports.se_StopSpeakerSearchTaskCommand = exports.se_StartVoiceToneAnalysisTaskCommand = exports.se_StartSpeakerSearchTaskCommand = exports.se_SearchAvailablePhoneNumbersCommand = exports.se_RestorePhoneNumberCommand = exports.se_PutVoiceConnectorTerminationCredentialsCommand = exports.se_PutVoiceConnectorTerminationCommand = exports.se_PutVoiceConnectorStreamingConfigurationCommand = exports.se_PutVoiceConnectorProxyCommand = exports.se_PutVoiceConnectorOriginationCommand = exports.se_PutVoiceConnectorLoggingConfigurationCommand = exports.se_PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.se_PutSipMediaApplicationLoggingConfigurationCommand = exports.se_PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.se_ListVoiceProfilesCommand = exports.se_ListVoiceProfileDomainsCommand = exports.se_ListVoiceConnectorTerminationCredentialsCommand = exports.se_ListVoiceConnectorsCommand = exports.se_ListVoiceConnectorGroupsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListSupportedPhoneNumberCountriesCommand = exports.se_ListSipRulesCommand = exports.se_ListSipMediaApplicationsCommand = exports.se_ListProxySessionsCommand = exports.se_ListPhoneNumbersCommand = exports.se_ListPhoneNumberOrdersCommand = exports.se_ListAvailableVoiceConnectorRegionsCommand = exports.se_GetVoiceToneAnalysisTaskCommand = void 0;
     exports.de_ListSipRulesCommand = exports.de_ListSipMediaApplicationsCommand = exports.de_ListProxySessionsCommand = exports.de_ListPhoneNumbersCommand = exports.de_ListPhoneNumberOrdersCommand = exports.de_ListAvailableVoiceConnectorRegionsCommand = exports.de_GetVoiceToneAnalysisTaskCommand = exports.de_GetVoiceProfileDomainCommand = exports.de_GetVoiceProfileCommand = exports.de_GetVoiceConnectorTerminationHealthCommand = exports.de_GetVoiceConnectorTerminationCommand = exports.de_GetVoiceConnectorStreamingConfigurationCommand = exports.de_GetVoiceConnectorProxyCommand = exports.de_GetVoiceConnectorOriginationCommand = exports.de_GetVoiceConnectorLoggingConfigurationCommand = exports.de_GetVoiceConnectorGroupCommand = exports.de_GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_GetVoiceConnectorCommand = exports.de_GetSpeakerSearchTaskCommand = exports.de_GetSipRuleCommand = exports.de_GetSipMediaApplicationLoggingConfigurationCommand = exports.de_GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.de_GetSipMediaApplicationCommand = exports.de_GetProxySessionCommand = exports.de_GetPhoneNumberSettingsCommand = exports.de_GetPhoneNumberOrderCommand = exports.de_GetPhoneNumberCommand = exports.de_GetGlobalSettingsCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.de_DeleteVoiceProfileDomainCommand = exports.de_DeleteVoiceProfileCommand = exports.de_DeleteVoiceConnectorTerminationCredentialsCommand = exports.de_DeleteVoiceConnectorTerminationCommand = exports.de_DeleteVoiceConnectorStreamingConfigurationCommand = exports.de_DeleteVoiceConnectorProxyCommand = exports.de_DeleteVoiceConnectorOriginationCommand = exports.de_DeleteVoiceConnectorGroupCommand = exports.de_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_DeleteVoiceConnectorCommand = exports.de_DeleteSipRuleCommand = exports.de_DeleteSipMediaApplicationCommand = exports.de_DeleteProxySessionCommand = exports.de_DeletePhoneNumberCommand = exports.de_CreateVoiceProfileDomainCommand = exports.de_CreateVoiceProfileCommand = exports.de_CreateVoiceConnectorGroupCommand = exports.de_CreateVoiceConnectorCommand = exports.de_CreateSipRuleCommand = exports.de_CreateSipMediaApplicationCallCommand = void 0;
     exports.de_ValidateE911AddressCommand = exports.de_UpdateVoiceProfileDomainCommand = exports.de_UpdateVoiceProfileCommand = exports.de_UpdateVoiceConnectorGroupCommand = exports.de_UpdateVoiceConnectorCommand = exports.de_UpdateSipRuleCommand = exports.de_UpdateSipMediaApplicationCallCommand = exports.de_UpdateSipMediaApplicationCommand = exports.de_UpdateProxySessionCommand = exports.de_UpdatePhoneNumberSettingsCommand = exports.de_UpdatePhoneNumberCommand = exports.de_UpdateGlobalSettingsCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_StopVoiceToneAnalysisTaskCommand = exports.de_StopSpeakerSearchTaskCommand = exports.de_StartVoiceToneAnalysisTaskCommand = exports.de_StartSpeakerSearchTaskCommand = exports.de_SearchAvailablePhoneNumbersCommand = exports.de_RestorePhoneNumberCommand = exports.de_PutVoiceConnectorTerminationCredentialsCommand = exports.de_PutVoiceConnectorTerminationCommand = exports.de_PutVoiceConnectorStreamingConfigurationCommand = exports.de_PutVoiceConnectorProxyCommand = exports.de_PutVoiceConnectorOriginationCommand = exports.de_PutVoiceConnectorLoggingConfigurationCommand = exports.de_PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_PutSipMediaApplicationLoggingConfigurationCommand = exports.de_PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.de_ListVoiceProfilesCommand = exports.de_ListVoiceProfileDomainsCommand = exports.de_ListVoiceConnectorTerminationCredentialsCommand = exports.de_ListVoiceConnectorsCommand = exports.de_ListVoiceConnectorGroupsCommand = exports.de_ListTagsForResourceCommand = exports.de_ListSupportedPhoneNumberCountriesCommand = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var smithy_client_1 = require_dist_cjs28();
+    var protocol_http_1 = require_dist_cjs6();
+    var smithy_client_1 = require_dist_cjs2();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
     var models_0_1 = require_models_04();
     var se_AssociatePhoneNumbersWithVoiceConnectorCommand = async (input, context) => {
@@ -23984,9 +23861,9 @@ var require_AssociatePhoneNumbersWithVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssociatePhoneNumbersWithVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var AssociatePhoneNumbersWithVoiceConnectorCommand = class extends smithy_client_1.Command {
@@ -24036,9 +23913,9 @@ var require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssociatePhoneNumbersWithVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var AssociatePhoneNumbersWithVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
@@ -24088,9 +23965,9 @@ var require_BatchDeletePhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BatchDeletePhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var BatchDeletePhoneNumberCommand = class extends smithy_client_1.Command {
@@ -24140,9 +24017,9 @@ var require_BatchUpdatePhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BatchUpdatePhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var BatchUpdatePhoneNumberCommand = class extends smithy_client_1.Command {
@@ -24192,9 +24069,9 @@ var require_CreatePhoneNumberOrderCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreatePhoneNumberOrderCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreatePhoneNumberOrderCommand2 = class extends smithy_client_1.Command {
@@ -24244,9 +24121,9 @@ var require_CreateProxySessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateProxySessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateProxySessionCommand = class extends smithy_client_1.Command {
@@ -24296,9 +24173,9 @@ var require_CreateSipMediaApplicationCallCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateSipMediaApplicationCallCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipMediaApplicationCallCommand = class extends smithy_client_1.Command {
@@ -24348,9 +24225,9 @@ var require_CreateSipMediaApplicationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateSipMediaApplicationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipMediaApplicationCommand2 = class extends smithy_client_1.Command {
@@ -24400,9 +24277,9 @@ var require_CreateSipRuleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateSipRuleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24451,9 +24328,9 @@ var require_CreateVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorCommand2 = class extends smithy_client_1.Command {
@@ -24503,9 +24380,9 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24554,9 +24431,9 @@ var require_CreateVoiceProfileCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateVoiceProfileCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceProfileCommand = class extends smithy_client_1.Command {
@@ -24606,9 +24483,9 @@ var require_CreateVoiceProfileDomainCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateVoiceProfileDomainCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var CreateVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
@@ -24658,9 +24535,9 @@ var require_DeletePhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeletePhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeletePhoneNumberCommand2 = class extends smithy_client_1.Command {
@@ -24710,9 +24587,9 @@ var require_DeleteProxySessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteProxySessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteProxySessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24761,9 +24638,9 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteSipMediaApplicationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipMediaApplicationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24812,9 +24689,9 @@ var require_DeleteSipRuleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteSipRuleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24863,9 +24740,9 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24914,9 +24791,9 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorEmergencyCallingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -24965,9 +24842,9 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25016,9 +24893,9 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorOriginationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25067,9 +24944,9 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorProxyCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25118,9 +24995,9 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorStreamingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorStreamingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25169,9 +25046,9 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorTerminationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorTerminationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25220,9 +25097,9 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceConnectorTerminationCredentialsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
@@ -25272,9 +25149,9 @@ var require_DeleteVoiceProfileCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceProfileCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceProfileCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25323,9 +25200,9 @@ var require_DeleteVoiceProfileDomainCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteVoiceProfileDomainCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DeleteVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25374,9 +25251,9 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DisassociatePhoneNumbersFromVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DisassociatePhoneNumbersFromVoiceConnectorCommand3 = class extends smithy_client_1.Command {
@@ -25426,9 +25303,9 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = __commonJS(
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
@@ -25478,9 +25355,9 @@ var require_GetGlobalSettingsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetGlobalSettingsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetGlobalSettingsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25529,9 +25406,9 @@ var require_GetPhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetPhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberCommand2 = class extends smithy_client_1.Command {
@@ -25581,9 +25458,9 @@ var require_GetPhoneNumberOrderCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetPhoneNumberOrderCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberOrderCommand2 = class extends smithy_client_1.Command {
@@ -25633,9 +25510,9 @@ var require_GetPhoneNumberSettingsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetPhoneNumberSettingsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetPhoneNumberSettingsCommand = class extends smithy_client_1.Command {
@@ -25685,9 +25562,9 @@ var require_GetProxySessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetProxySessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetProxySessionCommand = class extends smithy_client_1.Command {
@@ -25737,9 +25614,9 @@ var require_GetSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSipMediaApplicationAlexaSkillConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationAlexaSkillConfigurationCommand = class extends smithy_client_1.Command {
@@ -25789,9 +25666,9 @@ var require_GetSipMediaApplicationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSipMediaApplicationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationCommand = class extends smithy_client_1.Command {
@@ -25841,9 +25718,9 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSipMediaApplicationLoggingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipMediaApplicationLoggingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25892,9 +25769,9 @@ var require_GetSipRuleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSipRuleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSipRuleCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25943,9 +25820,9 @@ var require_GetSpeakerSearchTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSpeakerSearchTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -25994,9 +25871,9 @@ var require_GetVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26045,9 +25922,9 @@ var require_GetVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorEmergencyCallingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
@@ -26097,9 +25974,9 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26148,9 +26025,9 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorLoggingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorLoggingConfigurationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26199,9 +26076,9 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorOriginationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorOriginationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26250,9 +26127,9 @@ var require_GetVoiceConnectorProxyCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorProxyCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
@@ -26302,9 +26179,9 @@ var require_GetVoiceConnectorStreamingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorStreamingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorStreamingConfigurationCommand = class extends smithy_client_1.Command {
@@ -26354,9 +26231,9 @@ var require_GetVoiceConnectorTerminationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorTerminationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorTerminationCommand = class extends smithy_client_1.Command {
@@ -26406,9 +26283,9 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceConnectorTerminationHealthCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceConnectorTerminationHealthCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26457,9 +26334,9 @@ var require_GetVoiceProfileCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceProfileCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceProfileCommand = class extends smithy_client_1.Command {
@@ -26509,9 +26386,9 @@ var require_GetVoiceProfileDomainCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceProfileDomainCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceProfileDomainCommand = class extends smithy_client_1.Command {
@@ -26561,9 +26438,9 @@ var require_GetVoiceToneAnalysisTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetVoiceToneAnalysisTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var GetVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26612,9 +26489,9 @@ var require_ListAvailableVoiceConnectorRegionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAvailableVoiceConnectorRegionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListAvailableVoiceConnectorRegionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26663,9 +26540,9 @@ var require_ListPhoneNumberOrdersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListPhoneNumberOrdersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListPhoneNumberOrdersCommand = class extends smithy_client_1.Command {
@@ -26715,9 +26592,9 @@ var require_ListPhoneNumbersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListPhoneNumbersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListPhoneNumbersCommand2 = class extends smithy_client_1.Command {
@@ -26767,9 +26644,9 @@ var require_ListProxySessionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListProxySessionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListProxySessionsCommand = class extends smithy_client_1.Command {
@@ -26819,9 +26696,9 @@ var require_ListSipMediaApplicationsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListSipMediaApplicationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSipMediaApplicationsCommand = class extends smithy_client_1.Command {
@@ -26871,9 +26748,9 @@ var require_ListSipRulesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListSipRulesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSipRulesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26922,9 +26799,9 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListSupportedPhoneNumberCountriesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListSupportedPhoneNumberCountriesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -26973,9 +26850,9 @@ var require_ListTagsForResourceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListTagsForResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListTagsForResourceCommand = class extends smithy_client_1.Command {
@@ -27025,9 +26902,9 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListVoiceConnectorGroupsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorGroupsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27076,9 +26953,9 @@ var require_ListVoiceConnectorsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListVoiceConnectorsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27127,9 +27004,9 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListVoiceConnectorTerminationCredentialsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
@@ -27179,9 +27056,9 @@ var require_ListVoiceProfileDomainsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListVoiceProfileDomainsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceProfileDomainsCommand = class extends smithy_client_1.Command {
@@ -27231,9 +27108,9 @@ var require_ListVoiceProfilesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListVoiceProfilesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ListVoiceProfilesCommand = class extends smithy_client_1.Command {
@@ -27283,9 +27160,9 @@ var require_PutSipMediaApplicationAlexaSkillConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutSipMediaApplicationAlexaSkillConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutSipMediaApplicationAlexaSkillConfigurationCommand2 = class extends smithy_client_1.Command {
@@ -27335,9 +27212,9 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutSipMediaApplicationLoggingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutSipMediaApplicationLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27386,9 +27263,9 @@ var require_PutVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorEmergencyCallingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorEmergencyCallingConfigurationCommand = class extends smithy_client_1.Command {
@@ -27438,9 +27315,9 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorLoggingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorLoggingConfigurationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27489,9 +27366,9 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorOriginationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorOriginationCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27540,9 +27417,9 @@ var require_PutVoiceConnectorProxyCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorProxyCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorProxyCommand = class extends smithy_client_1.Command {
@@ -27592,9 +27469,9 @@ var require_PutVoiceConnectorStreamingConfigurationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorStreamingConfigurationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorStreamingConfigurationCommand2 = class extends smithy_client_1.Command {
@@ -27644,9 +27521,9 @@ var require_PutVoiceConnectorTerminationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorTerminationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorTerminationCommand2 = class extends smithy_client_1.Command {
@@ -27696,9 +27573,9 @@ var require_PutVoiceConnectorTerminationCredentialsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutVoiceConnectorTerminationCredentialsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var PutVoiceConnectorTerminationCredentialsCommand = class extends smithy_client_1.Command {
@@ -27748,9 +27625,9 @@ var require_RestorePhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RestorePhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var RestorePhoneNumberCommand = class extends smithy_client_1.Command {
@@ -27800,9 +27677,9 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SearchAvailablePhoneNumbersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var SearchAvailablePhoneNumbersCommand2 = class extends smithy_client_1.Command {
@@ -27852,9 +27729,9 @@ var require_StartSpeakerSearchTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartSpeakerSearchTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var StartSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27903,9 +27780,9 @@ var require_StartVoiceToneAnalysisTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartVoiceToneAnalysisTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var StartVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -27954,9 +27831,9 @@ var require_StopSpeakerSearchTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StopSpeakerSearchTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var StopSpeakerSearchTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28005,9 +27882,9 @@ var require_StopVoiceToneAnalysisTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StopVoiceToneAnalysisTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var StopVoiceToneAnalysisTaskCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28056,9 +27933,9 @@ var require_TagResourceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.TagResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var TagResourceCommand = class extends smithy_client_1.Command {
@@ -28108,9 +27985,9 @@ var require_UntagResourceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UntagResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UntagResourceCommand = class extends smithy_client_1.Command {
@@ -28160,9 +28037,9 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateGlobalSettingsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateGlobalSettingsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28211,9 +28088,9 @@ var require_UpdatePhoneNumberCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdatePhoneNumberCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdatePhoneNumberCommand = class extends smithy_client_1.Command {
@@ -28263,9 +28140,9 @@ var require_UpdatePhoneNumberSettingsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdatePhoneNumberSettingsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdatePhoneNumberSettingsCommand = class extends smithy_client_1.Command {
@@ -28315,9 +28192,9 @@ var require_UpdateProxySessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateProxySessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateProxySessionCommand = class extends smithy_client_1.Command {
@@ -28367,9 +28244,9 @@ var require_UpdateSipMediaApplicationCallCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateSipMediaApplicationCallCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipMediaApplicationCallCommand = class extends smithy_client_1.Command {
@@ -28419,9 +28296,9 @@ var require_UpdateSipMediaApplicationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateSipMediaApplicationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipMediaApplicationCommand = class extends smithy_client_1.Command {
@@ -28471,9 +28348,9 @@ var require_UpdateSipRuleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateSipRuleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateSipRuleCommand3 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28522,9 +28399,9 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateVoiceConnectorCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28573,9 +28450,9 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateVoiceConnectorGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceConnectorGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -28624,9 +28501,9 @@ var require_UpdateVoiceProfileCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateVoiceProfileCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceProfileCommand = class extends smithy_client_1.Command {
@@ -28676,9 +28553,9 @@ var require_UpdateVoiceProfileDomainCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateVoiceProfileDomainCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var UpdateVoiceProfileDomainCommand2 = class extends smithy_client_1.Command {
@@ -28728,9 +28605,9 @@ var require_ValidateE911AddressCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ValidateE911AddressCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_04();
     var Aws_restJson1_1 = require_Aws_restJson13();
     var ValidateE911AddressCommand = class extends smithy_client_1.Command {
@@ -28780,6 +28657,7 @@ var require_ChimeSDKVoice = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKVoice = void 0;
+    var smithy_client_1 = require_dist_cjs2();
     var ChimeSDKVoiceClient_1 = require_ChimeSDKVoiceClient();
     var AssociatePhoneNumbersWithVoiceConnectorCommand_1 = require_AssociatePhoneNumbersWithVoiceConnectorCommand();
     var AssociatePhoneNumbersWithVoiceConnectorGroupCommand_1 = require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand();
@@ -28874,1125 +28752,105 @@ var require_ChimeSDKVoice = __commonJS({
     var UpdateVoiceProfileCommand_1 = require_UpdateVoiceProfileCommand();
     var UpdateVoiceProfileDomainCommand_1 = require_UpdateVoiceProfileDomainCommand();
     var ValidateE911AddressCommand_1 = require_ValidateE911AddressCommand();
+    var commands = {
+      AssociatePhoneNumbersWithVoiceConnectorCommand: AssociatePhoneNumbersWithVoiceConnectorCommand_1.AssociatePhoneNumbersWithVoiceConnectorCommand,
+      AssociatePhoneNumbersWithVoiceConnectorGroupCommand: AssociatePhoneNumbersWithVoiceConnectorGroupCommand_1.AssociatePhoneNumbersWithVoiceConnectorGroupCommand,
+      BatchDeletePhoneNumberCommand: BatchDeletePhoneNumberCommand_1.BatchDeletePhoneNumberCommand,
+      BatchUpdatePhoneNumberCommand: BatchUpdatePhoneNumberCommand_1.BatchUpdatePhoneNumberCommand,
+      CreatePhoneNumberOrderCommand: CreatePhoneNumberOrderCommand_1.CreatePhoneNumberOrderCommand,
+      CreateProxySessionCommand: CreateProxySessionCommand_1.CreateProxySessionCommand,
+      CreateSipMediaApplicationCommand: CreateSipMediaApplicationCommand_1.CreateSipMediaApplicationCommand,
+      CreateSipMediaApplicationCallCommand: CreateSipMediaApplicationCallCommand_1.CreateSipMediaApplicationCallCommand,
+      CreateSipRuleCommand: CreateSipRuleCommand_1.CreateSipRuleCommand,
+      CreateVoiceConnectorCommand: CreateVoiceConnectorCommand_1.CreateVoiceConnectorCommand,
+      CreateVoiceConnectorGroupCommand: CreateVoiceConnectorGroupCommand_1.CreateVoiceConnectorGroupCommand,
+      CreateVoiceProfileCommand: CreateVoiceProfileCommand_1.CreateVoiceProfileCommand,
+      CreateVoiceProfileDomainCommand: CreateVoiceProfileDomainCommand_1.CreateVoiceProfileDomainCommand,
+      DeletePhoneNumberCommand: DeletePhoneNumberCommand_1.DeletePhoneNumberCommand,
+      DeleteProxySessionCommand: DeleteProxySessionCommand_1.DeleteProxySessionCommand,
+      DeleteSipMediaApplicationCommand: DeleteSipMediaApplicationCommand_1.DeleteSipMediaApplicationCommand,
+      DeleteSipRuleCommand: DeleteSipRuleCommand_1.DeleteSipRuleCommand,
+      DeleteVoiceConnectorCommand: DeleteVoiceConnectorCommand_1.DeleteVoiceConnectorCommand,
+      DeleteVoiceConnectorEmergencyCallingConfigurationCommand: DeleteVoiceConnectorEmergencyCallingConfigurationCommand_1.DeleteVoiceConnectorEmergencyCallingConfigurationCommand,
+      DeleteVoiceConnectorGroupCommand: DeleteVoiceConnectorGroupCommand_1.DeleteVoiceConnectorGroupCommand,
+      DeleteVoiceConnectorOriginationCommand: DeleteVoiceConnectorOriginationCommand_1.DeleteVoiceConnectorOriginationCommand,
+      DeleteVoiceConnectorProxyCommand: DeleteVoiceConnectorProxyCommand_1.DeleteVoiceConnectorProxyCommand,
+      DeleteVoiceConnectorStreamingConfigurationCommand: DeleteVoiceConnectorStreamingConfigurationCommand_1.DeleteVoiceConnectorStreamingConfigurationCommand,
+      DeleteVoiceConnectorTerminationCommand: DeleteVoiceConnectorTerminationCommand_1.DeleteVoiceConnectorTerminationCommand,
+      DeleteVoiceConnectorTerminationCredentialsCommand: DeleteVoiceConnectorTerminationCredentialsCommand_1.DeleteVoiceConnectorTerminationCredentialsCommand,
+      DeleteVoiceProfileCommand: DeleteVoiceProfileCommand_1.DeleteVoiceProfileCommand,
+      DeleteVoiceProfileDomainCommand: DeleteVoiceProfileDomainCommand_1.DeleteVoiceProfileDomainCommand,
+      DisassociatePhoneNumbersFromVoiceConnectorCommand: DisassociatePhoneNumbersFromVoiceConnectorCommand_1.DisassociatePhoneNumbersFromVoiceConnectorCommand,
+      DisassociatePhoneNumbersFromVoiceConnectorGroupCommand: DisassociatePhoneNumbersFromVoiceConnectorGroupCommand_1.DisassociatePhoneNumbersFromVoiceConnectorGroupCommand,
+      GetGlobalSettingsCommand: GetGlobalSettingsCommand_1.GetGlobalSettingsCommand,
+      GetPhoneNumberCommand: GetPhoneNumberCommand_1.GetPhoneNumberCommand,
+      GetPhoneNumberOrderCommand: GetPhoneNumberOrderCommand_1.GetPhoneNumberOrderCommand,
+      GetPhoneNumberSettingsCommand: GetPhoneNumberSettingsCommand_1.GetPhoneNumberSettingsCommand,
+      GetProxySessionCommand: GetProxySessionCommand_1.GetProxySessionCommand,
+      GetSipMediaApplicationCommand: GetSipMediaApplicationCommand_1.GetSipMediaApplicationCommand,
+      GetSipMediaApplicationAlexaSkillConfigurationCommand: GetSipMediaApplicationAlexaSkillConfigurationCommand_1.GetSipMediaApplicationAlexaSkillConfigurationCommand,
+      GetSipMediaApplicationLoggingConfigurationCommand: GetSipMediaApplicationLoggingConfigurationCommand_1.GetSipMediaApplicationLoggingConfigurationCommand,
+      GetSipRuleCommand: GetSipRuleCommand_1.GetSipRuleCommand,
+      GetSpeakerSearchTaskCommand: GetSpeakerSearchTaskCommand_1.GetSpeakerSearchTaskCommand,
+      GetVoiceConnectorCommand: GetVoiceConnectorCommand_1.GetVoiceConnectorCommand,
+      GetVoiceConnectorEmergencyCallingConfigurationCommand: GetVoiceConnectorEmergencyCallingConfigurationCommand_1.GetVoiceConnectorEmergencyCallingConfigurationCommand,
+      GetVoiceConnectorGroupCommand: GetVoiceConnectorGroupCommand_1.GetVoiceConnectorGroupCommand,
+      GetVoiceConnectorLoggingConfigurationCommand: GetVoiceConnectorLoggingConfigurationCommand_1.GetVoiceConnectorLoggingConfigurationCommand,
+      GetVoiceConnectorOriginationCommand: GetVoiceConnectorOriginationCommand_1.GetVoiceConnectorOriginationCommand,
+      GetVoiceConnectorProxyCommand: GetVoiceConnectorProxyCommand_1.GetVoiceConnectorProxyCommand,
+      GetVoiceConnectorStreamingConfigurationCommand: GetVoiceConnectorStreamingConfigurationCommand_1.GetVoiceConnectorStreamingConfigurationCommand,
+      GetVoiceConnectorTerminationCommand: GetVoiceConnectorTerminationCommand_1.GetVoiceConnectorTerminationCommand,
+      GetVoiceConnectorTerminationHealthCommand: GetVoiceConnectorTerminationHealthCommand_1.GetVoiceConnectorTerminationHealthCommand,
+      GetVoiceProfileCommand: GetVoiceProfileCommand_1.GetVoiceProfileCommand,
+      GetVoiceProfileDomainCommand: GetVoiceProfileDomainCommand_1.GetVoiceProfileDomainCommand,
+      GetVoiceToneAnalysisTaskCommand: GetVoiceToneAnalysisTaskCommand_1.GetVoiceToneAnalysisTaskCommand,
+      ListAvailableVoiceConnectorRegionsCommand: ListAvailableVoiceConnectorRegionsCommand_1.ListAvailableVoiceConnectorRegionsCommand,
+      ListPhoneNumberOrdersCommand: ListPhoneNumberOrdersCommand_1.ListPhoneNumberOrdersCommand,
+      ListPhoneNumbersCommand: ListPhoneNumbersCommand_1.ListPhoneNumbersCommand,
+      ListProxySessionsCommand: ListProxySessionsCommand_1.ListProxySessionsCommand,
+      ListSipMediaApplicationsCommand: ListSipMediaApplicationsCommand_1.ListSipMediaApplicationsCommand,
+      ListSipRulesCommand: ListSipRulesCommand_1.ListSipRulesCommand,
+      ListSupportedPhoneNumberCountriesCommand: ListSupportedPhoneNumberCountriesCommand_1.ListSupportedPhoneNumberCountriesCommand,
+      ListTagsForResourceCommand: ListTagsForResourceCommand_1.ListTagsForResourceCommand,
+      ListVoiceConnectorGroupsCommand: ListVoiceConnectorGroupsCommand_1.ListVoiceConnectorGroupsCommand,
+      ListVoiceConnectorsCommand: ListVoiceConnectorsCommand_1.ListVoiceConnectorsCommand,
+      ListVoiceConnectorTerminationCredentialsCommand: ListVoiceConnectorTerminationCredentialsCommand_1.ListVoiceConnectorTerminationCredentialsCommand,
+      ListVoiceProfileDomainsCommand: ListVoiceProfileDomainsCommand_1.ListVoiceProfileDomainsCommand,
+      ListVoiceProfilesCommand: ListVoiceProfilesCommand_1.ListVoiceProfilesCommand,
+      PutSipMediaApplicationAlexaSkillConfigurationCommand: PutSipMediaApplicationAlexaSkillConfigurationCommand_1.PutSipMediaApplicationAlexaSkillConfigurationCommand,
+      PutSipMediaApplicationLoggingConfigurationCommand: PutSipMediaApplicationLoggingConfigurationCommand_1.PutSipMediaApplicationLoggingConfigurationCommand,
+      PutVoiceConnectorEmergencyCallingConfigurationCommand: PutVoiceConnectorEmergencyCallingConfigurationCommand_1.PutVoiceConnectorEmergencyCallingConfigurationCommand,
+      PutVoiceConnectorLoggingConfigurationCommand: PutVoiceConnectorLoggingConfigurationCommand_1.PutVoiceConnectorLoggingConfigurationCommand,
+      PutVoiceConnectorOriginationCommand: PutVoiceConnectorOriginationCommand_1.PutVoiceConnectorOriginationCommand,
+      PutVoiceConnectorProxyCommand: PutVoiceConnectorProxyCommand_1.PutVoiceConnectorProxyCommand,
+      PutVoiceConnectorStreamingConfigurationCommand: PutVoiceConnectorStreamingConfigurationCommand_1.PutVoiceConnectorStreamingConfigurationCommand,
+      PutVoiceConnectorTerminationCommand: PutVoiceConnectorTerminationCommand_1.PutVoiceConnectorTerminationCommand,
+      PutVoiceConnectorTerminationCredentialsCommand: PutVoiceConnectorTerminationCredentialsCommand_1.PutVoiceConnectorTerminationCredentialsCommand,
+      RestorePhoneNumberCommand: RestorePhoneNumberCommand_1.RestorePhoneNumberCommand,
+      SearchAvailablePhoneNumbersCommand: SearchAvailablePhoneNumbersCommand_1.SearchAvailablePhoneNumbersCommand,
+      StartSpeakerSearchTaskCommand: StartSpeakerSearchTaskCommand_1.StartSpeakerSearchTaskCommand,
+      StartVoiceToneAnalysisTaskCommand: StartVoiceToneAnalysisTaskCommand_1.StartVoiceToneAnalysisTaskCommand,
+      StopSpeakerSearchTaskCommand: StopSpeakerSearchTaskCommand_1.StopSpeakerSearchTaskCommand,
+      StopVoiceToneAnalysisTaskCommand: StopVoiceToneAnalysisTaskCommand_1.StopVoiceToneAnalysisTaskCommand,
+      TagResourceCommand: TagResourceCommand_1.TagResourceCommand,
+      UntagResourceCommand: UntagResourceCommand_1.UntagResourceCommand,
+      UpdateGlobalSettingsCommand: UpdateGlobalSettingsCommand_1.UpdateGlobalSettingsCommand,
+      UpdatePhoneNumberCommand: UpdatePhoneNumberCommand_1.UpdatePhoneNumberCommand,
+      UpdatePhoneNumberSettingsCommand: UpdatePhoneNumberSettingsCommand_1.UpdatePhoneNumberSettingsCommand,
+      UpdateProxySessionCommand: UpdateProxySessionCommand_1.UpdateProxySessionCommand,
+      UpdateSipMediaApplicationCommand: UpdateSipMediaApplicationCommand_1.UpdateSipMediaApplicationCommand,
+      UpdateSipMediaApplicationCallCommand: UpdateSipMediaApplicationCallCommand_1.UpdateSipMediaApplicationCallCommand,
+      UpdateSipRuleCommand: UpdateSipRuleCommand_1.UpdateSipRuleCommand,
+      UpdateVoiceConnectorCommand: UpdateVoiceConnectorCommand_1.UpdateVoiceConnectorCommand,
+      UpdateVoiceConnectorGroupCommand: UpdateVoiceConnectorGroupCommand_1.UpdateVoiceConnectorGroupCommand,
+      UpdateVoiceProfileCommand: UpdateVoiceProfileCommand_1.UpdateVoiceProfileCommand,
+      UpdateVoiceProfileDomainCommand: UpdateVoiceProfileDomainCommand_1.UpdateVoiceProfileDomainCommand,
+      ValidateE911AddressCommand: ValidateE911AddressCommand_1.ValidateE911AddressCommand
+    };
     var ChimeSDKVoice = class extends ChimeSDKVoiceClient_1.ChimeSDKVoiceClient {
-      associatePhoneNumbersWithVoiceConnector(args, optionsOrCb, cb) {
-        const command = new AssociatePhoneNumbersWithVoiceConnectorCommand_1.AssociatePhoneNumbersWithVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      associatePhoneNumbersWithVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new AssociatePhoneNumbersWithVoiceConnectorGroupCommand_1.AssociatePhoneNumbersWithVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      batchDeletePhoneNumber(args, optionsOrCb, cb) {
-        const command = new BatchDeletePhoneNumberCommand_1.BatchDeletePhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      batchUpdatePhoneNumber(args, optionsOrCb, cb) {
-        const command = new BatchUpdatePhoneNumberCommand_1.BatchUpdatePhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createPhoneNumberOrder(args, optionsOrCb, cb) {
-        const command = new CreatePhoneNumberOrderCommand_1.CreatePhoneNumberOrderCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createProxySession(args, optionsOrCb, cb) {
-        const command = new CreateProxySessionCommand_1.CreateProxySessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createSipMediaApplication(args, optionsOrCb, cb) {
-        const command = new CreateSipMediaApplicationCommand_1.CreateSipMediaApplicationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createSipMediaApplicationCall(args, optionsOrCb, cb) {
-        const command = new CreateSipMediaApplicationCallCommand_1.CreateSipMediaApplicationCallCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createSipRule(args, optionsOrCb, cb) {
-        const command = new CreateSipRuleCommand_1.CreateSipRuleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createVoiceConnector(args, optionsOrCb, cb) {
-        const command = new CreateVoiceConnectorCommand_1.CreateVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new CreateVoiceConnectorGroupCommand_1.CreateVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createVoiceProfile(args, optionsOrCb, cb) {
-        const command = new CreateVoiceProfileCommand_1.CreateVoiceProfileCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createVoiceProfileDomain(args, optionsOrCb, cb) {
-        const command = new CreateVoiceProfileDomainCommand_1.CreateVoiceProfileDomainCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deletePhoneNumber(args, optionsOrCb, cb) {
-        const command = new DeletePhoneNumberCommand_1.DeletePhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteProxySession(args, optionsOrCb, cb) {
-        const command = new DeleteProxySessionCommand_1.DeleteProxySessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteSipMediaApplication(args, optionsOrCb, cb) {
-        const command = new DeleteSipMediaApplicationCommand_1.DeleteSipMediaApplicationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteSipRule(args, optionsOrCb, cb) {
-        const command = new DeleteSipRuleCommand_1.DeleteSipRuleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnector(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorCommand_1.DeleteVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorEmergencyCallingConfiguration(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorEmergencyCallingConfigurationCommand_1.DeleteVoiceConnectorEmergencyCallingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorGroupCommand_1.DeleteVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorOrigination(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorOriginationCommand_1.DeleteVoiceConnectorOriginationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorProxy(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorProxyCommand_1.DeleteVoiceConnectorProxyCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorStreamingConfiguration(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorStreamingConfigurationCommand_1.DeleteVoiceConnectorStreamingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorTermination(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorTerminationCommand_1.DeleteVoiceConnectorTerminationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceConnectorTerminationCredentials(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceConnectorTerminationCredentialsCommand_1.DeleteVoiceConnectorTerminationCredentialsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceProfile(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceProfileCommand_1.DeleteVoiceProfileCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteVoiceProfileDomain(args, optionsOrCb, cb) {
-        const command = new DeleteVoiceProfileDomainCommand_1.DeleteVoiceProfileDomainCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      disassociatePhoneNumbersFromVoiceConnector(args, optionsOrCb, cb) {
-        const command = new DisassociatePhoneNumbersFromVoiceConnectorCommand_1.DisassociatePhoneNumbersFromVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      disassociatePhoneNumbersFromVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new DisassociatePhoneNumbersFromVoiceConnectorGroupCommand_1.DisassociatePhoneNumbersFromVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getGlobalSettings(args, optionsOrCb, cb) {
-        const command = new GetGlobalSettingsCommand_1.GetGlobalSettingsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getPhoneNumber(args, optionsOrCb, cb) {
-        const command = new GetPhoneNumberCommand_1.GetPhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getPhoneNumberOrder(args, optionsOrCb, cb) {
-        const command = new GetPhoneNumberOrderCommand_1.GetPhoneNumberOrderCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getPhoneNumberSettings(args, optionsOrCb, cb) {
-        const command = new GetPhoneNumberSettingsCommand_1.GetPhoneNumberSettingsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getProxySession(args, optionsOrCb, cb) {
-        const command = new GetProxySessionCommand_1.GetProxySessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSipMediaApplication(args, optionsOrCb, cb) {
-        const command = new GetSipMediaApplicationCommand_1.GetSipMediaApplicationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSipMediaApplicationAlexaSkillConfiguration(args, optionsOrCb, cb) {
-        const command = new GetSipMediaApplicationAlexaSkillConfigurationCommand_1.GetSipMediaApplicationAlexaSkillConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSipMediaApplicationLoggingConfiguration(args, optionsOrCb, cb) {
-        const command = new GetSipMediaApplicationLoggingConfigurationCommand_1.GetSipMediaApplicationLoggingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSipRule(args, optionsOrCb, cb) {
-        const command = new GetSipRuleCommand_1.GetSipRuleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getSpeakerSearchTask(args, optionsOrCb, cb) {
-        const command = new GetSpeakerSearchTaskCommand_1.GetSpeakerSearchTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnector(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorCommand_1.GetVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorEmergencyCallingConfiguration(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorEmergencyCallingConfigurationCommand_1.GetVoiceConnectorEmergencyCallingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorGroupCommand_1.GetVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorLoggingConfiguration(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorLoggingConfigurationCommand_1.GetVoiceConnectorLoggingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorOrigination(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorOriginationCommand_1.GetVoiceConnectorOriginationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorProxy(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorProxyCommand_1.GetVoiceConnectorProxyCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorStreamingConfiguration(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorStreamingConfigurationCommand_1.GetVoiceConnectorStreamingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorTermination(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorTerminationCommand_1.GetVoiceConnectorTerminationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceConnectorTerminationHealth(args, optionsOrCb, cb) {
-        const command = new GetVoiceConnectorTerminationHealthCommand_1.GetVoiceConnectorTerminationHealthCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceProfile(args, optionsOrCb, cb) {
-        const command = new GetVoiceProfileCommand_1.GetVoiceProfileCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceProfileDomain(args, optionsOrCb, cb) {
-        const command = new GetVoiceProfileDomainCommand_1.GetVoiceProfileDomainCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getVoiceToneAnalysisTask(args, optionsOrCb, cb) {
-        const command = new GetVoiceToneAnalysisTaskCommand_1.GetVoiceToneAnalysisTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listAvailableVoiceConnectorRegions(args, optionsOrCb, cb) {
-        const command = new ListAvailableVoiceConnectorRegionsCommand_1.ListAvailableVoiceConnectorRegionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listPhoneNumberOrders(args, optionsOrCb, cb) {
-        const command = new ListPhoneNumberOrdersCommand_1.ListPhoneNumberOrdersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listPhoneNumbers(args, optionsOrCb, cb) {
-        const command = new ListPhoneNumbersCommand_1.ListPhoneNumbersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listProxySessions(args, optionsOrCb, cb) {
-        const command = new ListProxySessionsCommand_1.ListProxySessionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listSipMediaApplications(args, optionsOrCb, cb) {
-        const command = new ListSipMediaApplicationsCommand_1.ListSipMediaApplicationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listSipRules(args, optionsOrCb, cb) {
-        const command = new ListSipRulesCommand_1.ListSipRulesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listSupportedPhoneNumberCountries(args, optionsOrCb, cb) {
-        const command = new ListSupportedPhoneNumberCountriesCommand_1.ListSupportedPhoneNumberCountriesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listTagsForResource(args, optionsOrCb, cb) {
-        const command = new ListTagsForResourceCommand_1.ListTagsForResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listVoiceConnectorGroups(args, optionsOrCb, cb) {
-        const command = new ListVoiceConnectorGroupsCommand_1.ListVoiceConnectorGroupsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listVoiceConnectors(args, optionsOrCb, cb) {
-        const command = new ListVoiceConnectorsCommand_1.ListVoiceConnectorsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listVoiceConnectorTerminationCredentials(args, optionsOrCb, cb) {
-        const command = new ListVoiceConnectorTerminationCredentialsCommand_1.ListVoiceConnectorTerminationCredentialsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listVoiceProfileDomains(args, optionsOrCb, cb) {
-        const command = new ListVoiceProfileDomainsCommand_1.ListVoiceProfileDomainsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listVoiceProfiles(args, optionsOrCb, cb) {
-        const command = new ListVoiceProfilesCommand_1.ListVoiceProfilesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putSipMediaApplicationAlexaSkillConfiguration(args, optionsOrCb, cb) {
-        const command = new PutSipMediaApplicationAlexaSkillConfigurationCommand_1.PutSipMediaApplicationAlexaSkillConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putSipMediaApplicationLoggingConfiguration(args, optionsOrCb, cb) {
-        const command = new PutSipMediaApplicationLoggingConfigurationCommand_1.PutSipMediaApplicationLoggingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorEmergencyCallingConfiguration(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorEmergencyCallingConfigurationCommand_1.PutVoiceConnectorEmergencyCallingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorLoggingConfiguration(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorLoggingConfigurationCommand_1.PutVoiceConnectorLoggingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorOrigination(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorOriginationCommand_1.PutVoiceConnectorOriginationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorProxy(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorProxyCommand_1.PutVoiceConnectorProxyCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorStreamingConfiguration(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorStreamingConfigurationCommand_1.PutVoiceConnectorStreamingConfigurationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorTermination(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorTerminationCommand_1.PutVoiceConnectorTerminationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putVoiceConnectorTerminationCredentials(args, optionsOrCb, cb) {
-        const command = new PutVoiceConnectorTerminationCredentialsCommand_1.PutVoiceConnectorTerminationCredentialsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      restorePhoneNumber(args, optionsOrCb, cb) {
-        const command = new RestorePhoneNumberCommand_1.RestorePhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      searchAvailablePhoneNumbers(args, optionsOrCb, cb) {
-        const command = new SearchAvailablePhoneNumbersCommand_1.SearchAvailablePhoneNumbersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startSpeakerSearchTask(args, optionsOrCb, cb) {
-        const command = new StartSpeakerSearchTaskCommand_1.StartSpeakerSearchTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startVoiceToneAnalysisTask(args, optionsOrCb, cb) {
-        const command = new StartVoiceToneAnalysisTaskCommand_1.StartVoiceToneAnalysisTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      stopSpeakerSearchTask(args, optionsOrCb, cb) {
-        const command = new StopSpeakerSearchTaskCommand_1.StopSpeakerSearchTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      stopVoiceToneAnalysisTask(args, optionsOrCb, cb) {
-        const command = new StopVoiceToneAnalysisTaskCommand_1.StopVoiceToneAnalysisTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      tagResource(args, optionsOrCb, cb) {
-        const command = new TagResourceCommand_1.TagResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      untagResource(args, optionsOrCb, cb) {
-        const command = new UntagResourceCommand_1.UntagResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateGlobalSettings(args, optionsOrCb, cb) {
-        const command = new UpdateGlobalSettingsCommand_1.UpdateGlobalSettingsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updatePhoneNumber(args, optionsOrCb, cb) {
-        const command = new UpdatePhoneNumberCommand_1.UpdatePhoneNumberCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updatePhoneNumberSettings(args, optionsOrCb, cb) {
-        const command = new UpdatePhoneNumberSettingsCommand_1.UpdatePhoneNumberSettingsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateProxySession(args, optionsOrCb, cb) {
-        const command = new UpdateProxySessionCommand_1.UpdateProxySessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateSipMediaApplication(args, optionsOrCb, cb) {
-        const command = new UpdateSipMediaApplicationCommand_1.UpdateSipMediaApplicationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateSipMediaApplicationCall(args, optionsOrCb, cb) {
-        const command = new UpdateSipMediaApplicationCallCommand_1.UpdateSipMediaApplicationCallCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateSipRule(args, optionsOrCb, cb) {
-        const command = new UpdateSipRuleCommand_1.UpdateSipRuleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateVoiceConnector(args, optionsOrCb, cb) {
-        const command = new UpdateVoiceConnectorCommand_1.UpdateVoiceConnectorCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateVoiceConnectorGroup(args, optionsOrCb, cb) {
-        const command = new UpdateVoiceConnectorGroupCommand_1.UpdateVoiceConnectorGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateVoiceProfile(args, optionsOrCb, cb) {
-        const command = new UpdateVoiceProfileCommand_1.UpdateVoiceProfileCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateVoiceProfileDomain(args, optionsOrCb, cb) {
-        const command = new UpdateVoiceProfileDomainCommand_1.UpdateVoiceProfileDomainCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      validateE911Address(args, optionsOrCb, cb) {
-        const command = new ValidateE911AddressCommand_1.ValidateE911AddressCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
     };
     exports.ChimeSDKVoice = ChimeSDKVoice;
+    (0, smithy_client_1.createAggregatedClient)(commands, ChimeSDKVoice);
   }
 });
 
@@ -30501,7 +29359,7 @@ var require_SSMServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSMServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var SSMServiceException = class extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
@@ -30520,7 +29378,7 @@ var require_models_05 = __commonJS({
     exports.OpsMetadataAlreadyExistsException = exports.OpsItemAlreadyExistsException = exports.OpsItemAccessDeniedException = exports.OpsItemDataType = exports.ResourceLimitExceededException = exports.IdempotentParameterMismatch = exports.MaxDocumentSizeExceeded = exports.InvalidDocumentSchemaVersion = exports.InvalidDocumentContent = exports.DocumentLimitExceeded = exports.DocumentAlreadyExists = exports.DocumentStatus = exports.ReviewStatus = exports.PlatformType = exports.DocumentParameterType = exports.DocumentHashType = exports.DocumentType = exports.DocumentFormat = exports.AttachmentsSourceKey = exports.Fault = exports.UnsupportedPlatformType = exports.InvalidTargetMaps = exports.InvalidTarget = exports.InvalidTag = exports.InvalidSchedule = exports.InvalidOutputLocation = exports.InvalidDocumentVersion = exports.InvalidDocument = exports.AssociationStatusName = exports.AssociationSyncCompliance = exports.AssociationComplianceSeverity = exports.AssociationLimitExceeded = exports.AssociationAlreadyExists = exports.InvalidParameters = exports.DoesNotExistException = exports.InvalidInstanceId = exports.InvalidCommandId = exports.DuplicateInstanceId = exports.OpsItemRelatedItemAlreadyExistsException = exports.OpsItemNotFoundException = exports.OpsItemLimitExceededException = exports.OpsItemInvalidParameterException = exports.AlreadyExistsException = exports.ExternalAlarmState = exports.TooManyUpdates = exports.TooManyTagsError = exports.InvalidResourceType = exports.InvalidResourceId = exports.InternalServerError = exports.ResourceTypeForTagging = void 0;
     exports.InstanceInformationFilterKey = exports.UnsupportedOperatingSystem = exports.PatchDeploymentStatus = exports.InvalidPermissionType = exports.DocumentPermissionType = exports.StepExecutionFilterKey = exports.AutomationExecutionNotFoundException = exports.InvalidFilterValue = exports.InvalidFilterKey = exports.ExecutionMode = exports.AutomationType = exports.AutomationSubtype = exports.AutomationExecutionStatus = exports.AutomationExecutionFilterKey = exports.AssociationExecutionTargetsFilterKey = exports.AssociationExecutionDoesNotExist = exports.AssociationFilterOperatorType = exports.AssociationExecutionFilterKey = exports.InvalidAssociationVersion = exports.InvalidNextToken = exports.InvalidFilter = exports.DescribeActivationsFilterKeys = exports.TargetInUseException = exports.ResourcePolicyInvalidParameterException = exports.ResourcePolicyConflictException = exports.ResourceDataSyncNotFoundException = exports.ResourceInUseException = exports.ParameterNotFound = exports.OpsMetadataNotFoundException = exports.InvalidTypeNameException = exports.InvalidOptionException = exports.InvalidInventoryRequestException = exports.InvalidDeleteInventoryParametersException = exports.InventorySchemaDeleteOption = exports.InvalidDocumentOperation = exports.AssociatedInstances = exports.AssociationDoesNotExist = exports.InvalidActivationId = exports.InvalidActivation = exports.ResourceDataSyncInvalidConfigurationException = exports.ResourceDataSyncCountExceededException = exports.ResourceDataSyncAlreadyExistsException = exports.ResourceDataSyncS3Format = exports.PatchAction = exports.OperatingSystem = exports.PatchFilterKey = exports.PatchComplianceLevel = exports.OpsMetadataTooManyUpdatesException = exports.OpsMetadataLimitExceededException = exports.OpsMetadataInvalidArgumentException = void 0;
     exports.DescribeMaintenanceWindowTasksResultFilterSensitiveLog = exports.MaintenanceWindowTaskFilterSensitiveLog = exports.MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = exports.MaintenanceWindowTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = exports.MaintenanceWindowIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = exports.DescribeInstancePatchStatesResultFilterSensitiveLog = exports.InstancePatchStateFilterSensitiveLog = exports.DescribeAssociationResultFilterSensitiveLog = exports.CreatePatchBaselineRequestFilterSensitiveLog = exports.PatchSourceFilterSensitiveLog = exports.CreateMaintenanceWindowRequestFilterSensitiveLog = exports.CreateAssociationBatchResultFilterSensitiveLog = exports.FailedCreateAssociationFilterSensitiveLog = exports.CreateAssociationBatchRequestFilterSensitiveLog = exports.CreateAssociationBatchRequestEntryFilterSensitiveLog = exports.CreateAssociationResultFilterSensitiveLog = exports.AssociationDescriptionFilterSensitiveLog = exports.CreateAssociationRequestFilterSensitiveLog = exports.OpsItemFilterOperator = exports.OpsItemFilterKey = exports.MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowResourceType = exports.MaintenanceWindowTaskType = exports.MaintenanceWindowExecutionStatus = exports.InvalidDeletionIdException = exports.InventoryDeletionStatus = exports.InstancePatchStateOperatorType = exports.RebootOption = exports.PatchOperationType = exports.PatchComplianceDataState = exports.InvalidInstanceInformationFilterValue = exports.SourceType = exports.ResourceType = exports.PingStatus = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var SSMServiceException_1 = require_SSMServiceException();
     exports.ResourceTypeForTagging = {
       ASSOCIATION: "Association",
@@ -31955,7 +30813,7 @@ var require_models_1 = __commonJS({
     exports.InvalidItemContentException = exports.ComplianceTypeCountLimitExceededException = exports.DocumentPermissionLimit = exports.LastResourceDataSyncStatus = exports.OpsItemRelatedItemsFilterOperator = exports.OpsItemRelatedItemsFilterKey = exports.OpsItemEventFilterOperator = exports.OpsItemEventFilterKey = exports.DocumentFilterKey = exports.DocumentReviewCommentType = exports.DocumentMetadataEnum = exports.ComplianceStatus = exports.ComplianceSeverity = exports.ComplianceQueryOperatorType = exports.CommandStatus = exports.CommandPluginStatus = exports.CommandFilterKey = exports.AssociationFilterKey = exports.ParameterVersionLabelLimitExceeded = exports.ServiceSettingNotFound = exports.ParameterVersionNotFound = exports.InvalidKeyId = exports.OpsFilterOperatorType = exports.NotificationType = exports.NotificationEvent = exports.InventoryAttributeDataType = exports.InvalidResultAttributeException = exports.InvalidInventoryGroupException = exports.InvalidAggregatorException = exports.InventoryQueryOperatorType = exports.AttachmentHashType = exports.UnsupportedFeatureRequiredException = exports.ConnectionStatus = exports.InvocationDoesNotExist = exports.InvalidPluginName = exports.CommandInvocationStatus = exports.UnsupportedCalendarException = exports.InvalidDocumentType = exports.CalendarState = exports.OpsItemRelatedItemAssociationNotFoundException = exports.SessionStatus = exports.SessionState = exports.SessionFilterKey = exports.PatchProperty = exports.PatchSet = exports.InvalidFilterOption = exports.ParameterType = exports.ParameterTier = exports.ParametersFilterKey = exports.OpsItemStatus = void 0;
     exports.ParameterFilterSensitiveLog = exports.GetMaintenanceWindowTaskResultFilterSensitiveLog = exports.MaintenanceWindowTaskInvocationParametersFilterSensitiveLog = exports.MaintenanceWindowStepFunctionsParametersFilterSensitiveLog = exports.MaintenanceWindowRunCommandParametersFilterSensitiveLog = exports.MaintenanceWindowLambdaParametersFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = exports.GetMaintenanceWindowResultFilterSensitiveLog = exports.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog = exports.BaselineOverrideFilterSensitiveLog = exports.AssociationVersionLimitExceeded = exports.StopType = exports.InvalidAutomationStatusUpdateException = exports.TargetNotConnected = exports.AutomationDefinitionNotApprovedException = exports.InvalidAutomationExecutionParametersException = exports.AutomationExecutionLimitExceededException = exports.AutomationDefinitionVersionNotFoundException = exports.AutomationDefinitionNotFoundException = exports.InvalidAssociation = exports.InvalidRole = exports.InvalidOutputFolder = exports.InvalidNotificationConfig = exports.SignalType = exports.InvalidAutomationSignalException = exports.AutomationStepNotFoundException = exports.FeatureNotAvailableException = exports.ResourcePolicyLimitExceededException = exports.UnsupportedParameterType = exports.PoliciesLimitExceededException = exports.ParameterPatternMismatchException = exports.ParameterMaxVersionLimitExceeded = exports.ParameterLimitExceeded = exports.ParameterAlreadyExists = exports.InvalidPolicyTypeException = exports.InvalidPolicyAttributeException = exports.InvalidAllowedPatternException = exports.IncompatiblePolicyException = exports.HierarchyTypeMismatchException = exports.HierarchyLevelLimitExceededException = exports.UnsupportedInventorySchemaVersionException = exports.UnsupportedInventoryItemContextException = exports.SubTypeCountLimitExceededException = exports.ItemContentMismatchException = exports.InvalidInventoryItemContextException = exports.CustomSchemaCountLimitExceededException = exports.TotalSizeLimitExceededException = exports.ComplianceUploadType = exports.ItemSizeLimitExceededException = void 0;
     exports.SendCommandResultFilterSensitiveLog = exports.SendCommandRequestFilterSensitiveLog = exports.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = exports.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = exports.PutParameterRequestFilterSensitiveLog = exports.ListCommandsResultFilterSensitiveLog = exports.CommandFilterSensitiveLog = exports.ListAssociationVersionsResultFilterSensitiveLog = exports.AssociationVersionInfoFilterSensitiveLog = exports.GetPatchBaselineResultFilterSensitiveLog = exports.GetParametersByPathResultFilterSensitiveLog = exports.GetParametersResultFilterSensitiveLog = exports.GetParameterHistoryResultFilterSensitiveLog = exports.ParameterHistoryFilterSensitiveLog = exports.GetParameterResultFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var SSMServiceException_1 = require_SSMServiceException();
     exports.OpsItemStatus = {
@@ -33061,7 +31919,7 @@ var require_models_2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdatePatchBaselineResultFilterSensitiveLog = exports.UpdatePatchBaselineRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowResultFilterSensitiveLog = exports.UpdateMaintenanceWindowRequestFilterSensitiveLog = exports.UpdateAssociationStatusResultFilterSensitiveLog = exports.UpdateAssociationResultFilterSensitiveLog = exports.UpdateAssociationRequestFilterSensitiveLog = exports.ResourceDataSyncConflictException = exports.OpsMetadataKeyLimitExceededException = exports.DocumentReviewAction = exports.DuplicateDocumentVersionName = exports.DuplicateDocumentContent = exports.DocumentVersionLimitExceeded = exports.StatusUnchanged = exports.InvalidUpdate = void 0;
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_1();
     var SSMServiceException_1 = require_SSMServiceException();
@@ -33250,8 +32108,8 @@ var require_Aws_json1_1 = __commonJS({
     exports.de_GetAutomationExecutionCommand = exports.de_DisassociateOpsItemRelatedItemCommand = exports.de_DescribeSessionsCommand = exports.de_DescribePatchPropertiesCommand = exports.de_DescribePatchGroupStateCommand = exports.de_DescribePatchGroupsCommand = exports.de_DescribePatchBaselinesCommand = exports.de_DescribeParametersCommand = exports.de_DescribeOpsItemsCommand = exports.de_DescribeMaintenanceWindowTasksCommand = exports.de_DescribeMaintenanceWindowTargetsCommand = exports.de_DescribeMaintenanceWindowsForTargetCommand = exports.de_DescribeMaintenanceWindowScheduleCommand = exports.de_DescribeMaintenanceWindowsCommand = exports.de_DescribeMaintenanceWindowExecutionTasksCommand = exports.de_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = exports.de_DescribeMaintenanceWindowExecutionsCommand = exports.de_DescribeInventoryDeletionsCommand = exports.de_DescribeInstancePatchStatesForPatchGroupCommand = exports.de_DescribeInstancePatchStatesCommand = exports.de_DescribeInstancePatchesCommand = exports.de_DescribeInstanceInformationCommand = exports.de_DescribeInstanceAssociationsStatusCommand = exports.de_DescribeEffectivePatchesForPatchBaselineCommand = exports.de_DescribeEffectiveInstanceAssociationsCommand = exports.de_DescribeDocumentPermissionCommand = exports.de_DescribeDocumentCommand = exports.de_DescribeAvailablePatchesCommand = exports.de_DescribeAutomationStepExecutionsCommand = exports.de_DescribeAutomationExecutionsCommand = exports.de_DescribeAssociationExecutionTargetsCommand = exports.de_DescribeAssociationExecutionsCommand = exports.de_DescribeAssociationCommand = exports.de_DescribeActivationsCommand = exports.de_DeregisterTaskFromMaintenanceWindowCommand = exports.de_DeregisterTargetFromMaintenanceWindowCommand = exports.de_DeregisterPatchBaselineForPatchGroupCommand = exports.de_DeregisterManagedInstanceCommand = exports.de_DeleteResourcePolicyCommand = exports.de_DeleteResourceDataSyncCommand = exports.de_DeletePatchBaselineCommand = exports.de_DeleteParametersCommand = exports.de_DeleteParameterCommand = exports.de_DeleteOpsMetadataCommand = exports.de_DeleteMaintenanceWindowCommand = exports.de_DeleteInventoryCommand = exports.de_DeleteDocumentCommand = exports.de_DeleteAssociationCommand = exports.de_DeleteActivationCommand = exports.de_CreateResourceDataSyncCommand = void 0;
     exports.de_RegisterTaskWithMaintenanceWindowCommand = exports.de_RegisterTargetWithMaintenanceWindowCommand = exports.de_RegisterPatchBaselineForPatchGroupCommand = exports.de_RegisterDefaultPatchBaselineCommand = exports.de_PutResourcePolicyCommand = exports.de_PutParameterCommand = exports.de_PutInventoryCommand = exports.de_PutComplianceItemsCommand = exports.de_ModifyDocumentPermissionCommand = exports.de_ListTagsForResourceCommand = exports.de_ListResourceDataSyncCommand = exports.de_ListResourceComplianceSummariesCommand = exports.de_ListOpsMetadataCommand = exports.de_ListOpsItemRelatedItemsCommand = exports.de_ListOpsItemEventsCommand = exports.de_ListInventoryEntriesCommand = exports.de_ListDocumentVersionsCommand = exports.de_ListDocumentsCommand = exports.de_ListDocumentMetadataHistoryCommand = exports.de_ListComplianceSummariesCommand = exports.de_ListComplianceItemsCommand = exports.de_ListCommandsCommand = exports.de_ListCommandInvocationsCommand = exports.de_ListAssociationVersionsCommand = exports.de_ListAssociationsCommand = exports.de_LabelParameterVersionCommand = exports.de_GetServiceSettingCommand = exports.de_GetResourcePoliciesCommand = exports.de_GetPatchBaselineForPatchGroupCommand = exports.de_GetPatchBaselineCommand = exports.de_GetParametersByPathCommand = exports.de_GetParametersCommand = exports.de_GetParameterHistoryCommand = exports.de_GetParameterCommand = exports.de_GetOpsSummaryCommand = exports.de_GetOpsMetadataCommand = exports.de_GetOpsItemCommand = exports.de_GetMaintenanceWindowTaskCommand = exports.de_GetMaintenanceWindowExecutionTaskInvocationCommand = exports.de_GetMaintenanceWindowExecutionTaskCommand = exports.de_GetMaintenanceWindowExecutionCommand = exports.de_GetMaintenanceWindowCommand = exports.de_GetInventorySchemaCommand = exports.de_GetInventoryCommand = exports.de_GetDocumentCommand = exports.de_GetDeployablePatchSnapshotForInstanceCommand = exports.de_GetDefaultPatchBaselineCommand = exports.de_GetConnectionStatusCommand = exports.de_GetCommandInvocationCommand = exports.de_GetCalendarStateCommand = void 0;
     exports.de_UpdateServiceSettingCommand = exports.de_UpdateResourceDataSyncCommand = exports.de_UpdatePatchBaselineCommand = exports.de_UpdateOpsMetadataCommand = exports.de_UpdateOpsItemCommand = exports.de_UpdateManagedInstanceRoleCommand = exports.de_UpdateMaintenanceWindowTaskCommand = exports.de_UpdateMaintenanceWindowTargetCommand = exports.de_UpdateMaintenanceWindowCommand = exports.de_UpdateDocumentMetadataCommand = exports.de_UpdateDocumentDefaultVersionCommand = exports.de_UpdateDocumentCommand = exports.de_UpdateAssociationStatusCommand = exports.de_UpdateAssociationCommand = exports.de_UnlabelParameterVersionCommand = exports.de_TerminateSessionCommand = exports.de_StopAutomationExecutionCommand = exports.de_StartSessionCommand = exports.de_StartChangeRequestExecutionCommand = exports.de_StartAutomationExecutionCommand = exports.de_StartAssociationsOnceCommand = exports.de_SendCommandCommand = exports.de_SendAutomationSignalCommand = exports.de_ResumeSessionCommand = exports.de_ResetServiceSettingCommand = exports.de_RemoveTagsFromResourceCommand = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var smithy_client_1 = require_dist_cjs28();
+    var protocol_http_1 = require_dist_cjs6();
+    var smithy_client_1 = require_dist_cjs2();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_1();
@@ -41083,7 +39941,7 @@ var require_Aws_json1_1 = __commonJS({
     var se_CreateMaintenanceWindowRequest = (input, context) => {
       return (0, smithy_client_1.take)(input, {
         AllowUnassociatedTargets: [],
-        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        ClientToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         Cutoff: [],
         Description: [],
         Duration: [],
@@ -41122,7 +39980,7 @@ var require_Aws_json1_1 = __commonJS({
         ApprovedPatches: smithy_client_1._json,
         ApprovedPatchesComplianceLevel: [],
         ApprovedPatchesEnableNonSecurity: [],
-        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        ClientToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         Description: [],
         GlobalFilters: smithy_client_1._json,
         Name: [],
@@ -41135,7 +39993,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var se_DeleteInventoryRequest = (input, context) => {
       return (0, smithy_client_1.take)(input, {
-        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        ClientToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         DryRun: [],
         SchemaDeleteOption: [],
         TypeName: []
@@ -41215,7 +40073,7 @@ var require_Aws_json1_1 = __commonJS({
     };
     var se_RegisterTargetWithMaintenanceWindowRequest = (input, context) => {
       return (0, smithy_client_1.take)(input, {
-        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        ClientToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         Description: [],
         Name: [],
         OwnerInformation: [],
@@ -41227,7 +40085,7 @@ var require_Aws_json1_1 = __commonJS({
     var se_RegisterTaskWithMaintenanceWindowRequest = (input, context) => {
       return (0, smithy_client_1.take)(input, {
         AlarmConfiguration: smithy_client_1._json,
-        ClientToken: (_) => _ ?? (0, uuid_1.v4)(),
+        ClientToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         CutoffBehavior: [],
         Description: [],
         LoggingInfo: smithy_client_1._json,
@@ -42808,9 +41666,9 @@ var require_AddTagsToResourceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AddTagsToResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AddTagsToResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -42859,9 +41717,9 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AssociateOpsItemRelatedItemCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var AssociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -42910,9 +41768,9 @@ var require_CancelCommandCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CancelCommandCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelCommandCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -42961,9 +41819,9 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CancelMaintenanceWindowExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CancelMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43012,9 +41870,9 @@ var require_CreateActivationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateActivationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateActivationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43063,9 +41921,9 @@ var require_CreateAssociationBatchCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateAssociationBatchCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateAssociationBatchCommand = class extends smithy_client_1.Command {
@@ -43115,9 +41973,9 @@ var require_CreateAssociationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateAssociationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateAssociationCommand = class extends smithy_client_1.Command {
@@ -43167,9 +42025,9 @@ var require_CreateDocumentCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateDocumentCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43218,9 +42076,9 @@ var require_CreateMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateMaintenanceWindowCommand = class extends smithy_client_1.Command {
@@ -43270,9 +42128,9 @@ var require_CreateOpsItemCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateOpsItemCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43321,9 +42179,9 @@ var require_CreateOpsMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateOpsMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43372,9 +42230,9 @@ var require_CreatePatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreatePatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreatePatchBaselineCommand = class extends smithy_client_1.Command {
@@ -43424,9 +42282,9 @@ var require_CreateResourceDataSyncCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CreateResourceDataSyncCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var CreateResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43475,9 +42333,9 @@ var require_DeleteActivationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteActivationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteActivationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43526,9 +42384,9 @@ var require_DeleteAssociationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteAssociationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteAssociationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43577,9 +42435,9 @@ var require_DeleteDocumentCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteDocumentCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43628,9 +42486,9 @@ var require_DeleteInventoryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteInventoryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43679,9 +42537,9 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43730,9 +42588,9 @@ var require_DeleteOpsMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteOpsMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43781,9 +42639,9 @@ var require_DeleteParameterCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteParameterCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParameterCommand6 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43832,9 +42690,9 @@ var require_DeleteParametersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteParametersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteParametersCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43883,9 +42741,9 @@ var require_DeletePatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeletePatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeletePatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43934,9 +42792,9 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteResourceDataSyncCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -43985,9 +42843,9 @@ var require_DeleteResourcePolicyCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeleteResourcePolicyCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeleteResourcePolicyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44036,9 +42894,9 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeregisterManagedInstanceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterManagedInstanceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44087,9 +42945,9 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeregisterPatchBaselineForPatchGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44138,9 +42996,9 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeregisterTargetFromMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTargetFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44189,9 +43047,9 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DeregisterTaskFromMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DeregisterTaskFromMaintenanceWindowCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44240,9 +43098,9 @@ var require_DescribeActivationsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeActivationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeActivationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44291,9 +43149,9 @@ var require_DescribeAssociationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAssociationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationCommand = class extends smithy_client_1.Command {
@@ -44343,9 +43201,9 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAssociationExecutionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44394,9 +43252,9 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAssociationExecutionTargetsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAssociationExecutionTargetsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44445,9 +43303,9 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAutomationExecutionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44496,9 +43354,9 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAutomationStepExecutionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAutomationStepExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44547,9 +43405,9 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeAvailablePatchesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeAvailablePatchesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44598,9 +43456,9 @@ var require_DescribeDocumentCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeDocumentCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44649,9 +43507,9 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeDocumentPermissionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeDocumentPermissionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44700,9 +43558,9 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeEffectiveInstanceAssociationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectiveInstanceAssociationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44751,9 +43609,9 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeEffectivePatchesForPatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeEffectivePatchesForPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44802,9 +43660,9 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInstanceAssociationsStatusCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceAssociationsStatusCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44853,9 +43711,9 @@ var require_DescribeInstanceInformationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInstanceInformationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstanceInformationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44904,9 +43762,9 @@ var require_DescribeInstancePatchesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInstancePatchesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -44955,9 +43813,9 @@ var require_DescribeInstancePatchStatesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInstancePatchStatesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchStatesCommand = class extends smithy_client_1.Command {
@@ -45007,9 +43865,9 @@ var require_DescribeInstancePatchStatesForPatchGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInstancePatchStatesForPatchGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInstancePatchStatesForPatchGroupCommand = class extends smithy_client_1.Command {
@@ -45059,9 +43917,9 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeInventoryDeletionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeInventoryDeletionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45110,9 +43968,9 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowExecutionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45161,9 +44019,9 @@ var require_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = __commonJ
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowExecutionTaskInvocationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionTaskInvocationsCommand = class extends smithy_client_1.Command {
@@ -45213,9 +44071,9 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowExecutionTasksCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowExecutionTasksCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45264,9 +44122,9 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowScheduleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowScheduleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45315,9 +44173,9 @@ var require_DescribeMaintenanceWindowsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowsCommand = class extends smithy_client_1.Command {
@@ -45367,9 +44225,9 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowsForTargetCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowsForTargetCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45418,9 +44276,9 @@ var require_DescribeMaintenanceWindowTargetsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowTargetsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowTargetsCommand = class extends smithy_client_1.Command {
@@ -45470,9 +44328,9 @@ var require_DescribeMaintenanceWindowTasksCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeMaintenanceWindowTasksCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_05();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeMaintenanceWindowTasksCommand = class extends smithy_client_1.Command {
@@ -45522,9 +44380,9 @@ var require_DescribeOpsItemsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeOpsItemsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeOpsItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45573,9 +44431,9 @@ var require_DescribeParametersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeParametersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeParametersCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45624,9 +44482,9 @@ var require_DescribePatchBaselinesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribePatchBaselinesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchBaselinesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45675,9 +44533,9 @@ var require_DescribePatchGroupsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribePatchGroupsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45726,9 +44584,9 @@ var require_DescribePatchGroupStateCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribePatchGroupStateCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchGroupStateCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45777,9 +44635,9 @@ var require_DescribePatchPropertiesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribePatchPropertiesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribePatchPropertiesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45828,9 +44686,9 @@ var require_DescribeSessionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DescribeSessionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DescribeSessionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45879,9 +44737,9 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DisassociateOpsItemRelatedItemCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var DisassociateOpsItemRelatedItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45930,9 +44788,9 @@ var require_GetAutomationExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetAutomationExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -45981,9 +44839,9 @@ var require_GetCalendarStateCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetCalendarStateCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCalendarStateCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46032,9 +44890,9 @@ var require_GetCommandInvocationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetCommandInvocationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetCommandInvocationCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46083,9 +44941,9 @@ var require_GetConnectionStatusCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetConnectionStatusCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetConnectionStatusCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46134,9 +44992,9 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetDefaultPatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46185,9 +45043,9 @@ var require_GetDeployablePatchSnapshotForInstanceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetDeployablePatchSnapshotForInstanceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDeployablePatchSnapshotForInstanceCommand = class extends smithy_client_1.Command {
@@ -46237,9 +45095,9 @@ var require_GetDocumentCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetDocumentCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46288,9 +45146,9 @@ var require_GetInventoryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetInventoryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46339,9 +45197,9 @@ var require_GetInventorySchemaCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetInventorySchemaCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetInventorySchemaCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46390,9 +45248,9 @@ var require_GetMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowCommand = class extends smithy_client_1.Command {
@@ -46442,9 +45300,9 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetMaintenanceWindowExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46493,9 +45351,9 @@ var require_GetMaintenanceWindowExecutionTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetMaintenanceWindowExecutionTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionTaskCommand = class extends smithy_client_1.Command {
@@ -46545,9 +45403,9 @@ var require_GetMaintenanceWindowExecutionTaskInvocationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetMaintenanceWindowExecutionTaskInvocationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowExecutionTaskInvocationCommand = class extends smithy_client_1.Command {
@@ -46597,9 +45455,9 @@ var require_GetMaintenanceWindowTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetMaintenanceWindowTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetMaintenanceWindowTaskCommand = class extends smithy_client_1.Command {
@@ -46649,9 +45507,9 @@ var require_GetOpsItemCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetOpsItemCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46700,9 +45558,9 @@ var require_GetOpsMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetOpsMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46751,9 +45609,9 @@ var require_GetOpsSummaryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetOpsSummaryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetOpsSummaryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -46802,9 +45660,9 @@ var require_GetParameterCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetParameterCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParameterCommand6 = class extends smithy_client_1.Command {
@@ -46854,9 +45712,9 @@ var require_GetParameterHistoryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetParameterHistoryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParameterHistoryCommand = class extends smithy_client_1.Command {
@@ -46906,9 +45764,9 @@ var require_GetParametersByPathCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetParametersByPathCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParametersByPathCommand = class extends smithy_client_1.Command {
@@ -46958,9 +45816,9 @@ var require_GetParametersCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetParametersCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetParametersCommand = class extends smithy_client_1.Command {
@@ -47010,9 +45868,9 @@ var require_GetPatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetPatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetPatchBaselineCommand = class extends smithy_client_1.Command {
@@ -47062,9 +45920,9 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetPatchBaselineForPatchGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47113,9 +45971,9 @@ var require_GetResourcePoliciesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetResourcePoliciesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetResourcePoliciesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47164,9 +46022,9 @@ var require_GetServiceSettingCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetServiceSettingCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var GetServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47215,9 +46073,9 @@ var require_LabelParameterVersionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LabelParameterVersionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var LabelParameterVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47266,9 +46124,9 @@ var require_ListAssociationsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAssociationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListAssociationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47317,9 +46175,9 @@ var require_ListAssociationVersionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAssociationVersionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListAssociationVersionsCommand = class extends smithy_client_1.Command {
@@ -47369,9 +46227,9 @@ var require_ListCommandInvocationsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListCommandInvocationsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListCommandInvocationsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47420,9 +46278,9 @@ var require_ListCommandsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListCommandsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListCommandsCommand = class extends smithy_client_1.Command {
@@ -47472,9 +46330,9 @@ var require_ListComplianceItemsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListComplianceItemsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47523,9 +46381,9 @@ var require_ListComplianceSummariesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListComplianceSummariesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListComplianceSummariesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47574,9 +46432,9 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListDocumentMetadataHistoryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentMetadataHistoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47625,9 +46483,9 @@ var require_ListDocumentsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListDocumentsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47676,9 +46534,9 @@ var require_ListDocumentVersionsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListDocumentVersionsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListDocumentVersionsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47727,9 +46585,9 @@ var require_ListInventoryEntriesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListInventoryEntriesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListInventoryEntriesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47778,9 +46636,9 @@ var require_ListOpsItemEventsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListOpsItemEventsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemEventsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47829,9 +46687,9 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListOpsItemRelatedItemsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsItemRelatedItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47880,9 +46738,9 @@ var require_ListOpsMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListOpsMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47931,9 +46789,9 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListResourceComplianceSummariesCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceComplianceSummariesCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -47982,9 +46840,9 @@ var require_ListResourceDataSyncCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListResourceDataSyncCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48033,9 +46891,9 @@ var require_ListTagsForResourceCommand2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListTagsForResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ListTagsForResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48084,9 +46942,9 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ModifyDocumentPermissionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ModifyDocumentPermissionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48135,9 +46993,9 @@ var require_PutComplianceItemsCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutComplianceItemsCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutComplianceItemsCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48186,9 +47044,9 @@ var require_PutInventoryCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutInventoryCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutInventoryCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48237,9 +47095,9 @@ var require_PutParameterCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutParameterCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutParameterCommand6 = class extends smithy_client_1.Command {
@@ -48289,9 +47147,9 @@ var require_PutResourcePolicyCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PutResourcePolicyCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var PutResourcePolicyCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48340,9 +47198,9 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RegisterDefaultPatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterDefaultPatchBaselineCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48391,9 +47249,9 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RegisterPatchBaselineForPatchGroupCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterPatchBaselineForPatchGroupCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48442,9 +47300,9 @@ var require_RegisterTargetWithMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RegisterTargetWithMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterTargetWithMaintenanceWindowCommand = class extends smithy_client_1.Command {
@@ -48494,9 +47352,9 @@ var require_RegisterTaskWithMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RegisterTaskWithMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RegisterTaskWithMaintenanceWindowCommand = class extends smithy_client_1.Command {
@@ -48546,9 +47404,9 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.RemoveTagsFromResourceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var RemoveTagsFromResourceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48597,9 +47455,9 @@ var require_ResetServiceSettingCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ResetServiceSettingCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResetServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48648,9 +47506,9 @@ var require_ResumeSessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ResumeSessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var ResumeSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48699,9 +47557,9 @@ var require_SendAutomationSignalCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SendAutomationSignalCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var SendAutomationSignalCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48750,9 +47608,9 @@ var require_SendCommandCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SendCommandCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var SendCommandCommand = class extends smithy_client_1.Command {
@@ -48802,9 +47660,9 @@ var require_StartAssociationsOnceCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartAssociationsOnceCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAssociationsOnceCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48853,9 +47711,9 @@ var require_StartAutomationExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartAutomationExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48904,9 +47762,9 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartChangeRequestExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartChangeRequestExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -48955,9 +47813,9 @@ var require_StartSessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StartSessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StartSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49006,9 +47864,9 @@ var require_StopAutomationExecutionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StopAutomationExecutionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var StopAutomationExecutionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49057,9 +47915,9 @@ var require_TerminateSessionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.TerminateSessionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var TerminateSessionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49108,9 +47966,9 @@ var require_UnlabelParameterVersionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UnlabelParameterVersionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UnlabelParameterVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49159,9 +48017,9 @@ var require_UpdateAssociationCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateAssociationCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateAssociationCommand = class extends smithy_client_1.Command {
@@ -49211,9 +48069,9 @@ var require_UpdateAssociationStatusCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateAssociationStatusCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateAssociationStatusCommand = class extends smithy_client_1.Command {
@@ -49263,9 +48121,9 @@ var require_UpdateDocumentCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateDocumentCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49314,9 +48172,9 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateDocumentDefaultVersionCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentDefaultVersionCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49365,9 +48223,9 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateDocumentMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateDocumentMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49416,9 +48274,9 @@ var require_UpdateMaintenanceWindowCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateMaintenanceWindowCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowCommand = class extends smithy_client_1.Command {
@@ -49468,9 +48326,9 @@ var require_UpdateMaintenanceWindowTargetCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateMaintenanceWindowTargetCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowTargetCommand = class extends smithy_client_1.Command {
@@ -49520,9 +48378,9 @@ var require_UpdateMaintenanceWindowTaskCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateMaintenanceWindowTaskCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateMaintenanceWindowTaskCommand = class extends smithy_client_1.Command {
@@ -49572,9 +48430,9 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateManagedInstanceRoleCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateManagedInstanceRoleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49623,9 +48481,9 @@ var require_UpdateOpsItemCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateOpsItemCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsItemCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49674,9 +48532,9 @@ var require_UpdateOpsMetadataCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateOpsMetadataCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateOpsMetadataCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49725,9 +48583,9 @@ var require_UpdatePatchBaselineCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdatePatchBaselineCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var models_2_1 = require_models_2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdatePatchBaselineCommand = class extends smithy_client_1.Command {
@@ -49777,9 +48635,9 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateResourceDataSyncCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateResourceDataSyncCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49828,9 +48686,9 @@ var require_UpdateServiceSettingCommand = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdateServiceSettingCommand = void 0;
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs28();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_serde_1 = require_dist_cjs10();
+    var smithy_client_1 = require_dist_cjs2();
     var Aws_json1_1_1 = require_Aws_json1_1();
     var UpdateServiceSettingCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -49897,7 +48755,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.315.0",
+      version: "3.316.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -49917,9 +48775,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.315.0",
+        "@aws-sdk/client-sts": "3.316.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.315.0",
+        "@aws-sdk/credential-provider-node": "3.316.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -49936,14 +48794,14 @@ var require_package5 = __commonJS({
         "@aws-sdk/node-config-provider": "3.310.0",
         "@aws-sdk/node-http-handler": "3.310.0",
         "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.315.0",
+        "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
         "@aws-sdk/url-parser": "3.310.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.315.0",
-        "@aws-sdk/util-defaults-mode-node": "3.315.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.316.0",
+        "@aws-sdk/util-defaults-mode-node": "3.316.0",
         "@aws-sdk/util-endpoints": "3.310.0",
         "@aws-sdk/util-retry": "3.310.0",
         "@aws-sdk/util-user-agent-browser": "3.310.0",
@@ -50037,7 +48895,7 @@ var require_endpointResolver5 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs25();
+    var util_endpoints_1 = require_dist_cjs27();
     var ruleset_1 = require_ruleset5();
     var defaultEndpointResolver = (endpointParams, context = {}) => {
       return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
@@ -50055,10 +48913,10 @@ var require_runtimeConfig_shared5 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs28();
-    var url_parser_1 = require_dist_cjs7();
+    var smithy_client_1 = require_dist_cjs2();
+    var url_parser_1 = require_dist_cjs9();
     var util_base64_1 = require_dist_cjs40();
-    var util_utf8_1 = require_dist_cjs20();
+    var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver5();
     var getRuntimeConfig = (config) => ({
       apiVersion: "2014-11-06",
@@ -50085,19 +48943,19 @@ var require_runtimeConfig5 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package5());
     var client_sts_1 = require_dist_cjs49();
-    var config_resolver_1 = require_dist_cjs3();
+    var config_resolver_1 = require_dist_cjs5();
     var credential_provider_node_1 = require_dist_cjs48();
     var hash_node_1 = require_dist_cjs35();
-    var middleware_retry_1 = require_dist_cjs15();
+    var middleware_retry_1 = require_dist_cjs17();
     var node_config_provider_1 = require_dist_cjs32();
     var node_http_handler_1 = require_dist_cjs37();
     var util_body_length_node_1 = require_dist_cjs38();
-    var util_retry_1 = require_dist_cjs14();
+    var util_retry_1 = require_dist_cjs16();
     var util_user_agent_node_1 = require_dist_cjs39();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared5();
-    var smithy_client_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var util_defaults_mode_node_1 = require_dist_cjs41();
-    var smithy_client_2 = require_dist_cjs28();
+    var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -50134,16 +48992,16 @@ var require_SSMClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSMClient = void 0;
-    var config_resolver_1 = require_dist_cjs3();
-    var middleware_content_length_1 = require_dist_cjs5();
-    var middleware_endpoint_1 = require_dist_cjs9();
-    var middleware_host_header_1 = require_dist_cjs10();
-    var middleware_logger_1 = require_dist_cjs11();
-    var middleware_recursion_detection_1 = require_dist_cjs12();
-    var middleware_retry_1 = require_dist_cjs15();
-    var middleware_signing_1 = require_dist_cjs23();
-    var middleware_user_agent_1 = require_dist_cjs26();
-    var smithy_client_1 = require_dist_cjs28();
+    var config_resolver_1 = require_dist_cjs5();
+    var middleware_content_length_1 = require_dist_cjs7();
+    var middleware_endpoint_1 = require_dist_cjs11();
+    var middleware_host_header_1 = require_dist_cjs12();
+    var middleware_logger_1 = require_dist_cjs13();
+    var middleware_recursion_detection_1 = require_dist_cjs14();
+    var middleware_retry_1 = require_dist_cjs17();
+    var middleware_signing_1 = require_dist_cjs25();
+    var middleware_user_agent_1 = require_dist_cjs28();
+    var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters5();
     var runtimeConfig_1 = require_runtimeConfig5();
     var SSMClient6 = class extends smithy_client_1.Client {
@@ -50180,6 +49038,7 @@ var require_SSM = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSM = void 0;
+    var smithy_client_1 = require_dist_cjs2();
     var AddTagsToResourceCommand_1 = require_AddTagsToResourceCommand();
     var AssociateOpsItemRelatedItemCommand_1 = require_AssociateOpsItemRelatedItemCommand();
     var CancelCommandCommand_1 = require_CancelCommandCommand();
@@ -50319,1665 +49178,150 @@ var require_SSM = __commonJS({
     var UpdateResourceDataSyncCommand_1 = require_UpdateResourceDataSyncCommand();
     var UpdateServiceSettingCommand_1 = require_UpdateServiceSettingCommand();
     var SSMClient_1 = require_SSMClient();
+    var commands = {
+      AddTagsToResourceCommand: AddTagsToResourceCommand_1.AddTagsToResourceCommand,
+      AssociateOpsItemRelatedItemCommand: AssociateOpsItemRelatedItemCommand_1.AssociateOpsItemRelatedItemCommand,
+      CancelCommandCommand: CancelCommandCommand_1.CancelCommandCommand,
+      CancelMaintenanceWindowExecutionCommand: CancelMaintenanceWindowExecutionCommand_1.CancelMaintenanceWindowExecutionCommand,
+      CreateActivationCommand: CreateActivationCommand_1.CreateActivationCommand,
+      CreateAssociationCommand: CreateAssociationCommand_1.CreateAssociationCommand,
+      CreateAssociationBatchCommand: CreateAssociationBatchCommand_1.CreateAssociationBatchCommand,
+      CreateDocumentCommand: CreateDocumentCommand_1.CreateDocumentCommand,
+      CreateMaintenanceWindowCommand: CreateMaintenanceWindowCommand_1.CreateMaintenanceWindowCommand,
+      CreateOpsItemCommand: CreateOpsItemCommand_1.CreateOpsItemCommand,
+      CreateOpsMetadataCommand: CreateOpsMetadataCommand_1.CreateOpsMetadataCommand,
+      CreatePatchBaselineCommand: CreatePatchBaselineCommand_1.CreatePatchBaselineCommand,
+      CreateResourceDataSyncCommand: CreateResourceDataSyncCommand_1.CreateResourceDataSyncCommand,
+      DeleteActivationCommand: DeleteActivationCommand_1.DeleteActivationCommand,
+      DeleteAssociationCommand: DeleteAssociationCommand_1.DeleteAssociationCommand,
+      DeleteDocumentCommand: DeleteDocumentCommand_1.DeleteDocumentCommand,
+      DeleteInventoryCommand: DeleteInventoryCommand_1.DeleteInventoryCommand,
+      DeleteMaintenanceWindowCommand: DeleteMaintenanceWindowCommand_1.DeleteMaintenanceWindowCommand,
+      DeleteOpsMetadataCommand: DeleteOpsMetadataCommand_1.DeleteOpsMetadataCommand,
+      DeleteParameterCommand: DeleteParameterCommand_1.DeleteParameterCommand,
+      DeleteParametersCommand: DeleteParametersCommand_1.DeleteParametersCommand,
+      DeletePatchBaselineCommand: DeletePatchBaselineCommand_1.DeletePatchBaselineCommand,
+      DeleteResourceDataSyncCommand: DeleteResourceDataSyncCommand_1.DeleteResourceDataSyncCommand,
+      DeleteResourcePolicyCommand: DeleteResourcePolicyCommand_1.DeleteResourcePolicyCommand,
+      DeregisterManagedInstanceCommand: DeregisterManagedInstanceCommand_1.DeregisterManagedInstanceCommand,
+      DeregisterPatchBaselineForPatchGroupCommand: DeregisterPatchBaselineForPatchGroupCommand_1.DeregisterPatchBaselineForPatchGroupCommand,
+      DeregisterTargetFromMaintenanceWindowCommand: DeregisterTargetFromMaintenanceWindowCommand_1.DeregisterTargetFromMaintenanceWindowCommand,
+      DeregisterTaskFromMaintenanceWindowCommand: DeregisterTaskFromMaintenanceWindowCommand_1.DeregisterTaskFromMaintenanceWindowCommand,
+      DescribeActivationsCommand: DescribeActivationsCommand_1.DescribeActivationsCommand,
+      DescribeAssociationCommand: DescribeAssociationCommand_1.DescribeAssociationCommand,
+      DescribeAssociationExecutionsCommand: DescribeAssociationExecutionsCommand_1.DescribeAssociationExecutionsCommand,
+      DescribeAssociationExecutionTargetsCommand: DescribeAssociationExecutionTargetsCommand_1.DescribeAssociationExecutionTargetsCommand,
+      DescribeAutomationExecutionsCommand: DescribeAutomationExecutionsCommand_1.DescribeAutomationExecutionsCommand,
+      DescribeAutomationStepExecutionsCommand: DescribeAutomationStepExecutionsCommand_1.DescribeAutomationStepExecutionsCommand,
+      DescribeAvailablePatchesCommand: DescribeAvailablePatchesCommand_1.DescribeAvailablePatchesCommand,
+      DescribeDocumentCommand: DescribeDocumentCommand_1.DescribeDocumentCommand,
+      DescribeDocumentPermissionCommand: DescribeDocumentPermissionCommand_1.DescribeDocumentPermissionCommand,
+      DescribeEffectiveInstanceAssociationsCommand: DescribeEffectiveInstanceAssociationsCommand_1.DescribeEffectiveInstanceAssociationsCommand,
+      DescribeEffectivePatchesForPatchBaselineCommand: DescribeEffectivePatchesForPatchBaselineCommand_1.DescribeEffectivePatchesForPatchBaselineCommand,
+      DescribeInstanceAssociationsStatusCommand: DescribeInstanceAssociationsStatusCommand_1.DescribeInstanceAssociationsStatusCommand,
+      DescribeInstanceInformationCommand: DescribeInstanceInformationCommand_1.DescribeInstanceInformationCommand,
+      DescribeInstancePatchesCommand: DescribeInstancePatchesCommand_1.DescribeInstancePatchesCommand,
+      DescribeInstancePatchStatesCommand: DescribeInstancePatchStatesCommand_1.DescribeInstancePatchStatesCommand,
+      DescribeInstancePatchStatesForPatchGroupCommand: DescribeInstancePatchStatesForPatchGroupCommand_1.DescribeInstancePatchStatesForPatchGroupCommand,
+      DescribeInventoryDeletionsCommand: DescribeInventoryDeletionsCommand_1.DescribeInventoryDeletionsCommand,
+      DescribeMaintenanceWindowExecutionsCommand: DescribeMaintenanceWindowExecutionsCommand_1.DescribeMaintenanceWindowExecutionsCommand,
+      DescribeMaintenanceWindowExecutionTaskInvocationsCommand: DescribeMaintenanceWindowExecutionTaskInvocationsCommand_1.DescribeMaintenanceWindowExecutionTaskInvocationsCommand,
+      DescribeMaintenanceWindowExecutionTasksCommand: DescribeMaintenanceWindowExecutionTasksCommand_1.DescribeMaintenanceWindowExecutionTasksCommand,
+      DescribeMaintenanceWindowsCommand: DescribeMaintenanceWindowsCommand_1.DescribeMaintenanceWindowsCommand,
+      DescribeMaintenanceWindowScheduleCommand: DescribeMaintenanceWindowScheduleCommand_1.DescribeMaintenanceWindowScheduleCommand,
+      DescribeMaintenanceWindowsForTargetCommand: DescribeMaintenanceWindowsForTargetCommand_1.DescribeMaintenanceWindowsForTargetCommand,
+      DescribeMaintenanceWindowTargetsCommand: DescribeMaintenanceWindowTargetsCommand_1.DescribeMaintenanceWindowTargetsCommand,
+      DescribeMaintenanceWindowTasksCommand: DescribeMaintenanceWindowTasksCommand_1.DescribeMaintenanceWindowTasksCommand,
+      DescribeOpsItemsCommand: DescribeOpsItemsCommand_1.DescribeOpsItemsCommand,
+      DescribeParametersCommand: DescribeParametersCommand_1.DescribeParametersCommand,
+      DescribePatchBaselinesCommand: DescribePatchBaselinesCommand_1.DescribePatchBaselinesCommand,
+      DescribePatchGroupsCommand: DescribePatchGroupsCommand_1.DescribePatchGroupsCommand,
+      DescribePatchGroupStateCommand: DescribePatchGroupStateCommand_1.DescribePatchGroupStateCommand,
+      DescribePatchPropertiesCommand: DescribePatchPropertiesCommand_1.DescribePatchPropertiesCommand,
+      DescribeSessionsCommand: DescribeSessionsCommand_1.DescribeSessionsCommand,
+      DisassociateOpsItemRelatedItemCommand: DisassociateOpsItemRelatedItemCommand_1.DisassociateOpsItemRelatedItemCommand,
+      GetAutomationExecutionCommand: GetAutomationExecutionCommand_1.GetAutomationExecutionCommand,
+      GetCalendarStateCommand: GetCalendarStateCommand_1.GetCalendarStateCommand,
+      GetCommandInvocationCommand: GetCommandInvocationCommand_1.GetCommandInvocationCommand,
+      GetConnectionStatusCommand: GetConnectionStatusCommand_1.GetConnectionStatusCommand,
+      GetDefaultPatchBaselineCommand: GetDefaultPatchBaselineCommand_1.GetDefaultPatchBaselineCommand,
+      GetDeployablePatchSnapshotForInstanceCommand: GetDeployablePatchSnapshotForInstanceCommand_1.GetDeployablePatchSnapshotForInstanceCommand,
+      GetDocumentCommand: GetDocumentCommand_1.GetDocumentCommand,
+      GetInventoryCommand: GetInventoryCommand_1.GetInventoryCommand,
+      GetInventorySchemaCommand: GetInventorySchemaCommand_1.GetInventorySchemaCommand,
+      GetMaintenanceWindowCommand: GetMaintenanceWindowCommand_1.GetMaintenanceWindowCommand,
+      GetMaintenanceWindowExecutionCommand: GetMaintenanceWindowExecutionCommand_1.GetMaintenanceWindowExecutionCommand,
+      GetMaintenanceWindowExecutionTaskCommand: GetMaintenanceWindowExecutionTaskCommand_1.GetMaintenanceWindowExecutionTaskCommand,
+      GetMaintenanceWindowExecutionTaskInvocationCommand: GetMaintenanceWindowExecutionTaskInvocationCommand_1.GetMaintenanceWindowExecutionTaskInvocationCommand,
+      GetMaintenanceWindowTaskCommand: GetMaintenanceWindowTaskCommand_1.GetMaintenanceWindowTaskCommand,
+      GetOpsItemCommand: GetOpsItemCommand_1.GetOpsItemCommand,
+      GetOpsMetadataCommand: GetOpsMetadataCommand_1.GetOpsMetadataCommand,
+      GetOpsSummaryCommand: GetOpsSummaryCommand_1.GetOpsSummaryCommand,
+      GetParameterCommand: GetParameterCommand_1.GetParameterCommand,
+      GetParameterHistoryCommand: GetParameterHistoryCommand_1.GetParameterHistoryCommand,
+      GetParametersCommand: GetParametersCommand_1.GetParametersCommand,
+      GetParametersByPathCommand: GetParametersByPathCommand_1.GetParametersByPathCommand,
+      GetPatchBaselineCommand: GetPatchBaselineCommand_1.GetPatchBaselineCommand,
+      GetPatchBaselineForPatchGroupCommand: GetPatchBaselineForPatchGroupCommand_1.GetPatchBaselineForPatchGroupCommand,
+      GetResourcePoliciesCommand: GetResourcePoliciesCommand_1.GetResourcePoliciesCommand,
+      GetServiceSettingCommand: GetServiceSettingCommand_1.GetServiceSettingCommand,
+      LabelParameterVersionCommand: LabelParameterVersionCommand_1.LabelParameterVersionCommand,
+      ListAssociationsCommand: ListAssociationsCommand_1.ListAssociationsCommand,
+      ListAssociationVersionsCommand: ListAssociationVersionsCommand_1.ListAssociationVersionsCommand,
+      ListCommandInvocationsCommand: ListCommandInvocationsCommand_1.ListCommandInvocationsCommand,
+      ListCommandsCommand: ListCommandsCommand_1.ListCommandsCommand,
+      ListComplianceItemsCommand: ListComplianceItemsCommand_1.ListComplianceItemsCommand,
+      ListComplianceSummariesCommand: ListComplianceSummariesCommand_1.ListComplianceSummariesCommand,
+      ListDocumentMetadataHistoryCommand: ListDocumentMetadataHistoryCommand_1.ListDocumentMetadataHistoryCommand,
+      ListDocumentsCommand: ListDocumentsCommand_1.ListDocumentsCommand,
+      ListDocumentVersionsCommand: ListDocumentVersionsCommand_1.ListDocumentVersionsCommand,
+      ListInventoryEntriesCommand: ListInventoryEntriesCommand_1.ListInventoryEntriesCommand,
+      ListOpsItemEventsCommand: ListOpsItemEventsCommand_1.ListOpsItemEventsCommand,
+      ListOpsItemRelatedItemsCommand: ListOpsItemRelatedItemsCommand_1.ListOpsItemRelatedItemsCommand,
+      ListOpsMetadataCommand: ListOpsMetadataCommand_1.ListOpsMetadataCommand,
+      ListResourceComplianceSummariesCommand: ListResourceComplianceSummariesCommand_1.ListResourceComplianceSummariesCommand,
+      ListResourceDataSyncCommand: ListResourceDataSyncCommand_1.ListResourceDataSyncCommand,
+      ListTagsForResourceCommand: ListTagsForResourceCommand_1.ListTagsForResourceCommand,
+      ModifyDocumentPermissionCommand: ModifyDocumentPermissionCommand_1.ModifyDocumentPermissionCommand,
+      PutComplianceItemsCommand: PutComplianceItemsCommand_1.PutComplianceItemsCommand,
+      PutInventoryCommand: PutInventoryCommand_1.PutInventoryCommand,
+      PutParameterCommand: PutParameterCommand_1.PutParameterCommand,
+      PutResourcePolicyCommand: PutResourcePolicyCommand_1.PutResourcePolicyCommand,
+      RegisterDefaultPatchBaselineCommand: RegisterDefaultPatchBaselineCommand_1.RegisterDefaultPatchBaselineCommand,
+      RegisterPatchBaselineForPatchGroupCommand: RegisterPatchBaselineForPatchGroupCommand_1.RegisterPatchBaselineForPatchGroupCommand,
+      RegisterTargetWithMaintenanceWindowCommand: RegisterTargetWithMaintenanceWindowCommand_1.RegisterTargetWithMaintenanceWindowCommand,
+      RegisterTaskWithMaintenanceWindowCommand: RegisterTaskWithMaintenanceWindowCommand_1.RegisterTaskWithMaintenanceWindowCommand,
+      RemoveTagsFromResourceCommand: RemoveTagsFromResourceCommand_1.RemoveTagsFromResourceCommand,
+      ResetServiceSettingCommand: ResetServiceSettingCommand_1.ResetServiceSettingCommand,
+      ResumeSessionCommand: ResumeSessionCommand_1.ResumeSessionCommand,
+      SendAutomationSignalCommand: SendAutomationSignalCommand_1.SendAutomationSignalCommand,
+      SendCommandCommand: SendCommandCommand_1.SendCommandCommand,
+      StartAssociationsOnceCommand: StartAssociationsOnceCommand_1.StartAssociationsOnceCommand,
+      StartAutomationExecutionCommand: StartAutomationExecutionCommand_1.StartAutomationExecutionCommand,
+      StartChangeRequestExecutionCommand: StartChangeRequestExecutionCommand_1.StartChangeRequestExecutionCommand,
+      StartSessionCommand: StartSessionCommand_1.StartSessionCommand,
+      StopAutomationExecutionCommand: StopAutomationExecutionCommand_1.StopAutomationExecutionCommand,
+      TerminateSessionCommand: TerminateSessionCommand_1.TerminateSessionCommand,
+      UnlabelParameterVersionCommand: UnlabelParameterVersionCommand_1.UnlabelParameterVersionCommand,
+      UpdateAssociationCommand: UpdateAssociationCommand_1.UpdateAssociationCommand,
+      UpdateAssociationStatusCommand: UpdateAssociationStatusCommand_1.UpdateAssociationStatusCommand,
+      UpdateDocumentCommand: UpdateDocumentCommand_1.UpdateDocumentCommand,
+      UpdateDocumentDefaultVersionCommand: UpdateDocumentDefaultVersionCommand_1.UpdateDocumentDefaultVersionCommand,
+      UpdateDocumentMetadataCommand: UpdateDocumentMetadataCommand_1.UpdateDocumentMetadataCommand,
+      UpdateMaintenanceWindowCommand: UpdateMaintenanceWindowCommand_1.UpdateMaintenanceWindowCommand,
+      UpdateMaintenanceWindowTargetCommand: UpdateMaintenanceWindowTargetCommand_1.UpdateMaintenanceWindowTargetCommand,
+      UpdateMaintenanceWindowTaskCommand: UpdateMaintenanceWindowTaskCommand_1.UpdateMaintenanceWindowTaskCommand,
+      UpdateManagedInstanceRoleCommand: UpdateManagedInstanceRoleCommand_1.UpdateManagedInstanceRoleCommand,
+      UpdateOpsItemCommand: UpdateOpsItemCommand_1.UpdateOpsItemCommand,
+      UpdateOpsMetadataCommand: UpdateOpsMetadataCommand_1.UpdateOpsMetadataCommand,
+      UpdatePatchBaselineCommand: UpdatePatchBaselineCommand_1.UpdatePatchBaselineCommand,
+      UpdateResourceDataSyncCommand: UpdateResourceDataSyncCommand_1.UpdateResourceDataSyncCommand,
+      UpdateServiceSettingCommand: UpdateServiceSettingCommand_1.UpdateServiceSettingCommand
+    };
     var SSM = class extends SSMClient_1.SSMClient {
-      addTagsToResource(args, optionsOrCb, cb) {
-        const command = new AddTagsToResourceCommand_1.AddTagsToResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      associateOpsItemRelatedItem(args, optionsOrCb, cb) {
-        const command = new AssociateOpsItemRelatedItemCommand_1.AssociateOpsItemRelatedItemCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      cancelCommand(args, optionsOrCb, cb) {
-        const command = new CancelCommandCommand_1.CancelCommandCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      cancelMaintenanceWindowExecution(args, optionsOrCb, cb) {
-        const command = new CancelMaintenanceWindowExecutionCommand_1.CancelMaintenanceWindowExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createActivation(args, optionsOrCb, cb) {
-        const command = new CreateActivationCommand_1.CreateActivationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createAssociation(args, optionsOrCb, cb) {
-        const command = new CreateAssociationCommand_1.CreateAssociationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createAssociationBatch(args, optionsOrCb, cb) {
-        const command = new CreateAssociationBatchCommand_1.CreateAssociationBatchCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createDocument(args, optionsOrCb, cb) {
-        const command = new CreateDocumentCommand_1.CreateDocumentCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new CreateMaintenanceWindowCommand_1.CreateMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createOpsItem(args, optionsOrCb, cb) {
-        const command = new CreateOpsItemCommand_1.CreateOpsItemCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createOpsMetadata(args, optionsOrCb, cb) {
-        const command = new CreateOpsMetadataCommand_1.CreateOpsMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createPatchBaseline(args, optionsOrCb, cb) {
-        const command = new CreatePatchBaselineCommand_1.CreatePatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      createResourceDataSync(args, optionsOrCb, cb) {
-        const command = new CreateResourceDataSyncCommand_1.CreateResourceDataSyncCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteActivation(args, optionsOrCb, cb) {
-        const command = new DeleteActivationCommand_1.DeleteActivationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteAssociation(args, optionsOrCb, cb) {
-        const command = new DeleteAssociationCommand_1.DeleteAssociationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteDocument(args, optionsOrCb, cb) {
-        const command = new DeleteDocumentCommand_1.DeleteDocumentCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteInventory(args, optionsOrCb, cb) {
-        const command = new DeleteInventoryCommand_1.DeleteInventoryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new DeleteMaintenanceWindowCommand_1.DeleteMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteOpsMetadata(args, optionsOrCb, cb) {
-        const command = new DeleteOpsMetadataCommand_1.DeleteOpsMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteParameter(args, optionsOrCb, cb) {
-        const command = new DeleteParameterCommand_1.DeleteParameterCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteParameters(args, optionsOrCb, cb) {
-        const command = new DeleteParametersCommand_1.DeleteParametersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deletePatchBaseline(args, optionsOrCb, cb) {
-        const command = new DeletePatchBaselineCommand_1.DeletePatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteResourceDataSync(args, optionsOrCb, cb) {
-        const command = new DeleteResourceDataSyncCommand_1.DeleteResourceDataSyncCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deleteResourcePolicy(args, optionsOrCb, cb) {
-        const command = new DeleteResourcePolicyCommand_1.DeleteResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deregisterManagedInstance(args, optionsOrCb, cb) {
-        const command = new DeregisterManagedInstanceCommand_1.DeregisterManagedInstanceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deregisterPatchBaselineForPatchGroup(args, optionsOrCb, cb) {
-        const command = new DeregisterPatchBaselineForPatchGroupCommand_1.DeregisterPatchBaselineForPatchGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deregisterTargetFromMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new DeregisterTargetFromMaintenanceWindowCommand_1.DeregisterTargetFromMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      deregisterTaskFromMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new DeregisterTaskFromMaintenanceWindowCommand_1.DeregisterTaskFromMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeActivations(args, optionsOrCb, cb) {
-        const command = new DescribeActivationsCommand_1.DescribeActivationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAssociation(args, optionsOrCb, cb) {
-        const command = new DescribeAssociationCommand_1.DescribeAssociationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAssociationExecutions(args, optionsOrCb, cb) {
-        const command = new DescribeAssociationExecutionsCommand_1.DescribeAssociationExecutionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAssociationExecutionTargets(args, optionsOrCb, cb) {
-        const command = new DescribeAssociationExecutionTargetsCommand_1.DescribeAssociationExecutionTargetsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAutomationExecutions(args, optionsOrCb, cb) {
-        const command = new DescribeAutomationExecutionsCommand_1.DescribeAutomationExecutionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAutomationStepExecutions(args, optionsOrCb, cb) {
-        const command = new DescribeAutomationStepExecutionsCommand_1.DescribeAutomationStepExecutionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeAvailablePatches(args, optionsOrCb, cb) {
-        const command = new DescribeAvailablePatchesCommand_1.DescribeAvailablePatchesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeDocument(args, optionsOrCb, cb) {
-        const command = new DescribeDocumentCommand_1.DescribeDocumentCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeDocumentPermission(args, optionsOrCb, cb) {
-        const command = new DescribeDocumentPermissionCommand_1.DescribeDocumentPermissionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeEffectiveInstanceAssociations(args, optionsOrCb, cb) {
-        const command = new DescribeEffectiveInstanceAssociationsCommand_1.DescribeEffectiveInstanceAssociationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeEffectivePatchesForPatchBaseline(args, optionsOrCb, cb) {
-        const command = new DescribeEffectivePatchesForPatchBaselineCommand_1.DescribeEffectivePatchesForPatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInstanceAssociationsStatus(args, optionsOrCb, cb) {
-        const command = new DescribeInstanceAssociationsStatusCommand_1.DescribeInstanceAssociationsStatusCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInstanceInformation(args, optionsOrCb, cb) {
-        const command = new DescribeInstanceInformationCommand_1.DescribeInstanceInformationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInstancePatches(args, optionsOrCb, cb) {
-        const command = new DescribeInstancePatchesCommand_1.DescribeInstancePatchesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInstancePatchStates(args, optionsOrCb, cb) {
-        const command = new DescribeInstancePatchStatesCommand_1.DescribeInstancePatchStatesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInstancePatchStatesForPatchGroup(args, optionsOrCb, cb) {
-        const command = new DescribeInstancePatchStatesForPatchGroupCommand_1.DescribeInstancePatchStatesForPatchGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeInventoryDeletions(args, optionsOrCb, cb) {
-        const command = new DescribeInventoryDeletionsCommand_1.DescribeInventoryDeletionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowExecutions(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowExecutionsCommand_1.DescribeMaintenanceWindowExecutionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowExecutionTaskInvocations(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowExecutionTaskInvocationsCommand_1.DescribeMaintenanceWindowExecutionTaskInvocationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowExecutionTasks(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowExecutionTasksCommand_1.DescribeMaintenanceWindowExecutionTasksCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindows(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowsCommand_1.DescribeMaintenanceWindowsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowSchedule(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowScheduleCommand_1.DescribeMaintenanceWindowScheduleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowsForTarget(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowsForTargetCommand_1.DescribeMaintenanceWindowsForTargetCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowTargets(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowTargetsCommand_1.DescribeMaintenanceWindowTargetsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeMaintenanceWindowTasks(args, optionsOrCb, cb) {
-        const command = new DescribeMaintenanceWindowTasksCommand_1.DescribeMaintenanceWindowTasksCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeOpsItems(args, optionsOrCb, cb) {
-        const command = new DescribeOpsItemsCommand_1.DescribeOpsItemsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeParameters(args, optionsOrCb, cb) {
-        const command = new DescribeParametersCommand_1.DescribeParametersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describePatchBaselines(args, optionsOrCb, cb) {
-        const command = new DescribePatchBaselinesCommand_1.DescribePatchBaselinesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describePatchGroups(args, optionsOrCb, cb) {
-        const command = new DescribePatchGroupsCommand_1.DescribePatchGroupsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describePatchGroupState(args, optionsOrCb, cb) {
-        const command = new DescribePatchGroupStateCommand_1.DescribePatchGroupStateCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describePatchProperties(args, optionsOrCb, cb) {
-        const command = new DescribePatchPropertiesCommand_1.DescribePatchPropertiesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      describeSessions(args, optionsOrCb, cb) {
-        const command = new DescribeSessionsCommand_1.DescribeSessionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      disassociateOpsItemRelatedItem(args, optionsOrCb, cb) {
-        const command = new DisassociateOpsItemRelatedItemCommand_1.DisassociateOpsItemRelatedItemCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getAutomationExecution(args, optionsOrCb, cb) {
-        const command = new GetAutomationExecutionCommand_1.GetAutomationExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getCalendarState(args, optionsOrCb, cb) {
-        const command = new GetCalendarStateCommand_1.GetCalendarStateCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getCommandInvocation(args, optionsOrCb, cb) {
-        const command = new GetCommandInvocationCommand_1.GetCommandInvocationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getConnectionStatus(args, optionsOrCb, cb) {
-        const command = new GetConnectionStatusCommand_1.GetConnectionStatusCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getDefaultPatchBaseline(args, optionsOrCb, cb) {
-        const command = new GetDefaultPatchBaselineCommand_1.GetDefaultPatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getDeployablePatchSnapshotForInstance(args, optionsOrCb, cb) {
-        const command = new GetDeployablePatchSnapshotForInstanceCommand_1.GetDeployablePatchSnapshotForInstanceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getDocument(args, optionsOrCb, cb) {
-        const command = new GetDocumentCommand_1.GetDocumentCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getInventory(args, optionsOrCb, cb) {
-        const command = new GetInventoryCommand_1.GetInventoryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getInventorySchema(args, optionsOrCb, cb) {
-        const command = new GetInventorySchemaCommand_1.GetInventorySchemaCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new GetMaintenanceWindowCommand_1.GetMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getMaintenanceWindowExecution(args, optionsOrCb, cb) {
-        const command = new GetMaintenanceWindowExecutionCommand_1.GetMaintenanceWindowExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getMaintenanceWindowExecutionTask(args, optionsOrCb, cb) {
-        const command = new GetMaintenanceWindowExecutionTaskCommand_1.GetMaintenanceWindowExecutionTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getMaintenanceWindowExecutionTaskInvocation(args, optionsOrCb, cb) {
-        const command = new GetMaintenanceWindowExecutionTaskInvocationCommand_1.GetMaintenanceWindowExecutionTaskInvocationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getMaintenanceWindowTask(args, optionsOrCb, cb) {
-        const command = new GetMaintenanceWindowTaskCommand_1.GetMaintenanceWindowTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getOpsItem(args, optionsOrCb, cb) {
-        const command = new GetOpsItemCommand_1.GetOpsItemCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getOpsMetadata(args, optionsOrCb, cb) {
-        const command = new GetOpsMetadataCommand_1.GetOpsMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getOpsSummary(args, optionsOrCb, cb) {
-        const command = new GetOpsSummaryCommand_1.GetOpsSummaryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getParameter(args, optionsOrCb, cb) {
-        const command = new GetParameterCommand_1.GetParameterCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getParameterHistory(args, optionsOrCb, cb) {
-        const command = new GetParameterHistoryCommand_1.GetParameterHistoryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getParameters(args, optionsOrCb, cb) {
-        const command = new GetParametersCommand_1.GetParametersCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getParametersByPath(args, optionsOrCb, cb) {
-        const command = new GetParametersByPathCommand_1.GetParametersByPathCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getPatchBaseline(args, optionsOrCb, cb) {
-        const command = new GetPatchBaselineCommand_1.GetPatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getPatchBaselineForPatchGroup(args, optionsOrCb, cb) {
-        const command = new GetPatchBaselineForPatchGroupCommand_1.GetPatchBaselineForPatchGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getResourcePolicies(args, optionsOrCb, cb) {
-        const command = new GetResourcePoliciesCommand_1.GetResourcePoliciesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      getServiceSetting(args, optionsOrCb, cb) {
-        const command = new GetServiceSettingCommand_1.GetServiceSettingCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      labelParameterVersion(args, optionsOrCb, cb) {
-        const command = new LabelParameterVersionCommand_1.LabelParameterVersionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listAssociations(args, optionsOrCb, cb) {
-        const command = new ListAssociationsCommand_1.ListAssociationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listAssociationVersions(args, optionsOrCb, cb) {
-        const command = new ListAssociationVersionsCommand_1.ListAssociationVersionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listCommandInvocations(args, optionsOrCb, cb) {
-        const command = new ListCommandInvocationsCommand_1.ListCommandInvocationsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listCommands(args, optionsOrCb, cb) {
-        const command = new ListCommandsCommand_1.ListCommandsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listComplianceItems(args, optionsOrCb, cb) {
-        const command = new ListComplianceItemsCommand_1.ListComplianceItemsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listComplianceSummaries(args, optionsOrCb, cb) {
-        const command = new ListComplianceSummariesCommand_1.ListComplianceSummariesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listDocumentMetadataHistory(args, optionsOrCb, cb) {
-        const command = new ListDocumentMetadataHistoryCommand_1.ListDocumentMetadataHistoryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listDocuments(args, optionsOrCb, cb) {
-        const command = new ListDocumentsCommand_1.ListDocumentsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listDocumentVersions(args, optionsOrCb, cb) {
-        const command = new ListDocumentVersionsCommand_1.ListDocumentVersionsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listInventoryEntries(args, optionsOrCb, cb) {
-        const command = new ListInventoryEntriesCommand_1.ListInventoryEntriesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listOpsItemEvents(args, optionsOrCb, cb) {
-        const command = new ListOpsItemEventsCommand_1.ListOpsItemEventsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listOpsItemRelatedItems(args, optionsOrCb, cb) {
-        const command = new ListOpsItemRelatedItemsCommand_1.ListOpsItemRelatedItemsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listOpsMetadata(args, optionsOrCb, cb) {
-        const command = new ListOpsMetadataCommand_1.ListOpsMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listResourceComplianceSummaries(args, optionsOrCb, cb) {
-        const command = new ListResourceComplianceSummariesCommand_1.ListResourceComplianceSummariesCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listResourceDataSync(args, optionsOrCb, cb) {
-        const command = new ListResourceDataSyncCommand_1.ListResourceDataSyncCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      listTagsForResource(args, optionsOrCb, cb) {
-        const command = new ListTagsForResourceCommand_1.ListTagsForResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      modifyDocumentPermission(args, optionsOrCb, cb) {
-        const command = new ModifyDocumentPermissionCommand_1.ModifyDocumentPermissionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putComplianceItems(args, optionsOrCb, cb) {
-        const command = new PutComplianceItemsCommand_1.PutComplianceItemsCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putInventory(args, optionsOrCb, cb) {
-        const command = new PutInventoryCommand_1.PutInventoryCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putParameter(args, optionsOrCb, cb) {
-        const command = new PutParameterCommand_1.PutParameterCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      putResourcePolicy(args, optionsOrCb, cb) {
-        const command = new PutResourcePolicyCommand_1.PutResourcePolicyCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      registerDefaultPatchBaseline(args, optionsOrCb, cb) {
-        const command = new RegisterDefaultPatchBaselineCommand_1.RegisterDefaultPatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      registerPatchBaselineForPatchGroup(args, optionsOrCb, cb) {
-        const command = new RegisterPatchBaselineForPatchGroupCommand_1.RegisterPatchBaselineForPatchGroupCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      registerTargetWithMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new RegisterTargetWithMaintenanceWindowCommand_1.RegisterTargetWithMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      registerTaskWithMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new RegisterTaskWithMaintenanceWindowCommand_1.RegisterTaskWithMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      removeTagsFromResource(args, optionsOrCb, cb) {
-        const command = new RemoveTagsFromResourceCommand_1.RemoveTagsFromResourceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      resetServiceSetting(args, optionsOrCb, cb) {
-        const command = new ResetServiceSettingCommand_1.ResetServiceSettingCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      resumeSession(args, optionsOrCb, cb) {
-        const command = new ResumeSessionCommand_1.ResumeSessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      sendAutomationSignal(args, optionsOrCb, cb) {
-        const command = new SendAutomationSignalCommand_1.SendAutomationSignalCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      sendCommand(args, optionsOrCb, cb) {
-        const command = new SendCommandCommand_1.SendCommandCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startAssociationsOnce(args, optionsOrCb, cb) {
-        const command = new StartAssociationsOnceCommand_1.StartAssociationsOnceCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startAutomationExecution(args, optionsOrCb, cb) {
-        const command = new StartAutomationExecutionCommand_1.StartAutomationExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startChangeRequestExecution(args, optionsOrCb, cb) {
-        const command = new StartChangeRequestExecutionCommand_1.StartChangeRequestExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      startSession(args, optionsOrCb, cb) {
-        const command = new StartSessionCommand_1.StartSessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      stopAutomationExecution(args, optionsOrCb, cb) {
-        const command = new StopAutomationExecutionCommand_1.StopAutomationExecutionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      terminateSession(args, optionsOrCb, cb) {
-        const command = new TerminateSessionCommand_1.TerminateSessionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      unlabelParameterVersion(args, optionsOrCb, cb) {
-        const command = new UnlabelParameterVersionCommand_1.UnlabelParameterVersionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateAssociation(args, optionsOrCb, cb) {
-        const command = new UpdateAssociationCommand_1.UpdateAssociationCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateAssociationStatus(args, optionsOrCb, cb) {
-        const command = new UpdateAssociationStatusCommand_1.UpdateAssociationStatusCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateDocument(args, optionsOrCb, cb) {
-        const command = new UpdateDocumentCommand_1.UpdateDocumentCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateDocumentDefaultVersion(args, optionsOrCb, cb) {
-        const command = new UpdateDocumentDefaultVersionCommand_1.UpdateDocumentDefaultVersionCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateDocumentMetadata(args, optionsOrCb, cb) {
-        const command = new UpdateDocumentMetadataCommand_1.UpdateDocumentMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateMaintenanceWindow(args, optionsOrCb, cb) {
-        const command = new UpdateMaintenanceWindowCommand_1.UpdateMaintenanceWindowCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateMaintenanceWindowTarget(args, optionsOrCb, cb) {
-        const command = new UpdateMaintenanceWindowTargetCommand_1.UpdateMaintenanceWindowTargetCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateMaintenanceWindowTask(args, optionsOrCb, cb) {
-        const command = new UpdateMaintenanceWindowTaskCommand_1.UpdateMaintenanceWindowTaskCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateManagedInstanceRole(args, optionsOrCb, cb) {
-        const command = new UpdateManagedInstanceRoleCommand_1.UpdateManagedInstanceRoleCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateOpsItem(args, optionsOrCb, cb) {
-        const command = new UpdateOpsItemCommand_1.UpdateOpsItemCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateOpsMetadata(args, optionsOrCb, cb) {
-        const command = new UpdateOpsMetadataCommand_1.UpdateOpsMetadataCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updatePatchBaseline(args, optionsOrCb, cb) {
-        const command = new UpdatePatchBaselineCommand_1.UpdatePatchBaselineCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateResourceDataSync(args, optionsOrCb, cb) {
-        const command = new UpdateResourceDataSyncCommand_1.UpdateResourceDataSyncCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
-      updateServiceSetting(args, optionsOrCb, cb) {
-        const command = new UpdateServiceSettingCommand_1.UpdateServiceSettingCommand(args);
-        if (typeof optionsOrCb === "function") {
-          this.send(command, optionsOrCb);
-        } else if (typeof cb === "function") {
-          if (typeof optionsOrCb !== "object")
-            throw new Error(`Expect http options but get ${typeof optionsOrCb}`);
-          this.send(command, optionsOrCb || {}, cb);
-        } else {
-          return this.send(command, optionsOrCb);
-        }
-      }
     };
     exports.SSM = SSM;
+    (0, smithy_client_1.createAggregatedClient)(commands, SSM);
   }
 });
 
