@@ -6797,7 +6797,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.316.0",
+      version: "3.317.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -15437,36 +15437,33 @@ var require_ruleset4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ruleSet = void 0;
-    var y = "required";
-    var z = "type";
-    var A = "fn";
-    var B = "argv";
-    var C = "ref";
-    var a = "PartitionResult";
-    var b = "tree";
-    var c = "error";
-    var d = "endpoint";
-    var e = "stringEquals";
-    var f = "getAttr";
-    var g = { [y]: false, [z]: "String" };
-    var h = { [y]: true, "default": false, [z]: "Boolean" };
-    var i = { [C]: "Region" };
-    var j = { [C]: "Endpoint" };
-    var k = {};
-    var l = { [C]: a };
-    var m = { "authSchemes": [{ "name": "sigv4", "signingName": "chime", "signingRegion": "us-east-1" }] };
-    var n = { [c]: "FIPS and DualStack are enabled, but this partition does not support one or both", [z]: c };
-    var o = { [c]: "FIPS is enabled but this partition does not support FIPS", [z]: c };
-    var p = { [c]: "DualStack is enabled but this partition does not support DualStack", [z]: c };
-    var q = { "url": "https://chime.us-east-1.amazonaws.com", "properties": m, "headers": {} };
-    var r = [j];
-    var s = [{ [A]: "booleanEquals", [B]: [{ [C]: "UseFIPS" }, true] }];
-    var t = [{ [A]: "booleanEquals", [B]: [{ [C]: "UseDualStack" }, true] }];
-    var u = [{ [A]: "booleanEquals", [B]: [{ [C]: "UseFIPS" }, true] }, { [A]: "booleanEquals", [B]: [{ [C]: "UseDualStack" }, true] }];
-    var v = [{ [A]: "booleanEquals", [B]: [true, { [A]: f, [B]: [l, "supportsFIPS"] }] }, { [A]: "booleanEquals", [B]: [true, { [A]: f, [B]: [l, "supportsDualStack"] }] }];
-    var w = [{ [A]: "booleanEquals", [B]: [true, { [A]: f, [B]: [l, "supportsFIPS"] }] }];
-    var x = [{ [A]: "booleanEquals", [B]: [true, { [A]: f, [B]: [l, "supportsDualStack"] }] }];
-    var _data = { version: "1.0", parameters: { Region: g, UseDualStack: h, UseFIPS: h, Endpoint: g }, rules: [{ conditions: [{ [A]: "aws.partition", [B]: [i], assign: a }], [z]: b, rules: [{ conditions: [{ [A]: "isSet", [B]: r }, { [A]: "parseURL", [B]: r, assign: "url" }], [z]: b, rules: [{ conditions: s, error: "Invalid Configuration: FIPS and custom endpoint are not supported", [z]: c }, { [z]: b, rules: [{ conditions: t, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", [z]: c }, { endpoint: { url: j, properties: k, headers: k }, [z]: d }] }] }, { conditions: [{ [A]: e, [B]: [{ [A]: f, [B]: [l, "name"] }, "aws"] }], [z]: b, rules: [{ conditions: u, [z]: b, rules: [{ conditions: v, [z]: b, rules: [{ endpoint: { url: "https://chime-fips.{Region}.api.aws", properties: m, headers: k }, [z]: d }] }, n] }, { conditions: s, [z]: b, rules: [{ conditions: w, [z]: b, rules: [{ endpoint: { url: "https://chime-fips.{Region}.amazonaws.com", properties: m, headers: k }, [z]: d }] }, o] }, { conditions: t, [z]: b, rules: [{ conditions: x, [z]: b, rules: [{ endpoint: { url: "https://chime.{Region}.api.aws", properties: m, headers: k }, [z]: d }] }, p] }, { endpoint: q, [z]: d }] }, { conditions: u, [z]: b, rules: [{ conditions: v, [z]: b, rules: [{ endpoint: { url: "https://chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, [z]: d }] }, n] }, { conditions: s, [z]: b, rules: [{ conditions: w, [z]: b, rules: [{ [z]: b, rules: [{ endpoint: { url: "https://chime-fips.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, [z]: d }] }] }, o] }, { conditions: t, [z]: b, rules: [{ conditions: x, [z]: b, rules: [{ endpoint: { url: "https://chime.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, [z]: d }] }, p] }, { [z]: b, rules: [{ conditions: [{ [A]: e, [B]: [i, "aws-global"] }], endpoint: q, [z]: d }, { endpoint: { url: "https://chime.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, [z]: d }] }] }] };
+    var w = "required";
+    var x = "fn";
+    var y = "argv";
+    var z = "ref";
+    var a = false;
+    var b = "isSet";
+    var c = "tree";
+    var d = "booleanEquals";
+    var e = "error";
+    var f = "endpoint";
+    var g = "PartitionResult";
+    var h = "getAttr";
+    var i = { [w]: false, "type": "String" };
+    var j = { [w]: true, "default": false, "type": "Boolean" };
+    var k = { [z]: "Endpoint" };
+    var l = { [x]: d, [y]: [{ [z]: "UseFIPS" }, true] };
+    var m = { [z]: "UseFIPS" };
+    var n = { [x]: d, [y]: [{ [z]: "UseDualStack" }, true] };
+    var o = { [z]: "UseDualStack" };
+    var p = {};
+    var q = { [z]: g };
+    var r = { [x]: d, [y]: [true, { [x]: h, [y]: [q, "supportsFIPS"] }] };
+    var s = { [x]: d, [y]: [true, { [x]: h, [y]: [q, "supportsDualStack"] }] };
+    var t = [l];
+    var u = [n];
+    var v = [{ [z]: "Region" }];
+    var _data = { version: "1.0", parameters: { Region: i, UseDualStack: j, UseFIPS: j, Endpoint: i }, rules: [{ conditions: [{ [x]: b, [y]: [k] }], type: c, rules: [{ conditions: t, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: e }, { type: c, rules: [{ conditions: u, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: e }, { endpoint: { url: k, properties: p, headers: p }, type: f }] }] }, { type: c, rules: [{ conditions: [{ [x]: b, [y]: v }], type: c, rules: [{ conditions: [{ [x]: "aws.partition", [y]: v, assign: g }], type: c, rules: [{ conditions: [{ [x]: "stringEquals", [y]: [{ [x]: h, [y]: [q, "name"] }, "aws"] }, { [x]: d, [y]: [m, a] }, { [x]: d, [y]: [o, a] }], endpoint: { url: "https://chime.us-east-1.amazonaws.com", properties: { authSchemes: [{ name: "sigv4", signingName: "chime", signingRegion: "us-east-1" }] }, headers: p }, type: f }, { conditions: [l, n], type: c, rules: [{ conditions: [r, s], type: c, rules: [{ type: c, rules: [{ endpoint: { url: "https://chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: p, headers: p }, type: f }] }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: e }] }, { conditions: t, type: c, rules: [{ conditions: [r], type: c, rules: [{ type: c, rules: [{ endpoint: { url: "https://chime-fips.{Region}.{PartitionResult#dnsSuffix}", properties: p, headers: p }, type: f }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: e }] }, { conditions: u, type: c, rules: [{ conditions: [s], type: c, rules: [{ type: c, rules: [{ endpoint: { url: "https://chime.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: p, headers: p }, type: f }] }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: e }] }, { type: c, rules: [{ endpoint: { url: "https://chime.{Region}.{PartitionResult#dnsSuffix}", properties: p, headers: p }, type: f }] }] }] }, { error: "Invalid Configuration: Missing Region", type: e }] }] };
     exports.ruleSet = _data;
   }
 });
@@ -16010,10 +16007,12 @@ var require_models_04 = __commonJS({
       ES_US: "es-US",
       FR_CA: "fr-CA",
       FR_FR: "fr-FR",
+      HI_IN: "hi-IN",
       IT_IT: "it-IT",
       JA_JP: "ja-JP",
       KO_KR: "ko-KR",
       PT_BR: "pt-BR",
+      TH_TH: "th-TH",
       ZH_CN: "zh-CN"
     };
     exports.TranscribePartialResultsStability = {
