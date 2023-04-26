@@ -65732,7 +65732,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.320.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -66843,7 +66843,7 @@ var require_Aws_restJson14 = __commonJS({
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
         AppInstanceArn: [],
-        ClientRequestToken: [],
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
         Name: [],
         Processors: (_) => (0, smithy_client_1._json)(_),
         Tags: (_) => (0, smithy_client_1._json)(_)
@@ -66914,9 +66914,6 @@ var require_Aws_restJson14 = __commonJS({
       });
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "sub-channel-id": [, input.SubChannelId]
-      });
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -66925,7 +66922,6 @@ var require_Aws_restJson14 = __commonJS({
         method: "DELETE",
         headers,
         path: resolvedPath,
-        query,
         body
       });
     };
@@ -67883,15 +67879,11 @@ var require_Aws_restJson14 = __commonJS({
     var se_UpdateChannelReadMarkerCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
         "x-amz-chime-bearer": input.ChimeBearer
       });
       let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/readMarker`;
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
       let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        SubChannelId: []
-      }));
       return new protocol_http_1.HttpRequest({
         protocol,
         hostname,
@@ -68366,6 +68358,9 @@ var require_Aws_restJson14 = __commonJS({
         case "BadRequestException":
         case "com.amazonaws.chimesdkmessaging#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkmessaging#ConflictException":
+          throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
         case "com.amazonaws.chimesdkmessaging#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
@@ -68639,6 +68634,9 @@ var require_Aws_restJson14 = __commonJS({
       };
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmessaging#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
         case "com.amazonaws.chimesdkmessaging#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
@@ -70453,8 +70451,7 @@ var require_Aws_restJson14 = __commonJS({
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        SubChannelId: smithy_client_1.expectString
+        ChannelArn: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       return contents;
