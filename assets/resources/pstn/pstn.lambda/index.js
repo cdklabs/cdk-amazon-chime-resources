@@ -6797,7 +6797,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.321.1",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6817,9 +6817,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.319.0",
+        "@aws-sdk/client-sts": "3.321.1",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.319.0",
+        "@aws-sdk/credential-provider-node": "3.321.1",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -6834,7 +6834,7 @@ var require_package = __commonJS({
         "@aws-sdk/middleware-stack": "3.310.0",
         "@aws-sdk/middleware-user-agent": "3.319.0",
         "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.310.0",
+        "@aws-sdk/node-http-handler": "3.321.1",
         "@aws-sdk/protocol-http": "3.310.0",
         "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
@@ -10100,7 +10100,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.321.1",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10123,7 +10123,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.319.0",
+        "@aws-sdk/credential-provider-node": "3.321.1",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -10139,7 +10139,7 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-stack": "3.310.0",
         "@aws-sdk/middleware-user-agent": "3.319.0",
         "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.310.0",
+        "@aws-sdk/node-http-handler": "3.321.1",
         "@aws-sdk/protocol-http": "3.310.0",
         "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
@@ -12064,7 +12064,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.321.1",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12098,7 +12098,7 @@ var require_package3 = __commonJS({
         "@aws-sdk/middleware-stack": "3.310.0",
         "@aws-sdk/middleware-user-agent": "3.319.0",
         "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.310.0",
+        "@aws-sdk/node-http-handler": "3.321.1",
         "@aws-sdk/protocol-http": "3.310.0",
         "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
@@ -12259,6 +12259,50 @@ var require_get_transformed_headers = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js
+var require_set_connection_timeout = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setConnectionTimeout = void 0;
+    var setConnectionTimeout = (request, reject, timeoutInMs = 0) => {
+      if (!timeoutInMs) {
+        return;
+      }
+      request.on("socket", (socket) => {
+        if (socket.connecting) {
+          const timeoutId = setTimeout(() => {
+            request.destroy();
+            reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
+              name: "TimeoutError"
+            }));
+          }, timeoutInMs);
+          socket.on("connect", () => {
+            clearTimeout(timeoutId);
+          });
+        }
+      });
+    };
+    exports.setConnectionTimeout = setConnectionTimeout;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js
+var require_set_socket_timeout = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setSocketTimeout = void 0;
+    var setSocketTimeout = (request, reject, timeoutInMs = 0) => {
+      request.setTimeout(timeoutInMs, () => {
+        request.destroy();
+        reject(Object.assign(new Error(`Connection timed out after ${timeoutInMs} ms`), { name: "TimeoutError" }));
+      });
+    };
+    exports.setSocketTimeout = setSocketTimeout;
+  }
+});
+
 // node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js
 var require_write_request_body = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js"(exports) {
@@ -12301,6 +12345,8 @@ var require_node_http_handler = __commonJS({
     var https_1 = require("https");
     var constants_1 = require_constants6();
     var get_transformed_headers_1 = require_get_transformed_headers();
+    var set_connection_timeout_1 = require_set_connection_timeout();
+    var set_socket_timeout_1 = require_set_socket_timeout();
     var write_request_body_1 = require_write_request_body();
     exports.DEFAULT_REQUEST_TIMEOUT = 0;
     var NodeHttpHandler = class {
@@ -12317,14 +12363,12 @@ var require_node_http_handler = __commonJS({
         });
       }
       resolveDefaultConfig(options) {
-        var _a, _b;
         const { requestTimeout, connectionTimeout, socketTimeout, httpAgent, httpsAgent } = options || {};
         const keepAlive = true;
         const maxSockets = 50;
         return {
           connectionTimeout,
-          socketTimeout,
-          requestTimeout: (_b = (_a = requestTimeout !== null && requestTimeout !== void 0 ? requestTimeout : connectionTimeout) !== null && _a !== void 0 ? _a : socketTimeout) !== null && _b !== void 0 ? _b : exports.DEFAULT_REQUEST_TIMEOUT,
+          requestTimeout: requestTimeout !== null && requestTimeout !== void 0 ? requestTimeout : socketTimeout,
           httpAgent: httpAgent || new http_1.Agent({ keepAlive, maxSockets }),
           httpsAgent: httpsAgent || new https_1.Agent({ keepAlive, maxSockets })
         };
@@ -12339,7 +12383,6 @@ var require_node_http_handler = __commonJS({
           this.config = await this.configProvider;
         }
         return new Promise((resolve, reject) => {
-          var _a, _b;
           if (!this.config) {
             throw new Error("Node HTTP request handler config is not resolved");
           }
@@ -12375,11 +12418,8 @@ var require_node_http_handler = __commonJS({
               reject(err);
             }
           });
-          const timeout = (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.requestTimeout) !== null && _b !== void 0 ? _b : exports.DEFAULT_REQUEST_TIMEOUT;
-          req.setTimeout(timeout, () => {
-            req.destroy();
-            reject(Object.assign(new Error(`Connection timed out after ${timeout} ms`), { name: "TimeoutError" }));
-          });
+          (0, set_connection_timeout_1.setConnectionTimeout)(req, reject, this.config.connectionTimeout);
+          (0, set_socket_timeout_1.setSocketTimeout)(req, reject, this.config.requestTimeout);
           if (abortSignal) {
             abortSignal.onabort = () => {
               req.abort();
@@ -14166,7 +14206,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.321.1",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14200,7 +14240,7 @@ var require_package4 = __commonJS({
         "@aws-sdk/middleware-stack": "3.310.0",
         "@aws-sdk/middleware-user-agent": "3.319.0",
         "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.310.0",
+        "@aws-sdk/node-http-handler": "3.321.1",
         "@aws-sdk/protocol-http": "3.310.0",
         "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
@@ -48755,7 +48795,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.319.0",
+      version: "3.321.1",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -48775,9 +48815,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.319.0",
+        "@aws-sdk/client-sts": "3.321.1",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.319.0",
+        "@aws-sdk/credential-provider-node": "3.321.1",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -48792,7 +48832,7 @@ var require_package5 = __commonJS({
         "@aws-sdk/middleware-stack": "3.310.0",
         "@aws-sdk/middleware-user-agent": "3.319.0",
         "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.310.0",
+        "@aws-sdk/node-http-handler": "3.321.1",
         "@aws-sdk/protocol-http": "3.310.0",
         "@aws-sdk/smithy-client": "3.316.0",
         "@aws-sdk/types": "3.310.0",
