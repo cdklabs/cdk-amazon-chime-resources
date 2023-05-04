@@ -6797,7 +6797,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6817,9 +6817,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.325.0",
+        "@aws-sdk/client-sts": "3.326.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.325.0",
+        "@aws-sdk/credential-provider-node": "3.326.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -10102,7 +10102,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10125,7 +10125,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.325.0",
+        "@aws-sdk/credential-provider-node": "3.326.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -10135,7 +10135,7 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-logger": "3.325.0",
         "@aws-sdk/middleware-recursion-detection": "3.325.0",
         "@aws-sdk/middleware-retry": "3.325.0",
-        "@aws-sdk/middleware-sdk-sts": "3.325.0",
+        "@aws-sdk/middleware-sdk-sts": "3.326.0",
         "@aws-sdk/middleware-serde": "3.325.0",
         "@aws-sdk/middleware-signing": "3.325.0",
         "@aws-sdk/middleware-stack": "3.325.0",
@@ -12066,7 +12066,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14208,7 +14208,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -63042,7 +63042,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -63062,9 +63062,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.325.0",
+        "@aws-sdk/client-sts": "3.326.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.325.0",
+        "@aws-sdk/credential-provider-node": "3.326.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
@@ -65772,7 +65772,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.325.0",
+      version: "3.326.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -65792,9 +65792,9 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.325.0",
+        "@aws-sdk/client-sts": "3.326.0",
         "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.325.0",
+        "@aws-sdk/credential-provider-node": "3.326.0",
         "@aws-sdk/fetch-http-handler": "3.310.0",
         "@aws-sdk/hash-node": "3.310.0",
         "@aws-sdk/invalid-dependency": "3.310.0",
