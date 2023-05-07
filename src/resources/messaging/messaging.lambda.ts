@@ -4,7 +4,7 @@ import {
   Context,
 } from 'aws-lambda';
 import { CreateAppInstance, DeleteAppInstance } from './appInstance';
-import { CreateChannelFlow, DeleteChannelFlow } from './channelFlow';
+import { CreateChannelFlow, DeleteChannelFlow, UpdateChannelFlow } from './channelFlow';
 import { PutDataRetention } from './dataRetention';
 import {
   CreateAppInstanceAdmin,
@@ -65,7 +65,12 @@ export const handler = async (
           response.Reason = 'CreateChannelFlow successful';
           break;
         case 'Update':
+          response.Data = await UpdateChannelFlow(
+            resourcePropertiesUid,
+            requestProperties,
+          );
           response.Status = 'SUCCESS';
+          response.Reason = 'UpdateChannelFlow successful';
           break;
         case 'Delete':
           await DeleteChannelFlow(resourcePropertiesUid);
