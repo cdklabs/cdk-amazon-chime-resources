@@ -73386,7 +73386,7 @@ var require_UpdateChannelFlowCommand = __commonJS({
     var smithy_client_1 = require_dist_cjs2();
     var models_0_1 = require_models_06();
     var Aws_restJson1_1 = require_Aws_restJson14();
-    var UpdateChannelFlowCommand = class extends smithy_client_1.Command {
+    var UpdateChannelFlowCommand2 = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -73401,7 +73401,7 @@ var require_UpdateChannelFlowCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateChannelFlowCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, UpdateChannelFlowCommand2.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
         const clientName = "ChimeSDKMessagingClient";
@@ -73423,7 +73423,7 @@ var require_UpdateChannelFlowCommand = __commonJS({
         return (0, Aws_restJson1_1.de_UpdateChannelFlowCommand)(output, context);
       }
     };
-    exports.UpdateChannelFlowCommand = UpdateChannelFlowCommand;
+    exports.UpdateChannelFlowCommand = UpdateChannelFlowCommand2;
   }
 });
 
@@ -74239,97 +74239,106 @@ var chimeSDKMessagingClient = new import_client_chime_sdk_messaging.ChimeSDKMess
   region: process.env.AWS_REGION
 });
 var ssmClient2 = new import_client_ssm2.SSMClient({ region: process.env.AWS_REGION });
-var createChannelFlowCommandInput;
-var createChannelFlowCommandOutput;
-var getParameterCommandOutput2;
-var updatedProcessors;
-var updatedTags2;
 var CreateChannelFlow = async (uid, props) => {
-  updatedProcessors = [];
-  if (props.processors) {
-    props.processors.forEach((processor) => {
-      updatedProcessors.push({
-        Name: processor.name,
-        ExecutionOrder: parseInt(processor.executionOrder),
-        FallbackAction: processor.fallbackAction,
-        Configuration: {
-          Lambda: {
-            ResourceArn: processor.configuration.lambda.resourceArn,
-            InvocationType: processor.configuration.lambda.invocationType
-          }
-        }
-      });
-    });
-  }
-  updatedTags2 = [];
-  if (props.tags) {
-    props.tags.forEach((tag) => {
-      updatedTags2.push({ Key: tag.key, Value: tag.value });
-    });
-  }
-  createChannelFlowCommandInput = {
-    AppInstanceArn: props.appInstanceArn,
-    Name: props.name,
-    ClientRequestToken: props.clientRequestToken,
-    ...updatedTags2.length > 0 && { Tags: updatedTags2 },
-    Processors: updatedProcessors
-  };
   try {
-    createChannelFlowCommandOutput = await chimeSDKMessagingClient.send(
-      new import_client_chime_sdk_messaging.CreateChannelFlowCommand(createChannelFlowCommandInput)
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  try {
-    await ssmClient2.send(
-      new import_client_ssm2.PutParameterCommand({
-        Name: `/chime/channelFlowArn/${uid}`,
-        Description: "channelFlowArn",
-        Value: createChannelFlowCommandOutput.ChannelFlowArn,
-        Overwrite: true,
-        Type: "String"
+    const createChannelFlowCommandOutput = await chimeSDKMessagingClient.send(
+      new import_client_chime_sdk_messaging.CreateChannelFlowCommand({
+        AppInstanceArn: props.appInstanceArn,
+        Name: props.name,
+        ClientRequestToken: props.clientRequestToken,
+        Tags: getUpdatedTags(props.tags),
+        Processors: getUpdatedProcessors(props.processors)
       })
     );
+    await saveChannelFlowArnToSsm(uid, createChannelFlowCommandOutput.ChannelFlowArn);
+    return {
+      channelFlowArn: createChannelFlowCommandOutput.ChannelFlowArn
+    };
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
       throw error;
     }
   }
-  return {
-    channelFlowArn: createChannelFlowCommandOutput.ChannelFlowArn
-  };
+  return {};
+};
+var UpdateChannelFlow = async (uid, props) => {
+  try {
+    const channelFlowArn = await getExistingChannelFlowArnFromSsm(uid);
+    const updateChannelFlowCommandOutput = await chimeSDKMessagingClient.send(
+      new import_client_chime_sdk_messaging.UpdateChannelFlowCommand({
+        ChannelFlowArn: channelFlowArn,
+        Name: props.name,
+        Processors: getUpdatedProcessors(props.processors)
+      })
+    );
+    return {
+      channelFlowArn: updateChannelFlowCommandOutput.ChannelFlowArn
+    };
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 var DeleteChannelFlow = async (uid) => {
   try {
-    getParameterCommandOutput2 = await ssmClient2.send(
-      new import_client_ssm2.GetParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  try {
+    const channelFlowArn = await getExistingChannelFlowArnFromSsm(uid);
     await chimeSDKMessagingClient.send(
       new import_client_chime_sdk_messaging.DeleteChannelFlowCommand({
-        ChannelFlowArn: getParameterCommandOutput2.Parameter?.Value
+        ChannelFlowArn: channelFlowArn
       })
     );
-    await ssmClient2.send(
-      new import_client_ssm2.DeleteParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
-    );
+    await deleteChannelFlowArnFromSsm(uid);
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
       throw error;
     }
   }
+};
+var saveChannelFlowArnToSsm = async (uid, channelFlowArn) => {
+  return ssmClient2.send(
+    new import_client_ssm2.PutParameterCommand({
+      Name: `/chime/channelFlowArn/${uid}`,
+      Description: "channelFlowArn",
+      Value: channelFlowArn,
+      Overwrite: true,
+      Type: "String"
+    })
+  );
+};
+var getExistingChannelFlowArnFromSsm = async (uid) => {
+  const getParameterCommandOutput2 = await ssmClient2.send(
+    new import_client_ssm2.GetParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
+  );
+  return getParameterCommandOutput2.Parameter?.Value;
+};
+var deleteChannelFlowArnFromSsm = async (uid) => {
+  return ssmClient2.send(
+    new import_client_ssm2.DeleteParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
+  );
+};
+var getUpdatedProcessors = (processors) => {
+  return processors?.map(getUpdatedProcessor) || [];
+};
+var getUpdatedProcessor = (processor) => {
+  return {
+    Name: processor.name,
+    ExecutionOrder: parseInt(processor.executionOrder),
+    FallbackAction: processor.fallbackAction,
+    Configuration: {
+      Lambda: {
+        ResourceArn: processor.configuration.lambda.resourceArn,
+        InvocationType: processor.configuration.lambda.invocationType
+      }
+    }
+  };
+};
+var getUpdatedTags = (tags) => {
+  return tags?.map(getUpdatedTag);
+};
+var getUpdatedTag = (tag) => {
+  return { Key: tag.key, Value: tag.value };
 };
 
 // src/resources/messaging/dataRetention.ts
@@ -74430,12 +74439,12 @@ var chimeClient4 = new import_client_chime4.ChimeClient({
 var ssmClient4 = new import_client_ssm4.SSMClient({ region: process.env.AWS_REGION });
 var createAppInstanceUserCommandInput;
 var createAppInstanceUserCommandOutput;
-var updatedTags3;
+var updatedTags2;
 var CreateAppInstanceUser = async (uid, props) => {
-  updatedTags3 = [];
+  updatedTags2 = [];
   if (props.tags) {
     props.tags.forEach((tag) => {
-      updatedTags3.push({ Key: tag.key, Value: tag.value });
+      updatedTags2.push({ Key: tag.key, Value: tag.value });
     });
   }
   createAppInstanceUserCommandInput = {
@@ -74446,7 +74455,7 @@ var CreateAppInstanceUser = async (uid, props) => {
     ...props.clientRequestToken && {
       ClientRequestToken: props.clientRequestToken
     },
-    ...updatedTags3.length > 0 && { Tags: updatedTags3 }
+    ...updatedTags2.length > 0 && { Tags: updatedTags2 }
   };
   try {
     createAppInstanceUserCommandOutput = await chimeClient4.send(
@@ -74574,7 +74583,12 @@ var handler = async (event, context) => {
           response.Reason = "CreateChannelFlow successful";
           break;
         case "Update":
+          response.Data = await UpdateChannelFlow(
+            resourcePropertiesUid,
+            requestProperties
+          );
           response.Status = "SUCCESS";
+          response.Reason = "UpdateChannelFlow successful";
           break;
         case "Delete":
           await DeleteChannelFlow(resourcePropertiesUid);
