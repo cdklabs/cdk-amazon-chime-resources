@@ -2969,7 +2969,7 @@ var require_config2 = __commonJS({
       RETRY_MODES2["ADAPTIVE"] = "adaptive";
     })(RETRY_MODES = exports.RETRY_MODES || (exports.RETRY_MODES = {}));
     exports.DEFAULT_MAX_ATTEMPTS = 3;
-    exports.DEFAULT_RETRY_MODE = "STANDARD";
+    exports.DEFAULT_RETRY_MODE = RETRY_MODES.STANDARD;
   }
 });
 
@@ -3266,11 +3266,11 @@ var require_StandardRetryStrategy = __commonJS({
     var constants_1 = require_constants3();
     var defaultRetryToken_1 = require_defaultRetryToken();
     var StandardRetryStrategy = class {
-      constructor(maxAttemptsProvider) {
-        this.maxAttemptsProvider = maxAttemptsProvider;
+      constructor(maxAttempts) {
+        this.maxAttempts = maxAttempts;
         this.mode = config_1.RETRY_MODES.STANDARD;
         this.retryToken = (0, defaultRetryToken_1.getDefaultRetryToken)(constants_1.INITIAL_RETRY_TOKENS, constants_1.DEFAULT_RETRY_DELAY_BASE);
-        this.maxAttemptsProvider = maxAttemptsProvider;
+        this.maxAttemptsProvider = typeof maxAttempts === "function" ? maxAttempts : async () => maxAttempts;
       }
       async acquireInitialRetryToken(retryTokenScope) {
         return this.retryToken;
@@ -3341,6 +3341,33 @@ var require_AdaptiveRetryStrategy = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/util-retry/dist-cjs/ConfiguredRetryStrategy.js
+var require_ConfiguredRetryStrategy = __commonJS({
+  "node_modules/@aws-sdk/util-retry/dist-cjs/ConfiguredRetryStrategy.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.ConfiguredRetryStrategy = void 0;
+    var constants_1 = require_constants3();
+    var StandardRetryStrategy_1 = require_StandardRetryStrategy();
+    var ConfiguredRetryStrategy = class extends StandardRetryStrategy_1.StandardRetryStrategy {
+      constructor(maxAttempts, computeNextBackoffDelay = constants_1.DEFAULT_RETRY_DELAY_BASE) {
+        super(typeof maxAttempts === "function" ? maxAttempts : async () => maxAttempts);
+        if (typeof computeNextBackoffDelay === "number") {
+          this.computeNextBackoffDelay = () => computeNextBackoffDelay;
+        } else {
+          this.computeNextBackoffDelay = computeNextBackoffDelay;
+        }
+      }
+      async refreshRetryTokenForRetry(tokenToRenew, errorInfo) {
+        const token = await super.refreshRetryTokenForRetry(tokenToRenew, errorInfo);
+        token.getRetryDelay = () => this.computeNextBackoffDelay(token.getRetryCount());
+        return token;
+      }
+    };
+    exports.ConfiguredRetryStrategy = ConfiguredRetryStrategy;
+  }
+});
+
 // node_modules/@aws-sdk/util-retry/dist-cjs/types.js
 var require_types2 = __commonJS({
   "node_modules/@aws-sdk/util-retry/dist-cjs/types.js"(exports) {
@@ -3356,6 +3383,7 @@ var require_dist_cjs16 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_AdaptiveRetryStrategy(), exports);
+    tslib_1.__exportStar(require_ConfiguredRetryStrategy(), exports);
     tslib_1.__exportStar(require_DefaultRateLimiter(), exports);
     tslib_1.__exportStar(require_StandardRetryStrategy(), exports);
     tslib_1.__exportStar(require_config2(), exports);
@@ -4043,7 +4071,7 @@ var require_retryMiddleware = __commonJS({
             output.$metadata.totalRetryDelay = totalRetryDelay;
             return { response: response2, output };
           } catch (e) {
-            const retryErrorInfo = getRetyErrorInto(e);
+            const retryErrorInfo = getRetryErrorInfo(e);
             lastError = (0, util_1.asSdkError)(e);
             try {
               retryToken = await retryStrategy.refreshRetryTokenForRetry(retryToken, retryErrorInfo);
@@ -4070,7 +4098,7 @@ var require_retryMiddleware = __commonJS({
     };
     exports.retryMiddleware = retryMiddleware;
     var isRetryStrategyV2 = (retryStrategy) => typeof retryStrategy.acquireInitialRetryToken !== "undefined" && typeof retryStrategy.refreshRetryTokenForRetry !== "undefined" && typeof retryStrategy.recordSuccess !== "undefined";
-    var getRetyErrorInto = (error) => {
+    var getRetryErrorInfo = (error) => {
       const errorInfo = {
         errorType: getRetryErrorType(error)
       };
@@ -6808,7 +6836,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6828,37 +6856,37 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.328.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.328.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-signing": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-signing": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
@@ -10113,7 +10141,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10135,37 +10163,37 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.328.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-sdk-sts": "3.326.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-signing": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-sdk-sts": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-signing": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "fast-xml-parser": "4.1.2",
         tslib: "^2.5.0"
@@ -12077,7 +12105,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12097,34 +12125,34 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         tslib: "^2.5.0"
       },
@@ -14245,7 +14273,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14265,34 +14293,34 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         tslib: "^2.5.0"
       },
@@ -15209,46 +15237,43 @@ var require_ruleset3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ruleSet = void 0;
-    var G = "required";
-    var H = "type";
-    var I = "fn";
-    var J = "argv";
-    var K = "ref";
-    var L = "properties";
-    var M = "headers";
+    var F = "required";
+    var G = "type";
+    var H = "fn";
+    var I = "argv";
+    var J = "ref";
     var a = false;
     var b = true;
-    var c = "PartitionResult";
+    var c = "booleanEquals";
     var d = "tree";
-    var e = "booleanEquals";
-    var f = "stringEquals";
-    var g = "sigv4";
+    var e = "stringEquals";
+    var f = "sigv4";
+    var g = "sts";
     var h = "us-east-1";
-    var i = "sts";
-    var j = "endpoint";
-    var k = "https://sts.{Region}.{PartitionResult#dnsSuffix}";
-    var l = "error";
-    var m = "getAttr";
-    var n = { [G]: false, [H]: "String" };
-    var o = { [G]: true, "default": false, [H]: "Boolean" };
-    var p = { [K]: "Region" };
-    var q = { [K]: "UseFIPS" };
-    var r = { [K]: "UseDualStack" };
-    var s = { [I]: "isSet", [J]: [{ [K]: "Endpoint" }] };
-    var t = { [K]: "Endpoint" };
-    var u = { "url": "https://sts.amazonaws.com", [L]: { "authSchemes": [{ "name": g, "signingRegion": h, "signingName": i }] }, [M]: {} };
+    var i = "endpoint";
+    var j = "https://sts.{Region}.{PartitionResult#dnsSuffix}";
+    var k = "error";
+    var l = "getAttr";
+    var m = { [F]: false, [G]: "String" };
+    var n = { [F]: true, "default": false, [G]: "Boolean" };
+    var o = { [J]: "Endpoint" };
+    var p = { [H]: "isSet", [I]: [{ [J]: "Region" }] };
+    var q = { [J]: "Region" };
+    var r = { [H]: "aws.partition", [I]: [q], "assign": "PartitionResult" };
+    var s = { [J]: "UseFIPS" };
+    var t = { [J]: "UseDualStack" };
+    var u = { "url": "https://sts.amazonaws.com", "properties": { "authSchemes": [{ "name": f, "signingName": g, "signingRegion": h }] }, "headers": {} };
     var v = {};
-    var w = { "conditions": [{ [I]: f, [J]: [p, "aws-global"] }], [j]: u, [H]: j };
-    var x = { [I]: e, [J]: [q, true] };
-    var y = { [I]: e, [J]: [r, true] };
-    var z = { [I]: e, [J]: [true, { [I]: m, [J]: [{ [K]: c }, "supportsFIPS"] }] };
-    var A = { [K]: c };
-    var B = { [I]: e, [J]: [true, { [I]: m, [J]: [A, "supportsDualStack"] }] };
-    var C = { "url": k, [L]: {}, [M]: {} };
-    var D = [t];
-    var E = [x];
-    var F = [y];
-    var _data = { version: "1.0", parameters: { Region: n, UseDualStack: o, UseFIPS: o, Endpoint: n, UseGlobalEndpoint: o }, rules: [{ conditions: [{ [I]: "aws.partition", [J]: [p], assign: c }], [H]: d, rules: [{ conditions: [{ [I]: e, [J]: [{ [K]: "UseGlobalEndpoint" }, b] }, { [I]: e, [J]: [q, a] }, { [I]: e, [J]: [r, a] }, { [I]: "not", [J]: [s] }], [H]: d, rules: [{ conditions: [{ [I]: f, [J]: [p, "ap-northeast-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "ap-south-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "ap-southeast-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "ap-southeast-2"] }], endpoint: u, [H]: j }, w, { conditions: [{ [I]: f, [J]: [p, "ca-central-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "eu-central-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "eu-north-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "eu-west-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "eu-west-2"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "eu-west-3"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "sa-east-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, h] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "us-east-2"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "us-west-1"] }], endpoint: u, [H]: j }, { conditions: [{ [I]: f, [J]: [p, "us-west-2"] }], endpoint: u, [H]: j }, { endpoint: { url: k, [L]: { authSchemes: [{ name: g, signingRegion: "{Region}", signingName: i }] }, [M]: v }, [H]: j }] }, { conditions: [s, { [I]: "parseURL", [J]: D, assign: "url" }], [H]: d, rules: [{ conditions: E, error: "Invalid Configuration: FIPS and custom endpoint are not supported", [H]: l }, { [H]: d, rules: [{ conditions: F, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", [H]: l }, { endpoint: { url: t, [L]: v, [M]: v }, [H]: j }] }] }, { conditions: [x, y], [H]: d, rules: [{ conditions: [z, B], [H]: d, rules: [{ endpoint: { url: "https://sts-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", [L]: v, [M]: v }, [H]: j }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", [H]: l }] }, { conditions: E, [H]: d, rules: [{ conditions: [z], [H]: d, rules: [{ [H]: d, rules: [{ conditions: [{ [I]: f, [J]: ["aws-us-gov", { [I]: m, [J]: [A, "name"] }] }], endpoint: C, [H]: j }, { endpoint: { url: "https://sts-fips.{Region}.{PartitionResult#dnsSuffix}", [L]: v, [M]: v }, [H]: j }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", [H]: l }] }, { conditions: F, [H]: d, rules: [{ conditions: [B], [H]: d, rules: [{ endpoint: { url: "https://sts.{Region}.{PartitionResult#dualStackDnsSuffix}", [L]: v, [M]: v }, [H]: j }] }, { error: "DualStack is enabled but this partition does not support DualStack", [H]: l }] }, { [H]: d, rules: [w, { endpoint: C, [H]: j }] }] }] };
+    var w = { "conditions": [{ [H]: e, [I]: [q, "aws-global"] }], [i]: u, [G]: i };
+    var x = { [H]: c, [I]: [s, true] };
+    var y = { [H]: c, [I]: [t, true] };
+    var z = { [H]: c, [I]: [true, { [H]: l, [I]: [{ [J]: "PartitionResult" }, "supportsFIPS"] }] };
+    var A = { [J]: "PartitionResult" };
+    var B = { [H]: c, [I]: [true, { [H]: l, [I]: [A, "supportsDualStack"] }] };
+    var C = [{ [H]: "isSet", [I]: [o] }];
+    var D = [x];
+    var E = [y];
+    var _data = { version: "1.0", parameters: { Region: m, UseDualStack: n, UseFIPS: n, Endpoint: m, UseGlobalEndpoint: n }, rules: [{ conditions: [{ [H]: c, [I]: [{ [J]: "UseGlobalEndpoint" }, b] }, { [H]: "not", [I]: C }, p, r, { [H]: c, [I]: [s, a] }, { [H]: c, [I]: [t, a] }], [G]: d, rules: [{ conditions: [{ [H]: e, [I]: [q, "ap-northeast-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "ap-south-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "ap-southeast-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "ap-southeast-2"] }], endpoint: u, [G]: i }, w, { conditions: [{ [H]: e, [I]: [q, "ca-central-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "eu-central-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "eu-north-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "eu-west-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "eu-west-2"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "eu-west-3"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "sa-east-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, h] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "us-east-2"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "us-west-1"] }], endpoint: u, [G]: i }, { conditions: [{ [H]: e, [I]: [q, "us-west-2"] }], endpoint: u, [G]: i }, { endpoint: { url: j, properties: { authSchemes: [{ name: f, signingName: g, signingRegion: "{Region}" }] }, headers: v }, [G]: i }] }, { conditions: C, [G]: d, rules: [{ conditions: D, error: "Invalid Configuration: FIPS and custom endpoint are not supported", [G]: k }, { [G]: d, rules: [{ conditions: E, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", [G]: k }, { endpoint: { url: o, properties: v, headers: v }, [G]: i }] }] }, { [G]: d, rules: [{ conditions: [p], [G]: d, rules: [{ conditions: [r], [G]: d, rules: [{ conditions: [x, y], [G]: d, rules: [{ conditions: [z, B], [G]: d, rules: [{ [G]: d, rules: [{ endpoint: { url: "https://sts-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: v, headers: v }, [G]: i }] }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", [G]: k }] }, { conditions: D, [G]: d, rules: [{ conditions: [z], [G]: d, rules: [{ [G]: d, rules: [{ conditions: [{ [H]: e, [I]: ["aws-us-gov", { [H]: l, [I]: [A, "name"] }] }], endpoint: { url: "https://sts.{Region}.amazonaws.com", properties: v, headers: v }, [G]: i }, { endpoint: { url: "https://sts-fips.{Region}.{PartitionResult#dnsSuffix}", properties: v, headers: v }, [G]: i }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", [G]: k }] }, { conditions: E, [G]: d, rules: [{ conditions: [B], [G]: d, rules: [{ [G]: d, rules: [{ endpoint: { url: "https://sts.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: v, headers: v }, [G]: i }] }] }, { error: "DualStack is enabled but this partition does not support DualStack", [G]: k }] }, { [G]: d, rules: [w, { endpoint: { url: j, properties: v, headers: v }, [G]: i }] }] }] }, { error: "Invalid Configuration: Missing Region", [G]: k }] }] };
     exports.ruleSet = _data;
   }
 });
@@ -63079,7 +63104,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -63099,39 +63124,39 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.328.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.328.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-signing": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-signing": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
-        "@aws-sdk/util-waiter": "3.310.0",
+        "@aws-sdk/util-waiter": "3.329.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
       },
@@ -65809,7 +65834,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.328.0",
+      version: "3.329.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -65829,37 +65854,37 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.328.0",
-        "@aws-sdk/config-resolver": "3.310.0",
-        "@aws-sdk/credential-provider-node": "3.328.0",
-        "@aws-sdk/fetch-http-handler": "3.310.0",
-        "@aws-sdk/hash-node": "3.310.0",
-        "@aws-sdk/invalid-dependency": "3.310.0",
-        "@aws-sdk/middleware-content-length": "3.325.0",
-        "@aws-sdk/middleware-endpoint": "3.325.0",
-        "@aws-sdk/middleware-host-header": "3.325.0",
-        "@aws-sdk/middleware-logger": "3.325.0",
-        "@aws-sdk/middleware-recursion-detection": "3.325.0",
-        "@aws-sdk/middleware-retry": "3.327.0",
-        "@aws-sdk/middleware-serde": "3.325.0",
-        "@aws-sdk/middleware-signing": "3.325.0",
-        "@aws-sdk/middleware-stack": "3.325.0",
-        "@aws-sdk/middleware-user-agent": "3.327.0",
-        "@aws-sdk/node-config-provider": "3.310.0",
-        "@aws-sdk/node-http-handler": "3.328.0",
-        "@aws-sdk/protocol-http": "3.310.0",
-        "@aws-sdk/smithy-client": "3.325.0",
-        "@aws-sdk/types": "3.310.0",
-        "@aws-sdk/url-parser": "3.310.0",
+        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/config-resolver": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/fetch-http-handler": "3.329.0",
+        "@aws-sdk/hash-node": "3.329.0",
+        "@aws-sdk/invalid-dependency": "3.329.0",
+        "@aws-sdk/middleware-content-length": "3.329.0",
+        "@aws-sdk/middleware-endpoint": "3.329.0",
+        "@aws-sdk/middleware-host-header": "3.329.0",
+        "@aws-sdk/middleware-logger": "3.329.0",
+        "@aws-sdk/middleware-recursion-detection": "3.329.0",
+        "@aws-sdk/middleware-retry": "3.329.0",
+        "@aws-sdk/middleware-serde": "3.329.0",
+        "@aws-sdk/middleware-signing": "3.329.0",
+        "@aws-sdk/middleware-stack": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/node-config-provider": "3.329.0",
+        "@aws-sdk/node-http-handler": "3.329.0",
+        "@aws-sdk/protocol-http": "3.329.0",
+        "@aws-sdk/smithy-client": "3.329.0",
+        "@aws-sdk/types": "3.329.0",
+        "@aws-sdk/url-parser": "3.329.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.325.0",
-        "@aws-sdk/util-defaults-mode-node": "3.325.0",
-        "@aws-sdk/util-endpoints": "3.327.0",
-        "@aws-sdk/util-retry": "3.327.0",
-        "@aws-sdk/util-user-agent-browser": "3.310.0",
-        "@aws-sdk/util-user-agent-node": "3.310.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
+        "@aws-sdk/util-defaults-mode-node": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-retry": "3.329.0",
+        "@aws-sdk/util-user-agent-browser": "3.329.0",
+        "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
