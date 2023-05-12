@@ -26,7 +26,7 @@ export interface AppInstanceUserProps {
    */
   readonly appInstanceArn: string;
   /**
-   * The name of the app instance.
+   * The id of the app instance user.
    *
    * @default - None
    */

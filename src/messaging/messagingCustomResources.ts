@@ -23,6 +23,7 @@ export interface MessagingResourceProps extends ResourceProps {
     | 'AppInstance'
     | 'ChannelFlow'
     | 'AppInstanceUser'
+    | 'AppInstanceBot'
     | 'AppInstanceAdmin'
     | 'DataRetention'
     | 'StreamingConfig'

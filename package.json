@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-chime": "^3.332.0",
+    "@aws-sdk/client-chime-sdk-identity": "latest",
     "@aws-sdk/client-chime-sdk-media-pipelines": "latest",
     "@aws-sdk/client-chime-sdk-messaging": "latest",
     "@aws-sdk/client-chime-sdk-voice": "latest",
@@ -81,6 +82,7 @@
   },
   "bundledDependencies": [
     "@aws-sdk/client-chime",
+    "@aws-sdk/client-chime-sdk-identity",
     "@aws-sdk/client-chime-sdk-media-pipelines",
     "@aws-sdk/client-chime-sdk-messaging",
     "@aws-sdk/client-chime-sdk-voice",
