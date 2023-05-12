@@ -6683,7 +6683,7 @@ var require_resolveEndpoint = __commonJS({
       var _a, _b, _c, _d, _e, _f;
       const { endpointParams, logger } = options;
       const { parameters, rules } = ruleSetObject;
-      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, debug_1.debugId, `Initial EndpointParams: ${(0, debug_1.toDebugString)(endpointParams)}`);
+      (_b = (_a = options.logger) === null || _a === void 0 ? void 0 : _a.debug) === null || _b === void 0 ? void 0 : _b.call(_a, `${debug_1.debugId} Initial EndpointParams: ${(0, debug_1.toDebugString)(endpointParams)}`);
       const paramsWithDefault = Object.entries(parameters).filter(([, v]) => v.default != null).map(([k, v]) => [k, v.default]);
       if (paramsWithDefault.length > 0) {
         for (const [paramKey, paramDefaultValue] of paramsWithDefault) {
@@ -6706,7 +6706,7 @@ var require_resolveEndpoint = __commonJS({
         } catch (e) {
         }
       }
-      (_f = (_e = options.logger) === null || _e === void 0 ? void 0 : _e.debug) === null || _f === void 0 ? void 0 : _f.call(_e, debug_1.debugId, `Resolved endpoint: ${(0, debug_1.toDebugString)(endpoint)}`);
+      (_f = (_e = options.logger) === null || _e === void 0 ? void 0 : _e.debug) === null || _f === void 0 ? void 0 : _f.call(_e, `${debug_1.debugId} Resolved endpoint: ${(0, debug_1.toDebugString)(endpoint)}`);
       return endpoint;
     };
     exports.resolveEndpoint = resolveEndpoint;
@@ -6836,7 +6836,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6856,9 +6856,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/client-sts": "3.332.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.332.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -6871,7 +6871,7 @@ var require_package = __commonJS({
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-signing": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -6883,7 +6883,7 @@ var require_package = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
@@ -10141,7 +10141,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10164,7 +10164,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.332.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -10178,7 +10178,7 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-signing": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -10190,7 +10190,7 @@ var require_package2 = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
@@ -12105,7 +12105,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12137,7 +12137,7 @@ var require_package3 = __commonJS({
         "@aws-sdk/middleware-retry": "3.329.0",
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -12149,7 +12149,7 @@ var require_package3 = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
@@ -14273,7 +14273,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14305,7 +14305,7 @@ var require_package4 = __commonJS({
         "@aws-sdk/middleware-retry": "3.329.0",
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -14317,7 +14317,7 @@ var require_package4 = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
@@ -63104,7 +63104,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -63124,9 +63124,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/client-sts": "3.332.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.332.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -63139,7 +63139,7 @@ var require_package5 = __commonJS({
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-signing": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -63151,7 +63151,7 @@ var require_package5 = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
@@ -65834,7 +65834,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.329.0",
+      version: "3.332.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -65854,9 +65854,9 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.329.0",
+        "@aws-sdk/client-sts": "3.332.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.329.0",
+        "@aws-sdk/credential-provider-node": "3.332.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -65869,7 +65869,7 @@ var require_package6 = __commonJS({
         "@aws-sdk/middleware-serde": "3.329.0",
         "@aws-sdk/middleware-signing": "3.329.0",
         "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.329.0",
+        "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
         "@aws-sdk/protocol-http": "3.329.0",
@@ -65881,7 +65881,7 @@ var require_package6 = __commonJS({
         "@aws-sdk/util-body-length-node": "3.310.0",
         "@aws-sdk/util-defaults-mode-browser": "3.329.0",
         "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.329.0",
+        "@aws-sdk/util-endpoints": "3.332.0",
         "@aws-sdk/util-retry": "3.329.0",
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
