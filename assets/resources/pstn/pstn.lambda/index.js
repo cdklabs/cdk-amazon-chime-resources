@@ -6864,7 +6864,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.332.0",
+      version: "3.335.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6884,9 +6884,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.332.0",
+        "@aws-sdk/client-sts": "3.335.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.332.0",
+        "@aws-sdk/credential-provider-node": "3.335.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -6902,7 +6902,6 @@ var require_package = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/protocol-http": "3.329.0",
         "@aws-sdk/smithy-client": "3.329.0",
         "@aws-sdk/types": "3.329.0",
         "@aws-sdk/url-parser": "3.329.0",
@@ -6916,6 +6915,8 @@ var require_package = __commonJS({
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
+        "@smithy/protocol-http": "^1.0.1",
+        "@smithy/types": "^1.0.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
@@ -6959,6 +6960,361 @@ var require_package = __commonJS({
         directory: "clients/client-chime-sdk-voice"
       }
     };
+  }
+});
+
+// node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js
+var require_STSServiceException = __commonJS({
+  "node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.STSServiceException = void 0;
+    var smithy_client_1 = require_dist_cjs2();
+    var STSServiceException = class extends smithy_client_1.ServiceException {
+      constructor(options) {
+        super(options);
+        Object.setPrototypeOf(this, STSServiceException.prototype);
+      }
+    };
+    exports.STSServiceException = STSServiceException;
+  }
+});
+
+// node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js
+var require_models_0 = __commonJS({
+  "node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.GetSessionTokenResponseFilterSensitiveLog = exports.GetFederationTokenResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = exports.AssumeRoleResponseFilterSensitiveLog = exports.CredentialsFilterSensitiveLog = exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
+    var smithy_client_1 = require_dist_cjs2();
+    var STSServiceException_1 = require_STSServiceException();
+    var ExpiredTokenException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "ExpiredTokenException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "ExpiredTokenException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, ExpiredTokenException.prototype);
+      }
+    };
+    exports.ExpiredTokenException = ExpiredTokenException;
+    var MalformedPolicyDocumentException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "MalformedPolicyDocumentException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "MalformedPolicyDocumentException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, MalformedPolicyDocumentException.prototype);
+      }
+    };
+    exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
+    var PackedPolicyTooLargeException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "PackedPolicyTooLargeException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "PackedPolicyTooLargeException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, PackedPolicyTooLargeException.prototype);
+      }
+    };
+    exports.PackedPolicyTooLargeException = PackedPolicyTooLargeException;
+    var RegionDisabledException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "RegionDisabledException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "RegionDisabledException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, RegionDisabledException.prototype);
+      }
+    };
+    exports.RegionDisabledException = RegionDisabledException;
+    var IDPRejectedClaimException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "IDPRejectedClaimException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "IDPRejectedClaimException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, IDPRejectedClaimException.prototype);
+      }
+    };
+    exports.IDPRejectedClaimException = IDPRejectedClaimException;
+    var InvalidIdentityTokenException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "InvalidIdentityTokenException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "InvalidIdentityTokenException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, InvalidIdentityTokenException.prototype);
+      }
+    };
+    exports.InvalidIdentityTokenException = InvalidIdentityTokenException;
+    var IDPCommunicationErrorException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "IDPCommunicationErrorException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "IDPCommunicationErrorException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, IDPCommunicationErrorException.prototype);
+      }
+    };
+    exports.IDPCommunicationErrorException = IDPCommunicationErrorException;
+    var InvalidAuthorizationMessageException = class extends STSServiceException_1.STSServiceException {
+      constructor(opts) {
+        super({
+          name: "InvalidAuthorizationMessageException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "InvalidAuthorizationMessageException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, InvalidAuthorizationMessageException.prototype);
+      }
+    };
+    exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageException;
+    var CredentialsFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.SecretAccessKey && { SecretAccessKey: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.CredentialsFilterSensitiveLog = CredentialsFilterSensitiveLog;
+    var AssumeRoleResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Credentials && { Credentials: (0, exports.CredentialsFilterSensitiveLog)(obj.Credentials) }
+    });
+    exports.AssumeRoleResponseFilterSensitiveLog = AssumeRoleResponseFilterSensitiveLog;
+    var AssumeRoleWithSAMLRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.SAMLAssertion && { SAMLAssertion: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = AssumeRoleWithSAMLRequestFilterSensitiveLog;
+    var AssumeRoleWithSAMLResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Credentials && { Credentials: (0, exports.CredentialsFilterSensitiveLog)(obj.Credentials) }
+    });
+    exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = AssumeRoleWithSAMLResponseFilterSensitiveLog;
+    var AssumeRoleWithWebIdentityRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.WebIdentityToken && { WebIdentityToken: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = AssumeRoleWithWebIdentityRequestFilterSensitiveLog;
+    var AssumeRoleWithWebIdentityResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Credentials && { Credentials: (0, exports.CredentialsFilterSensitiveLog)(obj.Credentials) }
+    });
+    exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = AssumeRoleWithWebIdentityResponseFilterSensitiveLog;
+    var GetFederationTokenResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Credentials && { Credentials: (0, exports.CredentialsFilterSensitiveLog)(obj.Credentials) }
+    });
+    exports.GetFederationTokenResponseFilterSensitiveLog = GetFederationTokenResponseFilterSensitiveLog;
+    var GetSessionTokenResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Credentials && { Credentials: (0, exports.CredentialsFilterSensitiveLog)(obj.Credentials) }
+    });
+    exports.GetSessionTokenResponseFilterSensitiveLog = GetSessionTokenResponseFilterSensitiveLog;
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/types.js
+var require_types4 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.FieldPosition = void 0;
+    var FieldPosition;
+    (function(FieldPosition2) {
+      FieldPosition2[FieldPosition2["HEADER"] = 0] = "HEADER";
+      FieldPosition2[FieldPosition2["TRAILER"] = 1] = "TRAILER";
+    })(FieldPosition = exports.FieldPosition || (exports.FieldPosition = {}));
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/Field.js
+var require_Field2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/Field.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Field = void 0;
+    var types_1 = require_types4();
+    var Field = class {
+      constructor({ name, kind = types_1.FieldPosition.HEADER, values = [] }) {
+        this.name = name;
+        this.kind = kind;
+        this.values = values;
+      }
+      add(value) {
+        this.values.push(value);
+      }
+      set(values) {
+        this.values = values;
+      }
+      remove(value) {
+        this.values = this.values.filter((v) => v !== value);
+      }
+      toString() {
+        return this.values.map((v) => v.includes(",") || v.includes(" ") ? `"${v}"` : v).join(", ");
+      }
+      get() {
+        return this.values;
+      }
+    };
+    exports.Field = Field;
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/Fields.js
+var require_Fields2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/Fields.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Fields = void 0;
+    var Fields = class {
+      constructor({ fields = [], encoding = "utf-8" }) {
+        this.entries = {};
+        fields.forEach(this.setField.bind(this));
+        this.encoding = encoding;
+      }
+      setField(field) {
+        this.entries[field.name.toLowerCase()] = field;
+      }
+      getField(name) {
+        return this.entries[name.toLowerCase()];
+      }
+      removeField(name) {
+        delete this.entries[name.toLowerCase()];
+      }
+      getByType(kind) {
+        return Object.values(this.entries).filter((field) => field.kind === kind);
+      }
+    };
+    exports.Fields = Fields;
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/httpHandler.js
+var require_httpHandler2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/httpHandler.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/httpRequest.js
+var require_httpRequest2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/httpRequest.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HttpRequest = void 0;
+    var HttpRequest = class {
+      constructor(options) {
+        this.method = options.method || "GET";
+        this.hostname = options.hostname || "localhost";
+        this.port = options.port;
+        this.query = options.query || {};
+        this.headers = options.headers || {};
+        this.body = options.body;
+        this.protocol = options.protocol ? options.protocol.slice(-1) !== ":" ? `${options.protocol}:` : options.protocol : "https:";
+        this.path = options.path ? options.path.charAt(0) !== "/" ? `/${options.path}` : options.path : "/";
+      }
+      static isInstance(request) {
+        if (!request)
+          return false;
+        const req = request;
+        return "method" in req && "protocol" in req && "hostname" in req && "path" in req && typeof req["query"] === "object" && typeof req["headers"] === "object";
+      }
+      clone() {
+        const cloned = new HttpRequest({
+          ...this,
+          headers: { ...this.headers }
+        });
+        if (cloned.query)
+          cloned.query = cloneQuery(cloned.query);
+        return cloned;
+      }
+    };
+    exports.HttpRequest = HttpRequest;
+    function cloneQuery(query) {
+      return Object.keys(query).reduce((carry, paramName) => {
+        const param = query[paramName];
+        return {
+          ...carry,
+          [paramName]: Array.isArray(param) ? [...param] : param
+        };
+      }, {});
+    }
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/httpResponse.js
+var require_httpResponse2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/httpResponse.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.HttpResponse = void 0;
+    var HttpResponse = class {
+      constructor(options) {
+        this.statusCode = options.statusCode;
+        this.headers = options.headers || {};
+        this.body = options.body;
+      }
+      static isInstance(response2) {
+        if (!response2)
+          return false;
+        const resp = response2;
+        return typeof resp.statusCode === "number" && typeof resp.headers === "object";
+      }
+    };
+    exports.HttpResponse = HttpResponse;
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/isValidHostname.js
+var require_isValidHostname2 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/isValidHostname.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isValidHostname = void 0;
+    function isValidHostname(hostname) {
+      const hostPattern = /^[a-z0-9][a-z0-9\.\-]*[a-z0-9]$/;
+      return hostPattern.test(hostname);
+    }
+    exports.isValidHostname = isValidHostname;
+  }
+});
+
+// node_modules/@smithy/protocol-http/dist-cjs/index.js
+var require_dist_cjs29 = __commonJS({
+  "node_modules/@smithy/protocol-http/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_Field2(), exports);
+    tslib_1.__exportStar(require_Fields2(), exports);
+    tslib_1.__exportStar(require_httpHandler2(), exports);
+    tslib_1.__exportStar(require_httpRequest2(), exports);
+    tslib_1.__exportStar(require_httpResponse2(), exports);
+    tslib_1.__exportStar(require_isValidHostname2(), exports);
+    tslib_1.__exportStar(require_types4(), exports);
   }
 });
 
@@ -8565,145 +8921,14 @@ var require_fxp = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js
-var require_STSServiceException = __commonJS({
-  "node_modules/@aws-sdk/client-sts/dist-cjs/models/STSServiceException.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.STSServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs2();
-    var STSServiceException = class extends smithy_client_1.ServiceException {
-      constructor(options) {
-        super(options);
-        Object.setPrototypeOf(this, STSServiceException.prototype);
-      }
-    };
-    exports.STSServiceException = STSServiceException;
-  }
-});
-
-// node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js
-var require_models_0 = __commonJS({
-  "node_modules/@aws-sdk/client-sts/dist-cjs/models/models_0.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
-    var STSServiceException_1 = require_STSServiceException();
-    var ExpiredTokenException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "ExpiredTokenException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ExpiredTokenException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, ExpiredTokenException.prototype);
-      }
-    };
-    exports.ExpiredTokenException = ExpiredTokenException;
-    var MalformedPolicyDocumentException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "MalformedPolicyDocumentException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "MalformedPolicyDocumentException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, MalformedPolicyDocumentException.prototype);
-      }
-    };
-    exports.MalformedPolicyDocumentException = MalformedPolicyDocumentException;
-    var PackedPolicyTooLargeException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "PackedPolicyTooLargeException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "PackedPolicyTooLargeException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, PackedPolicyTooLargeException.prototype);
-      }
-    };
-    exports.PackedPolicyTooLargeException = PackedPolicyTooLargeException;
-    var RegionDisabledException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "RegionDisabledException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "RegionDisabledException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, RegionDisabledException.prototype);
-      }
-    };
-    exports.RegionDisabledException = RegionDisabledException;
-    var IDPRejectedClaimException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "IDPRejectedClaimException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "IDPRejectedClaimException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, IDPRejectedClaimException.prototype);
-      }
-    };
-    exports.IDPRejectedClaimException = IDPRejectedClaimException;
-    var InvalidIdentityTokenException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "InvalidIdentityTokenException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "InvalidIdentityTokenException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, InvalidIdentityTokenException.prototype);
-      }
-    };
-    exports.InvalidIdentityTokenException = InvalidIdentityTokenException;
-    var IDPCommunicationErrorException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "IDPCommunicationErrorException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "IDPCommunicationErrorException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, IDPCommunicationErrorException.prototype);
-      }
-    };
-    exports.IDPCommunicationErrorException = IDPCommunicationErrorException;
-    var InvalidAuthorizationMessageException = class extends STSServiceException_1.STSServiceException {
-      constructor(opts) {
-        super({
-          name: "InvalidAuthorizationMessageException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "InvalidAuthorizationMessageException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, InvalidAuthorizationMessageException.prototype);
-      }
-    };
-    exports.InvalidAuthorizationMessageException = InvalidAuthorizationMessageException;
-  }
-});
-
 // node_modules/@aws-sdk/client-sts/dist-cjs/protocols/Aws_query.js
 var require_Aws_query = __commonJS({
   "node_modules/@aws-sdk/client-sts/dist-cjs/protocols/Aws_query.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_GetSessionTokenCommand = exports.de_GetFederationTokenCommand = exports.de_GetCallerIdentityCommand = exports.de_GetAccessKeyInfoCommand = exports.de_DecodeAuthorizationMessageCommand = exports.de_AssumeRoleWithWebIdentityCommand = exports.de_AssumeRoleWithSAMLCommand = exports.de_AssumeRoleCommand = exports.se_GetSessionTokenCommand = exports.se_GetFederationTokenCommand = exports.se_GetCallerIdentityCommand = exports.se_GetAccessKeyInfoCommand = exports.se_DecodeAuthorizationMessageCommand = exports.se_AssumeRoleWithWebIdentityCommand = exports.se_AssumeRoleWithSAMLCommand = exports.se_AssumeRoleCommand = void 0;
-    var protocol_http_1 = require_dist_cjs6();
     var smithy_client_1 = require_dist_cjs2();
+    var protocol_http_1 = require_dist_cjs29();
     var fast_xml_parser_1 = require_fxp();
     var models_0_1 = require_models_0();
     var STSServiceException_1 = require_STSServiceException();
@@ -9709,6 +9934,7 @@ var require_AssumeRoleCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs10();
     var middleware_signing_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs2();
+    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9737,7 +9963,7 @@ var require_AssumeRoleCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
+          outputFilterSensitiveLog: models_0_1.AssumeRoleResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9762,6 +9988,7 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs11();
     var middleware_serde_1 = require_dist_cjs10();
     var smithy_client_1 = require_dist_cjs2();
+    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithSAMLCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9788,8 +10015,8 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.AssumeRoleWithSAMLResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -9814,6 +10041,7 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs11();
     var middleware_serde_1 = require_dist_cjs10();
     var smithy_client_1 = require_dist_cjs2();
+    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var AssumeRoleWithWebIdentityCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -9840,8 +10068,8 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.AssumeRoleWithWebIdentityResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10029,6 +10257,7 @@ var require_GetFederationTokenCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs10();
     var middleware_signing_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs2();
+    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetFederationTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -10057,7 +10286,7 @@ var require_GetFederationTokenCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
+          outputFilterSensitiveLog: models_0_1.GetFederationTokenResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10083,6 +10312,7 @@ var require_GetSessionTokenCommand = __commonJS({
     var middleware_serde_1 = require_dist_cjs10();
     var middleware_signing_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs2();
+    var models_0_1 = require_models_0();
     var Aws_query_1 = require_Aws_query();
     var GetSessionTokenCommand = class extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -10111,7 +10341,7 @@ var require_GetSessionTokenCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
+          outputFilterSensitiveLog: models_0_1.GetSessionTokenResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -10128,7 +10358,7 @@ var require_GetSessionTokenCommand = __commonJS({
 });
 
 // node_modules/@aws-sdk/middleware-sdk-sts/dist-cjs/index.js
-var require_dist_cjs29 = __commonJS({
+var require_dist_cjs30 = __commonJS({
   "node_modules/@aws-sdk/middleware-sdk-sts/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10167,7 +10397,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.332.0",
+      version: "3.335.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10190,7 +10420,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.332.0",
+        "@aws-sdk/credential-provider-node": "3.335.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -10207,7 +10437,6 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/protocol-http": "3.329.0",
         "@aws-sdk/smithy-client": "3.329.0",
         "@aws-sdk/types": "3.329.0",
         "@aws-sdk/url-parser": "3.329.0",
@@ -10221,6 +10450,8 @@ var require_package2 = __commonJS({
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
+        "@smithy/protocol-http": "^1.0.1",
+        "@smithy/types": "^1.0.0",
         "fast-xml-parser": "4.1.2",
         tslib: "^2.5.0"
       },
@@ -10380,7 +10611,7 @@ var require_fromEnv = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-env/dist-cjs/index.js
-var require_dist_cjs30 = __commonJS({
+var require_dist_cjs31 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-env/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10662,7 +10893,7 @@ var require_parseKnownFiles = __commonJS({
 });
 
 // node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/types.js
-var require_types4 = __commonJS({
+var require_types5 = __commonJS({
   "node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/types.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10670,7 +10901,7 @@ var require_types4 = __commonJS({
 });
 
 // node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/index.js
-var require_dist_cjs31 = __commonJS({
+var require_dist_cjs32 = __commonJS({
   "node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10682,12 +10913,12 @@ var require_dist_cjs31 = __commonJS({
     tslib_1.__exportStar(require_loadSharedConfigFiles(), exports);
     tslib_1.__exportStar(require_loadSsoSessionData(), exports);
     tslib_1.__exportStar(require_parseKnownFiles(), exports);
-    tslib_1.__exportStar(require_types4(), exports);
+    tslib_1.__exportStar(require_types5(), exports);
   }
 });
 
 // node_modules/@aws-sdk/credential-provider-imds/dist-cjs/remoteProvider/httpRequest.js
-var require_httpRequest2 = __commonJS({
+var require_httpRequest3 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-imds/dist-cjs/remoteProvider/httpRequest.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10789,7 +11020,7 @@ var require_fromContainerMetadata = __commonJS({
     exports.fromContainerMetadata = exports.ENV_CMDS_AUTH_TOKEN = exports.ENV_CMDS_RELATIVE_URI = exports.ENV_CMDS_FULL_URI = void 0;
     var property_provider_1 = require_dist_cjs18();
     var url_1 = require("url");
-    var httpRequest_1 = require_httpRequest2();
+    var httpRequest_1 = require_httpRequest3();
     var ImdsCredentials_1 = require_ImdsCredentials();
     var RemoteProviderInit_1 = require_RemoteProviderInit();
     var retry_1 = require_retry2();
@@ -10884,7 +11115,7 @@ var require_fromSharedConfigFiles = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSharedConfigFiles = void 0;
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var fromSharedConfigFiles = (configSelector, { preferredFile = "config", ...init } = {}) => async () => {
       const profile = (0, shared_ini_file_loader_1.getProfileName)(init);
       const { configFile, credentialsFile } = await (0, shared_ini_file_loader_1.loadSharedConfigFiles)(init);
@@ -10934,7 +11165,7 @@ var require_configLoader = __commonJS({
 });
 
 // node_modules/@aws-sdk/node-config-provider/dist-cjs/index.js
-var require_dist_cjs32 = __commonJS({
+var require_dist_cjs33 = __commonJS({
   "node_modules/@aws-sdk/node-config-provider/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -11010,7 +11241,7 @@ var require_getInstanceMetadataEndpoint = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getInstanceMetadataEndpoint = void 0;
-    var node_config_provider_1 = require_dist_cjs32();
+    var node_config_provider_1 = require_dist_cjs33();
     var url_parser_1 = require_dist_cjs9();
     var Endpoint_1 = require_Endpoint();
     var EndpointConfigOptions_1 = require_EndpointConfigOptions();
@@ -11098,7 +11329,7 @@ var require_fromInstanceMetadata = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromInstanceMetadata = void 0;
     var property_provider_1 = require_dist_cjs18();
-    var httpRequest_1 = require_httpRequest2();
+    var httpRequest_1 = require_httpRequest3();
     var ImdsCredentials_1 = require_ImdsCredentials();
     var RemoteProviderInit_1 = require_RemoteProviderInit();
     var retry_1 = require_retry2();
@@ -11188,7 +11419,7 @@ var require_fromInstanceMetadata = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-imds/dist-cjs/types.js
-var require_types5 = __commonJS({
+var require_types6 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-imds/dist-cjs/types.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -11196,7 +11427,7 @@ var require_types5 = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-imds/dist-cjs/index.js
-var require_dist_cjs33 = __commonJS({
+var require_dist_cjs34 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-imds/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -11205,8 +11436,8 @@ var require_dist_cjs33 = __commonJS({
     tslib_1.__exportStar(require_fromContainerMetadata(), exports);
     tslib_1.__exportStar(require_fromInstanceMetadata(), exports);
     tslib_1.__exportStar(require_RemoteProviderInit(), exports);
-    tslib_1.__exportStar(require_types5(), exports);
-    var httpRequest_1 = require_httpRequest2();
+    tslib_1.__exportStar(require_types6(), exports);
+    var httpRequest_1 = require_httpRequest3();
     Object.defineProperty(exports, "httpRequest", { enumerable: true, get: function() {
       return httpRequest_1.httpRequest;
     } });
@@ -11223,8 +11454,8 @@ var require_resolveCredentialSource = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveCredentialSource = void 0;
-    var credential_provider_env_1 = require_dist_cjs30();
-    var credential_provider_imds_1 = require_dist_cjs33();
+    var credential_provider_env_1 = require_dist_cjs31();
+    var credential_provider_imds_1 = require_dist_cjs34();
     var property_provider_1 = require_dist_cjs18();
     var resolveCredentialSource = (credentialSource, profileName) => {
       const sourceProvidersMap = {
@@ -11249,7 +11480,7 @@ var require_resolveAssumeRoleCredentials = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveAssumeRoleCredentials = exports.isAssumeRoleProfile = void 0;
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var resolveCredentialSource_1 = require_resolveCredentialSource();
     var resolveProfileData_1 = require_resolveProfileData();
     var isAssumeRoleProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.role_arn === "string" && ["undefined", "string"].indexOf(typeof arg.role_session_name) > -1 && ["undefined", "string"].indexOf(typeof arg.external_id) > -1 && ["undefined", "string"].indexOf(typeof arg.mfa_serial) > -1 && (isAssumeRoleWithSourceProfile(arg) || isAssumeRoleWithProviderProfile(arg));
@@ -11365,7 +11596,7 @@ var require_fromProcess = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromProcess = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var resolveProcessCredentials_1 = require_resolveProcessCredentials();
     var fromProcess = (init = {}) => async () => {
       const profiles = await (0, shared_ini_file_loader_1.parseKnownFiles)(init);
@@ -11376,7 +11607,7 @@ var require_fromProcess = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-process/dist-cjs/index.js
-var require_dist_cjs34 = __commonJS({
+var require_dist_cjs35 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-process/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -11391,7 +11622,7 @@ var require_resolveProcessCredentials2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveProcessCredentials = exports.isProcessProfile = void 0;
-    var credential_provider_process_1 = require_dist_cjs34();
+    var credential_provider_process_1 = require_dist_cjs35();
     var isProcessProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.credential_process === "string";
     exports.isProcessProfile = isProcessProfile;
     var resolveProcessCredentials = async (options, profile) => (0, credential_provider_process_1.fromProcess)({
@@ -11530,8 +11761,8 @@ var require_Aws_restJson1 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_LogoutCommand = exports.de_ListAccountsCommand = exports.de_ListAccountRolesCommand = exports.de_GetRoleCredentialsCommand = exports.se_LogoutCommand = exports.se_ListAccountsCommand = exports.se_ListAccountRolesCommand = exports.se_GetRoleCredentialsCommand = void 0;
-    var protocol_http_1 = require_dist_cjs6();
     var smithy_client_1 = require_dist_cjs2();
+    var protocol_http_1 = require_dist_cjs29();
     var models_0_1 = require_models_02();
     var SSOServiceException_1 = require_SSOServiceException();
     var se_GetRoleCredentialsCommand = async (input, context) => {
@@ -12131,7 +12362,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.332.0",
+      version: "3.335.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12166,7 +12397,6 @@ var require_package3 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/protocol-http": "3.329.0",
         "@aws-sdk/smithy-client": "3.329.0",
         "@aws-sdk/types": "3.329.0",
         "@aws-sdk/url-parser": "3.329.0",
@@ -12180,6 +12410,8 @@ var require_package3 = __commonJS({
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
+        "@smithy/protocol-http": "^1.0.1",
+        "@smithy/types": "^1.0.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
@@ -12227,7 +12459,7 @@ var require_package3 = __commonJS({
 });
 
 // node_modules/@aws-sdk/hash-node/dist-cjs/index.js
-var require_dist_cjs35 = __commonJS({
+var require_dist_cjs36 = __commonJS({
   "node_modules/@aws-sdk/hash-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12269,7 +12501,7 @@ var require_dist_cjs35 = __commonJS({
 });
 
 // node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js
-var require_dist_cjs36 = __commonJS({
+var require_dist_cjs37 = __commonJS({
   "node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12425,7 +12657,7 @@ var require_node_http_handler = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeHttpHandler = exports.DEFAULT_REQUEST_TIMEOUT = void 0;
     var protocol_http_1 = require_dist_cjs6();
-    var querystring_builder_1 = require_dist_cjs36();
+    var querystring_builder_1 = require_dist_cjs37();
     var http_1 = require("http");
     var https_1 = require("https");
     var constants_1 = require_constants6();
@@ -12673,7 +12905,7 @@ var require_node_http2_handler = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeHttp2Handler = void 0;
     var protocol_http_1 = require_dist_cjs6();
-    var querystring_builder_1 = require_dist_cjs36();
+    var querystring_builder_1 = require_dist_cjs37();
     var http2_1 = require("http2");
     var get_transformed_headers_1 = require_get_transformed_headers();
     var node_http2_connection_manager_1 = require_node_http2_connection_manager();
@@ -12839,7 +13071,7 @@ var require_stream_collector = __commonJS({
 });
 
 // node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js
-var require_dist_cjs37 = __commonJS({
+var require_dist_cjs38 = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12879,7 +13111,7 @@ var require_calculateBodyLength = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-body-length-node/dist-cjs/index.js
-var require_dist_cjs38 = __commonJS({
+var require_dist_cjs39 = __commonJS({
   "node_modules/@aws-sdk/util-body-length-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12909,12 +13141,12 @@ var require_is_crt_available = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-user-agent-node/dist-cjs/index.js
-var require_dist_cjs39 = __commonJS({
+var require_dist_cjs40 = __commonJS({
   "node_modules/@aws-sdk/util-user-agent-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultUserAgent = exports.UA_APP_ID_INI_NAME = exports.UA_APP_ID_ENV_NAME = void 0;
-    var node_config_provider_1 = require_dist_cjs32();
+    var node_config_provider_1 = require_dist_cjs33();
     var os_1 = require("os");
     var process_1 = require("process");
     var is_crt_available_1 = require_is_crt_available();
@@ -12990,7 +13222,7 @@ var require_toBase64 = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-base64/dist-cjs/index.js
-var require_dist_cjs40 = __commonJS({
+var require_dist_cjs41 = __commonJS({
   "node_modules/@aws-sdk/util-base64/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13056,7 +13288,7 @@ var require_runtimeConfig_shared = __commonJS({
     exports.getRuntimeConfig = void 0;
     var smithy_client_1 = require_dist_cjs2();
     var url_parser_1 = require_dist_cjs9();
-    var util_base64_1 = require_dist_cjs40();
+    var util_base64_1 = require_dist_cjs41();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver();
     var getRuntimeConfig = (config) => ({
@@ -13117,8 +13349,8 @@ var require_resolveDefaultsModeConfig = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveDefaultsModeConfig = void 0;
     var config_resolver_1 = require_dist_cjs5();
-    var credential_provider_imds_1 = require_dist_cjs33();
-    var node_config_provider_1 = require_dist_cjs32();
+    var credential_provider_imds_1 = require_dist_cjs34();
+    var node_config_provider_1 = require_dist_cjs33();
     var property_provider_1 = require_dist_cjs18();
     var constants_1 = require_constants7();
     var defaultsModeConfig_1 = require_defaultsModeConfig();
@@ -13172,7 +13404,7 @@ var require_resolveDefaultsModeConfig = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-defaults-mode-node/dist-cjs/index.js
-var require_dist_cjs41 = __commonJS({
+var require_dist_cjs42 = __commonJS({
   "node_modules/@aws-sdk/util-defaults-mode-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13190,16 +13422,16 @@ var require_runtimeConfig = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package3());
     var config_resolver_1 = require_dist_cjs5();
-    var hash_node_1 = require_dist_cjs35();
+    var hash_node_1 = require_dist_cjs36();
     var middleware_retry_1 = require_dist_cjs17();
-    var node_config_provider_1 = require_dist_cjs32();
-    var node_http_handler_1 = require_dist_cjs37();
-    var util_body_length_node_1 = require_dist_cjs38();
+    var node_config_provider_1 = require_dist_cjs33();
+    var node_http_handler_1 = require_dist_cjs38();
+    var util_body_length_node_1 = require_dist_cjs39();
     var util_retry_1 = require_dist_cjs16();
-    var util_user_agent_node_1 = require_dist_cjs39();
+    var util_user_agent_node_1 = require_dist_cjs40();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared();
     var smithy_client_1 = require_dist_cjs2();
-    var util_defaults_mode_node_1 = require_dist_cjs41();
+    var util_defaults_mode_node_1 = require_dist_cjs42();
     var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
@@ -13410,7 +13642,7 @@ var require_pagination2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sso/dist-cjs/index.js
-var require_dist_cjs42 = __commonJS({
+var require_dist_cjs43 = __commonJS({
   "node_modules/@aws-sdk/client-sso/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13652,8 +13884,8 @@ var require_Aws_restJson12 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_StartDeviceAuthorizationCommand = exports.de_RegisterClientCommand = exports.de_CreateTokenCommand = exports.se_StartDeviceAuthorizationCommand = exports.se_RegisterClientCommand = exports.se_CreateTokenCommand = void 0;
-    var protocol_http_1 = require_dist_cjs6();
     var smithy_client_1 = require_dist_cjs2();
+    var protocol_http_1 = require_dist_cjs29();
     var models_0_1 = require_models_03();
     var SSOOIDCServiceException_1 = require_SSOOIDCServiceException();
     var se_CreateTokenCommand = async (input, context) => {
@@ -14299,7 +14531,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.332.0",
+      version: "3.335.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14334,7 +14566,6 @@ var require_package4 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/protocol-http": "3.329.0",
         "@aws-sdk/smithy-client": "3.329.0",
         "@aws-sdk/types": "3.329.0",
         "@aws-sdk/url-parser": "3.329.0",
@@ -14348,6 +14579,8 @@ var require_package4 = __commonJS({
         "@aws-sdk/util-user-agent-browser": "3.329.0",
         "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
+        "@smithy/protocol-http": "^1.0.1",
+        "@smithy/types": "^1.0.0",
         tslib: "^2.5.0"
       },
       devDependencies: {
@@ -14450,7 +14683,7 @@ var require_runtimeConfig_shared2 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var smithy_client_1 = require_dist_cjs2();
     var url_parser_1 = require_dist_cjs9();
-    var util_base64_1 = require_dist_cjs40();
+    var util_base64_1 = require_dist_cjs41();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver2();
     var getRuntimeConfig = (config) => ({
@@ -14478,16 +14711,16 @@ var require_runtimeConfig2 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package4());
     var config_resolver_1 = require_dist_cjs5();
-    var hash_node_1 = require_dist_cjs35();
+    var hash_node_1 = require_dist_cjs36();
     var middleware_retry_1 = require_dist_cjs17();
-    var node_config_provider_1 = require_dist_cjs32();
-    var node_http_handler_1 = require_dist_cjs37();
-    var util_body_length_node_1 = require_dist_cjs38();
+    var node_config_provider_1 = require_dist_cjs33();
+    var node_http_handler_1 = require_dist_cjs38();
+    var util_body_length_node_1 = require_dist_cjs39();
     var util_retry_1 = require_dist_cjs16();
-    var util_user_agent_node_1 = require_dist_cjs39();
+    var util_user_agent_node_1 = require_dist_cjs40();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared2();
     var smithy_client_1 = require_dist_cjs2();
-    var util_defaults_mode_node_1 = require_dist_cjs41();
+    var util_defaults_mode_node_1 = require_dist_cjs42();
     var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
@@ -14607,7 +14840,7 @@ var require_models2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sso-oidc/dist-cjs/index.js
-var require_dist_cjs43 = __commonJS({
+var require_dist_cjs44 = __commonJS({
   "node_modules/@aws-sdk/client-sso-oidc/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -14630,7 +14863,7 @@ var require_getSsoOidcClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getSsoOidcClient = void 0;
-    var client_sso_oidc_1 = require_dist_cjs43();
+    var client_sso_oidc_1 = require_dist_cjs44();
     var ssoOidcClientsHash = {};
     var getSsoOidcClient = (ssoRegion) => {
       if (ssoOidcClientsHash[ssoRegion]) {
@@ -14650,7 +14883,7 @@ var require_getNewSsoOidcToken = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getNewSsoOidcToken = void 0;
-    var client_sso_oidc_1 = require_dist_cjs43();
+    var client_sso_oidc_1 = require_dist_cjs44();
     var getSsoOidcClient_1 = require_getSsoOidcClient();
     var getNewSsoOidcToken = (ssoToken, ssoRegion) => {
       const ssoOidcClient = (0, getSsoOidcClient_1.getSsoOidcClient)(ssoRegion);
@@ -14705,7 +14938,7 @@ var require_writeSSOTokenToFile = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.writeSSOTokenToFile = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var fs_1 = require("fs");
     var { writeFile } = fs_1.promises;
     var writeSSOTokenToFile = (id, ssoToken) => {
@@ -14724,7 +14957,7 @@ var require_fromSso = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSso = void 0;
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var constants_1 = require_constants8();
     var getNewSsoOidcToken_1 = require_getNewSsoOidcToken();
     var validateTokenExpiry_1 = require_validateTokenExpiry();
@@ -14834,7 +15067,7 @@ var require_nodeProvider = __commonJS({
 });
 
 // node_modules/@aws-sdk/token-providers/dist-cjs/index.js
-var require_dist_cjs44 = __commonJS({
+var require_dist_cjs45 = __commonJS({
   "node_modules/@aws-sdk/token-providers/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -14851,10 +15084,10 @@ var require_resolveSSOCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSSOCredentials = void 0;
-    var client_sso_1 = require_dist_cjs42();
+    var client_sso_1 = require_dist_cjs43();
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
-    var token_providers_1 = require_dist_cjs44();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
+    var token_providers_1 = require_dist_cjs45();
     var EXPIRE_WINDOW_MS = 15 * 60 * 1e3;
     var SHOULD_FAIL_CREDENTIAL_CHAIN = false;
     var resolveSSOCredentials = async ({ ssoStartUrl, ssoSession, ssoAccountId, ssoRegion, ssoRoleName, ssoClient, profile }) => {
@@ -14928,7 +15161,7 @@ var require_fromSSO = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSSO = void 0;
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var isSsoProfile_1 = require_isSsoProfile();
     var resolveSSOCredentials_1 = require_resolveSSOCredentials();
     var validateSsoProfile_1 = require_validateSsoProfile();
@@ -14986,7 +15219,7 @@ var require_fromSSO = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-sso/dist-cjs/types.js
-var require_types6 = __commonJS({
+var require_types7 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-sso/dist-cjs/types.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -14994,14 +15227,14 @@ var require_types6 = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-sso/dist-cjs/index.js
-var require_dist_cjs45 = __commonJS({
+var require_dist_cjs46 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-sso/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_fromSSO(), exports);
     tslib_1.__exportStar(require_isSsoProfile(), exports);
-    tslib_1.__exportStar(require_types6(), exports);
+    tslib_1.__exportStar(require_types7(), exports);
     tslib_1.__exportStar(require_validateSsoProfile(), exports);
   }
 });
@@ -15012,8 +15245,8 @@ var require_resolveSsoCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSsoCredentials = exports.isSsoProfile = void 0;
-    var credential_provider_sso_1 = require_dist_cjs45();
-    var credential_provider_sso_2 = require_dist_cjs45();
+    var credential_provider_sso_1 = require_dist_cjs46();
+    var credential_provider_sso_2 = require_dist_cjs46();
     Object.defineProperty(exports, "isSsoProfile", { enumerable: true, get: function() {
       return credential_provider_sso_2.isSsoProfile;
     } });
@@ -15109,7 +15342,7 @@ var require_fromTokenFile = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-web-identity/dist-cjs/index.js
-var require_dist_cjs46 = __commonJS({
+var require_dist_cjs47 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-web-identity/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -15125,7 +15358,7 @@ var require_resolveWebIdentityCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveWebIdentityCredentials = exports.isWebIdentityProfile = void 0;
-    var credential_provider_web_identity_1 = require_dist_cjs46();
+    var credential_provider_web_identity_1 = require_dist_cjs47();
     var isWebIdentityProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.web_identity_token_file === "string" && typeof arg.role_arn === "string" && ["undefined", "string"].indexOf(typeof arg.role_session_name) > -1;
     exports.isWebIdentityProfile = isWebIdentityProfile;
     var resolveWebIdentityCredentials = async (profile, options) => (0, credential_provider_web_identity_1.fromTokenFile)({
@@ -15182,7 +15415,7 @@ var require_fromIni = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromIni = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var resolveProfileData_1 = require_resolveProfileData();
     var fromIni = (init = {}) => async () => {
       const profiles = await (0, shared_ini_file_loader_1.parseKnownFiles)(init);
@@ -15193,7 +15426,7 @@ var require_fromIni = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-ini/dist-cjs/index.js
-var require_dist_cjs47 = __commonJS({
+var require_dist_cjs48 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-ini/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -15208,7 +15441,7 @@ var require_remoteProvider = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.remoteProvider = exports.ENV_IMDS_DISABLED = void 0;
-    var credential_provider_imds_1 = require_dist_cjs33();
+    var credential_provider_imds_1 = require_dist_cjs34();
     var property_provider_1 = require_dist_cjs18();
     exports.ENV_IMDS_DISABLED = "AWS_EC2_METADATA_DISABLED";
     var remoteProvider = (init) => {
@@ -15232,13 +15465,13 @@ var require_defaultProvider = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultProvider = void 0;
-    var credential_provider_env_1 = require_dist_cjs30();
-    var credential_provider_ini_1 = require_dist_cjs47();
-    var credential_provider_process_1 = require_dist_cjs34();
-    var credential_provider_sso_1 = require_dist_cjs45();
-    var credential_provider_web_identity_1 = require_dist_cjs46();
+    var credential_provider_env_1 = require_dist_cjs31();
+    var credential_provider_ini_1 = require_dist_cjs48();
+    var credential_provider_process_1 = require_dist_cjs35();
+    var credential_provider_sso_1 = require_dist_cjs46();
+    var credential_provider_web_identity_1 = require_dist_cjs47();
     var property_provider_1 = require_dist_cjs18();
-    var shared_ini_file_loader_1 = require_dist_cjs31();
+    var shared_ini_file_loader_1 = require_dist_cjs32();
     var remoteProvider_1 = require_remoteProvider();
     var defaultProvider = (init = {}) => (0, property_provider_1.memoize)((0, property_provider_1.chain)(...init.profile || process.env[shared_ini_file_loader_1.ENV_PROFILE] ? [] : [(0, credential_provider_env_1.fromEnv)()], (0, credential_provider_sso_1.fromSSO)(init), (0, credential_provider_ini_1.fromIni)(init), (0, credential_provider_process_1.fromProcess)(init), (0, credential_provider_web_identity_1.fromTokenFile)(init), (0, remoteProvider_1.remoteProvider)(init), async () => {
       throw new property_provider_1.CredentialsProviderError("Could not load credentials from any providers", false);
@@ -15248,7 +15481,7 @@ var require_defaultProvider = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-node/dist-cjs/index.js
-var require_dist_cjs48 = __commonJS({
+var require_dist_cjs49 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -15330,7 +15563,7 @@ var require_runtimeConfig_shared3 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var smithy_client_1 = require_dist_cjs2();
     var url_parser_1 = require_dist_cjs9();
-    var util_base64_1 = require_dist_cjs40();
+    var util_base64_1 = require_dist_cjs41();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver3();
     var getRuntimeConfig = (config) => ({
@@ -15359,17 +15592,17 @@ var require_runtimeConfig3 = __commonJS({
     var package_json_1 = tslib_1.__importDefault(require_package2());
     var defaultStsRoleAssumers_1 = require_defaultStsRoleAssumers();
     var config_resolver_1 = require_dist_cjs5();
-    var credential_provider_node_1 = require_dist_cjs48();
-    var hash_node_1 = require_dist_cjs35();
+    var credential_provider_node_1 = require_dist_cjs49();
+    var hash_node_1 = require_dist_cjs36();
     var middleware_retry_1 = require_dist_cjs17();
-    var node_config_provider_1 = require_dist_cjs32();
-    var node_http_handler_1 = require_dist_cjs37();
-    var util_body_length_node_1 = require_dist_cjs38();
+    var node_config_provider_1 = require_dist_cjs33();
+    var node_http_handler_1 = require_dist_cjs38();
+    var util_body_length_node_1 = require_dist_cjs39();
     var util_retry_1 = require_dist_cjs16();
-    var util_user_agent_node_1 = require_dist_cjs39();
+    var util_user_agent_node_1 = require_dist_cjs40();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared3();
     var smithy_client_1 = require_dist_cjs2();
-    var util_defaults_mode_node_1 = require_dist_cjs41();
+    var util_defaults_mode_node_1 = require_dist_cjs42();
     var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
@@ -15414,7 +15647,7 @@ var require_STSClient = __commonJS({
     var middleware_logger_1 = require_dist_cjs13();
     var middleware_recursion_detection_1 = require_dist_cjs14();
     var middleware_retry_1 = require_dist_cjs17();
-    var middleware_sdk_sts_1 = require_dist_cjs29();
+    var middleware_sdk_sts_1 = require_dist_cjs30();
     var middleware_user_agent_1 = require_dist_cjs28();
     var smithy_client_1 = require_dist_cjs2();
     var EndpointParameters_1 = require_EndpointParameters2();
@@ -15541,7 +15774,7 @@ var require_models3 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sts/dist-cjs/index.js
-var require_dist_cjs49 = __commonJS({
+var require_dist_cjs50 = __commonJS({
   "node_modules/@aws-sdk/client-sts/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -15616,7 +15849,7 @@ var require_runtimeConfig_shared4 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var smithy_client_1 = require_dist_cjs2();
     var url_parser_1 = require_dist_cjs9();
-    var util_base64_1 = require_dist_cjs40();
+    var util_base64_1 = require_dist_cjs41();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver4();
     var getRuntimeConfig = (config) => ({
@@ -15643,19 +15876,19 @@ var require_runtimeConfig4 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package());
-    var client_sts_1 = require_dist_cjs49();
+    var client_sts_1 = require_dist_cjs50();
     var config_resolver_1 = require_dist_cjs5();
-    var credential_provider_node_1 = require_dist_cjs48();
-    var hash_node_1 = require_dist_cjs35();
+    var credential_provider_node_1 = require_dist_cjs49();
+    var hash_node_1 = require_dist_cjs36();
     var middleware_retry_1 = require_dist_cjs17();
-    var node_config_provider_1 = require_dist_cjs32();
-    var node_http_handler_1 = require_dist_cjs37();
-    var util_body_length_node_1 = require_dist_cjs38();
+    var node_config_provider_1 = require_dist_cjs33();
+    var node_http_handler_1 = require_dist_cjs38();
+    var util_body_length_node_1 = require_dist_cjs39();
     var util_retry_1 = require_dist_cjs16();
-    var util_user_agent_node_1 = require_dist_cjs39();
+    var util_user_agent_node_1 = require_dist_cjs40();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared4();
     var smithy_client_1 = require_dist_cjs2();
-    var util_defaults_mode_node_1 = require_dist_cjs41();
+    var util_defaults_mode_node_1 = require_dist_cjs42();
     var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
@@ -16650,8 +16883,8 @@ var require_Aws_restJson13 = __commonJS({
     exports.de_CreateSipMediaApplicationCommand = exports.de_CreateProxySessionCommand = exports.de_CreatePhoneNumberOrderCommand = exports.de_BatchUpdatePhoneNumberCommand = exports.de_BatchDeletePhoneNumberCommand = exports.de_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.de_AssociatePhoneNumbersWithVoiceConnectorCommand = exports.se_ValidateE911AddressCommand = exports.se_UpdateVoiceProfileDomainCommand = exports.se_UpdateVoiceProfileCommand = exports.se_UpdateVoiceConnectorGroupCommand = exports.se_UpdateVoiceConnectorCommand = exports.se_UpdateSipRuleCommand = exports.se_UpdateSipMediaApplicationCallCommand = exports.se_UpdateSipMediaApplicationCommand = exports.se_UpdateProxySessionCommand = exports.se_UpdatePhoneNumberSettingsCommand = exports.se_UpdatePhoneNumberCommand = exports.se_UpdateGlobalSettingsCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_StopVoiceToneAnalysisTaskCommand = exports.se_StopSpeakerSearchTaskCommand = exports.se_StartVoiceToneAnalysisTaskCommand = exports.se_StartSpeakerSearchTaskCommand = exports.se_SearchAvailablePhoneNumbersCommand = exports.se_RestorePhoneNumberCommand = exports.se_PutVoiceConnectorTerminationCredentialsCommand = exports.se_PutVoiceConnectorTerminationCommand = exports.se_PutVoiceConnectorStreamingConfigurationCommand = exports.se_PutVoiceConnectorProxyCommand = exports.se_PutVoiceConnectorOriginationCommand = exports.se_PutVoiceConnectorLoggingConfigurationCommand = exports.se_PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.se_PutSipMediaApplicationLoggingConfigurationCommand = exports.se_PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.se_ListVoiceProfilesCommand = exports.se_ListVoiceProfileDomainsCommand = exports.se_ListVoiceConnectorTerminationCredentialsCommand = exports.se_ListVoiceConnectorsCommand = exports.se_ListVoiceConnectorGroupsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListSupportedPhoneNumberCountriesCommand = exports.se_ListSipRulesCommand = exports.se_ListSipMediaApplicationsCommand = exports.se_ListProxySessionsCommand = exports.se_ListPhoneNumbersCommand = exports.se_ListPhoneNumberOrdersCommand = exports.se_ListAvailableVoiceConnectorRegionsCommand = exports.se_GetVoiceToneAnalysisTaskCommand = void 0;
     exports.de_ListSipRulesCommand = exports.de_ListSipMediaApplicationsCommand = exports.de_ListProxySessionsCommand = exports.de_ListPhoneNumbersCommand = exports.de_ListPhoneNumberOrdersCommand = exports.de_ListAvailableVoiceConnectorRegionsCommand = exports.de_GetVoiceToneAnalysisTaskCommand = exports.de_GetVoiceProfileDomainCommand = exports.de_GetVoiceProfileCommand = exports.de_GetVoiceConnectorTerminationHealthCommand = exports.de_GetVoiceConnectorTerminationCommand = exports.de_GetVoiceConnectorStreamingConfigurationCommand = exports.de_GetVoiceConnectorProxyCommand = exports.de_GetVoiceConnectorOriginationCommand = exports.de_GetVoiceConnectorLoggingConfigurationCommand = exports.de_GetVoiceConnectorGroupCommand = exports.de_GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_GetVoiceConnectorCommand = exports.de_GetSpeakerSearchTaskCommand = exports.de_GetSipRuleCommand = exports.de_GetSipMediaApplicationLoggingConfigurationCommand = exports.de_GetSipMediaApplicationAlexaSkillConfigurationCommand = exports.de_GetSipMediaApplicationCommand = exports.de_GetProxySessionCommand = exports.de_GetPhoneNumberSettingsCommand = exports.de_GetPhoneNumberOrderCommand = exports.de_GetPhoneNumberCommand = exports.de_GetGlobalSettingsCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.de_DeleteVoiceProfileDomainCommand = exports.de_DeleteVoiceProfileCommand = exports.de_DeleteVoiceConnectorTerminationCredentialsCommand = exports.de_DeleteVoiceConnectorTerminationCommand = exports.de_DeleteVoiceConnectorStreamingConfigurationCommand = exports.de_DeleteVoiceConnectorProxyCommand = exports.de_DeleteVoiceConnectorOriginationCommand = exports.de_DeleteVoiceConnectorGroupCommand = exports.de_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_DeleteVoiceConnectorCommand = exports.de_DeleteSipRuleCommand = exports.de_DeleteSipMediaApplicationCommand = exports.de_DeleteProxySessionCommand = exports.de_DeletePhoneNumberCommand = exports.de_CreateVoiceProfileDomainCommand = exports.de_CreateVoiceProfileCommand = exports.de_CreateVoiceConnectorGroupCommand = exports.de_CreateVoiceConnectorCommand = exports.de_CreateSipRuleCommand = exports.de_CreateSipMediaApplicationCallCommand = void 0;
     exports.de_ValidateE911AddressCommand = exports.de_UpdateVoiceProfileDomainCommand = exports.de_UpdateVoiceProfileCommand = exports.de_UpdateVoiceConnectorGroupCommand = exports.de_UpdateVoiceConnectorCommand = exports.de_UpdateSipRuleCommand = exports.de_UpdateSipMediaApplicationCallCommand = exports.de_UpdateSipMediaApplicationCommand = exports.de_UpdateProxySessionCommand = exports.de_UpdatePhoneNumberSettingsCommand = exports.de_UpdatePhoneNumberCommand = exports.de_UpdateGlobalSettingsCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_StopVoiceToneAnalysisTaskCommand = exports.de_StopSpeakerSearchTaskCommand = exports.de_StartVoiceToneAnalysisTaskCommand = exports.de_StartSpeakerSearchTaskCommand = exports.de_SearchAvailablePhoneNumbersCommand = exports.de_RestorePhoneNumberCommand = exports.de_PutVoiceConnectorTerminationCredentialsCommand = exports.de_PutVoiceConnectorTerminationCommand = exports.de_PutVoiceConnectorStreamingConfigurationCommand = exports.de_PutVoiceConnectorProxyCommand = exports.de_PutVoiceConnectorOriginationCommand = exports.de_PutVoiceConnectorLoggingConfigurationCommand = exports.de_PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_PutSipMediaApplicationLoggingConfigurationCommand = exports.de_PutSipMediaApplicationAlexaSkillConfigurationCommand = exports.de_ListVoiceProfilesCommand = exports.de_ListVoiceProfileDomainsCommand = exports.de_ListVoiceConnectorTerminationCredentialsCommand = exports.de_ListVoiceConnectorsCommand = exports.de_ListVoiceConnectorGroupsCommand = exports.de_ListTagsForResourceCommand = exports.de_ListSupportedPhoneNumberCountriesCommand = void 0;
-    var protocol_http_1 = require_dist_cjs6();
     var smithy_client_1 = require_dist_cjs2();
+    var protocol_http_1 = require_dist_cjs29();
     var ChimeSDKVoiceServiceException_1 = require_ChimeSDKVoiceServiceException();
     var models_0_1 = require_models_04();
     var se_AssociatePhoneNumbersWithVoiceConnectorCommand = async (input, context) => {
@@ -29465,7 +29698,7 @@ var require_pagination3 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/index.js
-var require_dist_cjs50 = __commonJS({
+var require_dist_cjs51 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-voice/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -32238,8 +32471,8 @@ var require_Aws_json1_1 = __commonJS({
     exports.de_GetAutomationExecutionCommand = exports.de_DisassociateOpsItemRelatedItemCommand = exports.de_DescribeSessionsCommand = exports.de_DescribePatchPropertiesCommand = exports.de_DescribePatchGroupStateCommand = exports.de_DescribePatchGroupsCommand = exports.de_DescribePatchBaselinesCommand = exports.de_DescribeParametersCommand = exports.de_DescribeOpsItemsCommand = exports.de_DescribeMaintenanceWindowTasksCommand = exports.de_DescribeMaintenanceWindowTargetsCommand = exports.de_DescribeMaintenanceWindowsForTargetCommand = exports.de_DescribeMaintenanceWindowScheduleCommand = exports.de_DescribeMaintenanceWindowsCommand = exports.de_DescribeMaintenanceWindowExecutionTasksCommand = exports.de_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = exports.de_DescribeMaintenanceWindowExecutionsCommand = exports.de_DescribeInventoryDeletionsCommand = exports.de_DescribeInstancePatchStatesForPatchGroupCommand = exports.de_DescribeInstancePatchStatesCommand = exports.de_DescribeInstancePatchesCommand = exports.de_DescribeInstanceInformationCommand = exports.de_DescribeInstanceAssociationsStatusCommand = exports.de_DescribeEffectivePatchesForPatchBaselineCommand = exports.de_DescribeEffectiveInstanceAssociationsCommand = exports.de_DescribeDocumentPermissionCommand = exports.de_DescribeDocumentCommand = exports.de_DescribeAvailablePatchesCommand = exports.de_DescribeAutomationStepExecutionsCommand = exports.de_DescribeAutomationExecutionsCommand = exports.de_DescribeAssociationExecutionTargetsCommand = exports.de_DescribeAssociationExecutionsCommand = exports.de_DescribeAssociationCommand = exports.de_DescribeActivationsCommand = exports.de_DeregisterTaskFromMaintenanceWindowCommand = exports.de_DeregisterTargetFromMaintenanceWindowCommand = exports.de_DeregisterPatchBaselineForPatchGroupCommand = exports.de_DeregisterManagedInstanceCommand = exports.de_DeleteResourcePolicyCommand = exports.de_DeleteResourceDataSyncCommand = exports.de_DeletePatchBaselineCommand = exports.de_DeleteParametersCommand = exports.de_DeleteParameterCommand = exports.de_DeleteOpsMetadataCommand = exports.de_DeleteMaintenanceWindowCommand = exports.de_DeleteInventoryCommand = exports.de_DeleteDocumentCommand = exports.de_DeleteAssociationCommand = exports.de_DeleteActivationCommand = exports.de_CreateResourceDataSyncCommand = void 0;
     exports.de_RegisterTaskWithMaintenanceWindowCommand = exports.de_RegisterTargetWithMaintenanceWindowCommand = exports.de_RegisterPatchBaselineForPatchGroupCommand = exports.de_RegisterDefaultPatchBaselineCommand = exports.de_PutResourcePolicyCommand = exports.de_PutParameterCommand = exports.de_PutInventoryCommand = exports.de_PutComplianceItemsCommand = exports.de_ModifyDocumentPermissionCommand = exports.de_ListTagsForResourceCommand = exports.de_ListResourceDataSyncCommand = exports.de_ListResourceComplianceSummariesCommand = exports.de_ListOpsMetadataCommand = exports.de_ListOpsItemRelatedItemsCommand = exports.de_ListOpsItemEventsCommand = exports.de_ListInventoryEntriesCommand = exports.de_ListDocumentVersionsCommand = exports.de_ListDocumentsCommand = exports.de_ListDocumentMetadataHistoryCommand = exports.de_ListComplianceSummariesCommand = exports.de_ListComplianceItemsCommand = exports.de_ListCommandsCommand = exports.de_ListCommandInvocationsCommand = exports.de_ListAssociationVersionsCommand = exports.de_ListAssociationsCommand = exports.de_LabelParameterVersionCommand = exports.de_GetServiceSettingCommand = exports.de_GetResourcePoliciesCommand = exports.de_GetPatchBaselineForPatchGroupCommand = exports.de_GetPatchBaselineCommand = exports.de_GetParametersByPathCommand = exports.de_GetParametersCommand = exports.de_GetParameterHistoryCommand = exports.de_GetParameterCommand = exports.de_GetOpsSummaryCommand = exports.de_GetOpsMetadataCommand = exports.de_GetOpsItemCommand = exports.de_GetMaintenanceWindowTaskCommand = exports.de_GetMaintenanceWindowExecutionTaskInvocationCommand = exports.de_GetMaintenanceWindowExecutionTaskCommand = exports.de_GetMaintenanceWindowExecutionCommand = exports.de_GetMaintenanceWindowCommand = exports.de_GetInventorySchemaCommand = exports.de_GetInventoryCommand = exports.de_GetDocumentCommand = exports.de_GetDeployablePatchSnapshotForInstanceCommand = exports.de_GetDefaultPatchBaselineCommand = exports.de_GetConnectionStatusCommand = exports.de_GetCommandInvocationCommand = exports.de_GetCalendarStateCommand = void 0;
     exports.de_UpdateServiceSettingCommand = exports.de_UpdateResourceDataSyncCommand = exports.de_UpdatePatchBaselineCommand = exports.de_UpdateOpsMetadataCommand = exports.de_UpdateOpsItemCommand = exports.de_UpdateManagedInstanceRoleCommand = exports.de_UpdateMaintenanceWindowTaskCommand = exports.de_UpdateMaintenanceWindowTargetCommand = exports.de_UpdateMaintenanceWindowCommand = exports.de_UpdateDocumentMetadataCommand = exports.de_UpdateDocumentDefaultVersionCommand = exports.de_UpdateDocumentCommand = exports.de_UpdateAssociationStatusCommand = exports.de_UpdateAssociationCommand = exports.de_UnlabelParameterVersionCommand = exports.de_TerminateSessionCommand = exports.de_StopAutomationExecutionCommand = exports.de_StartSessionCommand = exports.de_StartChangeRequestExecutionCommand = exports.de_StartAutomationExecutionCommand = exports.de_StartAssociationsOnceCommand = exports.de_SendCommandCommand = exports.de_SendAutomationSignalCommand = exports.de_ResumeSessionCommand = exports.de_ResetServiceSettingCommand = exports.de_RemoveTagsFromResourceCommand = void 0;
-    var protocol_http_1 = require_dist_cjs6();
     var smithy_client_1 = require_dist_cjs2();
+    var protocol_http_1 = require_dist_cjs29();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_1();
@@ -48885,7 +49118,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.332.0",
+      version: "3.335.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -48905,9 +49138,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.332.0",
+        "@aws-sdk/client-sts": "3.335.0",
         "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.332.0",
+        "@aws-sdk/credential-provider-node": "3.335.0",
         "@aws-sdk/fetch-http-handler": "3.329.0",
         "@aws-sdk/hash-node": "3.329.0",
         "@aws-sdk/invalid-dependency": "3.329.0",
@@ -48923,7 +49156,6 @@ var require_package5 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.332.0",
         "@aws-sdk/node-config-provider": "3.329.0",
         "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/protocol-http": "3.329.0",
         "@aws-sdk/smithy-client": "3.329.0",
         "@aws-sdk/types": "3.329.0",
         "@aws-sdk/url-parser": "3.329.0",
@@ -48938,6 +49170,8 @@ var require_package5 = __commonJS({
         "@aws-sdk/util-user-agent-node": "3.329.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@aws-sdk/util-waiter": "3.329.0",
+        "@smithy/protocol-http": "^1.0.1",
+        "@smithy/types": "^1.0.0",
         tslib: "^2.5.0",
         uuid: "^8.3.2"
       },
@@ -49045,7 +49279,7 @@ var require_runtimeConfig_shared5 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var smithy_client_1 = require_dist_cjs2();
     var url_parser_1 = require_dist_cjs9();
-    var util_base64_1 = require_dist_cjs40();
+    var util_base64_1 = require_dist_cjs41();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver5();
     var getRuntimeConfig = (config) => ({
@@ -49072,19 +49306,19 @@ var require_runtimeConfig5 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package5());
-    var client_sts_1 = require_dist_cjs49();
+    var client_sts_1 = require_dist_cjs50();
     var config_resolver_1 = require_dist_cjs5();
-    var credential_provider_node_1 = require_dist_cjs48();
-    var hash_node_1 = require_dist_cjs35();
+    var credential_provider_node_1 = require_dist_cjs49();
+    var hash_node_1 = require_dist_cjs36();
     var middleware_retry_1 = require_dist_cjs17();
-    var node_config_provider_1 = require_dist_cjs32();
-    var node_http_handler_1 = require_dist_cjs37();
-    var util_body_length_node_1 = require_dist_cjs38();
+    var node_config_provider_1 = require_dist_cjs33();
+    var node_http_handler_1 = require_dist_cjs38();
+    var util_body_length_node_1 = require_dist_cjs39();
     var util_retry_1 = require_dist_cjs16();
-    var util_user_agent_node_1 = require_dist_cjs39();
+    var util_user_agent_node_1 = require_dist_cjs40();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared5();
     var smithy_client_1 = require_dist_cjs2();
-    var util_defaults_mode_node_1 = require_dist_cjs41();
+    var util_defaults_mode_node_1 = require_dist_cjs42();
     var smithy_client_2 = require_dist_cjs2();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
@@ -51444,7 +51678,7 @@ var require_createWaiter = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-waiter/dist-cjs/index.js
-var require_dist_cjs51 = __commonJS({
+var require_dist_cjs52 = __commonJS({
   "node_modules/@aws-sdk/util-waiter/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -51460,7 +51694,7 @@ var require_waitForCommandExecuted = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.waitUntilCommandExecuted = exports.waitForCommandExecuted = void 0;
-    var util_waiter_1 = require_dist_cjs51();
+    var util_waiter_1 = require_dist_cjs52();
     var GetCommandInvocationCommand_1 = require_GetCommandInvocationCommand();
     var checkState = async (client, input) => {
       let reason;
@@ -51572,7 +51806,7 @@ var require_waiters = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-ssm/dist-cjs/index.js
-var require_dist_cjs52 = __commonJS({
+var require_dist_cjs53 = __commonJS({
   "node_modules/@aws-sdk/client-ssm/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -51599,8 +51833,8 @@ __export(pstn_lambda_exports, {
 module.exports = __toCommonJS(pstn_lambda_exports);
 
 // src/resources/pstn/phoneNumber.ts
-var import_client_chime_sdk_voice = __toESM(require_dist_cjs50());
-var import_client_ssm = __toESM(require_dist_cjs52());
+var import_client_chime_sdk_voice = __toESM(require_dist_cjs51());
+var import_client_ssm = __toESM(require_dist_cjs53());
 var chimeSDKVoiceClient = new import_client_chime_sdk_voice.ChimeSDKVoiceClient({
   region: "us-east-1"
 });
@@ -51770,8 +52004,8 @@ async function checkPhoneNumber(phoneOrderId) {
 var sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // src/resources/pstn/sipMediaApp.ts
-var import_client_chime_sdk_voice2 = __toESM(require_dist_cjs50());
-var import_client_ssm2 = __toESM(require_dist_cjs52());
+var import_client_chime_sdk_voice2 = __toESM(require_dist_cjs51());
+var import_client_ssm2 = __toESM(require_dist_cjs53());
 var chimeSDKVoiceClient2 = new import_client_chime_sdk_voice2.ChimeSDKVoiceClient({
   region: process.env.AWS_REGION
 });
@@ -51917,8 +52151,8 @@ var PutSipMediaApplicationAlexaSkill = async (props) => {
 };
 
 // src/resources/pstn/sipRule.ts
-var import_client_chime_sdk_voice3 = __toESM(require_dist_cjs50());
-var import_client_ssm3 = __toESM(require_dist_cjs52());
+var import_client_chime_sdk_voice3 = __toESM(require_dist_cjs51());
+var import_client_ssm3 = __toESM(require_dist_cjs53());
 var chimeSDKVoiceClient3 = new import_client_chime_sdk_voice3.ChimeSDKVoiceClient({
   region: process.env.AWS_REGION
 });
@@ -52040,8 +52274,8 @@ var DeleteSIPRule = async (uid) => {
 var sleep2 = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // src/resources/pstn/voiceConnector.ts
-var import_client_chime_sdk_voice4 = __toESM(require_dist_cjs50());
-var import_client_ssm4 = __toESM(require_dist_cjs52());
+var import_client_chime_sdk_voice4 = __toESM(require_dist_cjs51());
+var import_client_ssm4 = __toESM(require_dist_cjs53());
 var chimeSDKVoiceClient4 = new import_client_chime_sdk_voice4.ChimeSDKVoiceClient({
   region: process.env.AWS_REGION
 });
@@ -52339,8 +52573,8 @@ var putLogging = async (loggingVoiceConnectorId, logging) => {
 };
 
 // src/resources/pstn/voiceProfileDomain.ts
-var import_client_chime_sdk_voice5 = __toESM(require_dist_cjs50());
-var import_client_ssm5 = __toESM(require_dist_cjs52());
+var import_client_chime_sdk_voice5 = __toESM(require_dist_cjs51());
+var import_client_ssm5 = __toESM(require_dist_cjs53());
 var chimeSDKVoiceClient5 = new import_client_chime_sdk_voice5.ChimeSDKVoiceClient({
   region: process.env.AWS_REGION
 });
