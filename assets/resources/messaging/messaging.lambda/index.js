@@ -6864,7 +6864,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -6884,36 +6884,36 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.335.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.335.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-signing": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/client-sts": "3.337.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/credential-provider-node": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-signing": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -10399,7 +10399,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -10421,36 +10421,36 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.335.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-sdk-sts": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-signing": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/credential-provider-node": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-sdk-sts": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-signing": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -12364,7 +12364,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12384,33 +12384,33 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -12588,6 +12588,24 @@ var require_set_connection_timeout = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js
+var require_set_socket_keep_alive = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setSocketKeepAlive = void 0;
+    var setSocketKeepAlive = (request, { keepAlive, keepAliveMsecs }) => {
+      if (keepAlive !== true) {
+        return;
+      }
+      request.on("socket", (socket) => {
+        socket.setKeepAlive(keepAlive, keepAliveMsecs || 0);
+      });
+    };
+    exports.setSocketKeepAlive = setSocketKeepAlive;
+  }
+});
+
 // node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js
 var require_set_socket_timeout = __commonJS({
   "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js"(exports) {
@@ -12611,15 +12629,24 @@ var require_write_request_body = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.writeRequestBody = void 0;
     var stream_1 = require("stream");
-    function writeRequestBody(httpRequest, request) {
-      const expect = request.headers["Expect"] || request.headers["expect"];
+    var MIN_WAIT_TIME = 1e3;
+    async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN_WAIT_TIME) {
+      var _a;
+      const headers = (_a = request.headers) !== null && _a !== void 0 ? _a : {};
+      const expect = headers["Expect"] || headers["expect"];
       if (expect === "100-continue") {
-        httpRequest.on("continue", () => {
-          writeBody(httpRequest, request.body);
-        });
-      } else {
-        writeBody(httpRequest, request.body);
+        await Promise.race([
+          new Promise((resolve) => {
+            setTimeout(resolve, Math.max(MIN_WAIT_TIME, maxContinueTimeoutMs));
+          }),
+          new Promise((resolve) => {
+            httpRequest.on("continue", () => {
+              resolve();
+            });
+          })
+        ]);
       }
+      writeBody(httpRequest, request.body);
     }
     exports.writeRequestBody = writeRequestBody;
     function writeBody(httpRequest, body) {
@@ -12631,24 +12658,6 @@ var require_write_request_body = __commonJS({
         httpRequest.end();
       }
     }
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js
-var require_set_socket_keep_alive = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setSocketKeepAlive = void 0;
-    var setSocketKeepAlive = (request, { keepAlive, keepAliveMsecs }) => {
-      if (keepAlive !== true) {
-        return;
-      }
-      request.on("socket", (socket) => {
-        socket.setKeepAlive(keepAlive, keepAliveMsecs || 0);
-      });
-    };
-    exports.setSocketKeepAlive = setSocketKeepAlive;
   }
 });
 
@@ -12665,9 +12674,9 @@ var require_node_http_handler = __commonJS({
     var constants_1 = require_constants6();
     var get_transformed_headers_1 = require_get_transformed_headers();
     var set_connection_timeout_1 = require_set_connection_timeout();
+    var set_socket_keep_alive_1 = require_set_socket_keep_alive();
     var set_socket_timeout_1 = require_set_socket_timeout();
     var write_request_body_1 = require_write_request_body();
-    var set_socket_keep_alive_1 = require_set_socket_keep_alive();
     exports.DEFAULT_REQUEST_TIMEOUT = 0;
     var NodeHttpHandler = class {
       constructor(options) {
@@ -12702,7 +12711,16 @@ var require_node_http_handler = __commonJS({
         if (!this.config) {
           this.config = await this.configProvider;
         }
-        return new Promise((resolve, reject) => {
+        return new Promise((_resolve, _reject) => {
+          let writeRequestBodyPromise = void 0;
+          const resolve = async (arg) => {
+            await writeRequestBodyPromise;
+            _resolve(arg);
+          };
+          const reject = async (arg) => {
+            await writeRequestBodyPromise;
+            _reject(arg);
+          };
           if (!this.config) {
             throw new Error("Node HTTP request handler config is not resolved");
           }
@@ -12755,7 +12773,7 @@ var require_node_http_handler = __commonJS({
               keepAliveMsecs: httpAgent.keepAliveMsecs
             });
           }
-          (0, write_request_body_1.writeRequestBody)(req, request);
+          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, this.config.requestTimeout);
         });
       }
     };
@@ -12938,14 +12956,23 @@ var require_node_http2_handler = __commonJS({
           }
         }
         const { requestTimeout, disableConcurrentStreams } = this.config;
-        return new Promise((resolve, rejectOriginal) => {
+        return new Promise((_resolve, _reject) => {
           var _a;
           let fulfilled = false;
+          let writeRequestBodyPromise = void 0;
+          const resolve = async (arg) => {
+            await writeRequestBodyPromise;
+            _resolve(arg);
+          };
+          const reject = async (arg) => {
+            await writeRequestBodyPromise;
+            _reject(arg);
+          };
           if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
             fulfilled = true;
             const abortError = new Error("Request aborted");
             abortError.name = "AbortError";
-            rejectOriginal(abortError);
+            reject(abortError);
             return;
           }
           const { hostname, method, port, protocol, path, query } = request;
@@ -12955,12 +12982,12 @@ var require_node_http2_handler = __commonJS({
             requestTimeout: (_a = this.config) === null || _a === void 0 ? void 0 : _a.sessionTimeout,
             disableConcurrentStreams: disableConcurrentStreams || false
           });
-          const reject = (err) => {
+          const rejectWithDestroy = (err) => {
             if (disableConcurrentStreams) {
               this.destroySession(session);
             }
             fulfilled = true;
-            rejectOriginal(err);
+            reject(err);
           };
           const queryString = (0, querystring_builder_1.buildQueryString)(query || {});
           const req = session.request({
@@ -12987,7 +13014,7 @@ var require_node_http2_handler = __commonJS({
               req.close();
               const timeoutError = new Error(`Stream timed out because of no activity for ${requestTimeout} ms`);
               timeoutError.name = "TimeoutError";
-              reject(timeoutError);
+              rejectWithDestroy(timeoutError);
             });
           }
           if (abortSignal) {
@@ -12995,15 +13022,15 @@ var require_node_http2_handler = __commonJS({
               req.close();
               const abortError = new Error("Request aborted");
               abortError.name = "AbortError";
-              reject(abortError);
+              rejectWithDestroy(abortError);
             };
           }
           req.on("frameError", (type, code, id) => {
-            reject(new Error(`Frame type id ${type} in stream id ${id} has failed with code ${code}.`));
+            rejectWithDestroy(new Error(`Frame type id ${type} in stream id ${id} has failed with code ${code}.`));
           });
-          req.on("error", reject);
+          req.on("error", rejectWithDestroy);
           req.on("aborted", () => {
-            reject(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${req.rstCode}.`));
+            rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${req.rstCode}.`));
           });
           req.on("close", () => {
             session.unref();
@@ -13011,10 +13038,10 @@ var require_node_http2_handler = __commonJS({
               session.destroy();
             }
             if (!fulfilled) {
-              reject(new Error("Unexpected error: http2 request did not get a response"));
+              rejectWithDestroy(new Error("Unexpected error: http2 request did not get a response"));
             }
           });
-          (0, write_request_body_1.writeRequestBody)(req, request);
+          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, requestTimeout);
         });
       }
       destroySession(session) {
@@ -14533,7 +14560,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14553,33 +14580,33 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -63365,7 +63392,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -63385,38 +63412,38 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.335.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.335.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-signing": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/client-sts": "3.337.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/credential-provider-node": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-signing": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
-        "@aws-sdk/util-waiter": "3.329.0",
+        "@aws-sdk/util-waiter": "3.337.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
         tslib: "^2.5.0",
@@ -66096,7 +66123,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.335.0",
+      version: "3.337.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -66116,36 +66143,36 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.335.0",
-        "@aws-sdk/config-resolver": "3.329.0",
-        "@aws-sdk/credential-provider-node": "3.335.0",
-        "@aws-sdk/fetch-http-handler": "3.329.0",
-        "@aws-sdk/hash-node": "3.329.0",
-        "@aws-sdk/invalid-dependency": "3.329.0",
-        "@aws-sdk/middleware-content-length": "3.329.0",
-        "@aws-sdk/middleware-endpoint": "3.329.0",
-        "@aws-sdk/middleware-host-header": "3.329.0",
-        "@aws-sdk/middleware-logger": "3.329.0",
-        "@aws-sdk/middleware-recursion-detection": "3.329.0",
-        "@aws-sdk/middleware-retry": "3.329.0",
-        "@aws-sdk/middleware-serde": "3.329.0",
-        "@aws-sdk/middleware-signing": "3.329.0",
-        "@aws-sdk/middleware-stack": "3.329.0",
-        "@aws-sdk/middleware-user-agent": "3.332.0",
-        "@aws-sdk/node-config-provider": "3.329.0",
-        "@aws-sdk/node-http-handler": "3.329.0",
-        "@aws-sdk/smithy-client": "3.329.0",
-        "@aws-sdk/types": "3.329.0",
-        "@aws-sdk/url-parser": "3.329.0",
+        "@aws-sdk/client-sts": "3.337.0",
+        "@aws-sdk/config-resolver": "3.337.0",
+        "@aws-sdk/credential-provider-node": "3.337.0",
+        "@aws-sdk/fetch-http-handler": "3.337.0",
+        "@aws-sdk/hash-node": "3.337.0",
+        "@aws-sdk/invalid-dependency": "3.337.0",
+        "@aws-sdk/middleware-content-length": "3.337.0",
+        "@aws-sdk/middleware-endpoint": "3.337.0",
+        "@aws-sdk/middleware-host-header": "3.337.0",
+        "@aws-sdk/middleware-logger": "3.337.0",
+        "@aws-sdk/middleware-recursion-detection": "3.337.0",
+        "@aws-sdk/middleware-retry": "3.337.0",
+        "@aws-sdk/middleware-serde": "3.337.0",
+        "@aws-sdk/middleware-signing": "3.337.0",
+        "@aws-sdk/middleware-stack": "3.337.0",
+        "@aws-sdk/middleware-user-agent": "3.337.0",
+        "@aws-sdk/node-config-provider": "3.337.0",
+        "@aws-sdk/node-http-handler": "3.337.0",
+        "@aws-sdk/smithy-client": "3.337.0",
+        "@aws-sdk/types": "3.337.0",
+        "@aws-sdk/url-parser": "3.337.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.329.0",
-        "@aws-sdk/util-defaults-mode-node": "3.329.0",
-        "@aws-sdk/util-endpoints": "3.332.0",
-        "@aws-sdk/util-retry": "3.329.0",
-        "@aws-sdk/util-user-agent-browser": "3.329.0",
-        "@aws-sdk/util-user-agent-node": "3.329.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.337.0",
+        "@aws-sdk/util-defaults-mode-node": "3.337.0",
+        "@aws-sdk/util-endpoints": "3.337.0",
+        "@aws-sdk/util-retry": "3.337.0",
+        "@aws-sdk/util-user-agent-browser": "3.337.0",
+        "@aws-sdk/util-user-agent-node": "3.337.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
