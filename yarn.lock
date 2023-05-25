@@ -946,6 +946,15 @@
     tslib "^2.5.0"
     uuid "^8.3.2"
 
+"@aws-sdk/middleware-sdk-sts@3.329.0":
+  version "3.329.0"
+  resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-sdk-sts/-/middleware-sdk-sts-3.329.0.tgz#50056cca7688e708e3db6bd66203878bc373ff7d"
+  integrity sha512-bqtZuhkH8pANb2Gb4FEM1p27o+BoDBmVhEWm8sWH+APsyOor3jc6eUG2GxkfoO6D5tGNIuyCC/GuvW9XDIe4Kg==
+  dependencies:
+    "@aws-sdk/middleware-signing" "3.329.0"
+    "@aws-sdk/types" "3.329.0"
+    tslib "^2.5.0"
+
 "@aws-sdk/middleware-sdk-sts@3.338.0":
   version "3.338.0"
   resolved "https://registry.yarnpkg.com/@aws-sdk/middleware-sdk-sts/-/middleware-sdk-sts-3.338.0.tgz#671e1bba42806a42a8cb88f20d29655ac0bdd29d"
@@ -2176,17 +2185,17 @@
     chalk "^4.1.2"
     semver "^7.5.1"
 
+"@jsii/spec@1.81.0", "@jsii/spec@^1.52.1", "@jsii/spec@^1.81.0":
+  version "1.81.0"
+  resolved "https://registry.npmjs.org/@jsii/spec/-/spec-1.81.0.tgz"
+  integrity sha512-Ea1xP3ajppj6obhWrIrZASIbwsr9bGJEYHxs8UJaAoEfnDJVTRSSE1LsJtFaUuuDgeXDYGDvyhs37e8jhRvFdA==
+  dependencies:
+    ajv "^8.12.0"
+
 "@jsii/spec@1.82.0", "@jsii/spec@^1.82.0":
   version "1.82.0"
   resolved "https://registry.yarnpkg.com/@jsii/spec/-/spec-1.82.0.tgz#d2379f60e067bc9a3c92984be0cd3b8153e6e6f3"
   integrity sha512-6+KHsKuRBBdIA17Rqcrw9WCcab3UkZAP/9xWZEu2sCpVUc3DMjadZS1QyVh4XMdIsJoQoaUjc8TuriloAkkr8Q==
-  dependencies:
-    ajv "^8.12.0"
-
-"@jsii/spec@^1.52.1", "@jsii/spec@^1.81.0":
-  version "1.81.0"
-  resolved "https://registry.npmjs.org/@jsii/spec/-/spec-1.81.0.tgz"
-  integrity sha512-Ea1xP3ajppj6obhWrIrZASIbwsr9bGJEYHxs8UJaAoEfnDJVTRSSE1LsJtFaUuuDgeXDYGDvyhs37e8jhRvFdA==
   dependencies:
     ajv "^8.12.0"
 
