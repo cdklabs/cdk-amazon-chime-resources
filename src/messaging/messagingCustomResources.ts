@@ -23,6 +23,7 @@ export interface MessagingResourceProps extends ResourceProps {
     | 'AppInstance'
     | 'ChannelFlow'
     | 'AppInstanceUser'
+    | 'AppInstanceBot'
     | 'AppInstanceAdmin'
     | 'DataRetention'
     | 'StreamingConfig'
@@ -86,9 +87,13 @@ export class MessagingResources extends Construct {
                   'chime:UpdateChannelFlow',
                   'chime:DeleteChannelFlow',
                   'chime:CreateAppInstanceUser',
+                  'chime:CreateAppInstanceBot',
                   'chime:DeleteAppInstanceUser',
+                  'chime:DeleteAppInstanceBot',
                   'chime:ListAppInstanceUsers',
+                  'chime:ListAppInstanceBots',
                   'chime:UpdateAppInstanceUser',
+                  'chime:UpdateAppInstanceBot',
                   'chime:DescribeAppInstanceUser',
                   'chime:CreateAppInstanceAdmin',
                   'chime:DescribeAppInstanceAdmin',

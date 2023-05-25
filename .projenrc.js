@@ -14,6 +14,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   deps: [
     '@aws-sdk/client-chime-sdk-voice@latest',
     '@aws-sdk/client-chime-sdk-messaging@latest',
+    '@aws-sdk/client-chime-sdk-identity@latest',
     '@aws-sdk/client-chime-sdk-media-pipelines@latest',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
@@ -24,6 +25,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   bundledDeps: [
     '@aws-sdk/client-chime-sdk-voice@latest',
     '@aws-sdk/client-chime-sdk-messaging@latest',
+    '@aws-sdk/client-chime-sdk-identity@latest',
     '@aws-sdk/client-chime-sdk-media-pipelines@latest',
     '@aws-sdk/client-chime',
     '@aws-sdk/client-ssm',
