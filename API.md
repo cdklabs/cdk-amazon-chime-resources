@@ -710,6 +710,63 @@ public readonly appInstanceAdminName: string;
 ---
 
 
+### MessagingAppInstanceBot <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot" id="cdkamazonchimeresourcesmessagingappinstancebot"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot.Initializer" id="cdkamazonchimeresourcesmessagingappinstancebotinitializer"></a>
+
+```typescript
+import { MessagingAppInstanceBot } from 'cdk-amazon-chime-resources'
+
+new MessagingAppInstanceBot(scope: Construct, id: string, props: AppInstanceBotProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourcesmessagingappinstancebotparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourcesmessagingappinstancebotparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourcesmessagingappinstancebotparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceBotProps`](#cdk-amazon-chime-resources.AppInstanceBotProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot.parameter.scope" id="cdkamazonchimeresourcesmessagingappinstancebotparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot.parameter.id" id="cdkamazonchimeresourcesmessagingappinstancebotparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot.parameter.props" id="cdkamazonchimeresourcesmessagingappinstancebotparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceBotProps`](#cdk-amazon-chime-resources.AppInstanceBotProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceBotArn`](#cdkamazonchimeresourcesmessagingappinstancebotpropertyappinstancebotarn)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `appInstanceBotArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.MessagingAppInstanceBot.property.appInstanceBotArn" id="cdkamazonchimeresourcesmessagingappinstancebotpropertyappinstancebotarn"></a>
+
+```typescript
+public readonly appInstanceBotArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+
 ### MessagingAppInstanceUser <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser" id="cdkamazonchimeresourcesmessagingappinstanceuser"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.MessagingAppInstanceUser.Initializer" id="cdkamazonchimeresourcesmessagingappinstanceuserinitializer"></a>
@@ -1318,6 +1375,217 @@ The name of the app instance.
 
 ---
 
+### AppInstanceBotConfiguration <a name="cdk-amazon-chime-resources.AppInstanceBotConfiguration" id="cdkamazonchimeresourcesappinstancebotconfiguration"></a>
+
+Props for `Configuration`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceBotConfiguration } from 'cdk-amazon-chime-resources'
+
+const appInstanceBotConfiguration: AppInstanceBotConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`lex`](#cdkamazonchimeresourcesappinstancebotconfigurationpropertylex)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceBotLexConfiguration`](#cdk-amazon-chime-resources.AppInstanceBotLexConfiguration) | *No description.* |
+
+---
+
+##### `lex`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotConfiguration.property.lex" id="cdkamazonchimeresourcesappinstancebotconfigurationpropertylex"></a>
+
+```typescript
+public readonly lex: AppInstanceBotLexConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceBotLexConfiguration`](#cdk-amazon-chime-resources.AppInstanceBotLexConfiguration)
+
+---
+
+### AppInstanceBotLexConfiguration <a name="cdk-amazon-chime-resources.AppInstanceBotLexConfiguration" id="cdkamazonchimeresourcesappinstancebotlexconfiguration"></a>
+
+Configuration for AppInstanceBot with Lex.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceBotLexConfiguration } from 'cdk-amazon-chime-resources'
+
+const appInstanceBotLexConfiguration: AppInstanceBotLexConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`lexBotAliasArn`](#cdkamazonchimeresourcesappinstancebotlexconfigurationpropertylexbotaliasarn)<span title="Required">*</span> | `string` | Lex `BotAliasArn` from setup Lex Bot. |
+| [`localeId`](#cdkamazonchimeresourcesappinstancebotlexconfigurationpropertylocaleid)<span title="Required">*</span> | `string` | LocaleId to use. |
+| [`respondsTo`](#cdkamazonchimeresourcesappinstancebotlexconfigurationpropertyrespondsto)<span title="Required">*</span> | [`cdk-amazon-chime-resources.LexConfigurationRespondsTo`](#cdk-amazon-chime-resources.LexConfigurationRespondsTo) | Setting for when Lex is invoked. |
+| [`welcomeIntent`](#cdkamazonchimeresourcesappinstancebotlexconfigurationpropertywelcomeintent) | `string` | An optional welcome intent to trigger when the Bot is added to the channel. |
+
+---
+
+##### `lexBotAliasArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotLexConfiguration.property.lexBotAliasArn" id="cdkamazonchimeresourcesappinstancebotlexconfigurationpropertylexbotaliasarn"></a>
+
+```typescript
+public readonly lexBotAliasArn: string;
+```
+
+- *Type:* `string`
+
+Lex `BotAliasArn` from setup Lex Bot.
+
+---
+
+##### `localeId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotLexConfiguration.property.localeId" id="cdkamazonchimeresourcesappinstancebotlexconfigurationpropertylocaleid"></a>
+
+```typescript
+public readonly localeId: string;
+```
+
+- *Type:* `string`
+
+LocaleId to use.
+
+This needs to match one of the localIds that BotAliasArn is configured with.
+
+---
+
+##### `respondsTo`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotLexConfiguration.property.respondsTo" id="cdkamazonchimeresourcesappinstancebotlexconfigurationpropertyrespondsto"></a>
+
+```typescript
+public readonly respondsTo: LexConfigurationRespondsTo;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.LexConfigurationRespondsTo`](#cdk-amazon-chime-resources.LexConfigurationRespondsTo)
+
+Setting for when Lex is invoked.
+
+---
+
+##### `welcomeIntent`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotLexConfiguration.property.welcomeIntent" id="cdkamazonchimeresourcesappinstancebotlexconfigurationpropertywelcomeintent"></a>
+
+```typescript
+public readonly welcomeIntent: string;
+```
+
+- *Type:* `string`
+
+An optional welcome intent to trigger when the Bot is added to the channel.
+
+---
+
+### AppInstanceBotProps <a name="cdk-amazon-chime-resources.AppInstanceBotProps" id="cdkamazonchimeresourcesappinstancebotprops"></a>
+
+Props for `AppInstance`.
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { AppInstanceBotProps } from 'cdk-amazon-chime-resources'
+
+const appInstanceBotProps: AppInstanceBotProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`appInstanceArn`](#cdkamazonchimeresourcesappinstancebotpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The name of the app instance. |
+| [`configuration`](#cdkamazonchimeresourcesappinstancebotpropspropertyconfiguration)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceBotConfiguration`](#cdk-amazon-chime-resources.AppInstanceBotConfiguration) | The configuration of the bot. |
+| [`clientRequestToken`](#cdkamazonchimeresourcesappinstancebotpropspropertyclientrequesttoken) | `string` | The ClientRequestToken of the app instance. |
+| [`metadata`](#cdkamazonchimeresourcesappinstancebotpropspropertymetadata) | `string` | The metadata of the app instance. |
+| [`name`](#cdkamazonchimeresourcesappinstancebotpropspropertyname) | `string` | The name of the app instance. |
+| [`tags`](#cdkamazonchimeresourcesappinstancebotpropspropertytags) | [`cdk-amazon-chime-resources.InstanceBotTags`](#cdk-amazon-chime-resources.InstanceBotTags)[] | The tags for the creation request. |
+
+---
+
+##### `appInstanceArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.appInstanceArn" id="cdkamazonchimeresourcesappinstancebotpropspropertyappinstancearn"></a>
+
+```typescript
+public readonly appInstanceArn: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+##### `configuration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.configuration" id="cdkamazonchimeresourcesappinstancebotpropspropertyconfiguration"></a>
+
+```typescript
+public readonly configuration: AppInstanceBotConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.AppInstanceBotConfiguration`](#cdk-amazon-chime-resources.AppInstanceBotConfiguration)
+
+The configuration of the bot.
+
+This field populates Lex settings.
+
+---
+
+##### `clientRequestToken`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.clientRequestToken" id="cdkamazonchimeresourcesappinstancebotpropspropertyclientrequesttoken"></a>
+
+```typescript
+public readonly clientRequestToken: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The ClientRequestToken of the app instance.
+
+This field is autopopulated if not provided.
+
+---
+
+##### `metadata`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.metadata" id="cdkamazonchimeresourcesappinstancebotpropspropertymetadata"></a>
+
+```typescript
+public readonly metadata: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The metadata of the app instance.
+
+Limited to a 1KB string in UTF-8.
+
+---
+
+##### `name`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.name" id="cdkamazonchimeresourcesappinstancebotpropspropertyname"></a>
+
+```typescript
+public readonly name: string;
+```
+
+- *Type:* `string`
+- *Default:* None
+
+The name of the app instance.
+
+---
+
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.AppInstanceBotProps.property.tags" id="cdkamazonchimeresourcesappinstancebotpropspropertytags"></a>
+
+```typescript
+public readonly tags: InstanceBotTags[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.InstanceBotTags`](#cdk-amazon-chime-resources.InstanceBotTags)[]
+- *Default:* None
+
+The tags for the creation request.
+
+---
+
 ### AppInstanceProps <a name="cdk-amazon-chime-resources.AppInstanceProps" id="cdkamazonchimeresourcesappinstanceprops"></a>
 
 Props for `AppInstance`.
@@ -1453,7 +1721,7 @@ const appInstanceUserProps: AppInstanceUserProps = { ... }
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | [`appInstanceArn`](#cdkamazonchimeresourcesappinstanceuserpropspropertyappinstancearn)<span title="Required">*</span> | `string` | The name of the app instance. |
-| [`appInstanceUserId`](#cdkamazonchimeresourcesappinstanceuserpropspropertyappinstanceuserid)<span title="Required">*</span> | `string` | The name of the app instance. |
+| [`appInstanceUserId`](#cdkamazonchimeresourcesappinstanceuserpropspropertyappinstanceuserid)<span title="Required">*</span> | `string` | The id of the app instance user. |
 | [`clientRequestToken`](#cdkamazonchimeresourcesappinstanceuserpropspropertyclientrequesttoken) | `string` | The ClientRequestToken of the app instance. |
 | [`metadata`](#cdkamazonchimeresourcesappinstanceuserpropspropertymetadata) | `string` | The metadata of the app instance. |
 | [`name`](#cdkamazonchimeresourcesappinstanceuserpropspropertyname) | `string` | The name of the app instance. |
@@ -1483,7 +1751,7 @@ public readonly appInstanceUserId: string;
 - *Type:* `string`
 - *Default:* None
 
-The name of the app instance.
+The id of the app instance user.
 
 ---
 
@@ -1823,6 +2091,45 @@ public readonly voiceAnalyticsProcessorConfiguration: VoiceAnalyticsProcessorCon
 ```
 
 - *Type:* [`cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration`](#cdk-amazon-chime-resources.VoiceAnalyticsProcessorConfiguration)
+
+---
+
+### InstanceBotTags <a name="cdk-amazon-chime-resources.InstanceBotTags" id="cdkamazonchimeresourcesinstancebottags"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { InstanceBotTags } from 'cdk-amazon-chime-resources'
+
+const instanceBotTags: InstanceBotTags = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourcesinstancebottagspropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourcesinstancebottagspropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.InstanceBotTags.property.key" id="cdkamazonchimeresourcesinstancebottagspropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.InstanceBotTags.property.value" id="cdkamazonchimeresourcesinstancebottagspropertyvalue"></a>
+
+```typescript
+public readonly value: string;
+```
+
+- *Type:* `string`
 
 ---
 
@@ -2272,7 +2579,7 @@ public readonly physicalName: string;
 
 The value passed in by users to the physical name prop of the resource.
 
-`undefined` implies that a physical name will be allocated by    CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated    by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
+`undefined` implies that a physical name will be allocated by   CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated   by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
 
 ---
 
@@ -2381,7 +2688,7 @@ public readonly physicalName: string;
 
 The value passed in by users to the physical name prop of the resource.
 
-`undefined` implies that a physical name will be allocated by    CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated    by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
+`undefined` implies that a physical name will be allocated by   CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated   by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
 
 ---
 
@@ -2740,7 +3047,7 @@ public readonly physicalName: string;
 
 The value passed in by users to the physical name prop of the resource.
 
-`undefined` implies that a physical name will be allocated by    CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated    by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
+`undefined` implies that a physical name will be allocated by   CloudFormation during deployment. - a concrete value implies a specific physical name - `PhysicalName.GENERATE_IF_NEEDED` is a marker that indicates that a physical will only be generated   by the CDK if it is needed for cross-environment references. Otherwise, it will be allocated by CloudFormation.
 
 ---
 
@@ -4133,6 +4440,21 @@ public readonly value: string;
 
 
 #### `PT_BR` <a name="cdk-amazon-chime-resources.LanguageCode.PT_BR" id="cdkamazonchimeresourceslanguagecodeptbr"></a>
+
+---
+
+
+### LexConfigurationRespondsTo <a name="LexConfigurationRespondsTo" id="lexconfigurationrespondsto"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`STANDARD_MESSAGES`](#cdkamazonchimeresourceslexconfigurationrespondstostandardmessages) | *No description.* |
+
+---
+
+Props for `Configuration` when Configuration is for Lex.
+
+#### `STANDARD_MESSAGES` <a name="cdk-amazon-chime-resources.LexConfigurationRespondsTo.STANDARD_MESSAGES" id="cdkamazonchimeresourceslexconfigurationrespondstostandardmessages"></a>
 
 ---
 
