@@ -38,11 +38,6 @@ export interface AppInstanceBotConfiguration {
 export interface AppInstanceBotLexConfiguration {
 
   /**
-   * Setting for when Lex is invoked.
-   */
-  readonly respondsTo: string;
-
-  /**
    * Lex `BotAliasArn` from setup Lex Bot.
    */
   readonly lexBotAliasArn: string;
@@ -66,8 +61,7 @@ interface AppInstanceBotProps {
   clientRequestToken?: string;
   appInstanceArn?: string;
   tags?: Tags[];
-
-  configuration: AppInstanceBotLexConfiguration;
+  configuration?: AppInstanceBotConfiguration;
 }
 
 let createAppInstanceBotCommandInput: CreateAppInstanceBotCommandInput;
@@ -88,11 +82,11 @@ export const CreateAppInstanceBot = async (
   createAppInstanceBotCommandInput = {
     Configuration: {
       Lex: {
-        LexBotAliasArn: props.configuration.lexBotAliasArn,
-        LocaleId: props.configuration.localeId,
-        RespondsTo: props.configuration.respondsTo,
-        ...(props.configuration.welcomeIntent && {
-          WelcomeIntent: props.configuration.welcomeIntent,
+        LexBotAliasArn: props.configuration?.lex?.lexBotAliasArn,
+        LocaleId: props.configuration?.lex?.localeId,
+        RespondsTo: 'STANDARD_MESSAGES', // default for now since only option
+        ...(props.configuration?.lex?.welcomeIntent && {
+          WelcomeIntent: props.configuration?.lex?.welcomeIntent,
         }),
       },
     },

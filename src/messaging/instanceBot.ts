@@ -13,7 +13,7 @@ export interface InstanceBotTags {
  */
 
 export enum LexConfigurationRespondsTo {
-  STANDARD_MESSAGES,
+  STANDARD_MESSAGES = 'STANDARD_MESSAGES',
 }
 
 /**
@@ -123,7 +123,14 @@ export class MessagingAppInstanceBot extends Construct {
           clientRequestToken: clientRequestToken,
           appInstanceArn: appInstanceArn,
           tags: tags,
-          configuration: configuration,
+          configuration: {
+            lex: {
+              lexBotAliasArn: configuration.lex.lexBotAliasArn,
+              welcomeIntent: configuration.lex.welcomeIntent,
+              localeId: configuration.lex.localeId,
+              respondsTo: configuration.lex.respondsTo,
+            },
+          },
         },
       },
     );
