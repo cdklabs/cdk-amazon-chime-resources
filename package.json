@@ -60,7 +60,7 @@
     "jsii-docgen": "^4.2.44",
     "jsii-pacmak": "^1.82.0",
     "npm-check-updates": "^16",
-    "projen": "^0.71.75",
+    "projen": "^0.71.76",
     "standard-version": "^9",
     "ts-jest": "^27",
     "typescript": "^4.9.5",
@@ -71,12 +71,12 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-chime": "^3.341.0",
+    "@aws-sdk/client-chime": "^3.342.0",
     "@aws-sdk/client-chime-sdk-identity": "latest",
     "@aws-sdk/client-chime-sdk-media-pipelines": "latest",
     "@aws-sdk/client-chime-sdk-messaging": "latest",
     "@aws-sdk/client-chime-sdk-voice": "latest",
-    "@aws-sdk/client-ssm": "^3.341.0",
+    "@aws-sdk/client-ssm": "^3.342.0",
     "@types/aws-lambda": "^8.10.115",
     "aws-lambda": "^1.0.7"
   },
