@@ -1,4 +1,4 @@
-const { awscdk } = require('projen');
+import { awscdk } from 'projen';
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
@@ -8,6 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   releaseToNpm: true,
   majorVersion: 2,
   eslintOptions: {
+    dirs: ['src', 'test', 'projenrc', '.projenrc.ts'],
     ignorePatterns: ['example/**'],
   },
   lambdaAutoDiscover: false,
@@ -34,7 +35,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   ],
   workflowNodeVersion: '16.x',
   depsUpgradeOptions: {
-    ignoreProjen: false,
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
     },
@@ -45,26 +45,18 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   autoApproveUpgrades: true,
   name: 'cdk-amazon-chime-resources',
+  projenrcTs: true,
   python: {
     distName: 'cdk-amazon-chime-resources',
     module: 'cdk_amazon_chime_resources',
   },
-  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.70.0',
-  cdkDeps: [
-    '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-voice@latest',
-    'aws-lambda',
-    '@types/aws-lambda',
-  ],
+  cdkDeps: project.cdkDeps,
   bundlingOptions: {
-    externals: [''],
-    minify: true,
-    nodeModules: [
+    externals: [
       '@aws-sdk/client-ssm',
       '@aws-sdk/client-chime-sdk-voice@latest',
       'aws-lambda',
@@ -73,56 +65,34 @@ new awscdk.LambdaFunction(project, {
   },
   entrypoint: 'src/resources/pstn/pstn.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
-  target: 'node18',
-  platform: 'node',
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.70.0',
-  cdkDeps: [
-    '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-messaging@latest',
-    'aws-lambda',
-    '@types/aws-lambda',
-  ],
+  cdkDeps: project.cdkDeps,
   entrypoint: 'src/resources/messaging/messaging.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   bundlingOptions: {
-    externals: [''],
-    minify: true,
-    nodeModules: [
+    externals: [
       '@aws-sdk/client-ssm',
       '@aws-sdk/client-chime-sdk-messaging@latest',
       'aws-lambda',
       '@types/aws-lambda',
     ],
   },
-  target: 'node18',
-  platform: 'node',
 });
 
 new awscdk.LambdaFunction(project, {
-  cdkVersion: '2.70.0',
-  cdkDeps: [
-    '@aws-sdk/client-ssm',
-    '@aws-sdk/client-chime-sdk-media-pipelines@latest',
-    'aws-lambda',
-    '@types/aws-lambda',
-  ],
+  cdkDeps: project.cdkDeps,
   entrypoint: 'src/resources/media-pipelines/media-pipelines.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   bundlingOptions: {
-    externals: [''],
-    minify: true,
-    nodeModules: [
+    externals: [
       '@aws-sdk/client-ssm',
       '@aws-sdk/client-chime-sdk-media-pipelines@latest',
       'aws-lambda',
       '@types/aws-lambda',
     ],
   },
-  target: 'node18',
-  platform: 'node',
 });
 
 const common_exclude = [
@@ -132,7 +102,7 @@ const common_exclude = [
   'dependabot.yml',
 ];
 
-project.npmignore.exclude(...common_exclude);
+project.npmignore?.exclude(...common_exclude);
 project.gitignore.exclude(...common_exclude);
 project.gitignore.include('example');
 
