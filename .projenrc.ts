@@ -53,15 +53,18 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
 });
 
+const externals: string[] = [
+  // Previously wrong configuration means this has never been used
+  // '@aws-sdk/client-ssm',
+  // '@aws-sdk/client-chime-sdk-messaging@latest',
+  // 'aws-lambda',
+  // '@types/aws-lambda',
+];
+
 new awscdk.LambdaFunction(project, {
   cdkDeps: project.cdkDeps,
   bundlingOptions: {
-    externals: [
-      '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-voice@latest',
-      'aws-lambda',
-      '@types/aws-lambda',
-    ],
+    externals,
   },
   entrypoint: 'src/resources/pstn/pstn.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
@@ -72,12 +75,7 @@ new awscdk.LambdaFunction(project, {
   entrypoint: 'src/resources/messaging/messaging.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   bundlingOptions: {
-    externals: [
-      '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-messaging@latest',
-      'aws-lambda',
-      '@types/aws-lambda',
-    ],
+    externals,
   },
 });
 
@@ -86,12 +84,7 @@ new awscdk.LambdaFunction(project, {
   entrypoint: 'src/resources/media-pipelines/media-pipelines.lambda.ts',
   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
   bundlingOptions: {
-    externals: [
-      '@aws-sdk/client-ssm',
-      '@aws-sdk/client-chime-sdk-media-pipelines@latest',
-      'aws-lambda',
-      '@types/aws-lambda',
-    ],
+    externals,
   },
 });
 
