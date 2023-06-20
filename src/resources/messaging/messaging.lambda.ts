@@ -10,6 +10,7 @@ import {
   CreateAppInstanceAdmin,
   DeleteAppInstanceAdmin,
 } from './instanceAdmin';
+import { CreateAppInstanceBot, DeleteAppInstanceBot } from './instanceBot';
 import { CreateAppInstanceUser, DeleteAppInstanceUser } from './instanceUser';
 import { PutStreamingConfiguration } from './streamingConfig';
 
@@ -137,6 +138,26 @@ export const handler = async (
       }
       break;
 
+    case 'AppInstanceBot':
+      switch (requestType) {
+        case 'Create':
+          response.Data = await CreateAppInstanceBot(
+            resourcePropertiesUid,
+            requestProperties,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateAppInstanceBot successful';
+          break;
+        case 'Update':
+          response.Status = 'SUCCESS';
+          break;
+        case 'Delete':
+          await DeleteAppInstanceBot(resourcePropertiesUid);
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteAppInstanceUser successful';
+          break;
+      }
+      break;
     case 'StreamingConfig':
       switch (requestType) {
         case 'Create':

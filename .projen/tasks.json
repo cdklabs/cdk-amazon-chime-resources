@@ -61,7 +61,7 @@
       "description": "Create a JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:"
+          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
         }
       ]
     },
@@ -70,7 +70,7 @@
       "description": "Continuously update the JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external: --watch"
+          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
         }
       ]
     },
@@ -79,7 +79,7 @@
       "description": "Create a JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:"
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
         }
       ]
     },
@@ -88,7 +88,7 @@
       "description": "Continuously update the JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external: --watch"
+          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
         }
       ]
     },
@@ -97,7 +97,7 @@
       "description": "Create a JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external:"
+          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
         }
       ]
     },
@@ -106,7 +106,7 @@
       "description": "Continuously update the JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
       "steps": [
         {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --external: --watch"
+          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
         }
       ]
     },
@@ -165,7 +165,7 @@
       "description": "Synthesize project files",
       "steps": [
         {
-          "exec": "node .projenrc.js"
+          "exec": "ts-node --project tsconfig.dev.json .projenrc.ts"
         }
       ]
     },
@@ -195,7 +195,7 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools .projenrc.js"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test projenrc .projenrc.ts test build-tools projenrc .projenrc.ts"
         }
       ]
     },
@@ -352,19 +352,19 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
         },
         {
           "exec": "yarn install --check-files"
@@ -393,5 +393,5 @@
   "env": {
     "PATH": "$(npx -c \"node -e \\\"console.log(process.env.PATH)\\\"\")"
   },
-  "//": "~~ Generated by projen. To modify, edit .projenrc.js and run \"npx projen\"."
+  "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"npx projen\"."
 }

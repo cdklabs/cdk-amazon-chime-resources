@@ -1,6 +1,7 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import * as chime from 'cdk-amazon-chime-resources';
+import { LexConfigurationRespondsTo } from 'cdk-amazon-chime-resources';
 import * as kinesis from 'aws-cdk-lib/aws-kinesis';
 import { Code, Function, Runtime } from 'aws-cdk-lib/aws-lambda';
 import * as iam from 'aws-cdk-lib/aws-iam';
@@ -22,6 +23,27 @@ export class MessagingExample extends Stack {
         appInstanceUserId: '1234',
       },
     );
+
+    const botAWSAccount = null;
+    const botAliasId = null;
+    const botId = null;
+
+    if (botAWSAccount != null && botAliasId != null && botId != null) {
+      new chime.MessagingAppInstanceBot(
+        this,
+        'appInstanceBot',
+        {
+          appInstanceArn: appInstance.appInstanceArn,
+          configuration: {
+            lex: {
+              localeId: "en_US",
+              lexBotAliasArn: `arn:aws:lex:us-east-1:${botAWSAccount}:bot-alias/${botId}/${botAliasId}`,
+              respondsTo: LexConfigurationRespondsTo.STANDARD_MESSAGES,
+            }
+          }
+        },
+      );
+    }
 
     new chime.MessagingAppInstanceAdmin(this, 'appInstanceAdmin', {
       appInstanceAdminArn: appInstanceUser.appInstanceUserArn,
