@@ -61,22 +61,26 @@ function capitalizeElementsKeys(
   return capitalizeKeys(elements) as MediaInsightsPipelineConfigurationElement;
 }
 
-let formattedElements: MediaInsightsPipelineConfigurationElement[] = [];
-let formattedTags: Tag[] = [];
-let formattedRealTimeAlertConfiguration: RealTimeAlertConfiguration = {};
-let formattedRealTimeAlertRules: RealTimeAlertRule[] = [];
 let createMediaInsightsPipelineConfigurationResponse: CreateMediaInsightsPipelineConfigurationCommandOutput;
 let createMediaInsightsPipelineConfigurationParams: CreateMediaInsightsPipelineConfigurationCommandInput;
 
 const formatProps = (props: MediaInsightsPipelineProps) => {
+  let formattedElements: MediaInsightsPipelineConfigurationElement[] = [];
+  let formattedTags: Tag[] = [];
+  let formattedRealTimeAlertConfiguration: RealTimeAlertConfiguration = {};
+  let formattedRealTimeAlertRules: RealTimeAlertRule[] = [];
+
   console.info(`Formatting Props: ${JSON.stringify(props)}`);
   if (props.elements) {
     console.info(`Formatting Elements: ${JSON.stringify(props.elements)}`);
+    console.log(`Current formattedElements: ${formattedElements}`);
     props.elements.forEach((element) => {
       formattedElements.push(capitalizeElementsKeys(element));
     });
     console.info(`Formatted Elements: ${JSON.stringify(formattedElements)}`);
   }
+  console.log(`New formattedElements: ${formattedElements}`);
+  console.log(`Current formattedTags: ${formattedTags}`);
 
   if (props.tags) {
     console.info(`Formatting Tags: ${JSON.stringify(props.tags)}`);
@@ -85,7 +89,7 @@ const formatProps = (props: MediaInsightsPipelineProps) => {
     });
     console.info(`Formatted Tags: ${JSON.stringify(formattedTags)}`);
   }
-
+  console.log(`New formattedTags: ${formattedTags}`);
   if (props.realTimeAlertConfiguration) {
     console.info(
       `Formatting Real Time Alert Configuration: ${JSON.stringify(
