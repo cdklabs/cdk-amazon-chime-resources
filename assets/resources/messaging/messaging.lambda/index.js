@@ -6036,6 +6036,14 @@ var require_auth = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/types/dist-cjs/blob/blob-types.js
+var require_blob_types = __commonJS({
+  "node_modules/@aws-sdk/types/dist-cjs/blob/blob-types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
 // node_modules/@aws-sdk/types/dist-cjs/checksum.js
 var require_checksum = __commonJS({
   "node_modules/@aws-sdk/types/dist-cjs/checksum.js"(exports) {
@@ -6361,6 +6369,7 @@ var require_dist_cjs26 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_abort(), exports);
     tslib_1.__exportStar(require_auth(), exports);
+    tslib_1.__exportStar(require_blob_types(), exports);
     tslib_1.__exportStar(require_checksum(), exports);
     tslib_1.__exportStar(require_client(), exports);
     tslib_1.__exportStar(require_command(), exports);
@@ -7335,6 +7344,881 @@ var require_client2 = __commonJS({
   }
 });
 
+// node_modules/@aws-sdk/util-base64/dist-cjs/fromBase64.js
+var require_fromBase64 = __commonJS({
+  "node_modules/@aws-sdk/util-base64/dist-cjs/fromBase64.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.fromBase64 = void 0;
+    var util_buffer_from_1 = require_dist_cjs21();
+    var BASE64_REGEX = /^[A-Za-z0-9+/]*={0,2}$/;
+    var fromBase64 = (input) => {
+      if (input.length * 3 % 4 !== 0) {
+        throw new TypeError(`Incorrect padding on base64 string.`);
+      }
+      if (!BASE64_REGEX.exec(input)) {
+        throw new TypeError(`Invalid base64 string.`);
+      }
+      const buffer = (0, util_buffer_from_1.fromString)(input, "base64");
+      return new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
+    };
+    exports.fromBase64 = fromBase64;
+  }
+});
+
+// node_modules/@aws-sdk/util-base64/dist-cjs/toBase64.js
+var require_toBase64 = __commonJS({
+  "node_modules/@aws-sdk/util-base64/dist-cjs/toBase64.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.toBase64 = void 0;
+    var util_buffer_from_1 = require_dist_cjs21();
+    var toBase64 = (input) => (0, util_buffer_from_1.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("base64");
+    exports.toBase64 = toBase64;
+  }
+});
+
+// node_modules/@aws-sdk/util-base64/dist-cjs/index.js
+var require_dist_cjs30 = __commonJS({
+  "node_modules/@aws-sdk/util-base64/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_fromBase64(), exports);
+    tslib_1.__exportStar(require_toBase64(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-stream/dist-cjs/blob/transforms.js
+var require_transforms = __commonJS({
+  "node_modules/@aws-sdk/util-stream/dist-cjs/blob/transforms.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.transformFromString = exports.transformToString = void 0;
+    var util_base64_1 = require_dist_cjs30();
+    var util_utf8_1 = require_dist_cjs22();
+    var Uint8ArrayBlobAdapter_1 = require_Uint8ArrayBlobAdapter();
+    function transformToString(payload, encoding = "utf-8") {
+      if (encoding === "base64") {
+        return (0, util_base64_1.toBase64)(payload);
+      }
+      return (0, util_utf8_1.toUtf8)(payload);
+    }
+    exports.transformToString = transformToString;
+    function transformFromString(str, encoding) {
+      if (encoding === "base64") {
+        return Uint8ArrayBlobAdapter_1.Uint8ArrayBlobAdapter.mutate((0, util_base64_1.fromBase64)(str));
+      }
+      return Uint8ArrayBlobAdapter_1.Uint8ArrayBlobAdapter.mutate((0, util_utf8_1.fromUtf8)(str));
+    }
+    exports.transformFromString = transformFromString;
+  }
+});
+
+// node_modules/@aws-sdk/util-stream/dist-cjs/blob/Uint8ArrayBlobAdapter.js
+var require_Uint8ArrayBlobAdapter = __commonJS({
+  "node_modules/@aws-sdk/util-stream/dist-cjs/blob/Uint8ArrayBlobAdapter.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Uint8ArrayBlobAdapter = void 0;
+    var transforms_1 = require_transforms();
+    var Uint8ArrayBlobAdapter = class _Uint8ArrayBlobAdapter extends Uint8Array {
+      static fromString(source, encoding = "utf-8") {
+        switch (typeof source) {
+          case "string":
+            return (0, transforms_1.transformFromString)(source, encoding);
+          default:
+            throw new Error(`Unsupported conversion from ${typeof source} to Uint8ArrayBlobAdapter.`);
+        }
+      }
+      static mutate(source) {
+        Object.setPrototypeOf(source, _Uint8ArrayBlobAdapter.prototype);
+        return source;
+      }
+      transformToString(encoding = "utf-8") {
+        return (0, transforms_1.transformToString)(this, encoding);
+      }
+    };
+    exports.Uint8ArrayBlobAdapter = Uint8ArrayBlobAdapter;
+  }
+});
+
+// node_modules/@aws-sdk/util-stream/dist-cjs/getAwsChunkedEncodingStream.js
+var require_getAwsChunkedEncodingStream = __commonJS({
+  "node_modules/@aws-sdk/util-stream/dist-cjs/getAwsChunkedEncodingStream.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getAwsChunkedEncodingStream = void 0;
+    var stream_1 = require("stream");
+    var getAwsChunkedEncodingStream = (readableStream, options) => {
+      const { base64Encoder, bodyLengthChecker, checksumAlgorithmFn, checksumLocationName, streamHasher } = options;
+      const checksumRequired = base64Encoder !== void 0 && checksumAlgorithmFn !== void 0 && checksumLocationName !== void 0 && streamHasher !== void 0;
+      const digest = checksumRequired ? streamHasher(checksumAlgorithmFn, readableStream) : void 0;
+      const awsChunkedEncodingStream = new stream_1.Readable({ read: () => {
+      } });
+      readableStream.on("data", (data) => {
+        const length = bodyLengthChecker(data) || 0;
+        awsChunkedEncodingStream.push(`${length.toString(16)}\r
+`);
+        awsChunkedEncodingStream.push(data);
+        awsChunkedEncodingStream.push("\r\n");
+      });
+      readableStream.on("end", async () => {
+        awsChunkedEncodingStream.push(`0\r
+`);
+        if (checksumRequired) {
+          const checksum = base64Encoder(await digest);
+          awsChunkedEncodingStream.push(`${checksumLocationName}:${checksum}\r
+`);
+          awsChunkedEncodingStream.push(`\r
+`);
+        }
+        awsChunkedEncodingStream.push(null);
+      });
+      return awsChunkedEncodingStream;
+    };
+    exports.getAwsChunkedEncodingStream = getAwsChunkedEncodingStream;
+  }
+});
+
+// node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js
+var require_dist_cjs31 = __commonJS({
+  "node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.buildQueryString = void 0;
+    var util_uri_escape_1 = require_dist_cjs23();
+    function buildQueryString(query) {
+      const parts = [];
+      for (let key of Object.keys(query).sort()) {
+        const value = query[key];
+        key = (0, util_uri_escape_1.escapeUri)(key);
+        if (Array.isArray(value)) {
+          for (let i = 0, iLen = value.length; i < iLen; i++) {
+            parts.push(`${key}=${(0, util_uri_escape_1.escapeUri)(value[i])}`);
+          }
+        } else {
+          let qsEntry = key;
+          if (value || typeof value === "string") {
+            qsEntry += `=${(0, util_uri_escape_1.escapeUri)(value)}`;
+          }
+          parts.push(qsEntry);
+        }
+      }
+      return parts.join("&");
+    }
+    exports.buildQueryString = buildQueryString;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/constants.js
+var require_constants5 = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/constants.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NODEJS_TIMEOUT_ERROR_CODES = void 0;
+    exports.NODEJS_TIMEOUT_ERROR_CODES = ["ECONNRESET", "EPIPE", "ETIMEDOUT"];
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/get-transformed-headers.js
+var require_get_transformed_headers = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/get-transformed-headers.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.getTransformedHeaders = void 0;
+    var getTransformedHeaders = (headers) => {
+      const transformedHeaders = {};
+      for (const name of Object.keys(headers)) {
+        const headerValues = headers[name];
+        transformedHeaders[name] = Array.isArray(headerValues) ? headerValues.join(",") : headerValues;
+      }
+      return transformedHeaders;
+    };
+    exports.getTransformedHeaders = getTransformedHeaders;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js
+var require_set_connection_timeout = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setConnectionTimeout = void 0;
+    var setConnectionTimeout = (request, reject, timeoutInMs = 0) => {
+      if (!timeoutInMs) {
+        return;
+      }
+      const timeoutId = setTimeout(() => {
+        request.destroy();
+        reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
+          name: "TimeoutError"
+        }));
+      }, timeoutInMs);
+      request.on("socket", (socket) => {
+        if (socket.connecting) {
+          socket.on("connect", () => {
+            clearTimeout(timeoutId);
+          });
+        } else {
+          clearTimeout(timeoutId);
+        }
+      });
+    };
+    exports.setConnectionTimeout = setConnectionTimeout;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js
+var require_set_socket_keep_alive = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setSocketKeepAlive = void 0;
+    var setSocketKeepAlive = (request, { keepAlive, keepAliveMsecs }) => {
+      if (keepAlive !== true) {
+        return;
+      }
+      request.on("socket", (socket) => {
+        socket.setKeepAlive(keepAlive, keepAliveMsecs || 0);
+      });
+    };
+    exports.setSocketKeepAlive = setSocketKeepAlive;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js
+var require_set_socket_timeout = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.setSocketTimeout = void 0;
+    var setSocketTimeout = (request, reject, timeoutInMs = 0) => {
+      request.setTimeout(timeoutInMs, () => {
+        request.destroy();
+        reject(Object.assign(new Error(`Connection timed out after ${timeoutInMs} ms`), { name: "TimeoutError" }));
+      });
+    };
+    exports.setSocketTimeout = setSocketTimeout;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js
+var require_write_request_body = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.writeRequestBody = void 0;
+    var stream_1 = require("stream");
+    var MIN_WAIT_TIME = 1e3;
+    async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN_WAIT_TIME) {
+      var _a;
+      const headers = (_a = request.headers) !== null && _a !== void 0 ? _a : {};
+      const expect = headers["Expect"] || headers["expect"];
+      let timeoutId = -1;
+      let hasError = false;
+      if (expect === "100-continue") {
+        await Promise.race([
+          new Promise((resolve) => {
+            timeoutId = Number(setTimeout(resolve, Math.max(MIN_WAIT_TIME, maxContinueTimeoutMs)));
+          }),
+          new Promise((resolve) => {
+            httpRequest.on("continue", () => {
+              clearTimeout(timeoutId);
+              resolve();
+            });
+            httpRequest.on("error", () => {
+              hasError = true;
+              clearTimeout(timeoutId);
+              resolve();
+            });
+          })
+        ]);
+      }
+      if (!hasError) {
+        writeBody(httpRequest, request.body);
+      }
+    }
+    exports.writeRequestBody = writeRequestBody;
+    function writeBody(httpRequest, body) {
+      if (body instanceof stream_1.Readable) {
+        body.pipe(httpRequest);
+      } else if (body) {
+        httpRequest.end(Buffer.from(body));
+      } else {
+        httpRequest.end();
+      }
+    }
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http-handler.js
+var require_node_http_handler = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http-handler.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttpHandler = exports.DEFAULT_REQUEST_TIMEOUT = void 0;
+    var protocol_http_1 = require_dist_cjs4();
+    var querystring_builder_1 = require_dist_cjs31();
+    var http_1 = require("http");
+    var https_1 = require("https");
+    var constants_1 = require_constants5();
+    var get_transformed_headers_1 = require_get_transformed_headers();
+    var set_connection_timeout_1 = require_set_connection_timeout();
+    var set_socket_keep_alive_1 = require_set_socket_keep_alive();
+    var set_socket_timeout_1 = require_set_socket_timeout();
+    var write_request_body_1 = require_write_request_body();
+    exports.DEFAULT_REQUEST_TIMEOUT = 0;
+    var NodeHttpHandler = class {
+      constructor(options) {
+        this.metadata = { handlerProtocol: "http/1.1" };
+        this.configProvider = new Promise((resolve, reject) => {
+          if (typeof options === "function") {
+            options().then((_options) => {
+              resolve(this.resolveDefaultConfig(_options));
+            }).catch(reject);
+          } else {
+            resolve(this.resolveDefaultConfig(options));
+          }
+        });
+      }
+      resolveDefaultConfig(options) {
+        const { requestTimeout, connectionTimeout, socketTimeout, httpAgent, httpsAgent } = options || {};
+        const keepAlive = true;
+        const maxSockets = 50;
+        return {
+          connectionTimeout,
+          requestTimeout: requestTimeout !== null && requestTimeout !== void 0 ? requestTimeout : socketTimeout,
+          httpAgent: httpAgent || new http_1.Agent({ keepAlive, maxSockets }),
+          httpsAgent: httpsAgent || new https_1.Agent({ keepAlive, maxSockets })
+        };
+      }
+      destroy() {
+        var _a, _b, _c, _d;
+        (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.httpAgent) === null || _b === void 0 ? void 0 : _b.destroy();
+        (_d = (_c = this.config) === null || _c === void 0 ? void 0 : _c.httpsAgent) === null || _d === void 0 ? void 0 : _d.destroy();
+      }
+      async handle(request, { abortSignal } = {}) {
+        if (!this.config) {
+          this.config = await this.configProvider;
+        }
+        return new Promise((_resolve, _reject) => {
+          var _a, _b;
+          let writeRequestBodyPromise = void 0;
+          const resolve = async (arg) => {
+            await writeRequestBodyPromise;
+            _resolve(arg);
+          };
+          const reject = async (arg) => {
+            await writeRequestBodyPromise;
+            _reject(arg);
+          };
+          if (!this.config) {
+            throw new Error("Node HTTP request handler config is not resolved");
+          }
+          if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
+            const abortError = new Error("Request aborted");
+            abortError.name = "AbortError";
+            reject(abortError);
+            return;
+          }
+          const isSSL = request.protocol === "https:";
+          const queryString = (0, querystring_builder_1.buildQueryString)(request.query || {});
+          let auth = void 0;
+          if (request.username != null || request.password != null) {
+            const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
+            const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
+            auth = `${username}:${password}`;
+          }
+          let path = request.path;
+          if (queryString) {
+            path += `?${queryString}`;
+          }
+          if (request.fragment) {
+            path += `#${request.fragment}`;
+          }
+          const nodeHttpsOptions = {
+            headers: request.headers,
+            host: request.hostname,
+            method: request.method,
+            path,
+            port: request.port,
+            agent: isSSL ? this.config.httpsAgent : this.config.httpAgent,
+            auth
+          };
+          const requestFunc = isSSL ? https_1.request : http_1.request;
+          const req = requestFunc(nodeHttpsOptions, (res) => {
+            const httpResponse = new protocol_http_1.HttpResponse({
+              statusCode: res.statusCode || -1,
+              reason: res.statusMessage,
+              headers: (0, get_transformed_headers_1.getTransformedHeaders)(res.headers),
+              body: res
+            });
+            resolve({ response: httpResponse });
+          });
+          req.on("error", (err) => {
+            if (constants_1.NODEJS_TIMEOUT_ERROR_CODES.includes(err.code)) {
+              reject(Object.assign(err, { name: "TimeoutError" }));
+            } else {
+              reject(err);
+            }
+          });
+          (0, set_connection_timeout_1.setConnectionTimeout)(req, reject, this.config.connectionTimeout);
+          (0, set_socket_timeout_1.setSocketTimeout)(req, reject, this.config.requestTimeout);
+          if (abortSignal) {
+            abortSignal.onabort = () => {
+              req.abort();
+              const abortError = new Error("Request aborted");
+              abortError.name = "AbortError";
+              reject(abortError);
+            };
+          }
+          const httpAgent = nodeHttpsOptions.agent;
+          if (typeof httpAgent === "object" && "keepAlive" in httpAgent) {
+            (0, set_socket_keep_alive_1.setSocketKeepAlive)(req, {
+              keepAlive: httpAgent.keepAlive,
+              keepAliveMsecs: httpAgent.keepAliveMsecs
+            });
+          }
+          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, this.config.requestTimeout);
+        });
+      }
+    };
+    exports.NodeHttpHandler = NodeHttpHandler;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js
+var require_node_http2_connection_pool = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttp2ConnectionPool = void 0;
+    var NodeHttp2ConnectionPool = class {
+      constructor(sessions) {
+        this.sessions = [];
+        this.sessions = sessions !== null && sessions !== void 0 ? sessions : [];
+      }
+      poll() {
+        if (this.sessions.length > 0) {
+          return this.sessions.shift();
+        }
+      }
+      offerLast(session) {
+        this.sessions.push(session);
+      }
+      contains(session) {
+        return this.sessions.includes(session);
+      }
+      remove(session) {
+        this.sessions = this.sessions.filter((s) => s !== session);
+      }
+      [Symbol.iterator]() {
+        return this.sessions[Symbol.iterator]();
+      }
+      destroy(connection) {
+        for (const session of this.sessions) {
+          if (session === connection) {
+            if (!session.destroyed) {
+              session.destroy();
+            }
+          }
+        }
+      }
+    };
+    exports.NodeHttp2ConnectionPool = NodeHttp2ConnectionPool;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js
+var require_node_http2_connection_manager = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttp2ConnectionManager = void 0;
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    var http2_1 = tslib_1.__importDefault(require("http2"));
+    var node_http2_connection_pool_1 = require_node_http2_connection_pool();
+    var NodeHttp2ConnectionManager = class {
+      constructor(config) {
+        this.sessionCache = /* @__PURE__ */ new Map();
+        this.config = config;
+        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
+          throw new RangeError("maxConcurrency must be greater than zero.");
+        }
+      }
+      lease(requestContext, connectionConfiguration) {
+        const url = this.getUrlString(requestContext);
+        const existingPool = this.sessionCache.get(url);
+        if (existingPool) {
+          const existingSession = existingPool.poll();
+          if (existingSession && !this.config.disableConcurrency) {
+            return existingSession;
+          }
+        }
+        const session = http2_1.default.connect(url);
+        if (this.config.maxConcurrency) {
+          session.settings({ maxConcurrentStreams: this.config.maxConcurrency }, (err) => {
+            if (err) {
+              throw new Error("Fail to set maxConcurrentStreams to " + this.config.maxConcurrency + "when creating new session for " + requestContext.destination.toString());
+            }
+          });
+        }
+        session.unref();
+        const destroySessionCb = () => {
+          session.destroy();
+          this.deleteSession(url, session);
+        };
+        session.on("goaway", destroySessionCb);
+        session.on("error", destroySessionCb);
+        session.on("frameError", destroySessionCb);
+        session.on("close", () => this.deleteSession(url, session));
+        if (connectionConfiguration.requestTimeout) {
+          session.setTimeout(connectionConfiguration.requestTimeout, destroySessionCb);
+        }
+        const connectionPool = this.sessionCache.get(url) || new node_http2_connection_pool_1.NodeHttp2ConnectionPool();
+        connectionPool.offerLast(session);
+        this.sessionCache.set(url, connectionPool);
+        return session;
+      }
+      deleteSession(authority, session) {
+        const existingConnectionPool = this.sessionCache.get(authority);
+        if (!existingConnectionPool) {
+          return;
+        }
+        if (!existingConnectionPool.contains(session)) {
+          return;
+        }
+        existingConnectionPool.remove(session);
+        this.sessionCache.set(authority, existingConnectionPool);
+      }
+      release(requestContext, session) {
+        var _a;
+        const cacheKey = this.getUrlString(requestContext);
+        (_a = this.sessionCache.get(cacheKey)) === null || _a === void 0 ? void 0 : _a.offerLast(session);
+      }
+      destroy() {
+        for (const [key, connectionPool] of this.sessionCache) {
+          for (const session of connectionPool) {
+            if (!session.destroyed) {
+              session.destroy();
+            }
+            connectionPool.remove(session);
+          }
+          this.sessionCache.delete(key);
+        }
+      }
+      setMaxConcurrentStreams(maxConcurrentStreams) {
+        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
+          throw new RangeError("maxConcurrentStreams must be greater than zero.");
+        }
+        this.config.maxConcurrency = maxConcurrentStreams;
+      }
+      setDisableConcurrentStreams(disableConcurrentStreams) {
+        this.config.disableConcurrency = disableConcurrentStreams;
+      }
+      getUrlString(request) {
+        return request.destination.toString();
+      }
+    };
+    exports.NodeHttp2ConnectionManager = NodeHttp2ConnectionManager;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js
+var require_node_http2_handler = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.NodeHttp2Handler = void 0;
+    var protocol_http_1 = require_dist_cjs4();
+    var querystring_builder_1 = require_dist_cjs31();
+    var http2_1 = require("http2");
+    var get_transformed_headers_1 = require_get_transformed_headers();
+    var node_http2_connection_manager_1 = require_node_http2_connection_manager();
+    var write_request_body_1 = require_write_request_body();
+    var NodeHttp2Handler = class {
+      constructor(options) {
+        this.metadata = { handlerProtocol: "h2" };
+        this.connectionManager = new node_http2_connection_manager_1.NodeHttp2ConnectionManager({});
+        this.configProvider = new Promise((resolve, reject) => {
+          if (typeof options === "function") {
+            options().then((opts) => {
+              resolve(opts || {});
+            }).catch(reject);
+          } else {
+            resolve(options || {});
+          }
+        });
+      }
+      destroy() {
+        this.connectionManager.destroy();
+      }
+      async handle(request, { abortSignal } = {}) {
+        if (!this.config) {
+          this.config = await this.configProvider;
+          this.connectionManager.setDisableConcurrentStreams(this.config.disableConcurrentStreams || false);
+          if (this.config.maxConcurrentStreams) {
+            this.connectionManager.setMaxConcurrentStreams(this.config.maxConcurrentStreams);
+          }
+        }
+        const { requestTimeout, disableConcurrentStreams } = this.config;
+        return new Promise((_resolve, _reject) => {
+          var _a, _b, _c;
+          let fulfilled = false;
+          let writeRequestBodyPromise = void 0;
+          const resolve = async (arg) => {
+            await writeRequestBodyPromise;
+            _resolve(arg);
+          };
+          const reject = async (arg) => {
+            await writeRequestBodyPromise;
+            _reject(arg);
+          };
+          if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
+            fulfilled = true;
+            const abortError = new Error("Request aborted");
+            abortError.name = "AbortError";
+            reject(abortError);
+            return;
+          }
+          const { hostname, method, port, protocol, query } = request;
+          let auth = "";
+          if (request.username != null || request.password != null) {
+            const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
+            const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
+            auth = `${username}:${password}@`;
+          }
+          const authority = `${protocol}//${auth}${hostname}${port ? `:${port}` : ""}`;
+          const requestContext = { destination: new URL(authority) };
+          const session = this.connectionManager.lease(requestContext, {
+            requestTimeout: (_c = this.config) === null || _c === void 0 ? void 0 : _c.sessionTimeout,
+            disableConcurrentStreams: disableConcurrentStreams || false
+          });
+          const rejectWithDestroy = (err) => {
+            if (disableConcurrentStreams) {
+              this.destroySession(session);
+            }
+            fulfilled = true;
+            reject(err);
+          };
+          const queryString = (0, querystring_builder_1.buildQueryString)(query || {});
+          let path = request.path;
+          if (queryString) {
+            path += `?${queryString}`;
+          }
+          if (request.fragment) {
+            path += `#${request.fragment}`;
+          }
+          const req = session.request({
+            ...request.headers,
+            [http2_1.constants.HTTP2_HEADER_PATH]: path,
+            [http2_1.constants.HTTP2_HEADER_METHOD]: method
+          });
+          session.ref();
+          req.on("response", (headers) => {
+            const httpResponse = new protocol_http_1.HttpResponse({
+              statusCode: headers[":status"] || -1,
+              headers: (0, get_transformed_headers_1.getTransformedHeaders)(headers),
+              body: req
+            });
+            fulfilled = true;
+            resolve({ response: httpResponse });
+            if (disableConcurrentStreams) {
+              session.close();
+              this.connectionManager.deleteSession(authority, session);
+            }
+          });
+          if (requestTimeout) {
+            req.setTimeout(requestTimeout, () => {
+              req.close();
+              const timeoutError = new Error(`Stream timed out because of no activity for ${requestTimeout} ms`);
+              timeoutError.name = "TimeoutError";
+              rejectWithDestroy(timeoutError);
+            });
+          }
+          if (abortSignal) {
+            abortSignal.onabort = () => {
+              req.close();
+              const abortError = new Error("Request aborted");
+              abortError.name = "AbortError";
+              rejectWithDestroy(abortError);
+            };
+          }
+          req.on("frameError", (type, code, id) => {
+            rejectWithDestroy(new Error(`Frame type id ${type} in stream id ${id} has failed with code ${code}.`));
+          });
+          req.on("error", rejectWithDestroy);
+          req.on("aborted", () => {
+            rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${req.rstCode}.`));
+          });
+          req.on("close", () => {
+            session.unref();
+            if (disableConcurrentStreams) {
+              session.destroy();
+            }
+            if (!fulfilled) {
+              rejectWithDestroy(new Error("Unexpected error: http2 request did not get a response"));
+            }
+          });
+          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, requestTimeout);
+        });
+      }
+      destroySession(session) {
+        if (!session.destroyed) {
+          session.destroy();
+        }
+      }
+    };
+    exports.NodeHttp2Handler = NodeHttp2Handler;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/collector.js
+var require_collector = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/collector.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Collector = void 0;
+    var stream_1 = require("stream");
+    var Collector = class extends stream_1.Writable {
+      constructor() {
+        super(...arguments);
+        this.bufferedBytes = [];
+      }
+      _write(chunk, encoding, callback) {
+        this.bufferedBytes.push(chunk);
+        callback();
+      }
+    };
+    exports.Collector = Collector;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/index.js
+var require_stream_collector = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.streamCollector = void 0;
+    var collector_1 = require_collector();
+    var streamCollector = (stream) => new Promise((resolve, reject) => {
+      const collector = new collector_1.Collector();
+      stream.pipe(collector);
+      stream.on("error", (err) => {
+        collector.end();
+        reject(err);
+      });
+      collector.on("error", reject);
+      collector.on("finish", function() {
+        const bytes = new Uint8Array(Buffer.concat(this.bufferedBytes));
+        resolve(bytes);
+      });
+    });
+    exports.streamCollector = streamCollector;
+  }
+});
+
+// node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js
+var require_dist_cjs32 = __commonJS({
+  "node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_node_http_handler(), exports);
+    tslib_1.__exportStar(require_node_http2_handler(), exports);
+    tslib_1.__exportStar(require_stream_collector(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/util-stream/dist-cjs/sdk-stream-mixin.js
+var require_sdk_stream_mixin = __commonJS({
+  "node_modules/@aws-sdk/util-stream/dist-cjs/sdk-stream-mixin.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.sdkStreamMixin = void 0;
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_buffer_from_1 = require_dist_cjs21();
+    var stream_1 = require("stream");
+    var util_1 = require("util");
+    var ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED = "The stream has already been transformed.";
+    var sdkStreamMixin = (stream) => {
+      var _a, _b;
+      if (!(stream instanceof stream_1.Readable)) {
+        const name = ((_b = (_a = stream === null || stream === void 0 ? void 0 : stream.__proto__) === null || _a === void 0 ? void 0 : _a.constructor) === null || _b === void 0 ? void 0 : _b.name) || stream;
+        throw new Error(`Unexpected stream implementation, expect Stream.Readable instance, got ${name}`);
+      }
+      let transformed = false;
+      const transformToByteArray = async () => {
+        if (transformed) {
+          throw new Error(ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED);
+        }
+        transformed = true;
+        return await (0, node_http_handler_1.streamCollector)(stream);
+      };
+      return Object.assign(stream, {
+        transformToByteArray,
+        transformToString: async (encoding) => {
+          const buf = await transformToByteArray();
+          if (encoding === void 0 || Buffer.isEncoding(encoding)) {
+            return (0, util_buffer_from_1.fromArrayBuffer)(buf.buffer, buf.byteOffset, buf.byteLength).toString(encoding);
+          } else {
+            const decoder = new util_1.TextDecoder(encoding);
+            return decoder.decode(buf);
+          }
+        },
+        transformToWebStream: () => {
+          if (transformed) {
+            throw new Error(ERR_MSG_STREAM_HAS_BEEN_TRANSFORMED);
+          }
+          if (stream.readableFlowing !== null) {
+            throw new Error("The stream has been consumed by other callbacks.");
+          }
+          if (typeof stream_1.Readable.toWeb !== "function") {
+            throw new Error("Readable.toWeb() is not supported. Please make sure you are using Node.js >= 17.0.0, or polyfill is available.");
+          }
+          transformed = true;
+          return stream_1.Readable.toWeb(stream);
+        }
+      });
+    };
+    exports.sdkStreamMixin = sdkStreamMixin;
+  }
+});
+
+// node_modules/@aws-sdk/util-stream/dist-cjs/index.js
+var require_dist_cjs33 = __commonJS({
+  "node_modules/@aws-sdk/util-stream/dist-cjs/index.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
+    tslib_1.__exportStar(require_Uint8ArrayBlobAdapter(), exports);
+    tslib_1.__exportStar(require_getAwsChunkedEncodingStream(), exports);
+    tslib_1.__exportStar(require_sdk_stream_mixin(), exports);
+  }
+});
+
+// node_modules/@aws-sdk/smithy-client/dist-cjs/collect-stream-body.js
+var require_collect_stream_body = __commonJS({
+  "node_modules/@aws-sdk/smithy-client/dist-cjs/collect-stream-body.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.collectBody = void 0;
+    var util_stream_1 = require_dist_cjs33();
+    var collectBody = async (streamBody = new Uint8Array(), context) => {
+      if (streamBody instanceof Uint8Array) {
+        return util_stream_1.Uint8ArrayBlobAdapter.mutate(streamBody);
+      }
+      if (!streamBody) {
+        return util_stream_1.Uint8ArrayBlobAdapter.mutate(new Uint8Array());
+      }
+      const fromContext = context.streamCollector(streamBody);
+      return util_stream_1.Uint8ArrayBlobAdapter.mutate(await fromContext);
+    };
+    exports.collectBody = collectBody;
+  }
+});
+
 // node_modules/@aws-sdk/smithy-client/dist-cjs/command.js
 var require_command2 = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/command.js"(exports) {
@@ -7352,7 +8236,7 @@ var require_command2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/constants.js
-var require_constants5 = __commonJS({
+var require_constants6 = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/constants.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -8259,15 +9143,16 @@ var require_split_every = __commonJS({
 });
 
 // node_modules/@aws-sdk/smithy-client/dist-cjs/index.js
-var require_dist_cjs30 = __commonJS({
+var require_dist_cjs34 = __commonJS({
   "node_modules/@aws-sdk/smithy-client/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_NoOpLogger(), exports);
     tslib_1.__exportStar(require_client2(), exports);
+    tslib_1.__exportStar(require_collect_stream_body(), exports);
     tslib_1.__exportStar(require_command2(), exports);
-    tslib_1.__exportStar(require_constants5(), exports);
+    tslib_1.__exportStar(require_constants6(), exports);
     tslib_1.__exportStar(require_create_aggregated_client(), exports);
     tslib_1.__exportStar(require_date_utils(), exports);
     tslib_1.__exportStar(require_default_error_handler(), exports);
@@ -8311,7 +9196,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -8331,36 +9216,36 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.354.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/credential-provider-node": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-signing": "3.354.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-signing": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -8413,7 +9298,7 @@ var require_package = __commonJS({
 });
 
 // node_modules/@aws-sdk/middleware-sdk-sts/dist-cjs/index.js
-var require_dist_cjs31 = __commonJS({
+var require_dist_cjs35 = __commonJS({
   "node_modules/@aws-sdk/middleware-sdk-sts/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -8452,7 +9337,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -8474,36 +9359,36 @@ var require_package2 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/credential-provider-node": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-sdk-sts": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-signing": "3.354.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-sdk-sts": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-signing": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -8560,7 +9445,7 @@ var require_STSServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.STSServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -8580,7 +9465,7 @@ var require_models_0 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GetSessionTokenResponseFilterSensitiveLog = exports.GetFederationTokenResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityResponseFilterSensitiveLog = exports.AssumeRoleWithWebIdentityRequestFilterSensitiveLog = exports.AssumeRoleWithSAMLResponseFilterSensitiveLog = exports.AssumeRoleWithSAMLRequestFilterSensitiveLog = exports.AssumeRoleResponseFilterSensitiveLog = exports.CredentialsFilterSensitiveLog = exports.InvalidAuthorizationMessageException = exports.IDPCommunicationErrorException = exports.InvalidIdentityTokenException = exports.IDPRejectedClaimException = exports.RegionDisabledException = exports.PackedPolicyTooLargeException = exports.MalformedPolicyDocumentException = exports.ExpiredTokenException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var STSServiceException_1 = require_STSServiceException();
     var ExpiredTokenException = class _ExpiredTokenException extends STSServiceException_1.STSServiceException {
       constructor(opts) {
@@ -9064,7 +9949,7 @@ var require_waiter2 = __commonJS({
 });
 
 // node_modules/@smithy/types/dist-cjs/index.js
-var require_dist_cjs32 = __commonJS({
+var require_dist_cjs36 = __commonJS({
   "node_modules/@smithy/types/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -9105,7 +9990,7 @@ var require_Field2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Field = void 0;
-    var types_1 = require_dist_cjs32();
+    var types_1 = require_dist_cjs36();
     var Field = class {
       constructor({ name, kind = types_1.FieldPosition.HEADER, values = [] }) {
         this.name = name;
@@ -9265,7 +10150,7 @@ var require_types4 = __commonJS({
 });
 
 // node_modules/@smithy/protocol-http/dist-cjs/index.js
-var require_dist_cjs33 = __commonJS({
+var require_dist_cjs37 = __commonJS({
   "node_modules/@smithy/protocol-http/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -10972,8 +11857,8 @@ var require_Aws_query = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_GetSessionTokenCommand = exports.de_GetFederationTokenCommand = exports.de_GetCallerIdentityCommand = exports.de_GetAccessKeyInfoCommand = exports.de_DecodeAuthorizationMessageCommand = exports.de_AssumeRoleWithWebIdentityCommand = exports.de_AssumeRoleWithSAMLCommand = exports.de_AssumeRoleCommand = exports.se_GetSessionTokenCommand = exports.se_GetFederationTokenCommand = exports.se_GetCallerIdentityCommand = exports.se_GetAccessKeyInfoCommand = exports.se_DecodeAuthorizationMessageCommand = exports.se_AssumeRoleWithWebIdentityCommand = exports.se_AssumeRoleWithSAMLCommand = exports.se_AssumeRoleCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var fast_xml_parser_1 = require_fxp();
     var models_0_1 = require_models_0();
     var STSServiceException_1 = require_STSServiceException();
@@ -11896,13 +12781,7 @@ var require_Aws_query = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var throwDefaultError = (0, smithy_client_1.withBaseException)(STSServiceException_1.STSServiceException);
     var buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
@@ -11978,7 +12857,7 @@ var require_AssumeRoleCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -12035,7 +12914,7 @@ var require_AssumeRoleWithWebIdentityCommand = __commonJS({
     exports.AssumeRoleWithWebIdentityCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -12195,7 +13074,7 @@ var require_fromEnv = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-env/dist-cjs/index.js
-var require_dist_cjs34 = __commonJS({
+var require_dist_cjs38 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-env/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12485,7 +13364,7 @@ var require_types5 = __commonJS({
 });
 
 // node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/index.js
-var require_dist_cjs35 = __commonJS({
+var require_dist_cjs39 = __commonJS({
   "node_modules/@aws-sdk/shared-ini-file-loader/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12699,7 +13578,7 @@ var require_fromSharedConfigFiles = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSharedConfigFiles = void 0;
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var fromSharedConfigFiles = (configSelector, { preferredFile = "config", ...init } = {}) => async () => {
       const profile = (0, shared_ini_file_loader_1.getProfileName)(init);
       const { configFile, credentialsFile } = await (0, shared_ini_file_loader_1.loadSharedConfigFiles)(init);
@@ -12749,7 +13628,7 @@ var require_configLoader = __commonJS({
 });
 
 // node_modules/@aws-sdk/node-config-provider/dist-cjs/index.js
-var require_dist_cjs36 = __commonJS({
+var require_dist_cjs40 = __commonJS({
   "node_modules/@aws-sdk/node-config-provider/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -12825,7 +13704,7 @@ var require_getInstanceMetadataEndpoint = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getInstanceMetadataEndpoint = void 0;
-    var node_config_provider_1 = require_dist_cjs36();
+    var node_config_provider_1 = require_dist_cjs40();
     var url_parser_1 = require_dist_cjs7();
     var Endpoint_1 = require_Endpoint();
     var EndpointConfigOptions_1 = require_EndpointConfigOptions();
@@ -13011,7 +13890,7 @@ var require_types6 = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-imds/dist-cjs/index.js
-var require_dist_cjs37 = __commonJS({
+var require_dist_cjs41 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-imds/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13038,8 +13917,8 @@ var require_resolveCredentialSource = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveCredentialSource = void 0;
-    var credential_provider_env_1 = require_dist_cjs34();
-    var credential_provider_imds_1 = require_dist_cjs37();
+    var credential_provider_env_1 = require_dist_cjs38();
+    var credential_provider_imds_1 = require_dist_cjs41();
     var property_provider_1 = require_dist_cjs16();
     var resolveCredentialSource = (credentialSource, profileName) => {
       const sourceProvidersMap = {
@@ -13064,7 +13943,7 @@ var require_resolveAssumeRoleCredentials = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveAssumeRoleCredentials = exports.isAssumeRoleProfile = void 0;
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var resolveCredentialSource_1 = require_resolveCredentialSource();
     var resolveProfileData_1 = require_resolveProfileData();
     var isAssumeRoleProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.role_arn === "string" && ["undefined", "string"].indexOf(typeof arg.role_session_name) > -1 && ["undefined", "string"].indexOf(typeof arg.external_id) > -1 && ["undefined", "string"].indexOf(typeof arg.mfa_serial) > -1 && (isAssumeRoleWithSourceProfile(arg) || isAssumeRoleWithProviderProfile(arg));
@@ -13180,7 +14059,7 @@ var require_fromProcess = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromProcess = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var resolveProcessCredentials_1 = require_resolveProcessCredentials();
     var fromProcess = (init = {}) => async () => {
       const profiles = await (0, shared_ini_file_loader_1.parseKnownFiles)(init);
@@ -13191,7 +14070,7 @@ var require_fromProcess = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-process/dist-cjs/index.js
-var require_dist_cjs38 = __commonJS({
+var require_dist_cjs42 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-process/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13206,7 +14085,7 @@ var require_resolveProcessCredentials2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveProcessCredentials = exports.isProcessProfile = void 0;
-    var credential_provider_process_1 = require_dist_cjs38();
+    var credential_provider_process_1 = require_dist_cjs42();
     var isProcessProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.credential_process === "string";
     exports.isProcessProfile = isProcessProfile;
     var resolveProcessCredentials = async (options, profile) => (0, credential_provider_process_1.fromProcess)({
@@ -13252,7 +14131,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -13272,33 +14151,33 @@ var require_package3 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -13349,7 +14228,7 @@ var require_package3 = __commonJS({
 });
 
 // node_modules/@aws-sdk/hash-node/dist-cjs/index.js
-var require_dist_cjs39 = __commonJS({
+var require_dist_cjs43 = __commonJS({
   "node_modules/@aws-sdk/hash-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -13390,656 +14269,6 @@ var require_dist_cjs39 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js
-var require_dist_cjs40 = __commonJS({
-  "node_modules/@aws-sdk/querystring-builder/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.buildQueryString = void 0;
-    var util_uri_escape_1 = require_dist_cjs23();
-    function buildQueryString(query) {
-      const parts = [];
-      for (let key of Object.keys(query).sort()) {
-        const value = query[key];
-        key = (0, util_uri_escape_1.escapeUri)(key);
-        if (Array.isArray(value)) {
-          for (let i = 0, iLen = value.length; i < iLen; i++) {
-            parts.push(`${key}=${(0, util_uri_escape_1.escapeUri)(value[i])}`);
-          }
-        } else {
-          let qsEntry = key;
-          if (value || typeof value === "string") {
-            qsEntry += `=${(0, util_uri_escape_1.escapeUri)(value)}`;
-          }
-          parts.push(qsEntry);
-        }
-      }
-      return parts.join("&");
-    }
-    exports.buildQueryString = buildQueryString;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/constants.js
-var require_constants6 = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/constants.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NODEJS_TIMEOUT_ERROR_CODES = void 0;
-    exports.NODEJS_TIMEOUT_ERROR_CODES = ["ECONNRESET", "EPIPE", "ETIMEDOUT"];
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/get-transformed-headers.js
-var require_get_transformed_headers = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/get-transformed-headers.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getTransformedHeaders = void 0;
-    var getTransformedHeaders = (headers) => {
-      const transformedHeaders = {};
-      for (const name of Object.keys(headers)) {
-        const headerValues = headers[name];
-        transformedHeaders[name] = Array.isArray(headerValues) ? headerValues.join(",") : headerValues;
-      }
-      return transformedHeaders;
-    };
-    exports.getTransformedHeaders = getTransformedHeaders;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js
-var require_set_connection_timeout = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-connection-timeout.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setConnectionTimeout = void 0;
-    var setConnectionTimeout = (request, reject, timeoutInMs = 0) => {
-      if (!timeoutInMs) {
-        return;
-      }
-      const timeoutId = setTimeout(() => {
-        request.destroy();
-        reject(Object.assign(new Error(`Socket timed out without establishing a connection within ${timeoutInMs} ms`), {
-          name: "TimeoutError"
-        }));
-      }, timeoutInMs);
-      request.on("socket", (socket) => {
-        if (socket.connecting) {
-          socket.on("connect", () => {
-            clearTimeout(timeoutId);
-          });
-        } else {
-          clearTimeout(timeoutId);
-        }
-      });
-    };
-    exports.setConnectionTimeout = setConnectionTimeout;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js
-var require_set_socket_keep_alive = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-keep-alive.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setSocketKeepAlive = void 0;
-    var setSocketKeepAlive = (request, { keepAlive, keepAliveMsecs }) => {
-      if (keepAlive !== true) {
-        return;
-      }
-      request.on("socket", (socket) => {
-        socket.setKeepAlive(keepAlive, keepAliveMsecs || 0);
-      });
-    };
-    exports.setSocketKeepAlive = setSocketKeepAlive;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js
-var require_set_socket_timeout = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/set-socket-timeout.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.setSocketTimeout = void 0;
-    var setSocketTimeout = (request, reject, timeoutInMs = 0) => {
-      request.setTimeout(timeoutInMs, () => {
-        request.destroy();
-        reject(Object.assign(new Error(`Connection timed out after ${timeoutInMs} ms`), { name: "TimeoutError" }));
-      });
-    };
-    exports.setSocketTimeout = setSocketTimeout;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js
-var require_write_request_body = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/write-request-body.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.writeRequestBody = void 0;
-    var stream_1 = require("stream");
-    var MIN_WAIT_TIME = 1e3;
-    async function writeRequestBody(httpRequest, request, maxContinueTimeoutMs = MIN_WAIT_TIME) {
-      var _a;
-      const headers = (_a = request.headers) !== null && _a !== void 0 ? _a : {};
-      const expect = headers["Expect"] || headers["expect"];
-      let timeoutId = -1;
-      let hasError = false;
-      if (expect === "100-continue") {
-        await Promise.race([
-          new Promise((resolve) => {
-            timeoutId = Number(setTimeout(resolve, Math.max(MIN_WAIT_TIME, maxContinueTimeoutMs)));
-          }),
-          new Promise((resolve) => {
-            httpRequest.on("continue", () => {
-              clearTimeout(timeoutId);
-              resolve();
-            });
-            httpRequest.on("error", () => {
-              hasError = true;
-              clearTimeout(timeoutId);
-              resolve();
-            });
-          })
-        ]);
-      }
-      if (!hasError) {
-        writeBody(httpRequest, request.body);
-      }
-    }
-    exports.writeRequestBody = writeRequestBody;
-    function writeBody(httpRequest, body) {
-      if (body instanceof stream_1.Readable) {
-        body.pipe(httpRequest);
-      } else if (body) {
-        httpRequest.end(Buffer.from(body));
-      } else {
-        httpRequest.end();
-      }
-    }
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http-handler.js
-var require_node_http_handler = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http-handler.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeHttpHandler = exports.DEFAULT_REQUEST_TIMEOUT = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var querystring_builder_1 = require_dist_cjs40();
-    var http_1 = require("http");
-    var https_1 = require("https");
-    var constants_1 = require_constants6();
-    var get_transformed_headers_1 = require_get_transformed_headers();
-    var set_connection_timeout_1 = require_set_connection_timeout();
-    var set_socket_keep_alive_1 = require_set_socket_keep_alive();
-    var set_socket_timeout_1 = require_set_socket_timeout();
-    var write_request_body_1 = require_write_request_body();
-    exports.DEFAULT_REQUEST_TIMEOUT = 0;
-    var NodeHttpHandler = class {
-      constructor(options) {
-        this.metadata = { handlerProtocol: "http/1.1" };
-        this.configProvider = new Promise((resolve, reject) => {
-          if (typeof options === "function") {
-            options().then((_options) => {
-              resolve(this.resolveDefaultConfig(_options));
-            }).catch(reject);
-          } else {
-            resolve(this.resolveDefaultConfig(options));
-          }
-        });
-      }
-      resolveDefaultConfig(options) {
-        const { requestTimeout, connectionTimeout, socketTimeout, httpAgent, httpsAgent } = options || {};
-        const keepAlive = true;
-        const maxSockets = 50;
-        return {
-          connectionTimeout,
-          requestTimeout: requestTimeout !== null && requestTimeout !== void 0 ? requestTimeout : socketTimeout,
-          httpAgent: httpAgent || new http_1.Agent({ keepAlive, maxSockets }),
-          httpsAgent: httpsAgent || new https_1.Agent({ keepAlive, maxSockets })
-        };
-      }
-      destroy() {
-        var _a, _b, _c, _d;
-        (_b = (_a = this.config) === null || _a === void 0 ? void 0 : _a.httpAgent) === null || _b === void 0 ? void 0 : _b.destroy();
-        (_d = (_c = this.config) === null || _c === void 0 ? void 0 : _c.httpsAgent) === null || _d === void 0 ? void 0 : _d.destroy();
-      }
-      async handle(request, { abortSignal } = {}) {
-        if (!this.config) {
-          this.config = await this.configProvider;
-        }
-        return new Promise((_resolve, _reject) => {
-          var _a, _b;
-          let writeRequestBodyPromise = void 0;
-          const resolve = async (arg) => {
-            await writeRequestBodyPromise;
-            _resolve(arg);
-          };
-          const reject = async (arg) => {
-            await writeRequestBodyPromise;
-            _reject(arg);
-          };
-          if (!this.config) {
-            throw new Error("Node HTTP request handler config is not resolved");
-          }
-          if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
-            const abortError = new Error("Request aborted");
-            abortError.name = "AbortError";
-            reject(abortError);
-            return;
-          }
-          const isSSL = request.protocol === "https:";
-          const queryString = (0, querystring_builder_1.buildQueryString)(request.query || {});
-          let auth = void 0;
-          if (request.username != null || request.password != null) {
-            const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
-            const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
-            auth = `${username}:${password}`;
-          }
-          let path = request.path;
-          if (queryString) {
-            path += `?${queryString}`;
-          }
-          if (request.fragment) {
-            path += `#${request.fragment}`;
-          }
-          const nodeHttpsOptions = {
-            headers: request.headers,
-            host: request.hostname,
-            method: request.method,
-            path,
-            port: request.port,
-            agent: isSSL ? this.config.httpsAgent : this.config.httpAgent,
-            auth
-          };
-          const requestFunc = isSSL ? https_1.request : http_1.request;
-          const req = requestFunc(nodeHttpsOptions, (res) => {
-            const httpResponse = new protocol_http_1.HttpResponse({
-              statusCode: res.statusCode || -1,
-              reason: res.statusMessage,
-              headers: (0, get_transformed_headers_1.getTransformedHeaders)(res.headers),
-              body: res
-            });
-            resolve({ response: httpResponse });
-          });
-          req.on("error", (err) => {
-            if (constants_1.NODEJS_TIMEOUT_ERROR_CODES.includes(err.code)) {
-              reject(Object.assign(err, { name: "TimeoutError" }));
-            } else {
-              reject(err);
-            }
-          });
-          (0, set_connection_timeout_1.setConnectionTimeout)(req, reject, this.config.connectionTimeout);
-          (0, set_socket_timeout_1.setSocketTimeout)(req, reject, this.config.requestTimeout);
-          if (abortSignal) {
-            abortSignal.onabort = () => {
-              req.abort();
-              const abortError = new Error("Request aborted");
-              abortError.name = "AbortError";
-              reject(abortError);
-            };
-          }
-          const httpAgent = nodeHttpsOptions.agent;
-          if (typeof httpAgent === "object" && "keepAlive" in httpAgent) {
-            (0, set_socket_keep_alive_1.setSocketKeepAlive)(req, {
-              keepAlive: httpAgent.keepAlive,
-              keepAliveMsecs: httpAgent.keepAliveMsecs
-            });
-          }
-          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, this.config.requestTimeout);
-        });
-      }
-    };
-    exports.NodeHttpHandler = NodeHttpHandler;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js
-var require_node_http2_connection_pool = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-pool.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeHttp2ConnectionPool = void 0;
-    var NodeHttp2ConnectionPool = class {
-      constructor(sessions) {
-        this.sessions = [];
-        this.sessions = sessions !== null && sessions !== void 0 ? sessions : [];
-      }
-      poll() {
-        if (this.sessions.length > 0) {
-          return this.sessions.shift();
-        }
-      }
-      offerLast(session) {
-        this.sessions.push(session);
-      }
-      contains(session) {
-        return this.sessions.includes(session);
-      }
-      remove(session) {
-        this.sessions = this.sessions.filter((s) => s !== session);
-      }
-      [Symbol.iterator]() {
-        return this.sessions[Symbol.iterator]();
-      }
-      destroy(connection) {
-        for (const session of this.sessions) {
-          if (session === connection) {
-            if (!session.destroyed) {
-              session.destroy();
-            }
-          }
-        }
-      }
-    };
-    exports.NodeHttp2ConnectionPool = NodeHttp2ConnectionPool;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js
-var require_node_http2_connection_manager = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-connection-manager.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeHttp2ConnectionManager = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    var http2_1 = tslib_1.__importDefault(require("http2"));
-    var node_http2_connection_pool_1 = require_node_http2_connection_pool();
-    var NodeHttp2ConnectionManager = class {
-      constructor(config) {
-        this.sessionCache = /* @__PURE__ */ new Map();
-        this.config = config;
-        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
-          throw new RangeError("maxConcurrency must be greater than zero.");
-        }
-      }
-      lease(requestContext, connectionConfiguration) {
-        const url = this.getUrlString(requestContext);
-        const existingPool = this.sessionCache.get(url);
-        if (existingPool) {
-          const existingSession = existingPool.poll();
-          if (existingSession && !this.config.disableConcurrency) {
-            return existingSession;
-          }
-        }
-        const session = http2_1.default.connect(url);
-        if (this.config.maxConcurrency) {
-          session.settings({ maxConcurrentStreams: this.config.maxConcurrency }, (err) => {
-            if (err) {
-              throw new Error("Fail to set maxConcurrentStreams to " + this.config.maxConcurrency + "when creating new session for " + requestContext.destination.toString());
-            }
-          });
-        }
-        session.unref();
-        const destroySessionCb = () => {
-          session.destroy();
-          this.deleteSession(url, session);
-        };
-        session.on("goaway", destroySessionCb);
-        session.on("error", destroySessionCb);
-        session.on("frameError", destroySessionCb);
-        session.on("close", () => this.deleteSession(url, session));
-        if (connectionConfiguration.requestTimeout) {
-          session.setTimeout(connectionConfiguration.requestTimeout, destroySessionCb);
-        }
-        const connectionPool = this.sessionCache.get(url) || new node_http2_connection_pool_1.NodeHttp2ConnectionPool();
-        connectionPool.offerLast(session);
-        this.sessionCache.set(url, connectionPool);
-        return session;
-      }
-      deleteSession(authority, session) {
-        const existingConnectionPool = this.sessionCache.get(authority);
-        if (!existingConnectionPool) {
-          return;
-        }
-        if (!existingConnectionPool.contains(session)) {
-          return;
-        }
-        existingConnectionPool.remove(session);
-        this.sessionCache.set(authority, existingConnectionPool);
-      }
-      release(requestContext, session) {
-        var _a;
-        const cacheKey = this.getUrlString(requestContext);
-        (_a = this.sessionCache.get(cacheKey)) === null || _a === void 0 ? void 0 : _a.offerLast(session);
-      }
-      destroy() {
-        for (const [key, connectionPool] of this.sessionCache) {
-          for (const session of connectionPool) {
-            if (!session.destroyed) {
-              session.destroy();
-            }
-            connectionPool.remove(session);
-          }
-          this.sessionCache.delete(key);
-        }
-      }
-      setMaxConcurrentStreams(maxConcurrentStreams) {
-        if (this.config.maxConcurrency && this.config.maxConcurrency <= 0) {
-          throw new RangeError("maxConcurrentStreams must be greater than zero.");
-        }
-        this.config.maxConcurrency = maxConcurrentStreams;
-      }
-      setDisableConcurrentStreams(disableConcurrentStreams) {
-        this.config.disableConcurrency = disableConcurrentStreams;
-      }
-      getUrlString(request) {
-        return request.destination.toString();
-      }
-    };
-    exports.NodeHttp2ConnectionManager = NodeHttp2ConnectionManager;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js
-var require_node_http2_handler = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/node-http2-handler.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeHttp2Handler = void 0;
-    var protocol_http_1 = require_dist_cjs4();
-    var querystring_builder_1 = require_dist_cjs40();
-    var http2_1 = require("http2");
-    var get_transformed_headers_1 = require_get_transformed_headers();
-    var node_http2_connection_manager_1 = require_node_http2_connection_manager();
-    var write_request_body_1 = require_write_request_body();
-    var NodeHttp2Handler = class {
-      constructor(options) {
-        this.metadata = { handlerProtocol: "h2" };
-        this.connectionManager = new node_http2_connection_manager_1.NodeHttp2ConnectionManager({});
-        this.configProvider = new Promise((resolve, reject) => {
-          if (typeof options === "function") {
-            options().then((opts) => {
-              resolve(opts || {});
-            }).catch(reject);
-          } else {
-            resolve(options || {});
-          }
-        });
-      }
-      destroy() {
-        this.connectionManager.destroy();
-      }
-      async handle(request, { abortSignal } = {}) {
-        if (!this.config) {
-          this.config = await this.configProvider;
-          this.connectionManager.setDisableConcurrentStreams(this.config.disableConcurrentStreams || false);
-          if (this.config.maxConcurrentStreams) {
-            this.connectionManager.setMaxConcurrentStreams(this.config.maxConcurrentStreams);
-          }
-        }
-        const { requestTimeout, disableConcurrentStreams } = this.config;
-        return new Promise((_resolve, _reject) => {
-          var _a, _b, _c;
-          let fulfilled = false;
-          let writeRequestBodyPromise = void 0;
-          const resolve = async (arg) => {
-            await writeRequestBodyPromise;
-            _resolve(arg);
-          };
-          const reject = async (arg) => {
-            await writeRequestBodyPromise;
-            _reject(arg);
-          };
-          if (abortSignal === null || abortSignal === void 0 ? void 0 : abortSignal.aborted) {
-            fulfilled = true;
-            const abortError = new Error("Request aborted");
-            abortError.name = "AbortError";
-            reject(abortError);
-            return;
-          }
-          const { hostname, method, port, protocol, query } = request;
-          let auth = "";
-          if (request.username != null || request.password != null) {
-            const username = (_a = request.username) !== null && _a !== void 0 ? _a : "";
-            const password = (_b = request.password) !== null && _b !== void 0 ? _b : "";
-            auth = `${username}:${password}@`;
-          }
-          const authority = `${protocol}//${auth}${hostname}${port ? `:${port}` : ""}`;
-          const requestContext = { destination: new URL(authority) };
-          const session = this.connectionManager.lease(requestContext, {
-            requestTimeout: (_c = this.config) === null || _c === void 0 ? void 0 : _c.sessionTimeout,
-            disableConcurrentStreams: disableConcurrentStreams || false
-          });
-          const rejectWithDestroy = (err) => {
-            if (disableConcurrentStreams) {
-              this.destroySession(session);
-            }
-            fulfilled = true;
-            reject(err);
-          };
-          const queryString = (0, querystring_builder_1.buildQueryString)(query || {});
-          let path = request.path;
-          if (queryString) {
-            path += `?${queryString}`;
-          }
-          if (request.fragment) {
-            path += `#${request.fragment}`;
-          }
-          const req = session.request({
-            ...request.headers,
-            [http2_1.constants.HTTP2_HEADER_PATH]: path,
-            [http2_1.constants.HTTP2_HEADER_METHOD]: method
-          });
-          session.ref();
-          req.on("response", (headers) => {
-            const httpResponse = new protocol_http_1.HttpResponse({
-              statusCode: headers[":status"] || -1,
-              headers: (0, get_transformed_headers_1.getTransformedHeaders)(headers),
-              body: req
-            });
-            fulfilled = true;
-            resolve({ response: httpResponse });
-            if (disableConcurrentStreams) {
-              session.close();
-              this.connectionManager.deleteSession(authority, session);
-            }
-          });
-          if (requestTimeout) {
-            req.setTimeout(requestTimeout, () => {
-              req.close();
-              const timeoutError = new Error(`Stream timed out because of no activity for ${requestTimeout} ms`);
-              timeoutError.name = "TimeoutError";
-              rejectWithDestroy(timeoutError);
-            });
-          }
-          if (abortSignal) {
-            abortSignal.onabort = () => {
-              req.close();
-              const abortError = new Error("Request aborted");
-              abortError.name = "AbortError";
-              rejectWithDestroy(abortError);
-            };
-          }
-          req.on("frameError", (type, code, id) => {
-            rejectWithDestroy(new Error(`Frame type id ${type} in stream id ${id} has failed with code ${code}.`));
-          });
-          req.on("error", rejectWithDestroy);
-          req.on("aborted", () => {
-            rejectWithDestroy(new Error(`HTTP/2 stream is abnormally aborted in mid-communication with result code ${req.rstCode}.`));
-          });
-          req.on("close", () => {
-            session.unref();
-            if (disableConcurrentStreams) {
-              session.destroy();
-            }
-            if (!fulfilled) {
-              rejectWithDestroy(new Error("Unexpected error: http2 request did not get a response"));
-            }
-          });
-          writeRequestBodyPromise = (0, write_request_body_1.writeRequestBody)(req, request, requestTimeout);
-        });
-      }
-      destroySession(session) {
-        if (!session.destroyed) {
-          session.destroy();
-        }
-      }
-    };
-    exports.NodeHttp2Handler = NodeHttp2Handler;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/collector.js
-var require_collector = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/collector.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Collector = void 0;
-    var stream_1 = require("stream");
-    var Collector = class extends stream_1.Writable {
-      constructor() {
-        super(...arguments);
-        this.bufferedBytes = [];
-      }
-      _write(chunk, encoding, callback) {
-        this.bufferedBytes.push(chunk);
-        callback();
-      }
-    };
-    exports.Collector = Collector;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/index.js
-var require_stream_collector = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/stream-collector/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.streamCollector = void 0;
-    var collector_1 = require_collector();
-    var streamCollector = (stream) => new Promise((resolve, reject) => {
-      const collector = new collector_1.Collector();
-      stream.pipe(collector);
-      stream.on("error", (err) => {
-        collector.end();
-        reject(err);
-      });
-      collector.on("error", reject);
-      collector.on("finish", function() {
-        const bytes = new Uint8Array(Buffer.concat(this.bufferedBytes));
-        resolve(bytes);
-      });
-    });
-    exports.streamCollector = streamCollector;
-  }
-});
-
-// node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js
-var require_dist_cjs41 = __commonJS({
-  "node_modules/@aws-sdk/node-http-handler/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_node_http_handler(), exports);
-    tslib_1.__exportStar(require_node_http2_handler(), exports);
-    tslib_1.__exportStar(require_stream_collector(), exports);
-  }
-});
-
 // node_modules/@aws-sdk/util-body-length-node/dist-cjs/calculateBodyLength.js
 var require_calculateBodyLength = __commonJS({
   "node_modules/@aws-sdk/util-body-length-node/dist-cjs/calculateBodyLength.js"(exports) {
@@ -14069,7 +14298,7 @@ var require_calculateBodyLength = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-body-length-node/dist-cjs/index.js
-var require_dist_cjs42 = __commonJS({
+var require_dist_cjs44 = __commonJS({
   "node_modules/@aws-sdk/util-body-length-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -14099,12 +14328,12 @@ var require_is_crt_available = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-user-agent-node/dist-cjs/index.js
-var require_dist_cjs43 = __commonJS({
+var require_dist_cjs45 = __commonJS({
   "node_modules/@aws-sdk/util-user-agent-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultUserAgent = exports.UA_APP_ID_INI_NAME = exports.UA_APP_ID_ENV_NAME = void 0;
-    var node_config_provider_1 = require_dist_cjs36();
+    var node_config_provider_1 = require_dist_cjs40();
     var os_1 = require("os");
     var process_1 = require("process");
     var is_crt_available_1 = require_is_crt_available();
@@ -14143,51 +14372,6 @@ var require_dist_cjs43 = __commonJS({
       };
     };
     exports.defaultUserAgent = defaultUserAgent;
-  }
-});
-
-// node_modules/@aws-sdk/util-base64/dist-cjs/fromBase64.js
-var require_fromBase64 = __commonJS({
-  "node_modules/@aws-sdk/util-base64/dist-cjs/fromBase64.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fromBase64 = void 0;
-    var util_buffer_from_1 = require_dist_cjs21();
-    var BASE64_REGEX = /^[A-Za-z0-9+/]*={0,2}$/;
-    var fromBase64 = (input) => {
-      if (input.length * 3 % 4 !== 0) {
-        throw new TypeError(`Incorrect padding on base64 string.`);
-      }
-      if (!BASE64_REGEX.exec(input)) {
-        throw new TypeError(`Invalid base64 string.`);
-      }
-      const buffer = (0, util_buffer_from_1.fromString)(input, "base64");
-      return new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength);
-    };
-    exports.fromBase64 = fromBase64;
-  }
-});
-
-// node_modules/@aws-sdk/util-base64/dist-cjs/toBase64.js
-var require_toBase64 = __commonJS({
-  "node_modules/@aws-sdk/util-base64/dist-cjs/toBase64.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.toBase64 = void 0;
-    var util_buffer_from_1 = require_dist_cjs21();
-    var toBase64 = (input) => (0, util_buffer_from_1.fromArrayBuffer)(input.buffer, input.byteOffset, input.byteLength).toString("base64");
-    exports.toBase64 = toBase64;
-  }
-});
-
-// node_modules/@aws-sdk/util-base64/dist-cjs/index.js
-var require_dist_cjs44 = __commonJS({
-  "node_modules/@aws-sdk/util-base64/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_fromBase64(), exports);
-    tslib_1.__exportStar(require_toBase64(), exports);
   }
 });
 
@@ -14245,9 +14429,9 @@ var require_runtimeConfig_shared = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver();
     var getRuntimeConfig = (config) => ({
@@ -14308,8 +14492,8 @@ var require_resolveDefaultsModeConfig = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveDefaultsModeConfig = void 0;
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_imds_1 = require_dist_cjs37();
-    var node_config_provider_1 = require_dist_cjs36();
+    var credential_provider_imds_1 = require_dist_cjs41();
+    var node_config_provider_1 = require_dist_cjs40();
     var property_provider_1 = require_dist_cjs16();
     var constants_1 = require_constants7();
     var defaultsModeConfig_1 = require_defaultsModeConfig();
@@ -14363,7 +14547,7 @@ var require_resolveDefaultsModeConfig = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-defaults-mode-node/dist-cjs/index.js
-var require_dist_cjs45 = __commonJS({
+var require_dist_cjs46 = __commonJS({
   "node_modules/@aws-sdk/util-defaults-mode-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -14381,17 +14565,17 @@ var require_runtimeConfig = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package3());
     var config_resolver_1 = require_dist_cjs3();
-    var hash_node_1 = require_dist_cjs39();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -14435,7 +14619,7 @@ var require_SSOClient = __commonJS({
     var middleware_recursion_detection_1 = require_dist_cjs12();
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -14473,7 +14657,7 @@ var require_SSOServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -14493,7 +14677,7 @@ var require_models_02 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LogoutRequestFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.ListAccountRolesRequestFilterSensitiveLog = exports.GetRoleCredentialsResponseFilterSensitiveLog = exports.RoleCredentialsFilterSensitiveLog = exports.GetRoleCredentialsRequestFilterSensitiveLog = exports.UnauthorizedException = exports.TooManyRequestsException = exports.ResourceNotFoundException = exports.InvalidRequestException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var SSOServiceException_1 = require_SSOServiceException();
     var InvalidRequestException = class _InvalidRequestException extends SSOServiceException_1.SSOServiceException {
       constructor(opts) {
@@ -14587,8 +14771,8 @@ var require_Aws_restJson1 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_LogoutCommand = exports.de_ListAccountsCommand = exports.de_ListAccountRolesCommand = exports.de_GetRoleCredentialsCommand = exports.se_LogoutCommand = exports.se_ListAccountsCommand = exports.se_ListAccountRolesCommand = exports.se_GetRoleCredentialsCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var models_0_1 = require_models_02();
     var SSOServiceException_1 = require_SSOServiceException();
     var se_GetRoleCredentialsCommand = async (input, context) => {
@@ -14817,7 +15001,7 @@ var require_Aws_restJson1 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_LogoutCommand = de_LogoutCommand;
@@ -14905,13 +15089,7 @@ var require_Aws_restJson1 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var isSerializableHeaderValue = (value) => value !== void 0 && value !== null && value !== "" && (!Object.getOwnPropertyNames(value).includes("length") || value.length != 0) && (!Object.getOwnPropertyNames(value).includes("size") || value.size != 0);
     var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
       if (encoded.length) {
@@ -14964,7 +15142,7 @@ var require_GetRoleCredentialsCommand = __commonJS({
     exports.GetRoleCredentialsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -15019,7 +15197,7 @@ var require_ListAccountRolesCommand = __commonJS({
     exports.ListAccountRolesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -15074,7 +15252,7 @@ var require_ListAccountsCommand = __commonJS({
     exports.ListAccountsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -15129,7 +15307,7 @@ var require_LogoutCommand = __commonJS({
     exports.LogoutCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -15182,7 +15360,7 @@ var require_SSO = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSO = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var GetRoleCredentialsCommand_1 = require_GetRoleCredentialsCommand();
     var ListAccountRolesCommand_1 = require_ListAccountRolesCommand();
     var ListAccountsCommand_1 = require_ListAccountsCommand();
@@ -15313,7 +15491,7 @@ var require_models = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sso/dist-cjs/index.js
-var require_dist_cjs46 = __commonJS({
+var require_dist_cjs47 = __commonJS({
   "node_modules/@aws-sdk/client-sso/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -15366,7 +15544,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -15386,33 +15564,33 @@ var require_package4 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -15516,9 +15694,9 @@ var require_runtimeConfig_shared2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver2();
     var getRuntimeConfig = (config) => ({
@@ -15546,17 +15724,17 @@ var require_runtimeConfig2 = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package4());
     var config_resolver_1 = require_dist_cjs3();
-    var hash_node_1 = require_dist_cjs39();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared2();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -15600,7 +15778,7 @@ var require_SSOOIDCClient = __commonJS({
     var middleware_recursion_detection_1 = require_dist_cjs12();
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -15638,7 +15816,7 @@ var require_SSOOIDCServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOOIDCServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -15848,8 +16026,8 @@ var require_Aws_restJson12 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_StartDeviceAuthorizationCommand = exports.de_RegisterClientCommand = exports.de_CreateTokenCommand = exports.se_StartDeviceAuthorizationCommand = exports.se_RegisterClientCommand = exports.se_CreateTokenCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var models_0_1 = require_models_03();
     var SSOOIDCServiceException_1 = require_SSOOIDCServiceException();
     var se_CreateTokenCommand = async (input, context) => {
@@ -16268,13 +16446,7 @@ var require_Aws_restJson12 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
       if (encoded.length) {
         return JSON.parse(encoded);
@@ -16326,7 +16498,7 @@ var require_CreateTokenCommand = __commonJS({
     exports.CreateTokenCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -16380,7 +16552,7 @@ var require_RegisterClientCommand = __commonJS({
     exports.RegisterClientCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -16434,7 +16606,7 @@ var require_StartDeviceAuthorizationCommand = __commonJS({
     exports.StartDeviceAuthorizationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -16486,7 +16658,7 @@ var require_SSOOIDC = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSOOIDC = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var CreateTokenCommand_1 = require_CreateTokenCommand();
     var RegisterClientCommand_1 = require_RegisterClientCommand();
     var StartDeviceAuthorizationCommand_1 = require_StartDeviceAuthorizationCommand();
@@ -16526,7 +16698,7 @@ var require_models2 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sso-oidc/dist-cjs/index.js
-var require_dist_cjs47 = __commonJS({
+var require_dist_cjs48 = __commonJS({
   "node_modules/@aws-sdk/client-sso-oidc/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -16549,7 +16721,7 @@ var require_getSsoOidcClient = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getSsoOidcClient = void 0;
-    var client_sso_oidc_1 = require_dist_cjs47();
+    var client_sso_oidc_1 = require_dist_cjs48();
     var ssoOidcClientsHash = {};
     var getSsoOidcClient = (ssoRegion) => {
       if (ssoOidcClientsHash[ssoRegion]) {
@@ -16569,7 +16741,7 @@ var require_getNewSsoOidcToken = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getNewSsoOidcToken = void 0;
-    var client_sso_oidc_1 = require_dist_cjs47();
+    var client_sso_oidc_1 = require_dist_cjs48();
     var getSsoOidcClient_1 = require_getSsoOidcClient();
     var getNewSsoOidcToken = (ssoToken, ssoRegion) => {
       const ssoOidcClient = (0, getSsoOidcClient_1.getSsoOidcClient)(ssoRegion);
@@ -16624,7 +16796,7 @@ var require_writeSSOTokenToFile = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.writeSSOTokenToFile = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var fs_1 = require("fs");
     var { writeFile } = fs_1.promises;
     var writeSSOTokenToFile = (id, ssoToken) => {
@@ -16643,7 +16815,7 @@ var require_fromSso = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSso = void 0;
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var constants_1 = require_constants8();
     var getNewSsoOidcToken_1 = require_getNewSsoOidcToken();
     var validateTokenExpiry_1 = require_validateTokenExpiry();
@@ -16753,7 +16925,7 @@ var require_nodeProvider = __commonJS({
 });
 
 // node_modules/@aws-sdk/token-providers/dist-cjs/index.js
-var require_dist_cjs48 = __commonJS({
+var require_dist_cjs49 = __commonJS({
   "node_modules/@aws-sdk/token-providers/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -16770,10 +16942,10 @@ var require_resolveSSOCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSSOCredentials = void 0;
-    var client_sso_1 = require_dist_cjs46();
+    var client_sso_1 = require_dist_cjs47();
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
-    var token_providers_1 = require_dist_cjs48();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
+    var token_providers_1 = require_dist_cjs49();
     var EXPIRE_WINDOW_MS = 15 * 60 * 1e3;
     var SHOULD_FAIL_CREDENTIAL_CHAIN = false;
     var resolveSSOCredentials = async ({ ssoStartUrl, ssoSession, ssoAccountId, ssoRegion, ssoRoleName, ssoClient, profile }) => {
@@ -16847,7 +17019,7 @@ var require_fromSSO = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromSSO = void 0;
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var isSsoProfile_1 = require_isSsoProfile();
     var resolveSSOCredentials_1 = require_resolveSSOCredentials();
     var validateSsoProfile_1 = require_validateSsoProfile();
@@ -16913,7 +17085,7 @@ var require_types7 = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-sso/dist-cjs/index.js
-var require_dist_cjs49 = __commonJS({
+var require_dist_cjs50 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-sso/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -16931,8 +17103,8 @@ var require_resolveSsoCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveSsoCredentials = exports.isSsoProfile = void 0;
-    var credential_provider_sso_1 = require_dist_cjs49();
-    var credential_provider_sso_2 = require_dist_cjs49();
+    var credential_provider_sso_1 = require_dist_cjs50();
+    var credential_provider_sso_2 = require_dist_cjs50();
     Object.defineProperty(exports, "isSsoProfile", { enumerable: true, get: function() {
       return credential_provider_sso_2.isSsoProfile;
     } });
@@ -17025,7 +17197,7 @@ var require_fromTokenFile = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-web-identity/dist-cjs/index.js
-var require_dist_cjs50 = __commonJS({
+var require_dist_cjs51 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-web-identity/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -17041,7 +17213,7 @@ var require_resolveWebIdentityCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveWebIdentityCredentials = exports.isWebIdentityProfile = void 0;
-    var credential_provider_web_identity_1 = require_dist_cjs50();
+    var credential_provider_web_identity_1 = require_dist_cjs51();
     var isWebIdentityProfile = (arg) => Boolean(arg) && typeof arg === "object" && typeof arg.web_identity_token_file === "string" && typeof arg.role_arn === "string" && ["undefined", "string"].indexOf(typeof arg.role_session_name) > -1;
     exports.isWebIdentityProfile = isWebIdentityProfile;
     var resolveWebIdentityCredentials = async (profile, options) => (0, credential_provider_web_identity_1.fromTokenFile)({
@@ -17098,7 +17270,7 @@ var require_fromIni = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromIni = void 0;
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var resolveProfileData_1 = require_resolveProfileData();
     var fromIni = (init = {}) => async () => {
       const profiles = await (0, shared_ini_file_loader_1.parseKnownFiles)(init);
@@ -17109,7 +17281,7 @@ var require_fromIni = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-ini/dist-cjs/index.js
-var require_dist_cjs51 = __commonJS({
+var require_dist_cjs52 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-ini/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -17124,7 +17296,7 @@ var require_remoteProvider = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.remoteProvider = exports.ENV_IMDS_DISABLED = void 0;
-    var credential_provider_imds_1 = require_dist_cjs37();
+    var credential_provider_imds_1 = require_dist_cjs41();
     var property_provider_1 = require_dist_cjs16();
     exports.ENV_IMDS_DISABLED = "AWS_EC2_METADATA_DISABLED";
     var remoteProvider = (init) => {
@@ -17148,13 +17320,13 @@ var require_defaultProvider = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultProvider = void 0;
-    var credential_provider_env_1 = require_dist_cjs34();
-    var credential_provider_ini_1 = require_dist_cjs51();
-    var credential_provider_process_1 = require_dist_cjs38();
-    var credential_provider_sso_1 = require_dist_cjs49();
-    var credential_provider_web_identity_1 = require_dist_cjs50();
+    var credential_provider_env_1 = require_dist_cjs38();
+    var credential_provider_ini_1 = require_dist_cjs52();
+    var credential_provider_process_1 = require_dist_cjs42();
+    var credential_provider_sso_1 = require_dist_cjs50();
+    var credential_provider_web_identity_1 = require_dist_cjs51();
     var property_provider_1 = require_dist_cjs16();
-    var shared_ini_file_loader_1 = require_dist_cjs35();
+    var shared_ini_file_loader_1 = require_dist_cjs39();
     var remoteProvider_1 = require_remoteProvider();
     var defaultProvider = (init = {}) => (0, property_provider_1.memoize)((0, property_provider_1.chain)(...init.profile || process.env[shared_ini_file_loader_1.ENV_PROFILE] ? [] : [(0, credential_provider_env_1.fromEnv)()], (0, credential_provider_sso_1.fromSSO)(init), (0, credential_provider_ini_1.fromIni)(init), (0, credential_provider_process_1.fromProcess)(init), (0, credential_provider_web_identity_1.fromTokenFile)(init), (0, remoteProvider_1.remoteProvider)(init), async () => {
       throw new property_provider_1.CredentialsProviderError("Could not load credentials from any providers", false);
@@ -17164,7 +17336,7 @@ var require_defaultProvider = __commonJS({
 });
 
 // node_modules/@aws-sdk/credential-provider-node/dist-cjs/index.js
-var require_dist_cjs52 = __commonJS({
+var require_dist_cjs53 = __commonJS({
   "node_modules/@aws-sdk/credential-provider-node/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -17244,9 +17416,9 @@ var require_runtimeConfig_shared3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver3();
     var getRuntimeConfig = (config) => ({
@@ -17275,18 +17447,18 @@ var require_runtimeConfig3 = __commonJS({
     var package_json_1 = tslib_1.__importDefault(require_package2());
     var defaultStsRoleAssumers_1 = require_defaultStsRoleAssumers();
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_node_1 = require_dist_cjs52();
-    var hash_node_1 = require_dist_cjs39();
+    var credential_provider_node_1 = require_dist_cjs53();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared3();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -17330,9 +17502,9 @@ var require_STSClient = __commonJS({
     var middleware_logger_1 = require_dist_cjs11();
     var middleware_recursion_detection_1 = require_dist_cjs12();
     var middleware_retry_1 = require_dist_cjs15();
-    var middleware_sdk_sts_1 = require_dist_cjs31();
+    var middleware_sdk_sts_1 = require_dist_cjs35();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -17373,7 +17545,7 @@ var require_AssumeRoleWithSAMLCommand = __commonJS({
     exports.AssumeRoleWithSAMLCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17430,7 +17602,7 @@ var require_DecodeAuthorizationMessageCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17487,7 +17659,7 @@ var require_GetAccessKeyInfoCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17544,7 +17716,7 @@ var require_GetCallerIdentityCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17601,7 +17773,7 @@ var require_GetFederationTokenCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17659,7 +17831,7 @@ var require_GetSessionTokenCommand = __commonJS({
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
     var middleware_signing_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -17714,7 +17886,7 @@ var require_STS = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.STS = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var AssumeRoleCommand_1 = require_AssumeRoleCommand();
     var AssumeRoleWithSAMLCommand_1 = require_AssumeRoleWithSAMLCommand();
     var AssumeRoleWithWebIdentityCommand_1 = require_AssumeRoleWithWebIdentityCommand();
@@ -17803,7 +17975,7 @@ var require_defaultRoleAssumers = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-sts/dist-cjs/index.js
-var require_dist_cjs53 = __commonJS({
+var require_dist_cjs54 = __commonJS({
   "node_modules/@aws-sdk/client-sts/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -17882,9 +18054,9 @@ var require_runtimeConfig_shared4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver4();
     var getRuntimeConfig = (config) => ({
@@ -17911,20 +18083,20 @@ var require_runtimeConfig4 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package());
-    var client_sts_1 = require_dist_cjs53();
+    var client_sts_1 = require_dist_cjs54();
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_node_1 = require_dist_cjs52();
-    var hash_node_1 = require_dist_cjs39();
+    var credential_provider_node_1 = require_dist_cjs53();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared4();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -17970,7 +18142,7 @@ var require_ChimeClient = __commonJS({
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_signing_1 = require_dist_cjs25();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -18010,7 +18182,7 @@ var require_ChimeServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -18033,7 +18205,7 @@ var require_models_04 = __commonJS({
     exports.SourceConfigurationFilterSensitiveLog = exports.SelectedVideoStreamsFilterSensitiveLog = exports.ChannelModeratorSummaryFilterSensitiveLog = exports.ChannelModeratorFilterSensitiveLog = exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelMessageSummaryFilterSensitiveLog = exports.ChannelMessageFilterSensitiveLog = exports.ChannelMembershipSummaryFilterSensitiveLog = exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelSummaryFilterSensitiveLog = exports.ChannelMembershipFilterSensitiveLog = exports.ChannelBanSummaryFilterSensitiveLog = exports.ChannelBanFilterSensitiveLog = exports.ChannelFilterSensitiveLog = exports.CandidateAddressFilterSensitiveLog = exports.BotFilterSensitiveLog = exports.BatchUpdateUserRequestFilterSensitiveLog = exports.UpdateUserRequestItemFilterSensitiveLog = exports.BatchUpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdatePhoneNumberRequestItemFilterSensitiveLog = exports.BatchCreateChannelMembershipResponseFilterSensitiveLog = exports.BatchCreateAttendeeResponseFilterSensitiveLog = exports.CreateAttendeeErrorFilterSensitiveLog = exports.BatchCreateAttendeeRequestFilterSensitiveLog = exports.CreateAttendeeRequestItemFilterSensitiveLog = exports.BatchChannelMembershipsFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AttendeeFilterSensitiveLog = exports.AssociatePhoneNumberWithUserRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorGroupRequestFilterSensitiveLog = exports.AssociatePhoneNumbersWithVoiceConnectorRequestFilterSensitiveLog = exports.AppInstanceUserSummaryFilterSensitiveLog = exports.AppInstanceUserFilterSensitiveLog = exports.AppInstanceStreamingConfigurationFilterSensitiveLog = exports.AppInstanceSummaryFilterSensitiveLog = exports.AppInstanceAdminSummaryFilterSensitiveLog = exports.AppInstanceAdminFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.AppInstanceFilterSensitiveLog = exports.AlexaForBusinessMetadataFilterSensitiveLog = exports.AddressFilterSensitiveLog = exports.PhoneNumberType = exports.PhoneNumberStatus = exports.PhoneNumberAssociationName = exports.TranscribeVocabularyFilterMethod = exports.TranscribeRegion = exports.TranscribePartialResultsStability = exports.TranscribeLanguageCode = exports.TranscribeContentRedactionType = exports.TranscribeContentIdentificationType = void 0;
     exports.DescribeChannelResponseFilterSensitiveLog = exports.DescribeAppInstanceUserResponseFilterSensitiveLog = exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = exports.DescribeAppInstanceResponseFilterSensitiveLog = exports.DeleteVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.CredentialFilterSensitiveLog = exports.CreateUserResponseFilterSensitiveLog = exports.UserFilterSensitiveLog = exports.CreateUserRequestFilterSensitiveLog = exports.CreateSipMediaApplicationCallRequestFilterSensitiveLog = exports.CreateSipMediaApplicationResponseFilterSensitiveLog = exports.SipMediaApplicationFilterSensitiveLog = exports.CreateSipMediaApplicationRequestFilterSensitiveLog = exports.SipMediaApplicationEndpointFilterSensitiveLog = exports.CreateRoomMembershipResponseFilterSensitiveLog = exports.RoomMembershipFilterSensitiveLog = exports.MemberFilterSensitiveLog = exports.CreateRoomResponseFilterSensitiveLog = exports.RoomFilterSensitiveLog = exports.CreateRoomRequestFilterSensitiveLog = exports.CreateProxySessionResponseFilterSensitiveLog = exports.ProxySessionFilterSensitiveLog = exports.ParticipantFilterSensitiveLog = exports.CreateProxySessionRequestFilterSensitiveLog = exports.CreatePhoneNumberOrderResponseFilterSensitiveLog = exports.PhoneNumberOrderFilterSensitiveLog = exports.OrderedPhoneNumberFilterSensitiveLog = exports.CreatePhoneNumberOrderRequestFilterSensitiveLog = exports.CreateMeetingWithAttendeesResponseFilterSensitiveLog = exports.CreateMeetingWithAttendeesRequestFilterSensitiveLog = exports.CreateMeetingDialOutRequestFilterSensitiveLog = exports.CreateMeetingResponseFilterSensitiveLog = exports.MeetingFilterSensitiveLog = exports.CreateMeetingRequestFilterSensitiveLog = exports.MeetingNotificationConfigurationFilterSensitiveLog = exports.CreateMediaCapturePipelineResponseFilterSensitiveLog = exports.MediaCapturePipelineFilterSensitiveLog = exports.CreateMediaCapturePipelineRequestFilterSensitiveLog = exports.CreateChannelModeratorResponseFilterSensitiveLog = exports.CreateChannelMembershipResponseFilterSensitiveLog = exports.CreateChannelBanResponseFilterSensitiveLog = exports.CreateChannelRequestFilterSensitiveLog = exports.CreateBotResponseFilterSensitiveLog = exports.CreateBotRequestFilterSensitiveLog = exports.CreateAttendeeResponseFilterSensitiveLog = exports.CreateAttendeeRequestFilterSensitiveLog = exports.CreateAppInstanceUserRequestFilterSensitiveLog = exports.CreateAppInstanceAdminResponseFilterSensitiveLog = exports.CreateAppInstanceRequestFilterSensitiveLog = exports.ChimeSdkMeetingConfigurationFilterSensitiveLog = void 0;
     exports.GetProxySessionResponseFilterSensitiveLog = exports.GetPhoneNumberSettingsResponseFilterSensitiveLog = exports.GetPhoneNumberOrderResponseFilterSensitiveLog = exports.GetPhoneNumberResponseFilterSensitiveLog = exports.PhoneNumberFilterSensitiveLog = exports.GetMeetingResponseFilterSensitiveLog = exports.GetMediaCapturePipelineResponseFilterSensitiveLog = exports.GetEventsConfigurationResponseFilterSensitiveLog = exports.GetChannelMessageResponseFilterSensitiveLog = exports.GetBotResponseFilterSensitiveLog = exports.GetAttendeeResponseFilterSensitiveLog = exports.GetAppInstanceStreamingConfigurationsResponseFilterSensitiveLog = exports.EventsConfigurationFilterSensitiveLog = exports.EmergencyCallingConfigurationFilterSensitiveLog = exports.DNISEmergencyCallingConfigurationFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorGroupRequestFilterSensitiveLog = exports.DisassociatePhoneNumbersFromVoiceConnectorRequestFilterSensitiveLog = exports.DescribeChannelModeratorResponseFilterSensitiveLog = exports.DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipResponseFilterSensitiveLog = exports.DescribeChannelBanResponseFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeServiceException_1 = require_ChimeServiceException();
     exports.ErrorCode = {
       AccessDenied: "AccessDenied",
@@ -19152,8 +19324,8 @@ var require_Aws_restJson13 = __commonJS({
     exports.de_GetVoiceConnectorTerminationHealthCommand = exports.de_GetVoiceConnectorTerminationCommand = exports.de_GetVoiceConnectorStreamingConfigurationCommand = exports.de_GetVoiceConnectorProxyCommand = exports.de_GetVoiceConnectorOriginationCommand = exports.de_GetVoiceConnectorLoggingConfigurationCommand = exports.de_GetVoiceConnectorGroupCommand = exports.de_GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_GetVoiceConnectorCommand = exports.de_GetUserSettingsCommand = exports.de_GetUserCommand = exports.de_GetSipRuleCommand = exports.de_GetSipMediaApplicationLoggingConfigurationCommand = exports.de_GetSipMediaApplicationCommand = exports.de_GetRoomCommand = exports.de_GetRetentionSettingsCommand = exports.de_GetProxySessionCommand = exports.de_GetPhoneNumberSettingsCommand = exports.de_GetPhoneNumberOrderCommand = exports.de_GetPhoneNumberCommand = exports.de_GetMessagingSessionEndpointCommand = exports.de_GetMeetingCommand = exports.de_GetMediaCapturePipelineCommand = exports.de_GetGlobalSettingsCommand = exports.de_GetEventsConfigurationCommand = exports.de_GetChannelMessageCommand = exports.de_GetBotCommand = exports.de_GetAttendeeCommand = exports.de_GetAppInstanceStreamingConfigurationsCommand = exports.de_GetAppInstanceRetentionSettingsCommand = exports.de_GetAccountSettingsCommand = exports.de_GetAccountCommand = exports.de_DisassociateSigninDelegateGroupsFromAccountCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.de_DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.de_DisassociatePhoneNumberFromUserCommand = exports.de_DescribeChannelModeratorCommand = exports.de_DescribeChannelModeratedByAppInstanceUserCommand = exports.de_DescribeChannelMembershipForAppInstanceUserCommand = exports.de_DescribeChannelMembershipCommand = exports.de_DescribeChannelBanCommand = exports.de_DescribeChannelCommand = exports.de_DescribeAppInstanceUserCommand = exports.de_DescribeAppInstanceAdminCommand = exports.de_DescribeAppInstanceCommand = exports.de_DeleteVoiceConnectorTerminationCredentialsCommand = exports.de_DeleteVoiceConnectorTerminationCommand = exports.de_DeleteVoiceConnectorStreamingConfigurationCommand = exports.de_DeleteVoiceConnectorProxyCommand = exports.de_DeleteVoiceConnectorOriginationCommand = void 0;
     exports.de_RestorePhoneNumberCommand = exports.de_ResetPersonalPINCommand = exports.de_RegenerateSecurityTokenCommand = exports.de_RedactRoomMessageCommand = exports.de_RedactConversationMessageCommand = exports.de_RedactChannelMessageCommand = exports.de_PutVoiceConnectorTerminationCredentialsCommand = exports.de_PutVoiceConnectorTerminationCommand = exports.de_PutVoiceConnectorStreamingConfigurationCommand = exports.de_PutVoiceConnectorProxyCommand = exports.de_PutVoiceConnectorOriginationCommand = exports.de_PutVoiceConnectorLoggingConfigurationCommand = exports.de_PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.de_PutSipMediaApplicationLoggingConfigurationCommand = exports.de_PutRetentionSettingsCommand = exports.de_PutEventsConfigurationCommand = exports.de_PutAppInstanceStreamingConfigurationsCommand = exports.de_PutAppInstanceRetentionSettingsCommand = exports.de_LogoutUserCommand = exports.de_ListVoiceConnectorTerminationCredentialsCommand = exports.de_ListVoiceConnectorsCommand = exports.de_ListVoiceConnectorGroupsCommand = exports.de_ListUsersCommand = exports.de_ListTagsForResourceCommand = exports.de_ListSupportedPhoneNumberCountriesCommand = exports.de_ListSipRulesCommand = exports.de_ListSipMediaApplicationsCommand = exports.de_ListRoomsCommand = exports.de_ListRoomMembershipsCommand = exports.de_ListProxySessionsCommand = exports.de_ListPhoneNumbersCommand = exports.de_ListPhoneNumberOrdersCommand = exports.de_ListMeetingTagsCommand = exports.de_ListMeetingsCommand = exports.de_ListMediaCapturePipelinesCommand = exports.de_ListChannelsModeratedByAppInstanceUserCommand = exports.de_ListChannelsCommand = exports.de_ListChannelModeratorsCommand = exports.de_ListChannelMessagesCommand = exports.de_ListChannelMembershipsForAppInstanceUserCommand = exports.de_ListChannelMembershipsCommand = exports.de_ListChannelBansCommand = exports.de_ListBotsCommand = exports.de_ListAttendeeTagsCommand = exports.de_ListAttendeesCommand = exports.de_ListAppInstanceUsersCommand = exports.de_ListAppInstancesCommand = exports.de_ListAppInstanceAdminsCommand = exports.de_ListAccountsCommand = exports.de_InviteUsersCommand = void 0;
     exports.de_ValidateE911AddressCommand = exports.de_UpdateVoiceConnectorGroupCommand = exports.de_UpdateVoiceConnectorCommand = exports.de_UpdateUserSettingsCommand = exports.de_UpdateUserCommand = exports.de_UpdateSipRuleCommand = exports.de_UpdateSipMediaApplicationCallCommand = exports.de_UpdateSipMediaApplicationCommand = exports.de_UpdateRoomMembershipCommand = exports.de_UpdateRoomCommand = exports.de_UpdateProxySessionCommand = exports.de_UpdatePhoneNumberSettingsCommand = exports.de_UpdatePhoneNumberCommand = exports.de_UpdateGlobalSettingsCommand = exports.de_UpdateChannelReadMarkerCommand = exports.de_UpdateChannelMessageCommand = exports.de_UpdateChannelCommand = exports.de_UpdateBotCommand = exports.de_UpdateAppInstanceUserCommand = exports.de_UpdateAppInstanceCommand = exports.de_UpdateAccountSettingsCommand = exports.de_UpdateAccountCommand = exports.de_UntagResourceCommand = exports.de_UntagMeetingCommand = exports.de_UntagAttendeeCommand = exports.de_TagResourceCommand = exports.de_TagMeetingCommand = exports.de_TagAttendeeCommand = exports.de_StopMeetingTranscriptionCommand = exports.de_StartMeetingTranscriptionCommand = exports.de_SendChannelMessageCommand = exports.de_SearchAvailablePhoneNumbersCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var ChimeServiceException_1 = require_ChimeServiceException();
     var models_0_1 = require_models_04();
@@ -23738,7 +23910,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_AssociatePhoneNumberWithUserCommand = de_AssociatePhoneNumberWithUserCommand;
@@ -23789,7 +23961,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_AssociateSigninDelegateGroupsWithAccountCommand = de_AssociateSigninDelegateGroupsWithAccountCommand;
@@ -25575,7 +25747,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAccountCommand = de_DeleteAccountCommand;
@@ -25626,7 +25798,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceCommand = de_DeleteAppInstanceCommand;
@@ -25671,7 +25843,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceAdminCommand = de_DeleteAppInstanceAdminCommand;
@@ -25719,7 +25891,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceStreamingConfigurationsCommand = de_DeleteAppInstanceStreamingConfigurationsCommand;
@@ -25767,7 +25939,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceUserCommand = de_DeleteAppInstanceUserCommand;
@@ -25812,7 +25984,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAttendeeCommand = de_DeleteAttendeeCommand;
@@ -25860,7 +26032,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelCommand = de_DeleteChannelCommand;
@@ -25905,7 +26077,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelBanCommand = de_DeleteChannelBanCommand;
@@ -25950,7 +26122,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelMembershipCommand = de_DeleteChannelMembershipCommand;
@@ -25998,7 +26170,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelMessageCommand = de_DeleteChannelMessageCommand;
@@ -26043,7 +26215,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelModeratorCommand = de_DeleteChannelModeratorCommand;
@@ -26088,7 +26260,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteEventsConfigurationCommand = de_DeleteEventsConfigurationCommand;
@@ -26133,7 +26305,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteMediaCapturePipelineCommand = de_DeleteMediaCapturePipelineCommand;
@@ -26181,7 +26353,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteMeetingCommand = de_DeleteMeetingCommand;
@@ -26229,7 +26401,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeletePhoneNumberCommand = de_DeletePhoneNumberCommand;
@@ -26277,7 +26449,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteProxySessionCommand = de_DeleteProxySessionCommand;
@@ -26325,7 +26497,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteRoomCommand = de_DeleteRoomCommand;
@@ -26373,7 +26545,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteRoomMembershipCommand = de_DeleteRoomMembershipCommand;
@@ -26421,7 +26593,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteSipMediaApplicationCommand = de_DeleteSipMediaApplicationCommand;
@@ -26472,7 +26644,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteSipRuleCommand = de_DeleteSipRuleCommand;
@@ -26523,7 +26695,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorCommand = de_DeleteVoiceConnectorCommand;
@@ -26574,7 +26746,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = de_DeleteVoiceConnectorEmergencyCallingConfigurationCommand;
@@ -26622,7 +26794,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorGroupCommand = de_DeleteVoiceConnectorGroupCommand;
@@ -26673,7 +26845,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorOriginationCommand = de_DeleteVoiceConnectorOriginationCommand;
@@ -26721,7 +26893,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorProxyCommand = de_DeleteVoiceConnectorProxyCommand;
@@ -26769,7 +26941,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorStreamingConfigurationCommand = de_DeleteVoiceConnectorStreamingConfigurationCommand;
@@ -26817,7 +26989,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorTerminationCommand = de_DeleteVoiceConnectorTerminationCommand;
@@ -26865,7 +27037,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteVoiceConnectorTerminationCredentialsCommand = de_DeleteVoiceConnectorTerminationCredentialsCommand;
@@ -27363,7 +27535,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DisassociatePhoneNumberFromUserCommand = de_DisassociatePhoneNumberFromUserCommand;
@@ -27515,7 +27687,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DisassociateSigninDelegateGroupsFromAccountCommand = de_DisassociateSigninDelegateGroupsFromAccountCommand;
@@ -30808,7 +30980,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_LogoutUserCommand = de_LogoutUserCommand;
@@ -31442,7 +31614,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_PutVoiceConnectorTerminationCredentialsCommand = de_PutVoiceConnectorTerminationCredentialsCommand;
@@ -31540,7 +31712,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_RedactConversationMessageCommand = de_RedactConversationMessageCommand;
@@ -31588,7 +31760,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_RedactRoomMessageCommand = de_RedactRoomMessageCommand;
@@ -31901,7 +32073,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_StartMeetingTranscriptionCommand = de_StartMeetingTranscriptionCommand;
@@ -31955,7 +32127,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_StopMeetingTranscriptionCommand = de_StopMeetingTranscriptionCommand;
@@ -32006,7 +32178,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_TagAttendeeCommand = de_TagAttendeeCommand;
@@ -32057,7 +32229,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_TagMeetingCommand = de_TagMeetingCommand;
@@ -32108,7 +32280,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_TagResourceCommand = de_TagResourceCommand;
@@ -32153,7 +32325,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UntagAttendeeCommand = de_UntagAttendeeCommand;
@@ -32201,7 +32373,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UntagMeetingCommand = de_UntagMeetingCommand;
@@ -32249,7 +32421,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UntagResourceCommand = de_UntagResourceCommand;
@@ -32346,7 +32518,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UpdateAccountSettingsCommand = de_UpdateAccountSettingsCommand;
@@ -32710,7 +32882,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UpdateGlobalSettingsCommand = de_UpdateGlobalSettingsCommand;
@@ -32810,7 +32982,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UpdatePhoneNumberSettingsCommand = de_UpdatePhoneNumberSettingsCommand;
@@ -33231,7 +33403,7 @@ var require_Aws_restJson13 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UpdateUserSettingsCommand = de_UpdateUserSettingsCommand;
@@ -33998,13 +34170,7 @@ var require_Aws_restJson13 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var isSerializableHeaderValue = (value) => value !== void 0 && value !== null && value !== "" && (!Object.getOwnPropertyNames(value).includes("length") || value.length != 0) && (!Object.getOwnPropertyNames(value).includes("size") || value.size != 0);
     var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
       if (encoded.length) {
@@ -34057,7 +34223,7 @@ var require_AssociatePhoneNumbersWithVoiceConnectorCommand = __commonJS({
     exports.AssociatePhoneNumbersWithVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34112,7 +34278,7 @@ var require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand = __commonJS({
     exports.AssociatePhoneNumbersWithVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34167,7 +34333,7 @@ var require_AssociatePhoneNumberWithUserCommand = __commonJS({
     exports.AssociatePhoneNumberWithUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34222,7 +34388,7 @@ var require_AssociateSigninDelegateGroupsWithAccountCommand = __commonJS({
     exports.AssociateSigninDelegateGroupsWithAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34276,7 +34442,7 @@ var require_BatchCreateAttendeeCommand = __commonJS({
     exports.BatchCreateAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34331,7 +34497,7 @@ var require_BatchCreateChannelMembershipCommand = __commonJS({
     exports.BatchCreateChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34386,7 +34552,7 @@ var require_BatchCreateRoomMembershipCommand = __commonJS({
     exports.BatchCreateRoomMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34440,7 +34606,7 @@ var require_BatchDeletePhoneNumberCommand = __commonJS({
     exports.BatchDeletePhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34494,7 +34660,7 @@ var require_BatchSuspendUserCommand = __commonJS({
     exports.BatchSuspendUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34548,7 +34714,7 @@ var require_BatchUnsuspendUserCommand = __commonJS({
     exports.BatchUnsuspendUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34602,7 +34768,7 @@ var require_BatchUpdatePhoneNumberCommand = __commonJS({
     exports.BatchUpdatePhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34657,7 +34823,7 @@ var require_BatchUpdateUserCommand = __commonJS({
     exports.BatchUpdateUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34712,7 +34878,7 @@ var require_CreateAccountCommand = __commonJS({
     exports.CreateAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34766,7 +34932,7 @@ var require_CreateAppInstanceAdminCommand = __commonJS({
     exports.CreateAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34821,7 +34987,7 @@ var require_CreateAppInstanceCommand = __commonJS({
     exports.CreateAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34876,7 +35042,7 @@ var require_CreateAppInstanceUserCommand = __commonJS({
     exports.CreateAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34931,7 +35097,7 @@ var require_CreateAttendeeCommand = __commonJS({
     exports.CreateAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -34986,7 +35152,7 @@ var require_CreateBotCommand = __commonJS({
     exports.CreateBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35041,7 +35207,7 @@ var require_CreateChannelBanCommand = __commonJS({
     exports.CreateChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35096,7 +35262,7 @@ var require_CreateChannelCommand = __commonJS({
     exports.CreateChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35151,7 +35317,7 @@ var require_CreateChannelMembershipCommand = __commonJS({
     exports.CreateChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35206,7 +35372,7 @@ var require_CreateChannelModeratorCommand = __commonJS({
     exports.CreateChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35261,7 +35427,7 @@ var require_CreateMediaCapturePipelineCommand = __commonJS({
     exports.CreateMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35316,7 +35482,7 @@ var require_CreateMeetingCommand = __commonJS({
     exports.CreateMeetingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35371,7 +35537,7 @@ var require_CreateMeetingDialOutCommand = __commonJS({
     exports.CreateMeetingDialOutCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35426,7 +35592,7 @@ var require_CreateMeetingWithAttendeesCommand = __commonJS({
     exports.CreateMeetingWithAttendeesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35481,7 +35647,7 @@ var require_CreatePhoneNumberOrderCommand = __commonJS({
     exports.CreatePhoneNumberOrderCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35536,7 +35702,7 @@ var require_CreateProxySessionCommand = __commonJS({
     exports.CreateProxySessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35591,7 +35757,7 @@ var require_CreateRoomCommand = __commonJS({
     exports.CreateRoomCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35646,7 +35812,7 @@ var require_CreateRoomMembershipCommand = __commonJS({
     exports.CreateRoomMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35701,7 +35867,7 @@ var require_CreateSipMediaApplicationCallCommand = __commonJS({
     exports.CreateSipMediaApplicationCallCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35756,7 +35922,7 @@ var require_CreateSipMediaApplicationCommand = __commonJS({
     exports.CreateSipMediaApplicationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35811,7 +35977,7 @@ var require_CreateSipRuleCommand = __commonJS({
     exports.CreateSipRuleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35865,7 +36031,7 @@ var require_CreateUserCommand = __commonJS({
     exports.CreateUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35920,7 +36086,7 @@ var require_CreateVoiceConnectorCommand = __commonJS({
     exports.CreateVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -35974,7 +36140,7 @@ var require_CreateVoiceConnectorGroupCommand = __commonJS({
     exports.CreateVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36028,7 +36194,7 @@ var require_DeleteAccountCommand = __commonJS({
     exports.DeleteAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36082,7 +36248,7 @@ var require_DeleteAppInstanceAdminCommand = __commonJS({
     exports.DeleteAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36136,7 +36302,7 @@ var require_DeleteAppInstanceCommand = __commonJS({
     exports.DeleteAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36190,7 +36356,7 @@ var require_DeleteAppInstanceStreamingConfigurationsCommand = __commonJS({
     exports.DeleteAppInstanceStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36244,7 +36410,7 @@ var require_DeleteAppInstanceUserCommand = __commonJS({
     exports.DeleteAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36298,7 +36464,7 @@ var require_DeleteAttendeeCommand = __commonJS({
     exports.DeleteAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36352,7 +36518,7 @@ var require_DeleteChannelBanCommand = __commonJS({
     exports.DeleteChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36406,7 +36572,7 @@ var require_DeleteChannelCommand = __commonJS({
     exports.DeleteChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36460,7 +36626,7 @@ var require_DeleteChannelMembershipCommand = __commonJS({
     exports.DeleteChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36514,7 +36680,7 @@ var require_DeleteChannelMessageCommand = __commonJS({
     exports.DeleteChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36568,7 +36734,7 @@ var require_DeleteChannelModeratorCommand = __commonJS({
     exports.DeleteChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36622,7 +36788,7 @@ var require_DeleteEventsConfigurationCommand = __commonJS({
     exports.DeleteEventsConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36676,7 +36842,7 @@ var require_DeleteMediaCapturePipelineCommand = __commonJS({
     exports.DeleteMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36730,7 +36896,7 @@ var require_DeleteMeetingCommand = __commonJS({
     exports.DeleteMeetingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36784,7 +36950,7 @@ var require_DeletePhoneNumberCommand = __commonJS({
     exports.DeletePhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36838,7 +37004,7 @@ var require_DeleteProxySessionCommand = __commonJS({
     exports.DeleteProxySessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36892,7 +37058,7 @@ var require_DeleteRoomCommand = __commonJS({
     exports.DeleteRoomCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -36946,7 +37112,7 @@ var require_DeleteRoomMembershipCommand = __commonJS({
     exports.DeleteRoomMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37000,7 +37166,7 @@ var require_DeleteSipMediaApplicationCommand = __commonJS({
     exports.DeleteSipMediaApplicationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37054,7 +37220,7 @@ var require_DeleteSipRuleCommand = __commonJS({
     exports.DeleteSipRuleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37108,7 +37274,7 @@ var require_DeleteVoiceConnectorCommand = __commonJS({
     exports.DeleteVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37162,7 +37328,7 @@ var require_DeleteVoiceConnectorEmergencyCallingConfigurationCommand = __commonJ
     exports.DeleteVoiceConnectorEmergencyCallingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37216,7 +37382,7 @@ var require_DeleteVoiceConnectorGroupCommand = __commonJS({
     exports.DeleteVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37270,7 +37436,7 @@ var require_DeleteVoiceConnectorOriginationCommand = __commonJS({
     exports.DeleteVoiceConnectorOriginationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37324,7 +37490,7 @@ var require_DeleteVoiceConnectorProxyCommand = __commonJS({
     exports.DeleteVoiceConnectorProxyCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37378,7 +37544,7 @@ var require_DeleteVoiceConnectorStreamingConfigurationCommand = __commonJS({
     exports.DeleteVoiceConnectorStreamingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37432,7 +37598,7 @@ var require_DeleteVoiceConnectorTerminationCommand = __commonJS({
     exports.DeleteVoiceConnectorTerminationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37486,7 +37652,7 @@ var require_DeleteVoiceConnectorTerminationCredentialsCommand = __commonJS({
     exports.DeleteVoiceConnectorTerminationCredentialsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37541,7 +37707,7 @@ var require_DescribeAppInstanceAdminCommand = __commonJS({
     exports.DescribeAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37596,7 +37762,7 @@ var require_DescribeAppInstanceCommand = __commonJS({
     exports.DescribeAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37651,7 +37817,7 @@ var require_DescribeAppInstanceUserCommand = __commonJS({
     exports.DescribeAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37706,7 +37872,7 @@ var require_DescribeChannelBanCommand = __commonJS({
     exports.DescribeChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37761,7 +37927,7 @@ var require_DescribeChannelCommand = __commonJS({
     exports.DescribeChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37816,7 +37982,7 @@ var require_DescribeChannelMembershipCommand = __commonJS({
     exports.DescribeChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37871,7 +38037,7 @@ var require_DescribeChannelMembershipForAppInstanceUserCommand = __commonJS({
     exports.DescribeChannelMembershipForAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37926,7 +38092,7 @@ var require_DescribeChannelModeratedByAppInstanceUserCommand = __commonJS({
     exports.DescribeChannelModeratedByAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -37981,7 +38147,7 @@ var require_DescribeChannelModeratorCommand = __commonJS({
     exports.DescribeChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38036,7 +38202,7 @@ var require_DisassociatePhoneNumberFromUserCommand = __commonJS({
     exports.DisassociatePhoneNumberFromUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38090,7 +38256,7 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorCommand = __commonJS({
     exports.DisassociatePhoneNumbersFromVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38145,7 +38311,7 @@ var require_DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = __commonJS(
     exports.DisassociatePhoneNumbersFromVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38200,7 +38366,7 @@ var require_DisassociateSigninDelegateGroupsFromAccountCommand = __commonJS({
     exports.DisassociateSigninDelegateGroupsFromAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38254,7 +38420,7 @@ var require_GetAccountCommand = __commonJS({
     exports.GetAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38308,7 +38474,7 @@ var require_GetAccountSettingsCommand = __commonJS({
     exports.GetAccountSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38362,7 +38528,7 @@ var require_GetAppInstanceRetentionSettingsCommand = __commonJS({
     exports.GetAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38416,7 +38582,7 @@ var require_GetAppInstanceStreamingConfigurationsCommand = __commonJS({
     exports.GetAppInstanceStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38471,7 +38637,7 @@ var require_GetAttendeeCommand = __commonJS({
     exports.GetAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38526,7 +38692,7 @@ var require_GetBotCommand = __commonJS({
     exports.GetBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38581,7 +38747,7 @@ var require_GetChannelMessageCommand = __commonJS({
     exports.GetChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38636,7 +38802,7 @@ var require_GetEventsConfigurationCommand = __commonJS({
     exports.GetEventsConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38691,7 +38857,7 @@ var require_GetGlobalSettingsCommand = __commonJS({
     exports.GetGlobalSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38745,7 +38911,7 @@ var require_GetMediaCapturePipelineCommand = __commonJS({
     exports.GetMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38800,7 +38966,7 @@ var require_GetMeetingCommand = __commonJS({
     exports.GetMeetingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38855,7 +39021,7 @@ var require_GetMessagingSessionEndpointCommand = __commonJS({
     exports.GetMessagingSessionEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38909,7 +39075,7 @@ var require_GetPhoneNumberCommand = __commonJS({
     exports.GetPhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -38964,7 +39130,7 @@ var require_GetPhoneNumberOrderCommand = __commonJS({
     exports.GetPhoneNumberOrderCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39019,7 +39185,7 @@ var require_GetPhoneNumberSettingsCommand = __commonJS({
     exports.GetPhoneNumberSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39074,7 +39240,7 @@ var require_GetProxySessionCommand = __commonJS({
     exports.GetProxySessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39129,7 +39295,7 @@ var require_GetRetentionSettingsCommand = __commonJS({
     exports.GetRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39182,7 +39348,7 @@ var require_models_1 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListUsersRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListTagsForResourceRequestFilterSensitiveLog = exports.ListSipMediaApplicationsResponseFilterSensitiveLog = exports.ListRoomsResponseFilterSensitiveLog = exports.ListRoomMembershipsResponseFilterSensitiveLog = exports.ListProxySessionsResponseFilterSensitiveLog = exports.ListPhoneNumbersResponseFilterSensitiveLog = exports.ListPhoneNumberOrdersResponseFilterSensitiveLog = exports.ListMeetingTagsResponseFilterSensitiveLog = exports.ListMeetingsResponseFilterSensitiveLog = exports.ListMediaCapturePipelinesResponseFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelsResponseFilterSensitiveLog = exports.ListChannelsRequestFilterSensitiveLog = exports.ListChannelModeratorsResponseFilterSensitiveLog = exports.ListChannelModeratorsRequestFilterSensitiveLog = exports.ListChannelMessagesResponseFilterSensitiveLog = exports.ListChannelMessagesRequestFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelMembershipsResponseFilterSensitiveLog = exports.ListChannelMembershipsRequestFilterSensitiveLog = exports.ListChannelBansResponseFilterSensitiveLog = exports.ListChannelBansRequestFilterSensitiveLog = exports.ListBotsResponseFilterSensitiveLog = exports.ListAttendeeTagsResponseFilterSensitiveLog = exports.ListAttendeesResponseFilterSensitiveLog = exports.ListAppInstanceUsersResponseFilterSensitiveLog = exports.ListAppInstanceUsersRequestFilterSensitiveLog = exports.ListAppInstancesResponseFilterSensitiveLog = exports.ListAppInstancesRequestFilterSensitiveLog = exports.ListAppInstanceAdminsResponseFilterSensitiveLog = exports.ListAppInstanceAdminsRequestFilterSensitiveLog = exports.ListAccountsRequestFilterSensitiveLog = exports.InviteUsersResponseFilterSensitiveLog = exports.InviteUsersRequestFilterSensitiveLog = exports.InviteFilterSensitiveLog = exports.GetVoiceConnectorTerminationResponseFilterSensitiveLog = exports.TerminationFilterSensitiveLog = exports.GetVoiceConnectorProxyResponseFilterSensitiveLog = exports.ProxyFilterSensitiveLog = exports.GetVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.GetUserResponseFilterSensitiveLog = exports.GetSipMediaApplicationResponseFilterSensitiveLog = exports.GetRoomResponseFilterSensitiveLog = exports.SortOrder = exports.NotificationTarget = exports.OriginationRouteProtocol = void 0;
     exports.ValidateE911AddressResponseFilterSensitiveLog = exports.ValidateE911AddressRequestFilterSensitiveLog = exports.UpdateUserResponseFilterSensitiveLog = exports.UpdateUserRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationCallRequestFilterSensitiveLog = exports.UpdateSipMediaApplicationResponseFilterSensitiveLog = exports.UpdateSipMediaApplicationRequestFilterSensitiveLog = exports.UpdateRoomMembershipResponseFilterSensitiveLog = exports.UpdateRoomResponseFilterSensitiveLog = exports.UpdateRoomRequestFilterSensitiveLog = exports.UpdateProxySessionResponseFilterSensitiveLog = exports.UpdatePhoneNumberSettingsRequestFilterSensitiveLog = exports.UpdatePhoneNumberResponseFilterSensitiveLog = exports.UpdatePhoneNumberRequestFilterSensitiveLog = exports.UpdateChannelMessageRequestFilterSensitiveLog = exports.UpdateChannelRequestFilterSensitiveLog = exports.UpdateBotResponseFilterSensitiveLog = exports.UpdateAppInstanceUserRequestFilterSensitiveLog = exports.UpdateAppInstanceRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.UntagMeetingRequestFilterSensitiveLog = exports.UntagAttendeeRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.TagMeetingRequestFilterSensitiveLog = exports.TagAttendeeRequestFilterSensitiveLog = exports.SendChannelMessageRequestFilterSensitiveLog = exports.SearchAvailablePhoneNumbersResponseFilterSensitiveLog = exports.RestorePhoneNumberResponseFilterSensitiveLog = exports.ResetPersonalPINResponseFilterSensitiveLog = exports.RegenerateSecurityTokenResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationCredentialsRequestFilterSensitiveLog = exports.PutVoiceConnectorTerminationResponseFilterSensitiveLog = exports.PutVoiceConnectorTerminationRequestFilterSensitiveLog = exports.PutVoiceConnectorProxyResponseFilterSensitiveLog = exports.PutVoiceConnectorProxyRequestFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationResponseFilterSensitiveLog = exports.PutVoiceConnectorEmergencyCallingConfigurationRequestFilterSensitiveLog = exports.PutEventsConfigurationResponseFilterSensitiveLog = exports.PutEventsConfigurationRequestFilterSensitiveLog = exports.PutAppInstanceStreamingConfigurationsResponseFilterSensitiveLog = exports.PutAppInstanceStreamingConfigurationsRequestFilterSensitiveLog = exports.ListVoiceConnectorTerminationCredentialsResponseFilterSensitiveLog = exports.ListUsersResponseFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var models_0_1 = require_models_04();
     exports.OriginationRouteProtocol = {
       TCP: "TCP",
@@ -39718,7 +39884,7 @@ var require_GetRoomCommand = __commonJS({
     exports.GetRoomCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39773,7 +39939,7 @@ var require_GetSipMediaApplicationCommand = __commonJS({
     exports.GetSipMediaApplicationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39828,7 +39994,7 @@ var require_GetSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     exports.GetSipMediaApplicationLoggingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39882,7 +40048,7 @@ var require_GetSipRuleCommand = __commonJS({
     exports.GetSipRuleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39936,7 +40102,7 @@ var require_GetUserCommand = __commonJS({
     exports.GetUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -39991,7 +40157,7 @@ var require_GetUserSettingsCommand = __commonJS({
     exports.GetUserSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40045,7 +40211,7 @@ var require_GetVoiceConnectorCommand = __commonJS({
     exports.GetVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40099,7 +40265,7 @@ var require_GetVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     exports.GetVoiceConnectorEmergencyCallingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40154,7 +40320,7 @@ var require_GetVoiceConnectorGroupCommand = __commonJS({
     exports.GetVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40208,7 +40374,7 @@ var require_GetVoiceConnectorLoggingConfigurationCommand = __commonJS({
     exports.GetVoiceConnectorLoggingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40262,7 +40428,7 @@ var require_GetVoiceConnectorOriginationCommand = __commonJS({
     exports.GetVoiceConnectorOriginationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40316,7 +40482,7 @@ var require_GetVoiceConnectorProxyCommand = __commonJS({
     exports.GetVoiceConnectorProxyCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40371,7 +40537,7 @@ var require_GetVoiceConnectorStreamingConfigurationCommand = __commonJS({
     exports.GetVoiceConnectorStreamingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40425,7 +40591,7 @@ var require_GetVoiceConnectorTerminationCommand = __commonJS({
     exports.GetVoiceConnectorTerminationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40480,7 +40646,7 @@ var require_GetVoiceConnectorTerminationHealthCommand = __commonJS({
     exports.GetVoiceConnectorTerminationHealthCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40534,7 +40700,7 @@ var require_InviteUsersCommand = __commonJS({
     exports.InviteUsersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40589,7 +40755,7 @@ var require_ListAccountsCommand2 = __commonJS({
     exports.ListAccountsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40644,7 +40810,7 @@ var require_ListAppInstanceAdminsCommand = __commonJS({
     exports.ListAppInstanceAdminsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40699,7 +40865,7 @@ var require_ListAppInstancesCommand = __commonJS({
     exports.ListAppInstancesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40754,7 +40920,7 @@ var require_ListAppInstanceUsersCommand = __commonJS({
     exports.ListAppInstanceUsersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40809,7 +40975,7 @@ var require_ListAttendeesCommand = __commonJS({
     exports.ListAttendeesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40864,7 +41030,7 @@ var require_ListAttendeeTagsCommand = __commonJS({
     exports.ListAttendeeTagsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40919,7 +41085,7 @@ var require_ListBotsCommand = __commonJS({
     exports.ListBotsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -40974,7 +41140,7 @@ var require_ListChannelBansCommand = __commonJS({
     exports.ListChannelBansCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41029,7 +41195,7 @@ var require_ListChannelMembershipsCommand = __commonJS({
     exports.ListChannelMembershipsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41084,7 +41250,7 @@ var require_ListChannelMembershipsForAppInstanceUserCommand = __commonJS({
     exports.ListChannelMembershipsForAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41139,7 +41305,7 @@ var require_ListChannelMessagesCommand = __commonJS({
     exports.ListChannelMessagesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41194,7 +41360,7 @@ var require_ListChannelModeratorsCommand = __commonJS({
     exports.ListChannelModeratorsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41249,7 +41415,7 @@ var require_ListChannelsCommand = __commonJS({
     exports.ListChannelsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41304,7 +41470,7 @@ var require_ListChannelsModeratedByAppInstanceUserCommand = __commonJS({
     exports.ListChannelsModeratedByAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41359,7 +41525,7 @@ var require_ListMediaCapturePipelinesCommand = __commonJS({
     exports.ListMediaCapturePipelinesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41414,7 +41580,7 @@ var require_ListMeetingsCommand = __commonJS({
     exports.ListMeetingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41469,7 +41635,7 @@ var require_ListMeetingTagsCommand = __commonJS({
     exports.ListMeetingTagsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41524,7 +41690,7 @@ var require_ListPhoneNumberOrdersCommand = __commonJS({
     exports.ListPhoneNumberOrdersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41579,7 +41745,7 @@ var require_ListPhoneNumbersCommand = __commonJS({
     exports.ListPhoneNumbersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41634,7 +41800,7 @@ var require_ListProxySessionsCommand = __commonJS({
     exports.ListProxySessionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41689,7 +41855,7 @@ var require_ListRoomMembershipsCommand = __commonJS({
     exports.ListRoomMembershipsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41744,7 +41910,7 @@ var require_ListRoomsCommand = __commonJS({
     exports.ListRoomsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41799,7 +41965,7 @@ var require_ListSipMediaApplicationsCommand = __commonJS({
     exports.ListSipMediaApplicationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41854,7 +42020,7 @@ var require_ListSipRulesCommand = __commonJS({
     exports.ListSipRulesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41908,7 +42074,7 @@ var require_ListSupportedPhoneNumberCountriesCommand = __commonJS({
     exports.ListSupportedPhoneNumberCountriesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -41962,7 +42128,7 @@ var require_ListTagsForResourceCommand = __commonJS({
     exports.ListTagsForResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42017,7 +42183,7 @@ var require_ListUsersCommand = __commonJS({
     exports.ListUsersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42072,7 +42238,7 @@ var require_ListVoiceConnectorGroupsCommand = __commonJS({
     exports.ListVoiceConnectorGroupsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42126,7 +42292,7 @@ var require_ListVoiceConnectorsCommand = __commonJS({
     exports.ListVoiceConnectorsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42180,7 +42346,7 @@ var require_ListVoiceConnectorTerminationCredentialsCommand = __commonJS({
     exports.ListVoiceConnectorTerminationCredentialsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42235,7 +42401,7 @@ var require_LogoutUserCommand = __commonJS({
     exports.LogoutUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42289,7 +42455,7 @@ var require_PutAppInstanceRetentionSettingsCommand = __commonJS({
     exports.PutAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42343,7 +42509,7 @@ var require_PutAppInstanceStreamingConfigurationsCommand = __commonJS({
     exports.PutAppInstanceStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42398,7 +42564,7 @@ var require_PutEventsConfigurationCommand = __commonJS({
     exports.PutEventsConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42453,7 +42619,7 @@ var require_PutRetentionSettingsCommand = __commonJS({
     exports.PutRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42507,7 +42673,7 @@ var require_PutSipMediaApplicationLoggingConfigurationCommand = __commonJS({
     exports.PutSipMediaApplicationLoggingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42561,7 +42727,7 @@ var require_PutVoiceConnectorEmergencyCallingConfigurationCommand = __commonJS({
     exports.PutVoiceConnectorEmergencyCallingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42616,7 +42782,7 @@ var require_PutVoiceConnectorLoggingConfigurationCommand = __commonJS({
     exports.PutVoiceConnectorLoggingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42670,7 +42836,7 @@ var require_PutVoiceConnectorOriginationCommand = __commonJS({
     exports.PutVoiceConnectorOriginationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42724,7 +42890,7 @@ var require_PutVoiceConnectorProxyCommand = __commonJS({
     exports.PutVoiceConnectorProxyCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42779,7 +42945,7 @@ var require_PutVoiceConnectorStreamingConfigurationCommand = __commonJS({
     exports.PutVoiceConnectorStreamingConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42833,7 +42999,7 @@ var require_PutVoiceConnectorTerminationCommand = __commonJS({
     exports.PutVoiceConnectorTerminationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42888,7 +43054,7 @@ var require_PutVoiceConnectorTerminationCredentialsCommand = __commonJS({
     exports.PutVoiceConnectorTerminationCredentialsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42943,7 +43109,7 @@ var require_RedactChannelMessageCommand = __commonJS({
     exports.RedactChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -42997,7 +43163,7 @@ var require_RedactConversationMessageCommand = __commonJS({
     exports.RedactConversationMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43051,7 +43217,7 @@ var require_RedactRoomMessageCommand = __commonJS({
     exports.RedactRoomMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43105,7 +43271,7 @@ var require_RegenerateSecurityTokenCommand = __commonJS({
     exports.RegenerateSecurityTokenCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43160,7 +43326,7 @@ var require_ResetPersonalPINCommand = __commonJS({
     exports.ResetPersonalPINCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43215,7 +43381,7 @@ var require_RestorePhoneNumberCommand = __commonJS({
     exports.RestorePhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43270,7 +43436,7 @@ var require_SearchAvailablePhoneNumbersCommand = __commonJS({
     exports.SearchAvailablePhoneNumbersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43325,7 +43491,7 @@ var require_SendChannelMessageCommand = __commonJS({
     exports.SendChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43380,7 +43546,7 @@ var require_StartMeetingTranscriptionCommand = __commonJS({
     exports.StartMeetingTranscriptionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43434,7 +43600,7 @@ var require_StopMeetingTranscriptionCommand = __commonJS({
     exports.StopMeetingTranscriptionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43488,7 +43654,7 @@ var require_TagAttendeeCommand = __commonJS({
     exports.TagAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43543,7 +43709,7 @@ var require_TagMeetingCommand = __commonJS({
     exports.TagMeetingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43598,7 +43764,7 @@ var require_TagResourceCommand = __commonJS({
     exports.TagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43653,7 +43819,7 @@ var require_UntagAttendeeCommand = __commonJS({
     exports.UntagAttendeeCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43708,7 +43874,7 @@ var require_UntagMeetingCommand = __commonJS({
     exports.UntagMeetingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43763,7 +43929,7 @@ var require_UntagResourceCommand = __commonJS({
     exports.UntagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43818,7 +43984,7 @@ var require_UpdateAccountCommand = __commonJS({
     exports.UpdateAccountCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43872,7 +44038,7 @@ var require_UpdateAccountSettingsCommand = __commonJS({
     exports.UpdateAccountSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43926,7 +44092,7 @@ var require_UpdateAppInstanceCommand = __commonJS({
     exports.UpdateAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -43981,7 +44147,7 @@ var require_UpdateAppInstanceUserCommand = __commonJS({
     exports.UpdateAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44036,7 +44202,7 @@ var require_UpdateBotCommand = __commonJS({
     exports.UpdateBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44091,7 +44257,7 @@ var require_UpdateChannelCommand = __commonJS({
     exports.UpdateChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44146,7 +44312,7 @@ var require_UpdateChannelMessageCommand = __commonJS({
     exports.UpdateChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44201,7 +44367,7 @@ var require_UpdateChannelReadMarkerCommand = __commonJS({
     exports.UpdateChannelReadMarkerCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44255,7 +44421,7 @@ var require_UpdateGlobalSettingsCommand = __commonJS({
     exports.UpdateGlobalSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44309,7 +44475,7 @@ var require_UpdatePhoneNumberCommand = __commonJS({
     exports.UpdatePhoneNumberCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44364,7 +44530,7 @@ var require_UpdatePhoneNumberSettingsCommand = __commonJS({
     exports.UpdatePhoneNumberSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44419,7 +44585,7 @@ var require_UpdateProxySessionCommand = __commonJS({
     exports.UpdateProxySessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44474,7 +44640,7 @@ var require_UpdateRoomCommand = __commonJS({
     exports.UpdateRoomCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44529,7 +44695,7 @@ var require_UpdateRoomMembershipCommand = __commonJS({
     exports.UpdateRoomMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44584,7 +44750,7 @@ var require_UpdateSipMediaApplicationCallCommand = __commonJS({
     exports.UpdateSipMediaApplicationCallCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44639,7 +44805,7 @@ var require_UpdateSipMediaApplicationCommand = __commonJS({
     exports.UpdateSipMediaApplicationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44694,7 +44860,7 @@ var require_UpdateSipRuleCommand = __commonJS({
     exports.UpdateSipRuleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44748,7 +44914,7 @@ var require_UpdateUserCommand = __commonJS({
     exports.UpdateUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44803,7 +44969,7 @@ var require_UpdateUserSettingsCommand = __commonJS({
     exports.UpdateUserSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44857,7 +45023,7 @@ var require_UpdateVoiceConnectorCommand = __commonJS({
     exports.UpdateVoiceConnectorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44911,7 +45077,7 @@ var require_UpdateVoiceConnectorGroupCommand = __commonJS({
     exports.UpdateVoiceConnectorGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -44965,7 +45131,7 @@ var require_ValidateE911AddressCommand = __commonJS({
     exports.ValidateE911AddressCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -45018,7 +45184,7 @@ var require_Chime = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Chime = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeClient_1 = require_ChimeClient();
     var AssociatePhoneNumbersWithVoiceConnectorCommand_1 = require_AssociatePhoneNumbersWithVoiceConnectorCommand();
     var AssociatePhoneNumbersWithVoiceConnectorGroupCommand_1 = require_AssociatePhoneNumbersWithVoiceConnectorGroupCommand();
@@ -46551,7 +46717,7 @@ var require_models4 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-chime/dist-cjs/index.js
-var require_dist_cjs54 = __commonJS({
+var require_dist_cjs55 = __commonJS({
   "node_modules/@aws-sdk/client-chime/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -46593,7 +46759,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -46613,38 +46779,38 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.354.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/credential-provider-node": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-signing": "3.354.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-signing": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
-        "@aws-sdk/util-waiter": "3.347.0",
+        "@aws-sdk/util-waiter": "3.357.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
         tslib: "^2.5.0",
@@ -46752,9 +46918,9 @@ var require_runtimeConfig_shared5 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver5();
     var getRuntimeConfig = (config) => ({
@@ -46781,20 +46947,20 @@ var require_runtimeConfig5 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package5());
-    var client_sts_1 = require_dist_cjs53();
+    var client_sts_1 = require_dist_cjs54();
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_node_1 = require_dist_cjs52();
-    var hash_node_1 = require_dist_cjs39();
+    var credential_provider_node_1 = require_dist_cjs53();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared5();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -46840,7 +47006,7 @@ var require_SSMClient = __commonJS({
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_signing_1 = require_dist_cjs25();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -46880,7 +47046,7 @@ var require_SSMServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSMServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -46902,7 +47068,7 @@ var require_models_05 = __commonJS({
     exports.OpsMetadataAlreadyExistsException = exports.OpsItemAlreadyExistsException = exports.OpsItemAccessDeniedException = exports.OpsItemDataType = exports.ResourceLimitExceededException = exports.IdempotentParameterMismatch = exports.MaxDocumentSizeExceeded = exports.InvalidDocumentSchemaVersion = exports.InvalidDocumentContent = exports.DocumentLimitExceeded = exports.DocumentAlreadyExists = exports.DocumentStatus = exports.ReviewStatus = exports.PlatformType = exports.DocumentParameterType = exports.DocumentHashType = exports.DocumentType = exports.DocumentFormat = exports.AttachmentsSourceKey = exports.Fault = exports.UnsupportedPlatformType = exports.InvalidTargetMaps = exports.InvalidTarget = exports.InvalidTag = exports.InvalidSchedule = exports.InvalidOutputLocation = exports.InvalidDocumentVersion = exports.InvalidDocument = exports.AssociationStatusName = exports.AssociationSyncCompliance = exports.AssociationComplianceSeverity = exports.AssociationLimitExceeded = exports.AssociationAlreadyExists = exports.InvalidParameters = exports.DoesNotExistException = exports.InvalidInstanceId = exports.InvalidCommandId = exports.DuplicateInstanceId = exports.OpsItemRelatedItemAlreadyExistsException = exports.OpsItemNotFoundException = exports.OpsItemLimitExceededException = exports.OpsItemInvalidParameterException = exports.AlreadyExistsException = exports.ExternalAlarmState = exports.TooManyUpdates = exports.TooManyTagsError = exports.InvalidResourceType = exports.InvalidResourceId = exports.InternalServerError = exports.ResourceTypeForTagging = void 0;
     exports.InstanceInformationFilterKey = exports.UnsupportedOperatingSystem = exports.PatchDeploymentStatus = exports.InvalidPermissionType = exports.DocumentPermissionType = exports.StepExecutionFilterKey = exports.AutomationExecutionNotFoundException = exports.InvalidFilterValue = exports.InvalidFilterKey = exports.ExecutionMode = exports.AutomationType = exports.AutomationSubtype = exports.AutomationExecutionStatus = exports.AutomationExecutionFilterKey = exports.AssociationExecutionTargetsFilterKey = exports.AssociationExecutionDoesNotExist = exports.AssociationFilterOperatorType = exports.AssociationExecutionFilterKey = exports.InvalidAssociationVersion = exports.InvalidNextToken = exports.InvalidFilter = exports.DescribeActivationsFilterKeys = exports.TargetInUseException = exports.ResourcePolicyInvalidParameterException = exports.ResourcePolicyConflictException = exports.ResourceDataSyncNotFoundException = exports.ResourceInUseException = exports.ParameterNotFound = exports.OpsMetadataNotFoundException = exports.InvalidTypeNameException = exports.InvalidOptionException = exports.InvalidInventoryRequestException = exports.InvalidDeleteInventoryParametersException = exports.InventorySchemaDeleteOption = exports.InvalidDocumentOperation = exports.AssociatedInstances = exports.AssociationDoesNotExist = exports.InvalidActivationId = exports.InvalidActivation = exports.ResourceDataSyncInvalidConfigurationException = exports.ResourceDataSyncCountExceededException = exports.ResourceDataSyncAlreadyExistsException = exports.ResourceDataSyncS3Format = exports.PatchAction = exports.OperatingSystem = exports.PatchFilterKey = exports.PatchComplianceLevel = exports.OpsMetadataTooManyUpdatesException = exports.OpsMetadataLimitExceededException = exports.OpsMetadataInvalidArgumentException = void 0;
     exports.DescribeMaintenanceWindowTasksResultFilterSensitiveLog = exports.MaintenanceWindowTaskFilterSensitiveLog = exports.MaintenanceWindowTaskParameterValueExpressionFilterSensitiveLog = exports.DescribeMaintenanceWindowTargetsResultFilterSensitiveLog = exports.MaintenanceWindowTargetFilterSensitiveLog = exports.DescribeMaintenanceWindowsResultFilterSensitiveLog = exports.MaintenanceWindowIdentityFilterSensitiveLog = exports.DescribeMaintenanceWindowExecutionTaskInvocationsResultFilterSensitiveLog = exports.MaintenanceWindowExecutionTaskInvocationIdentityFilterSensitiveLog = exports.DescribeInstancePatchStatesForPatchGroupResultFilterSensitiveLog = exports.DescribeInstancePatchStatesResultFilterSensitiveLog = exports.InstancePatchStateFilterSensitiveLog = exports.DescribeAssociationResultFilterSensitiveLog = exports.CreatePatchBaselineRequestFilterSensitiveLog = exports.PatchSourceFilterSensitiveLog = exports.CreateMaintenanceWindowRequestFilterSensitiveLog = exports.CreateAssociationBatchResultFilterSensitiveLog = exports.FailedCreateAssociationFilterSensitiveLog = exports.CreateAssociationBatchRequestFilterSensitiveLog = exports.CreateAssociationBatchRequestEntryFilterSensitiveLog = exports.CreateAssociationResultFilterSensitiveLog = exports.AssociationDescriptionFilterSensitiveLog = exports.CreateAssociationRequestFilterSensitiveLog = exports.OpsItemFilterOperator = exports.OpsItemFilterKey = exports.MaintenanceWindowTaskCutoffBehavior = exports.MaintenanceWindowResourceType = exports.MaintenanceWindowTaskType = exports.MaintenanceWindowExecutionStatus = exports.InvalidDeletionIdException = exports.InventoryDeletionStatus = exports.InstancePatchStateOperatorType = exports.RebootOption = exports.PatchOperationType = exports.PatchComplianceDataState = exports.InvalidInstanceInformationFilterValue = exports.SourceType = exports.ResourceType = exports.PingStatus = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var SSMServiceException_1 = require_SSMServiceException();
     exports.ResourceTypeForTagging = {
       ASSOCIATION: "Association",
@@ -48337,7 +48503,7 @@ var require_models_12 = __commonJS({
     exports.InvalidItemContentException = exports.ComplianceTypeCountLimitExceededException = exports.DocumentPermissionLimit = exports.LastResourceDataSyncStatus = exports.OpsItemRelatedItemsFilterOperator = exports.OpsItemRelatedItemsFilterKey = exports.OpsItemEventFilterOperator = exports.OpsItemEventFilterKey = exports.DocumentFilterKey = exports.DocumentReviewCommentType = exports.DocumentMetadataEnum = exports.ComplianceStatus = exports.ComplianceSeverity = exports.ComplianceQueryOperatorType = exports.CommandStatus = exports.CommandPluginStatus = exports.CommandFilterKey = exports.AssociationFilterKey = exports.ParameterVersionLabelLimitExceeded = exports.ServiceSettingNotFound = exports.ParameterVersionNotFound = exports.InvalidKeyId = exports.OpsFilterOperatorType = exports.NotificationType = exports.NotificationEvent = exports.InventoryAttributeDataType = exports.InvalidResultAttributeException = exports.InvalidInventoryGroupException = exports.InvalidAggregatorException = exports.InventoryQueryOperatorType = exports.AttachmentHashType = exports.UnsupportedFeatureRequiredException = exports.ConnectionStatus = exports.InvocationDoesNotExist = exports.InvalidPluginName = exports.CommandInvocationStatus = exports.UnsupportedCalendarException = exports.InvalidDocumentType = exports.CalendarState = exports.OpsItemRelatedItemAssociationNotFoundException = exports.SessionStatus = exports.SessionState = exports.SessionFilterKey = exports.PatchProperty = exports.PatchSet = exports.InvalidFilterOption = exports.ParameterType = exports.ParameterTier = exports.ParametersFilterKey = exports.OpsItemStatus = void 0;
     exports.ParameterFilterSensitiveLog = exports.GetMaintenanceWindowTaskResultFilterSensitiveLog = exports.MaintenanceWindowTaskInvocationParametersFilterSensitiveLog = exports.MaintenanceWindowStepFunctionsParametersFilterSensitiveLog = exports.MaintenanceWindowRunCommandParametersFilterSensitiveLog = exports.MaintenanceWindowLambdaParametersFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskInvocationResultFilterSensitiveLog = exports.GetMaintenanceWindowExecutionTaskResultFilterSensitiveLog = exports.GetMaintenanceWindowResultFilterSensitiveLog = exports.GetDeployablePatchSnapshotForInstanceRequestFilterSensitiveLog = exports.BaselineOverrideFilterSensitiveLog = exports.AssociationVersionLimitExceeded = exports.StopType = exports.InvalidAutomationStatusUpdateException = exports.TargetNotConnected = exports.AutomationDefinitionNotApprovedException = exports.InvalidAutomationExecutionParametersException = exports.AutomationExecutionLimitExceededException = exports.AutomationDefinitionVersionNotFoundException = exports.AutomationDefinitionNotFoundException = exports.InvalidAssociation = exports.InvalidRole = exports.InvalidOutputFolder = exports.InvalidNotificationConfig = exports.SignalType = exports.InvalidAutomationSignalException = exports.AutomationStepNotFoundException = exports.FeatureNotAvailableException = exports.ResourcePolicyLimitExceededException = exports.UnsupportedParameterType = exports.PoliciesLimitExceededException = exports.ParameterPatternMismatchException = exports.ParameterMaxVersionLimitExceeded = exports.ParameterLimitExceeded = exports.ParameterAlreadyExists = exports.InvalidPolicyTypeException = exports.InvalidPolicyAttributeException = exports.InvalidAllowedPatternException = exports.IncompatiblePolicyException = exports.HierarchyTypeMismatchException = exports.HierarchyLevelLimitExceededException = exports.UnsupportedInventorySchemaVersionException = exports.UnsupportedInventoryItemContextException = exports.SubTypeCountLimitExceededException = exports.ItemContentMismatchException = exports.InvalidInventoryItemContextException = exports.CustomSchemaCountLimitExceededException = exports.TotalSizeLimitExceededException = exports.ComplianceUploadType = exports.ItemSizeLimitExceededException = void 0;
     exports.SendCommandResultFilterSensitiveLog = exports.SendCommandRequestFilterSensitiveLog = exports.RegisterTaskWithMaintenanceWindowRequestFilterSensitiveLog = exports.RegisterTargetWithMaintenanceWindowRequestFilterSensitiveLog = exports.PutParameterRequestFilterSensitiveLog = exports.ListCommandsResultFilterSensitiveLog = exports.CommandFilterSensitiveLog = exports.ListAssociationVersionsResultFilterSensitiveLog = exports.AssociationVersionInfoFilterSensitiveLog = exports.GetPatchBaselineResultFilterSensitiveLog = exports.GetParametersByPathResultFilterSensitiveLog = exports.GetParametersResultFilterSensitiveLog = exports.GetParameterHistoryResultFilterSensitiveLog = exports.ParameterHistoryFilterSensitiveLog = exports.GetParameterResultFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var models_0_1 = require_models_05();
     var SSMServiceException_1 = require_SSMServiceException();
     exports.OpsItemStatus = {
@@ -49443,7 +49609,7 @@ var require_models_2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UpdatePatchBaselineResultFilterSensitiveLog = exports.UpdatePatchBaselineRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTaskRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetResultFilterSensitiveLog = exports.UpdateMaintenanceWindowTargetRequestFilterSensitiveLog = exports.UpdateMaintenanceWindowResultFilterSensitiveLog = exports.UpdateMaintenanceWindowRequestFilterSensitiveLog = exports.UpdateAssociationStatusResultFilterSensitiveLog = exports.UpdateAssociationResultFilterSensitiveLog = exports.UpdateAssociationRequestFilterSensitiveLog = exports.ResourceDataSyncConflictException = exports.OpsMetadataKeyLimitExceededException = exports.DocumentReviewAction = exports.DuplicateDocumentVersionName = exports.DuplicateDocumentContent = exports.DocumentVersionLimitExceeded = exports.StatusUnchanged = exports.InvalidUpdate = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_12();
     var SSMServiceException_1 = require_SSMServiceException();
@@ -49632,8 +49798,8 @@ var require_Aws_json1_1 = __commonJS({
     exports.de_GetAutomationExecutionCommand = exports.de_DisassociateOpsItemRelatedItemCommand = exports.de_DescribeSessionsCommand = exports.de_DescribePatchPropertiesCommand = exports.de_DescribePatchGroupStateCommand = exports.de_DescribePatchGroupsCommand = exports.de_DescribePatchBaselinesCommand = exports.de_DescribeParametersCommand = exports.de_DescribeOpsItemsCommand = exports.de_DescribeMaintenanceWindowTasksCommand = exports.de_DescribeMaintenanceWindowTargetsCommand = exports.de_DescribeMaintenanceWindowsForTargetCommand = exports.de_DescribeMaintenanceWindowScheduleCommand = exports.de_DescribeMaintenanceWindowsCommand = exports.de_DescribeMaintenanceWindowExecutionTasksCommand = exports.de_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = exports.de_DescribeMaintenanceWindowExecutionsCommand = exports.de_DescribeInventoryDeletionsCommand = exports.de_DescribeInstancePatchStatesForPatchGroupCommand = exports.de_DescribeInstancePatchStatesCommand = exports.de_DescribeInstancePatchesCommand = exports.de_DescribeInstanceInformationCommand = exports.de_DescribeInstanceAssociationsStatusCommand = exports.de_DescribeEffectivePatchesForPatchBaselineCommand = exports.de_DescribeEffectiveInstanceAssociationsCommand = exports.de_DescribeDocumentPermissionCommand = exports.de_DescribeDocumentCommand = exports.de_DescribeAvailablePatchesCommand = exports.de_DescribeAutomationStepExecutionsCommand = exports.de_DescribeAutomationExecutionsCommand = exports.de_DescribeAssociationExecutionTargetsCommand = exports.de_DescribeAssociationExecutionsCommand = exports.de_DescribeAssociationCommand = exports.de_DescribeActivationsCommand = exports.de_DeregisterTaskFromMaintenanceWindowCommand = exports.de_DeregisterTargetFromMaintenanceWindowCommand = exports.de_DeregisterPatchBaselineForPatchGroupCommand = exports.de_DeregisterManagedInstanceCommand = exports.de_DeleteResourcePolicyCommand = exports.de_DeleteResourceDataSyncCommand = exports.de_DeletePatchBaselineCommand = exports.de_DeleteParametersCommand = exports.de_DeleteParameterCommand = exports.de_DeleteOpsMetadataCommand = exports.de_DeleteMaintenanceWindowCommand = exports.de_DeleteInventoryCommand = exports.de_DeleteDocumentCommand = exports.de_DeleteAssociationCommand = exports.de_DeleteActivationCommand = exports.de_CreateResourceDataSyncCommand = void 0;
     exports.de_RegisterTaskWithMaintenanceWindowCommand = exports.de_RegisterTargetWithMaintenanceWindowCommand = exports.de_RegisterPatchBaselineForPatchGroupCommand = exports.de_RegisterDefaultPatchBaselineCommand = exports.de_PutResourcePolicyCommand = exports.de_PutParameterCommand = exports.de_PutInventoryCommand = exports.de_PutComplianceItemsCommand = exports.de_ModifyDocumentPermissionCommand = exports.de_ListTagsForResourceCommand = exports.de_ListResourceDataSyncCommand = exports.de_ListResourceComplianceSummariesCommand = exports.de_ListOpsMetadataCommand = exports.de_ListOpsItemRelatedItemsCommand = exports.de_ListOpsItemEventsCommand = exports.de_ListInventoryEntriesCommand = exports.de_ListDocumentVersionsCommand = exports.de_ListDocumentsCommand = exports.de_ListDocumentMetadataHistoryCommand = exports.de_ListComplianceSummariesCommand = exports.de_ListComplianceItemsCommand = exports.de_ListCommandsCommand = exports.de_ListCommandInvocationsCommand = exports.de_ListAssociationVersionsCommand = exports.de_ListAssociationsCommand = exports.de_LabelParameterVersionCommand = exports.de_GetServiceSettingCommand = exports.de_GetResourcePoliciesCommand = exports.de_GetPatchBaselineForPatchGroupCommand = exports.de_GetPatchBaselineCommand = exports.de_GetParametersByPathCommand = exports.de_GetParametersCommand = exports.de_GetParameterHistoryCommand = exports.de_GetParameterCommand = exports.de_GetOpsSummaryCommand = exports.de_GetOpsMetadataCommand = exports.de_GetOpsItemCommand = exports.de_GetMaintenanceWindowTaskCommand = exports.de_GetMaintenanceWindowExecutionTaskInvocationCommand = exports.de_GetMaintenanceWindowExecutionTaskCommand = exports.de_GetMaintenanceWindowExecutionCommand = exports.de_GetMaintenanceWindowCommand = exports.de_GetInventorySchemaCommand = exports.de_GetInventoryCommand = exports.de_GetDocumentCommand = exports.de_GetDeployablePatchSnapshotForInstanceCommand = exports.de_GetDefaultPatchBaselineCommand = exports.de_GetConnectionStatusCommand = exports.de_GetCommandInvocationCommand = exports.de_GetCalendarStateCommand = void 0;
     exports.de_UpdateServiceSettingCommand = exports.de_UpdateResourceDataSyncCommand = exports.de_UpdatePatchBaselineCommand = exports.de_UpdateOpsMetadataCommand = exports.de_UpdateOpsItemCommand = exports.de_UpdateManagedInstanceRoleCommand = exports.de_UpdateMaintenanceWindowTaskCommand = exports.de_UpdateMaintenanceWindowTargetCommand = exports.de_UpdateMaintenanceWindowCommand = exports.de_UpdateDocumentMetadataCommand = exports.de_UpdateDocumentDefaultVersionCommand = exports.de_UpdateDocumentCommand = exports.de_UpdateAssociationStatusCommand = exports.de_UpdateAssociationCommand = exports.de_UnlabelParameterVersionCommand = exports.de_TerminateSessionCommand = exports.de_StopAutomationExecutionCommand = exports.de_StartSessionCommand = exports.de_StartChangeRequestExecutionCommand = exports.de_StartAutomationExecutionCommand = exports.de_StartAssociationsOnceCommand = exports.de_SendCommandCommand = exports.de_SendAutomationSignalCommand = exports.de_ResumeSessionCommand = exports.de_ResetServiceSettingCommand = exports.de_RemoveTagsFromResourceCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var models_0_1 = require_models_05();
     var models_1_1 = require_models_12();
@@ -59109,13 +59275,7 @@ var require_Aws_json1_1 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var throwDefaultError = (0, smithy_client_1.withBaseException)(SSMServiceException_1.SSMServiceException);
     var buildHttpRpcRequest = async (context, headers, path, resolvedHostname, body) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
@@ -59192,7 +59352,7 @@ var require_AddTagsToResourceCommand = __commonJS({
     exports.AddTagsToResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59246,7 +59406,7 @@ var require_AssociateOpsItemRelatedItemCommand = __commonJS({
     exports.AssociateOpsItemRelatedItemCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59300,7 +59460,7 @@ var require_CancelCommandCommand = __commonJS({
     exports.CancelCommandCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59354,7 +59514,7 @@ var require_CancelMaintenanceWindowExecutionCommand = __commonJS({
     exports.CancelMaintenanceWindowExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59408,7 +59568,7 @@ var require_CreateActivationCommand = __commonJS({
     exports.CreateActivationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59462,7 +59622,7 @@ var require_CreateAssociationBatchCommand = __commonJS({
     exports.CreateAssociationBatchCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59517,7 +59677,7 @@ var require_CreateAssociationCommand = __commonJS({
     exports.CreateAssociationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59572,7 +59732,7 @@ var require_CreateDocumentCommand = __commonJS({
     exports.CreateDocumentCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59626,7 +59786,7 @@ var require_CreateMaintenanceWindowCommand = __commonJS({
     exports.CreateMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59681,7 +59841,7 @@ var require_CreateOpsItemCommand = __commonJS({
     exports.CreateOpsItemCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59735,7 +59895,7 @@ var require_CreateOpsMetadataCommand = __commonJS({
     exports.CreateOpsMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59789,7 +59949,7 @@ var require_CreatePatchBaselineCommand = __commonJS({
     exports.CreatePatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59844,7 +60004,7 @@ var require_CreateResourceDataSyncCommand = __commonJS({
     exports.CreateResourceDataSyncCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59898,7 +60058,7 @@ var require_DeleteActivationCommand = __commonJS({
     exports.DeleteActivationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -59952,7 +60112,7 @@ var require_DeleteAssociationCommand = __commonJS({
     exports.DeleteAssociationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60006,7 +60166,7 @@ var require_DeleteDocumentCommand = __commonJS({
     exports.DeleteDocumentCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60060,7 +60220,7 @@ var require_DeleteInventoryCommand = __commonJS({
     exports.DeleteInventoryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60114,7 +60274,7 @@ var require_DeleteMaintenanceWindowCommand = __commonJS({
     exports.DeleteMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60168,7 +60328,7 @@ var require_DeleteOpsMetadataCommand = __commonJS({
     exports.DeleteOpsMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60222,7 +60382,7 @@ var require_DeleteParameterCommand = __commonJS({
     exports.DeleteParameterCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60276,7 +60436,7 @@ var require_DeleteParametersCommand = __commonJS({
     exports.DeleteParametersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60330,7 +60490,7 @@ var require_DeletePatchBaselineCommand = __commonJS({
     exports.DeletePatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60384,7 +60544,7 @@ var require_DeleteResourceDataSyncCommand = __commonJS({
     exports.DeleteResourceDataSyncCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60438,7 +60598,7 @@ var require_DeleteResourcePolicyCommand = __commonJS({
     exports.DeleteResourcePolicyCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60492,7 +60652,7 @@ var require_DeregisterManagedInstanceCommand = __commonJS({
     exports.DeregisterManagedInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60546,7 +60706,7 @@ var require_DeregisterPatchBaselineForPatchGroupCommand = __commonJS({
     exports.DeregisterPatchBaselineForPatchGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60600,7 +60760,7 @@ var require_DeregisterTargetFromMaintenanceWindowCommand = __commonJS({
     exports.DeregisterTargetFromMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60654,7 +60814,7 @@ var require_DeregisterTaskFromMaintenanceWindowCommand = __commonJS({
     exports.DeregisterTaskFromMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60708,7 +60868,7 @@ var require_DescribeActivationsCommand = __commonJS({
     exports.DescribeActivationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60762,7 +60922,7 @@ var require_DescribeAssociationCommand = __commonJS({
     exports.DescribeAssociationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60817,7 +60977,7 @@ var require_DescribeAssociationExecutionsCommand = __commonJS({
     exports.DescribeAssociationExecutionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60871,7 +61031,7 @@ var require_DescribeAssociationExecutionTargetsCommand = __commonJS({
     exports.DescribeAssociationExecutionTargetsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60925,7 +61085,7 @@ var require_DescribeAutomationExecutionsCommand = __commonJS({
     exports.DescribeAutomationExecutionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -60979,7 +61139,7 @@ var require_DescribeAutomationStepExecutionsCommand = __commonJS({
     exports.DescribeAutomationStepExecutionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61033,7 +61193,7 @@ var require_DescribeAvailablePatchesCommand = __commonJS({
     exports.DescribeAvailablePatchesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61087,7 +61247,7 @@ var require_DescribeDocumentCommand = __commonJS({
     exports.DescribeDocumentCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61141,7 +61301,7 @@ var require_DescribeDocumentPermissionCommand = __commonJS({
     exports.DescribeDocumentPermissionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61195,7 +61355,7 @@ var require_DescribeEffectiveInstanceAssociationsCommand = __commonJS({
     exports.DescribeEffectiveInstanceAssociationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61249,7 +61409,7 @@ var require_DescribeEffectivePatchesForPatchBaselineCommand = __commonJS({
     exports.DescribeEffectivePatchesForPatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61303,7 +61463,7 @@ var require_DescribeInstanceAssociationsStatusCommand = __commonJS({
     exports.DescribeInstanceAssociationsStatusCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61357,7 +61517,7 @@ var require_DescribeInstanceInformationCommand = __commonJS({
     exports.DescribeInstanceInformationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61411,7 +61571,7 @@ var require_DescribeInstancePatchesCommand = __commonJS({
     exports.DescribeInstancePatchesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61465,7 +61625,7 @@ var require_DescribeInstancePatchStatesCommand = __commonJS({
     exports.DescribeInstancePatchStatesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61520,7 +61680,7 @@ var require_DescribeInstancePatchStatesForPatchGroupCommand = __commonJS({
     exports.DescribeInstancePatchStatesForPatchGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61575,7 +61735,7 @@ var require_DescribeInventoryDeletionsCommand = __commonJS({
     exports.DescribeInventoryDeletionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61629,7 +61789,7 @@ var require_DescribeMaintenanceWindowExecutionsCommand = __commonJS({
     exports.DescribeMaintenanceWindowExecutionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61683,7 +61843,7 @@ var require_DescribeMaintenanceWindowExecutionTaskInvocationsCommand = __commonJ
     exports.DescribeMaintenanceWindowExecutionTaskInvocationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61738,7 +61898,7 @@ var require_DescribeMaintenanceWindowExecutionTasksCommand = __commonJS({
     exports.DescribeMaintenanceWindowExecutionTasksCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61792,7 +61952,7 @@ var require_DescribeMaintenanceWindowScheduleCommand = __commonJS({
     exports.DescribeMaintenanceWindowScheduleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61846,7 +62006,7 @@ var require_DescribeMaintenanceWindowsCommand = __commonJS({
     exports.DescribeMaintenanceWindowsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61901,7 +62061,7 @@ var require_DescribeMaintenanceWindowsForTargetCommand = __commonJS({
     exports.DescribeMaintenanceWindowsForTargetCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -61955,7 +62115,7 @@ var require_DescribeMaintenanceWindowTargetsCommand = __commonJS({
     exports.DescribeMaintenanceWindowTargetsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62010,7 +62170,7 @@ var require_DescribeMaintenanceWindowTasksCommand = __commonJS({
     exports.DescribeMaintenanceWindowTasksCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62065,7 +62225,7 @@ var require_DescribeOpsItemsCommand = __commonJS({
     exports.DescribeOpsItemsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62119,7 +62279,7 @@ var require_DescribeParametersCommand = __commonJS({
     exports.DescribeParametersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62173,7 +62333,7 @@ var require_DescribePatchBaselinesCommand = __commonJS({
     exports.DescribePatchBaselinesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62227,7 +62387,7 @@ var require_DescribePatchGroupsCommand = __commonJS({
     exports.DescribePatchGroupsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62281,7 +62441,7 @@ var require_DescribePatchGroupStateCommand = __commonJS({
     exports.DescribePatchGroupStateCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62335,7 +62495,7 @@ var require_DescribePatchPropertiesCommand = __commonJS({
     exports.DescribePatchPropertiesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62389,7 +62549,7 @@ var require_DescribeSessionsCommand = __commonJS({
     exports.DescribeSessionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62443,7 +62603,7 @@ var require_DisassociateOpsItemRelatedItemCommand = __commonJS({
     exports.DisassociateOpsItemRelatedItemCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62497,7 +62657,7 @@ var require_GetAutomationExecutionCommand = __commonJS({
     exports.GetAutomationExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62551,7 +62711,7 @@ var require_GetCalendarStateCommand = __commonJS({
     exports.GetCalendarStateCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62605,7 +62765,7 @@ var require_GetCommandInvocationCommand = __commonJS({
     exports.GetCommandInvocationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62659,7 +62819,7 @@ var require_GetConnectionStatusCommand = __commonJS({
     exports.GetConnectionStatusCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62713,7 +62873,7 @@ var require_GetDefaultPatchBaselineCommand = __commonJS({
     exports.GetDefaultPatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62767,7 +62927,7 @@ var require_GetDeployablePatchSnapshotForInstanceCommand = __commonJS({
     exports.GetDeployablePatchSnapshotForInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62822,7 +62982,7 @@ var require_GetDocumentCommand = __commonJS({
     exports.GetDocumentCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62876,7 +63036,7 @@ var require_GetInventoryCommand = __commonJS({
     exports.GetInventoryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62930,7 +63090,7 @@ var require_GetInventorySchemaCommand = __commonJS({
     exports.GetInventorySchemaCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -62984,7 +63144,7 @@ var require_GetMaintenanceWindowCommand = __commonJS({
     exports.GetMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63039,7 +63199,7 @@ var require_GetMaintenanceWindowExecutionCommand = __commonJS({
     exports.GetMaintenanceWindowExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63093,7 +63253,7 @@ var require_GetMaintenanceWindowExecutionTaskCommand = __commonJS({
     exports.GetMaintenanceWindowExecutionTaskCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63148,7 +63308,7 @@ var require_GetMaintenanceWindowExecutionTaskInvocationCommand = __commonJS({
     exports.GetMaintenanceWindowExecutionTaskInvocationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63203,7 +63363,7 @@ var require_GetMaintenanceWindowTaskCommand = __commonJS({
     exports.GetMaintenanceWindowTaskCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63258,7 +63418,7 @@ var require_GetOpsItemCommand = __commonJS({
     exports.GetOpsItemCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63312,7 +63472,7 @@ var require_GetOpsMetadataCommand = __commonJS({
     exports.GetOpsMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63366,7 +63526,7 @@ var require_GetOpsSummaryCommand = __commonJS({
     exports.GetOpsSummaryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63420,7 +63580,7 @@ var require_GetParameterCommand = __commonJS({
     exports.GetParameterCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63475,7 +63635,7 @@ var require_GetParameterHistoryCommand = __commonJS({
     exports.GetParameterHistoryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63530,7 +63690,7 @@ var require_GetParametersByPathCommand = __commonJS({
     exports.GetParametersByPathCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63585,7 +63745,7 @@ var require_GetParametersCommand = __commonJS({
     exports.GetParametersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63640,7 +63800,7 @@ var require_GetPatchBaselineCommand = __commonJS({
     exports.GetPatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63695,7 +63855,7 @@ var require_GetPatchBaselineForPatchGroupCommand = __commonJS({
     exports.GetPatchBaselineForPatchGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63749,7 +63909,7 @@ var require_GetResourcePoliciesCommand = __commonJS({
     exports.GetResourcePoliciesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63803,7 +63963,7 @@ var require_GetServiceSettingCommand = __commonJS({
     exports.GetServiceSettingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63857,7 +64017,7 @@ var require_LabelParameterVersionCommand = __commonJS({
     exports.LabelParameterVersionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63911,7 +64071,7 @@ var require_ListAssociationsCommand = __commonJS({
     exports.ListAssociationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -63965,7 +64125,7 @@ var require_ListAssociationVersionsCommand = __commonJS({
     exports.ListAssociationVersionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64020,7 +64180,7 @@ var require_ListCommandInvocationsCommand = __commonJS({
     exports.ListCommandInvocationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64074,7 +64234,7 @@ var require_ListCommandsCommand = __commonJS({
     exports.ListCommandsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64129,7 +64289,7 @@ var require_ListComplianceItemsCommand = __commonJS({
     exports.ListComplianceItemsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64183,7 +64343,7 @@ var require_ListComplianceSummariesCommand = __commonJS({
     exports.ListComplianceSummariesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64237,7 +64397,7 @@ var require_ListDocumentMetadataHistoryCommand = __commonJS({
     exports.ListDocumentMetadataHistoryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64291,7 +64451,7 @@ var require_ListDocumentsCommand = __commonJS({
     exports.ListDocumentsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64345,7 +64505,7 @@ var require_ListDocumentVersionsCommand = __commonJS({
     exports.ListDocumentVersionsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64399,7 +64559,7 @@ var require_ListInventoryEntriesCommand = __commonJS({
     exports.ListInventoryEntriesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64453,7 +64613,7 @@ var require_ListOpsItemEventsCommand = __commonJS({
     exports.ListOpsItemEventsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64507,7 +64667,7 @@ var require_ListOpsItemRelatedItemsCommand = __commonJS({
     exports.ListOpsItemRelatedItemsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64561,7 +64721,7 @@ var require_ListOpsMetadataCommand = __commonJS({
     exports.ListOpsMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64615,7 +64775,7 @@ var require_ListResourceComplianceSummariesCommand = __commonJS({
     exports.ListResourceComplianceSummariesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64669,7 +64829,7 @@ var require_ListResourceDataSyncCommand = __commonJS({
     exports.ListResourceDataSyncCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64723,7 +64883,7 @@ var require_ListTagsForResourceCommand2 = __commonJS({
     exports.ListTagsForResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64777,7 +64937,7 @@ var require_ModifyDocumentPermissionCommand = __commonJS({
     exports.ModifyDocumentPermissionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64831,7 +64991,7 @@ var require_PutComplianceItemsCommand = __commonJS({
     exports.PutComplianceItemsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64885,7 +65045,7 @@ var require_PutInventoryCommand = __commonJS({
     exports.PutInventoryCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64939,7 +65099,7 @@ var require_PutParameterCommand = __commonJS({
     exports.PutParameterCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -64994,7 +65154,7 @@ var require_PutResourcePolicyCommand = __commonJS({
     exports.PutResourcePolicyCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65048,7 +65208,7 @@ var require_RegisterDefaultPatchBaselineCommand = __commonJS({
     exports.RegisterDefaultPatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65102,7 +65262,7 @@ var require_RegisterPatchBaselineForPatchGroupCommand = __commonJS({
     exports.RegisterPatchBaselineForPatchGroupCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65156,7 +65316,7 @@ var require_RegisterTargetWithMaintenanceWindowCommand = __commonJS({
     exports.RegisterTargetWithMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65211,7 +65371,7 @@ var require_RegisterTaskWithMaintenanceWindowCommand = __commonJS({
     exports.RegisterTaskWithMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65266,7 +65426,7 @@ var require_RemoveTagsFromResourceCommand = __commonJS({
     exports.RemoveTagsFromResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65320,7 +65480,7 @@ var require_ResetServiceSettingCommand = __commonJS({
     exports.ResetServiceSettingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65374,7 +65534,7 @@ var require_ResumeSessionCommand = __commonJS({
     exports.ResumeSessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65428,7 +65588,7 @@ var require_SendAutomationSignalCommand = __commonJS({
     exports.SendAutomationSignalCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65482,7 +65642,7 @@ var require_SendCommandCommand = __commonJS({
     exports.SendCommandCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65537,7 +65697,7 @@ var require_StartAssociationsOnceCommand = __commonJS({
     exports.StartAssociationsOnceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65591,7 +65751,7 @@ var require_StartAutomationExecutionCommand = __commonJS({
     exports.StartAutomationExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65645,7 +65805,7 @@ var require_StartChangeRequestExecutionCommand = __commonJS({
     exports.StartChangeRequestExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65699,7 +65859,7 @@ var require_StartSessionCommand = __commonJS({
     exports.StartSessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65753,7 +65913,7 @@ var require_StopAutomationExecutionCommand = __commonJS({
     exports.StopAutomationExecutionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65807,7 +65967,7 @@ var require_TerminateSessionCommand = __commonJS({
     exports.TerminateSessionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65861,7 +66021,7 @@ var require_UnlabelParameterVersionCommand = __commonJS({
     exports.UnlabelParameterVersionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65915,7 +66075,7 @@ var require_UpdateAssociationCommand = __commonJS({
     exports.UpdateAssociationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -65970,7 +66130,7 @@ var require_UpdateAssociationStatusCommand = __commonJS({
     exports.UpdateAssociationStatusCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66025,7 +66185,7 @@ var require_UpdateDocumentCommand = __commonJS({
     exports.UpdateDocumentCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66079,7 +66239,7 @@ var require_UpdateDocumentDefaultVersionCommand = __commonJS({
     exports.UpdateDocumentDefaultVersionCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66133,7 +66293,7 @@ var require_UpdateDocumentMetadataCommand = __commonJS({
     exports.UpdateDocumentMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66187,7 +66347,7 @@ var require_UpdateMaintenanceWindowCommand = __commonJS({
     exports.UpdateMaintenanceWindowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66242,7 +66402,7 @@ var require_UpdateMaintenanceWindowTargetCommand = __commonJS({
     exports.UpdateMaintenanceWindowTargetCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66297,7 +66457,7 @@ var require_UpdateMaintenanceWindowTaskCommand = __commonJS({
     exports.UpdateMaintenanceWindowTaskCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66352,7 +66512,7 @@ var require_UpdateManagedInstanceRoleCommand = __commonJS({
     exports.UpdateManagedInstanceRoleCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66406,7 +66566,7 @@ var require_UpdateOpsItemCommand = __commonJS({
     exports.UpdateOpsItemCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66460,7 +66620,7 @@ var require_UpdateOpsMetadataCommand = __commonJS({
     exports.UpdateOpsMetadataCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66514,7 +66674,7 @@ var require_UpdatePatchBaselineCommand = __commonJS({
     exports.UpdatePatchBaselineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66569,7 +66729,7 @@ var require_UpdateResourceDataSyncCommand = __commonJS({
     exports.UpdateResourceDataSyncCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66623,7 +66783,7 @@ var require_UpdateServiceSettingCommand = __commonJS({
     exports.UpdateServiceSettingCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -66675,7 +66835,7 @@ var require_SSM = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.SSM = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var AddTagsToResourceCommand_1 = require_AddTagsToResourceCommand();
     var AssociateOpsItemRelatedItemCommand_1 = require_AssociateOpsItemRelatedItemCommand();
     var CancelCommandCommand_1 = require_CancelCommandCommand();
@@ -68939,7 +69099,7 @@ var require_createWaiter = __commonJS({
 });
 
 // node_modules/@aws-sdk/util-waiter/dist-cjs/index.js
-var require_dist_cjs55 = __commonJS({
+var require_dist_cjs56 = __commonJS({
   "node_modules/@aws-sdk/util-waiter/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -68955,7 +69115,7 @@ var require_waitForCommandExecuted = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.waitUntilCommandExecuted = exports.waitForCommandExecuted = void 0;
-    var util_waiter_1 = require_dist_cjs55();
+    var util_waiter_1 = require_dist_cjs56();
     var GetCommandInvocationCommand_1 = require_GetCommandInvocationCommand();
     var checkState = async (client, input) => {
       let reason;
@@ -69079,7 +69239,7 @@ var require_models5 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-ssm/dist-cjs/index.js
-var require_dist_cjs56 = __commonJS({
+var require_dist_cjs57 = __commonJS({
   "node_modules/@aws-sdk/client-ssm/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -69122,7 +69282,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -69142,36 +69302,36 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.354.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/credential-provider-node": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-signing": "3.354.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-signing": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -69278,9 +69438,9 @@ var require_runtimeConfig_shared6 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver6();
     var getRuntimeConfig = (config) => ({
@@ -69307,20 +69467,20 @@ var require_runtimeConfig6 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package6());
-    var client_sts_1 = require_dist_cjs53();
+    var client_sts_1 = require_dist_cjs54();
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_node_1 = require_dist_cjs52();
-    var hash_node_1 = require_dist_cjs39();
+    var credential_provider_node_1 = require_dist_cjs53();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared6();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -69366,7 +69526,7 @@ var require_ChimeSDKMessagingClient = __commonJS({
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_signing_1 = require_dist_cjs25();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -69406,7 +69566,7 @@ var require_ChimeSDKMessagingServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKMessagingServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -69427,7 +69587,7 @@ var require_models_06 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChannelModeratorSummaryFilterSensitiveLog = exports.ChannelModeratorFilterSensitiveLog = exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelMessageSummaryFilterSensitiveLog = exports.ChannelMessageFilterSensitiveLog = exports.ChannelMembershipSummaryFilterSensitiveLog = exports.ChannelMembershipPreferencesFilterSensitiveLog = exports.PushNotificationPreferencesFilterSensitiveLog = exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelSummaryFilterSensitiveLog = exports.ChannelMembershipFilterSensitiveLog = exports.ChannelFlowSummaryFilterSensitiveLog = exports.ChannelFlowCallbackRequestFilterSensitiveLog = exports.ChannelMessageCallbackFilterSensitiveLog = exports.PushNotificationConfigurationFilterSensitiveLog = exports.MessageAttributeValueFilterSensitiveLog = exports.ChannelFlowFilterSensitiveLog = exports.ProcessorFilterSensitiveLog = exports.ChannelBanSummaryFilterSensitiveLog = exports.ChannelBanFilterSensitiveLog = exports.ChannelAssociatedWithFlowSummaryFilterSensitiveLog = exports.ChannelFilterSensitiveLog = exports.BatchCreateChannelMembershipResponseFilterSensitiveLog = exports.BatchChannelMembershipsFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.SearchFieldOperator = exports.SearchFieldKey = exports.SortOrder = exports.MessagingDataType = exports.ChannelMessageType = exports.ChannelMessageStatus = exports.ChannelMessagePersistenceType = exports.PushNotificationType = exports.FallbackAction = exports.InvocationType = exports.ChannelPrivacy = exports.ChannelMode = exports.ExpirationCriterion = exports.ResourceLimitExceededException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.ChannelMembershipType = exports.AllowNotifications = void 0;
     exports.UpdateChannelMessageRequestFilterSensitiveLog = exports.UpdateChannelFlowRequestFilterSensitiveLog = exports.UpdateChannelRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SendChannelMessageRequestFilterSensitiveLog = exports.SearchChannelsResponseFilterSensitiveLog = exports.SearchChannelsRequestFilterSensitiveLog = exports.PutChannelMembershipPreferencesResponseFilterSensitiveLog = exports.PutChannelMembershipPreferencesRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListSubChannelsResponseFilterSensitiveLog = exports.ListSubChannelsRequestFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog = exports.ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog = exports.ListChannelsResponseFilterSensitiveLog = exports.ListChannelsRequestFilterSensitiveLog = exports.ListChannelModeratorsResponseFilterSensitiveLog = exports.ListChannelModeratorsRequestFilterSensitiveLog = exports.ListChannelMessagesResponseFilterSensitiveLog = exports.ListChannelMessagesRequestFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelMembershipsResponseFilterSensitiveLog = exports.ListChannelMembershipsRequestFilterSensitiveLog = exports.ListChannelFlowsResponseFilterSensitiveLog = exports.ListChannelFlowsRequestFilterSensitiveLog = exports.ListChannelBansResponseFilterSensitiveLog = exports.ListChannelBansRequestFilterSensitiveLog = exports.GetChannelMessageResponseFilterSensitiveLog = exports.GetChannelMembershipPreferencesResponseFilterSensitiveLog = exports.DescribeChannelModeratorResponseFilterSensitiveLog = exports.DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipResponseFilterSensitiveLog = exports.DescribeChannelFlowResponseFilterSensitiveLog = exports.DescribeChannelBanResponseFilterSensitiveLog = exports.DescribeChannelResponseFilterSensitiveLog = exports.CreateChannelModeratorResponseFilterSensitiveLog = exports.CreateChannelMembershipResponseFilterSensitiveLog = exports.CreateChannelFlowRequestFilterSensitiveLog = exports.CreateChannelBanResponseFilterSensitiveLog = exports.CreateChannelRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeSDKMessagingServiceException_1 = require_ChimeSDKMessagingServiceException();
     exports.AllowNotifications = {
       ALL: "ALL",
@@ -70090,8 +70250,8 @@ var require_Aws_restJson14 = __commonJS({
     exports.se_UpdateChannelMessageCommand = exports.se_UpdateChannelFlowCommand = exports.se_UpdateChannelCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_SendChannelMessageCommand = exports.se_SearchChannelsCommand = exports.se_RedactChannelMessageCommand = exports.se_PutMessagingStreamingConfigurationsCommand = exports.se_PutChannelMembershipPreferencesCommand = exports.se_PutChannelExpirationSettingsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListSubChannelsCommand = exports.se_ListChannelsModeratedByAppInstanceUserCommand = exports.se_ListChannelsAssociatedWithChannelFlowCommand = exports.se_ListChannelsCommand = exports.se_ListChannelModeratorsCommand = exports.se_ListChannelMessagesCommand = exports.se_ListChannelMembershipsForAppInstanceUserCommand = exports.se_ListChannelMembershipsCommand = exports.se_ListChannelFlowsCommand = exports.se_ListChannelBansCommand = exports.se_GetMessagingStreamingConfigurationsCommand = exports.se_GetMessagingSessionEndpointCommand = exports.se_GetChannelMessageStatusCommand = exports.se_GetChannelMessageCommand = exports.se_GetChannelMembershipPreferencesCommand = exports.se_DisassociateChannelFlowCommand = exports.se_DescribeChannelModeratorCommand = exports.se_DescribeChannelModeratedByAppInstanceUserCommand = exports.se_DescribeChannelMembershipForAppInstanceUserCommand = exports.se_DescribeChannelMembershipCommand = exports.se_DescribeChannelFlowCommand = exports.se_DescribeChannelBanCommand = exports.se_DescribeChannelCommand = exports.se_DeleteMessagingStreamingConfigurationsCommand = exports.se_DeleteChannelModeratorCommand = exports.se_DeleteChannelMessageCommand = exports.se_DeleteChannelMembershipCommand = exports.se_DeleteChannelFlowCommand = exports.se_DeleteChannelBanCommand = exports.se_DeleteChannelCommand = exports.se_CreateChannelModeratorCommand = exports.se_CreateChannelMembershipCommand = exports.se_CreateChannelFlowCommand = exports.se_CreateChannelBanCommand = exports.se_CreateChannelCommand = exports.se_ChannelFlowCallbackCommand = exports.se_BatchCreateChannelMembershipCommand = exports.se_AssociateChannelFlowCommand = void 0;
     exports.de_UpdateChannelFlowCommand = exports.de_UpdateChannelCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_SendChannelMessageCommand = exports.de_SearchChannelsCommand = exports.de_RedactChannelMessageCommand = exports.de_PutMessagingStreamingConfigurationsCommand = exports.de_PutChannelMembershipPreferencesCommand = exports.de_PutChannelExpirationSettingsCommand = exports.de_ListTagsForResourceCommand = exports.de_ListSubChannelsCommand = exports.de_ListChannelsModeratedByAppInstanceUserCommand = exports.de_ListChannelsAssociatedWithChannelFlowCommand = exports.de_ListChannelsCommand = exports.de_ListChannelModeratorsCommand = exports.de_ListChannelMessagesCommand = exports.de_ListChannelMembershipsForAppInstanceUserCommand = exports.de_ListChannelMembershipsCommand = exports.de_ListChannelFlowsCommand = exports.de_ListChannelBansCommand = exports.de_GetMessagingStreamingConfigurationsCommand = exports.de_GetMessagingSessionEndpointCommand = exports.de_GetChannelMessageStatusCommand = exports.de_GetChannelMessageCommand = exports.de_GetChannelMembershipPreferencesCommand = exports.de_DisassociateChannelFlowCommand = exports.de_DescribeChannelModeratorCommand = exports.de_DescribeChannelModeratedByAppInstanceUserCommand = exports.de_DescribeChannelMembershipForAppInstanceUserCommand = exports.de_DescribeChannelMembershipCommand = exports.de_DescribeChannelFlowCommand = exports.de_DescribeChannelBanCommand = exports.de_DescribeChannelCommand = exports.de_DeleteMessagingStreamingConfigurationsCommand = exports.de_DeleteChannelModeratorCommand = exports.de_DeleteChannelMessageCommand = exports.de_DeleteChannelMembershipCommand = exports.de_DeleteChannelFlowCommand = exports.de_DeleteChannelBanCommand = exports.de_DeleteChannelCommand = exports.de_CreateChannelModeratorCommand = exports.de_CreateChannelMembershipCommand = exports.de_CreateChannelFlowCommand = exports.de_CreateChannelBanCommand = exports.de_CreateChannelCommand = exports.de_ChannelFlowCallbackCommand = exports.de_BatchCreateChannelMembershipCommand = exports.de_AssociateChannelFlowCommand = exports.se_UpdateChannelReadMarkerCommand = void 0;
     exports.de_UpdateChannelReadMarkerCommand = exports.de_UpdateChannelMessageCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var ChimeSDKMessagingServiceException_1 = require_ChimeSDKMessagingServiceException();
     var models_0_1 = require_models_06();
@@ -71299,7 +71459,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_AssociateChannelFlowCommand = de_AssociateChannelFlowCommand;
@@ -71741,7 +71901,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelCommand = de_DeleteChannelCommand;
@@ -71789,7 +71949,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelBanCommand = de_DeleteChannelBanCommand;
@@ -71834,7 +71994,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelFlowCommand = de_DeleteChannelFlowCommand;
@@ -71882,7 +72042,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelMembershipCommand = de_DeleteChannelMembershipCommand;
@@ -71930,7 +72090,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelMessageCommand = de_DeleteChannelMessageCommand;
@@ -71975,7 +72135,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteChannelModeratorCommand = de_DeleteChannelModeratorCommand;
@@ -72020,7 +72180,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteMessagingStreamingConfigurationsCommand = de_DeleteMessagingStreamingConfigurationsCommand;
@@ -72417,7 +72577,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DisassociateChannelFlowCommand = de_DisassociateChannelFlowCommand;
@@ -73594,7 +73754,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_TagResourceCommand = de_TagResourceCommand;
@@ -73642,7 +73802,7 @@ var require_Aws_restJson14 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UntagResourceCommand = de_UntagResourceCommand;
@@ -74163,13 +74323,7 @@ var require_Aws_restJson14 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var isSerializableHeaderValue = (value) => value !== void 0 && value !== null && value !== "" && (!Object.getOwnPropertyNames(value).includes("length") || value.length != 0) && (!Object.getOwnPropertyNames(value).includes("size") || value.size != 0);
     var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
       if (encoded.length) {
@@ -74222,7 +74376,7 @@ var require_AssociateChannelFlowCommand = __commonJS({
     exports.AssociateChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74276,7 +74430,7 @@ var require_BatchCreateChannelMembershipCommand2 = __commonJS({
     exports.BatchCreateChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74331,7 +74485,7 @@ var require_ChannelFlowCallbackCommand = __commonJS({
     exports.ChannelFlowCallbackCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74386,7 +74540,7 @@ var require_CreateChannelBanCommand2 = __commonJS({
     exports.CreateChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74441,7 +74595,7 @@ var require_CreateChannelCommand2 = __commonJS({
     exports.CreateChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74496,7 +74650,7 @@ var require_CreateChannelFlowCommand = __commonJS({
     exports.CreateChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74551,7 +74705,7 @@ var require_CreateChannelMembershipCommand2 = __commonJS({
     exports.CreateChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74606,7 +74760,7 @@ var require_CreateChannelModeratorCommand2 = __commonJS({
     exports.CreateChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74661,7 +74815,7 @@ var require_DeleteChannelBanCommand2 = __commonJS({
     exports.DeleteChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74715,7 +74869,7 @@ var require_DeleteChannelCommand2 = __commonJS({
     exports.DeleteChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74769,7 +74923,7 @@ var require_DeleteChannelFlowCommand = __commonJS({
     exports.DeleteChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74823,7 +74977,7 @@ var require_DeleteChannelMembershipCommand2 = __commonJS({
     exports.DeleteChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74877,7 +75031,7 @@ var require_DeleteChannelMessageCommand2 = __commonJS({
     exports.DeleteChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74931,7 +75085,7 @@ var require_DeleteChannelModeratorCommand2 = __commonJS({
     exports.DeleteChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -74985,7 +75139,7 @@ var require_DeleteMessagingStreamingConfigurationsCommand = __commonJS({
     exports.DeleteMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75039,7 +75193,7 @@ var require_DescribeChannelBanCommand2 = __commonJS({
     exports.DescribeChannelBanCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75094,7 +75248,7 @@ var require_DescribeChannelCommand2 = __commonJS({
     exports.DescribeChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75149,7 +75303,7 @@ var require_DescribeChannelFlowCommand = __commonJS({
     exports.DescribeChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75204,7 +75358,7 @@ var require_DescribeChannelMembershipCommand2 = __commonJS({
     exports.DescribeChannelMembershipCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75259,7 +75413,7 @@ var require_DescribeChannelMembershipForAppInstanceUserCommand2 = __commonJS({
     exports.DescribeChannelMembershipForAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75314,7 +75468,7 @@ var require_DescribeChannelModeratedByAppInstanceUserCommand2 = __commonJS({
     exports.DescribeChannelModeratedByAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75369,7 +75523,7 @@ var require_DescribeChannelModeratorCommand2 = __commonJS({
     exports.DescribeChannelModeratorCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75424,7 +75578,7 @@ var require_DisassociateChannelFlowCommand = __commonJS({
     exports.DisassociateChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75478,7 +75632,7 @@ var require_GetChannelMembershipPreferencesCommand = __commonJS({
     exports.GetChannelMembershipPreferencesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75533,7 +75687,7 @@ var require_GetChannelMessageCommand2 = __commonJS({
     exports.GetChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75588,7 +75742,7 @@ var require_GetChannelMessageStatusCommand = __commonJS({
     exports.GetChannelMessageStatusCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75642,7 +75796,7 @@ var require_GetMessagingSessionEndpointCommand2 = __commonJS({
     exports.GetMessagingSessionEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75696,7 +75850,7 @@ var require_GetMessagingStreamingConfigurationsCommand = __commonJS({
     exports.GetMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75750,7 +75904,7 @@ var require_ListChannelBansCommand2 = __commonJS({
     exports.ListChannelBansCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75805,7 +75959,7 @@ var require_ListChannelFlowsCommand = __commonJS({
     exports.ListChannelFlowsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75860,7 +76014,7 @@ var require_ListChannelMembershipsCommand2 = __commonJS({
     exports.ListChannelMembershipsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75915,7 +76069,7 @@ var require_ListChannelMembershipsForAppInstanceUserCommand2 = __commonJS({
     exports.ListChannelMembershipsForAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -75970,7 +76124,7 @@ var require_ListChannelMessagesCommand2 = __commonJS({
     exports.ListChannelMessagesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76025,7 +76179,7 @@ var require_ListChannelModeratorsCommand2 = __commonJS({
     exports.ListChannelModeratorsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76080,7 +76234,7 @@ var require_ListChannelsAssociatedWithChannelFlowCommand = __commonJS({
     exports.ListChannelsAssociatedWithChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76135,7 +76289,7 @@ var require_ListChannelsCommand2 = __commonJS({
     exports.ListChannelsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76190,7 +76344,7 @@ var require_ListChannelsModeratedByAppInstanceUserCommand2 = __commonJS({
     exports.ListChannelsModeratedByAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76245,7 +76399,7 @@ var require_ListSubChannelsCommand = __commonJS({
     exports.ListSubChannelsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76300,7 +76454,7 @@ var require_ListTagsForResourceCommand3 = __commonJS({
     exports.ListTagsForResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76355,7 +76509,7 @@ var require_PutChannelExpirationSettingsCommand = __commonJS({
     exports.PutChannelExpirationSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76409,7 +76563,7 @@ var require_PutChannelMembershipPreferencesCommand = __commonJS({
     exports.PutChannelMembershipPreferencesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76464,7 +76618,7 @@ var require_PutMessagingStreamingConfigurationsCommand = __commonJS({
     exports.PutMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76518,7 +76672,7 @@ var require_RedactChannelMessageCommand2 = __commonJS({
     exports.RedactChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76572,7 +76726,7 @@ var require_SearchChannelsCommand = __commonJS({
     exports.SearchChannelsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76627,7 +76781,7 @@ var require_SendChannelMessageCommand2 = __commonJS({
     exports.SendChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76682,7 +76836,7 @@ var require_TagResourceCommand2 = __commonJS({
     exports.TagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76737,7 +76891,7 @@ var require_UntagResourceCommand2 = __commonJS({
     exports.UntagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76792,7 +76946,7 @@ var require_UpdateChannelCommand2 = __commonJS({
     exports.UpdateChannelCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76847,7 +77001,7 @@ var require_UpdateChannelFlowCommand = __commonJS({
     exports.UpdateChannelFlowCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76902,7 +77056,7 @@ var require_UpdateChannelMessageCommand2 = __commonJS({
     exports.UpdateChannelMessageCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -76957,7 +77111,7 @@ var require_UpdateChannelReadMarkerCommand2 = __commonJS({
     exports.UpdateChannelReadMarkerCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -77009,7 +77163,7 @@ var require_ChimeSDKMessaging = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKMessaging = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
     var AssociateChannelFlowCommand_1 = require_AssociateChannelFlowCommand();
     var BatchCreateChannelMembershipCommand_1 = require_BatchCreateChannelMembershipCommand2();
@@ -77596,7 +77750,7 @@ var require_models6 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/index.js
-var require_dist_cjs57 = __commonJS({
+var require_dist_cjs58 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -77638,7 +77792,7 @@ var require_package7 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-identity",
       description: "AWS SDK for JavaScript Chime Sdk Identity Client for Node.js, Browser and React Native",
-      version: "3.354.0",
+      version: "3.357.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -77658,36 +77812,36 @@ var require_package7 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.354.0",
-        "@aws-sdk/config-resolver": "3.354.0",
-        "@aws-sdk/credential-provider-node": "3.354.0",
-        "@aws-sdk/fetch-http-handler": "3.353.0",
-        "@aws-sdk/hash-node": "3.347.0",
-        "@aws-sdk/invalid-dependency": "3.347.0",
-        "@aws-sdk/middleware-content-length": "3.347.0",
-        "@aws-sdk/middleware-endpoint": "3.347.0",
-        "@aws-sdk/middleware-host-header": "3.347.0",
-        "@aws-sdk/middleware-logger": "3.347.0",
-        "@aws-sdk/middleware-recursion-detection": "3.347.0",
-        "@aws-sdk/middleware-retry": "3.354.0",
-        "@aws-sdk/middleware-serde": "3.347.0",
-        "@aws-sdk/middleware-signing": "3.354.0",
-        "@aws-sdk/middleware-stack": "3.347.0",
-        "@aws-sdk/middleware-user-agent": "3.352.0",
-        "@aws-sdk/node-config-provider": "3.354.0",
-        "@aws-sdk/node-http-handler": "3.350.0",
-        "@aws-sdk/smithy-client": "3.347.0",
-        "@aws-sdk/types": "3.347.0",
-        "@aws-sdk/url-parser": "3.347.0",
+        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/config-resolver": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/fetch-http-handler": "3.357.0",
+        "@aws-sdk/hash-node": "3.357.0",
+        "@aws-sdk/invalid-dependency": "3.357.0",
+        "@aws-sdk/middleware-content-length": "3.357.0",
+        "@aws-sdk/middleware-endpoint": "3.357.0",
+        "@aws-sdk/middleware-host-header": "3.357.0",
+        "@aws-sdk/middleware-logger": "3.357.0",
+        "@aws-sdk/middleware-recursion-detection": "3.357.0",
+        "@aws-sdk/middleware-retry": "3.357.0",
+        "@aws-sdk/middleware-serde": "3.357.0",
+        "@aws-sdk/middleware-signing": "3.357.0",
+        "@aws-sdk/middleware-stack": "3.357.0",
+        "@aws-sdk/middleware-user-agent": "3.357.0",
+        "@aws-sdk/node-config-provider": "3.357.0",
+        "@aws-sdk/node-http-handler": "3.357.0",
+        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/types": "3.357.0",
+        "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.353.0",
-        "@aws-sdk/util-defaults-mode-node": "3.354.0",
-        "@aws-sdk/util-endpoints": "3.352.0",
-        "@aws-sdk/util-retry": "3.347.0",
-        "@aws-sdk/util-user-agent-browser": "3.347.0",
-        "@aws-sdk/util-user-agent-node": "3.354.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
+        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-endpoints": "3.357.0",
+        "@aws-sdk/util-retry": "3.357.0",
+        "@aws-sdk/util-user-agent-browser": "3.357.0",
+        "@aws-sdk/util-user-agent-node": "3.357.0",
         "@aws-sdk/util-utf8": "3.310.0",
         "@smithy/protocol-http": "^1.0.1",
         "@smithy/types": "^1.0.0",
@@ -77794,9 +77948,9 @@ var require_runtimeConfig_shared7 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var url_parser_1 = require_dist_cjs7();
-    var util_base64_1 = require_dist_cjs44();
+    var util_base64_1 = require_dist_cjs30();
     var util_utf8_1 = require_dist_cjs22();
     var endpointResolver_1 = require_endpointResolver7();
     var getRuntimeConfig = (config) => ({
@@ -77823,20 +77977,20 @@ var require_runtimeConfig7 = __commonJS({
     exports.getRuntimeConfig = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     var package_json_1 = tslib_1.__importDefault(require_package7());
-    var client_sts_1 = require_dist_cjs53();
+    var client_sts_1 = require_dist_cjs54();
     var config_resolver_1 = require_dist_cjs3();
-    var credential_provider_node_1 = require_dist_cjs52();
-    var hash_node_1 = require_dist_cjs39();
+    var credential_provider_node_1 = require_dist_cjs53();
+    var hash_node_1 = require_dist_cjs43();
     var middleware_retry_1 = require_dist_cjs15();
-    var node_config_provider_1 = require_dist_cjs36();
-    var node_http_handler_1 = require_dist_cjs41();
-    var util_body_length_node_1 = require_dist_cjs42();
+    var node_config_provider_1 = require_dist_cjs40();
+    var node_http_handler_1 = require_dist_cjs32();
+    var util_body_length_node_1 = require_dist_cjs44();
     var util_retry_1 = require_dist_cjs14();
-    var util_user_agent_node_1 = require_dist_cjs43();
+    var util_user_agent_node_1 = require_dist_cjs45();
     var runtimeConfig_shared_1 = require_runtimeConfig_shared7();
-    var smithy_client_1 = require_dist_cjs30();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
+    var util_defaults_mode_node_1 = require_dist_cjs46();
+    var smithy_client_2 = require_dist_cjs34();
     var getRuntimeConfig = (config) => {
       (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
       const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
@@ -77882,7 +78036,7 @@ var require_ChimeSDKIdentityClient = __commonJS({
     var middleware_retry_1 = require_dist_cjs15();
     var middleware_signing_1 = require_dist_cjs25();
     var middleware_user_agent_1 = require_dist_cjs28();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
       return smithy_client_1.Client;
     } });
@@ -77922,7 +78076,7 @@ var require_ChimeSDKIdentityServiceException = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKIdentityServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
@@ -77943,7 +78097,7 @@ var require_models_07 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListAppInstanceUsersResponseFilterSensitiveLog = exports.ListAppInstanceUsersRequestFilterSensitiveLog = exports.ListAppInstanceUserEndpointsResponseFilterSensitiveLog = exports.ListAppInstanceUserEndpointsRequestFilterSensitiveLog = exports.ListAppInstancesResponseFilterSensitiveLog = exports.ListAppInstancesRequestFilterSensitiveLog = exports.ListAppInstanceBotsResponseFilterSensitiveLog = exports.ListAppInstanceBotsRequestFilterSensitiveLog = exports.ListAppInstanceAdminsResponseFilterSensitiveLog = exports.ListAppInstanceAdminsRequestFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointRequestFilterSensitiveLog = exports.DescribeAppInstanceUserResponseFilterSensitiveLog = exports.DescribeAppInstanceBotResponseFilterSensitiveLog = exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = exports.DescribeAppInstanceResponseFilterSensitiveLog = exports.DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.CreateAppInstanceUserRequestFilterSensitiveLog = exports.CreateAppInstanceBotRequestFilterSensitiveLog = exports.CreateAppInstanceAdminResponseFilterSensitiveLog = exports.CreateAppInstanceRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AppInstanceUserSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointFilterSensitiveLog = exports.EndpointAttributesFilterSensitiveLog = exports.AppInstanceUserFilterSensitiveLog = exports.AppInstanceSummaryFilterSensitiveLog = exports.AppInstanceBotSummaryFilterSensitiveLog = exports.AppInstanceBotFilterSensitiveLog = exports.AppInstanceAdminSummaryFilterSensitiveLog = exports.AppInstanceAdminFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.AppInstanceFilterSensitiveLog = exports.NotFoundException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.ResourceLimitExceededException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.AppInstanceUserEndpointType = exports.EndpointStatusReason = exports.EndpointStatus = exports.ExpirationCriterion = exports.RespondsTo = exports.AllowMessages = void 0;
     exports.UpdateAppInstanceUserEndpointResponseFilterSensitiveLog = exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = exports.UpdateAppInstanceUserRequestFilterSensitiveLog = exports.UpdateAppInstanceBotRequestFilterSensitiveLog = exports.UpdateAppInstanceRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointResponseFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
     exports.AllowMessages = {
       ALL: "ALL",
@@ -78397,8 +78551,8 @@ var require_Aws_restJson15 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.de_ListAppInstanceUsersCommand = exports.de_ListAppInstanceUserEndpointsCommand = exports.de_ListAppInstancesCommand = exports.de_ListAppInstanceBotsCommand = exports.de_ListAppInstanceAdminsCommand = exports.de_GetAppInstanceRetentionSettingsCommand = exports.de_DescribeAppInstanceUserEndpointCommand = exports.de_DescribeAppInstanceUserCommand = exports.de_DescribeAppInstanceBotCommand = exports.de_DescribeAppInstanceAdminCommand = exports.de_DescribeAppInstanceCommand = exports.de_DeregisterAppInstanceUserEndpointCommand = exports.de_DeleteAppInstanceUserCommand = exports.de_DeleteAppInstanceBotCommand = exports.de_DeleteAppInstanceAdminCommand = exports.de_DeleteAppInstanceCommand = exports.de_CreateAppInstanceUserCommand = exports.de_CreateAppInstanceBotCommand = exports.de_CreateAppInstanceAdminCommand = exports.de_CreateAppInstanceCommand = exports.se_UpdateAppInstanceUserEndpointCommand = exports.se_UpdateAppInstanceUserCommand = exports.se_UpdateAppInstanceBotCommand = exports.se_UpdateAppInstanceCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_RegisterAppInstanceUserEndpointCommand = exports.se_PutAppInstanceUserExpirationSettingsCommand = exports.se_PutAppInstanceRetentionSettingsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListAppInstanceUsersCommand = exports.se_ListAppInstanceUserEndpointsCommand = exports.se_ListAppInstancesCommand = exports.se_ListAppInstanceBotsCommand = exports.se_ListAppInstanceAdminsCommand = exports.se_GetAppInstanceRetentionSettingsCommand = exports.se_DescribeAppInstanceUserEndpointCommand = exports.se_DescribeAppInstanceUserCommand = exports.se_DescribeAppInstanceBotCommand = exports.se_DescribeAppInstanceAdminCommand = exports.se_DescribeAppInstanceCommand = exports.se_DeregisterAppInstanceUserEndpointCommand = exports.se_DeleteAppInstanceUserCommand = exports.se_DeleteAppInstanceBotCommand = exports.se_DeleteAppInstanceAdminCommand = exports.se_DeleteAppInstanceCommand = exports.se_CreateAppInstanceUserCommand = exports.se_CreateAppInstanceBotCommand = exports.se_CreateAppInstanceAdminCommand = exports.se_CreateAppInstanceCommand = void 0;
     exports.de_UpdateAppInstanceUserEndpointCommand = exports.de_UpdateAppInstanceUserCommand = exports.de_UpdateAppInstanceBotCommand = exports.de_UpdateAppInstanceCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_RegisterAppInstanceUserEndpointCommand = exports.de_PutAppInstanceUserExpirationSettingsCommand = exports.de_PutAppInstanceRetentionSettingsCommand = exports.de_ListTagsForResourceCommand = void 0;
-    var smithy_client_1 = require_dist_cjs30();
-    var protocol_http_1 = require_dist_cjs33();
+    var smithy_client_1 = require_dist_cjs34();
+    var protocol_http_1 = require_dist_cjs37();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
     var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
     var models_0_1 = require_models_07();
@@ -79265,7 +79419,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceCommand = de_DeleteAppInstanceCommand;
@@ -79313,7 +79467,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceAdminCommand = de_DeleteAppInstanceAdminCommand;
@@ -79364,7 +79518,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceBotCommand = de_DeleteAppInstanceBotCommand;
@@ -79415,7 +79569,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeleteAppInstanceUserCommand = de_DeleteAppInstanceUserCommand;
@@ -79466,7 +79620,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_DeregisterAppInstanceUserEndpointCommand = de_DeregisterAppInstanceUserEndpointCommand;
@@ -80276,7 +80430,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_TagResourceCommand = de_TagResourceCommand;
@@ -80324,7 +80478,7 @@ var require_Aws_restJson15 = __commonJS({
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      await collectBody(output.body, context);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
     exports.de_UntagResourceCommand = de_UntagResourceCommand;
@@ -80760,13 +80914,7 @@ var require_Aws_restJson15 = __commonJS({
       extendedRequestId: output.headers["x-amz-id-2"],
       cfId: output.headers["x-amz-cf-id"]
     });
-    var collectBody = (streamBody = new Uint8Array(), context) => {
-      if (streamBody instanceof Uint8Array) {
-        return Promise.resolve(streamBody);
-      }
-      return context.streamCollector(streamBody) || Promise.resolve(new Uint8Array());
-    };
-    var collectBodyString = (streamBody, context) => collectBody(streamBody, context).then((body) => context.utf8Encoder(body));
+    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
     var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
       if (encoded.length) {
         return JSON.parse(encoded);
@@ -80818,7 +80966,7 @@ var require_CreateAppInstanceAdminCommand2 = __commonJS({
     exports.CreateAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -80873,7 +81021,7 @@ var require_CreateAppInstanceBotCommand = __commonJS({
     exports.CreateAppInstanceBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -80928,7 +81076,7 @@ var require_CreateAppInstanceCommand2 = __commonJS({
     exports.CreateAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -80983,7 +81131,7 @@ var require_CreateAppInstanceUserCommand2 = __commonJS({
     exports.CreateAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81038,7 +81186,7 @@ var require_DeleteAppInstanceAdminCommand2 = __commonJS({
     exports.DeleteAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81092,7 +81240,7 @@ var require_DeleteAppInstanceBotCommand = __commonJS({
     exports.DeleteAppInstanceBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81146,7 +81294,7 @@ var require_DeleteAppInstanceCommand2 = __commonJS({
     exports.DeleteAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81200,7 +81348,7 @@ var require_DeleteAppInstanceUserCommand2 = __commonJS({
     exports.DeleteAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81254,7 +81402,7 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
     exports.DeregisterAppInstanceUserEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81309,7 +81457,7 @@ var require_DescribeAppInstanceAdminCommand2 = __commonJS({
     exports.DescribeAppInstanceAdminCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81364,7 +81512,7 @@ var require_DescribeAppInstanceBotCommand = __commonJS({
     exports.DescribeAppInstanceBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81419,7 +81567,7 @@ var require_DescribeAppInstanceCommand2 = __commonJS({
     exports.DescribeAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81474,7 +81622,7 @@ var require_DescribeAppInstanceUserCommand2 = __commonJS({
     exports.DescribeAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81529,7 +81677,7 @@ var require_DescribeAppInstanceUserEndpointCommand = __commonJS({
     exports.DescribeAppInstanceUserEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81584,7 +81732,7 @@ var require_GetAppInstanceRetentionSettingsCommand2 = __commonJS({
     exports.GetAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81638,7 +81786,7 @@ var require_ListAppInstanceAdminsCommand2 = __commonJS({
     exports.ListAppInstanceAdminsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81693,7 +81841,7 @@ var require_ListAppInstanceBotsCommand = __commonJS({
     exports.ListAppInstanceBotsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81748,7 +81896,7 @@ var require_ListAppInstancesCommand2 = __commonJS({
     exports.ListAppInstancesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81803,7 +81951,7 @@ var require_ListAppInstanceUserEndpointsCommand = __commonJS({
     exports.ListAppInstanceUserEndpointsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81858,7 +82006,7 @@ var require_ListAppInstanceUsersCommand2 = __commonJS({
     exports.ListAppInstanceUsersCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81913,7 +82061,7 @@ var require_ListTagsForResourceCommand4 = __commonJS({
     exports.ListTagsForResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -81968,7 +82116,7 @@ var require_PutAppInstanceRetentionSettingsCommand2 = __commonJS({
     exports.PutAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82022,7 +82170,7 @@ var require_PutAppInstanceUserExpirationSettingsCommand = __commonJS({
     exports.PutAppInstanceUserExpirationSettingsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82076,7 +82224,7 @@ var require_RegisterAppInstanceUserEndpointCommand = __commonJS({
     exports.RegisterAppInstanceUserEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82131,7 +82279,7 @@ var require_TagResourceCommand3 = __commonJS({
     exports.TagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82186,7 +82334,7 @@ var require_UntagResourceCommand3 = __commonJS({
     exports.UntagResourceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82241,7 +82389,7 @@ var require_UpdateAppInstanceBotCommand = __commonJS({
     exports.UpdateAppInstanceBotCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82296,7 +82444,7 @@ var require_UpdateAppInstanceCommand2 = __commonJS({
     exports.UpdateAppInstanceCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82351,7 +82499,7 @@ var require_UpdateAppInstanceUserCommand2 = __commonJS({
     exports.UpdateAppInstanceUserCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82406,7 +82554,7 @@ var require_UpdateAppInstanceUserEndpointCommand = __commonJS({
     exports.UpdateAppInstanceUserEndpointCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs9();
     var middleware_serde_1 = require_dist_cjs8();
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
@@ -82459,7 +82607,7 @@ var require_ChimeSDKIdentity = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ChimeSDKIdentity = void 0;
-    var smithy_client_1 = require_dist_cjs30();
+    var smithy_client_1 = require_dist_cjs34();
     var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
     var CreateAppInstanceAdminCommand_1 = require_CreateAppInstanceAdminCommand2();
     var CreateAppInstanceBotCommand_1 = require_CreateAppInstanceBotCommand();
@@ -82773,7 +82921,7 @@ var require_models7 = __commonJS({
 });
 
 // node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/index.js
-var require_dist_cjs58 = __commonJS({
+var require_dist_cjs59 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -82799,8 +82947,8 @@ __export(messaging_lambda_exports, {
 module.exports = __toCommonJS(messaging_lambda_exports);
 
 // src/resources/messaging/appInstance.ts
-var import_client_chime = __toESM(require_dist_cjs54());
-var import_client_ssm = __toESM(require_dist_cjs56());
+var import_client_chime = __toESM(require_dist_cjs55());
+var import_client_ssm = __toESM(require_dist_cjs57());
 var chimeClient = new import_client_chime.ChimeClient({
   region: process.env.AWS_REGION
 });
@@ -82883,8 +83031,8 @@ var DeleteAppInstance = async (uid) => {
 };
 
 // src/resources/messaging/channelFlow.ts
-var import_client_chime_sdk_messaging = __toESM(require_dist_cjs57());
-var import_client_ssm2 = __toESM(require_dist_cjs56());
+var import_client_chime_sdk_messaging = __toESM(require_dist_cjs58());
+var import_client_ssm2 = __toESM(require_dist_cjs57());
 var chimeSDKMessagingClient = new import_client_chime_sdk_messaging.ChimeSDKMessagingClient({
   region: process.env.AWS_REGION
 });
@@ -82992,7 +83140,7 @@ var getUpdatedTag = (tag) => {
 };
 
 // src/resources/messaging/dataRetention.ts
-var import_client_chime2 = __toESM(require_dist_cjs54());
+var import_client_chime2 = __toESM(require_dist_cjs55());
 var chimeClient2 = new import_client_chime2.ChimeClient({
   region: process.env.AWS_REGION
 });
@@ -83023,8 +83171,8 @@ var PutDataRetention = async (props) => {
 };
 
 // src/resources/messaging/instanceAdmin.ts
-var import_client_chime3 = __toESM(require_dist_cjs54());
-var import_client_ssm3 = __toESM(require_dist_cjs56());
+var import_client_chime3 = __toESM(require_dist_cjs55());
+var import_client_ssm3 = __toESM(require_dist_cjs57());
 var chimeClient3 = new import_client_chime3.ChimeClient({
   region: process.env.AWS_REGION
 });
@@ -83081,8 +83229,8 @@ var DeleteAppInstanceAdmin = async (uid) => {
 };
 
 // src/resources/messaging/instanceBot.ts
-var import_client_chime_sdk_identity = __toESM(require_dist_cjs58());
-var import_client_ssm4 = __toESM(require_dist_cjs56());
+var import_client_chime_sdk_identity = __toESM(require_dist_cjs59());
+var import_client_ssm4 = __toESM(require_dist_cjs57());
 var chimeClient4 = new import_client_chime_sdk_identity.ChimeSDKIdentityClient({
   region: process.env.AWS_REGION
 });
@@ -83161,8 +83309,8 @@ var DeleteAppInstanceBot = async (uid) => {
 };
 
 // src/resources/messaging/instanceUser.ts
-var import_client_chime4 = __toESM(require_dist_cjs54());
-var import_client_ssm5 = __toESM(require_dist_cjs56());
+var import_client_chime4 = __toESM(require_dist_cjs55());
+var import_client_ssm5 = __toESM(require_dist_cjs57());
 var chimeClient5 = new import_client_chime4.ChimeClient({
   region: process.env.AWS_REGION
 });
@@ -83231,7 +83379,7 @@ var DeleteAppInstanceUser = async (uid) => {
 };
 
 // src/resources/messaging/streamingConfig.ts
-var import_client_chime5 = __toESM(require_dist_cjs54());
+var import_client_chime5 = __toESM(require_dist_cjs55());
 var chimeClient6 = new import_client_chime5.ChimeClient({
   region: process.env.AWS_REGION
 });
