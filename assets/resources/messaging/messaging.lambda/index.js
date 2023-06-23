@@ -9196,7 +9196,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime",
       description: "AWS SDK for JavaScript Chime Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -9216,9 +9216,9 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/client-sts": "3.358.0",
         "@aws-sdk/config-resolver": "3.357.0",
-        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.358.0",
         "@aws-sdk/fetch-http-handler": "3.357.0",
         "@aws-sdk/hash-node": "3.357.0",
         "@aws-sdk/invalid-dependency": "3.357.0",
@@ -9234,14 +9234,14 @@ var require_package = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -9337,7 +9337,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -9360,7 +9360,7 @@ var require_package2 = __commonJS({
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
         "@aws-sdk/config-resolver": "3.357.0",
-        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.358.0",
         "@aws-sdk/fetch-http-handler": "3.357.0",
         "@aws-sdk/hash-node": "3.357.0",
         "@aws-sdk/invalid-dependency": "3.357.0",
@@ -9377,14 +9377,14 @@ var require_package2 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -14131,7 +14131,7 @@ var require_package3 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso",
       description: "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -14166,14 +14166,14 @@ var require_package3 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -15544,7 +15544,7 @@ var require_package4 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sso-oidc",
       description: "AWS SDK for JavaScript Sso Oidc Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -15579,14 +15579,14 @@ var require_package4 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -46759,7 +46759,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -46779,9 +46779,9 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/client-sts": "3.358.0",
         "@aws-sdk/config-resolver": "3.357.0",
-        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.358.0",
         "@aws-sdk/fetch-http-handler": "3.357.0",
         "@aws-sdk/hash-node": "3.357.0",
         "@aws-sdk/invalid-dependency": "3.357.0",
@@ -46797,14 +46797,14 @@ var require_package5 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -69282,7 +69282,7 @@ var require_package6 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-messaging",
       description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -69302,9 +69302,9 @@ var require_package6 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/client-sts": "3.358.0",
         "@aws-sdk/config-resolver": "3.357.0",
-        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.358.0",
         "@aws-sdk/fetch-http-handler": "3.357.0",
         "@aws-sdk/hash-node": "3.357.0",
         "@aws-sdk/invalid-dependency": "3.357.0",
@@ -69320,14 +69320,14 @@ var require_package6 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -71293,6 +71293,7 @@ var require_Aws_restJson14 = __commonJS({
         Persistence: [],
         PushNotification: (_) => (0, smithy_client_1._json)(_),
         SubChannelId: [],
+        Target: (_) => (0, smithy_client_1._json)(_),
         Type: []
       }));
       return new protocol_http_1.HttpRequest({
@@ -74257,6 +74258,7 @@ var require_Aws_restJson14 = __commonJS({
         Sender: smithy_client_1._json,
         Status: smithy_client_1._json,
         SubChannelId: smithy_client_1.expectString,
+        Target: smithy_client_1._json,
         Type: smithy_client_1.expectString
       });
     };
@@ -74273,6 +74275,7 @@ var require_Aws_restJson14 = __commonJS({
         Redacted: smithy_client_1.expectBoolean,
         Sender: smithy_client_1._json,
         Status: smithy_client_1._json,
+        Target: smithy_client_1._json,
         Type: smithy_client_1.expectString
       });
     };
@@ -77792,7 +77795,7 @@ var require_package7 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-identity",
       description: "AWS SDK for JavaScript Chime Sdk Identity Client for Node.js, Browser and React Native",
-      version: "3.357.0",
+      version: "3.358.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -77812,9 +77815,9 @@ var require_package7 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.357.0",
+        "@aws-sdk/client-sts": "3.358.0",
         "@aws-sdk/config-resolver": "3.357.0",
-        "@aws-sdk/credential-provider-node": "3.357.0",
+        "@aws-sdk/credential-provider-node": "3.358.0",
         "@aws-sdk/fetch-http-handler": "3.357.0",
         "@aws-sdk/hash-node": "3.357.0",
         "@aws-sdk/invalid-dependency": "3.357.0",
@@ -77830,14 +77833,14 @@ var require_package7 = __commonJS({
         "@aws-sdk/middleware-user-agent": "3.357.0",
         "@aws-sdk/node-config-provider": "3.357.0",
         "@aws-sdk/node-http-handler": "3.357.0",
-        "@aws-sdk/smithy-client": "3.357.0",
+        "@aws-sdk/smithy-client": "3.358.0",
         "@aws-sdk/types": "3.357.0",
         "@aws-sdk/url-parser": "3.357.0",
         "@aws-sdk/util-base64": "3.310.0",
         "@aws-sdk/util-body-length-browser": "3.310.0",
         "@aws-sdk/util-body-length-node": "3.310.0",
-        "@aws-sdk/util-defaults-mode-browser": "3.357.0",
-        "@aws-sdk/util-defaults-mode-node": "3.357.0",
+        "@aws-sdk/util-defaults-mode-browser": "3.358.0",
+        "@aws-sdk/util-defaults-mode-node": "3.358.0",
         "@aws-sdk/util-endpoints": "3.357.0",
         "@aws-sdk/util-retry": "3.357.0",
         "@aws-sdk/util-user-agent-browser": "3.357.0",
@@ -78095,11 +78098,21 @@ var require_models_07 = __commonJS({
   "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/models_0.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceUsersResponseFilterSensitiveLog = exports.ListAppInstanceUsersRequestFilterSensitiveLog = exports.ListAppInstanceUserEndpointsResponseFilterSensitiveLog = exports.ListAppInstanceUserEndpointsRequestFilterSensitiveLog = exports.ListAppInstancesResponseFilterSensitiveLog = exports.ListAppInstancesRequestFilterSensitiveLog = exports.ListAppInstanceBotsResponseFilterSensitiveLog = exports.ListAppInstanceBotsRequestFilterSensitiveLog = exports.ListAppInstanceAdminsResponseFilterSensitiveLog = exports.ListAppInstanceAdminsRequestFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointRequestFilterSensitiveLog = exports.DescribeAppInstanceUserResponseFilterSensitiveLog = exports.DescribeAppInstanceBotResponseFilterSensitiveLog = exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = exports.DescribeAppInstanceResponseFilterSensitiveLog = exports.DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.CreateAppInstanceUserRequestFilterSensitiveLog = exports.CreateAppInstanceBotRequestFilterSensitiveLog = exports.CreateAppInstanceAdminResponseFilterSensitiveLog = exports.CreateAppInstanceRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AppInstanceUserSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointFilterSensitiveLog = exports.EndpointAttributesFilterSensitiveLog = exports.AppInstanceUserFilterSensitiveLog = exports.AppInstanceSummaryFilterSensitiveLog = exports.AppInstanceBotSummaryFilterSensitiveLog = exports.AppInstanceBotFilterSensitiveLog = exports.AppInstanceAdminSummaryFilterSensitiveLog = exports.AppInstanceAdminFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.AppInstanceFilterSensitiveLog = exports.NotFoundException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.ResourceLimitExceededException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.AppInstanceUserEndpointType = exports.EndpointStatusReason = exports.EndpointStatus = exports.ExpirationCriterion = exports.RespondsTo = exports.AllowMessages = void 0;
-    exports.UpdateAppInstanceUserEndpointResponseFilterSensitiveLog = exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = exports.UpdateAppInstanceUserRequestFilterSensitiveLog = exports.UpdateAppInstanceBotRequestFilterSensitiveLog = exports.UpdateAppInstanceRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointResponseFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = void 0;
+    exports.ListAppInstanceUsersResponseFilterSensitiveLog = exports.ListAppInstanceUsersRequestFilterSensitiveLog = exports.ListAppInstanceUserEndpointsResponseFilterSensitiveLog = exports.ListAppInstanceUserEndpointsRequestFilterSensitiveLog = exports.ListAppInstancesResponseFilterSensitiveLog = exports.ListAppInstancesRequestFilterSensitiveLog = exports.ListAppInstanceBotsResponseFilterSensitiveLog = exports.ListAppInstanceBotsRequestFilterSensitiveLog = exports.ListAppInstanceAdminsResponseFilterSensitiveLog = exports.ListAppInstanceAdminsRequestFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = exports.DescribeAppInstanceUserResponseFilterSensitiveLog = exports.DescribeAppInstanceBotResponseFilterSensitiveLog = exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = exports.DescribeAppInstanceResponseFilterSensitiveLog = exports.CreateAppInstanceUserRequestFilterSensitiveLog = exports.CreateAppInstanceBotRequestFilterSensitiveLog = exports.CreateAppInstanceAdminResponseFilterSensitiveLog = exports.CreateAppInstanceRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AppInstanceUserSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointFilterSensitiveLog = exports.EndpointAttributesFilterSensitiveLog = exports.AppInstanceUserFilterSensitiveLog = exports.AppInstanceSummaryFilterSensitiveLog = exports.AppInstanceBotSummaryFilterSensitiveLog = exports.AppInstanceBotFilterSensitiveLog = exports.AppInstanceAdminSummaryFilterSensitiveLog = exports.AppInstanceAdminFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.AppInstanceFilterSensitiveLog = exports.NotFoundException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.ResourceLimitExceededException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.AppInstanceUserEndpointType = exports.EndpointStatusReason = exports.EndpointStatus = exports.ExpirationCriterion = exports.RespondsTo = exports.TargetedMessages = exports.StandardMessages = exports.AllowMessages = void 0;
+    exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = exports.UpdateAppInstanceUserRequestFilterSensitiveLog = exports.UpdateAppInstanceBotRequestFilterSensitiveLog = exports.UpdateAppInstanceRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs34();
     var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
     exports.AllowMessages = {
+      ALL: "ALL",
+      NONE: "NONE"
+    };
+    exports.StandardMessages = {
+      ALL: "ALL",
+      AUTO: "AUTO",
+      MENTIONS: "MENTIONS",
+      NONE: "NONE"
+    };
+    exports.TargetedMessages = {
       ALL: "ALL",
       NONE: "NONE"
     };
@@ -78327,16 +78340,12 @@ var require_models_07 = __commonJS({
     exports.EndpointAttributesFilterSensitiveLog = EndpointAttributesFilterSensitiveLog;
     var AppInstanceUserEndpointFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING },
       ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
       ...obj.EndpointAttributes && { EndpointAttributes: (0, exports.EndpointAttributesFilterSensitiveLog)(obj.EndpointAttributes) }
     });
     exports.AppInstanceUserEndpointFilterSensitiveLog = AppInstanceUserEndpointFilterSensitiveLog;
     var AppInstanceUserEndpointSummaryFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING },
       ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
     });
     exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = AppInstanceUserEndpointSummaryFilterSensitiveLog;
@@ -78379,12 +78388,6 @@ var require_models_07 = __commonJS({
       ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
     });
     exports.CreateAppInstanceUserRequestFilterSensitiveLog = CreateAppInstanceUserRequestFilterSensitiveLog;
-    var DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog = DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog;
     var DescribeAppInstanceResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.AppInstance && { AppInstance: (0, exports.AppInstanceFilterSensitiveLog)(obj.AppInstance) }
@@ -78405,12 +78408,6 @@ var require_models_07 = __commonJS({
       ...obj.AppInstanceUser && { AppInstanceUser: (0, exports.AppInstanceUserFilterSensitiveLog)(obj.AppInstanceUser) }
     });
     exports.DescribeAppInstanceUserResponseFilterSensitiveLog = DescribeAppInstanceUserResponseFilterSensitiveLog;
-    var DescribeAppInstanceUserEndpointRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.DescribeAppInstanceUserEndpointRequestFilterSensitiveLog = DescribeAppInstanceUserEndpointRequestFilterSensitiveLog;
     var DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.AppInstanceUserEndpoint && {
@@ -78494,12 +78491,6 @@ var require_models_07 = __commonJS({
       ...obj.EndpointAttributes && { EndpointAttributes: (0, exports.EndpointAttributesFilterSensitiveLog)(obj.EndpointAttributes) }
     });
     exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = RegisterAppInstanceUserEndpointRequestFilterSensitiveLog;
-    var RegisterAppInstanceUserEndpointResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.RegisterAppInstanceUserEndpointResponseFilterSensitiveLog = RegisterAppInstanceUserEndpointResponseFilterSensitiveLog;
     var TagResourceRequestFilterSensitiveLog = (obj) => ({
       ...obj,
       ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
@@ -78530,17 +78521,9 @@ var require_models_07 = __commonJS({
     exports.UpdateAppInstanceUserRequestFilterSensitiveLog = UpdateAppInstanceUserRequestFilterSensitiveLog;
     var UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING },
       ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
     });
     exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = UpdateAppInstanceUserEndpointRequestFilterSensitiveLog;
-    var UpdateAppInstanceUserEndpointResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointId && { EndpointId: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.UpdateAppInstanceUserEndpointResponseFilterSensitiveLog = UpdateAppInstanceUserEndpointResponseFilterSensitiveLog;
   }
 });
 
@@ -79130,6 +79113,7 @@ var require_Aws_restJson15 = __commonJS({
       resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceBotArn", () => input.AppInstanceBotArn, "{AppInstanceBotArn}", false);
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
+        Configuration: (_) => (0, smithy_client_1._json)(_),
         Metadata: [],
         Name: []
       }));
@@ -81406,7 +81390,6 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_07();
     var Aws_restJson1_1 = require_Aws_restJson15();
     var DeregisterAppInstanceUserEndpointCommand = class _DeregisterAppInstanceUserEndpointCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -81432,7 +81415,7 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DeregisterAppInstanceUserEndpointRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
@@ -81707,7 +81690,7 @@ var require_DescribeAppInstanceUserEndpointCommand = __commonJS({
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.DescribeAppInstanceUserEndpointRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: models_0_1.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
@@ -82255,7 +82238,7 @@ var require_RegisterAppInstanceUserEndpointCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.RegisterAppInstanceUserEndpointResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -82585,7 +82568,7 @@ var require_UpdateAppInstanceUserEndpointCommand = __commonJS({
           clientName,
           commandName,
           inputFilterSensitiveLog: models_0_1.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.UpdateAppInstanceUserEndpointResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
