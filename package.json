@@ -48,7 +48,7 @@
     "@typescript-eslint/parser": "^5",
     "aws-cdk-lib": "2.70.0",
     "constructs": "10.0.5",
-    "esbuild": "^0.18.11",
+    "esbuild": "^0.18.12",
     "eslint": "^8",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -61,7 +61,7 @@
     "jsii-pacmak": "^1.84.0",
     "jsii-rosetta": "1.x",
     "npm-check-updates": "^16",
-    "projen": "^0.71.134",
+    "projen": "^0.71.135",
     "standard-version": "^9",
     "ts-jest": "^27",
     "ts-node": "^10.9.1",
@@ -73,12 +73,12 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-chime": "^3.369.0",
+    "@aws-sdk/client-chime": "^3.370.0",
     "@aws-sdk/client-chime-sdk-identity": "latest",
     "@aws-sdk/client-chime-sdk-media-pipelines": "latest",
     "@aws-sdk/client-chime-sdk-messaging": "latest",
     "@aws-sdk/client-chime-sdk-voice": "latest",
-    "@aws-sdk/client-ssm": "^3.369.0",
+    "@aws-sdk/client-ssm": "^3.370.0",
     "@types/aws-lambda": "^8.10.119",
     "aws-lambda": "^1.0.7"
   },
