@@ -453,7 +453,7 @@ function __classPrivateFieldIn(state, receiver) {
 }
 function __addDisposableResource(env, value, async) {
   if (value !== null && value !== void 0) {
-    if (typeof value !== "object")
+    if (typeof value !== "object" && typeof value !== "function")
       throw new TypeError("Object expected.");
     var dispose;
     if (async) {
@@ -599,6 +599,14 @@ var require_auth = __commonJS({
       HttpAuthLocation2["HEADER"] = "header";
       HttpAuthLocation2["QUERY"] = "query";
     })(HttpAuthLocation = exports.HttpAuthLocation || (exports.HttpAuthLocation = {}));
+  }
+});
+
+// node_modules/@smithy/types/dist-cjs/blob/blob-payload-input-types.js
+var require_blob_payload_input_types = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/blob/blob-payload-input-types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
   }
 });
 
@@ -875,6 +883,30 @@ var require_stream = __commonJS({
   }
 });
 
+// node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-common-types.js
+var require_streaming_blob_common_types = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-common-types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-payload-input-types.js
+var require_streaming_blob_payload_input_types = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-payload-input-types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-payload-output-types.js
+var require_streaming_blob_payload_output_types = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/streaming-payload/streaming-blob-payload-output-types.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
 // node_modules/@smithy/types/dist-cjs/transfer.js
 var require_transfer = __commonJS({
   "node_modules/@smithy/types/dist-cjs/transfer.js"(exports) {
@@ -887,6 +919,22 @@ var require_transfer = __commonJS({
       RequestHandlerProtocol2["HTTP_1_0"] = "http/1.0";
       RequestHandlerProtocol2["TDS_8_0"] = "tds/8.0";
     })(RequestHandlerProtocol = exports.RequestHandlerProtocol || (exports.RequestHandlerProtocol = {}));
+  }
+});
+
+// node_modules/@smithy/types/dist-cjs/transform/client-payload-blob-type-narrow.js
+var require_client_payload_blob_type_narrow = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/transform/client-payload-blob-type-narrow.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+  }
+});
+
+// node_modules/@smithy/types/dist-cjs/transform/type-transform.js
+var require_type_transform = __commonJS({
+  "node_modules/@smithy/types/dist-cjs/transform/type-transform.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
   }
 });
 
@@ -922,6 +970,7 @@ var require_dist_cjs = __commonJS({
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_abort(), exports);
     tslib_1.__exportStar(require_auth(), exports);
+    tslib_1.__exportStar(require_blob_payload_input_types(), exports);
     tslib_1.__exportStar(require_checksum(), exports);
     tslib_1.__exportStar(require_client(), exports);
     tslib_1.__exportStar(require_command(), exports);
@@ -943,7 +992,12 @@ var require_dist_cjs = __commonJS({
     tslib_1.__exportStar(require_shapes(), exports);
     tslib_1.__exportStar(require_signature(), exports);
     tslib_1.__exportStar(require_stream(), exports);
+    tslib_1.__exportStar(require_streaming_blob_common_types(), exports);
+    tslib_1.__exportStar(require_streaming_blob_payload_input_types(), exports);
+    tslib_1.__exportStar(require_streaming_blob_payload_output_types(), exports);
     tslib_1.__exportStar(require_transfer(), exports);
+    tslib_1.__exportStar(require_client_payload_blob_type_narrow(), exports);
+    tslib_1.__exportStar(require_type_transform(), exports);
     tslib_1.__exportStar(require_uri(), exports);
     tslib_1.__exportStar(require_util(), exports);
     tslib_1.__exportStar(require_waiter(), exports);
