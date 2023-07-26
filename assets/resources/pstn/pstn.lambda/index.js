@@ -9633,7 +9633,7 @@ var require_package = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-chime-sdk-voice",
       description: "AWS SDK for JavaScript Chime Sdk Voice Client for Node.js, Browser and React Native",
-      version: "3.370.0",
+      version: "3.377.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -9653,7 +9653,7 @@ var require_package = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.370.0",
+        "@aws-sdk/client-sts": "3.377.0",
         "@aws-sdk/credential-provider-node": "3.370.0",
         "@aws-sdk/middleware-host-header": "3.370.0",
         "@aws-sdk/middleware-logger": "3.370.0",
@@ -9772,7 +9772,7 @@ var require_package2 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-sts",
       description: "AWS SDK for JavaScript Sts Client for Node.js, Browser and React Native",
-      version: "3.370.0",
+      version: "3.377.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -12260,6 +12260,16 @@ var require_Aws_query = __commonJS({
       if (input.SourceIdentity != null) {
         entries["SourceIdentity"] = input.SourceIdentity;
       }
+      if (input.ProvidedContexts != null) {
+        const memberEntries = se_ProvidedContextsListType(input.ProvidedContexts, context);
+        if (input.ProvidedContexts?.length === 0) {
+          entries.ProvidedContexts = [];
+        }
+        Object.entries(memberEntries).forEach(([key, value]) => {
+          const loc = `ProvidedContexts.${key}`;
+          entries[loc] = value;
+        });
+      }
       return entries;
     };
     var se_AssumeRoleWithSAMLRequest = (input, context) => {
@@ -12406,6 +12416,31 @@ var require_Aws_query = __commonJS({
       const entries = {};
       if (input.arn != null) {
         entries["arn"] = input.arn;
+      }
+      return entries;
+    };
+    var se_ProvidedContext = (input, context) => {
+      const entries = {};
+      if (input.ProviderArn != null) {
+        entries["ProviderArn"] = input.ProviderArn;
+      }
+      if (input.ContextAssertion != null) {
+        entries["ContextAssertion"] = input.ContextAssertion;
+      }
+      return entries;
+    };
+    var se_ProvidedContextsListType = (input, context) => {
+      const entries = {};
+      let counter = 1;
+      for (const entry of input) {
+        if (entry === null) {
+          continue;
+        }
+        const memberEntries = se_ProvidedContext(entry, context);
+        Object.entries(memberEntries).forEach(([key, value]) => {
+          entries[`member.${counter}.${key}`] = value;
+        });
+        counter++;
       }
       return entries;
     };
@@ -32107,7 +32142,7 @@ var require_package5 = __commonJS({
     module2.exports = {
       name: "@aws-sdk/client-ssm",
       description: "AWS SDK for JavaScript Ssm Client for Node.js, Browser and React Native",
-      version: "3.370.0",
+      version: "3.377.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
         "build:cjs": "tsc -p tsconfig.cjs.json",
@@ -32127,7 +32162,7 @@ var require_package5 = __commonJS({
       dependencies: {
         "@aws-crypto/sha256-browser": "3.0.0",
         "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.370.0",
+        "@aws-sdk/client-sts": "3.377.0",
         "@aws-sdk/credential-provider-node": "3.370.0",
         "@aws-sdk/middleware-host-header": "3.370.0",
         "@aws-sdk/middleware-logger": "3.370.0",
