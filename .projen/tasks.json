@@ -352,25 +352,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii-rosetta,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii-rosetta,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii-rosetta,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii-rosetta,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,constructs,jsii-rosetta,jsii,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice'"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript,yalc,@aws-sdk/client-chime,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib constructs esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii npm-check-updates projen standard-version ts-jest ts-node typescript yalc @aws-sdk/client-chime @aws-sdk/client-chime-sdk-identity @aws-sdk/client-chime-sdk-media-pipelines @aws-sdk/client-chime-sdk-messaging @aws-sdk/client-chime-sdk-voice @aws-sdk/client-ssm @types/aws-lambda aws-lambda aws-cdk-lib constructs @aws-sdk/client-chime @aws-sdk/client-chime-sdk-identity @aws-sdk/client-chime-sdk-media-pipelines @aws-sdk/client-chime-sdk-messaging @aws-sdk/client-chime-sdk-voice @aws-sdk/client-ssm @types/aws-lambda aws-lambda"
+          "exec": "yarn upgrade @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak npm-check-updates projen standard-version ts-jest ts-node typescript yalc @aws-sdk/client-chime @aws-sdk/client-ssm @types/aws-lambda aws-lambda aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
