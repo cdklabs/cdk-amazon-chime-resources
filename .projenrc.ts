@@ -1,4 +1,6 @@
 import { awscdk } from 'projen';
+const { UpgradeDependenciesSchedule } = require('projen/lib/javascript');
+
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
@@ -37,6 +39,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
+      schedule: UpgradeDependenciesSchedule.WEEKLY,
     },
   },
   autoApproveOptions: {
