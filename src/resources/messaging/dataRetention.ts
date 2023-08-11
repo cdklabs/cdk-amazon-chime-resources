@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  ChimeClient,
+  ChimeSDKIdentityClient,
   PutAppInstanceRetentionSettingsCommand,
   PutAppInstanceRetentionSettingsCommandOutput,
   PutAppInstanceRetentionSettingsCommandInput,
-} from '@aws-sdk/client-chime';
+} from '@aws-sdk/client-chime-sdk-identity';
 
-const chimeClient = new ChimeClient({
+const chimeClient = new ChimeSDKIdentityClient({
   region: process.env.AWS_REGION,
 });
 

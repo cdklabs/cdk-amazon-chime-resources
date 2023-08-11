@@ -1,16 +1,18 @@
-import path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
 import { AlexaSkillStatus, ChimeSipMediaApp } from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {});
+const code = Code.fromInline(
+  'exports.handler = async (event) => {  console.log(event)',
+);
 
 test('Normal', () => {
   const smaHandler = new Function(stack, 'NormalHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+    code: code,
   });
 
   new ChimeSipMediaApp(stack, 'Normal', {
@@ -23,7 +25,7 @@ test('NoRegion', () => {
   const smaHandler = new Function(stack, 'NoRegionHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+    code: code,
   });
 
   new ChimeSipMediaApp(stack, 'NoRegion', {
@@ -35,7 +37,7 @@ test('NormalWithName', () => {
   const smaHandler = new Function(stack, 'NormalWithNameHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+    code: code,
   });
   new ChimeSipMediaApp(stack, 'NormalWithName', {
     region: 'us-west-2',
@@ -49,7 +51,7 @@ test('BadRegion', () => {
     const smaHandler = new Function(stack, 'BadRegionHandler', {
       runtime: Runtime.PYTHON_3_9,
       handler: 'index.handler',
-      code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+      code: code,
     });
     new ChimeSipMediaApp(stack, 'BadRegion', {
       endpoint: smaHandler.functionArn,
@@ -64,7 +66,7 @@ test('Logging', () => {
   const smaHandler = new Function(stack, 'LoggingHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+    code: code,
   });
   const sipMediaApp = new ChimeSipMediaApp(stack, 'Logging', {
     endpoint: smaHandler.functionArn,
@@ -76,7 +78,7 @@ test('AlexaSkill', () => {
   const smaHandler = new Function(stack, 'AlexaSkillHandler', {
     runtime: Runtime.PYTHON_3_9,
     handler: 'index.handler',
-    code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+    code: code,
   });
   const sipMediaApp = new ChimeSipMediaApp(stack, 'AlexaSkill', {
     endpoint: smaHandler.functionArn,
@@ -94,7 +96,7 @@ test('BadAlexaSkill', () => {
     const smaHandler = new Function(stack, 'BadAlexaSkillHandler', {
       runtime: Runtime.PYTHON_3_9,
       handler: 'index.handler',
-      code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+      code: code,
     });
     const sipMediaApp = new ChimeSipMediaApp(stack, 'BadAlexaSkill', {
       endpoint: smaHandler.functionArn,

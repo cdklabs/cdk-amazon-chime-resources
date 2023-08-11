@@ -3778,18 +3778,18 @@ const streamingConfig: StreamingConfig = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| [`appInstanceDataType`](#cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType) | The type of data to be streamed. |
+| [`dataType`](#cdkamazonchimeresourcesstreamingconfigpropertydatatype)<span title="Required">*</span> | [`cdk-amazon-chime-resources.MessagingDataType`](#cdk-amazon-chime-resources.MessagingDataType) | The type of data to be streamed. |
 | [`resourceArn`](#cdkamazonchimeresourcesstreamingconfigpropertyresourcearn)<span title="Required">*</span> | `string` | The resource ARN of a Kinesis Stream. |
 
 ---
 
-##### `appInstanceDataType`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfig.property.appInstanceDataType" id="cdkamazonchimeresourcesstreamingconfigpropertyappinstancedatatype"></a>
+##### `dataType`<sup>Required</sup> <a name="cdk-amazon-chime-resources.StreamingConfig.property.dataType" id="cdkamazonchimeresourcesstreamingconfigpropertydatatype"></a>
 
 ```typescript
-public readonly appInstanceDataType: AppInstanceDataType;
+public readonly dataType: MessagingDataType;
 ```
 
-- *Type:* [`cdk-amazon-chime-resources.AppInstanceDataType`](#cdk-amazon-chime-resources.AppInstanceDataType)
+- *Type:* [`cdk-amazon-chime-resources.MessagingDataType`](#cdk-amazon-chime-resources.MessagingDataType)
 
 The type of data to be streamed.
 
@@ -4232,25 +4232,6 @@ public readonly value: string;
 ---
 
 
-### AppInstanceDataType <a name="AppInstanceDataType" id="appinstancedatatype"></a>
-
-| **Name** | **Description** |
-| --- | --- |
-| [`CHANNEL`](#cdkamazonchimeresourcesappinstancedatatypechannel) | *No description.* |
-| [`CHANNELMESSAGE`](#cdkamazonchimeresourcesappinstancedatatypechannelmessage) | *No description.* |
-
----
-
-#### `CHANNEL` <a name="cdk-amazon-chime-resources.AppInstanceDataType.CHANNEL" id="cdkamazonchimeresourcesappinstancedatatypechannel"></a>
-
----
-
-
-#### `CHANNELMESSAGE` <a name="cdk-amazon-chime-resources.AppInstanceDataType.CHANNELMESSAGE" id="cdkamazonchimeresourcesappinstancedatatypechannelmessage"></a>
-
----
-
-
 ### ContentIdentificationType <a name="ContentIdentificationType" id="contentidentificationtype"></a>
 
 | **Name** | **Description** |
@@ -4455,6 +4436,25 @@ public readonly value: string;
 Props for `Configuration` when Configuration is for Lex.
 
 #### `STANDARD_MESSAGES` <a name="cdk-amazon-chime-resources.LexConfigurationRespondsTo.STANDARD_MESSAGES" id="cdkamazonchimeresourceslexconfigurationrespondstostandardmessages"></a>
+
+---
+
+
+### MessagingDataType <a name="MessagingDataType" id="messagingdatatype"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| [`CHANNEL`](#cdkamazonchimeresourcesmessagingdatatypechannel) | *No description.* |
+| [`CHANNELMESSAGE`](#cdkamazonchimeresourcesmessagingdatatypechannelmessage) | *No description.* |
+
+---
+
+#### `CHANNEL` <a name="cdk-amazon-chime-resources.MessagingDataType.CHANNEL" id="cdkamazonchimeresourcesmessagingdatatypechannel"></a>
+
+---
+
+
+#### `CHANNELMESSAGE` <a name="cdk-amazon-chime-resources.MessagingDataType.CHANNELMESSAGE" id="cdkamazonchimeresourcesmessagingdatatypechannelmessage"></a>
 
 ---
 

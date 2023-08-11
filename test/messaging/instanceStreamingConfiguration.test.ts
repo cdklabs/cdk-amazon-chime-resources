@@ -1,6 +1,6 @@
 import * as cdk from 'aws-cdk-lib';
 import {
-  AppInstanceDataType,
+  MessagingDataType,
   AppInstanceStreamingConfigurations,
 } from '../../src';
 
@@ -17,7 +17,7 @@ test('InstanceStreamingConfig', () => {
     appInstanceArn: 'appInstanceArn',
     streamingConfigs: [
       {
-        appInstanceDataType: AppInstanceDataType.CHANNEL,
+        dataType: MessagingDataType.CHANNEL,
         resourceArn: 'resourceArn',
       },
     ],

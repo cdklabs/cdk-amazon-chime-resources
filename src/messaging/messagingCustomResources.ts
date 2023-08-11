@@ -7,12 +7,7 @@ import {
   PolicyDocument,
   PolicyStatement,
 } from 'aws-cdk-lib/aws-iam';
-import {
-  // Architecture,
-  IFunction,
-  Function,
-  // Runtime,
-} from 'aws-cdk-lib/aws-lambda';
+import { IFunction, Function } from 'aws-cdk-lib/aws-lambda';
 import { Provider } from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 import { MessagingFunction } from '../resources/messaging/messaging-function';
@@ -78,32 +73,9 @@ export class MessagingResources extends Construct {
               new PolicyStatement({
                 resources: ['*'],
                 actions: [
-                  'chime:CreateAppInstance',
-                  'chime:DescribeAppInstance',
-                  'chime:ListAppInstances',
-                  'chime:UpdateAppInstance',
-                  'chime:DeleteAppInstance',
-                  'chime:CreateChannelFlow',
-                  'chime:UpdateChannelFlow',
-                  'chime:DeleteChannelFlow',
-                  'chime:CreateAppInstanceUser',
-                  'chime:CreateAppInstanceBot',
-                  'chime:DeleteAppInstanceUser',
-                  'chime:DeleteAppInstanceBot',
-                  'chime:ListAppInstanceUsers',
-                  'chime:ListAppInstanceBots',
-                  'chime:UpdateAppInstanceUser',
-                  'chime:UpdateAppInstanceBot',
-                  'chime:DescribeAppInstanceUser',
-                  'chime:CreateAppInstanceAdmin',
-                  'chime:DescribeAppInstanceAdmin',
-                  'chime:ListAppInstanceAdmins',
-                  'chime:DeleteAppInstanceAdmin',
-                  'chime:PutAppInstanceRetentionSettings',
-                  'chime:GetAppInstanceRetentionSettings',
-                  'chime:PutAppInstanceStreamingConfigurations',
-                  'chime:GetAppInstanceStreamingConfigurations',
-                  'chime:DeleteAppInstanceStreamingConfigurations',
+                  'chime:*ChannelFlow',
+                  'chime:*AppInstance*',
+                  'chime:*MessagingStreamingConfigurations',
                   'chime:TagResource',
                   'chime:UntagResource',
                   'chime:ListTagsForResource',
@@ -152,14 +124,6 @@ export class MessagingResources extends Construct {
       role: messagingCustomResourceRole,
       timeout: Duration.seconds(60),
     });
-    // const fn = new NodejsFunction(this, 'messagingResourcesFunction', {
-    //   entry: 'src/resources/messaging/index.ts',
-    //   handler: 'handler',
-    //   runtime: Runtime.NODEJS_18_X,
-    //   architecture: Architecture.ARM_64,
-    //   role: messagingCustomResourceRole,
-    //   timeout: Duration.seconds(60),
-    // });
 
     return fn;
   }

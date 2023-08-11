@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { appInstanceValidator } from './appInstanceValidator';
 import { MessagingResources } from './messagingCustomResources';
 
-export enum AppInstanceDataType {
+export enum MessagingDataType {
   CHANNEL = 'Channel',
   CHANNELMESSAGE = 'ChannelMessage',
 }
@@ -16,7 +16,7 @@ export interface StreamingConfig {
   /**
    * The type of data to be streamed.
    */
-  readonly appInstanceDataType: AppInstanceDataType;
+  readonly dataType: MessagingDataType;
   /**
    * The resource ARN of a Kinesis Stream.
    */

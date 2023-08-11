@@ -1,13 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  AppInstanceStreamingConfiguration,
-  ChimeClient,
-  PutAppInstanceStreamingConfigurationsCommand,
-  PutAppInstanceStreamingConfigurationsCommandInput,
-  PutAppInstanceStreamingConfigurationsCommandOutput,
-} from '@aws-sdk/client-chime';
+  StreamingConfiguration,
+  ChimeSDKMessagingClient,
+  PutMessagingStreamingConfigurationsCommand,
+  PutMessagingStreamingConfigurationsCommandInput,
+  PutMessagingStreamingConfigurationsCommandOutput,
+} from '@aws-sdk/client-chime-sdk-messaging';
 
-const chimeClient = new ChimeClient({
+const chimeClient = new ChimeSDKMessagingClient({
   region: process.env.AWS_REGION,
 });
 
@@ -17,7 +17,7 @@ export enum AppInstanceDataType {
 }
 
 interface StreamingConfigsProps {
-  appInstanceDataType: AppInstanceDataType;
+  dataType: AppInstanceDataType;
   resourceArn: string;
 }
 interface DataRetentionProps {
@@ -25,27 +25,27 @@ interface DataRetentionProps {
   appInstanceArn?: string;
 }
 
-let putStreamingConfigurationOutput: PutAppInstanceStreamingConfigurationsCommandOutput;
-let putStreamingConfigurationInput: PutAppInstanceStreamingConfigurationsCommandInput;
-let updatedConfiguration: AppInstanceStreamingConfiguration[];
+let putStreamingConfigurationOutput: PutMessagingStreamingConfigurationsCommandOutput;
+let putStreamingConfigurationInput: PutMessagingStreamingConfigurationsCommandInput;
+let updatedConfiguration: StreamingConfiguration[];
 export const PutStreamingConfiguration = async (props: DataRetentionProps) => {
   updatedConfiguration = [];
 
   props.streamingConfigs?.forEach((streamingConfig) => {
     updatedConfiguration.push({
-      AppInstanceDataType: streamingConfig.appInstanceDataType,
+      DataType: streamingConfig.dataType,
       ResourceArn: streamingConfig.resourceArn,
     });
   });
 
   putStreamingConfigurationInput = {
     AppInstanceArn: props.appInstanceArn,
-    AppInstanceStreamingConfigurations: updatedConfiguration,
+    StreamingConfigurations: updatedConfiguration,
   };
-
+  console.log('putStreamingConfigurationInput', putStreamingConfigurationInput);
   try {
     putStreamingConfigurationOutput = await chimeClient.send(
-      new PutAppInstanceStreamingConfigurationsCommand(
+      new PutMessagingStreamingConfigurationsCommand(
         putStreamingConfigurationInput,
       ),
     );
@@ -57,6 +57,6 @@ export const PutStreamingConfiguration = async (props: DataRetentionProps) => {
   }
   return {
     appInstanceStreamingConfiguration:
-      putStreamingConfigurationOutput.AppInstanceStreamingConfigurations,
+      putStreamingConfigurationOutput.StreamingConfigurations,
   };
 };

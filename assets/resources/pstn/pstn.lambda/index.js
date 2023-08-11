@@ -54214,6 +54214,7 @@ var getPhoneNumberResponse;
 var CreatePhoneNumber = async (uid, props) => {
   searchAvailableNumbersParam = {
     ...props.phoneAreaCode && { AreaCode: props.phoneAreaCode },
+    ...props.phoneNumberType && { PhoneNumberType: props.phoneNumberType },
     ...props.phoneState && { State: props.phoneState },
     ...props.phoneCity && { City: props.phoneCity },
     ...props.phoneCountry && { Country: props.phoneCountry },

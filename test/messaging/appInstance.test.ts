@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { MessagingAppInstance, AppInstanceDataType } from '../../src';
+import { MessagingAppInstance, MessagingDataType } from '../../src';
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {
@@ -91,7 +91,7 @@ test('Streaming', () => {
   const appInstance = new MessagingAppInstance(stack, 'Streaming', {});
   appInstance.streaming([
     {
-      appInstanceDataType: AppInstanceDataType.CHANNEL,
+      dataType: MessagingDataType.CHANNEL,
       resourceArn: 'kinesisStream.streamArn',
     },
   ]);

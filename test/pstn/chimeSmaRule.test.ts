@@ -1,4 +1,3 @@
-import path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import { Function, Runtime, Code } from 'aws-cdk-lib/aws-lambda';
 import {
@@ -11,11 +10,14 @@ import {
 
 const app = new cdk.App();
 const stack = new cdk.Stack(app, 'testing-stack', {});
+const code = Code.fromInline(
+  'exports.handler = async (event) => {  console.log(event)',
+);
 
 const smaHandler = new Function(stack, 'NormalHandler', {
   runtime: Runtime.PYTHON_3_9,
   handler: 'index.handler',
-  code: Code.fromAsset(path.join(__dirname, '../../example/src/')),
+  code: code,
 });
 
 const sipMediaApp = new ChimeSipMediaApp(stack, 'SipMediaApp', {
@@ -153,10 +155,10 @@ test('BadSMAID', () => {
   ).toThrowError('sipMediaApplicationId must be valid');
 });
 
-test('Badpriority', () => {
+test('BadPriority', () => {
   expect(
     () =>
-      new ChimeSipRule(stack, 'Badpriority', {
+      new ChimeSipRule(stack, 'BadPriority', {
         triggerType: TriggerType.REQUEST_URI_HOSTNAME,
         triggerValue: 'bl4jpdz2puqt55uhwjnzxi.voiceconnector.chime.aws',
         targetApplications: [

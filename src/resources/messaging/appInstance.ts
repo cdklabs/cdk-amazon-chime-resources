@@ -1,12 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import {
-  ChimeClient,
+  ChimeSDKIdentityClient,
   CreateAppInstanceCommand,
   CreateAppInstanceCommandInput,
   CreateAppInstanceCommandOutput,
   DeleteAppInstanceCommand,
   Tag,
-} from '@aws-sdk/client-chime';
+} from '@aws-sdk/client-chime-sdk-identity';
 
 import {
   SSMClient,
@@ -16,7 +16,7 @@ import {
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
 
-const chimeClient = new ChimeClient({
+const chimeClient = new ChimeSDKIdentityClient({
   region: process.env.AWS_REGION,
 });
 

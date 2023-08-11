@@ -42,6 +42,7 @@ export interface CreatePhoneNumberProps {
   phoneCountry?: string;
   phoneNumberTollFreePrefix?: string;
   phoneProductType?: string;
+  phoneNumberType?: string;
 }
 
 export const CreatePhoneNumber = async (
@@ -50,6 +51,7 @@ export const CreatePhoneNumber = async (
 ) => {
   searchAvailableNumbersParam = {
     ...(props.phoneAreaCode && { AreaCode: props.phoneAreaCode }),
+    ...(props.phoneNumberType && { PhoneNumberType: props.phoneNumberType }),
     ...(props.phoneState && { State: props.phoneState }),
     ...(props.phoneCity && { City: props.phoneCity }),
     ...(props.phoneCountry && { Country: props.phoneCountry }),

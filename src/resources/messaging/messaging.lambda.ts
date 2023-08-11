@@ -4,7 +4,11 @@ import {
   Context,
 } from 'aws-lambda';
 import { CreateAppInstance, DeleteAppInstance } from './appInstance';
-import { CreateChannelFlow, DeleteChannelFlow, UpdateChannelFlow } from './channelFlow';
+import {
+  CreateChannelFlow,
+  DeleteChannelFlow,
+  UpdateChannelFlow,
+} from './channelFlow';
 import { PutDataRetention } from './dataRetention';
 import {
   CreateAppInstanceAdmin,
@@ -22,7 +26,7 @@ export const handler = async (
   event: CdkCustomResourceEvent,
   context: Context,
 ): Promise<CdkCustomResourceResponse> => {
-  console.info('event: ', event);
+  console.info('event: ', JSON.stringify(event));
   const resourceType = event.ResourceProperties.resourceType;
   const requestType = event.RequestType;
   resourcePropertiesUid = event.ResourceProperties.uid;
