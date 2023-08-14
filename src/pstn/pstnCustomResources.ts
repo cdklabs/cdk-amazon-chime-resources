@@ -90,6 +90,11 @@ export class PSTNResources extends Construct {
             Effect: 'Allow',
           },
           {
+            Action: ['lambda:GetPolicy', 'lambda:AddPermission'],
+            Resource: '*',
+            Effect: 'Allow',
+          },
+          {
             Action: 'ssm:*Parameter*',
             Resource: `arn:aws:ssm:${Stack.of(this).region}:${
               Stack.of(this).account
@@ -116,19 +121,19 @@ export class PSTNResources extends Construct {
       });
     }
 
-    if (props.resourceType === 'SMA' && props.properties.endpoint) {
-      pstnCustomResource.addToRolePolicy({
-        Action: 'lambda:GetPolicy',
-        Resource: props.properties.endpoint,
-        Effect: 'Allow',
-      });
+    // if (props.resourceType === 'SMA' && props.properties.endpoint) {
+    //   pstnCustomResource.addToRolePolicy({
+    //     Action: 'lambda:GetPolicy',
+    //     Resource: props.properties.endpoint,
+    //     Effect: 'Allow',
+    //   });
 
-      pstnCustomResource.addToRolePolicy({
-        Action: 'lambda:AddPermission',
-        Resource: props.properties.endpoint,
-        Effect: 'Allow',
-      });
-    }
+    //   pstnCustomResource.addToRolePolicy({
+    //     Action: 'lambda:AddPermission',
+    //     Resource: props.properties.endpoint,
+    //     Effect: 'Allow',
+    //   });
+    // }
 
     this.pstnCustomResource = new CustomResource(this, 'pstnCustomResource', {
       resourceType: 'Custom::PSTNResources',
