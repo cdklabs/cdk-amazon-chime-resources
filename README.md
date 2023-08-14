@@ -12,7 +12,7 @@ Amazon Chime resources (Amazon Chime Messaging and Amazon Chime PSTN resources) 
 
 - [Amazon Chime SDK PSTN Resources](PSTNRESOURCES.MD)
 - [Amazon Chime SDK Messaging Resources](MESSAGINGRESOURCES.MD)
-- [Amazon Chime SDK Media Insights Resources][MEDIAINSIGHTS.MD]
+- [Amazon Chime SDK Media Insights Resources](MEDIAINSIGHTS.MD)
 
 ## Installing
 
@@ -24,11 +24,23 @@ yarn add cdk-amazon-chime-resources
 
 ## Version 3 Upgrade
 
-Version 3.0 is a potentially breaking change that involves multiple upgrades and changes. Version 3.0 revises the deployment to streamline and make more efficient the multiple configurations. This should result in an increased speed of deployment. All namespaces were updated to the current `chime-sdk-voice`, `chime-sdk-messaging`, `chime-sdk-identity`, or `chime-sdk-media-pipelines` namespace. Along with these changes, IAM policies were reduced as possible. If you encounter issues, please open an Issue.
+Version 3.0 is a potentially breaking change that involves multiple upgrades and changes. Version 3.0 revises the deployment to streamline and make more efficient the multiple configurations. This should result in an increased speed of deployment. All namespaces were updated to the current `chime-sdk-voice`, `chime-sdk-messaging`, `chime-sdk-identity`, or `chime-sdk-media-pipelines` namespace. Along with these changes, IAM policies were reduced where possible. If you encounter issues, please open an Issue.
 
-## Version 2 Upgrade
-
-Version 2.0 is a potentially breaking change that involves multiple upgrades and changes. The original version used Python for the Custom Resources. The upgrade to version 2.0 includes a migration to Typescript for the Custom Resources. This change allows for the use of updated AWS-SDK versions and more recent APIs including expanded region selection.
+> Potential Breaking Change with Streaming Messaging Data
+>
+> As part of the namespace change, this has been updated:
+>
+> ```typescript
+> const appInstance = new MessagingAppInstance(this, 'appInstance', {
+>   name: 'MessagingAppInstanceExample',
+> });
+> appInstance.streaming([
+>   {
+>     dataType: MessagingDataType.CHANNEL,
+>     resourceArn: kinesisStream.streamArn,
+>   },
+> ]);
+> ```
 
 ## Not Supported Yet
 

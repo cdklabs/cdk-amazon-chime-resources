@@ -1,21 +1,19 @@
-## Amazon Chime Messaging Resources
+## Amazon Chime SDK Messaging Resources
 
 ### Example
 
-See [example/lib/messaging-resource-example.ts](example/lib/messaging-resource-example.ts) for an example of deploying Amazon Chime Messaging resources. To deploy: `yarn cdk deploy MessagingResources`
-
 This example includes
 
-- Amazon Chime [App Instance](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-app-instance.html)
-- Amazon Chime [Channel Flow](https://docs.aws.amazon.com/chime-sdk/latest/dg/using-channel-flows.html)
-- Amazon Chime [App Instance User](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-app-instance-user.html)
-- Amazon Chime [App Instance Admin](https://docs.aws.amazon.com/chime-sdk/latest/dg/auth-by-role.html#appinstanceadmin)
-- Amazon Chime [Streaming Message Data](https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html)
-- Amazon Chime [Message Retention](https://docs.aws.amazon.com/chime-sdk/latest/dg/manage-retention.html)
+- Amazon Chime SDK [App Instance](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-app-instance.html)
+- Amazon Chime SDK [Channel Flow](https://docs.aws.amazon.com/chime-sdk/latest/dg/using-channel-flows.html)
+- Amazon Chime SDK [App Instance User](https://docs.aws.amazon.com/chime-sdk/latest/dg/create-app-instance-user.html)
+- Amazon Chime SDK [App Instance Admin](https://docs.aws.amazon.com/chime-sdk/latest/dg/auth-by-role.html#appinstanceadmin)
+- Amazon Chime SDK [Streaming Message Data](https://docs.aws.amazon.com/chime-sdk/latest/dg/streaming-export.html)
+- Amazon Chime SDK [Message Retention](https://docs.aws.amazon.com/chime-sdk/latest/dg/manage-retention.html)
 
-## Amazon Chime Messaging Resources
+## Amazon Chime SDK Messaging Resources
 
-### Amazon Chime Messaging App Instance
+### Amazon Chime SDK Messaging App Instance
 
 [API Reference](https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_identity-chime_CreateAppInstance.html)
 
@@ -25,9 +23,9 @@ const appInstance = new chime.MessagingAppInstance(this, 'appInstance', {
 });
 ```
 
-This will create an Amazon Chime Messaging App Instance and will return the `AppInstanceArn`.
+This will create an Amazon Chime SDK Messaging App Instance and will return the `AppInstanceArn`.
 
-### Amazon Chime App Instance User
+### Amazon Chime SDK App Instance User
 
 ```typescript
 const appInstanceUser = new chime.MessagingAppInstanceUser(
@@ -42,7 +40,7 @@ const appInstanceUser = new chime.MessagingAppInstanceUser(
 
 This will create an App Instance User that is associated with the previously created Amazon Chime SDK Messaging App Instance. This User can then be promoted to an App Instance Admin.
 
-### Amazon Chime App Instance Admin
+### Amazon Chime SDK App Instance Admin
 
 ```typescript
 new chime.MessagingAppInstanceAdmin(this, 'appInstanceAdmin', {
@@ -53,13 +51,13 @@ new chime.MessagingAppInstanceAdmin(this, 'appInstanceAdmin', {
 
 Using the previously created App Instance and the previously created App Instance User, an App Instance Admin can be created.
 
-### Amazon Chime Messaging Channel Flow
+### Amazon Chime SDK Messaging Channel Flow
 
 [API Reference](https://docs.aws.amazon.com/chime-sdk/latest/APIReference/API_messaging-chime_CreateChannelFlow.html)
 
 #### Preparing AWS Lambda for Channel Flow Processor
 
-Take note of the [required permissions](https://docs.aws.amazon.com/chime-sdk/latest/dg/processor-setup.html) for the AWS Lambda in the example to allow the Amazon Chime service to invoke the associated Lambda.
+Take note of the [required permissions](https://docs.aws.amazon.com/chime-sdk/latest/dg/processor-setup.html) for the AWS Lambda in the example to allow the Amazon Chime SDK service to invoke the associated Lambda.
 
 ```typescript
 const channelFlowLambdaRole = new iam.Role(this, 'channelFlowLambdaRole', {
@@ -155,15 +153,3 @@ appInstance.retention(2);
 ```
 
 Pass a number in days for message retention.
-
-## Output
-
-The output from the example CDK will include [AWS Command Line Interface](https://aws.amazon.com/cli/) commands to show the output from the CDK.
-
-```bash
-aws chime-sdk-identity list-app-instance-admins --app-instance-arn arn:aws:chime:us-east-1:111111111111:app-instance/df3ad5fd-acac-477a-acb4-50407b5f4be4
-aws chime-sdk-identity describe-app-instance --app-instance-arn arn:aws:chime:us-east-1:111111111111:app-instance/df3ad5fd-acac-477a-acb4-50407b5f4be4
-aws chime-sdk-messaging list-channel-flows --app-instance-arn arn:aws:chime:us-east-1:111111111111:app-instance/df3ad5fd-acac-477a-acb4-50407b5f4be4
-aws chime get-app-instance-retention-settings --app-instance-arn arn:aws:chime:us-east-1:111111111111:app-instance/df3ad5fd-acac-477a-acb4-50407b5f4be4
-aws chime get-app-instance-streaming-configurations --app-instance-arn arn:aws:chime:us-east-1:111111111111:app-instance/df3ad5fd-acac-477a-acb4-50407b5f4be4
-```

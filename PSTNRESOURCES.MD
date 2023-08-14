@@ -1,20 +1,18 @@
 ## Usage
 
-#### Amazon Chime PSTN Resources Example
-
-See [example/lib/pstn-resources-example.ts](example/lib/pstn-resource-example.ts) for an example of deploying Amazon Chime PSTN resources. To deploy: `yarn cdk deploy PSTNResources`
+#### Amazon Chime SDK PSTN Resources Example
 
 This example includes
 
-- Amazon Chime [Phone Number](https://docs.aws.amazon.com/chime/latest/ag/phone-numbers.html)
-- Amazon Chime [SIP media application](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-apps.html)
-- Amazon Chime [SIP media application rule](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-rules.html)
+- Amazon Chime SDK [Phone Number](https://docs.aws.amazon.com/chime/latest/ag/phone-numbers.html)
+- Amazon Chime SDK [SIP media application](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-apps.html)
+- Amazon Chime SDK [SIP media application rule](https://docs.aws.amazon.com/chime-sdk/latest/ag/use-sip-rules.html)
 
-## Amazon Chime PSTN resources
+## Amazon Chime SDK PSTN resources
 
 ### Phone Number Creation
 
-```ts
+```typescript
 const phoneNumber = new chime.ChimePhoneNumber(this, 'phoneNumber', {
   phoneState: 'IL',
   phoneNumberType: chime.PhoneNumberType.LOCAL,
@@ -26,7 +24,7 @@ The phone number created will be a `LOCAL` number for use with `SMA` from a pool
 
 ### SIP Media Application Creation
 
-```ts
+```typescript
 const sipMediaApp = new chime.ChimeSipMediaApp(this, 'sipMediaApp', {
   region: this.region,
   endpoint: smaHandler.functionArn,
@@ -37,7 +35,7 @@ The SIP media application created will use the smaHandler referenced by the endp
 
 ### SIP Media Application Rule Creation
 
-```ts
+```typescript
 const sipRule = new chime.ChimeSipRule(this, 'sipRule', {
   triggerType: chime.TriggerType.TO_PHONE_NUMBER,
   triggerValue: phoneNumber.phoneNumber,
@@ -51,16 +49,15 @@ const sipRule = new chime.ChimeSipRule(this, 'sipRule', {
 });
 ```
 
-The SIP rule will assocaite the previously created phone number with the previously created SIP media application. The SIP rule can be associated with either an E.164 number or Amazon Chime Voice Connector URI. If the TriggerType is `TO_PHONE_NUMBER`, the TriggerValue must be an E.164 number. If the TriggerType is `REQUEST_URI_HOSTNAME`, the TriggerValue must be an Amazon Chime Voice Connector URI. A priority must be assigned with a value between 1 and 25 inclusive. A targetApplication is required. This will associate the trigger to the SIP media application and associated Lambda.
+The SIP rule will associate the previously created phone number with the previously created SIP media application. The SIP rule can be associated with either an E.164 number or Amazon Chime SDK Voice Connector URI. If the TriggerType is `TO_PHONE_NUMBER`, the TriggerValue must be an E.164 number. If the TriggerType is `REQUEST_URI_HOSTNAME`, the TriggerValue must be an Amazon Chime SDK Voice Connector URI. A priority must be assigned with a value between 1 and 25 inclusive. A targetApplication is required. This will associate the trigger to the SIP media application and associated Lambda.
 
-#### Amazon Chime Voice Connector Resources Example
-
-See [example/lib/voice-connector-example.ts](example/lib/voice-connector.example.ts) for an example of deploying Amazon Chime Voice Connector resources. To deploy: `yarn cdk deploy VoiceConnectorResources`
+#### Amazon Chime SDK Voice Connector Resources Example
 
 This example includes
 
-- Amazon Chime [Phone Number](https://docs.aws.amazon.com/chime/latest/ag/phone-numbers.html)
-- Amazon Chime [Voice Connector](https://docs.aws.amazon.com/chime-sdk/latest/ag/voice-connectors.html)
+- Amazon Chime SDK [Phone Number](https://docs.aws.amazon.com/chime/latest/ag/phone-numbers.html)
+- Amazon Chime SDK [Voice Connector](https://docs.aws.amazon.com/chime-sdk/latest/ag/voice-connectors.html)
+- Amazon Chime SDK [Voice Profile Domain](https://docs.aws.amazon.com/chime-sdk/latest/ag/manage-voice-profile-domains.html)
 
 ### Voice Connector Phone Number Creation
 
@@ -105,12 +102,32 @@ const voiceConnector = new chime.ChimeVoiceConnector(this, 'voiceConnector', {
 });
 ```
 
-This will create an Amazon Chime Voice Connector with specified options. Termination, origination, and streaming are all optional.
+This will create an Amazon Chime SDK Voice Connector with specified options. Termination, origination, and streaming are all optional.
 
 ### Phone Number Association
 
-```ts
+```typescript
 voiceConnectorPhone.associateWithVoiceConnector(voiceConnector);
 ```
 
-This will assocaite the previously created phone number with the voice connector.
+This will associate the previously created phone number with the voice connector.
+
+### Voice Profile Domain
+
+```typescript
+const voiceProfileDomainKey = new Key(this, 'voiceProfileDomainKey', {
+  enableKeyRotation: true,
+  keySpec: KeySpec.SYMMETRIC_DEFAULT,
+  enabled: true,
+});
+
+const voiceProfileDomain = new ChimeVoiceProfileDomain(
+  this,
+  'voiceProfileDomain',
+  {
+    serverSideEncryptionConfiguration: {
+      kmsKeyArn: voiceProfileDomainKey.keyArn,
+    },
+  },
+);
+```

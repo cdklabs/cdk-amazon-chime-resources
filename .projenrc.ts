@@ -37,7 +37,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@types/aws-lambda',
     'fs-extra',
   ],
-  workflowNodeVersion: '16.x',
+  workflowNodeVersion: '18.x',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],
