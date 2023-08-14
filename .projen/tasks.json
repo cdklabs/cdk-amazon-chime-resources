@@ -41,75 +41,6 @@
       ],
       "condition": "! git log --oneline -1 | grep -q \"chore(release):\""
     },
-    "bundle": {
-      "name": "bundle",
-      "description": "Prepare assets",
-      "steps": [
-        {
-          "spawn": "bundle:resources/pstn/pstn.lambda"
-        },
-        {
-          "spawn": "bundle:resources/messaging/messaging.lambda"
-        },
-        {
-          "spawn": "bundle:resources/media-pipelines/media-pipelines.lambda"
-        }
-      ]
-    },
-    "bundle:resources/media-pipelines/media-pipelines.lambda": {
-      "name": "bundle:resources/media-pipelines/media-pipelines.lambda",
-      "description": "Create a JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
-        }
-      ]
-    },
-    "bundle:resources/media-pipelines/media-pipelines.lambda:watch": {
-      "name": "bundle:resources/media-pipelines/media-pipelines.lambda:watch",
-      "description": "Continuously update the JavaScript bundle from src/resources/media-pipelines/media-pipelines.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/media-pipelines/media-pipelines.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/media-pipelines/media-pipelines.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
-        }
-      ]
-    },
-    "bundle:resources/messaging/messaging.lambda": {
-      "name": "bundle:resources/messaging/messaging.lambda",
-      "description": "Create a JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
-        }
-      ]
-    },
-    "bundle:resources/messaging/messaging.lambda:watch": {
-      "name": "bundle:resources/messaging/messaging.lambda:watch",
-      "description": "Continuously update the JavaScript bundle from src/resources/messaging/messaging.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/messaging/messaging.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/messaging/messaging.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
-        }
-      ]
-    },
-    "bundle:resources/pstn/pstn.lambda": {
-      "name": "bundle:resources/pstn/pstn.lambda",
-      "description": "Create a JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\""
-        }
-      ]
-    },
-    "bundle:resources/pstn/pstn.lambda:watch": {
-      "name": "bundle:resources/pstn/pstn.lambda:watch",
-      "description": "Continuously update the JavaScript bundle from src/resources/pstn/pstn.lambda.ts",
-      "steps": [
-        {
-          "exec": "esbuild --bundle src/resources/pstn/pstn.lambda.ts --target=\"node18\" --platform=\"node\" --outfile=\"assets/resources/pstn/pstn.lambda/index.js\" --tsconfig=\"tsconfig.dev.json\" --watch"
-        }
-      ]
-    },
     "clobber": {
       "name": "clobber",
       "description": "hard resets to HEAD of origin and cleans the local repo",
@@ -271,19 +202,14 @@
     },
     "pre-compile": {
       "name": "pre-compile",
-      "description": "Prepare the project for compilation",
-      "steps": [
-        {
-          "spawn": "bundle"
-        }
-      ]
+      "description": "Prepare the project for compilation"
     },
     "release": {
       "name": "release",
       "description": "Prepare a release from \"main\" branch",
       "env": {
         "RELEASE": "true",
-        "MAJOR": "2"
+        "MAJOR": "3"
       },
       "steps": [
         {
@@ -308,20 +234,7 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "jest --passWithNoTests --updateSnapshot",
-          "receiveArgs": true
-        },
-        {
           "spawn": "eslint"
-        }
-      ]
-    },
-    "test:watch": {
-      "name": "test:watch",
-      "description": "Run jest in watch mode",
-      "steps": [
-        {
-          "exec": "jest --watch"
         }
       ]
     },
@@ -352,13 +265,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jest-junit,jest,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,projen,standard-version,ts-jest,ts-node,typescript,yalc,@aws-sdk/client-chime,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,aws-cdk-lib,constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,projen,standard-version,ts-node,typescript,yalc,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,fs-extra,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jest-junit jest jsii-diff jsii-docgen jsii-pacmak npm-check-updates projen standard-version ts-jest ts-node typescript yalc @aws-sdk/client-chime @aws-sdk/client-ssm @types/aws-lambda aws-lambda aws-cdk-lib constructs"
+          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jsii-diff jsii-docgen jsii-pacmak npm-check-updates projen standard-version ts-node typescript yalc @aws-sdk/client-ssm @types/aws-lambda aws-lambda fs-extra aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"

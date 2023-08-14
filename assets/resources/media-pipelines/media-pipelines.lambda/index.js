@@ -9695,9 +9695,9 @@ var require_dist_cjs35 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/EndpointParameters.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/EndpointParameters.js
 var require_EndpointParameters = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/EndpointParameters.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/EndpointParameters.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.resolveClientEndpointParameters = void 0;
@@ -9713,12 +9713,12 @@ var require_EndpointParameters = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/package.json
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/package.json
 var require_package = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/package.json"(exports, module2) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/package.json"(exports, module2) {
     module2.exports = {
-      name: "@aws-sdk/client-chime-sdk-identity",
-      description: "AWS SDK for JavaScript Chime Sdk Identity Client for Node.js, Browser and React Native",
+      name: "@aws-sdk/client-chime-sdk-media-pipelines",
+      description: "AWS SDK for JavaScript Chime Sdk Media Pipelines Client for Node.js, Browser and React Native",
       version: "3.388.0",
       scripts: {
         build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
@@ -9730,7 +9730,7 @@ var require_package = __commonJS({
         "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
         clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
         "extract:docs": "api-extractor run --local",
-        "generate:client": "node ../../scripts/generate-clients/single-service --solo chime-sdk-identity"
+        "generate:client": "node ../../scripts/generate-clients/single-service --solo chime-sdk-media-pipelines"
       },
       main: "./dist-cjs/index.js",
       types: "./dist-types/index.d.ts",
@@ -9810,11 +9810,11 @@ var require_package = __commonJS({
       "react-native": {
         "./dist-es/runtimeConfig": "./dist-es/runtimeConfig.native"
       },
-      homepage: "https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-chime-sdk-identity",
+      homepage: "https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-chime-sdk-media-pipelines",
       repository: {
         type: "git",
         url: "https://github.com/aws/aws-sdk-js-v3.git",
-        directory: "clients/client-chime-sdk-identity"
+        directory: "clients/client-chime-sdk-media-pipelines"
       }
     };
   }
@@ -17711,9 +17711,9 @@ var require_dist_cjs52 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/ruleset.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/ruleset.js
 var require_ruleset3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/ruleset.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/ruleset.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ruleSet = void 0;
@@ -17737,14 +17737,14 @@ var require_ruleset3 = __commonJS({
     var n = [i];
     var o = [j];
     var p = [{ [t]: "Region" }];
-    var _data = { version: "1.0", parameters: { Region: f, UseDualStack: g, UseFIPS: g, Endpoint: f }, rules: [{ conditions: [{ [r]: a, [s]: [h] }], type: b, rules: [{ conditions: n, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { type: b, rules: [{ conditions: o, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: h, properties: k, headers: k }, type: d }] }] }, { type: b, rules: [{ conditions: [{ [r]: a, [s]: p }], type: b, rules: [{ conditions: [{ [r]: "aws.partition", [s]: p, assign: e }], type: b, rules: [{ conditions: [i, j], type: b, rules: [{ conditions: [l, m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://identity-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: n, type: b, rules: [{ conditions: [l], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://identity-chime-fips.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: o, type: b, rules: [{ conditions: [m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://identity-chime.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { type: b, rules: [{ endpoint: { url: "https://identity-chime.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }] }, { error: "Invalid Configuration: Missing Region", type: c }] }] };
+    var _data = { version: "1.0", parameters: { Region: f, UseDualStack: g, UseFIPS: g, Endpoint: f }, rules: [{ conditions: [{ [r]: a, [s]: [h] }], type: b, rules: [{ conditions: n, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { type: b, rules: [{ conditions: o, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: h, properties: k, headers: k }, type: d }] }] }, { type: b, rules: [{ conditions: [{ [r]: a, [s]: p }], type: b, rules: [{ conditions: [{ [r]: "aws.partition", [s]: p, assign: e }], type: b, rules: [{ conditions: [i, j], type: b, rules: [{ conditions: [l, m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://media-pipelines-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: n, type: b, rules: [{ conditions: [l], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://media-pipelines-chime-fips.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: o, type: b, rules: [{ conditions: [m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://media-pipelines-chime.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { type: b, rules: [{ endpoint: { url: "https://media-pipelines-chime.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }] }, { error: "Invalid Configuration: Missing Region", type: c }] }] };
     exports.ruleSet = _data;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/endpointResolver.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/endpointResolver.js
 var require_endpointResolver3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/endpoint/endpointResolver.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/endpoint/endpointResolver.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.defaultEndpointResolver = void 0;
@@ -17760,9 +17760,9 @@ var require_endpointResolver3 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/runtimeConfig.shared.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/runtimeConfig.shared.js
 var require_runtimeConfig_shared3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/runtimeConfig.shared.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/runtimeConfig.shared.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
@@ -17772,13 +17772,13 @@ var require_runtimeConfig_shared3 = __commonJS({
     var util_utf8_1 = require_dist_cjs13();
     var endpointResolver_1 = require_endpointResolver3();
     var getRuntimeConfig = (config) => ({
-      apiVersion: "2021-04-20",
+      apiVersion: "2021-07-15",
       base64Decoder: config?.base64Decoder ?? util_base64_1.fromBase64,
       base64Encoder: config?.base64Encoder ?? util_base64_1.toBase64,
       disableHostPrefix: config?.disableHostPrefix ?? false,
       endpointProvider: config?.endpointProvider ?? endpointResolver_1.defaultEndpointResolver,
       logger: config?.logger ?? new smithy_client_1.NoOpLogger(),
-      serviceId: config?.serviceId ?? "Chime SDK Identity",
+      serviceId: config?.serviceId ?? "Chime SDK Media Pipelines",
       urlParser: config?.urlParser ?? url_parser_1.parseUrl,
       utf8Decoder: config?.utf8Decoder ?? util_utf8_1.fromUtf8,
       utf8Encoder: config?.utf8Encoder ?? util_utf8_1.toUtf8
@@ -17787,9 +17787,9 @@ var require_runtimeConfig_shared3 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/runtimeConfig.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/runtimeConfig.js
 var require_runtimeConfig3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/runtimeConfig.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/runtimeConfig.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRuntimeConfig = void 0;
@@ -17839,12 +17839,12 @@ var require_runtimeConfig3 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/ChimeSDKIdentityClient.js
-var require_ChimeSDKIdentityClient = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/ChimeSDKIdentityClient.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/ChimeSDKMediaPipelinesClient.js
+var require_ChimeSDKMediaPipelinesClient = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/ChimeSDKMediaPipelinesClient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKIdentityClient = exports.__Client = void 0;
+    exports.ChimeSDKMediaPipelinesClient = exports.__Client = void 0;
     var middleware_host_header_1 = require_dist_cjs3();
     var middleware_logger_1 = require_dist_cjs4();
     var middleware_recursion_detection_1 = require_dist_cjs5();
@@ -17860,7 +17860,7 @@ var require_ChimeSDKIdentityClient = __commonJS({
     } });
     var EndpointParameters_1 = require_EndpointParameters();
     var runtimeConfig_1 = require_runtimeConfig3();
-    var ChimeSDKIdentityClient6 = class extends smithy_client_1.Client {
+    var ChimeSDKMediaPipelinesClient2 = class extends smithy_client_1.Client {
       constructor(...[configuration]) {
         const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration || {});
         const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
@@ -17884,90 +17884,160 @@ var require_ChimeSDKIdentityClient = __commonJS({
         super.destroy();
       }
     };
-    exports.ChimeSDKIdentityClient = ChimeSDKIdentityClient6;
+    exports.ChimeSDKMediaPipelinesClient = ChimeSDKMediaPipelinesClient2;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/ChimeSDKIdentityServiceException.js
-var require_ChimeSDKIdentityServiceException = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/ChimeSDKIdentityServiceException.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/ChimeSDKMediaPipelinesServiceException.js
+var require_ChimeSDKMediaPipelinesServiceException = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/ChimeSDKMediaPipelinesServiceException.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKIdentityServiceException = exports.__ServiceException = void 0;
+    exports.ChimeSDKMediaPipelinesServiceException = exports.__ServiceException = void 0;
     var smithy_client_1 = require_dist_cjs35();
     Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
       return smithy_client_1.ServiceException;
     } });
-    var ChimeSDKIdentityServiceException = class _ChimeSDKIdentityServiceException extends smithy_client_1.ServiceException {
+    var ChimeSDKMediaPipelinesServiceException = class _ChimeSDKMediaPipelinesServiceException extends smithy_client_1.ServiceException {
       constructor(options) {
         super(options);
-        Object.setPrototypeOf(this, _ChimeSDKIdentityServiceException.prototype);
+        Object.setPrototypeOf(this, _ChimeSDKMediaPipelinesServiceException.prototype);
       }
     };
-    exports.ChimeSDKIdentityServiceException = ChimeSDKIdentityServiceException;
+    exports.ChimeSDKMediaPipelinesServiceException = ChimeSDKMediaPipelinesServiceException;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/models_0.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/models_0.js
 var require_models_03 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/models_0.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/models_0.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceUsersResponseFilterSensitiveLog = exports.ListAppInstanceUsersRequestFilterSensitiveLog = exports.ListAppInstanceUserEndpointsResponseFilterSensitiveLog = exports.ListAppInstanceUserEndpointsRequestFilterSensitiveLog = exports.ListAppInstancesResponseFilterSensitiveLog = exports.ListAppInstancesRequestFilterSensitiveLog = exports.ListAppInstanceBotsResponseFilterSensitiveLog = exports.ListAppInstanceBotsRequestFilterSensitiveLog = exports.ListAppInstanceAdminsResponseFilterSensitiveLog = exports.ListAppInstanceAdminsRequestFilterSensitiveLog = exports.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = exports.DescribeAppInstanceUserResponseFilterSensitiveLog = exports.DescribeAppInstanceBotResponseFilterSensitiveLog = exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = exports.DescribeAppInstanceResponseFilterSensitiveLog = exports.CreateAppInstanceUserRequestFilterSensitiveLog = exports.CreateAppInstanceBotRequestFilterSensitiveLog = exports.CreateAppInstanceAdminResponseFilterSensitiveLog = exports.CreateAppInstanceRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = exports.AppInstanceUserSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = exports.AppInstanceUserEndpointFilterSensitiveLog = exports.EndpointAttributesFilterSensitiveLog = exports.AppInstanceUserFilterSensitiveLog = exports.AppInstanceSummaryFilterSensitiveLog = exports.AppInstanceBotSummaryFilterSensitiveLog = exports.AppInstanceBotFilterSensitiveLog = exports.AppInstanceAdminSummaryFilterSensitiveLog = exports.AppInstanceAdminFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.AppInstanceFilterSensitiveLog = exports.NotFoundException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.ResourceLimitExceededException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.AppInstanceUserEndpointType = exports.EndpointStatusReason = exports.EndpointStatus = exports.ExpirationCriterion = exports.RespondsTo = exports.TargetedMessages = exports.StandardMessages = exports.AllowMessages = void 0;
-    exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = exports.UpdateAppInstanceUserRequestFilterSensitiveLog = exports.UpdateAppInstanceBotRequestFilterSensitiveLog = exports.UpdateAppInstanceRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = void 0;
+    exports.MediaPipelineStatusUpdate = exports.ConflictException = exports.LiveConnectorSourceType = exports.LiveConnectorMuxType = exports.LiveConnectorSinkType = exports.RealTimeAlertRuleType = exports.SentimentType = exports.VoiceAnalyticsConfigurationStatus = exports.MediaInsightsPipelineConfigurationElementType = exports.NotFoundException = exports.RecordingFileFormat = exports.MediaEncoding = exports.FragmentSelectorType = exports.ConcatenationSourceType = exports.ConcatenationSinkType = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.ResourceLimitExceededException = exports.ForbiddenException = exports.MediaPipelineStatus = exports.MediaPipelineSourceType = exports.MediaPipelineSinkType = exports.ParticipantRole = exports.BadRequestException = exports.ErrorCode = exports.AudioChannelsOption = exports.VideoMuxType = exports.ArtifactsState = exports.ContentMuxType = exports.ResolutionOption = exports.LayoutOption = exports.HighlightColor = exports.BorderColor = exports.VerticalTilePosition = exports.PresenterPosition = exports.HorizontalTilePosition = exports.TileOrder = exports.ContentShareLayoutOption = exports.CanvasOrientation = exports.AudioMuxType = exports.ArtifactsConcatenationState = exports.AudioArtifactsConcatenationState = exports.VocabularyFilterMethod = exports.ContentRedactionOutput = exports.PartialResultsStability = exports.CallAnalyticsLanguageCode = exports.ContentType = exports.ActiveSpeakerPosition = void 0;
+    exports.UpdateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = exports.UpdateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = exports.ListMediaInsightsPipelineConfigurationsResponseFilterSensitiveLog = exports.MediaInsightsPipelineConfigurationSummaryFilterSensitiveLog = exports.GetMediaPipelineResponseFilterSensitiveLog = exports.MediaPipelineFilterSensitiveLog = exports.GetMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = exports.GetMediaCapturePipelineResponseFilterSensitiveLog = exports.CreateMediaLiveConnectorPipelineResponseFilterSensitiveLog = exports.MediaLiveConnectorPipelineFilterSensitiveLog = exports.CreateMediaLiveConnectorPipelineRequestFilterSensitiveLog = exports.LiveConnectorSourceConfigurationFilterSensitiveLog = exports.ChimeSdkMeetingLiveConnectorConfigurationFilterSensitiveLog = exports.LiveConnectorSinkConfigurationFilterSensitiveLog = exports.LiveConnectorRTMPConfigurationFilterSensitiveLog = exports.CreateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = exports.MediaInsightsPipelineConfigurationFilterSensitiveLog = exports.CreateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = exports.MediaInsightsPipelineConfigurationElementFilterSensitiveLog = exports.SqsQueueSinkConfigurationFilterSensitiveLog = exports.SnsTopicSinkConfigurationFilterSensitiveLog = exports.S3RecordingSinkConfigurationFilterSensitiveLog = exports.LambdaFunctionSinkConfigurationFilterSensitiveLog = exports.KinesisDataStreamSinkConfigurationFilterSensitiveLog = exports.CreateMediaInsightsPipelineResponseFilterSensitiveLog = exports.MediaInsightsPipelineFilterSensitiveLog = exports.CreateMediaInsightsPipelineRequestFilterSensitiveLog = exports.S3RecordingSinkRuntimeConfigurationFilterSensitiveLog = exports.CreateMediaConcatenationPipelineResponseFilterSensitiveLog = exports.MediaConcatenationPipelineFilterSensitiveLog = exports.CreateMediaConcatenationPipelineRequestFilterSensitiveLog = exports.ConcatenationSourceFilterSensitiveLog = exports.MediaCapturePipelineSourceConfigurationFilterSensitiveLog = exports.ConcatenationSinkFilterSensitiveLog = exports.S3BucketSinkConfigurationFilterSensitiveLog = exports.CreateMediaCapturePipelineResponseFilterSensitiveLog = exports.MediaCapturePipelineFilterSensitiveLog = exports.CreateMediaCapturePipelineRequestFilterSensitiveLog = exports.ChimeSdkMeetingConfigurationFilterSensitiveLog = exports.SourceConfigurationFilterSensitiveLog = exports.SelectedVideoStreamsFilterSensitiveLog = void 0;
     var smithy_client_1 = require_dist_cjs35();
-    var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
-    exports.AllowMessages = {
-      ALL: "ALL",
-      NONE: "NONE"
+    var ChimeSDKMediaPipelinesServiceException_1 = require_ChimeSDKMediaPipelinesServiceException();
+    exports.ActiveSpeakerPosition = {
+      BottomLeft: "BottomLeft",
+      BottomRight: "BottomRight",
+      TopLeft: "TopLeft",
+      TopRight: "TopRight"
     };
-    exports.StandardMessages = {
-      ALL: "ALL",
-      AUTO: "AUTO",
-      MENTIONS: "MENTIONS",
-      NONE: "NONE"
+    exports.ContentType = {
+      PII: "PII"
     };
-    exports.TargetedMessages = {
-      ALL: "ALL",
-      NONE: "NONE"
+    exports.CallAnalyticsLanguageCode = {
+      DE_DE: "de-DE",
+      EN_AU: "en-AU",
+      EN_GB: "en-GB",
+      EN_US: "en-US",
+      ES_US: "es-US",
+      FR_CA: "fr-CA",
+      FR_FR: "fr-FR",
+      IT_IT: "it-IT",
+      PT_BR: "pt-BR"
     };
-    exports.RespondsTo = {
-      STANDARD_MESSAGES: "STANDARD_MESSAGES"
+    exports.PartialResultsStability = {
+      HIGH: "high",
+      LOW: "low",
+      MEDIUM: "medium"
     };
-    exports.ExpirationCriterion = {
-      CREATED_TIMESTAMP: "CREATED_TIMESTAMP"
+    exports.ContentRedactionOutput = {
+      REDACTED: "redacted",
+      REDACTED_AND_UNREDACTED: "redacted_and_unredacted"
     };
-    exports.EndpointStatus = {
-      ACTIVE: "ACTIVE",
-      INACTIVE: "INACTIVE"
+    exports.VocabularyFilterMethod = {
+      MASK: "mask",
+      REMOVE: "remove",
+      TAG: "tag"
     };
-    exports.EndpointStatusReason = {
-      INVALID_DEVICE_TOKEN: "INVALID_DEVICE_TOKEN",
-      INVALID_PINPOINT_ARN: "INVALID_PINPOINT_ARN"
+    exports.AudioArtifactsConcatenationState = {
+      Enabled: "Enabled"
     };
-    exports.AppInstanceUserEndpointType = {
-      APNS: "APNS",
-      APNS_SANDBOX: "APNS_SANDBOX",
-      GCM: "GCM"
+    exports.ArtifactsConcatenationState = {
+      Disabled: "Disabled",
+      Enabled: "Enabled"
+    };
+    exports.AudioMuxType = {
+      AudioOnly: "AudioOnly",
+      AudioWithActiveSpeakerVideo: "AudioWithActiveSpeakerVideo",
+      AudioWithCompositedVideo: "AudioWithCompositedVideo"
+    };
+    exports.CanvasOrientation = {
+      Landscape: "Landscape",
+      Portrait: "Portrait"
+    };
+    exports.ContentShareLayoutOption = {
+      ActiveSpeakerOnly: "ActiveSpeakerOnly",
+      Horizontal: "Horizontal",
+      PresenterOnly: "PresenterOnly",
+      Vertical: "Vertical"
+    };
+    exports.TileOrder = {
+      JoinSequence: "JoinSequence",
+      SpeakerSequence: "SpeakerSequence"
+    };
+    exports.HorizontalTilePosition = {
+      Bottom: "Bottom",
+      Top: "Top"
+    };
+    exports.PresenterPosition = {
+      BottomLeft: "BottomLeft",
+      BottomRight: "BottomRight",
+      TopLeft: "TopLeft",
+      TopRight: "TopRight"
+    };
+    exports.VerticalTilePosition = {
+      Left: "Left",
+      Right: "Right"
+    };
+    exports.BorderColor = {
+      Black: "Black",
+      Blue: "Blue",
+      Green: "Green",
+      Red: "Red",
+      White: "White",
+      Yellow: "Yellow"
+    };
+    exports.HighlightColor = {
+      Black: "Black",
+      Blue: "Blue",
+      Green: "Green",
+      Red: "Red",
+      White: "White",
+      Yellow: "Yellow"
+    };
+    exports.LayoutOption = {
+      GridView: "GridView"
+    };
+    exports.ResolutionOption = {
+      FHD: "FHD",
+      HD: "HD"
+    };
+    exports.ContentMuxType = {
+      ContentOnly: "ContentOnly"
+    };
+    exports.ArtifactsState = {
+      Disabled: "Disabled",
+      Enabled: "Enabled"
+    };
+    exports.VideoMuxType = {
+      VideoOnly: "VideoOnly"
+    };
+    exports.AudioChannelsOption = {
+      Mono: "Mono",
+      Stereo: "Stereo"
     };
     exports.ErrorCode = {
-      AccessDenied: "AccessDenied",
       BadRequest: "BadRequest",
-      Conflict: "Conflict",
       Forbidden: "Forbidden",
       NotFound: "NotFound",
-      PhoneNumberAssociationsExist: "PhoneNumberAssociationsExist",
-      PreconditionFailed: "PreconditionFailed",
       ResourceLimitExceeded: "ResourceLimitExceeded",
       ServiceFailure: "ServiceFailure",
       ServiceUnavailable: "ServiceUnavailable",
-      Throttled: "Throttled",
-      Throttling: "Throttling",
-      Unauthorized: "Unauthorized",
-      Unprocessable: "Unprocessable",
-      VoiceConnectorGroupAssociationsExist: "VoiceConnectorGroupAssociationsExist"
+      Throttling: "Throttling"
     };
-    var BadRequestException = class _BadRequestException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var BadRequestException = class _BadRequestException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "BadRequestException",
@@ -17979,25 +18049,29 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _BadRequestException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.BadRequestException = BadRequestException;
-    var ConflictException = class _ConflictException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
-      constructor(opts) {
-        super({
-          name: "ConflictException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ConflictException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _ConflictException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
+    exports.ParticipantRole = {
+      AGENT: "AGENT",
+      CUSTOMER: "CUSTOMER"
     };
-    exports.ConflictException = ConflictException;
-    var ForbiddenException = class _ForbiddenException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    exports.MediaPipelineSinkType = {
+      S3Bucket: "S3Bucket"
+    };
+    exports.MediaPipelineSourceType = {
+      ChimeSdkMeeting: "ChimeSdkMeeting"
+    };
+    exports.MediaPipelineStatus = {
+      Failed: "Failed",
+      InProgress: "InProgress",
+      Initializing: "Initializing",
+      Paused: "Paused",
+      Stopped: "Stopped",
+      Stopping: "Stopping"
+    };
+    var ForbiddenException = class _ForbiddenException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "ForbiddenException",
@@ -18009,10 +18083,11 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _ForbiddenException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.ForbiddenException = ForbiddenException;
-    var ResourceLimitExceededException = class _ResourceLimitExceededException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var ResourceLimitExceededException = class _ResourceLimitExceededException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "ResourceLimitExceededException",
@@ -18024,10 +18099,11 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _ResourceLimitExceededException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.ResourceLimitExceededException = ResourceLimitExceededException;
-    var ServiceFailureException = class _ServiceFailureException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var ServiceFailureException = class _ServiceFailureException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "ServiceFailureException",
@@ -18039,10 +18115,11 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _ServiceFailureException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.ServiceFailureException = ServiceFailureException;
-    var ServiceUnavailableException = class _ServiceUnavailableException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var ServiceUnavailableException = class _ServiceUnavailableException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "ServiceUnavailableException",
@@ -18054,10 +18131,11 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _ServiceUnavailableException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.ServiceUnavailableException = ServiceUnavailableException;
-    var ThrottledClientException = class _ThrottledClientException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var ThrottledClientException = class _ThrottledClientException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "ThrottledClientException",
@@ -18069,10 +18147,11 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _ThrottledClientException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.ThrottledClientException = ThrottledClientException;
-    var UnauthorizedClientException = class _UnauthorizedClientException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    var UnauthorizedClientException = class _UnauthorizedClientException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "UnauthorizedClientException",
@@ -18084,10 +18163,28 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _UnauthorizedClientException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.UnauthorizedClientException = UnauthorizedClientException;
-    var NotFoundException = class _NotFoundException extends ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException {
+    exports.ConcatenationSinkType = {
+      S3Bucket: "S3Bucket"
+    };
+    exports.ConcatenationSourceType = {
+      MediaCapturePipeline: "MediaCapturePipeline"
+    };
+    exports.FragmentSelectorType = {
+      ProducerTimestamp: "ProducerTimestamp",
+      ServerTimestamp: "ServerTimestamp"
+    };
+    exports.MediaEncoding = {
+      PCM: "pcm"
+    };
+    exports.RecordingFileFormat = {
+      Opus: "Opus",
+      Wav: "Wav"
+    };
+    var NotFoundException = class _NotFoundException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
       constructor(opts) {
         super({
           name: "NotFoundException",
@@ -18099,272 +18196,389 @@ var require_models_03 = __commonJS({
         Object.setPrototypeOf(this, _NotFoundException.prototype);
         this.Code = opts.Code;
         this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
       }
     };
     exports.NotFoundException = NotFoundException;
-    var AppInstanceFilterSensitiveLog = (obj) => ({
+    exports.MediaInsightsPipelineConfigurationElementType = {
+      AMAZON_TRANSCRIBE_CALL_ANALYTICS_PROCESSOR: "AmazonTranscribeCallAnalyticsProcessor",
+      AMAZON_TRANSCRIBE_PROCESSOR: "AmazonTranscribeProcessor",
+      KINESIS_DATA_STREAM_SINK: "KinesisDataStreamSink",
+      LAMBDA_FUNCTION_SINK: "LambdaFunctionSink",
+      S3_RECORDING_SINK: "S3RecordingSink",
+      SNS_TOPIC_SINK: "SnsTopicSink",
+      SQS_QUEUE_SINK: "SqsQueueSink",
+      VOICE_ANALYTICS_PROCESSOR: "VoiceAnalyticsProcessor"
+    };
+    exports.VoiceAnalyticsConfigurationStatus = {
+      DISABLED: "Disabled",
+      ENABLED: "Enabled"
+    };
+    exports.SentimentType = {
+      NEGATIVE: "NEGATIVE"
+    };
+    exports.RealTimeAlertRuleType = {
+      IssueDetection: "IssueDetection",
+      KeywordMatch: "KeywordMatch",
+      Sentiment: "Sentiment"
+    };
+    exports.LiveConnectorSinkType = {
+      RTMP: "RTMP"
+    };
+    exports.LiveConnectorMuxType = {
+      AudioWithActiveSpeakerVideo: "AudioWithActiveSpeakerVideo",
+      AudioWithCompositedVideo: "AudioWithCompositedVideo"
+    };
+    exports.LiveConnectorSourceType = {
+      ChimeSdkMeeting: "ChimeSdkMeeting"
+    };
+    var ConflictException = class _ConflictException extends ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException {
+      constructor(opts) {
+        super({
+          name: "ConflictException",
+          $fault: "client",
+          ...opts
+        });
+        this.name = "ConflictException";
+        this.$fault = "client";
+        Object.setPrototypeOf(this, _ConflictException.prototype);
+        this.Code = opts.Code;
+        this.Message = opts.Message;
+        this.RequestId = opts.RequestId;
+      }
+    };
+    exports.ConflictException = ConflictException;
+    exports.MediaPipelineStatusUpdate = {
+      Pause: "Pause",
+      Resume: "Resume"
+    };
+    var SelectedVideoStreamsFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
+      ...obj.ExternalUserIds && { ExternalUserIds: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.AppInstanceFilterSensitiveLog = AppInstanceFilterSensitiveLog;
-    var IdentityFilterSensitiveLog = (obj) => ({
+    exports.SelectedVideoStreamsFilterSensitiveLog = SelectedVideoStreamsFilterSensitiveLog;
+    var SourceConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.IdentityFilterSensitiveLog = IdentityFilterSensitiveLog;
-    var AppInstanceAdminFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Admin && { Admin: (0, exports.IdentityFilterSensitiveLog)(obj.Admin) }
-    });
-    exports.AppInstanceAdminFilterSensitiveLog = AppInstanceAdminFilterSensitiveLog;
-    var AppInstanceAdminSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Admin && { Admin: (0, exports.IdentityFilterSensitiveLog)(obj.Admin) }
-    });
-    exports.AppInstanceAdminSummaryFilterSensitiveLog = AppInstanceAdminSummaryFilterSensitiveLog;
-    var AppInstanceBotFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceBotFilterSensitiveLog = AppInstanceBotFilterSensitiveLog;
-    var AppInstanceBotSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceBotSummaryFilterSensitiveLog = AppInstanceBotSummaryFilterSensitiveLog;
-    var AppInstanceSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceSummaryFilterSensitiveLog = AppInstanceSummaryFilterSensitiveLog;
-    var AppInstanceUserFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceUserFilterSensitiveLog = AppInstanceUserFilterSensitiveLog;
-    var EndpointAttributesFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.DeviceToken && { DeviceToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.VoipDeviceToken && { VoipDeviceToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.EndpointAttributesFilterSensitiveLog = EndpointAttributesFilterSensitiveLog;
-    var AppInstanceUserEndpointFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointAttributes && { EndpointAttributes: (0, exports.EndpointAttributesFilterSensitiveLog)(obj.EndpointAttributes) }
-    });
-    exports.AppInstanceUserEndpointFilterSensitiveLog = AppInstanceUserEndpointFilterSensitiveLog;
-    var AppInstanceUserEndpointSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceUserEndpointSummaryFilterSensitiveLog = AppInstanceUserEndpointSummaryFilterSensitiveLog;
-    var AppInstanceUserSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.AppInstanceUserSummaryFilterSensitiveLog = AppInstanceUserSummaryFilterSensitiveLog;
-    var TagFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Key && { Key: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
-    var CreateAppInstanceRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
-    });
-    exports.CreateAppInstanceRequestFilterSensitiveLog = CreateAppInstanceRequestFilterSensitiveLog;
-    var CreateAppInstanceAdminResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceAdmin && { AppInstanceAdmin: (0, exports.IdentityFilterSensitiveLog)(obj.AppInstanceAdmin) }
-    });
-    exports.CreateAppInstanceAdminResponseFilterSensitiveLog = CreateAppInstanceAdminResponseFilterSensitiveLog;
-    var CreateAppInstanceBotRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
-    });
-    exports.CreateAppInstanceBotRequestFilterSensitiveLog = CreateAppInstanceBotRequestFilterSensitiveLog;
-    var CreateAppInstanceUserRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserId && { AppInstanceUserId: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
-    });
-    exports.CreateAppInstanceUserRequestFilterSensitiveLog = CreateAppInstanceUserRequestFilterSensitiveLog;
-    var DescribeAppInstanceResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstance && { AppInstance: (0, exports.AppInstanceFilterSensitiveLog)(obj.AppInstance) }
-    });
-    exports.DescribeAppInstanceResponseFilterSensitiveLog = DescribeAppInstanceResponseFilterSensitiveLog;
-    var DescribeAppInstanceAdminResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceAdmin && { AppInstanceAdmin: (0, exports.AppInstanceAdminFilterSensitiveLog)(obj.AppInstanceAdmin) }
-    });
-    exports.DescribeAppInstanceAdminResponseFilterSensitiveLog = DescribeAppInstanceAdminResponseFilterSensitiveLog;
-    var DescribeAppInstanceBotResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceBot && { AppInstanceBot: (0, exports.AppInstanceBotFilterSensitiveLog)(obj.AppInstanceBot) }
-    });
-    exports.DescribeAppInstanceBotResponseFilterSensitiveLog = DescribeAppInstanceBotResponseFilterSensitiveLog;
-    var DescribeAppInstanceUserResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUser && { AppInstanceUser: (0, exports.AppInstanceUserFilterSensitiveLog)(obj.AppInstanceUser) }
-    });
-    exports.DescribeAppInstanceUserResponseFilterSensitiveLog = DescribeAppInstanceUserResponseFilterSensitiveLog;
-    var DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserEndpoint && {
-        AppInstanceUserEndpoint: (0, exports.AppInstanceUserEndpointFilterSensitiveLog)(obj.AppInstanceUserEndpoint)
+      ...obj.SelectedVideoStreams && {
+        SelectedVideoStreams: (0, exports.SelectedVideoStreamsFilterSensitiveLog)(obj.SelectedVideoStreams)
       }
     });
-    exports.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog = DescribeAppInstanceUserEndpointResponseFilterSensitiveLog;
-    var ListAppInstanceAdminsRequestFilterSensitiveLog = (obj) => ({
+    exports.SourceConfigurationFilterSensitiveLog = SourceConfigurationFilterSensitiveLog;
+    var ChimeSdkMeetingConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
+      ...obj.SourceConfiguration && {
+        SourceConfiguration: (0, exports.SourceConfigurationFilterSensitiveLog)(obj.SourceConfiguration)
+      }
     });
-    exports.ListAppInstanceAdminsRequestFilterSensitiveLog = ListAppInstanceAdminsRequestFilterSensitiveLog;
-    var ListAppInstanceAdminsResponseFilterSensitiveLog = (obj) => ({
+    exports.ChimeSdkMeetingConfigurationFilterSensitiveLog = ChimeSdkMeetingConfigurationFilterSensitiveLog;
+    var CreateMediaCapturePipelineRequestFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceAdmins && {
-        AppInstanceAdmins: obj.AppInstanceAdmins.map((item) => (0, exports.AppInstanceAdminSummaryFilterSensitiveLog)(item))
+      ...obj.SourceArn && { SourceArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.SinkArn && { SinkArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING },
+      ...obj.ChimeSdkMeetingConfiguration && {
+        ChimeSdkMeetingConfiguration: (0, exports.ChimeSdkMeetingConfigurationFilterSensitiveLog)(obj.ChimeSdkMeetingConfiguration)
+      }
+    });
+    exports.CreateMediaCapturePipelineRequestFilterSensitiveLog = CreateMediaCapturePipelineRequestFilterSensitiveLog;
+    var MediaCapturePipelineFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.SourceArn && { SourceArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.SinkArn && { SinkArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.ChimeSdkMeetingConfiguration && {
+        ChimeSdkMeetingConfiguration: (0, exports.ChimeSdkMeetingConfigurationFilterSensitiveLog)(obj.ChimeSdkMeetingConfiguration)
+      }
+    });
+    exports.MediaCapturePipelineFilterSensitiveLog = MediaCapturePipelineFilterSensitiveLog;
+    var CreateMediaCapturePipelineResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaCapturePipeline && {
+        MediaCapturePipeline: (0, exports.MediaCapturePipelineFilterSensitiveLog)(obj.MediaCapturePipeline)
+      }
+    });
+    exports.CreateMediaCapturePipelineResponseFilterSensitiveLog = CreateMediaCapturePipelineResponseFilterSensitiveLog;
+    var S3BucketSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Destination && { Destination: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.S3BucketSinkConfigurationFilterSensitiveLog = S3BucketSinkConfigurationFilterSensitiveLog;
+    var ConcatenationSinkFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.S3BucketSinkConfiguration && {
+        S3BucketSinkConfiguration: (0, exports.S3BucketSinkConfigurationFilterSensitiveLog)(obj.S3BucketSinkConfiguration)
+      }
+    });
+    exports.ConcatenationSinkFilterSensitiveLog = ConcatenationSinkFilterSensitiveLog;
+    var MediaCapturePipelineSourceConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaPipelineArn && { MediaPipelineArn: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.MediaCapturePipelineSourceConfigurationFilterSensitiveLog = MediaCapturePipelineSourceConfigurationFilterSensitiveLog;
+    var ConcatenationSourceFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaCapturePipelineSourceConfiguration && {
+        MediaCapturePipelineSourceConfiguration: (0, exports.MediaCapturePipelineSourceConfigurationFilterSensitiveLog)(obj.MediaCapturePipelineSourceConfiguration)
+      }
+    });
+    exports.ConcatenationSourceFilterSensitiveLog = ConcatenationSourceFilterSensitiveLog;
+    var CreateMediaConcatenationPipelineRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Sources && { Sources: obj.Sources.map((item) => (0, exports.ConcatenationSourceFilterSensitiveLog)(item)) },
+      ...obj.Sinks && { Sinks: obj.Sinks.map((item) => (0, exports.ConcatenationSinkFilterSensitiveLog)(item)) },
+      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.CreateMediaConcatenationPipelineRequestFilterSensitiveLog = CreateMediaConcatenationPipelineRequestFilterSensitiveLog;
+    var MediaConcatenationPipelineFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Sources && { Sources: obj.Sources.map((item) => (0, exports.ConcatenationSourceFilterSensitiveLog)(item)) },
+      ...obj.Sinks && { Sinks: obj.Sinks.map((item) => (0, exports.ConcatenationSinkFilterSensitiveLog)(item)) }
+    });
+    exports.MediaConcatenationPipelineFilterSensitiveLog = MediaConcatenationPipelineFilterSensitiveLog;
+    var CreateMediaConcatenationPipelineResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaConcatenationPipeline && {
+        MediaConcatenationPipeline: (0, exports.MediaConcatenationPipelineFilterSensitiveLog)(obj.MediaConcatenationPipeline)
+      }
+    });
+    exports.CreateMediaConcatenationPipelineResponseFilterSensitiveLog = CreateMediaConcatenationPipelineResponseFilterSensitiveLog;
+    var S3RecordingSinkRuntimeConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Destination && { Destination: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.S3RecordingSinkRuntimeConfigurationFilterSensitiveLog = S3RecordingSinkRuntimeConfigurationFilterSensitiveLog;
+    var CreateMediaInsightsPipelineRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaInsightsPipelineConfigurationArn && { MediaInsightsPipelineConfigurationArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.MediaInsightsRuntimeMetadata && { MediaInsightsRuntimeMetadata: smithy_client_1.SENSITIVE_STRING },
+      ...obj.S3RecordingSinkRuntimeConfiguration && {
+        S3RecordingSinkRuntimeConfiguration: (0, exports.S3RecordingSinkRuntimeConfigurationFilterSensitiveLog)(obj.S3RecordingSinkRuntimeConfiguration)
       },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
+      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.ListAppInstanceAdminsResponseFilterSensitiveLog = ListAppInstanceAdminsResponseFilterSensitiveLog;
-    var ListAppInstanceBotsRequestFilterSensitiveLog = (obj) => ({
+    exports.CreateMediaInsightsPipelineRequestFilterSensitiveLog = CreateMediaInsightsPipelineRequestFilterSensitiveLog;
+    var MediaInsightsPipelineFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
+      ...obj.MediaPipelineArn && { MediaPipelineArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.MediaInsightsPipelineConfigurationArn && { MediaInsightsPipelineConfigurationArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.MediaInsightsRuntimeMetadata && { MediaInsightsRuntimeMetadata: smithy_client_1.SENSITIVE_STRING },
+      ...obj.S3RecordingSinkRuntimeConfiguration && {
+        S3RecordingSinkRuntimeConfiguration: (0, exports.S3RecordingSinkRuntimeConfigurationFilterSensitiveLog)(obj.S3RecordingSinkRuntimeConfiguration)
+      }
     });
-    exports.ListAppInstanceBotsRequestFilterSensitiveLog = ListAppInstanceBotsRequestFilterSensitiveLog;
-    var ListAppInstanceBotsResponseFilterSensitiveLog = (obj) => ({
+    exports.MediaInsightsPipelineFilterSensitiveLog = MediaInsightsPipelineFilterSensitiveLog;
+    var CreateMediaInsightsPipelineResponseFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceBots && {
-        AppInstanceBots: obj.AppInstanceBots.map((item) => (0, exports.AppInstanceBotSummaryFilterSensitiveLog)(item))
+      ...obj.MediaInsightsPipeline && {
+        MediaInsightsPipeline: (0, exports.MediaInsightsPipelineFilterSensitiveLog)(obj.MediaInsightsPipeline)
+      }
+    });
+    exports.CreateMediaInsightsPipelineResponseFilterSensitiveLog = CreateMediaInsightsPipelineResponseFilterSensitiveLog;
+    var KinesisDataStreamSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.InsightsTarget && { InsightsTarget: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.KinesisDataStreamSinkConfigurationFilterSensitiveLog = KinesisDataStreamSinkConfigurationFilterSensitiveLog;
+    var LambdaFunctionSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.InsightsTarget && { InsightsTarget: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.LambdaFunctionSinkConfigurationFilterSensitiveLog = LambdaFunctionSinkConfigurationFilterSensitiveLog;
+    var S3RecordingSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Destination && { Destination: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.S3RecordingSinkConfigurationFilterSensitiveLog = S3RecordingSinkConfigurationFilterSensitiveLog;
+    var SnsTopicSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.InsightsTarget && { InsightsTarget: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.SnsTopicSinkConfigurationFilterSensitiveLog = SnsTopicSinkConfigurationFilterSensitiveLog;
+    var SqsQueueSinkConfigurationFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.InsightsTarget && { InsightsTarget: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.SqsQueueSinkConfigurationFilterSensitiveLog = SqsQueueSinkConfigurationFilterSensitiveLog;
+    var MediaInsightsPipelineConfigurationElementFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.KinesisDataStreamSinkConfiguration && {
+        KinesisDataStreamSinkConfiguration: (0, exports.KinesisDataStreamSinkConfigurationFilterSensitiveLog)(obj.KinesisDataStreamSinkConfiguration)
       },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstanceBotsResponseFilterSensitiveLog = ListAppInstanceBotsResponseFilterSensitiveLog;
-    var ListAppInstancesRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstancesRequestFilterSensitiveLog = ListAppInstancesRequestFilterSensitiveLog;
-    var ListAppInstancesResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstances && { AppInstances: obj.AppInstances.map((item) => (0, exports.AppInstanceSummaryFilterSensitiveLog)(item)) },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstancesResponseFilterSensitiveLog = ListAppInstancesResponseFilterSensitiveLog;
-    var ListAppInstanceUserEndpointsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstanceUserEndpointsRequestFilterSensitiveLog = ListAppInstanceUserEndpointsRequestFilterSensitiveLog;
-    var ListAppInstanceUserEndpointsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUserEndpoints && {
-        AppInstanceUserEndpoints: obj.AppInstanceUserEndpoints.map((item) => (0, exports.AppInstanceUserEndpointSummaryFilterSensitiveLog)(item))
+      ...obj.S3RecordingSinkConfiguration && {
+        S3RecordingSinkConfiguration: (0, exports.S3RecordingSinkConfigurationFilterSensitiveLog)(obj.S3RecordingSinkConfiguration)
       },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstanceUserEndpointsResponseFilterSensitiveLog = ListAppInstanceUserEndpointsResponseFilterSensitiveLog;
-    var ListAppInstanceUsersRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListAppInstanceUsersRequestFilterSensitiveLog = ListAppInstanceUsersRequestFilterSensitiveLog;
-    var ListAppInstanceUsersResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.AppInstanceUsers && {
-        AppInstanceUsers: obj.AppInstanceUsers.map((item) => (0, exports.AppInstanceUserSummaryFilterSensitiveLog)(item))
+      ...obj.LambdaFunctionSinkConfiguration && {
+        LambdaFunctionSinkConfiguration: (0, exports.LambdaFunctionSinkConfigurationFilterSensitiveLog)(obj.LambdaFunctionSinkConfiguration)
       },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
+      ...obj.SqsQueueSinkConfiguration && {
+        SqsQueueSinkConfiguration: (0, exports.SqsQueueSinkConfigurationFilterSensitiveLog)(obj.SqsQueueSinkConfiguration)
+      },
+      ...obj.SnsTopicSinkConfiguration && {
+        SnsTopicSinkConfiguration: (0, exports.SnsTopicSinkConfigurationFilterSensitiveLog)(obj.SnsTopicSinkConfiguration)
+      }
     });
-    exports.ListAppInstanceUsersResponseFilterSensitiveLog = ListAppInstanceUsersResponseFilterSensitiveLog;
-    var ListTagsForResourceResponseFilterSensitiveLog = (obj) => ({
+    exports.MediaInsightsPipelineConfigurationElementFilterSensitiveLog = MediaInsightsPipelineConfigurationElementFilterSensitiveLog;
+    var CreateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
+      ...obj.ResourceAccessRoleArn && { ResourceAccessRoleArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Elements && {
+        Elements: obj.Elements.map((item) => (0, exports.MediaInsightsPipelineConfigurationElementFilterSensitiveLog)(item))
+      },
+      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.ListTagsForResourceResponseFilterSensitiveLog = ListTagsForResourceResponseFilterSensitiveLog;
-    var RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = (obj) => ({
+    exports.CreateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = CreateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog;
+    var MediaInsightsPipelineConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.AppInstanceUserArn && { AppInstanceUserArn: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.EndpointAttributes && { EndpointAttributes: (0, exports.EndpointAttributesFilterSensitiveLog)(obj.EndpointAttributes) }
+      ...obj.MediaInsightsPipelineConfigurationArn && { MediaInsightsPipelineConfigurationArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.ResourceAccessRoleArn && { ResourceAccessRoleArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Elements && {
+        Elements: obj.Elements.map((item) => (0, exports.MediaInsightsPipelineConfigurationElementFilterSensitiveLog)(item))
+      }
     });
-    exports.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog = RegisterAppInstanceUserEndpointRequestFilterSensitiveLog;
-    var TagResourceRequestFilterSensitiveLog = (obj) => ({
+    exports.MediaInsightsPipelineConfigurationFilterSensitiveLog = MediaInsightsPipelineConfigurationFilterSensitiveLog;
+    var CreateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
+      ...obj.MediaInsightsPipelineConfiguration && {
+        MediaInsightsPipelineConfiguration: (0, exports.MediaInsightsPipelineConfigurationFilterSensitiveLog)(obj.MediaInsightsPipelineConfiguration)
+      }
     });
-    exports.TagResourceRequestFilterSensitiveLog = TagResourceRequestFilterSensitiveLog;
-    var UntagResourceRequestFilterSensitiveLog = (obj) => ({
+    exports.CreateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = CreateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog;
+    var LiveConnectorRTMPConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.TagKeys && { TagKeys: smithy_client_1.SENSITIVE_STRING }
+      ...obj.Url && { Url: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.UntagResourceRequestFilterSensitiveLog = UntagResourceRequestFilterSensitiveLog;
-    var UpdateAppInstanceRequestFilterSensitiveLog = (obj) => ({
+    exports.LiveConnectorRTMPConfigurationFilterSensitiveLog = LiveConnectorRTMPConfigurationFilterSensitiveLog;
+    var LiveConnectorSinkConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
+      ...obj.RTMPConfiguration && {
+        RTMPConfiguration: (0, exports.LiveConnectorRTMPConfigurationFilterSensitiveLog)(obj.RTMPConfiguration)
+      }
     });
-    exports.UpdateAppInstanceRequestFilterSensitiveLog = UpdateAppInstanceRequestFilterSensitiveLog;
-    var UpdateAppInstanceBotRequestFilterSensitiveLog = (obj) => ({
+    exports.LiveConnectorSinkConfigurationFilterSensitiveLog = LiveConnectorSinkConfigurationFilterSensitiveLog;
+    var ChimeSdkMeetingLiveConnectorConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
+      ...obj.Arn && { Arn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.SourceConfiguration && {
+        SourceConfiguration: (0, exports.SourceConfigurationFilterSensitiveLog)(obj.SourceConfiguration)
+      }
     });
-    exports.UpdateAppInstanceBotRequestFilterSensitiveLog = UpdateAppInstanceBotRequestFilterSensitiveLog;
-    var UpdateAppInstanceUserRequestFilterSensitiveLog = (obj) => ({
+    exports.ChimeSdkMeetingLiveConnectorConfigurationFilterSensitiveLog = ChimeSdkMeetingLiveConnectorConfigurationFilterSensitiveLog;
+    var LiveConnectorSourceConfigurationFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
+      ...obj.ChimeSdkMeetingLiveConnectorConfiguration && {
+        ChimeSdkMeetingLiveConnectorConfiguration: (0, exports.ChimeSdkMeetingLiveConnectorConfigurationFilterSensitiveLog)(obj.ChimeSdkMeetingLiveConnectorConfiguration)
+      }
     });
-    exports.UpdateAppInstanceUserRequestFilterSensitiveLog = UpdateAppInstanceUserRequestFilterSensitiveLog;
-    var UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = (obj) => ({
+    exports.LiveConnectorSourceConfigurationFilterSensitiveLog = LiveConnectorSourceConfigurationFilterSensitiveLog;
+    var CreateMediaLiveConnectorPipelineRequestFilterSensitiveLog = (obj) => ({
       ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
+      ...obj.Sources && { Sources: obj.Sources.map((item) => (0, exports.LiveConnectorSourceConfigurationFilterSensitiveLog)(item)) },
+      ...obj.Sinks && { Sinks: obj.Sinks.map((item) => (0, exports.LiveConnectorSinkConfigurationFilterSensitiveLog)(item)) },
+      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING }
     });
-    exports.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog = UpdateAppInstanceUserEndpointRequestFilterSensitiveLog;
+    exports.CreateMediaLiveConnectorPipelineRequestFilterSensitiveLog = CreateMediaLiveConnectorPipelineRequestFilterSensitiveLog;
+    var MediaLiveConnectorPipelineFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.Sources && { Sources: obj.Sources.map((item) => (0, exports.LiveConnectorSourceConfigurationFilterSensitiveLog)(item)) },
+      ...obj.Sinks && { Sinks: obj.Sinks.map((item) => (0, exports.LiveConnectorSinkConfigurationFilterSensitiveLog)(item)) }
+    });
+    exports.MediaLiveConnectorPipelineFilterSensitiveLog = MediaLiveConnectorPipelineFilterSensitiveLog;
+    var CreateMediaLiveConnectorPipelineResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaLiveConnectorPipeline && {
+        MediaLiveConnectorPipeline: (0, exports.MediaLiveConnectorPipelineFilterSensitiveLog)(obj.MediaLiveConnectorPipeline)
+      }
+    });
+    exports.CreateMediaLiveConnectorPipelineResponseFilterSensitiveLog = CreateMediaLiveConnectorPipelineResponseFilterSensitiveLog;
+    var GetMediaCapturePipelineResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaCapturePipeline && {
+        MediaCapturePipeline: (0, exports.MediaCapturePipelineFilterSensitiveLog)(obj.MediaCapturePipeline)
+      }
+    });
+    exports.GetMediaCapturePipelineResponseFilterSensitiveLog = GetMediaCapturePipelineResponseFilterSensitiveLog;
+    var GetMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaInsightsPipelineConfiguration && {
+        MediaInsightsPipelineConfiguration: (0, exports.MediaInsightsPipelineConfigurationFilterSensitiveLog)(obj.MediaInsightsPipelineConfiguration)
+      }
+    });
+    exports.GetMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = GetMediaInsightsPipelineConfigurationResponseFilterSensitiveLog;
+    var MediaPipelineFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaCapturePipeline && {
+        MediaCapturePipeline: (0, exports.MediaCapturePipelineFilterSensitiveLog)(obj.MediaCapturePipeline)
+      },
+      ...obj.MediaLiveConnectorPipeline && {
+        MediaLiveConnectorPipeline: (0, exports.MediaLiveConnectorPipelineFilterSensitiveLog)(obj.MediaLiveConnectorPipeline)
+      },
+      ...obj.MediaConcatenationPipeline && {
+        MediaConcatenationPipeline: (0, exports.MediaConcatenationPipelineFilterSensitiveLog)(obj.MediaConcatenationPipeline)
+      },
+      ...obj.MediaInsightsPipeline && {
+        MediaInsightsPipeline: (0, exports.MediaInsightsPipelineFilterSensitiveLog)(obj.MediaInsightsPipeline)
+      }
+    });
+    exports.MediaPipelineFilterSensitiveLog = MediaPipelineFilterSensitiveLog;
+    var GetMediaPipelineResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaPipeline && { MediaPipeline: (0, exports.MediaPipelineFilterSensitiveLog)(obj.MediaPipeline) }
+    });
+    exports.GetMediaPipelineResponseFilterSensitiveLog = GetMediaPipelineResponseFilterSensitiveLog;
+    var MediaInsightsPipelineConfigurationSummaryFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaInsightsPipelineConfigurationArn && { MediaInsightsPipelineConfigurationArn: smithy_client_1.SENSITIVE_STRING }
+    });
+    exports.MediaInsightsPipelineConfigurationSummaryFilterSensitiveLog = MediaInsightsPipelineConfigurationSummaryFilterSensitiveLog;
+    var ListMediaInsightsPipelineConfigurationsResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaInsightsPipelineConfigurations && {
+        MediaInsightsPipelineConfigurations: obj.MediaInsightsPipelineConfigurations.map((item) => (0, exports.MediaInsightsPipelineConfigurationSummaryFilterSensitiveLog)(item))
+      }
+    });
+    exports.ListMediaInsightsPipelineConfigurationsResponseFilterSensitiveLog = ListMediaInsightsPipelineConfigurationsResponseFilterSensitiveLog;
+    var UpdateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.ResourceAccessRoleArn && { ResourceAccessRoleArn: smithy_client_1.SENSITIVE_STRING },
+      ...obj.Elements && {
+        Elements: obj.Elements.map((item) => (0, exports.MediaInsightsPipelineConfigurationElementFilterSensitiveLog)(item))
+      }
+    });
+    exports.UpdateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog = UpdateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog;
+    var UpdateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = (obj) => ({
+      ...obj,
+      ...obj.MediaInsightsPipelineConfiguration && {
+        MediaInsightsPipelineConfiguration: (0, exports.MediaInsightsPipelineConfigurationFilterSensitiveLog)(obj.MediaInsightsPipelineConfiguration)
+      }
+    });
+    exports.UpdateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog = UpdateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/protocols/Aws_restJson1.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/protocols/Aws_restJson1.js
 var require_Aws_restJson12 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/protocols/Aws_restJson1.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/protocols/Aws_restJson1.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.de_ListAppInstanceUsersCommand = exports.de_ListAppInstanceUserEndpointsCommand = exports.de_ListAppInstancesCommand = exports.de_ListAppInstanceBotsCommand = exports.de_ListAppInstanceAdminsCommand = exports.de_GetAppInstanceRetentionSettingsCommand = exports.de_DescribeAppInstanceUserEndpointCommand = exports.de_DescribeAppInstanceUserCommand = exports.de_DescribeAppInstanceBotCommand = exports.de_DescribeAppInstanceAdminCommand = exports.de_DescribeAppInstanceCommand = exports.de_DeregisterAppInstanceUserEndpointCommand = exports.de_DeleteAppInstanceUserCommand = exports.de_DeleteAppInstanceBotCommand = exports.de_DeleteAppInstanceAdminCommand = exports.de_DeleteAppInstanceCommand = exports.de_CreateAppInstanceUserCommand = exports.de_CreateAppInstanceBotCommand = exports.de_CreateAppInstanceAdminCommand = exports.de_CreateAppInstanceCommand = exports.se_UpdateAppInstanceUserEndpointCommand = exports.se_UpdateAppInstanceUserCommand = exports.se_UpdateAppInstanceBotCommand = exports.se_UpdateAppInstanceCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_RegisterAppInstanceUserEndpointCommand = exports.se_PutAppInstanceUserExpirationSettingsCommand = exports.se_PutAppInstanceRetentionSettingsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListAppInstanceUsersCommand = exports.se_ListAppInstanceUserEndpointsCommand = exports.se_ListAppInstancesCommand = exports.se_ListAppInstanceBotsCommand = exports.se_ListAppInstanceAdminsCommand = exports.se_GetAppInstanceRetentionSettingsCommand = exports.se_DescribeAppInstanceUserEndpointCommand = exports.se_DescribeAppInstanceUserCommand = exports.se_DescribeAppInstanceBotCommand = exports.se_DescribeAppInstanceAdminCommand = exports.se_DescribeAppInstanceCommand = exports.se_DeregisterAppInstanceUserEndpointCommand = exports.se_DeleteAppInstanceUserCommand = exports.se_DeleteAppInstanceBotCommand = exports.se_DeleteAppInstanceAdminCommand = exports.se_DeleteAppInstanceCommand = exports.se_CreateAppInstanceUserCommand = exports.se_CreateAppInstanceBotCommand = exports.se_CreateAppInstanceAdminCommand = exports.se_CreateAppInstanceCommand = void 0;
-    exports.de_UpdateAppInstanceUserEndpointCommand = exports.de_UpdateAppInstanceUserCommand = exports.de_UpdateAppInstanceBotCommand = exports.de_UpdateAppInstanceCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_RegisterAppInstanceUserEndpointCommand = exports.de_PutAppInstanceUserExpirationSettingsCommand = exports.de_PutAppInstanceRetentionSettingsCommand = exports.de_ListTagsForResourceCommand = void 0;
+    exports.de_UpdateMediaInsightsPipelineStatusCommand = exports.de_UpdateMediaInsightsPipelineConfigurationCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_ListTagsForResourceCommand = exports.de_ListMediaPipelinesCommand = exports.de_ListMediaInsightsPipelineConfigurationsCommand = exports.de_ListMediaCapturePipelinesCommand = exports.de_GetMediaPipelineCommand = exports.de_GetMediaInsightsPipelineConfigurationCommand = exports.de_GetMediaCapturePipelineCommand = exports.de_DeleteMediaPipelineCommand = exports.de_DeleteMediaInsightsPipelineConfigurationCommand = exports.de_DeleteMediaCapturePipelineCommand = exports.de_CreateMediaLiveConnectorPipelineCommand = exports.de_CreateMediaInsightsPipelineConfigurationCommand = exports.de_CreateMediaInsightsPipelineCommand = exports.de_CreateMediaConcatenationPipelineCommand = exports.de_CreateMediaCapturePipelineCommand = exports.se_UpdateMediaInsightsPipelineStatusCommand = exports.se_UpdateMediaInsightsPipelineConfigurationCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_ListTagsForResourceCommand = exports.se_ListMediaPipelinesCommand = exports.se_ListMediaInsightsPipelineConfigurationsCommand = exports.se_ListMediaCapturePipelinesCommand = exports.se_GetMediaPipelineCommand = exports.se_GetMediaInsightsPipelineConfigurationCommand = exports.se_GetMediaCapturePipelineCommand = exports.se_DeleteMediaPipelineCommand = exports.se_DeleteMediaInsightsPipelineConfigurationCommand = exports.se_DeleteMediaCapturePipelineCommand = exports.se_CreateMediaLiveConnectorPipelineCommand = exports.se_CreateMediaInsightsPipelineConfigurationCommand = exports.se_CreateMediaInsightsPipelineCommand = exports.se_CreateMediaConcatenationPipelineCommand = exports.se_CreateMediaCapturePipelineCommand = void 0;
     var protocol_http_1 = require_dist_cjs2();
     var smithy_client_1 = require_dist_cjs35();
     var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
-    var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
+    var ChimeSDKMediaPipelinesServiceException_1 = require_ChimeSDKMediaPipelinesServiceException();
     var models_0_1 = require_models_03();
-    var se_CreateAppInstanceCommand = async (input, context) => {
+    var se_CreateMediaCapturePipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
         "content-type": "application/json"
       };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances`;
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-capture-pipelines`;
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ChimeSdkMeetingConfiguration: (_) => (0, smithy_client_1._json)(_),
         ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        Metadata: [],
-        Name: [],
+        SinkArn: [],
+        SinkType: [],
+        SourceArn: [],
+        SourceType: [],
         Tags: (_) => (0, smithy_client_1._json)(_)
       }));
       return new protocol_http_1.HttpRequest({
@@ -18377,42 +18591,18 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_CreateAppInstanceCommand = se_CreateAppInstanceCommand;
-    var se_CreateAppInstanceAdminCommand = async (input, context) => {
+    exports.se_CreateMediaCapturePipelineCommand = se_CreateMediaCapturePipelineCommand;
+    var se_CreateMediaConcatenationPipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
         "content-type": "application/json"
       };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/admins`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-concatenation-pipelines`;
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceAdminArn: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateAppInstanceAdminCommand = se_CreateAppInstanceAdminCommand;
-    var se_CreateAppInstanceBotCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-bots`;
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceArn: [],
         ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        Configuration: (_) => (0, smithy_client_1._json)(_),
-        Metadata: [],
-        Name: [],
+        Sinks: (_) => (0, smithy_client_1._json)(_),
+        Sources: (_) => (0, smithy_client_1._json)(_),
         Tags: (_) => (0, smithy_client_1._json)(_)
       }));
       return new protocol_http_1.HttpRequest({
@@ -18425,21 +18615,21 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_CreateAppInstanceBotCommand = se_CreateAppInstanceBotCommand;
-    var se_CreateAppInstanceUserCommand = async (input, context) => {
+    exports.se_CreateMediaConcatenationPipelineCommand = se_CreateMediaConcatenationPipelineCommand;
+    var se_CreateMediaInsightsPipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
         "content-type": "application/json"
       };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users`;
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipelines`;
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceArn: [],
-        AppInstanceUserId: [],
         ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        ExpirationSettings: (_) => (0, smithy_client_1._json)(_),
-        Metadata: [],
-        Name: [],
+        KinesisVideoStreamRecordingSourceRuntimeConfiguration: (_) => se_KinesisVideoStreamRecordingSourceRuntimeConfiguration(_, context),
+        KinesisVideoStreamSourceRuntimeConfiguration: (_) => (0, smithy_client_1._json)(_),
+        MediaInsightsPipelineConfigurationArn: [],
+        MediaInsightsRuntimeMetadata: (_) => (0, smithy_client_1._json)(_),
+        S3RecordingSinkRuntimeConfiguration: (_) => (0, smithy_client_1._json)(_),
         Tags: (_) => (0, smithy_client_1._json)(_)
       }));
       return new protocol_http_1.HttpRequest({
@@ -18452,12 +18642,62 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_CreateAppInstanceUserCommand = se_CreateAppInstanceUserCommand;
-    var se_DeleteAppInstanceCommand = async (input, context) => {
+    exports.se_CreateMediaInsightsPipelineCommand = se_CreateMediaInsightsPipelineCommand;
+    var se_CreateMediaInsightsPipelineConfigurationCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-configurations`;
+      let body;
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        Elements: (_) => (0, smithy_client_1._json)(_),
+        MediaInsightsPipelineConfigurationName: [],
+        RealTimeAlertConfiguration: (_) => (0, smithy_client_1._json)(_),
+        ResourceAccessRoleArn: [],
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.se_CreateMediaInsightsPipelineConfigurationCommand = se_CreateMediaInsightsPipelineConfigurationCommand;
+    var se_CreateMediaLiveConnectorPipelineCommand = async (input, context) => {
+      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
+      const headers = {
+        "content-type": "application/json"
+      };
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-live-connector-pipelines`;
+      let body;
+      body = JSON.stringify((0, smithy_client_1.take)(input, {
+        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
+        Sinks: (_) => (0, smithy_client_1._json)(_),
+        Sources: (_) => (0, smithy_client_1._json)(_),
+        Tags: (_) => (0, smithy_client_1._json)(_)
+      }));
+      return new protocol_http_1.HttpRequest({
+        protocol,
+        hostname,
+        port,
+        method: "POST",
+        headers,
+        path: resolvedPath,
+        body
+      });
+    };
+    exports.se_CreateMediaLiveConnectorPipelineCommand = se_CreateMediaLiveConnectorPipelineCommand;
+    var se_DeleteMediaCapturePipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-capture-pipelines/{MediaPipelineId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MediaPipelineId", () => input.MediaPipelineId, "{MediaPipelineId}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18469,13 +18709,12 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DeleteAppInstanceCommand = se_DeleteAppInstanceCommand;
-    var se_DeleteAppInstanceAdminCommand = async (input, context) => {
+    exports.se_DeleteMediaCapturePipelineCommand = se_DeleteMediaCapturePipelineCommand;
+    var se_DeleteMediaInsightsPipelineConfigurationCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/admins/{AppInstanceAdminArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceAdminArn", () => input.AppInstanceAdminArn, "{AppInstanceAdminArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-configurations/{Identifier}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "Identifier", () => input.Identifier, "{Identifier}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18487,12 +18726,12 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DeleteAppInstanceAdminCommand = se_DeleteAppInstanceAdminCommand;
-    var se_DeleteAppInstanceBotCommand = async (input, context) => {
+    exports.se_DeleteMediaInsightsPipelineConfigurationCommand = se_DeleteMediaInsightsPipelineConfigurationCommand;
+    var se_DeleteMediaPipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-bots/{AppInstanceBotArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceBotArn", () => input.AppInstanceBotArn, "{AppInstanceBotArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-pipelines/{MediaPipelineId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MediaPipelineId", () => input.MediaPipelineId, "{MediaPipelineId}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18504,47 +18743,12 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DeleteAppInstanceBotCommand = se_DeleteAppInstanceBotCommand;
-    var se_DeleteAppInstanceUserCommand = async (input, context) => {
+    exports.se_DeleteMediaPipelineCommand = se_DeleteMediaPipelineCommand;
+    var se_GetMediaCapturePipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteAppInstanceUserCommand = se_DeleteAppInstanceUserCommand;
-    var se_DeregisterAppInstanceUserEndpointCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "EndpointId", () => input.EndpointId, "{EndpointId}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeregisterAppInstanceUserEndpointCommand = se_DeregisterAppInstanceUserEndpointCommand;
-    var se_DescribeAppInstanceCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-capture-pipelines/{MediaPipelineId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MediaPipelineId", () => input.MediaPipelineId, "{MediaPipelineId}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18556,13 +18760,12 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DescribeAppInstanceCommand = se_DescribeAppInstanceCommand;
-    var se_DescribeAppInstanceAdminCommand = async (input, context) => {
+    exports.se_GetMediaCapturePipelineCommand = se_GetMediaCapturePipelineCommand;
+    var se_GetMediaInsightsPipelineConfigurationCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/admins/{AppInstanceAdminArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceAdminArn", () => input.AppInstanceAdminArn, "{AppInstanceAdminArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-configurations/{Identifier}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "Identifier", () => input.Identifier, "{Identifier}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18574,12 +18777,12 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DescribeAppInstanceAdminCommand = se_DescribeAppInstanceAdminCommand;
-    var se_DescribeAppInstanceBotCommand = async (input, context) => {
+    exports.se_GetMediaInsightsPipelineConfigurationCommand = se_GetMediaInsightsPipelineConfigurationCommand;
+    var se_GetMediaPipelineCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-bots/{AppInstanceBotArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceBotArn", () => input.AppInstanceBotArn, "{AppInstanceBotArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-pipelines/{MediaPipelineId}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MediaPipelineId", () => input.MediaPipelineId, "{MediaPipelineId}", false);
       let body;
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18591,67 +18794,14 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_DescribeAppInstanceBotCommand = se_DescribeAppInstanceBotCommand;
-    var se_DescribeAppInstanceUserCommand = async (input, context) => {
+    exports.se_GetMediaPipelineCommand = se_GetMediaPipelineCommand;
+    var se_ListMediaCapturePipelinesCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeAppInstanceUserCommand = se_DescribeAppInstanceUserCommand;
-    var se_DescribeAppInstanceUserEndpointCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "EndpointId", () => input.EndpointId, "{EndpointId}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeAppInstanceUserEndpointCommand = se_DescribeAppInstanceUserEndpointCommand;
-    var se_GetAppInstanceRetentionSettingsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/retention-settings`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_GetAppInstanceRetentionSettingsCommand = se_GetAppInstanceRetentionSettingsCommand;
-    var se_ListAppInstanceAdminsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/admins`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-capture-pipelines`;
       const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
+        "next-token": [, input.NextToken],
+        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
       let body;
       return new protocol_http_1.HttpRequest({
@@ -18665,15 +18815,14 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_ListAppInstanceAdminsCommand = se_ListAppInstanceAdminsCommand;
-    var se_ListAppInstanceBotsCommand = async (input, context) => {
+    exports.se_ListMediaCapturePipelinesCommand = se_ListMediaCapturePipelinesCommand;
+    var se_ListMediaInsightsPipelineConfigurationsCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-bots`;
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-configurations`;
       const query = (0, smithy_client_1.map)({
-        "app-instance-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceArn, `AppInstanceArn`)],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
+        "next-token": [, input.NextToken],
+        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
       let body;
       return new protocol_http_1.HttpRequest({
@@ -18687,14 +18836,14 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_ListAppInstanceBotsCommand = se_ListAppInstanceBotsCommand;
-    var se_ListAppInstancesCommand = async (input, context) => {
+    exports.se_ListMediaInsightsPipelineConfigurationsCommand = se_ListMediaInsightsPipelineConfigurationsCommand;
+    var se_ListMediaPipelinesCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances`;
+      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/sdk-media-pipelines`;
       const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
+        "next-token": [, input.NextToken],
+        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()]
       });
       let body;
       return new protocol_http_1.HttpRequest({
@@ -18708,51 +18857,7 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_ListAppInstancesCommand = se_ListAppInstancesCommand;
-    var se_ListAppInstanceUserEndpointsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/endpoints`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListAppInstanceUserEndpointsCommand = se_ListAppInstanceUserEndpointsCommand;
-    var se_ListAppInstanceUsersCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users`;
-      const query = (0, smithy_client_1.map)({
-        "app-instance-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceArn, `AppInstanceArn`)],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListAppInstanceUsersCommand = se_ListAppInstanceUsersCommand;
+    exports.se_ListMediaPipelinesCommand = se_ListMediaPipelinesCommand;
     var se_ListTagsForResourceCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {};
@@ -18773,77 +18878,6 @@ var require_Aws_restJson12 = __commonJS({
       });
     };
     exports.se_ListTagsForResourceCommand = se_ListTagsForResourceCommand;
-    var se_PutAppInstanceRetentionSettingsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/retention-settings`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceRetentionSettings: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_PutAppInstanceRetentionSettingsCommand = se_PutAppInstanceRetentionSettingsCommand;
-    var se_PutAppInstanceUserExpirationSettingsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/expiration-settings`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ExpirationSettings: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_PutAppInstanceUserExpirationSettingsCommand = se_PutAppInstanceUserExpirationSettingsCommand;
-    var se_RegisterAppInstanceUserEndpointCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/endpoints`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AllowMessages: [],
-        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        EndpointAttributes: (_) => (0, smithy_client_1._json)(_),
-        Name: [],
-        ResourceArn: [],
-        Type: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_RegisterAppInstanceUserEndpointCommand = se_RegisterAppInstanceUserEndpointCommand;
     var se_TagResourceCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
@@ -18896,17 +18930,18 @@ var require_Aws_restJson12 = __commonJS({
       });
     };
     exports.se_UntagResourceCommand = se_UntagResourceCommand;
-    var se_UpdateAppInstanceCommand = async (input, context) => {
+    var se_UpdateMediaInsightsPipelineConfigurationCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
         "content-type": "application/json"
       };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-configurations/{Identifier}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "Identifier", () => input.Identifier, "{Identifier}", false);
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Metadata: [],
-        Name: []
+        Elements: (_) => (0, smithy_client_1._json)(_),
+        RealTimeAlertConfiguration: (_) => (0, smithy_client_1._json)(_),
+        ResourceAccessRoleArn: []
       }));
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18918,19 +18953,17 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_UpdateAppInstanceCommand = se_UpdateAppInstanceCommand;
-    var se_UpdateAppInstanceBotCommand = async (input, context) => {
+    exports.se_UpdateMediaInsightsPipelineConfigurationCommand = se_UpdateMediaInsightsPipelineConfigurationCommand;
+    var se_UpdateMediaInsightsPipelineStatusCommand = async (input, context) => {
       const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
       const headers = {
         "content-type": "application/json"
       };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-bots/{AppInstanceBotArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceBotArn", () => input.AppInstanceBotArn, "{AppInstanceBotArn}", false);
+      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/media-insights-pipeline-status/{Identifier}`;
+      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "Identifier", () => input.Identifier, "{Identifier}", false);
       let body;
       body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Configuration: (_) => (0, smithy_client_1._json)(_),
-        Metadata: [],
-        Name: []
+        UpdateStatus: []
       }));
       return new protocol_http_1.HttpRequest({
         protocol,
@@ -18942,70 +18975,23 @@ var require_Aws_restJson12 = __commonJS({
         body
       });
     };
-    exports.se_UpdateAppInstanceBotCommand = se_UpdateAppInstanceBotCommand;
-    var se_UpdateAppInstanceUserCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Metadata: [],
-        Name: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateAppInstanceUserCommand = se_UpdateAppInstanceUserCommand;
-    var se_UpdateAppInstanceUserEndpointCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instance-users/{AppInstanceUserArn}/endpoints/{EndpointId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceUserArn", () => input.AppInstanceUserArn, "{AppInstanceUserArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "EndpointId", () => input.EndpointId, "{EndpointId}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AllowMessages: [],
-        Name: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateAppInstanceUserEndpointCommand = se_UpdateAppInstanceUserEndpointCommand;
-    var de_CreateAppInstanceCommand = async (output, context) => {
+    exports.se_UpdateMediaInsightsPipelineStatusCommand = se_UpdateMediaInsightsPipelineStatusCommand;
+    var de_CreateMediaCapturePipelineCommand = async (output, context) => {
       if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateAppInstanceCommandError(output, context);
+        return de_CreateMediaCapturePipelineCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceArn: smithy_client_1.expectString
+        MediaCapturePipeline: (_) => de_MediaCapturePipeline(_, context)
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_CreateAppInstanceCommand = de_CreateAppInstanceCommand;
-    var de_CreateAppInstanceCommandError = async (output, context) => {
+    exports.de_CreateMediaCapturePipelineCommand = de_CreateMediaCapturePipelineCommand;
+    var de_CreateMediaCapturePipelineCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19013,28 +18999,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
         case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19045,23 +19028,22 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_CreateAppInstanceAdminCommand = async (output, context) => {
+    var de_CreateMediaConcatenationPipelineCommand = async (output, context) => {
       if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateAppInstanceAdminCommandError(output, context);
+        return de_CreateMediaConcatenationPipelineCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceAdmin: smithy_client_1._json,
-        AppInstanceArn: smithy_client_1.expectString
+        MediaConcatenationPipeline: (_) => de_MediaConcatenationPipeline(_, context)
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_CreateAppInstanceAdminCommand = de_CreateAppInstanceAdminCommand;
-    var de_CreateAppInstanceAdminCommandError = async (output, context) => {
+    exports.de_CreateMediaConcatenationPipelineCommand = de_CreateMediaConcatenationPipelineCommand;
+    var de_CreateMediaConcatenationPipelineCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19069,28 +19051,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
         case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19101,22 +19080,22 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_CreateAppInstanceBotCommand = async (output, context) => {
+    var de_CreateMediaInsightsPipelineCommand = async (output, context) => {
       if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateAppInstanceBotCommandError(output, context);
+        return de_CreateMediaInsightsPipelineCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceBotArn: smithy_client_1.expectString
+        MediaInsightsPipeline: (_) => de_MediaInsightsPipeline(_, context)
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_CreateAppInstanceBotCommand = de_CreateAppInstanceBotCommand;
-    var de_CreateAppInstanceBotCommandError = async (output, context) => {
+    exports.de_CreateMediaInsightsPipelineCommand = de_CreateMediaInsightsPipelineCommand;
+    var de_CreateMediaInsightsPipelineCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19124,479 +19103,183 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateAppInstanceUserCommand = de_CreateAppInstanceUserCommand;
-    var de_CreateAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteAppInstanceCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteAppInstanceCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteAppInstanceCommand = de_DeleteAppInstanceCommand;
-    var de_DeleteAppInstanceCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteAppInstanceAdminCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteAppInstanceAdminCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteAppInstanceAdminCommand = de_DeleteAppInstanceAdminCommand;
-    var de_DeleteAppInstanceAdminCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteAppInstanceBotCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteAppInstanceBotCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteAppInstanceBotCommand = de_DeleteAppInstanceBotCommand;
-    var de_DeleteAppInstanceBotCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteAppInstanceUserCommand = de_DeleteAppInstanceUserCommand;
-    var de_DeleteAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeregisterAppInstanceUserEndpointCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeregisterAppInstanceUserEndpointCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeregisterAppInstanceUserEndpointCommand = de_DeregisterAppInstanceUserEndpointCommand;
-    var de_DeregisterAppInstanceUserEndpointCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeAppInstanceCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeAppInstanceCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstance: (_) => de_AppInstance(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeAppInstanceCommand = de_DescribeAppInstanceCommand;
-    var de_DescribeAppInstanceCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeAppInstanceAdminCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeAppInstanceAdminCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceAdmin: (_) => de_AppInstanceAdmin(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeAppInstanceAdminCommand = de_DescribeAppInstanceAdminCommand;
-    var de_DescribeAppInstanceAdminCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeAppInstanceBotCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeAppInstanceBotCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceBot: (_) => de_AppInstanceBot(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeAppInstanceBotCommand = de_DescribeAppInstanceBotCommand;
-    var de_DescribeAppInstanceBotCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
         case "NotFoundException":
-        case "com.amazonaws.chimesdkidentity#NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
+          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
+          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
+          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
+          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
+          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          return throwDefaultError({
+            output,
+            parsedBody,
+            errorCode
+          });
+      }
+    };
+    var de_CreateMediaInsightsPipelineConfigurationCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return de_CreateMediaInsightsPipelineConfigurationCommandError(output, context);
+      }
+      const contents = (0, smithy_client_1.map)({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      const doc = (0, smithy_client_1.take)(data, {
+        MediaInsightsPipelineConfiguration: (_) => de_MediaInsightsPipelineConfiguration(_, context)
+      });
+      Object.assign(contents, doc);
+      return contents;
+    };
+    exports.de_CreateMediaInsightsPipelineConfigurationCommand = de_CreateMediaInsightsPipelineConfigurationCommand;
+    var de_CreateMediaInsightsPipelineConfigurationCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
+          throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
+          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
+          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
+          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
+          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
+          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          return throwDefaultError({
+            output,
+            parsedBody,
+            errorCode
+          });
+      }
+    };
+    var de_CreateMediaLiveConnectorPipelineCommand = async (output, context) => {
+      if (output.statusCode !== 201 && output.statusCode >= 300) {
+        return de_CreateMediaLiveConnectorPipelineCommandError(output, context);
+      }
+      const contents = (0, smithy_client_1.map)({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      const doc = (0, smithy_client_1.take)(data, {
+        MediaLiveConnectorPipeline: (_) => de_MediaLiveConnectorPipeline(_, context)
+      });
+      Object.assign(contents, doc);
+      return contents;
+    };
+    exports.de_CreateMediaLiveConnectorPipelineCommand = de_CreateMediaLiveConnectorPipelineCommand;
+    var de_CreateMediaLiveConnectorPipelineCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
+          throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
+          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
+          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
+          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
+          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
+          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          return throwDefaultError({
+            output,
+            parsedBody,
+            errorCode
+          });
+      }
+    };
+    var de_DeleteMediaCapturePipelineCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return de_DeleteMediaCapturePipelineCommandError(output, context);
+      }
+      const contents = (0, smithy_client_1.map)({
+        $metadata: deserializeMetadata(output)
+      });
+      await (0, smithy_client_1.collectBody)(output.body, context);
+      return contents;
+    };
+    exports.de_DeleteMediaCapturePipelineCommand = de_DeleteMediaCapturePipelineCommand;
+    var de_DeleteMediaCapturePipelineCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
+          throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
           throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19607,22 +19290,18 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_DescribeAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeAppInstanceUserCommandError(output, context);
+    var de_DeleteMediaInsightsPipelineConfigurationCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return de_DeleteMediaInsightsPipelineConfigurationCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUser: (_) => de_AppInstanceUser(_, context)
-      });
-      Object.assign(contents, doc);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
-    exports.de_DescribeAppInstanceUserCommand = de_DescribeAppInstanceUserCommand;
-    var de_DescribeAppInstanceUserCommandError = async (output, context) => {
+    exports.de_DeleteMediaInsightsPipelineConfigurationCommand = de_DeleteMediaInsightsPipelineConfigurationCommand;
+    var de_DeleteMediaInsightsPipelineConfigurationCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19630,22 +19309,28 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ConflictException":
+        case "com.amazonaws.chimesdkmediapipelines#ConflictException":
+          throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19656,22 +19341,18 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_DescribeAppInstanceUserEndpointCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeAppInstanceUserEndpointCommandError(output, context);
+    var de_DeleteMediaPipelineCommand = async (output, context) => {
+      if (output.statusCode !== 204 && output.statusCode >= 300) {
+        return de_DeleteMediaPipelineCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserEndpoint: (_) => de_AppInstanceUserEndpoint(_, context)
-      });
-      Object.assign(contents, doc);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
-    exports.de_DescribeAppInstanceUserEndpointCommand = de_DescribeAppInstanceUserEndpointCommand;
-    var de_DescribeAppInstanceUserEndpointCommandError = async (output, context) => {
+    exports.de_DeleteMediaPipelineCommand = de_DeleteMediaPipelineCommand;
+    var de_DeleteMediaPipelineCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19679,22 +19360,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19705,23 +19389,22 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_GetAppInstanceRetentionSettingsCommand = async (output, context) => {
+    var de_GetMediaCapturePipelineCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetAppInstanceRetentionSettingsCommandError(output, context);
+        return de_GetMediaCapturePipelineCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceRetentionSettings: smithy_client_1._json,
-        InitiateDeletionTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_)))
+        MediaCapturePipeline: (_) => de_MediaCapturePipeline(_, context)
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_GetAppInstanceRetentionSettingsCommand = de_GetAppInstanceRetentionSettingsCommand;
-    var de_GetAppInstanceRetentionSettingsCommandError = async (output, context) => {
+    exports.de_GetMediaCapturePipelineCommand = de_GetMediaCapturePipelineCommand;
+    var de_GetMediaCapturePipelineCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19729,22 +19412,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19755,24 +19441,127 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_ListAppInstanceAdminsCommand = async (output, context) => {
+    var de_GetMediaInsightsPipelineConfigurationCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListAppInstanceAdminsCommandError(output, context);
+        return de_GetMediaInsightsPipelineConfigurationCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceAdmins: smithy_client_1._json,
-        AppInstanceArn: smithy_client_1.expectString,
+        MediaInsightsPipelineConfiguration: (_) => de_MediaInsightsPipelineConfiguration(_, context)
+      });
+      Object.assign(contents, doc);
+      return contents;
+    };
+    exports.de_GetMediaInsightsPipelineConfigurationCommand = de_GetMediaInsightsPipelineConfigurationCommand;
+    var de_GetMediaInsightsPipelineConfigurationCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
+          throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
+          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
+          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
+          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
+          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          return throwDefaultError({
+            output,
+            parsedBody,
+            errorCode
+          });
+      }
+    };
+    var de_GetMediaPipelineCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return de_GetMediaPipelineCommandError(output, context);
+      }
+      const contents = (0, smithy_client_1.map)({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      const doc = (0, smithy_client_1.take)(data, {
+        MediaPipeline: (_) => de_MediaPipeline(_, context)
+      });
+      Object.assign(contents, doc);
+      return contents;
+    };
+    exports.de_GetMediaPipelineCommand = de_GetMediaPipelineCommand;
+    var de_GetMediaPipelineCommandError = async (output, context) => {
+      const parsedOutput = {
+        ...output,
+        body: await parseErrorBody(output.body, context)
+      };
+      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
+      switch (errorCode) {
+        case "BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
+          throw await de_BadRequestExceptionRes(parsedOutput, context);
+        case "ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
+          throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
+        case "ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
+          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
+        case "ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
+          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
+        case "ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
+          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
+        case "UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
+          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
+        default:
+          const parsedBody = parsedOutput.body;
+          return throwDefaultError({
+            output,
+            parsedBody,
+            errorCode
+          });
+      }
+    };
+    var de_ListMediaCapturePipelinesCommand = async (output, context) => {
+      if (output.statusCode !== 200 && output.statusCode >= 300) {
+        return de_ListMediaCapturePipelinesCommandError(output, context);
+      }
+      const contents = (0, smithy_client_1.map)({
+        $metadata: deserializeMetadata(output)
+      });
+      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
+      const doc = (0, smithy_client_1.take)(data, {
+        MediaCapturePipelines: smithy_client_1._json,
         NextToken: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_ListAppInstanceAdminsCommand = de_ListAppInstanceAdminsCommand;
-    var de_ListAppInstanceAdminsCommandError = async (output, context) => {
+    exports.de_ListMediaCapturePipelinesCommand = de_ListMediaCapturePipelinesCommand;
+    var de_ListMediaCapturePipelinesCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19780,25 +19569,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
         case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19809,24 +19598,23 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_ListAppInstanceBotsCommand = async (output, context) => {
+    var de_ListMediaInsightsPipelineConfigurationsCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListAppInstanceBotsCommandError(output, context);
+        return de_ListMediaInsightsPipelineConfigurationsCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceArn: smithy_client_1.expectString,
-        AppInstanceBots: smithy_client_1._json,
+        MediaInsightsPipelineConfigurations: smithy_client_1._json,
         NextToken: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_ListAppInstanceBotsCommand = de_ListAppInstanceBotsCommand;
-    var de_ListAppInstanceBotsCommandError = async (output, context) => {
+    exports.de_ListMediaInsightsPipelineConfigurationsCommand = de_ListMediaInsightsPipelineConfigurationsCommand;
+    var de_ListMediaInsightsPipelineConfigurationsCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19834,25 +19622,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
         case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
           throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -19863,23 +19651,23 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_ListAppInstancesCommand = async (output, context) => {
+    var de_ListMediaPipelinesCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListAppInstancesCommandError(output, context);
+        return de_ListMediaPipelinesCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstances: smithy_client_1._json,
+        MediaPipelines: smithy_client_1._json,
         NextToken: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_ListAppInstancesCommand = de_ListAppInstancesCommand;
-    var de_ListAppInstancesCommandError = async (output, context) => {
+    exports.de_ListMediaPipelinesCommand = de_ListMediaPipelinesCommand;
+    var de_ListMediaPipelinesCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -19887,123 +19675,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "ResourceLimitExceededException":
+        case "com.amazonaws.chimesdkmediapipelines#ResourceLimitExceededException":
+          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListAppInstanceUserEndpointsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListAppInstanceUserEndpointsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserEndpoints: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListAppInstanceUserEndpointsCommand = de_ListAppInstanceUserEndpointsCommand;
-    var de_ListAppInstanceUserEndpointsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListAppInstanceUsersCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListAppInstanceUsersCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceArn: smithy_client_1.expectString,
-        AppInstanceUsers: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListAppInstanceUsersCommand = de_ListAppInstanceUsersCommand;
-    var de_ListAppInstanceUsersCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20037,181 +19727,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_PutAppInstanceRetentionSettingsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_PutAppInstanceRetentionSettingsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceRetentionSettings: smithy_client_1._json,
-        InitiateDeletionTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_)))
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_PutAppInstanceRetentionSettingsCommand = de_PutAppInstanceRetentionSettingsCommand;
-    var de_PutAppInstanceRetentionSettingsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_PutAppInstanceUserExpirationSettingsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_PutAppInstanceUserExpirationSettingsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserArn: smithy_client_1.expectString,
-        ExpirationSettings: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_PutAppInstanceUserExpirationSettingsCommand = de_PutAppInstanceUserExpirationSettingsCommand;
-    var de_PutAppInstanceUserExpirationSettingsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_RegisterAppInstanceUserEndpointCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_RegisterAppInstanceUserEndpointCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserArn: smithy_client_1.expectString,
-        EndpointId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_RegisterAppInstanceUserEndpointCommand = de_RegisterAppInstanceUserEndpointCommand;
-    var de_RegisterAppInstanceUserEndpointCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20241,25 +19775,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20289,22 +19823,25 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20315,22 +19852,22 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_UpdateAppInstanceCommand = async (output, context) => {
+    var de_UpdateMediaInsightsPipelineConfigurationCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateAppInstanceCommandError(output, context);
+        return de_UpdateMediaInsightsPipelineConfigurationCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
       const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
       const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceArn: smithy_client_1.expectString
+        MediaInsightsPipelineConfiguration: (_) => de_MediaInsightsPipelineConfiguration(_, context)
       });
       Object.assign(contents, doc);
       return contents;
     };
-    exports.de_UpdateAppInstanceCommand = de_UpdateAppInstanceCommand;
-    var de_UpdateAppInstanceCommandError = async (output, context) => {
+    exports.de_UpdateMediaInsightsPipelineConfigurationCommand = de_UpdateMediaInsightsPipelineConfigurationCommand;
+    var de_UpdateMediaInsightsPipelineConfigurationCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -20338,25 +19875,28 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
+        case "com.amazonaws.chimesdkmediapipelines#ConflictException":
           throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20367,22 +19907,18 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_UpdateAppInstanceBotCommand = async (output, context) => {
+    var de_UpdateMediaInsightsPipelineStatusCommand = async (output, context) => {
       if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateAppInstanceBotCommandError(output, context);
+        return de_UpdateMediaInsightsPipelineStatusCommandError(output, context);
       }
       const contents = (0, smithy_client_1.map)({
         $metadata: deserializeMetadata(output)
       });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceBotArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
+      await (0, smithy_client_1.collectBody)(output.body, context);
       return contents;
     };
-    exports.de_UpdateAppInstanceBotCommand = de_UpdateAppInstanceBotCommand;
-    var de_UpdateAppInstanceBotCommandError = async (output, context) => {
+    exports.de_UpdateMediaInsightsPipelineStatusCommand = de_UpdateMediaInsightsPipelineStatusCommand;
+    var de_UpdateMediaInsightsPipelineStatusCommandError = async (output, context) => {
       const parsedOutput = {
         ...output,
         body: await parseErrorBody(output.body, context)
@@ -20390,28 +19926,28 @@ var require_Aws_restJson12 = __commonJS({
       const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
       switch (errorCode) {
         case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
+        case "com.amazonaws.chimesdkmediapipelines#BadRequestException":
           throw await de_BadRequestExceptionRes(parsedOutput, context);
         case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
+        case "com.amazonaws.chimesdkmediapipelines#ConflictException":
           throw await de_ConflictExceptionRes(parsedOutput, context);
         case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
+        case "com.amazonaws.chimesdkmediapipelines#ForbiddenException":
           throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
+        case "NotFoundException":
+        case "com.amazonaws.chimesdkmediapipelines#NotFoundException":
+          throw await de_NotFoundExceptionRes(parsedOutput, context);
         case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceFailureException":
           throw await de_ServiceFailureExceptionRes(parsedOutput, context);
         case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
+        case "com.amazonaws.chimesdkmediapipelines#ServiceUnavailableException":
           throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
         case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
+        case "com.amazonaws.chimesdkmediapipelines#ThrottledClientException":
           throw await de_ThrottledClientExceptionRes(parsedOutput, context);
         case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
+        case "com.amazonaws.chimesdkmediapipelines#UnauthorizedClientException":
           throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
         default:
           const parsedBody = parsedOutput.body;
@@ -20422,121 +19958,14 @@ var require_Aws_restJson12 = __commonJS({
           });
       }
     };
-    var de_UpdateAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateAppInstanceUserCommand = de_UpdateAppInstanceUserCommand;
-    var de_UpdateAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkidentity#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UpdateAppInstanceUserEndpointCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateAppInstanceUserEndpointCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        AppInstanceUserArn: smithy_client_1.expectString,
-        EndpointId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateAppInstanceUserEndpointCommand = de_UpdateAppInstanceUserEndpointCommand;
-    var de_UpdateAppInstanceUserEndpointCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkidentity#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkidentity#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkidentity#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkidentity#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkidentity#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkidentity#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkidentity#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var throwDefaultError = (0, smithy_client_1.withBaseException)(ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException);
+    var throwDefaultError = (0, smithy_client_1.withBaseException)(ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException);
     var de_BadRequestExceptionRes = async (parsedOutput, context) => {
       const contents = (0, smithy_client_1.map)({});
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.BadRequestException({
@@ -20550,7 +19979,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ConflictException({
@@ -20564,7 +19994,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ForbiddenException({
@@ -20578,7 +20009,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.NotFoundException({
@@ -20592,7 +20024,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ResourceLimitExceededException({
@@ -20606,7 +20039,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ServiceFailureException({
@@ -20620,7 +20054,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ServiceUnavailableException({
@@ -20634,7 +20069,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.ThrottledClientException({
@@ -20648,7 +20084,8 @@ var require_Aws_restJson12 = __commonJS({
       const data = parsedOutput.body;
       const doc = (0, smithy_client_1.take)(data, {
         Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
+        Message: smithy_client_1.expectString,
+        RequestId: smithy_client_1.expectString
       });
       Object.assign(contents, doc);
       const exception = new models_0_1.UnauthorizedClientException({
@@ -20657,54 +20094,109 @@ var require_Aws_restJson12 = __commonJS({
       });
       return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
     };
-    var de_AppInstance = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        AppInstanceArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Metadata: smithy_client_1.expectString,
-        Name: smithy_client_1.expectString
+    var se_FragmentSelector = (input, context) => {
+      return (0, smithy_client_1.take)(input, {
+        FragmentSelectorType: [],
+        TimestampRange: (_) => se_TimestampRange(_, context)
       });
     };
-    var de_AppInstanceAdmin = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        Admin: smithy_client_1._json,
-        AppInstanceArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_)))
+    var se_KinesisVideoStreamRecordingSourceRuntimeConfiguration = (input, context) => {
+      return (0, smithy_client_1.take)(input, {
+        FragmentSelector: (_) => se_FragmentSelector(_, context),
+        Streams: smithy_client_1._json
       });
     };
-    var de_AppInstanceBot = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        AppInstanceBotArn: smithy_client_1.expectString,
-        Configuration: smithy_client_1._json,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Metadata: smithy_client_1.expectString,
-        Name: smithy_client_1.expectString
+    var se_TimestampRange = (input, context) => {
+      return (0, smithy_client_1.take)(input, {
+        EndTimestamp: (_) => Math.round(_.getTime() / 1e3),
+        StartTimestamp: (_) => Math.round(_.getTime() / 1e3)
       });
     };
-    var de_AppInstanceUser = (output, context) => {
+    var de_FragmentSelector = (output, context) => {
       return (0, smithy_client_1.take)(output, {
-        AppInstanceUserArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        ExpirationSettings: smithy_client_1._json,
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Metadata: smithy_client_1.expectString,
-        Name: smithy_client_1.expectString
+        FragmentSelectorType: smithy_client_1.expectString,
+        TimestampRange: (_) => de_TimestampRange(_, context)
       });
     };
-    var de_AppInstanceUserEndpoint = (output, context) => {
+    var de_KinesisVideoStreamRecordingSourceRuntimeConfiguration = (output, context) => {
       return (0, smithy_client_1.take)(output, {
-        AllowMessages: smithy_client_1.expectString,
-        AppInstanceUserArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        EndpointAttributes: smithy_client_1._json,
-        EndpointId: smithy_client_1.expectString,
-        EndpointState: smithy_client_1._json,
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Name: smithy_client_1.expectString,
-        ResourceArn: smithy_client_1.expectString,
-        Type: smithy_client_1.expectString
+        FragmentSelector: (_) => de_FragmentSelector(_, context),
+        Streams: smithy_client_1._json
+      });
+    };
+    var de_MediaCapturePipeline = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        ChimeSdkMeetingConfiguration: smithy_client_1._json,
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        MediaPipelineArn: smithy_client_1.expectString,
+        MediaPipelineId: smithy_client_1.expectString,
+        SinkArn: smithy_client_1.expectString,
+        SinkType: smithy_client_1.expectString,
+        SourceArn: smithy_client_1.expectString,
+        SourceType: smithy_client_1.expectString,
+        Status: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
+    };
+    var de_MediaConcatenationPipeline = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        MediaPipelineArn: smithy_client_1.expectString,
+        MediaPipelineId: smithy_client_1.expectString,
+        Sinks: smithy_client_1._json,
+        Sources: smithy_client_1._json,
+        Status: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
+    };
+    var de_MediaInsightsPipeline = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        KinesisVideoStreamRecordingSourceRuntimeConfiguration: (_) => de_KinesisVideoStreamRecordingSourceRuntimeConfiguration(_, context),
+        KinesisVideoStreamSourceRuntimeConfiguration: smithy_client_1._json,
+        MediaInsightsPipelineConfigurationArn: smithy_client_1.expectString,
+        MediaInsightsRuntimeMetadata: smithy_client_1._json,
+        MediaPipelineArn: smithy_client_1.expectString,
+        MediaPipelineId: smithy_client_1.expectString,
+        S3RecordingSinkRuntimeConfiguration: smithy_client_1._json,
+        Status: smithy_client_1.expectString
+      });
+    };
+    var de_MediaInsightsPipelineConfiguration = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        Elements: smithy_client_1._json,
+        MediaInsightsPipelineConfigurationArn: smithy_client_1.expectString,
+        MediaInsightsPipelineConfigurationId: smithy_client_1.expectString,
+        MediaInsightsPipelineConfigurationName: smithy_client_1.expectString,
+        RealTimeAlertConfiguration: smithy_client_1._json,
+        ResourceAccessRoleArn: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
+    };
+    var de_MediaLiveConnectorPipeline = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_)),
+        MediaPipelineArn: smithy_client_1.expectString,
+        MediaPipelineId: smithy_client_1.expectString,
+        Sinks: smithy_client_1._json,
+        Sources: smithy_client_1._json,
+        Status: smithy_client_1.expectString,
+        UpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseRfc3339DateTimeWithOffset)(_))
+      });
+    };
+    var de_MediaPipeline = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        MediaCapturePipeline: (_) => de_MediaCapturePipeline(_, context),
+        MediaConcatenationPipeline: (_) => de_MediaConcatenationPipeline(_, context),
+        MediaInsightsPipeline: (_) => de_MediaInsightsPipeline(_, context),
+        MediaLiveConnectorPipeline: (_) => de_MediaLiveConnectorPipeline(_, context)
+      });
+    };
+    var de_TimestampRange = (output, context) => {
+      return (0, smithy_client_1.take)(output, {
+        EndTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
+        StartTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_)))
       });
     };
     var deserializeMetadata = (output) => ({
@@ -20757,12 +20249,12 @@ var require_Aws_restJson12 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceAdminCommand.js
-var require_CreateAppInstanceAdminCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceAdminCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaCapturePipelineCommand.js
+var require_CreateMediaCapturePipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaCapturePipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateAppInstanceAdminCommand = exports.$Command = void 0;
+    exports.CreateMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -20771,7 +20263,7 @@ var require_CreateAppInstanceAdminCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var CreateAppInstanceAdminCommand2 = class _CreateAppInstanceAdminCommand extends smithy_client_1.Command {
+    var CreateMediaCapturePipelineCommand = class _CreateMediaCapturePipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -20786,38 +20278,38 @@ var require_CreateAppInstanceAdminCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateAppInstanceAdminCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateMediaCapturePipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "CreateAppInstanceAdminCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "CreateMediaCapturePipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.CreateAppInstanceAdminResponseFilterSensitiveLog
+          inputFilterSensitiveLog: models_0_1.CreateMediaCapturePipelineRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateMediaCapturePipelineResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateAppInstanceAdminCommand)(input, context);
+        return (0, Aws_restJson1_1.se_CreateMediaCapturePipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateAppInstanceAdminCommand)(output, context);
+        return (0, Aws_restJson1_1.de_CreateMediaCapturePipelineCommand)(output, context);
       }
     };
-    exports.CreateAppInstanceAdminCommand = CreateAppInstanceAdminCommand2;
+    exports.CreateMediaCapturePipelineCommand = CreateMediaCapturePipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceBotCommand.js
-var require_CreateAppInstanceBotCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceBotCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaConcatenationPipelineCommand.js
+var require_CreateMediaConcatenationPipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaConcatenationPipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateAppInstanceBotCommand = exports.$Command = void 0;
+    exports.CreateMediaConcatenationPipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -20826,7 +20318,7 @@ var require_CreateAppInstanceBotCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var CreateAppInstanceBotCommand2 = class _CreateAppInstanceBotCommand extends smithy_client_1.Command {
+    var CreateMediaConcatenationPipelineCommand = class _CreateMediaConcatenationPipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -20841,38 +20333,38 @@ var require_CreateAppInstanceBotCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateAppInstanceBotCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateMediaConcatenationPipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "CreateAppInstanceBotCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "CreateMediaConcatenationPipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateAppInstanceBotRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.CreateMediaConcatenationPipelineRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateMediaConcatenationPipelineResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateAppInstanceBotCommand)(input, context);
+        return (0, Aws_restJson1_1.se_CreateMediaConcatenationPipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateAppInstanceBotCommand)(output, context);
+        return (0, Aws_restJson1_1.de_CreateMediaConcatenationPipelineCommand)(output, context);
       }
     };
-    exports.CreateAppInstanceBotCommand = CreateAppInstanceBotCommand2;
+    exports.CreateMediaConcatenationPipelineCommand = CreateMediaConcatenationPipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceCommand.js
-var require_CreateAppInstanceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaInsightsPipelineCommand.js
+var require_CreateMediaInsightsPipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaInsightsPipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateAppInstanceCommand = exports.$Command = void 0;
+    exports.CreateMediaInsightsPipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -20881,7 +20373,7 @@ var require_CreateAppInstanceCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var CreateAppInstanceCommand2 = class _CreateAppInstanceCommand extends smithy_client_1.Command {
+    var CreateMediaInsightsPipelineCommand = class _CreateMediaInsightsPipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -20896,38 +20388,38 @@ var require_CreateAppInstanceCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateAppInstanceCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateMediaInsightsPipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "CreateAppInstanceCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "CreateMediaInsightsPipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateAppInstanceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.CreateMediaInsightsPipelineRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateMediaInsightsPipelineResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateAppInstanceCommand)(input, context);
+        return (0, Aws_restJson1_1.se_CreateMediaInsightsPipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateAppInstanceCommand)(output, context);
+        return (0, Aws_restJson1_1.de_CreateMediaInsightsPipelineCommand)(output, context);
       }
     };
-    exports.CreateAppInstanceCommand = CreateAppInstanceCommand2;
+    exports.CreateMediaInsightsPipelineCommand = CreateMediaInsightsPipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceUserCommand.js
-var require_CreateAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/CreateAppInstanceUserCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaInsightsPipelineConfigurationCommand.js
+var require_CreateMediaInsightsPipelineConfigurationCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaInsightsPipelineConfigurationCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateAppInstanceUserCommand = exports.$Command = void 0;
+    exports.CreateMediaInsightsPipelineConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -20936,7 +20428,7 @@ var require_CreateAppInstanceUserCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var CreateAppInstanceUserCommand2 = class _CreateAppInstanceUserCommand extends smithy_client_1.Command {
+    var CreateMediaInsightsPipelineConfigurationCommand2 = class _CreateMediaInsightsPipelineConfigurationCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -20951,38 +20443,93 @@ var require_CreateAppInstanceUserCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateAppInstanceUserCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateMediaInsightsPipelineConfigurationCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "CreateAppInstanceUserCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "CreateMediaInsightsPipelineConfigurationCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.CreateAppInstanceUserRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.CreateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateAppInstanceUserCommand)(input, context);
+        return (0, Aws_restJson1_1.se_CreateMediaInsightsPipelineConfigurationCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateAppInstanceUserCommand)(output, context);
+        return (0, Aws_restJson1_1.de_CreateMediaInsightsPipelineConfigurationCommand)(output, context);
       }
     };
-    exports.CreateAppInstanceUserCommand = CreateAppInstanceUserCommand2;
+    exports.CreateMediaInsightsPipelineConfigurationCommand = CreateMediaInsightsPipelineConfigurationCommand2;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceAdminCommand.js
-var require_DeleteAppInstanceAdminCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceAdminCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaLiveConnectorPipelineCommand.js
+var require_CreateMediaLiveConnectorPipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/CreateMediaLiveConnectorPipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteAppInstanceAdminCommand = exports.$Command = void 0;
+    exports.CreateMediaLiveConnectorPipelineCommand = exports.$Command = void 0;
+    var middleware_endpoint_1 = require_dist_cjs26();
+    var middleware_serde_1 = require_dist_cjs25();
+    var smithy_client_1 = require_dist_cjs35();
+    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
+      return smithy_client_1.Command;
+    } });
+    var models_0_1 = require_models_03();
+    var Aws_restJson1_1 = require_Aws_restJson12();
+    var CreateMediaLiveConnectorPipelineCommand = class _CreateMediaLiveConnectorPipelineCommand extends smithy_client_1.Command {
+      static getEndpointParameterInstructions() {
+        return {
+          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
+          Endpoint: { type: "builtInParams", name: "endpoint" },
+          Region: { type: "builtInParams", name: "region" },
+          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
+        };
+      }
+      constructor(input) {
+        super();
+        this.input = input;
+      }
+      resolveMiddleware(clientStack, configuration, options) {
+        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateMediaLiveConnectorPipelineCommand.getEndpointParameterInstructions()));
+        const stack = clientStack.concat(this.middlewareStack);
+        const { logger } = configuration;
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "CreateMediaLiveConnectorPipelineCommand";
+        const handlerExecutionContext = {
+          logger,
+          clientName,
+          commandName,
+          inputFilterSensitiveLog: models_0_1.CreateMediaLiveConnectorPipelineRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.CreateMediaLiveConnectorPipelineResponseFilterSensitiveLog
+        };
+        const { requestHandler } = configuration;
+        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
+      }
+      serialize(input, context) {
+        return (0, Aws_restJson1_1.se_CreateMediaLiveConnectorPipelineCommand)(input, context);
+      }
+      deserialize(output, context) {
+        return (0, Aws_restJson1_1.de_CreateMediaLiveConnectorPipelineCommand)(output, context);
+      }
+    };
+    exports.CreateMediaLiveConnectorPipelineCommand = CreateMediaLiveConnectorPipelineCommand;
+  }
+});
+
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaCapturePipelineCommand.js
+var require_DeleteMediaCapturePipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaCapturePipelineCommand.js"(exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.DeleteMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -20990,7 +20537,7 @@ var require_DeleteAppInstanceAdminCommand = __commonJS({
       return smithy_client_1.Command;
     } });
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DeleteAppInstanceAdminCommand = class _DeleteAppInstanceAdminCommand extends smithy_client_1.Command {
+    var DeleteMediaCapturePipelineCommand = class _DeleteMediaCapturePipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21005,119 +20552,11 @@ var require_DeleteAppInstanceAdminCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteAppInstanceAdminCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteMediaCapturePipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DeleteAppInstanceAdminCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteAppInstanceAdminCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteAppInstanceAdminCommand)(output, context);
-      }
-    };
-    exports.DeleteAppInstanceAdminCommand = DeleteAppInstanceAdminCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceBotCommand.js
-var require_DeleteAppInstanceBotCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceBotCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteAppInstanceBotCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var DeleteAppInstanceBotCommand = class _DeleteAppInstanceBotCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteAppInstanceBotCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DeleteAppInstanceBotCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteAppInstanceBotCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteAppInstanceBotCommand)(output, context);
-      }
-    };
-    exports.DeleteAppInstanceBotCommand = DeleteAppInstanceBotCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceCommand.js
-var require_DeleteAppInstanceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteAppInstanceCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var DeleteAppInstanceCommand2 = class _DeleteAppInstanceCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteAppInstanceCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DeleteAppInstanceCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "DeleteMediaCapturePipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
@@ -21129,22 +20568,22 @@ var require_DeleteAppInstanceCommand = __commonJS({
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteAppInstanceCommand)(input, context);
+        return (0, Aws_restJson1_1.se_DeleteMediaCapturePipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteAppInstanceCommand)(output, context);
+        return (0, Aws_restJson1_1.de_DeleteMediaCapturePipelineCommand)(output, context);
       }
     };
-    exports.DeleteAppInstanceCommand = DeleteAppInstanceCommand2;
+    exports.DeleteMediaCapturePipelineCommand = DeleteMediaCapturePipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceUserCommand.js
-var require_DeleteAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeleteAppInstanceUserCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaInsightsPipelineConfigurationCommand.js
+var require_DeleteMediaInsightsPipelineConfigurationCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaInsightsPipelineConfigurationCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteAppInstanceUserCommand = exports.$Command = void 0;
+    exports.DeleteMediaInsightsPipelineConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21152,7 +20591,7 @@ var require_DeleteAppInstanceUserCommand = __commonJS({
       return smithy_client_1.Command;
     } });
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DeleteAppInstanceUserCommand = class _DeleteAppInstanceUserCommand extends smithy_client_1.Command {
+    var DeleteMediaInsightsPipelineConfigurationCommand2 = class _DeleteMediaInsightsPipelineConfigurationCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21167,11 +20606,11 @@ var require_DeleteAppInstanceUserCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteAppInstanceUserCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteMediaInsightsPipelineConfigurationCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DeleteAppInstanceUserCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "DeleteMediaInsightsPipelineConfigurationCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
@@ -21183,22 +20622,22 @@ var require_DeleteAppInstanceUserCommand = __commonJS({
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteAppInstanceUserCommand)(input, context);
+        return (0, Aws_restJson1_1.se_DeleteMediaInsightsPipelineConfigurationCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteAppInstanceUserCommand)(output, context);
+        return (0, Aws_restJson1_1.de_DeleteMediaInsightsPipelineConfigurationCommand)(output, context);
       }
     };
-    exports.DeleteAppInstanceUserCommand = DeleteAppInstanceUserCommand;
+    exports.DeleteMediaInsightsPipelineConfigurationCommand = DeleteMediaInsightsPipelineConfigurationCommand2;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeregisterAppInstanceUserEndpointCommand.js
-var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DeregisterAppInstanceUserEndpointCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaPipelineCommand.js
+var require_DeleteMediaPipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/DeleteMediaPipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeregisterAppInstanceUserEndpointCommand = exports.$Command = void 0;
+    exports.DeleteMediaPipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21206,7 +20645,7 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
       return smithy_client_1.Command;
     } });
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DeregisterAppInstanceUserEndpointCommand = class _DeregisterAppInstanceUserEndpointCommand extends smithy_client_1.Command {
+    var DeleteMediaPipelineCommand = class _DeleteMediaPipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21221,11 +20660,11 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeregisterAppInstanceUserEndpointCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteMediaPipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DeregisterAppInstanceUserEndpointCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "DeleteMediaPipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
@@ -21237,22 +20676,22 @@ var require_DeregisterAppInstanceUserEndpointCommand = __commonJS({
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeregisterAppInstanceUserEndpointCommand)(input, context);
+        return (0, Aws_restJson1_1.se_DeleteMediaPipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeregisterAppInstanceUserEndpointCommand)(output, context);
+        return (0, Aws_restJson1_1.de_DeleteMediaPipelineCommand)(output, context);
       }
     };
-    exports.DeregisterAppInstanceUserEndpointCommand = DeregisterAppInstanceUserEndpointCommand;
+    exports.DeleteMediaPipelineCommand = DeleteMediaPipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceAdminCommand.js
-var require_DescribeAppInstanceAdminCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceAdminCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaCapturePipelineCommand.js
+var require_GetMediaCapturePipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaCapturePipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeAppInstanceAdminCommand = exports.$Command = void 0;
+    exports.GetMediaCapturePipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21261,7 +20700,7 @@ var require_DescribeAppInstanceAdminCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DescribeAppInstanceAdminCommand = class _DescribeAppInstanceAdminCommand extends smithy_client_1.Command {
+    var GetMediaCapturePipelineCommand = class _GetMediaCapturePipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21276,38 +20715,38 @@ var require_DescribeAppInstanceAdminCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeAppInstanceAdminCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetMediaCapturePipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DescribeAppInstanceAdminCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "GetMediaCapturePipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeAppInstanceAdminResponseFilterSensitiveLog
+          outputFilterSensitiveLog: models_0_1.GetMediaCapturePipelineResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeAppInstanceAdminCommand)(input, context);
+        return (0, Aws_restJson1_1.se_GetMediaCapturePipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeAppInstanceAdminCommand)(output, context);
+        return (0, Aws_restJson1_1.de_GetMediaCapturePipelineCommand)(output, context);
       }
     };
-    exports.DescribeAppInstanceAdminCommand = DescribeAppInstanceAdminCommand;
+    exports.GetMediaCapturePipelineCommand = GetMediaCapturePipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceBotCommand.js
-var require_DescribeAppInstanceBotCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceBotCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaInsightsPipelineConfigurationCommand.js
+var require_GetMediaInsightsPipelineConfigurationCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaInsightsPipelineConfigurationCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeAppInstanceBotCommand = exports.$Command = void 0;
+    exports.GetMediaInsightsPipelineConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21316,7 +20755,7 @@ var require_DescribeAppInstanceBotCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DescribeAppInstanceBotCommand = class _DescribeAppInstanceBotCommand extends smithy_client_1.Command {
+    var GetMediaInsightsPipelineConfigurationCommand = class _GetMediaInsightsPipelineConfigurationCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21331,38 +20770,38 @@ var require_DescribeAppInstanceBotCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeAppInstanceBotCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetMediaInsightsPipelineConfigurationCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DescribeAppInstanceBotCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "GetMediaInsightsPipelineConfigurationCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeAppInstanceBotResponseFilterSensitiveLog
+          outputFilterSensitiveLog: models_0_1.GetMediaInsightsPipelineConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeAppInstanceBotCommand)(input, context);
+        return (0, Aws_restJson1_1.se_GetMediaInsightsPipelineConfigurationCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeAppInstanceBotCommand)(output, context);
+        return (0, Aws_restJson1_1.de_GetMediaInsightsPipelineConfigurationCommand)(output, context);
       }
     };
-    exports.DescribeAppInstanceBotCommand = DescribeAppInstanceBotCommand;
+    exports.GetMediaInsightsPipelineConfigurationCommand = GetMediaInsightsPipelineConfigurationCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceCommand.js
-var require_DescribeAppInstanceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaPipelineCommand.js
+var require_GetMediaPipelineCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/GetMediaPipelineCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeAppInstanceCommand = exports.$Command = void 0;
+    exports.GetMediaPipelineCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21371,7 +20810,7 @@ var require_DescribeAppInstanceCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var DescribeAppInstanceCommand = class _DescribeAppInstanceCommand extends smithy_client_1.Command {
+    var GetMediaPipelineCommand = class _GetMediaPipelineCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21386,148 +20825,38 @@ var require_DescribeAppInstanceCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeAppInstanceCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetMediaPipelineCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DescribeAppInstanceCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "GetMediaPipelineCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeAppInstanceResponseFilterSensitiveLog
+          outputFilterSensitiveLog: models_0_1.GetMediaPipelineResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeAppInstanceCommand)(input, context);
+        return (0, Aws_restJson1_1.se_GetMediaPipelineCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeAppInstanceCommand)(output, context);
+        return (0, Aws_restJson1_1.de_GetMediaPipelineCommand)(output, context);
       }
     };
-    exports.DescribeAppInstanceCommand = DescribeAppInstanceCommand;
+    exports.GetMediaPipelineCommand = GetMediaPipelineCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceUserCommand.js
-var require_DescribeAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceUserCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaCapturePipelinesCommand.js
+var require_ListMediaCapturePipelinesCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaCapturePipelinesCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var DescribeAppInstanceUserCommand = class _DescribeAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DescribeAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeAppInstanceUserResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.DescribeAppInstanceUserCommand = DescribeAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceUserEndpointCommand.js
-var require_DescribeAppInstanceUserEndpointCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/DescribeAppInstanceUserEndpointCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeAppInstanceUserEndpointCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var DescribeAppInstanceUserEndpointCommand = class _DescribeAppInstanceUserEndpointCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeAppInstanceUserEndpointCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "DescribeAppInstanceUserEndpointCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeAppInstanceUserEndpointResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeAppInstanceUserEndpointCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeAppInstanceUserEndpointCommand)(output, context);
-      }
-    };
-    exports.DescribeAppInstanceUserEndpointCommand = DescribeAppInstanceUserEndpointCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/GetAppInstanceRetentionSettingsCommand.js
-var require_GetAppInstanceRetentionSettingsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/GetAppInstanceRetentionSettingsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
+    exports.ListMediaCapturePipelinesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21535,7 +20864,7 @@ var require_GetAppInstanceRetentionSettingsCommand = __commonJS({
       return smithy_client_1.Command;
     } });
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var GetAppInstanceRetentionSettingsCommand = class _GetAppInstanceRetentionSettingsCommand extends smithy_client_1.Command {
+    var ListMediaCapturePipelinesCommand = class _ListMediaCapturePipelinesCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21550,11 +20879,11 @@ var require_GetAppInstanceRetentionSettingsCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetAppInstanceRetentionSettingsCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListMediaCapturePipelinesCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "GetAppInstanceRetentionSettingsCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "ListMediaCapturePipelinesCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
@@ -21566,22 +20895,22 @@ var require_GetAppInstanceRetentionSettingsCommand = __commonJS({
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetAppInstanceRetentionSettingsCommand)(input, context);
+        return (0, Aws_restJson1_1.se_ListMediaCapturePipelinesCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetAppInstanceRetentionSettingsCommand)(output, context);
+        return (0, Aws_restJson1_1.de_ListMediaCapturePipelinesCommand)(output, context);
       }
     };
-    exports.GetAppInstanceRetentionSettingsCommand = GetAppInstanceRetentionSettingsCommand;
+    exports.ListMediaCapturePipelinesCommand = ListMediaCapturePipelinesCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceAdminsCommand.js
-var require_ListAppInstanceAdminsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceAdminsCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaInsightsPipelineConfigurationsCommand.js
+var require_ListMediaInsightsPipelineConfigurationsCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaInsightsPipelineConfigurationsCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceAdminsCommand = exports.$Command = void 0;
+    exports.ListMediaInsightsPipelineConfigurationsCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -21590,7 +20919,7 @@ var require_ListAppInstanceAdminsCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var ListAppInstanceAdminsCommand = class _ListAppInstanceAdminsCommand extends smithy_client_1.Command {
+    var ListMediaInsightsPipelineConfigurationsCommand = class _ListMediaInsightsPipelineConfigurationsCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21605,47 +20934,46 @@ var require_ListAppInstanceAdminsCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListAppInstanceAdminsCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListMediaInsightsPipelineConfigurationsCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "ListAppInstanceAdminsCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "ListMediaInsightsPipelineConfigurationsCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListAppInstanceAdminsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAppInstanceAdminsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: models_0_1.ListMediaInsightsPipelineConfigurationsResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListAppInstanceAdminsCommand)(input, context);
+        return (0, Aws_restJson1_1.se_ListMediaInsightsPipelineConfigurationsCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListAppInstanceAdminsCommand)(output, context);
+        return (0, Aws_restJson1_1.de_ListMediaInsightsPipelineConfigurationsCommand)(output, context);
       }
     };
-    exports.ListAppInstanceAdminsCommand = ListAppInstanceAdminsCommand;
+    exports.ListMediaInsightsPipelineConfigurationsCommand = ListMediaInsightsPipelineConfigurationsCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceBotsCommand.js
-var require_ListAppInstanceBotsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceBotsCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaPipelinesCommand.js
+var require_ListMediaPipelinesCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListMediaPipelinesCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceBotsCommand = exports.$Command = void 0;
+    exports.ListMediaPipelinesCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var ListAppInstanceBotsCommand = class _ListAppInstanceBotsCommand extends smithy_client_1.Command {
+    var ListMediaPipelinesCommand = class _ListMediaPipelinesCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -21660,200 +20988,35 @@ var require_ListAppInstanceBotsCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListAppInstanceBotsCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListMediaPipelinesCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "ListAppInstanceBotsCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "ListMediaPipelinesCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.ListAppInstanceBotsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAppInstanceBotsResponseFilterSensitiveLog
+          inputFilterSensitiveLog: (_) => _,
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListAppInstanceBotsCommand)(input, context);
+        return (0, Aws_restJson1_1.se_ListMediaPipelinesCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListAppInstanceBotsCommand)(output, context);
+        return (0, Aws_restJson1_1.de_ListMediaPipelinesCommand)(output, context);
       }
     };
-    exports.ListAppInstanceBotsCommand = ListAppInstanceBotsCommand;
+    exports.ListMediaPipelinesCommand = ListMediaPipelinesCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstancesCommand.js
-var require_ListAppInstancesCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstancesCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstancesCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var ListAppInstancesCommand = class _ListAppInstancesCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListAppInstancesCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "ListAppInstancesCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListAppInstancesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAppInstancesResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListAppInstancesCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListAppInstancesCommand)(output, context);
-      }
-    };
-    exports.ListAppInstancesCommand = ListAppInstancesCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceUserEndpointsCommand.js
-var require_ListAppInstanceUserEndpointsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceUserEndpointsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceUserEndpointsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var ListAppInstanceUserEndpointsCommand = class _ListAppInstanceUserEndpointsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListAppInstanceUserEndpointsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "ListAppInstanceUserEndpointsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListAppInstanceUserEndpointsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAppInstanceUserEndpointsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListAppInstanceUserEndpointsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListAppInstanceUserEndpointsCommand)(output, context);
-      }
-    };
-    exports.ListAppInstanceUserEndpointsCommand = ListAppInstanceUserEndpointsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceUsersCommand.js
-var require_ListAppInstanceUsersCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListAppInstanceUsersCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListAppInstanceUsersCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var ListAppInstanceUsersCommand = class _ListAppInstanceUsersCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListAppInstanceUsersCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "ListAppInstanceUsersCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListAppInstanceUsersRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListAppInstanceUsersResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListAppInstanceUsersCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListAppInstanceUsersCommand)(output, context);
-      }
-    };
-    exports.ListAppInstanceUsersCommand = ListAppInstanceUsersCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListTagsForResourceCommand.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListTagsForResourceCommand.js
 var require_ListTagsForResourceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/ListTagsForResourceCommand.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/ListTagsForResourceCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ListTagsForResourceCommand = exports.$Command = void 0;
@@ -21863,7 +21026,6 @@ var require_ListTagsForResourceCommand = __commonJS({
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var ListTagsForResourceCommand = class _ListTagsForResourceCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -21883,14 +21045,14 @@ var require_ListTagsForResourceCommand = __commonJS({
         this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListTagsForResourceCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
+        const clientName = "ChimeSDKMediaPipelinesClient";
         const commandName = "ListTagsForResourceCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
           inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.ListTagsForResourceResponseFilterSensitiveLog
+          outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
@@ -21906,172 +21068,9 @@ var require_ListTagsForResourceCommand = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/PutAppInstanceRetentionSettingsCommand.js
-var require_PutAppInstanceRetentionSettingsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/PutAppInstanceRetentionSettingsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PutAppInstanceRetentionSettingsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var PutAppInstanceRetentionSettingsCommand2 = class _PutAppInstanceRetentionSettingsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _PutAppInstanceRetentionSettingsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "PutAppInstanceRetentionSettingsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_PutAppInstanceRetentionSettingsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_PutAppInstanceRetentionSettingsCommand)(output, context);
-      }
-    };
-    exports.PutAppInstanceRetentionSettingsCommand = PutAppInstanceRetentionSettingsCommand2;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/PutAppInstanceUserExpirationSettingsCommand.js
-var require_PutAppInstanceUserExpirationSettingsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/PutAppInstanceUserExpirationSettingsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PutAppInstanceUserExpirationSettingsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var PutAppInstanceUserExpirationSettingsCommand = class _PutAppInstanceUserExpirationSettingsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _PutAppInstanceUserExpirationSettingsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "PutAppInstanceUserExpirationSettingsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_PutAppInstanceUserExpirationSettingsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_PutAppInstanceUserExpirationSettingsCommand)(output, context);
-      }
-    };
-    exports.PutAppInstanceUserExpirationSettingsCommand = PutAppInstanceUserExpirationSettingsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/RegisterAppInstanceUserEndpointCommand.js
-var require_RegisterAppInstanceUserEndpointCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/RegisterAppInstanceUserEndpointCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.RegisterAppInstanceUserEndpointCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var RegisterAppInstanceUserEndpointCommand = class _RegisterAppInstanceUserEndpointCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _RegisterAppInstanceUserEndpointCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "RegisterAppInstanceUserEndpointCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.RegisterAppInstanceUserEndpointRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_RegisterAppInstanceUserEndpointCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_RegisterAppInstanceUserEndpointCommand)(output, context);
-      }
-    };
-    exports.RegisterAppInstanceUserEndpointCommand = RegisterAppInstanceUserEndpointCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/TagResourceCommand.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/TagResourceCommand.js
 var require_TagResourceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/TagResourceCommand.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/TagResourceCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.TagResourceCommand = exports.$Command = void 0;
@@ -22081,7 +21080,6 @@ var require_TagResourceCommand = __commonJS({
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var TagResourceCommand = class _TagResourceCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -22101,13 +21099,13 @@ var require_TagResourceCommand = __commonJS({
         this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _TagResourceCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
+        const clientName = "ChimeSDKMediaPipelinesClient";
         const commandName = "TagResourceCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.TagResourceRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
@@ -22124,9 +21122,9 @@ var require_TagResourceCommand = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UntagResourceCommand.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UntagResourceCommand.js
 var require_UntagResourceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UntagResourceCommand.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UntagResourceCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UntagResourceCommand = exports.$Command = void 0;
@@ -22136,7 +21134,6 @@ var require_UntagResourceCommand = __commonJS({
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
     var UntagResourceCommand = class _UntagResourceCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
@@ -22156,13 +21153,13 @@ var require_UntagResourceCommand = __commonJS({
         this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UntagResourceCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
+        const clientName = "ChimeSDKMediaPipelinesClient";
         const commandName = "UntagResourceCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UntagResourceRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
@@ -22179,12 +21176,12 @@ var require_UntagResourceCommand = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceBotCommand.js
-var require_UpdateAppInstanceBotCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceBotCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UpdateMediaInsightsPipelineConfigurationCommand.js
+var require_UpdateMediaInsightsPipelineConfigurationCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UpdateMediaInsightsPipelineConfigurationCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateAppInstanceBotCommand = exports.$Command = void 0;
+    exports.UpdateMediaInsightsPipelineConfigurationCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
@@ -22193,7 +21190,7 @@ var require_UpdateAppInstanceBotCommand = __commonJS({
     } });
     var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var UpdateAppInstanceBotCommand = class _UpdateAppInstanceBotCommand extends smithy_client_1.Command {
+    var UpdateMediaInsightsPipelineConfigurationCommand2 = class _UpdateMediaInsightsPipelineConfigurationCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -22208,47 +21205,46 @@ var require_UpdateAppInstanceBotCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateAppInstanceBotCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateMediaInsightsPipelineConfigurationCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "UpdateAppInstanceBotCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "UpdateMediaInsightsPipelineConfigurationCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateAppInstanceBotRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
+          inputFilterSensitiveLog: models_0_1.UpdateMediaInsightsPipelineConfigurationRequestFilterSensitiveLog,
+          outputFilterSensitiveLog: models_0_1.UpdateMediaInsightsPipelineConfigurationResponseFilterSensitiveLog
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateAppInstanceBotCommand)(input, context);
+        return (0, Aws_restJson1_1.se_UpdateMediaInsightsPipelineConfigurationCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateAppInstanceBotCommand)(output, context);
+        return (0, Aws_restJson1_1.de_UpdateMediaInsightsPipelineConfigurationCommand)(output, context);
       }
     };
-    exports.UpdateAppInstanceBotCommand = UpdateAppInstanceBotCommand;
+    exports.UpdateMediaInsightsPipelineConfigurationCommand = UpdateMediaInsightsPipelineConfigurationCommand2;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceCommand.js
-var require_UpdateAppInstanceCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UpdateMediaInsightsPipelineStatusCommand.js
+var require_UpdateMediaInsightsPipelineStatusCommand = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/UpdateMediaInsightsPipelineStatusCommand.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateAppInstanceCommand = exports.$Command = void 0;
+    exports.UpdateMediaInsightsPipelineStatusCommand = exports.$Command = void 0;
     var middleware_endpoint_1 = require_dist_cjs26();
     var middleware_serde_1 = require_dist_cjs25();
     var smithy_client_1 = require_dist_cjs35();
     Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
       return smithy_client_1.Command;
     } });
-    var models_0_1 = require_models_03();
     var Aws_restJson1_1 = require_Aws_restJson12();
-    var UpdateAppInstanceCommand = class _UpdateAppInstanceCommand extends smithy_client_1.Command {
+    var UpdateMediaInsightsPipelineStatusCommand = class _UpdateMediaInsightsPipelineStatusCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -22263,288 +21259,145 @@ var require_UpdateAppInstanceCommand = __commonJS({
       }
       resolveMiddleware(clientStack, configuration, options) {
         this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateAppInstanceCommand.getEndpointParameterInstructions()));
+        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateMediaInsightsPipelineStatusCommand.getEndpointParameterInstructions()));
         const stack = clientStack.concat(this.middlewareStack);
         const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "UpdateAppInstanceCommand";
+        const clientName = "ChimeSDKMediaPipelinesClient";
+        const commandName = "UpdateMediaInsightsPipelineStatusCommand";
         const handlerExecutionContext = {
           logger,
           clientName,
           commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateAppInstanceRequestFilterSensitiveLog,
+          inputFilterSensitiveLog: (_) => _,
           outputFilterSensitiveLog: (_) => _
         };
         const { requestHandler } = configuration;
         return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
       }
       serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateAppInstanceCommand)(input, context);
+        return (0, Aws_restJson1_1.se_UpdateMediaInsightsPipelineStatusCommand)(input, context);
       }
       deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateAppInstanceCommand)(output, context);
+        return (0, Aws_restJson1_1.de_UpdateMediaInsightsPipelineStatusCommand)(output, context);
       }
     };
-    exports.UpdateAppInstanceCommand = UpdateAppInstanceCommand;
+    exports.UpdateMediaInsightsPipelineStatusCommand = UpdateMediaInsightsPipelineStatusCommand;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceUserCommand.js
-var require_UpdateAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceUserCommand.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/ChimeSDKMediaPipelines.js
+var require_ChimeSDKMediaPipelines = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/ChimeSDKMediaPipelines.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
+    exports.ChimeSDKMediaPipelines = void 0;
     var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var UpdateAppInstanceUserCommand = class _UpdateAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "UpdateAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateAppInstanceUserRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.UpdateAppInstanceUserCommand = UpdateAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceUserEndpointCommand.js
-var require_UpdateAppInstanceUserEndpointCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/UpdateAppInstanceUserEndpointCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateAppInstanceUserEndpointCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_03();
-    var Aws_restJson1_1 = require_Aws_restJson12();
-    var UpdateAppInstanceUserEndpointCommand = class _UpdateAppInstanceUserEndpointCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateAppInstanceUserEndpointCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKIdentityClient";
-        const commandName = "UpdateAppInstanceUserEndpointCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateAppInstanceUserEndpointRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateAppInstanceUserEndpointCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateAppInstanceUserEndpointCommand)(output, context);
-      }
-    };
-    exports.UpdateAppInstanceUserEndpointCommand = UpdateAppInstanceUserEndpointCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/ChimeSDKIdentity.js
-var require_ChimeSDKIdentity = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/ChimeSDKIdentity.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKIdentity = void 0;
-    var smithy_client_1 = require_dist_cjs35();
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var CreateAppInstanceAdminCommand_1 = require_CreateAppInstanceAdminCommand();
-    var CreateAppInstanceBotCommand_1 = require_CreateAppInstanceBotCommand();
-    var CreateAppInstanceCommand_1 = require_CreateAppInstanceCommand();
-    var CreateAppInstanceUserCommand_1 = require_CreateAppInstanceUserCommand();
-    var DeleteAppInstanceAdminCommand_1 = require_DeleteAppInstanceAdminCommand();
-    var DeleteAppInstanceBotCommand_1 = require_DeleteAppInstanceBotCommand();
-    var DeleteAppInstanceCommand_1 = require_DeleteAppInstanceCommand();
-    var DeleteAppInstanceUserCommand_1 = require_DeleteAppInstanceUserCommand();
-    var DeregisterAppInstanceUserEndpointCommand_1 = require_DeregisterAppInstanceUserEndpointCommand();
-    var DescribeAppInstanceAdminCommand_1 = require_DescribeAppInstanceAdminCommand();
-    var DescribeAppInstanceBotCommand_1 = require_DescribeAppInstanceBotCommand();
-    var DescribeAppInstanceCommand_1 = require_DescribeAppInstanceCommand();
-    var DescribeAppInstanceUserCommand_1 = require_DescribeAppInstanceUserCommand();
-    var DescribeAppInstanceUserEndpointCommand_1 = require_DescribeAppInstanceUserEndpointCommand();
-    var GetAppInstanceRetentionSettingsCommand_1 = require_GetAppInstanceRetentionSettingsCommand();
-    var ListAppInstanceAdminsCommand_1 = require_ListAppInstanceAdminsCommand();
-    var ListAppInstanceBotsCommand_1 = require_ListAppInstanceBotsCommand();
-    var ListAppInstancesCommand_1 = require_ListAppInstancesCommand();
-    var ListAppInstanceUserEndpointsCommand_1 = require_ListAppInstanceUserEndpointsCommand();
-    var ListAppInstanceUsersCommand_1 = require_ListAppInstanceUsersCommand();
+    var ChimeSDKMediaPipelinesClient_1 = require_ChimeSDKMediaPipelinesClient();
+    var CreateMediaCapturePipelineCommand_1 = require_CreateMediaCapturePipelineCommand();
+    var CreateMediaConcatenationPipelineCommand_1 = require_CreateMediaConcatenationPipelineCommand();
+    var CreateMediaInsightsPipelineCommand_1 = require_CreateMediaInsightsPipelineCommand();
+    var CreateMediaInsightsPipelineConfigurationCommand_1 = require_CreateMediaInsightsPipelineConfigurationCommand();
+    var CreateMediaLiveConnectorPipelineCommand_1 = require_CreateMediaLiveConnectorPipelineCommand();
+    var DeleteMediaCapturePipelineCommand_1 = require_DeleteMediaCapturePipelineCommand();
+    var DeleteMediaInsightsPipelineConfigurationCommand_1 = require_DeleteMediaInsightsPipelineConfigurationCommand();
+    var DeleteMediaPipelineCommand_1 = require_DeleteMediaPipelineCommand();
+    var GetMediaCapturePipelineCommand_1 = require_GetMediaCapturePipelineCommand();
+    var GetMediaInsightsPipelineConfigurationCommand_1 = require_GetMediaInsightsPipelineConfigurationCommand();
+    var GetMediaPipelineCommand_1 = require_GetMediaPipelineCommand();
+    var ListMediaCapturePipelinesCommand_1 = require_ListMediaCapturePipelinesCommand();
+    var ListMediaInsightsPipelineConfigurationsCommand_1 = require_ListMediaInsightsPipelineConfigurationsCommand();
+    var ListMediaPipelinesCommand_1 = require_ListMediaPipelinesCommand();
     var ListTagsForResourceCommand_1 = require_ListTagsForResourceCommand();
-    var PutAppInstanceRetentionSettingsCommand_1 = require_PutAppInstanceRetentionSettingsCommand();
-    var PutAppInstanceUserExpirationSettingsCommand_1 = require_PutAppInstanceUserExpirationSettingsCommand();
-    var RegisterAppInstanceUserEndpointCommand_1 = require_RegisterAppInstanceUserEndpointCommand();
     var TagResourceCommand_1 = require_TagResourceCommand();
     var UntagResourceCommand_1 = require_UntagResourceCommand();
-    var UpdateAppInstanceBotCommand_1 = require_UpdateAppInstanceBotCommand();
-    var UpdateAppInstanceCommand_1 = require_UpdateAppInstanceCommand();
-    var UpdateAppInstanceUserCommand_1 = require_UpdateAppInstanceUserCommand();
-    var UpdateAppInstanceUserEndpointCommand_1 = require_UpdateAppInstanceUserEndpointCommand();
+    var UpdateMediaInsightsPipelineConfigurationCommand_1 = require_UpdateMediaInsightsPipelineConfigurationCommand();
+    var UpdateMediaInsightsPipelineStatusCommand_1 = require_UpdateMediaInsightsPipelineStatusCommand();
     var commands = {
-      CreateAppInstanceCommand: CreateAppInstanceCommand_1.CreateAppInstanceCommand,
-      CreateAppInstanceAdminCommand: CreateAppInstanceAdminCommand_1.CreateAppInstanceAdminCommand,
-      CreateAppInstanceBotCommand: CreateAppInstanceBotCommand_1.CreateAppInstanceBotCommand,
-      CreateAppInstanceUserCommand: CreateAppInstanceUserCommand_1.CreateAppInstanceUserCommand,
-      DeleteAppInstanceCommand: DeleteAppInstanceCommand_1.DeleteAppInstanceCommand,
-      DeleteAppInstanceAdminCommand: DeleteAppInstanceAdminCommand_1.DeleteAppInstanceAdminCommand,
-      DeleteAppInstanceBotCommand: DeleteAppInstanceBotCommand_1.DeleteAppInstanceBotCommand,
-      DeleteAppInstanceUserCommand: DeleteAppInstanceUserCommand_1.DeleteAppInstanceUserCommand,
-      DeregisterAppInstanceUserEndpointCommand: DeregisterAppInstanceUserEndpointCommand_1.DeregisterAppInstanceUserEndpointCommand,
-      DescribeAppInstanceCommand: DescribeAppInstanceCommand_1.DescribeAppInstanceCommand,
-      DescribeAppInstanceAdminCommand: DescribeAppInstanceAdminCommand_1.DescribeAppInstanceAdminCommand,
-      DescribeAppInstanceBotCommand: DescribeAppInstanceBotCommand_1.DescribeAppInstanceBotCommand,
-      DescribeAppInstanceUserCommand: DescribeAppInstanceUserCommand_1.DescribeAppInstanceUserCommand,
-      DescribeAppInstanceUserEndpointCommand: DescribeAppInstanceUserEndpointCommand_1.DescribeAppInstanceUserEndpointCommand,
-      GetAppInstanceRetentionSettingsCommand: GetAppInstanceRetentionSettingsCommand_1.GetAppInstanceRetentionSettingsCommand,
-      ListAppInstanceAdminsCommand: ListAppInstanceAdminsCommand_1.ListAppInstanceAdminsCommand,
-      ListAppInstanceBotsCommand: ListAppInstanceBotsCommand_1.ListAppInstanceBotsCommand,
-      ListAppInstancesCommand: ListAppInstancesCommand_1.ListAppInstancesCommand,
-      ListAppInstanceUserEndpointsCommand: ListAppInstanceUserEndpointsCommand_1.ListAppInstanceUserEndpointsCommand,
-      ListAppInstanceUsersCommand: ListAppInstanceUsersCommand_1.ListAppInstanceUsersCommand,
+      CreateMediaCapturePipelineCommand: CreateMediaCapturePipelineCommand_1.CreateMediaCapturePipelineCommand,
+      CreateMediaConcatenationPipelineCommand: CreateMediaConcatenationPipelineCommand_1.CreateMediaConcatenationPipelineCommand,
+      CreateMediaInsightsPipelineCommand: CreateMediaInsightsPipelineCommand_1.CreateMediaInsightsPipelineCommand,
+      CreateMediaInsightsPipelineConfigurationCommand: CreateMediaInsightsPipelineConfigurationCommand_1.CreateMediaInsightsPipelineConfigurationCommand,
+      CreateMediaLiveConnectorPipelineCommand: CreateMediaLiveConnectorPipelineCommand_1.CreateMediaLiveConnectorPipelineCommand,
+      DeleteMediaCapturePipelineCommand: DeleteMediaCapturePipelineCommand_1.DeleteMediaCapturePipelineCommand,
+      DeleteMediaInsightsPipelineConfigurationCommand: DeleteMediaInsightsPipelineConfigurationCommand_1.DeleteMediaInsightsPipelineConfigurationCommand,
+      DeleteMediaPipelineCommand: DeleteMediaPipelineCommand_1.DeleteMediaPipelineCommand,
+      GetMediaCapturePipelineCommand: GetMediaCapturePipelineCommand_1.GetMediaCapturePipelineCommand,
+      GetMediaInsightsPipelineConfigurationCommand: GetMediaInsightsPipelineConfigurationCommand_1.GetMediaInsightsPipelineConfigurationCommand,
+      GetMediaPipelineCommand: GetMediaPipelineCommand_1.GetMediaPipelineCommand,
+      ListMediaCapturePipelinesCommand: ListMediaCapturePipelinesCommand_1.ListMediaCapturePipelinesCommand,
+      ListMediaInsightsPipelineConfigurationsCommand: ListMediaInsightsPipelineConfigurationsCommand_1.ListMediaInsightsPipelineConfigurationsCommand,
+      ListMediaPipelinesCommand: ListMediaPipelinesCommand_1.ListMediaPipelinesCommand,
       ListTagsForResourceCommand: ListTagsForResourceCommand_1.ListTagsForResourceCommand,
-      PutAppInstanceRetentionSettingsCommand: PutAppInstanceRetentionSettingsCommand_1.PutAppInstanceRetentionSettingsCommand,
-      PutAppInstanceUserExpirationSettingsCommand: PutAppInstanceUserExpirationSettingsCommand_1.PutAppInstanceUserExpirationSettingsCommand,
-      RegisterAppInstanceUserEndpointCommand: RegisterAppInstanceUserEndpointCommand_1.RegisterAppInstanceUserEndpointCommand,
       TagResourceCommand: TagResourceCommand_1.TagResourceCommand,
       UntagResourceCommand: UntagResourceCommand_1.UntagResourceCommand,
-      UpdateAppInstanceCommand: UpdateAppInstanceCommand_1.UpdateAppInstanceCommand,
-      UpdateAppInstanceBotCommand: UpdateAppInstanceBotCommand_1.UpdateAppInstanceBotCommand,
-      UpdateAppInstanceUserCommand: UpdateAppInstanceUserCommand_1.UpdateAppInstanceUserCommand,
-      UpdateAppInstanceUserEndpointCommand: UpdateAppInstanceUserEndpointCommand_1.UpdateAppInstanceUserEndpointCommand
+      UpdateMediaInsightsPipelineConfigurationCommand: UpdateMediaInsightsPipelineConfigurationCommand_1.UpdateMediaInsightsPipelineConfigurationCommand,
+      UpdateMediaInsightsPipelineStatusCommand: UpdateMediaInsightsPipelineStatusCommand_1.UpdateMediaInsightsPipelineStatusCommand
     };
-    var ChimeSDKIdentity = class extends ChimeSDKIdentityClient_1.ChimeSDKIdentityClient {
+    var ChimeSDKMediaPipelines = class extends ChimeSDKMediaPipelinesClient_1.ChimeSDKMediaPipelinesClient {
     };
-    exports.ChimeSDKIdentity = ChimeSDKIdentity;
-    (0, smithy_client_1.createAggregatedClient)(commands, ChimeSDKIdentity);
+    exports.ChimeSDKMediaPipelines = ChimeSDKMediaPipelines;
+    (0, smithy_client_1.createAggregatedClient)(commands, ChimeSDKMediaPipelines);
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/index.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/index.js
 var require_commands3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/commands/index.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/commands/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_CreateAppInstanceAdminCommand(), exports);
-    tslib_1.__exportStar(require_CreateAppInstanceBotCommand(), exports);
-    tslib_1.__exportStar(require_CreateAppInstanceCommand(), exports);
-    tslib_1.__exportStar(require_CreateAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_DeleteAppInstanceAdminCommand(), exports);
-    tslib_1.__exportStar(require_DeleteAppInstanceBotCommand(), exports);
-    tslib_1.__exportStar(require_DeleteAppInstanceCommand(), exports);
-    tslib_1.__exportStar(require_DeleteAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_DeregisterAppInstanceUserEndpointCommand(), exports);
-    tslib_1.__exportStar(require_DescribeAppInstanceAdminCommand(), exports);
-    tslib_1.__exportStar(require_DescribeAppInstanceBotCommand(), exports);
-    tslib_1.__exportStar(require_DescribeAppInstanceCommand(), exports);
-    tslib_1.__exportStar(require_DescribeAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_DescribeAppInstanceUserEndpointCommand(), exports);
-    tslib_1.__exportStar(require_GetAppInstanceRetentionSettingsCommand(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceAdminsCommand(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceBotsCommand(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceUserEndpointsCommand(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceUsersCommand(), exports);
-    tslib_1.__exportStar(require_ListAppInstancesCommand(), exports);
+    tslib_1.__exportStar(require_CreateMediaCapturePipelineCommand(), exports);
+    tslib_1.__exportStar(require_CreateMediaConcatenationPipelineCommand(), exports);
+    tslib_1.__exportStar(require_CreateMediaInsightsPipelineCommand(), exports);
+    tslib_1.__exportStar(require_CreateMediaInsightsPipelineConfigurationCommand(), exports);
+    tslib_1.__exportStar(require_CreateMediaLiveConnectorPipelineCommand(), exports);
+    tslib_1.__exportStar(require_DeleteMediaCapturePipelineCommand(), exports);
+    tslib_1.__exportStar(require_DeleteMediaInsightsPipelineConfigurationCommand(), exports);
+    tslib_1.__exportStar(require_DeleteMediaPipelineCommand(), exports);
+    tslib_1.__exportStar(require_GetMediaCapturePipelineCommand(), exports);
+    tslib_1.__exportStar(require_GetMediaInsightsPipelineConfigurationCommand(), exports);
+    tslib_1.__exportStar(require_GetMediaPipelineCommand(), exports);
+    tslib_1.__exportStar(require_ListMediaCapturePipelinesCommand(), exports);
+    tslib_1.__exportStar(require_ListMediaInsightsPipelineConfigurationsCommand(), exports);
+    tslib_1.__exportStar(require_ListMediaPipelinesCommand(), exports);
     tslib_1.__exportStar(require_ListTagsForResourceCommand(), exports);
-    tslib_1.__exportStar(require_PutAppInstanceRetentionSettingsCommand(), exports);
-    tslib_1.__exportStar(require_PutAppInstanceUserExpirationSettingsCommand(), exports);
-    tslib_1.__exportStar(require_RegisterAppInstanceUserEndpointCommand(), exports);
     tslib_1.__exportStar(require_TagResourceCommand(), exports);
     tslib_1.__exportStar(require_UntagResourceCommand(), exports);
-    tslib_1.__exportStar(require_UpdateAppInstanceBotCommand(), exports);
-    tslib_1.__exportStar(require_UpdateAppInstanceCommand(), exports);
-    tslib_1.__exportStar(require_UpdateAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_UpdateAppInstanceUserEndpointCommand(), exports);
+    tslib_1.__exportStar(require_UpdateMediaInsightsPipelineConfigurationCommand(), exports);
+    tslib_1.__exportStar(require_UpdateMediaInsightsPipelineStatusCommand(), exports);
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/Interfaces.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/Interfaces.js
 var require_Interfaces2 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/Interfaces.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/Interfaces.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceAdminsPaginator.js
-var require_ListAppInstanceAdminsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceAdminsPaginator.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaCapturePipelinesPaginator.js
+var require_ListMediaCapturePipelinesPaginator = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaCapturePipelinesPaginator.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListAppInstanceAdmins = void 0;
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var ListAppInstanceAdminsCommand_1 = require_ListAppInstanceAdminsCommand();
+    exports.paginateListMediaCapturePipelines = void 0;
+    var ChimeSDKMediaPipelinesClient_1 = require_ChimeSDKMediaPipelinesClient();
+    var ListMediaCapturePipelinesCommand_1 = require_ListMediaCapturePipelinesCommand();
     var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListAppInstanceAdminsCommand_1.ListAppInstanceAdminsCommand(input), ...args);
+      return await client.send(new ListMediaCapturePipelinesCommand_1.ListMediaCapturePipelinesCommand(input), ...args);
     };
-    async function* paginateListAppInstanceAdmins(config, input, ...additionalArguments) {
+    async function* paginateListMediaCapturePipelines(config, input, ...additionalArguments) {
       let token = config.startingToken || void 0;
       let hasNext = true;
       let page;
       while (hasNext) {
         input.NextToken = token;
         input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKIdentityClient_1.ChimeSDKIdentityClient) {
+        if (config.client instanceof ChimeSDKMediaPipelinesClient_1.ChimeSDKMediaPipelinesClient) {
           page = await makePagedClientRequest(config.client, input, ...additionalArguments);
         } else {
-          throw new Error("Invalid client, expected ChimeSDKIdentity | ChimeSDKIdentityClient");
+          throw new Error("Invalid client, expected ChimeSDKMediaPipelines | ChimeSDKMediaPipelinesClient");
         }
         yield page;
         const prevToken = token;
@@ -22553,32 +21406,32 @@ var require_ListAppInstanceAdminsPaginator = __commonJS({
       }
       return void 0;
     }
-    exports.paginateListAppInstanceAdmins = paginateListAppInstanceAdmins;
+    exports.paginateListMediaCapturePipelines = paginateListMediaCapturePipelines;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceBotsPaginator.js
-var require_ListAppInstanceBotsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceBotsPaginator.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaInsightsPipelineConfigurationsPaginator.js
+var require_ListMediaInsightsPipelineConfigurationsPaginator = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaInsightsPipelineConfigurationsPaginator.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListAppInstanceBots = void 0;
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var ListAppInstanceBotsCommand_1 = require_ListAppInstanceBotsCommand();
+    exports.paginateListMediaInsightsPipelineConfigurations = void 0;
+    var ChimeSDKMediaPipelinesClient_1 = require_ChimeSDKMediaPipelinesClient();
+    var ListMediaInsightsPipelineConfigurationsCommand_1 = require_ListMediaInsightsPipelineConfigurationsCommand();
     var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListAppInstanceBotsCommand_1.ListAppInstanceBotsCommand(input), ...args);
+      return await client.send(new ListMediaInsightsPipelineConfigurationsCommand_1.ListMediaInsightsPipelineConfigurationsCommand(input), ...args);
     };
-    async function* paginateListAppInstanceBots(config, input, ...additionalArguments) {
+    async function* paginateListMediaInsightsPipelineConfigurations(config, input, ...additionalArguments) {
       let token = config.startingToken || void 0;
       let hasNext = true;
       let page;
       while (hasNext) {
         input.NextToken = token;
         input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKIdentityClient_1.ChimeSDKIdentityClient) {
+        if (config.client instanceof ChimeSDKMediaPipelinesClient_1.ChimeSDKMediaPipelinesClient) {
           page = await makePagedClientRequest(config.client, input, ...additionalArguments);
         } else {
-          throw new Error("Invalid client, expected ChimeSDKIdentity | ChimeSDKIdentityClient");
+          throw new Error("Invalid client, expected ChimeSDKMediaPipelines | ChimeSDKMediaPipelinesClient");
         }
         yield page;
         const prevToken = token;
@@ -22587,32 +21440,32 @@ var require_ListAppInstanceBotsPaginator = __commonJS({
       }
       return void 0;
     }
-    exports.paginateListAppInstanceBots = paginateListAppInstanceBots;
+    exports.paginateListMediaInsightsPipelineConfigurations = paginateListMediaInsightsPipelineConfigurations;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceUserEndpointsPaginator.js
-var require_ListAppInstanceUserEndpointsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceUserEndpointsPaginator.js"(exports) {
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaPipelinesPaginator.js
+var require_ListMediaPipelinesPaginator = __commonJS({
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/ListMediaPipelinesPaginator.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListAppInstanceUserEndpoints = void 0;
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var ListAppInstanceUserEndpointsCommand_1 = require_ListAppInstanceUserEndpointsCommand();
+    exports.paginateListMediaPipelines = void 0;
+    var ChimeSDKMediaPipelinesClient_1 = require_ChimeSDKMediaPipelinesClient();
+    var ListMediaPipelinesCommand_1 = require_ListMediaPipelinesCommand();
     var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListAppInstanceUserEndpointsCommand_1.ListAppInstanceUserEndpointsCommand(input), ...args);
+      return await client.send(new ListMediaPipelinesCommand_1.ListMediaPipelinesCommand(input), ...args);
     };
-    async function* paginateListAppInstanceUserEndpoints(config, input, ...additionalArguments) {
+    async function* paginateListMediaPipelines(config, input, ...additionalArguments) {
       let token = config.startingToken || void 0;
       let hasNext = true;
       let page;
       while (hasNext) {
         input.NextToken = token;
         input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKIdentityClient_1.ChimeSDKIdentityClient) {
+        if (config.client instanceof ChimeSDKMediaPipelinesClient_1.ChimeSDKMediaPipelinesClient) {
           page = await makePagedClientRequest(config.client, input, ...additionalArguments);
         } else {
-          throw new Error("Invalid client, expected ChimeSDKIdentity | ChimeSDKIdentityClient");
+          throw new Error("Invalid client, expected ChimeSDKMediaPipelines | ChimeSDKMediaPipelinesClient");
         }
         yield page;
         const prevToken = token;
@@ -22621,96 +21474,26 @@ var require_ListAppInstanceUserEndpointsPaginator = __commonJS({
       }
       return void 0;
     }
-    exports.paginateListAppInstanceUserEndpoints = paginateListAppInstanceUserEndpoints;
+    exports.paginateListMediaPipelines = paginateListMediaPipelines;
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceUsersPaginator.js
-var require_ListAppInstanceUsersPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstanceUsersPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListAppInstanceUsers = void 0;
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var ListAppInstanceUsersCommand_1 = require_ListAppInstanceUsersCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListAppInstanceUsersCommand_1.ListAppInstanceUsersCommand(input), ...args);
-    };
-    async function* paginateListAppInstanceUsers(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKIdentityClient_1.ChimeSDKIdentityClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKIdentity | ChimeSDKIdentityClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListAppInstanceUsers = paginateListAppInstanceUsers;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstancesPaginator.js
-var require_ListAppInstancesPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/ListAppInstancesPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListAppInstances = void 0;
-    var ChimeSDKIdentityClient_1 = require_ChimeSDKIdentityClient();
-    var ListAppInstancesCommand_1 = require_ListAppInstancesCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListAppInstancesCommand_1.ListAppInstancesCommand(input), ...args);
-    };
-    async function* paginateListAppInstances(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKIdentityClient_1.ChimeSDKIdentityClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKIdentity | ChimeSDKIdentityClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListAppInstances = paginateListAppInstances;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/index.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/index.js
 var require_pagination4 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/pagination/index.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/pagination/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
     tslib_1.__exportStar(require_Interfaces2(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceAdminsPaginator(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceBotsPaginator(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceUserEndpointsPaginator(), exports);
-    tslib_1.__exportStar(require_ListAppInstanceUsersPaginator(), exports);
-    tslib_1.__exportStar(require_ListAppInstancesPaginator(), exports);
+    tslib_1.__exportStar(require_ListMediaCapturePipelinesPaginator(), exports);
+    tslib_1.__exportStar(require_ListMediaInsightsPipelineConfigurationsPaginator(), exports);
+    tslib_1.__exportStar(require_ListMediaPipelinesPaginator(), exports);
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/index.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/index.js
 var require_models3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/models/index.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/models/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
@@ -22718,21 +21501,21 @@ var require_models3 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/index.js
+// node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/index.js
 var require_dist_cjs53 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-identity/dist-cjs/index.js"(exports) {
+  "node_modules/@aws-sdk/client-chime-sdk-media-pipelines/dist-cjs/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKIdentityServiceException = void 0;
+    exports.ChimeSDKMediaPipelinesServiceException = void 0;
     var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_ChimeSDKIdentityClient(), exports);
-    tslib_1.__exportStar(require_ChimeSDKIdentity(), exports);
+    tslib_1.__exportStar(require_ChimeSDKMediaPipelinesClient(), exports);
+    tslib_1.__exportStar(require_ChimeSDKMediaPipelines(), exports);
     tslib_1.__exportStar(require_commands3(), exports);
     tslib_1.__exportStar(require_pagination4(), exports);
     tslib_1.__exportStar(require_models3(), exports);
-    var ChimeSDKIdentityServiceException_1 = require_ChimeSDKIdentityServiceException();
-    Object.defineProperty(exports, "ChimeSDKIdentityServiceException", { enumerable: true, get: function() {
-      return ChimeSDKIdentityServiceException_1.ChimeSDKIdentityServiceException;
+    var ChimeSDKMediaPipelinesServiceException_1 = require_ChimeSDKMediaPipelinesServiceException();
+    Object.defineProperty(exports, "ChimeSDKMediaPipelinesServiceException", { enumerable: true, get: function() {
+      return ChimeSDKMediaPipelinesServiceException_1.ChimeSDKMediaPipelinesServiceException;
     } });
   }
 });
@@ -23014,7 +21797,7 @@ var require_SSMClient = __commonJS({
     } });
     var EndpointParameters_1 = require_EndpointParameters4();
     var runtimeConfig_1 = require_runtimeConfig4();
-    var SSMClient6 = class extends smithy_client_1.Client {
+    var SSMClient2 = class extends smithy_client_1.Client {
       constructor(...[configuration]) {
         const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration || {});
         const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
@@ -23038,7 +21821,7 @@ var require_SSMClient = __commonJS({
         super.destroy();
       }
     };
-    exports.SSMClient = SSMClient6;
+    exports.SSMClient = SSMClient2;
   }
 });
 
@@ -36389,7 +35172,7 @@ var require_DeleteParameterCommand = __commonJS({
       return smithy_client_1.Command;
     } });
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var DeleteParameterCommand6 = class _DeleteParameterCommand extends smithy_client_1.Command {
+    var DeleteParameterCommand2 = class _DeleteParameterCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -36426,7 +35209,7 @@ var require_DeleteParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.de_DeleteParameterCommand)(output, context);
       }
     };
-    exports.DeleteParameterCommand = DeleteParameterCommand6;
+    exports.DeleteParameterCommand = DeleteParameterCommand2;
   }
 });
 
@@ -39588,7 +38371,7 @@ var require_GetParameterCommand = __commonJS({
     } });
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var GetParameterCommand3 = class _GetParameterCommand extends smithy_client_1.Command {
+    var GetParameterCommand2 = class _GetParameterCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -39625,7 +38408,7 @@ var require_GetParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.de_GetParameterCommand)(output, context);
       }
     };
-    exports.GetParameterCommand = GetParameterCommand3;
+    exports.GetParameterCommand = GetParameterCommand2;
   }
 });
 
@@ -41107,7 +39890,7 @@ var require_PutParameterCommand = __commonJS({
     } });
     var models_1_1 = require_models_1();
     var Aws_json1_1_1 = require_Aws_json1_1();
-    var PutParameterCommand6 = class _PutParameterCommand extends smithy_client_1.Command {
+    var PutParameterCommand2 = class _PutParameterCommand extends smithy_client_1.Command {
       static getEndpointParameterInstructions() {
         return {
           UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
@@ -41144,7 +39927,7 @@ var require_PutParameterCommand = __commonJS({
         return (0, Aws_json1_1_1.de_PutParameterCommand)(output, context);
       }
     };
-    exports.PutParameterCommand = PutParameterCommand6;
+    exports.PutParameterCommand = PutParameterCommand2;
   }
 });
 
@@ -45260,8555 +44043,129 @@ var require_dist_cjs55 = __commonJS({
   }
 });
 
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/EndpointParameters.js
-var require_EndpointParameters5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/EndpointParameters.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.resolveClientEndpointParameters = void 0;
-    var resolveClientEndpointParameters = (options) => {
-      return {
-        ...options,
-        useDualstackEndpoint: options.useDualstackEndpoint ?? false,
-        useFipsEndpoint: options.useFipsEndpoint ?? false,
-        defaultSigningName: "chime"
-      };
-    };
-    exports.resolveClientEndpointParameters = resolveClientEndpointParameters;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/package.json
-var require_package5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/package.json"(exports, module2) {
-    module2.exports = {
-      name: "@aws-sdk/client-chime-sdk-messaging",
-      description: "AWS SDK for JavaScript Chime Sdk Messaging Client for Node.js, Browser and React Native",
-      version: "3.388.0",
-      scripts: {
-        build: "concurrently 'yarn:build:cjs' 'yarn:build:es' 'yarn:build:types'",
-        "build:cjs": "tsc -p tsconfig.cjs.json",
-        "build:docs": "typedoc",
-        "build:es": "tsc -p tsconfig.es.json",
-        "build:include:deps": "lerna run --scope $npm_package_name --include-dependencies build",
-        "build:types": "tsc -p tsconfig.types.json",
-        "build:types:downlevel": "downlevel-dts dist-types dist-types/ts3.4",
-        clean: "rimraf ./dist-* && rimraf *.tsbuildinfo",
-        "extract:docs": "api-extractor run --local",
-        "generate:client": "node ../../scripts/generate-clients/single-service --solo chime-sdk-messaging"
-      },
-      main: "./dist-cjs/index.js",
-      types: "./dist-types/index.d.ts",
-      module: "./dist-es/index.js",
-      sideEffects: false,
-      dependencies: {
-        "@aws-crypto/sha256-browser": "3.0.0",
-        "@aws-crypto/sha256-js": "3.0.0",
-        "@aws-sdk/client-sts": "3.388.0",
-        "@aws-sdk/credential-provider-node": "3.388.0",
-        "@aws-sdk/middleware-host-header": "3.387.0",
-        "@aws-sdk/middleware-logger": "3.387.0",
-        "@aws-sdk/middleware-recursion-detection": "3.387.0",
-        "@aws-sdk/middleware-signing": "3.387.0",
-        "@aws-sdk/middleware-user-agent": "3.387.0",
-        "@aws-sdk/types": "3.387.0",
-        "@aws-sdk/util-endpoints": "3.387.0",
-        "@aws-sdk/util-user-agent-browser": "3.387.0",
-        "@aws-sdk/util-user-agent-node": "3.387.0",
-        "@smithy/config-resolver": "^2.0.2",
-        "@smithy/fetch-http-handler": "^2.0.2",
-        "@smithy/hash-node": "^2.0.2",
-        "@smithy/invalid-dependency": "^2.0.2",
-        "@smithy/middleware-content-length": "^2.0.2",
-        "@smithy/middleware-endpoint": "^2.0.2",
-        "@smithy/middleware-retry": "^2.0.2",
-        "@smithy/middleware-serde": "^2.0.2",
-        "@smithy/middleware-stack": "^2.0.0",
-        "@smithy/node-config-provider": "^2.0.2",
-        "@smithy/node-http-handler": "^2.0.2",
-        "@smithy/protocol-http": "^2.0.2",
-        "@smithy/smithy-client": "^2.0.2",
-        "@smithy/types": "^2.1.0",
-        "@smithy/url-parser": "^2.0.2",
-        "@smithy/util-base64": "^2.0.0",
-        "@smithy/util-body-length-browser": "^2.0.0",
-        "@smithy/util-body-length-node": "^2.0.0",
-        "@smithy/util-defaults-mode-browser": "^2.0.2",
-        "@smithy/util-defaults-mode-node": "^2.0.2",
-        "@smithy/util-retry": "^2.0.0",
-        "@smithy/util-utf8": "^2.0.0",
-        tslib: "^2.5.0",
-        uuid: "^8.3.2"
-      },
-      devDependencies: {
-        "@smithy/service-client-documentation-generator": "^2.0.0",
-        "@tsconfig/node14": "1.0.3",
-        "@types/node": "^14.14.31",
-        "@types/uuid": "^8.3.0",
-        concurrently: "7.0.0",
-        "downlevel-dts": "0.10.1",
-        rimraf: "3.0.2",
-        typedoc: "0.23.23",
-        typescript: "~4.9.5"
-      },
-      engines: {
-        node: ">=14.0.0"
-      },
-      typesVersions: {
-        "<4.0": {
-          "dist-types/*": [
-            "dist-types/ts3.4/*"
-          ]
-        }
-      },
-      files: [
-        "dist-*/**"
-      ],
-      author: {
-        name: "AWS SDK for JavaScript Team",
-        url: "https://aws.amazon.com/javascript/"
-      },
-      license: "Apache-2.0",
-      browser: {
-        "./dist-es/runtimeConfig": "./dist-es/runtimeConfig.browser"
-      },
-      "react-native": {
-        "./dist-es/runtimeConfig": "./dist-es/runtimeConfig.native"
-      },
-      homepage: "https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-chime-sdk-messaging",
-      repository: {
-        type: "git",
-        url: "https://github.com/aws/aws-sdk-js-v3.git",
-        directory: "clients/client-chime-sdk-messaging"
-      }
-    };
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/ruleset.js
-var require_ruleset5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/ruleset.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ruleSet = void 0;
-    var q = "required";
-    var r = "fn";
-    var s = "argv";
-    var t = "ref";
-    var a = "isSet";
-    var b = "tree";
-    var c = "error";
-    var d = "endpoint";
-    var e = "PartitionResult";
-    var f = { [q]: false, "type": "String" };
-    var g = { [q]: true, "default": false, "type": "Boolean" };
-    var h = { [t]: "Endpoint" };
-    var i = { [r]: "booleanEquals", [s]: [{ [t]: "UseFIPS" }, true] };
-    var j = { [r]: "booleanEquals", [s]: [{ [t]: "UseDualStack" }, true] };
-    var k = {};
-    var l = { [r]: "booleanEquals", [s]: [true, { [r]: "getAttr", [s]: [{ [t]: e }, "supportsFIPS"] }] };
-    var m = { [r]: "booleanEquals", [s]: [true, { [r]: "getAttr", [s]: [{ [t]: e }, "supportsDualStack"] }] };
-    var n = [i];
-    var o = [j];
-    var p = [{ [t]: "Region" }];
-    var _data = { version: "1.0", parameters: { Region: f, UseDualStack: g, UseFIPS: g, Endpoint: f }, rules: [{ conditions: [{ [r]: a, [s]: [h] }], type: b, rules: [{ conditions: n, error: "Invalid Configuration: FIPS and custom endpoint are not supported", type: c }, { type: b, rules: [{ conditions: o, error: "Invalid Configuration: Dualstack and custom endpoint are not supported", type: c }, { endpoint: { url: h, properties: k, headers: k }, type: d }] }] }, { type: b, rules: [{ conditions: [{ [r]: a, [s]: p }], type: b, rules: [{ conditions: [{ [r]: "aws.partition", [s]: p, assign: e }], type: b, rules: [{ conditions: [i, j], type: b, rules: [{ conditions: [l, m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://messaging-chime-fips.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS and DualStack are enabled, but this partition does not support one or both", type: c }] }, { conditions: n, type: b, rules: [{ conditions: [l], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://messaging-chime-fips.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "FIPS is enabled but this partition does not support FIPS", type: c }] }, { conditions: o, type: b, rules: [{ conditions: [m], type: b, rules: [{ type: b, rules: [{ endpoint: { url: "https://messaging-chime.{Region}.{PartitionResult#dualStackDnsSuffix}", properties: k, headers: k }, type: d }] }] }, { error: "DualStack is enabled but this partition does not support DualStack", type: c }] }, { type: b, rules: [{ endpoint: { url: "https://messaging-chime.{Region}.{PartitionResult#dnsSuffix}", properties: k, headers: k }, type: d }] }] }] }, { error: "Invalid Configuration: Missing Region", type: c }] }] };
-    exports.ruleSet = _data;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/endpointResolver.js
-var require_endpointResolver5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/endpoint/endpointResolver.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.defaultEndpointResolver = void 0;
-    var util_endpoints_1 = require_dist_cjs18();
-    var ruleset_1 = require_ruleset5();
-    var defaultEndpointResolver = (endpointParams, context = {}) => {
-      return (0, util_endpoints_1.resolveEndpoint)(ruleset_1.ruleSet, {
-        endpointParams,
-        logger: context.logger
-      });
-    };
-    exports.defaultEndpointResolver = defaultEndpointResolver;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/runtimeConfig.shared.js
-var require_runtimeConfig_shared5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/runtimeConfig.shared.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRuntimeConfig = void 0;
-    var smithy_client_1 = require_dist_cjs35();
-    var url_parser_1 = require_dist_cjs24();
-    var util_base64_1 = require_dist_cjs31();
-    var util_utf8_1 = require_dist_cjs13();
-    var endpointResolver_1 = require_endpointResolver5();
-    var getRuntimeConfig = (config) => ({
-      apiVersion: "2021-05-15",
-      base64Decoder: config?.base64Decoder ?? util_base64_1.fromBase64,
-      base64Encoder: config?.base64Encoder ?? util_base64_1.toBase64,
-      disableHostPrefix: config?.disableHostPrefix ?? false,
-      endpointProvider: config?.endpointProvider ?? endpointResolver_1.defaultEndpointResolver,
-      logger: config?.logger ?? new smithy_client_1.NoOpLogger(),
-      serviceId: config?.serviceId ?? "Chime SDK Messaging",
-      urlParser: config?.urlParser ?? url_parser_1.parseUrl,
-      utf8Decoder: config?.utf8Decoder ?? util_utf8_1.fromUtf8,
-      utf8Encoder: config?.utf8Encoder ?? util_utf8_1.toUtf8
-    });
-    exports.getRuntimeConfig = getRuntimeConfig;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/runtimeConfig.js
-var require_runtimeConfig5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/runtimeConfig.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRuntimeConfig = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    var package_json_1 = tslib_1.__importDefault(require_package5());
-    var client_sts_1 = require_dist_cjs52();
-    var credential_provider_node_1 = require_dist_cjs51();
-    var util_user_agent_node_1 = require_dist_cjs42();
-    var config_resolver_1 = require_dist_cjs21();
-    var hash_node_1 = require_dist_cjs43();
-    var middleware_retry_1 = require_dist_cjs29();
-    var node_config_provider_1 = require_dist_cjs39();
-    var node_http_handler_1 = require_dist_cjs33();
-    var util_body_length_node_1 = require_dist_cjs44();
-    var util_retry_1 = require_dist_cjs28();
-    var runtimeConfig_shared_1 = require_runtimeConfig_shared5();
-    var smithy_client_1 = require_dist_cjs35();
-    var util_defaults_mode_node_1 = require_dist_cjs45();
-    var smithy_client_2 = require_dist_cjs35();
-    var getRuntimeConfig = (config) => {
-      (0, smithy_client_2.emitWarningIfUnsupportedVersion)(process.version);
-      const defaultsMode = (0, util_defaults_mode_node_1.resolveDefaultsModeConfig)(config);
-      const defaultConfigProvider = () => defaultsMode().then(smithy_client_1.loadConfigsForDefaultMode);
-      const clientSharedValues = (0, runtimeConfig_shared_1.getRuntimeConfig)(config);
-      return {
-        ...clientSharedValues,
-        ...config,
-        runtime: "node",
-        defaultsMode,
-        bodyLengthChecker: config?.bodyLengthChecker ?? util_body_length_node_1.calculateBodyLength,
-        credentialDefaultProvider: config?.credentialDefaultProvider ?? (0, client_sts_1.decorateDefaultCredentialProvider)(credential_provider_node_1.defaultProvider),
-        defaultUserAgentProvider: config?.defaultUserAgentProvider ?? (0, util_user_agent_node_1.defaultUserAgent)({ serviceId: clientSharedValues.serviceId, clientVersion: package_json_1.default.version }),
-        maxAttempts: config?.maxAttempts ?? (0, node_config_provider_1.loadConfig)(middleware_retry_1.NODE_MAX_ATTEMPT_CONFIG_OPTIONS),
-        region: config?.region ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_REGION_CONFIG_OPTIONS, config_resolver_1.NODE_REGION_CONFIG_FILE_OPTIONS),
-        requestHandler: config?.requestHandler ?? new node_http_handler_1.NodeHttpHandler(defaultConfigProvider),
-        retryMode: config?.retryMode ?? (0, node_config_provider_1.loadConfig)({
-          ...middleware_retry_1.NODE_RETRY_MODE_CONFIG_OPTIONS,
-          default: async () => (await defaultConfigProvider()).retryMode || util_retry_1.DEFAULT_RETRY_MODE
-        }),
-        sha256: config?.sha256 ?? hash_node_1.Hash.bind(null, "sha256"),
-        streamCollector: config?.streamCollector ?? node_http_handler_1.streamCollector,
-        useDualstackEndpoint: config?.useDualstackEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_DUALSTACK_ENDPOINT_CONFIG_OPTIONS),
-        useFipsEndpoint: config?.useFipsEndpoint ?? (0, node_config_provider_1.loadConfig)(config_resolver_1.NODE_USE_FIPS_ENDPOINT_CONFIG_OPTIONS)
-      };
-    };
-    exports.getRuntimeConfig = getRuntimeConfig;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/ChimeSDKMessagingClient.js
-var require_ChimeSDKMessagingClient = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/ChimeSDKMessagingClient.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKMessagingClient = exports.__Client = void 0;
-    var middleware_host_header_1 = require_dist_cjs3();
-    var middleware_logger_1 = require_dist_cjs4();
-    var middleware_recursion_detection_1 = require_dist_cjs5();
-    var middleware_signing_1 = require_dist_cjs16();
-    var middleware_user_agent_1 = require_dist_cjs19();
-    var config_resolver_1 = require_dist_cjs21();
-    var middleware_content_length_1 = require_dist_cjs22();
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_retry_1 = require_dist_cjs29();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "__Client", { enumerable: true, get: function() {
-      return smithy_client_1.Client;
-    } });
-    var EndpointParameters_1 = require_EndpointParameters5();
-    var runtimeConfig_1 = require_runtimeConfig5();
-    var ChimeSDKMessagingClient3 = class extends smithy_client_1.Client {
-      constructor(...[configuration]) {
-        const _config_0 = (0, runtimeConfig_1.getRuntimeConfig)(configuration || {});
-        const _config_1 = (0, EndpointParameters_1.resolveClientEndpointParameters)(_config_0);
-        const _config_2 = (0, config_resolver_1.resolveRegionConfig)(_config_1);
-        const _config_3 = (0, middleware_endpoint_1.resolveEndpointConfig)(_config_2);
-        const _config_4 = (0, middleware_retry_1.resolveRetryConfig)(_config_3);
-        const _config_5 = (0, middleware_host_header_1.resolveHostHeaderConfig)(_config_4);
-        const _config_6 = (0, middleware_signing_1.resolveAwsAuthConfig)(_config_5);
-        const _config_7 = (0, middleware_user_agent_1.resolveUserAgentConfig)(_config_6);
-        super(_config_7);
-        this.config = _config_7;
-        this.middlewareStack.use((0, middleware_retry_1.getRetryPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_content_length_1.getContentLengthPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_host_header_1.getHostHeaderPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_logger_1.getLoggerPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_recursion_detection_1.getRecursionDetectionPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_signing_1.getAwsAuthPlugin)(this.config));
-        this.middlewareStack.use((0, middleware_user_agent_1.getUserAgentPlugin)(this.config));
-      }
-      destroy() {
-        super.destroy();
-      }
-    };
-    exports.ChimeSDKMessagingClient = ChimeSDKMessagingClient3;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/ChimeSDKMessagingServiceException.js
-var require_ChimeSDKMessagingServiceException = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/ChimeSDKMessagingServiceException.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKMessagingServiceException = exports.__ServiceException = void 0;
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "__ServiceException", { enumerable: true, get: function() {
-      return smithy_client_1.ServiceException;
-    } });
-    var ChimeSDKMessagingServiceException = class _ChimeSDKMessagingServiceException extends smithy_client_1.ServiceException {
-      constructor(options) {
-        super(options);
-        Object.setPrototypeOf(this, _ChimeSDKMessagingServiceException.prototype);
-      }
-    };
-    exports.ChimeSDKMessagingServiceException = ChimeSDKMessagingServiceException;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/models_0.js
-var require_models_05 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/models_0.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChannelModeratorSummaryFilterSensitiveLog = exports.ChannelModeratorFilterSensitiveLog = exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelMessageSummaryFilterSensitiveLog = exports.ChannelMessageFilterSensitiveLog = exports.ChannelMembershipSummaryFilterSensitiveLog = exports.ChannelMembershipPreferencesFilterSensitiveLog = exports.PushNotificationPreferencesFilterSensitiveLog = exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog = exports.ChannelSummaryFilterSensitiveLog = exports.ChannelMembershipFilterSensitiveLog = exports.ChannelFlowSummaryFilterSensitiveLog = exports.ChannelFlowCallbackRequestFilterSensitiveLog = exports.ChannelMessageCallbackFilterSensitiveLog = exports.PushNotificationConfigurationFilterSensitiveLog = exports.MessageAttributeValueFilterSensitiveLog = exports.ChannelFlowFilterSensitiveLog = exports.ProcessorFilterSensitiveLog = exports.ChannelBanSummaryFilterSensitiveLog = exports.ChannelBanFilterSensitiveLog = exports.ChannelAssociatedWithFlowSummaryFilterSensitiveLog = exports.ChannelFilterSensitiveLog = exports.BatchCreateChannelMembershipResponseFilterSensitiveLog = exports.BatchChannelMembershipsFilterSensitiveLog = exports.IdentityFilterSensitiveLog = exports.SearchFieldOperator = exports.SearchFieldKey = exports.SortOrder = exports.MessagingDataType = exports.ChannelMessageType = exports.ChannelMessageStatus = exports.ChannelMessagePersistenceType = exports.PushNotificationType = exports.FallbackAction = exports.InvocationType = exports.ChannelPrivacy = exports.ChannelMode = exports.ExpirationCriterion = exports.ResourceLimitExceededException = exports.UnauthorizedClientException = exports.ThrottledClientException = exports.ServiceUnavailableException = exports.ServiceFailureException = exports.NotFoundException = exports.ForbiddenException = exports.ConflictException = exports.BadRequestException = exports.ErrorCode = exports.ChannelMembershipType = exports.AllowNotifications = void 0;
-    exports.UpdateChannelMessageRequestFilterSensitiveLog = exports.UpdateChannelFlowRequestFilterSensitiveLog = exports.UpdateChannelRequestFilterSensitiveLog = exports.UntagResourceRequestFilterSensitiveLog = exports.TagResourceRequestFilterSensitiveLog = exports.SendChannelMessageRequestFilterSensitiveLog = exports.SearchChannelsResponseFilterSensitiveLog = exports.SearchChannelsRequestFilterSensitiveLog = exports.PutChannelMembershipPreferencesResponseFilterSensitiveLog = exports.PutChannelMembershipPreferencesRequestFilterSensitiveLog = exports.ListTagsForResourceResponseFilterSensitiveLog = exports.ListSubChannelsResponseFilterSensitiveLog = exports.ListSubChannelsRequestFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog = exports.ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog = exports.ListChannelsResponseFilterSensitiveLog = exports.ListChannelsRequestFilterSensitiveLog = exports.ListChannelModeratorsResponseFilterSensitiveLog = exports.ListChannelModeratorsRequestFilterSensitiveLog = exports.ListChannelMessagesResponseFilterSensitiveLog = exports.ListChannelMessagesRequestFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog = exports.ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog = exports.ListChannelMembershipsResponseFilterSensitiveLog = exports.ListChannelMembershipsRequestFilterSensitiveLog = exports.ListChannelFlowsResponseFilterSensitiveLog = exports.ListChannelFlowsRequestFilterSensitiveLog = exports.ListChannelBansResponseFilterSensitiveLog = exports.ListChannelBansRequestFilterSensitiveLog = exports.GetChannelMessageResponseFilterSensitiveLog = exports.GetChannelMembershipPreferencesResponseFilterSensitiveLog = exports.DescribeChannelModeratorResponseFilterSensitiveLog = exports.DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog = exports.DescribeChannelMembershipResponseFilterSensitiveLog = exports.DescribeChannelFlowResponseFilterSensitiveLog = exports.DescribeChannelBanResponseFilterSensitiveLog = exports.DescribeChannelResponseFilterSensitiveLog = exports.CreateChannelModeratorResponseFilterSensitiveLog = exports.CreateChannelMembershipResponseFilterSensitiveLog = exports.CreateChannelFlowRequestFilterSensitiveLog = exports.CreateChannelBanResponseFilterSensitiveLog = exports.CreateChannelRequestFilterSensitiveLog = exports.TagFilterSensitiveLog = void 0;
-    var smithy_client_1 = require_dist_cjs35();
-    var ChimeSDKMessagingServiceException_1 = require_ChimeSDKMessagingServiceException();
-    exports.AllowNotifications = {
-      ALL: "ALL",
-      FILTERED: "FILTERED",
-      NONE: "NONE"
-    };
-    exports.ChannelMembershipType = {
-      DEFAULT: "DEFAULT",
-      HIDDEN: "HIDDEN"
-    };
-    exports.ErrorCode = {
-      AccessDenied: "AccessDenied",
-      BadRequest: "BadRequest",
-      Conflict: "Conflict",
-      Forbidden: "Forbidden",
-      NotFound: "NotFound",
-      PhoneNumberAssociationsExist: "PhoneNumberAssociationsExist",
-      PreconditionFailed: "PreconditionFailed",
-      ResourceLimitExceeded: "ResourceLimitExceeded",
-      ServiceFailure: "ServiceFailure",
-      ServiceUnavailable: "ServiceUnavailable",
-      Throttled: "Throttled",
-      Throttling: "Throttling",
-      Unauthorized: "Unauthorized",
-      Unprocessable: "Unprocessable",
-      VoiceConnectorGroupAssociationsExist: "VoiceConnectorGroupAssociationsExist"
-    };
-    var BadRequestException = class _BadRequestException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "BadRequestException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "BadRequestException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _BadRequestException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.BadRequestException = BadRequestException;
-    var ConflictException = class _ConflictException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ConflictException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ConflictException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _ConflictException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ConflictException = ConflictException;
-    var ForbiddenException = class _ForbiddenException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ForbiddenException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ForbiddenException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _ForbiddenException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ForbiddenException = ForbiddenException;
-    var NotFoundException = class _NotFoundException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "NotFoundException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "NotFoundException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _NotFoundException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.NotFoundException = NotFoundException;
-    var ServiceFailureException = class _ServiceFailureException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ServiceFailureException",
-          $fault: "server",
-          ...opts
-        });
-        this.name = "ServiceFailureException";
-        this.$fault = "server";
-        Object.setPrototypeOf(this, _ServiceFailureException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ServiceFailureException = ServiceFailureException;
-    var ServiceUnavailableException = class _ServiceUnavailableException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ServiceUnavailableException",
-          $fault: "server",
-          ...opts
-        });
-        this.name = "ServiceUnavailableException";
-        this.$fault = "server";
-        Object.setPrototypeOf(this, _ServiceUnavailableException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ServiceUnavailableException = ServiceUnavailableException;
-    var ThrottledClientException = class _ThrottledClientException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ThrottledClientException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ThrottledClientException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _ThrottledClientException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ThrottledClientException = ThrottledClientException;
-    var UnauthorizedClientException = class _UnauthorizedClientException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "UnauthorizedClientException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "UnauthorizedClientException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _UnauthorizedClientException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.UnauthorizedClientException = UnauthorizedClientException;
-    var ResourceLimitExceededException = class _ResourceLimitExceededException extends ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException {
-      constructor(opts) {
-        super({
-          name: "ResourceLimitExceededException",
-          $fault: "client",
-          ...opts
-        });
-        this.name = "ResourceLimitExceededException";
-        this.$fault = "client";
-        Object.setPrototypeOf(this, _ResourceLimitExceededException.prototype);
-        this.Code = opts.Code;
-        this.Message = opts.Message;
-      }
-    };
-    exports.ResourceLimitExceededException = ResourceLimitExceededException;
-    exports.ExpirationCriterion = {
-      CREATED_TIMESTAMP: "CREATED_TIMESTAMP",
-      LAST_MESSAGE_TIMESTAMP: "LAST_MESSAGE_TIMESTAMP"
-    };
-    exports.ChannelMode = {
-      RESTRICTED: "RESTRICTED",
-      UNRESTRICTED: "UNRESTRICTED"
-    };
-    exports.ChannelPrivacy = {
-      PRIVATE: "PRIVATE",
-      PUBLIC: "PUBLIC"
-    };
-    exports.InvocationType = {
-      ASYNC: "ASYNC"
-    };
-    exports.FallbackAction = {
-      ABORT: "ABORT",
-      CONTINUE: "CONTINUE"
-    };
-    exports.PushNotificationType = {
-      DEFAULT: "DEFAULT",
-      VOIP: "VOIP"
-    };
-    exports.ChannelMessagePersistenceType = {
-      NON_PERSISTENT: "NON_PERSISTENT",
-      PERSISTENT: "PERSISTENT"
-    };
-    exports.ChannelMessageStatus = {
-      DENIED: "DENIED",
-      FAILED: "FAILED",
-      PENDING: "PENDING",
-      SENT: "SENT"
-    };
-    exports.ChannelMessageType = {
-      CONTROL: "CONTROL",
-      STANDARD: "STANDARD"
-    };
-    exports.MessagingDataType = {
-      Channel: "Channel",
-      ChannelMessage: "ChannelMessage"
-    };
-    exports.SortOrder = {
-      ASCENDING: "ASCENDING",
-      DESCENDING: "DESCENDING"
-    };
-    exports.SearchFieldKey = {
-      MEMBERS: "MEMBERS"
-    };
-    exports.SearchFieldOperator = {
-      EQUALS: "EQUALS",
-      INCLUDES: "INCLUDES"
-    };
-    var IdentityFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.IdentityFilterSensitiveLog = IdentityFilterSensitiveLog;
-    var BatchChannelMembershipsFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.InvitedBy && { InvitedBy: (0, exports.IdentityFilterSensitiveLog)(obj.InvitedBy) },
-      ...obj.Members && { Members: obj.Members.map((item) => (0, exports.IdentityFilterSensitiveLog)(item)) }
-    });
-    exports.BatchChannelMembershipsFilterSensitiveLog = BatchChannelMembershipsFilterSensitiveLog;
-    var BatchCreateChannelMembershipResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.BatchChannelMemberships && {
-        BatchChannelMemberships: (0, exports.BatchChannelMembershipsFilterSensitiveLog)(obj.BatchChannelMemberships)
-      }
-    });
-    exports.BatchCreateChannelMembershipResponseFilterSensitiveLog = BatchCreateChannelMembershipResponseFilterSensitiveLog;
-    var ChannelFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.CreatedBy && { CreatedBy: (0, exports.IdentityFilterSensitiveLog)(obj.CreatedBy) }
-    });
-    exports.ChannelFilterSensitiveLog = ChannelFilterSensitiveLog;
-    var ChannelAssociatedWithFlowSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelAssociatedWithFlowSummaryFilterSensitiveLog = ChannelAssociatedWithFlowSummaryFilterSensitiveLog;
-    var ChannelBanFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) },
-      ...obj.CreatedBy && { CreatedBy: (0, exports.IdentityFilterSensitiveLog)(obj.CreatedBy) }
-    });
-    exports.ChannelBanFilterSensitiveLog = ChannelBanFilterSensitiveLog;
-    var ChannelBanSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) }
-    });
-    exports.ChannelBanSummaryFilterSensitiveLog = ChannelBanSummaryFilterSensitiveLog;
-    var ProcessorFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ProcessorFilterSensitiveLog = ProcessorFilterSensitiveLog;
-    var ChannelFlowFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Processors && { Processors: obj.Processors.map((item) => (0, exports.ProcessorFilterSensitiveLog)(item)) },
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelFlowFilterSensitiveLog = ChannelFlowFilterSensitiveLog;
-    var MessageAttributeValueFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.StringValues && { StringValues: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.MessageAttributeValueFilterSensitiveLog = MessageAttributeValueFilterSensitiveLog;
-    var PushNotificationConfigurationFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Title && { Title: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Body && { Body: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.PushNotificationConfigurationFilterSensitiveLog = PushNotificationConfigurationFilterSensitiveLog;
-    var ChannelMessageCallbackFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Content && { Content: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.PushNotification && {
-        PushNotification: (0, exports.PushNotificationConfigurationFilterSensitiveLog)(obj.PushNotification)
-      },
-      ...obj.MessageAttributes && {
-        MessageAttributes: Object.entries(obj.MessageAttributes).reduce((acc, [key, value]) => (acc[key] = (0, exports.MessageAttributeValueFilterSensitiveLog)(value), acc), {})
-      },
-      ...obj.ContentType && { ContentType: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelMessageCallbackFilterSensitiveLog = ChannelMessageCallbackFilterSensitiveLog;
-    var ChannelFlowCallbackRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMessage && { ChannelMessage: (0, exports.ChannelMessageCallbackFilterSensitiveLog)(obj.ChannelMessage) }
-    });
-    exports.ChannelFlowCallbackRequestFilterSensitiveLog = ChannelFlowCallbackRequestFilterSensitiveLog;
-    var ChannelFlowSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Processors && { Processors: obj.Processors.map((item) => (0, exports.ProcessorFilterSensitiveLog)(item)) }
-    });
-    exports.ChannelFlowSummaryFilterSensitiveLog = ChannelFlowSummaryFilterSensitiveLog;
-    var ChannelMembershipFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.InvitedBy && { InvitedBy: (0, exports.IdentityFilterSensitiveLog)(obj.InvitedBy) },
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) }
-    });
-    exports.ChannelMembershipFilterSensitiveLog = ChannelMembershipFilterSensitiveLog;
-    var ChannelSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelSummaryFilterSensitiveLog = ChannelSummaryFilterSensitiveLog;
-    var ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelSummary && { ChannelSummary: (0, exports.ChannelSummaryFilterSensitiveLog)(obj.ChannelSummary) }
-    });
-    exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog = ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog;
-    var PushNotificationPreferencesFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.FilterRule && { FilterRule: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.PushNotificationPreferencesFilterSensitiveLog = PushNotificationPreferencesFilterSensitiveLog;
-    var ChannelMembershipPreferencesFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.PushNotifications && {
-        PushNotifications: (0, exports.PushNotificationPreferencesFilterSensitiveLog)(obj.PushNotifications)
-      }
-    });
-    exports.ChannelMembershipPreferencesFilterSensitiveLog = ChannelMembershipPreferencesFilterSensitiveLog;
-    var ChannelMembershipSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) }
-    });
-    exports.ChannelMembershipSummaryFilterSensitiveLog = ChannelMembershipSummaryFilterSensitiveLog;
-    var ChannelMessageFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Content && { Content: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Sender && { Sender: (0, exports.IdentityFilterSensitiveLog)(obj.Sender) },
-      ...obj.MessageAttributes && {
-        MessageAttributes: Object.entries(obj.MessageAttributes).reduce((acc, [key, value]) => (acc[key] = (0, exports.MessageAttributeValueFilterSensitiveLog)(value), acc), {})
-      },
-      ...obj.ContentType && { ContentType: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelMessageFilterSensitiveLog = ChannelMessageFilterSensitiveLog;
-    var ChannelMessageSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Content && { Content: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Sender && { Sender: (0, exports.IdentityFilterSensitiveLog)(obj.Sender) },
-      ...obj.MessageAttributes && {
-        MessageAttributes: Object.entries(obj.MessageAttributes).reduce((acc, [key, value]) => (acc[key] = (0, exports.MessageAttributeValueFilterSensitiveLog)(value), acc), {})
-      },
-      ...obj.ContentType && { ContentType: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ChannelMessageSummaryFilterSensitiveLog = ChannelMessageSummaryFilterSensitiveLog;
-    var ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelSummary && { ChannelSummary: (0, exports.ChannelSummaryFilterSensitiveLog)(obj.ChannelSummary) }
-    });
-    exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog = ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog;
-    var ChannelModeratorFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Moderator && { Moderator: (0, exports.IdentityFilterSensitiveLog)(obj.Moderator) },
-      ...obj.CreatedBy && { CreatedBy: (0, exports.IdentityFilterSensitiveLog)(obj.CreatedBy) }
-    });
-    exports.ChannelModeratorFilterSensitiveLog = ChannelModeratorFilterSensitiveLog;
-    var ChannelModeratorSummaryFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Moderator && { Moderator: (0, exports.IdentityFilterSensitiveLog)(obj.Moderator) }
-    });
-    exports.ChannelModeratorSummaryFilterSensitiveLog = ChannelModeratorSummaryFilterSensitiveLog;
-    var TagFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Key && { Key: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Value && { Value: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.TagFilterSensitiveLog = TagFilterSensitiveLog;
-    var CreateChannelRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) },
-      ...obj.ChannelId && { ChannelId: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.CreateChannelRequestFilterSensitiveLog = CreateChannelRequestFilterSensitiveLog;
-    var CreateChannelBanResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) }
-    });
-    exports.CreateChannelBanResponseFilterSensitiveLog = CreateChannelBanResponseFilterSensitiveLog;
-    var CreateChannelFlowRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Processors && { Processors: obj.Processors.map((item) => (0, exports.ProcessorFilterSensitiveLog)(item)) },
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) },
-      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.CreateChannelFlowRequestFilterSensitiveLog = CreateChannelFlowRequestFilterSensitiveLog;
-    var CreateChannelMembershipResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) }
-    });
-    exports.CreateChannelMembershipResponseFilterSensitiveLog = CreateChannelMembershipResponseFilterSensitiveLog;
-    var CreateChannelModeratorResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelModerator && { ChannelModerator: (0, exports.IdentityFilterSensitiveLog)(obj.ChannelModerator) }
-    });
-    exports.CreateChannelModeratorResponseFilterSensitiveLog = CreateChannelModeratorResponseFilterSensitiveLog;
-    var DescribeChannelResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channel && { Channel: (0, exports.ChannelFilterSensitiveLog)(obj.Channel) }
-    });
-    exports.DescribeChannelResponseFilterSensitiveLog = DescribeChannelResponseFilterSensitiveLog;
-    var DescribeChannelBanResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelBan && { ChannelBan: (0, exports.ChannelBanFilterSensitiveLog)(obj.ChannelBan) }
-    });
-    exports.DescribeChannelBanResponseFilterSensitiveLog = DescribeChannelBanResponseFilterSensitiveLog;
-    var DescribeChannelFlowResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelFlow && { ChannelFlow: (0, exports.ChannelFlowFilterSensitiveLog)(obj.ChannelFlow) }
-    });
-    exports.DescribeChannelFlowResponseFilterSensitiveLog = DescribeChannelFlowResponseFilterSensitiveLog;
-    var DescribeChannelMembershipResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMembership && { ChannelMembership: (0, exports.ChannelMembershipFilterSensitiveLog)(obj.ChannelMembership) }
-    });
-    exports.DescribeChannelMembershipResponseFilterSensitiveLog = DescribeChannelMembershipResponseFilterSensitiveLog;
-    var DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMembership && {
-        ChannelMembership: (0, exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog)(obj.ChannelMembership)
-      }
-    });
-    exports.DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog = DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog;
-    var DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channel && { Channel: (0, exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog)(obj.Channel) }
-    });
-    exports.DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog = DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog;
-    var DescribeChannelModeratorResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelModerator && { ChannelModerator: (0, exports.ChannelModeratorFilterSensitiveLog)(obj.ChannelModerator) }
-    });
-    exports.DescribeChannelModeratorResponseFilterSensitiveLog = DescribeChannelModeratorResponseFilterSensitiveLog;
-    var GetChannelMembershipPreferencesResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) },
-      ...obj.Preferences && { Preferences: (0, exports.ChannelMembershipPreferencesFilterSensitiveLog)(obj.Preferences) }
-    });
-    exports.GetChannelMembershipPreferencesResponseFilterSensitiveLog = GetChannelMembershipPreferencesResponseFilterSensitiveLog;
-    var GetChannelMessageResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMessage && { ChannelMessage: (0, exports.ChannelMessageFilterSensitiveLog)(obj.ChannelMessage) }
-    });
-    exports.GetChannelMessageResponseFilterSensitiveLog = GetChannelMessageResponseFilterSensitiveLog;
-    var ListChannelBansRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelBansRequestFilterSensitiveLog = ListChannelBansRequestFilterSensitiveLog;
-    var ListChannelBansResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ChannelBans && { ChannelBans: obj.ChannelBans.map((item) => (0, exports.ChannelBanSummaryFilterSensitiveLog)(item)) }
-    });
-    exports.ListChannelBansResponseFilterSensitiveLog = ListChannelBansResponseFilterSensitiveLog;
-    var ListChannelFlowsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelFlowsRequestFilterSensitiveLog = ListChannelFlowsRequestFilterSensitiveLog;
-    var ListChannelFlowsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelFlows && { ChannelFlows: obj.ChannelFlows.map((item) => (0, exports.ChannelFlowSummaryFilterSensitiveLog)(item)) },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelFlowsResponseFilterSensitiveLog = ListChannelFlowsResponseFilterSensitiveLog;
-    var ListChannelMembershipsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelMembershipsRequestFilterSensitiveLog = ListChannelMembershipsRequestFilterSensitiveLog;
-    var ListChannelMembershipsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMemberships && {
-        ChannelMemberships: obj.ChannelMemberships.map((item) => (0, exports.ChannelMembershipSummaryFilterSensitiveLog)(item))
-      },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelMembershipsResponseFilterSensitiveLog = ListChannelMembershipsResponseFilterSensitiveLog;
-    var ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog = ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog;
-    var ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.ChannelMemberships && {
-        ChannelMemberships: obj.ChannelMemberships.map((item) => (0, exports.ChannelMembershipForAppInstanceUserSummaryFilterSensitiveLog)(item))
-      },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog = ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog;
-    var ListChannelMessagesRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelMessagesRequestFilterSensitiveLog = ListChannelMessagesRequestFilterSensitiveLog;
-    var ListChannelMessagesResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ChannelMessages && {
-        ChannelMessages: obj.ChannelMessages.map((item) => (0, exports.ChannelMessageSummaryFilterSensitiveLog)(item))
-      }
-    });
-    exports.ListChannelMessagesResponseFilterSensitiveLog = ListChannelMessagesResponseFilterSensitiveLog;
-    var ListChannelModeratorsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelModeratorsRequestFilterSensitiveLog = ListChannelModeratorsRequestFilterSensitiveLog;
-    var ListChannelModeratorsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ChannelModerators && {
-        ChannelModerators: obj.ChannelModerators.map((item) => (0, exports.ChannelModeratorSummaryFilterSensitiveLog)(item))
-      }
-    });
-    exports.ListChannelModeratorsResponseFilterSensitiveLog = ListChannelModeratorsResponseFilterSensitiveLog;
-    var ListChannelsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsRequestFilterSensitiveLog = ListChannelsRequestFilterSensitiveLog;
-    var ListChannelsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channels && { Channels: obj.Channels.map((item) => (0, exports.ChannelSummaryFilterSensitiveLog)(item)) },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsResponseFilterSensitiveLog = ListChannelsResponseFilterSensitiveLog;
-    var ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog = ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog;
-    var ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channels && {
-        Channels: obj.Channels.map((item) => (0, exports.ChannelAssociatedWithFlowSummaryFilterSensitiveLog)(item))
-      },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog = ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog;
-    var ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog = ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog;
-    var ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channels && {
-        Channels: obj.Channels.map((item) => (0, exports.ChannelModeratedByAppInstanceUserSummaryFilterSensitiveLog)(item))
-      },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog = ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog;
-    var ListSubChannelsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListSubChannelsRequestFilterSensitiveLog = ListSubChannelsRequestFilterSensitiveLog;
-    var ListSubChannelsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.ListSubChannelsResponseFilterSensitiveLog = ListSubChannelsResponseFilterSensitiveLog;
-    var ListTagsForResourceResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
-    });
-    exports.ListTagsForResourceResponseFilterSensitiveLog = ListTagsForResourceResponseFilterSensitiveLog;
-    var PutChannelMembershipPreferencesRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Preferences && { Preferences: (0, exports.ChannelMembershipPreferencesFilterSensitiveLog)(obj.Preferences) }
-    });
-    exports.PutChannelMembershipPreferencesRequestFilterSensitiveLog = PutChannelMembershipPreferencesRequestFilterSensitiveLog;
-    var PutChannelMembershipPreferencesResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Member && { Member: (0, exports.IdentityFilterSensitiveLog)(obj.Member) },
-      ...obj.Preferences && { Preferences: (0, exports.ChannelMembershipPreferencesFilterSensitiveLog)(obj.Preferences) }
-    });
-    exports.PutChannelMembershipPreferencesResponseFilterSensitiveLog = PutChannelMembershipPreferencesResponseFilterSensitiveLog;
-    var SearchChannelsRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.SearchChannelsRequestFilterSensitiveLog = SearchChannelsRequestFilterSensitiveLog;
-    var SearchChannelsResponseFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Channels && { Channels: obj.Channels.map((item) => (0, exports.ChannelSummaryFilterSensitiveLog)(item)) },
-      ...obj.NextToken && { NextToken: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.SearchChannelsResponseFilterSensitiveLog = SearchChannelsResponseFilterSensitiveLog;
-    var SendChannelMessageRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Content && { Content: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ClientRequestToken && { ClientRequestToken: smithy_client_1.SENSITIVE_STRING },
-      ...obj.PushNotification && {
-        PushNotification: (0, exports.PushNotificationConfigurationFilterSensitiveLog)(obj.PushNotification)
-      },
-      ...obj.MessageAttributes && {
-        MessageAttributes: Object.entries(obj.MessageAttributes).reduce((acc, [key, value]) => (acc[key] = (0, exports.MessageAttributeValueFilterSensitiveLog)(value), acc), {})
-      },
-      ...obj.ContentType && { ContentType: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.SendChannelMessageRequestFilterSensitiveLog = SendChannelMessageRequestFilterSensitiveLog;
-    var TagResourceRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Tags && { Tags: obj.Tags.map((item) => (0, exports.TagFilterSensitiveLog)(item)) }
-    });
-    exports.TagResourceRequestFilterSensitiveLog = TagResourceRequestFilterSensitiveLog;
-    var UntagResourceRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.TagKeys && { TagKeys: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.UntagResourceRequestFilterSensitiveLog = UntagResourceRequestFilterSensitiveLog;
-    var UpdateChannelRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.UpdateChannelRequestFilterSensitiveLog = UpdateChannelRequestFilterSensitiveLog;
-    var UpdateChannelFlowRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Processors && { Processors: obj.Processors.map((item) => (0, exports.ProcessorFilterSensitiveLog)(item)) },
-      ...obj.Name && { Name: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.UpdateChannelFlowRequestFilterSensitiveLog = UpdateChannelFlowRequestFilterSensitiveLog;
-    var UpdateChannelMessageRequestFilterSensitiveLog = (obj) => ({
-      ...obj,
-      ...obj.Content && { Content: smithy_client_1.SENSITIVE_STRING },
-      ...obj.Metadata && { Metadata: smithy_client_1.SENSITIVE_STRING },
-      ...obj.ContentType && { ContentType: smithy_client_1.SENSITIVE_STRING }
-    });
-    exports.UpdateChannelMessageRequestFilterSensitiveLog = UpdateChannelMessageRequestFilterSensitiveLog;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/protocols/Aws_restJson1.js
-var require_Aws_restJson13 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/protocols/Aws_restJson1.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.se_UpdateChannelMessageCommand = exports.se_UpdateChannelFlowCommand = exports.se_UpdateChannelCommand = exports.se_UntagResourceCommand = exports.se_TagResourceCommand = exports.se_SendChannelMessageCommand = exports.se_SearchChannelsCommand = exports.se_RedactChannelMessageCommand = exports.se_PutMessagingStreamingConfigurationsCommand = exports.se_PutChannelMembershipPreferencesCommand = exports.se_PutChannelExpirationSettingsCommand = exports.se_ListTagsForResourceCommand = exports.se_ListSubChannelsCommand = exports.se_ListChannelsModeratedByAppInstanceUserCommand = exports.se_ListChannelsAssociatedWithChannelFlowCommand = exports.se_ListChannelsCommand = exports.se_ListChannelModeratorsCommand = exports.se_ListChannelMessagesCommand = exports.se_ListChannelMembershipsForAppInstanceUserCommand = exports.se_ListChannelMembershipsCommand = exports.se_ListChannelFlowsCommand = exports.se_ListChannelBansCommand = exports.se_GetMessagingStreamingConfigurationsCommand = exports.se_GetMessagingSessionEndpointCommand = exports.se_GetChannelMessageStatusCommand = exports.se_GetChannelMessageCommand = exports.se_GetChannelMembershipPreferencesCommand = exports.se_DisassociateChannelFlowCommand = exports.se_DescribeChannelModeratorCommand = exports.se_DescribeChannelModeratedByAppInstanceUserCommand = exports.se_DescribeChannelMembershipForAppInstanceUserCommand = exports.se_DescribeChannelMembershipCommand = exports.se_DescribeChannelFlowCommand = exports.se_DescribeChannelBanCommand = exports.se_DescribeChannelCommand = exports.se_DeleteMessagingStreamingConfigurationsCommand = exports.se_DeleteChannelModeratorCommand = exports.se_DeleteChannelMessageCommand = exports.se_DeleteChannelMembershipCommand = exports.se_DeleteChannelFlowCommand = exports.se_DeleteChannelBanCommand = exports.se_DeleteChannelCommand = exports.se_CreateChannelModeratorCommand = exports.se_CreateChannelMembershipCommand = exports.se_CreateChannelFlowCommand = exports.se_CreateChannelBanCommand = exports.se_CreateChannelCommand = exports.se_ChannelFlowCallbackCommand = exports.se_BatchCreateChannelMembershipCommand = exports.se_AssociateChannelFlowCommand = void 0;
-    exports.de_UpdateChannelFlowCommand = exports.de_UpdateChannelCommand = exports.de_UntagResourceCommand = exports.de_TagResourceCommand = exports.de_SendChannelMessageCommand = exports.de_SearchChannelsCommand = exports.de_RedactChannelMessageCommand = exports.de_PutMessagingStreamingConfigurationsCommand = exports.de_PutChannelMembershipPreferencesCommand = exports.de_PutChannelExpirationSettingsCommand = exports.de_ListTagsForResourceCommand = exports.de_ListSubChannelsCommand = exports.de_ListChannelsModeratedByAppInstanceUserCommand = exports.de_ListChannelsAssociatedWithChannelFlowCommand = exports.de_ListChannelsCommand = exports.de_ListChannelModeratorsCommand = exports.de_ListChannelMessagesCommand = exports.de_ListChannelMembershipsForAppInstanceUserCommand = exports.de_ListChannelMembershipsCommand = exports.de_ListChannelFlowsCommand = exports.de_ListChannelBansCommand = exports.de_GetMessagingStreamingConfigurationsCommand = exports.de_GetMessagingSessionEndpointCommand = exports.de_GetChannelMessageStatusCommand = exports.de_GetChannelMessageCommand = exports.de_GetChannelMembershipPreferencesCommand = exports.de_DisassociateChannelFlowCommand = exports.de_DescribeChannelModeratorCommand = exports.de_DescribeChannelModeratedByAppInstanceUserCommand = exports.de_DescribeChannelMembershipForAppInstanceUserCommand = exports.de_DescribeChannelMembershipCommand = exports.de_DescribeChannelFlowCommand = exports.de_DescribeChannelBanCommand = exports.de_DescribeChannelCommand = exports.de_DeleteMessagingStreamingConfigurationsCommand = exports.de_DeleteChannelModeratorCommand = exports.de_DeleteChannelMessageCommand = exports.de_DeleteChannelMembershipCommand = exports.de_DeleteChannelFlowCommand = exports.de_DeleteChannelBanCommand = exports.de_DeleteChannelCommand = exports.de_CreateChannelModeratorCommand = exports.de_CreateChannelMembershipCommand = exports.de_CreateChannelFlowCommand = exports.de_CreateChannelBanCommand = exports.de_CreateChannelCommand = exports.de_ChannelFlowCallbackCommand = exports.de_BatchCreateChannelMembershipCommand = exports.de_AssociateChannelFlowCommand = exports.se_UpdateChannelReadMarkerCommand = void 0;
-    exports.de_UpdateChannelReadMarkerCommand = exports.de_UpdateChannelMessageCommand = void 0;
-    var protocol_http_1 = require_dist_cjs2();
-    var smithy_client_1 = require_dist_cjs35();
-    var uuid_1 = (init_esm_node(), __toCommonJS(esm_node_exports));
-    var ChimeSDKMessagingServiceException_1 = require_ChimeSDKMessagingServiceException();
-    var models_0_1 = require_models_05();
-    var se_AssociateChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/channel-flow`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ChannelFlowArn: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_AssociateChannelFlowCommand = se_AssociateChannelFlowCommand;
-    var se_BatchCreateChannelMembershipCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        operation: [, "batch-create"]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        MemberArns: (_) => (0, smithy_client_1._json)(_),
-        SubChannelId: [],
-        Type: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_BatchCreateChannelMembershipCommand = se_BatchCreateChannelMembershipCommand;
-    var se_ChannelFlowCallbackCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        operation: [, "channel-flow-callback"]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        CallbackId: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        ChannelMessage: (_) => (0, smithy_client_1._json)(_),
-        DeleteResource: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ChannelFlowCallbackCommand = se_ChannelFlowCallbackCommand;
-    var se_CreateChannelCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceArn: [],
-        ChannelId: [],
-        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        ElasticChannelConfiguration: (_) => (0, smithy_client_1._json)(_),
-        ExpirationSettings: (_) => (0, smithy_client_1._json)(_),
-        MemberArns: (_) => (0, smithy_client_1._json)(_),
-        Metadata: [],
-        Mode: [],
-        ModeratorArns: (_) => (0, smithy_client_1._json)(_),
-        Name: [],
-        Privacy: [],
-        Tags: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateChannelCommand = se_CreateChannelCommand;
-    var se_CreateChannelBanCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/bans`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        MemberArn: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateChannelBanCommand = se_CreateChannelBanCommand;
-    var se_CreateChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channel-flows`;
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        AppInstanceArn: [],
-        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        Name: [],
-        Processors: (_) => (0, smithy_client_1._json)(_),
-        Tags: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateChannelFlowCommand = se_CreateChannelFlowCommand;
-    var se_CreateChannelMembershipCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        MemberArn: [],
-        SubChannelId: [],
-        Type: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateChannelMembershipCommand = se_CreateChannelMembershipCommand;
-    var se_CreateChannelModeratorCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/moderators`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ChannelModeratorArn: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_CreateChannelModeratorCommand = se_CreateChannelModeratorCommand;
-    var se_DeleteChannelCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteChannelCommand = se_DeleteChannelCommand;
-    var se_DeleteChannelBanCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/bans/{MemberArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteChannelBanCommand = se_DeleteChannelBanCommand;
-    var se_DeleteChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channel-flows/{ChannelFlowArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelFlowArn", () => input.ChannelFlowArn, "{ChannelFlowArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteChannelFlowCommand = se_DeleteChannelFlowCommand;
-    var se_DeleteChannelMembershipCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships/{MemberArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_DeleteChannelMembershipCommand = se_DeleteChannelMembershipCommand;
-    var se_DeleteChannelMessageCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages/{MessageId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MessageId", () => input.MessageId, "{MessageId}", false);
-      const query = (0, smithy_client_1.map)({
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_DeleteChannelMessageCommand = se_DeleteChannelMessageCommand;
-    var se_DeleteChannelModeratorCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/moderators/{ChannelModeratorArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelModeratorArn", () => input.ChannelModeratorArn, "{ChannelModeratorArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteChannelModeratorCommand = se_DeleteChannelModeratorCommand;
-    var se_DeleteMessagingStreamingConfigurationsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/streaming-configurations`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DeleteMessagingStreamingConfigurationsCommand = se_DeleteMessagingStreamingConfigurationsCommand;
-    var se_DescribeChannelCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeChannelCommand = se_DescribeChannelCommand;
-    var se_DescribeChannelBanCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/bans/{MemberArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeChannelBanCommand = se_DescribeChannelBanCommand;
-    var se_DescribeChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channel-flows/{ChannelFlowArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelFlowArn", () => input.ChannelFlowArn, "{ChannelFlowArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeChannelFlowCommand = se_DescribeChannelFlowCommand;
-    var se_DescribeChannelMembershipCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships/{MemberArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_DescribeChannelMembershipCommand = se_DescribeChannelMembershipCommand;
-    var se_DescribeChannelMembershipForAppInstanceUserCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        scope: [, "app-instance-user-membership"],
-        "app-instance-user-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceUserArn, `AppInstanceUserArn`)]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_DescribeChannelMembershipForAppInstanceUserCommand = se_DescribeChannelMembershipForAppInstanceUserCommand;
-    var se_DescribeChannelModeratedByAppInstanceUserCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        scope: [, "app-instance-user-moderated-channel"],
-        "app-instance-user-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceUserArn, `AppInstanceUserArn`)]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_DescribeChannelModeratedByAppInstanceUserCommand = se_DescribeChannelModeratedByAppInstanceUserCommand;
-    var se_DescribeChannelModeratorCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/moderators/{ChannelModeratorArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelModeratorArn", () => input.ChannelModeratorArn, "{ChannelModeratorArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DescribeChannelModeratorCommand = se_DescribeChannelModeratorCommand;
-    var se_DisassociateChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/channel-flow/{ChannelFlowArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelFlowArn", () => input.ChannelFlowArn, "{ChannelFlowArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "DELETE",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_DisassociateChannelFlowCommand = se_DisassociateChannelFlowCommand;
-    var se_GetChannelMembershipPreferencesCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships/{MemberArn}/preferences`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_GetChannelMembershipPreferencesCommand = se_GetChannelMembershipPreferencesCommand;
-    var se_GetChannelMessageCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages/{MessageId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MessageId", () => input.MessageId, "{MessageId}", false);
-      const query = (0, smithy_client_1.map)({
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_GetChannelMessageCommand = se_GetChannelMessageCommand;
-    var se_GetChannelMessageStatusCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages/{MessageId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MessageId", () => input.MessageId, "{MessageId}", false);
-      const query = (0, smithy_client_1.map)({
-        scope: [, "message-status"],
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_GetChannelMessageStatusCommand = se_GetChannelMessageStatusCommand;
-    var se_GetMessagingSessionEndpointCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/endpoints/messaging-session`;
-      let body;
-      body = "";
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_GetMessagingSessionEndpointCommand = se_GetMessagingSessionEndpointCommand;
-    var se_GetMessagingStreamingConfigurationsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/streaming-configurations`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_GetMessagingStreamingConfigurationsCommand = se_GetMessagingStreamingConfigurationsCommand;
-    var se_ListChannelBansCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/bans`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelBansCommand = se_ListChannelBansCommand;
-    var se_ListChannelFlowsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channel-flows`;
-      const query = (0, smithy_client_1.map)({
-        "app-instance-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceArn, `AppInstanceArn`)],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelFlowsCommand = se_ListChannelFlowsCommand;
-    var se_ListChannelMembershipsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        type: [, input.Type],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken],
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelMembershipsCommand = se_ListChannelMembershipsCommand;
-    var se_ListChannelMembershipsForAppInstanceUserCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      const query = (0, smithy_client_1.map)({
-        scope: [, "app-instance-user-memberships"],
-        "app-instance-user-arn": [, input.AppInstanceUserArn],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelMembershipsForAppInstanceUserCommand = se_ListChannelMembershipsForAppInstanceUserCommand;
-    var se_ListChannelMessagesCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "sort-order": [, input.SortOrder],
-        "not-before": [
-          () => input.NotBefore !== void 0,
-          () => (input.NotBefore.toISOString().split(".")[0] + "Z").toString()
-        ],
-        "not-after": [
-          () => input.NotAfter !== void 0,
-          () => (input.NotAfter.toISOString().split(".")[0] + "Z").toString()
-        ],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken],
-        "sub-channel-id": [, input.SubChannelId]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelMessagesCommand = se_ListChannelMessagesCommand;
-    var se_ListChannelModeratorsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/moderators`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelModeratorsCommand = se_ListChannelModeratorsCommand;
-    var se_ListChannelsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      const query = (0, smithy_client_1.map)({
-        "app-instance-arn": [, (0, smithy_client_1.expectNonNull)(input.AppInstanceArn, `AppInstanceArn`)],
-        privacy: [, input.Privacy],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelsCommand = se_ListChannelsCommand;
-    var se_ListChannelsAssociatedWithChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      const query = (0, smithy_client_1.map)({
-        scope: [, "channel-flow-associations"],
-        "channel-flow-arn": [, (0, smithy_client_1.expectNonNull)(input.ChannelFlowArn, `ChannelFlowArn`)],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelsAssociatedWithChannelFlowCommand = se_ListChannelsAssociatedWithChannelFlowCommand;
-    var se_ListChannelsModeratedByAppInstanceUserCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      const query = (0, smithy_client_1.map)({
-        scope: [, "app-instance-user-moderated-channels"],
-        "app-instance-user-arn": [, input.AppInstanceUserArn],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListChannelsModeratedByAppInstanceUserCommand = se_ListChannelsModeratedByAppInstanceUserCommand;
-    var se_ListSubChannelsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/subchannels`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      const query = (0, smithy_client_1.map)({
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListSubChannelsCommand = se_ListSubChannelsCommand;
-    var se_ListTagsForResourceCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {};
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = (0, smithy_client_1.map)({
-        arn: [, (0, smithy_client_1.expectNonNull)(input.ResourceARN, `ResourceARN`)]
-      });
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "GET",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_ListTagsForResourceCommand = se_ListTagsForResourceCommand;
-    var se_PutChannelExpirationSettingsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/expiration-settings`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ExpirationSettings: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_PutChannelExpirationSettingsCommand = se_PutChannelExpirationSettingsCommand;
-    var se_PutChannelMembershipPreferencesCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/memberships/{MemberArn}/preferences`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MemberArn", () => input.MemberArn, "{MemberArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Preferences: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_PutChannelMembershipPreferencesCommand = se_PutChannelMembershipPreferencesCommand;
-    var se_PutMessagingStreamingConfigurationsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/app-instances/{AppInstanceArn}/streaming-configurations`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "AppInstanceArn", () => input.AppInstanceArn, "{AppInstanceArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        StreamingConfigurations: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_PutMessagingStreamingConfigurationsCommand = se_PutMessagingStreamingConfigurationsCommand;
-    var se_RedactChannelMessageCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages/{MessageId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MessageId", () => input.MessageId, "{MessageId}", false);
-      const query = (0, smithy_client_1.map)({
-        operation: [, "redact"]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        SubChannelId: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_RedactChannelMessageCommand = se_RedactChannelMessageCommand;
-    var se_SearchChannelsCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels`;
-      const query = (0, smithy_client_1.map)({
-        operation: [, "search"],
-        "max-results": [() => input.MaxResults !== void 0, () => input.MaxResults.toString()],
-        "next-token": [, input.NextToken]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Fields: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_SearchChannelsCommand = se_SearchChannelsCommand;
-    var se_SendChannelMessageCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ClientRequestToken: [true, (_) => _ ?? (0, uuid_1.v4)()],
-        Content: [],
-        ContentType: [],
-        MessageAttributes: (_) => (0, smithy_client_1._json)(_),
-        Metadata: [],
-        Persistence: [],
-        PushNotification: (_) => (0, smithy_client_1._json)(_),
-        SubChannelId: [],
-        Target: (_) => (0, smithy_client_1._json)(_),
-        Type: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_SendChannelMessageCommand = se_SendChannelMessageCommand;
-    var se_TagResourceCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = (0, smithy_client_1.map)({
-        operation: [, "tag-resource"]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ResourceARN: [],
-        Tags: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_TagResourceCommand = se_TagResourceCommand;
-    var se_UntagResourceCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      const resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/tags`;
-      const query = (0, smithy_client_1.map)({
-        operation: [, "untag-resource"]
-      });
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        ResourceARN: [],
-        TagKeys: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "POST",
-        headers,
-        path: resolvedPath,
-        query,
-        body
-      });
-    };
-    exports.se_UntagResourceCommand = se_UntagResourceCommand;
-    var se_UpdateChannelCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Metadata: [],
-        Mode: [],
-        Name: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateChannelCommand = se_UpdateChannelCommand;
-    var se_UpdateChannelFlowCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = {
-        "content-type": "application/json"
-      };
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channel-flows/{ChannelFlowArn}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelFlowArn", () => input.ChannelFlowArn, "{ChannelFlowArn}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Name: [],
-        Processors: (_) => (0, smithy_client_1._json)(_)
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateChannelFlowCommand = se_UpdateChannelFlowCommand;
-    var se_UpdateChannelMessageCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "content-type": "application/json",
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/messages/{MessageId}`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "MessageId", () => input.MessageId, "{MessageId}", false);
-      let body;
-      body = JSON.stringify((0, smithy_client_1.take)(input, {
-        Content: [],
-        ContentType: [],
-        Metadata: [],
-        SubChannelId: []
-      }));
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateChannelMessageCommand = se_UpdateChannelMessageCommand;
-    var se_UpdateChannelReadMarkerCommand = async (input, context) => {
-      const { hostname, protocol = "https", port, path: basePath } = await context.endpoint();
-      const headers = (0, smithy_client_1.map)({}, isSerializableHeaderValue, {
-        "x-amz-chime-bearer": input.ChimeBearer
-      });
-      let resolvedPath = `${basePath?.endsWith("/") ? basePath.slice(0, -1) : basePath || ""}/channels/{ChannelArn}/readMarker`;
-      resolvedPath = (0, smithy_client_1.resolvedPath)(resolvedPath, input, "ChannelArn", () => input.ChannelArn, "{ChannelArn}", false);
-      let body;
-      return new protocol_http_1.HttpRequest({
-        protocol,
-        hostname,
-        port,
-        method: "PUT",
-        headers,
-        path: resolvedPath,
-        body
-      });
-    };
-    exports.se_UpdateChannelReadMarkerCommand = se_UpdateChannelReadMarkerCommand;
-    var de_AssociateChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_AssociateChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_AssociateChannelFlowCommand = de_AssociateChannelFlowCommand;
-    var de_AssociateChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_BatchCreateChannelMembershipCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_BatchCreateChannelMembershipCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        BatchChannelMemberships: smithy_client_1._json,
-        Errors: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_BatchCreateChannelMembershipCommand = de_BatchCreateChannelMembershipCommand;
-    var de_BatchCreateChannelMembershipCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ChannelFlowCallbackCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ChannelFlowCallbackCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        CallbackId: smithy_client_1.expectString,
-        ChannelArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ChannelFlowCallbackCommand = de_ChannelFlowCallbackCommand;
-    var de_ChannelFlowCallbackCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateChannelCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateChannelCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateChannelCommand = de_CreateChannelCommand;
-    var de_CreateChannelCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateChannelBanCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateChannelBanCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        Member: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateChannelBanCommand = de_CreateChannelBanCommand;
-    var de_CreateChannelBanCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelFlowArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateChannelFlowCommand = de_CreateChannelFlowCommand;
-    var de_CreateChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateChannelMembershipCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateChannelMembershipCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        Member: smithy_client_1._json,
-        SubChannelId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateChannelMembershipCommand = de_CreateChannelMembershipCommand;
-    var de_CreateChannelMembershipCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_CreateChannelModeratorCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_CreateChannelModeratorCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelModerator: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_CreateChannelModeratorCommand = de_CreateChannelModeratorCommand;
-    var de_CreateChannelModeratorCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelCommand = de_DeleteChannelCommand;
-    var de_DeleteChannelCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelBanCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelBanCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelBanCommand = de_DeleteChannelBanCommand;
-    var de_DeleteChannelBanCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelFlowCommand = de_DeleteChannelFlowCommand;
-    var de_DeleteChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelMembershipCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelMembershipCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelMembershipCommand = de_DeleteChannelMembershipCommand;
-    var de_DeleteChannelMembershipCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelMessageCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelMessageCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelMessageCommand = de_DeleteChannelMessageCommand;
-    var de_DeleteChannelMessageCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteChannelModeratorCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteChannelModeratorCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteChannelModeratorCommand = de_DeleteChannelModeratorCommand;
-    var de_DeleteChannelModeratorCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DeleteMessagingStreamingConfigurationsCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DeleteMessagingStreamingConfigurationsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DeleteMessagingStreamingConfigurationsCommand = de_DeleteMessagingStreamingConfigurationsCommand;
-    var de_DeleteMessagingStreamingConfigurationsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channel: (_) => de_Channel(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelCommand = de_DescribeChannelCommand;
-    var de_DescribeChannelCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelBanCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelBanCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelBan: (_) => de_ChannelBan(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelBanCommand = de_DescribeChannelBanCommand;
-    var de_DescribeChannelBanCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelFlow: (_) => de_ChannelFlow(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelFlowCommand = de_DescribeChannelFlowCommand;
-    var de_DescribeChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelMembershipCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelMembershipCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelMembership: (_) => de_ChannelMembership(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelMembershipCommand = de_DescribeChannelMembershipCommand;
-    var de_DescribeChannelMembershipCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelMembershipForAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelMembershipForAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelMembership: (_) => de_ChannelMembershipForAppInstanceUserSummary(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelMembershipForAppInstanceUserCommand = de_DescribeChannelMembershipForAppInstanceUserCommand;
-    var de_DescribeChannelMembershipForAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelModeratedByAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelModeratedByAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channel: (_) => de_ChannelModeratedByAppInstanceUserSummary(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelModeratedByAppInstanceUserCommand = de_DescribeChannelModeratedByAppInstanceUserCommand;
-    var de_DescribeChannelModeratedByAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DescribeChannelModeratorCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_DescribeChannelModeratorCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelModerator: (_) => de_ChannelModerator(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_DescribeChannelModeratorCommand = de_DescribeChannelModeratorCommand;
-    var de_DescribeChannelModeratorCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_DisassociateChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_DisassociateChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_DisassociateChannelFlowCommand = de_DisassociateChannelFlowCommand;
-    var de_DisassociateChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_GetChannelMembershipPreferencesCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetChannelMembershipPreferencesCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        Member: smithy_client_1._json,
-        Preferences: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_GetChannelMembershipPreferencesCommand = de_GetChannelMembershipPreferencesCommand;
-    var de_GetChannelMembershipPreferencesCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_GetChannelMessageCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetChannelMessageCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelMessage: (_) => de_ChannelMessage(_, context)
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_GetChannelMessageCommand = de_GetChannelMessageCommand;
-    var de_GetChannelMessageCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_GetChannelMessageStatusCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetChannelMessageStatusCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Status: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_GetChannelMessageStatusCommand = de_GetChannelMessageStatusCommand;
-    var de_GetChannelMessageStatusCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_GetMessagingSessionEndpointCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetMessagingSessionEndpointCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Endpoint: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_GetMessagingSessionEndpointCommand = de_GetMessagingSessionEndpointCommand;
-    var de_GetMessagingSessionEndpointCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_GetMessagingStreamingConfigurationsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_GetMessagingStreamingConfigurationsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        StreamingConfigurations: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_GetMessagingStreamingConfigurationsCommand = de_GetMessagingStreamingConfigurationsCommand;
-    var de_GetMessagingStreamingConfigurationsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelBansCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelBansCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelBans: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelBansCommand = de_ListChannelBansCommand;
-    var de_ListChannelBansCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelFlowsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelFlowsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelFlows: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelFlowsCommand = de_ListChannelFlowsCommand;
-    var de_ListChannelFlowsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelMembershipsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelMembershipsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelMemberships: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelMembershipsCommand = de_ListChannelMembershipsCommand;
-    var de_ListChannelMembershipsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelMembershipsForAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelMembershipsForAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelMemberships: (_) => de_ChannelMembershipForAppInstanceUserSummaryList(_, context),
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelMembershipsForAppInstanceUserCommand = de_ListChannelMembershipsForAppInstanceUserCommand;
-    var de_ListChannelMembershipsForAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelMessagesCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelMessagesCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelMessages: (_) => de_ChannelMessageSummaryList(_, context),
-        NextToken: smithy_client_1.expectString,
-        SubChannelId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelMessagesCommand = de_ListChannelMessagesCommand;
-    var de_ListChannelMessagesCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelModeratorsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelModeratorsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelModerators: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelModeratorsCommand = de_ListChannelModeratorsCommand;
-    var de_ListChannelModeratorsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channels: (_) => de_ChannelSummaryList(_, context),
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelsCommand = de_ListChannelsCommand;
-    var de_ListChannelsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelsAssociatedWithChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelsAssociatedWithChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channels: smithy_client_1._json,
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelsAssociatedWithChannelFlowCommand = de_ListChannelsAssociatedWithChannelFlowCommand;
-    var de_ListChannelsAssociatedWithChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListChannelsModeratedByAppInstanceUserCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListChannelsModeratedByAppInstanceUserCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channels: (_) => de_ChannelModeratedByAppInstanceUserSummaryList(_, context),
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListChannelsModeratedByAppInstanceUserCommand = de_ListChannelsModeratedByAppInstanceUserCommand;
-    var de_ListChannelsModeratedByAppInstanceUserCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListSubChannelsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListSubChannelsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        NextToken: smithy_client_1.expectString,
-        SubChannels: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListSubChannelsCommand = de_ListSubChannelsCommand;
-    var de_ListSubChannelsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_ListTagsForResourceCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_ListTagsForResourceCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Tags: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_ListTagsForResourceCommand = de_ListTagsForResourceCommand;
-    var de_ListTagsForResourceCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_PutChannelExpirationSettingsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_PutChannelExpirationSettingsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        ExpirationSettings: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_PutChannelExpirationSettingsCommand = de_PutChannelExpirationSettingsCommand;
-    var de_PutChannelExpirationSettingsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_PutChannelMembershipPreferencesCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_PutChannelMembershipPreferencesCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        Member: smithy_client_1._json,
-        Preferences: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_PutChannelMembershipPreferencesCommand = de_PutChannelMembershipPreferencesCommand;
-    var de_PutChannelMembershipPreferencesCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_PutMessagingStreamingConfigurationsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_PutMessagingStreamingConfigurationsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        StreamingConfigurations: smithy_client_1._json
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_PutMessagingStreamingConfigurationsCommand = de_PutMessagingStreamingConfigurationsCommand;
-    var de_PutMessagingStreamingConfigurationsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "NotFoundException":
-        case "com.amazonaws.chimesdkmessaging#NotFoundException":
-          throw await de_NotFoundExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_RedactChannelMessageCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_RedactChannelMessageCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        MessageId: smithy_client_1.expectString,
-        SubChannelId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_RedactChannelMessageCommand = de_RedactChannelMessageCommand;
-    var de_RedactChannelMessageCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_SearchChannelsCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_SearchChannelsCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        Channels: (_) => de_ChannelSummaryList(_, context),
-        NextToken: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_SearchChannelsCommand = de_SearchChannelsCommand;
-    var de_SearchChannelsCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_SendChannelMessageCommand = async (output, context) => {
-      if (output.statusCode !== 201 && output.statusCode >= 300) {
-        return de_SendChannelMessageCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        MessageId: smithy_client_1.expectString,
-        Status: smithy_client_1._json,
-        SubChannelId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_SendChannelMessageCommand = de_SendChannelMessageCommand;
-    var de_SendChannelMessageCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_TagResourceCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_TagResourceCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_TagResourceCommand = de_TagResourceCommand;
-    var de_TagResourceCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ResourceLimitExceededException":
-        case "com.amazonaws.chimesdkmessaging#ResourceLimitExceededException":
-          throw await de_ResourceLimitExceededExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UntagResourceCommand = async (output, context) => {
-      if (output.statusCode !== 204 && output.statusCode >= 300) {
-        return de_UntagResourceCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      await (0, smithy_client_1.collectBody)(output.body, context);
-      return contents;
-    };
-    exports.de_UntagResourceCommand = de_UntagResourceCommand;
-    var de_UntagResourceCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UpdateChannelCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateChannelCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateChannelCommand = de_UpdateChannelCommand;
-    var de_UpdateChannelCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UpdateChannelFlowCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateChannelFlowCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelFlowArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateChannelFlowCommand = de_UpdateChannelFlowCommand;
-    var de_UpdateChannelFlowCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UpdateChannelMessageCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateChannelMessageCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString,
-        MessageId: smithy_client_1.expectString,
-        Status: smithy_client_1._json,
-        SubChannelId: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateChannelMessageCommand = de_UpdateChannelMessageCommand;
-    var de_UpdateChannelMessageCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var de_UpdateChannelReadMarkerCommand = async (output, context) => {
-      if (output.statusCode !== 200 && output.statusCode >= 300) {
-        return de_UpdateChannelReadMarkerCommandError(output, context);
-      }
-      const contents = (0, smithy_client_1.map)({
-        $metadata: deserializeMetadata(output)
-      });
-      const data = (0, smithy_client_1.expectNonNull)((0, smithy_client_1.expectObject)(await parseBody(output.body, context)), "body");
-      const doc = (0, smithy_client_1.take)(data, {
-        ChannelArn: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      return contents;
-    };
-    exports.de_UpdateChannelReadMarkerCommand = de_UpdateChannelReadMarkerCommand;
-    var de_UpdateChannelReadMarkerCommandError = async (output, context) => {
-      const parsedOutput = {
-        ...output,
-        body: await parseErrorBody(output.body, context)
-      };
-      const errorCode = loadRestJsonErrorCode(output, parsedOutput.body);
-      switch (errorCode) {
-        case "BadRequestException":
-        case "com.amazonaws.chimesdkmessaging#BadRequestException":
-          throw await de_BadRequestExceptionRes(parsedOutput, context);
-        case "ConflictException":
-        case "com.amazonaws.chimesdkmessaging#ConflictException":
-          throw await de_ConflictExceptionRes(parsedOutput, context);
-        case "ForbiddenException":
-        case "com.amazonaws.chimesdkmessaging#ForbiddenException":
-          throw await de_ForbiddenExceptionRes(parsedOutput, context);
-        case "ServiceFailureException":
-        case "com.amazonaws.chimesdkmessaging#ServiceFailureException":
-          throw await de_ServiceFailureExceptionRes(parsedOutput, context);
-        case "ServiceUnavailableException":
-        case "com.amazonaws.chimesdkmessaging#ServiceUnavailableException":
-          throw await de_ServiceUnavailableExceptionRes(parsedOutput, context);
-        case "ThrottledClientException":
-        case "com.amazonaws.chimesdkmessaging#ThrottledClientException":
-          throw await de_ThrottledClientExceptionRes(parsedOutput, context);
-        case "UnauthorizedClientException":
-        case "com.amazonaws.chimesdkmessaging#UnauthorizedClientException":
-          throw await de_UnauthorizedClientExceptionRes(parsedOutput, context);
-        default:
-          const parsedBody = parsedOutput.body;
-          return throwDefaultError({
-            output,
-            parsedBody,
-            errorCode
-          });
-      }
-    };
-    var throwDefaultError = (0, smithy_client_1.withBaseException)(ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException);
-    var de_BadRequestExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.BadRequestException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ConflictExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ConflictException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ForbiddenExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ForbiddenException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_NotFoundExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.NotFoundException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ResourceLimitExceededExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ResourceLimitExceededException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ServiceFailureExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ServiceFailureException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ServiceUnavailableExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ServiceUnavailableException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_ThrottledClientExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.ThrottledClientException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_UnauthorizedClientExceptionRes = async (parsedOutput, context) => {
-      const contents = (0, smithy_client_1.map)({});
-      const data = parsedOutput.body;
-      const doc = (0, smithy_client_1.take)(data, {
-        Code: smithy_client_1.expectString,
-        Message: smithy_client_1.expectString
-      });
-      Object.assign(contents, doc);
-      const exception = new models_0_1.UnauthorizedClientException({
-        $metadata: deserializeMetadata(parsedOutput),
-        ...contents
-      });
-      return (0, smithy_client_1.decorateServiceException)(exception, parsedOutput.body);
-    };
-    var de_AppInstanceUserMembershipSummary = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ReadMarkerTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        SubChannelId: smithy_client_1.expectString,
-        Type: smithy_client_1.expectString
-      });
-    };
-    var de_Channel = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        ChannelFlowArn: smithy_client_1.expectString,
-        CreatedBy: smithy_client_1._json,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        ElasticChannelConfiguration: smithy_client_1._json,
-        ExpirationSettings: smithy_client_1._json,
-        LastMessageTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Metadata: smithy_client_1.expectString,
-        Mode: smithy_client_1.expectString,
-        Name: smithy_client_1.expectString,
-        Privacy: smithy_client_1.expectString
-      });
-    };
-    var de_ChannelBan = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        CreatedBy: smithy_client_1._json,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Member: smithy_client_1._json
-      });
-    };
-    var de_ChannelFlow = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelFlowArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Name: smithy_client_1.expectString,
-        Processors: smithy_client_1._json
-      });
-    };
-    var de_ChannelMembership = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        InvitedBy: smithy_client_1._json,
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Member: smithy_client_1._json,
-        SubChannelId: smithy_client_1.expectString,
-        Type: smithy_client_1.expectString
-      });
-    };
-    var de_ChannelMembershipForAppInstanceUserSummary = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        AppInstanceUserMembershipSummary: (_) => de_AppInstanceUserMembershipSummary(_, context),
-        ChannelSummary: (_) => de_ChannelSummary(_, context)
-      });
-    };
-    var de_ChannelMembershipForAppInstanceUserSummaryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        return de_ChannelMembershipForAppInstanceUserSummary(entry, context);
-      });
-      return retVal;
-    };
-    var de_ChannelMessage = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        Content: smithy_client_1.expectString,
-        ContentType: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastEditedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        MessageAttributes: smithy_client_1._json,
-        MessageId: smithy_client_1.expectString,
-        Metadata: smithy_client_1.expectString,
-        Persistence: smithy_client_1.expectString,
-        Redacted: smithy_client_1.expectBoolean,
-        Sender: smithy_client_1._json,
-        Status: smithy_client_1._json,
-        SubChannelId: smithy_client_1.expectString,
-        Target: smithy_client_1._json,
-        Type: smithy_client_1.expectString
-      });
-    };
-    var de_ChannelMessageSummary = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        Content: smithy_client_1.expectString,
-        ContentType: smithy_client_1.expectString,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastEditedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        LastUpdatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        MessageAttributes: smithy_client_1._json,
-        MessageId: smithy_client_1.expectString,
-        Metadata: smithy_client_1.expectString,
-        Redacted: smithy_client_1.expectBoolean,
-        Sender: smithy_client_1._json,
-        Status: smithy_client_1._json,
-        Target: smithy_client_1._json,
-        Type: smithy_client_1.expectString
-      });
-    };
-    var de_ChannelMessageSummaryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        return de_ChannelMessageSummary(entry, context);
-      });
-      return retVal;
-    };
-    var de_ChannelModeratedByAppInstanceUserSummary = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelSummary: (_) => de_ChannelSummary(_, context)
-      });
-    };
-    var de_ChannelModeratedByAppInstanceUserSummaryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        return de_ChannelModeratedByAppInstanceUserSummary(entry, context);
-      });
-      return retVal;
-    };
-    var de_ChannelModerator = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        CreatedBy: smithy_client_1._json,
-        CreatedTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Moderator: smithy_client_1._json
-      });
-    };
-    var de_ChannelSummary = (output, context) => {
-      return (0, smithy_client_1.take)(output, {
-        ChannelArn: smithy_client_1.expectString,
-        LastMessageTimestamp: (_) => (0, smithy_client_1.expectNonNull)((0, smithy_client_1.parseEpochTimestamp)((0, smithy_client_1.expectNumber)(_))),
-        Metadata: smithy_client_1.expectString,
-        Mode: smithy_client_1.expectString,
-        Name: smithy_client_1.expectString,
-        Privacy: smithy_client_1.expectString
-      });
-    };
-    var de_ChannelSummaryList = (output, context) => {
-      const retVal = (output || []).filter((e) => e != null).map((entry) => {
-        return de_ChannelSummary(entry, context);
-      });
-      return retVal;
-    };
-    var deserializeMetadata = (output) => ({
-      httpStatusCode: output.statusCode,
-      requestId: output.headers["x-amzn-requestid"] ?? output.headers["x-amzn-request-id"] ?? output.headers["x-amz-request-id"],
-      extendedRequestId: output.headers["x-amz-id-2"],
-      cfId: output.headers["x-amz-cf-id"]
-    });
-    var collectBodyString = (streamBody, context) => (0, smithy_client_1.collectBody)(streamBody, context).then((body) => context.utf8Encoder(body));
-    var isSerializableHeaderValue = (value) => value !== void 0 && value !== null && value !== "" && (!Object.getOwnPropertyNames(value).includes("length") || value.length != 0) && (!Object.getOwnPropertyNames(value).includes("size") || value.size != 0);
-    var parseBody = (streamBody, context) => collectBodyString(streamBody, context).then((encoded) => {
-      if (encoded.length) {
-        return JSON.parse(encoded);
-      }
-      return {};
-    });
-    var parseErrorBody = async (errorBody, context) => {
-      const value = await parseBody(errorBody, context);
-      value.message = value.message ?? value.Message;
-      return value;
-    };
-    var loadRestJsonErrorCode = (output, data) => {
-      const findKey = (object, key) => Object.keys(object).find((k) => k.toLowerCase() === key.toLowerCase());
-      const sanitizeErrorCode = (rawValue) => {
-        let cleanValue = rawValue;
-        if (typeof cleanValue === "number") {
-          cleanValue = cleanValue.toString();
-        }
-        if (cleanValue.indexOf(",") >= 0) {
-          cleanValue = cleanValue.split(",")[0];
-        }
-        if (cleanValue.indexOf(":") >= 0) {
-          cleanValue = cleanValue.split(":")[0];
-        }
-        if (cleanValue.indexOf("#") >= 0) {
-          cleanValue = cleanValue.split("#")[1];
-        }
-        return cleanValue;
-      };
-      const headerKey = findKey(output.headers, "x-amzn-errortype");
-      if (headerKey !== void 0) {
-        return sanitizeErrorCode(output.headers[headerKey]);
-      }
-      if (data.code !== void 0) {
-        return sanitizeErrorCode(data.code);
-      }
-      if (data["__type"] !== void 0) {
-        return sanitizeErrorCode(data["__type"]);
-      }
-    };
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/AssociateChannelFlowCommand.js
-var require_AssociateChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/AssociateChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AssociateChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var AssociateChannelFlowCommand = class _AssociateChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _AssociateChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "AssociateChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_AssociateChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_AssociateChannelFlowCommand)(output, context);
-      }
-    };
-    exports.AssociateChannelFlowCommand = AssociateChannelFlowCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/BatchCreateChannelMembershipCommand.js
-var require_BatchCreateChannelMembershipCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/BatchCreateChannelMembershipCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BatchCreateChannelMembershipCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var BatchCreateChannelMembershipCommand = class _BatchCreateChannelMembershipCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _BatchCreateChannelMembershipCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "BatchCreateChannelMembershipCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.BatchCreateChannelMembershipResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_BatchCreateChannelMembershipCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_BatchCreateChannelMembershipCommand)(output, context);
-      }
-    };
-    exports.BatchCreateChannelMembershipCommand = BatchCreateChannelMembershipCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ChannelFlowCallbackCommand.js
-var require_ChannelFlowCallbackCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ChannelFlowCallbackCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChannelFlowCallbackCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ChannelFlowCallbackCommand = class _ChannelFlowCallbackCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ChannelFlowCallbackCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ChannelFlowCallbackCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ChannelFlowCallbackRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ChannelFlowCallbackCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ChannelFlowCallbackCommand)(output, context);
-      }
-    };
-    exports.ChannelFlowCallbackCommand = ChannelFlowCallbackCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelBanCommand.js
-var require_CreateChannelBanCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelBanCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateChannelBanCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateChannelBanCommand = class _CreateChannelBanCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateChannelBanCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "CreateChannelBanCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.CreateChannelBanResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateChannelBanCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateChannelBanCommand)(output, context);
-      }
-    };
-    exports.CreateChannelBanCommand = CreateChannelBanCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelCommand.js
-var require_CreateChannelCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateChannelCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateChannelCommand = class _CreateChannelCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateChannelCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "CreateChannelCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.CreateChannelRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateChannelCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateChannelCommand)(output, context);
-      }
-    };
-    exports.CreateChannelCommand = CreateChannelCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelFlowCommand.js
-var require_CreateChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateChannelFlowCommand2 = class _CreateChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "CreateChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.CreateChannelFlowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateChannelFlowCommand)(output, context);
-      }
-    };
-    exports.CreateChannelFlowCommand = CreateChannelFlowCommand2;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelMembershipCommand.js
-var require_CreateChannelMembershipCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelMembershipCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateChannelMembershipCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateChannelMembershipCommand = class _CreateChannelMembershipCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateChannelMembershipCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "CreateChannelMembershipCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.CreateChannelMembershipResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateChannelMembershipCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateChannelMembershipCommand)(output, context);
-      }
-    };
-    exports.CreateChannelMembershipCommand = CreateChannelMembershipCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelModeratorCommand.js
-var require_CreateChannelModeratorCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/CreateChannelModeratorCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CreateChannelModeratorCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var CreateChannelModeratorCommand = class _CreateChannelModeratorCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _CreateChannelModeratorCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "CreateChannelModeratorCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.CreateChannelModeratorResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_CreateChannelModeratorCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_CreateChannelModeratorCommand)(output, context);
-      }
-    };
-    exports.CreateChannelModeratorCommand = CreateChannelModeratorCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelBanCommand.js
-var require_DeleteChannelBanCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelBanCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelBanCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelBanCommand = class _DeleteChannelBanCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelBanCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelBanCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelBanCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelBanCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelBanCommand = DeleteChannelBanCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelCommand.js
-var require_DeleteChannelCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelCommand = class _DeleteChannelCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelCommand = DeleteChannelCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelFlowCommand.js
-var require_DeleteChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelFlowCommand2 = class _DeleteChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelFlowCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelFlowCommand = DeleteChannelFlowCommand2;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelMembershipCommand.js
-var require_DeleteChannelMembershipCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelMembershipCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelMembershipCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelMembershipCommand = class _DeleteChannelMembershipCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelMembershipCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelMembershipCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelMembershipCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelMembershipCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelMembershipCommand = DeleteChannelMembershipCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelMessageCommand.js
-var require_DeleteChannelMessageCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelMessageCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelMessageCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelMessageCommand = class _DeleteChannelMessageCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelMessageCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelMessageCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelMessageCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelMessageCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelMessageCommand = DeleteChannelMessageCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelModeratorCommand.js
-var require_DeleteChannelModeratorCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteChannelModeratorCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteChannelModeratorCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteChannelModeratorCommand = class _DeleteChannelModeratorCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteChannelModeratorCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteChannelModeratorCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteChannelModeratorCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteChannelModeratorCommand)(output, context);
-      }
-    };
-    exports.DeleteChannelModeratorCommand = DeleteChannelModeratorCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteMessagingStreamingConfigurationsCommand.js
-var require_DeleteMessagingStreamingConfigurationsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DeleteMessagingStreamingConfigurationsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DeleteMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DeleteMessagingStreamingConfigurationsCommand = class _DeleteMessagingStreamingConfigurationsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DeleteMessagingStreamingConfigurationsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DeleteMessagingStreamingConfigurationsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DeleteMessagingStreamingConfigurationsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DeleteMessagingStreamingConfigurationsCommand)(output, context);
-      }
-    };
-    exports.DeleteMessagingStreamingConfigurationsCommand = DeleteMessagingStreamingConfigurationsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelBanCommand.js
-var require_DescribeChannelBanCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelBanCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelBanCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelBanCommand = class _DescribeChannelBanCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelBanCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelBanCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelBanResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelBanCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelBanCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelBanCommand = DescribeChannelBanCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelCommand.js
-var require_DescribeChannelCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelCommand = class _DescribeChannelCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelCommand = DescribeChannelCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelFlowCommand.js
-var require_DescribeChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelFlowCommand = class _DescribeChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelFlowResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelFlowCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelFlowCommand = DescribeChannelFlowCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelMembershipCommand.js
-var require_DescribeChannelMembershipCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelMembershipCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelMembershipCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelMembershipCommand = class _DescribeChannelMembershipCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelMembershipCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelMembershipCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelMembershipResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelMembershipCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelMembershipCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelMembershipCommand = DescribeChannelMembershipCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelMembershipForAppInstanceUserCommand.js
-var require_DescribeChannelMembershipForAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelMembershipForAppInstanceUserCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelMembershipForAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelMembershipForAppInstanceUserCommand = class _DescribeChannelMembershipForAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelMembershipForAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelMembershipForAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelMembershipForAppInstanceUserResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelMembershipForAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelMembershipForAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelMembershipForAppInstanceUserCommand = DescribeChannelMembershipForAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelModeratedByAppInstanceUserCommand.js
-var require_DescribeChannelModeratedByAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelModeratedByAppInstanceUserCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelModeratedByAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelModeratedByAppInstanceUserCommand = class _DescribeChannelModeratedByAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelModeratedByAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelModeratedByAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelModeratedByAppInstanceUserResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelModeratedByAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelModeratedByAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelModeratedByAppInstanceUserCommand = DescribeChannelModeratedByAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelModeratorCommand.js
-var require_DescribeChannelModeratorCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DescribeChannelModeratorCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DescribeChannelModeratorCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DescribeChannelModeratorCommand = class _DescribeChannelModeratorCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DescribeChannelModeratorCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DescribeChannelModeratorCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.DescribeChannelModeratorResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DescribeChannelModeratorCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DescribeChannelModeratorCommand)(output, context);
-      }
-    };
-    exports.DescribeChannelModeratorCommand = DescribeChannelModeratorCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DisassociateChannelFlowCommand.js
-var require_DisassociateChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/DisassociateChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DisassociateChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var DisassociateChannelFlowCommand = class _DisassociateChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _DisassociateChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "DisassociateChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_DisassociateChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_DisassociateChannelFlowCommand)(output, context);
-      }
-    };
-    exports.DisassociateChannelFlowCommand = DisassociateChannelFlowCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMembershipPreferencesCommand.js
-var require_GetChannelMembershipPreferencesCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMembershipPreferencesCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetChannelMembershipPreferencesCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var GetChannelMembershipPreferencesCommand = class _GetChannelMembershipPreferencesCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetChannelMembershipPreferencesCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "GetChannelMembershipPreferencesCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.GetChannelMembershipPreferencesResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetChannelMembershipPreferencesCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetChannelMembershipPreferencesCommand)(output, context);
-      }
-    };
-    exports.GetChannelMembershipPreferencesCommand = GetChannelMembershipPreferencesCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMessageCommand.js
-var require_GetChannelMessageCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMessageCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetChannelMessageCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var GetChannelMessageCommand = class _GetChannelMessageCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetChannelMessageCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "GetChannelMessageCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.GetChannelMessageResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetChannelMessageCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetChannelMessageCommand)(output, context);
-      }
-    };
-    exports.GetChannelMessageCommand = GetChannelMessageCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMessageStatusCommand.js
-var require_GetChannelMessageStatusCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetChannelMessageStatusCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetChannelMessageStatusCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var GetChannelMessageStatusCommand = class _GetChannelMessageStatusCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetChannelMessageStatusCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "GetChannelMessageStatusCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetChannelMessageStatusCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetChannelMessageStatusCommand)(output, context);
-      }
-    };
-    exports.GetChannelMessageStatusCommand = GetChannelMessageStatusCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetMessagingSessionEndpointCommand.js
-var require_GetMessagingSessionEndpointCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetMessagingSessionEndpointCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetMessagingSessionEndpointCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var GetMessagingSessionEndpointCommand = class _GetMessagingSessionEndpointCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetMessagingSessionEndpointCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "GetMessagingSessionEndpointCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetMessagingSessionEndpointCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetMessagingSessionEndpointCommand)(output, context);
-      }
-    };
-    exports.GetMessagingSessionEndpointCommand = GetMessagingSessionEndpointCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetMessagingStreamingConfigurationsCommand.js
-var require_GetMessagingStreamingConfigurationsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/GetMessagingStreamingConfigurationsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GetMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var GetMessagingStreamingConfigurationsCommand = class _GetMessagingStreamingConfigurationsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _GetMessagingStreamingConfigurationsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "GetMessagingStreamingConfigurationsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_GetMessagingStreamingConfigurationsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_GetMessagingStreamingConfigurationsCommand)(output, context);
-      }
-    };
-    exports.GetMessagingStreamingConfigurationsCommand = GetMessagingStreamingConfigurationsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelBansCommand.js
-var require_ListChannelBansCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelBansCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelBansCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelBansCommand = class _ListChannelBansCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelBansCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelBansCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelBansRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelBansResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelBansCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelBansCommand)(output, context);
-      }
-    };
-    exports.ListChannelBansCommand = ListChannelBansCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelFlowsCommand.js
-var require_ListChannelFlowsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelFlowsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelFlowsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelFlowsCommand = class _ListChannelFlowsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelFlowsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelFlowsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelFlowsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelFlowsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelFlowsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelFlowsCommand)(output, context);
-      }
-    };
-    exports.ListChannelFlowsCommand = ListChannelFlowsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMembershipsCommand.js
-var require_ListChannelMembershipsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMembershipsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelMembershipsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelMembershipsCommand = class _ListChannelMembershipsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelMembershipsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelMembershipsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelMembershipsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelMembershipsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelMembershipsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelMembershipsCommand)(output, context);
-      }
-    };
-    exports.ListChannelMembershipsCommand = ListChannelMembershipsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMembershipsForAppInstanceUserCommand.js
-var require_ListChannelMembershipsForAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMembershipsForAppInstanceUserCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelMembershipsForAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelMembershipsForAppInstanceUserCommand = class _ListChannelMembershipsForAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelMembershipsForAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelMembershipsForAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelMembershipsForAppInstanceUserRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelMembershipsForAppInstanceUserResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelMembershipsForAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelMembershipsForAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.ListChannelMembershipsForAppInstanceUserCommand = ListChannelMembershipsForAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMessagesCommand.js
-var require_ListChannelMessagesCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelMessagesCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelMessagesCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelMessagesCommand = class _ListChannelMessagesCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelMessagesCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelMessagesCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelMessagesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelMessagesResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelMessagesCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelMessagesCommand)(output, context);
-      }
-    };
-    exports.ListChannelMessagesCommand = ListChannelMessagesCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelModeratorsCommand.js
-var require_ListChannelModeratorsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelModeratorsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelModeratorsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelModeratorsCommand = class _ListChannelModeratorsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelModeratorsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelModeratorsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelModeratorsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelModeratorsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelModeratorsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelModeratorsCommand)(output, context);
-      }
-    };
-    exports.ListChannelModeratorsCommand = ListChannelModeratorsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsAssociatedWithChannelFlowCommand.js
-var require_ListChannelsAssociatedWithChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsAssociatedWithChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelsAssociatedWithChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelsAssociatedWithChannelFlowCommand = class _ListChannelsAssociatedWithChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelsAssociatedWithChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelsAssociatedWithChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelsAssociatedWithChannelFlowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelsAssociatedWithChannelFlowResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelsAssociatedWithChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelsAssociatedWithChannelFlowCommand)(output, context);
-      }
-    };
-    exports.ListChannelsAssociatedWithChannelFlowCommand = ListChannelsAssociatedWithChannelFlowCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsCommand.js
-var require_ListChannelsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelsCommand = class _ListChannelsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelsCommand)(output, context);
-      }
-    };
-    exports.ListChannelsCommand = ListChannelsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsModeratedByAppInstanceUserCommand.js
-var require_ListChannelsModeratedByAppInstanceUserCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListChannelsModeratedByAppInstanceUserCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListChannelsModeratedByAppInstanceUserCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListChannelsModeratedByAppInstanceUserCommand = class _ListChannelsModeratedByAppInstanceUserCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListChannelsModeratedByAppInstanceUserCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListChannelsModeratedByAppInstanceUserCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListChannelsModeratedByAppInstanceUserRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListChannelsModeratedByAppInstanceUserResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListChannelsModeratedByAppInstanceUserCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListChannelsModeratedByAppInstanceUserCommand)(output, context);
-      }
-    };
-    exports.ListChannelsModeratedByAppInstanceUserCommand = ListChannelsModeratedByAppInstanceUserCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListSubChannelsCommand.js
-var require_ListSubChannelsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListSubChannelsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListSubChannelsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListSubChannelsCommand = class _ListSubChannelsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListSubChannelsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListSubChannelsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.ListSubChannelsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.ListSubChannelsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListSubChannelsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListSubChannelsCommand)(output, context);
-      }
-    };
-    exports.ListSubChannelsCommand = ListSubChannelsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListTagsForResourceCommand.js
-var require_ListTagsForResourceCommand3 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/ListTagsForResourceCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ListTagsForResourceCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var ListTagsForResourceCommand = class _ListTagsForResourceCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _ListTagsForResourceCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "ListTagsForResourceCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: models_0_1.ListTagsForResourceResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_ListTagsForResourceCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_ListTagsForResourceCommand)(output, context);
-      }
-    };
-    exports.ListTagsForResourceCommand = ListTagsForResourceCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutChannelExpirationSettingsCommand.js
-var require_PutChannelExpirationSettingsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutChannelExpirationSettingsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PutChannelExpirationSettingsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var PutChannelExpirationSettingsCommand = class _PutChannelExpirationSettingsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _PutChannelExpirationSettingsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "PutChannelExpirationSettingsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_PutChannelExpirationSettingsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_PutChannelExpirationSettingsCommand)(output, context);
-      }
-    };
-    exports.PutChannelExpirationSettingsCommand = PutChannelExpirationSettingsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutChannelMembershipPreferencesCommand.js
-var require_PutChannelMembershipPreferencesCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutChannelMembershipPreferencesCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PutChannelMembershipPreferencesCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var PutChannelMembershipPreferencesCommand = class _PutChannelMembershipPreferencesCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _PutChannelMembershipPreferencesCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "PutChannelMembershipPreferencesCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.PutChannelMembershipPreferencesRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.PutChannelMembershipPreferencesResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_PutChannelMembershipPreferencesCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_PutChannelMembershipPreferencesCommand)(output, context);
-      }
-    };
-    exports.PutChannelMembershipPreferencesCommand = PutChannelMembershipPreferencesCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutMessagingStreamingConfigurationsCommand.js
-var require_PutMessagingStreamingConfigurationsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/PutMessagingStreamingConfigurationsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PutMessagingStreamingConfigurationsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var PutMessagingStreamingConfigurationsCommand2 = class _PutMessagingStreamingConfigurationsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _PutMessagingStreamingConfigurationsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "PutMessagingStreamingConfigurationsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_PutMessagingStreamingConfigurationsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_PutMessagingStreamingConfigurationsCommand)(output, context);
-      }
-    };
-    exports.PutMessagingStreamingConfigurationsCommand = PutMessagingStreamingConfigurationsCommand2;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/RedactChannelMessageCommand.js
-var require_RedactChannelMessageCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/RedactChannelMessageCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.RedactChannelMessageCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var RedactChannelMessageCommand = class _RedactChannelMessageCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _RedactChannelMessageCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "RedactChannelMessageCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_RedactChannelMessageCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_RedactChannelMessageCommand)(output, context);
-      }
-    };
-    exports.RedactChannelMessageCommand = RedactChannelMessageCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/SearchChannelsCommand.js
-var require_SearchChannelsCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/SearchChannelsCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.SearchChannelsCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var SearchChannelsCommand = class _SearchChannelsCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _SearchChannelsCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "SearchChannelsCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.SearchChannelsRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: models_0_1.SearchChannelsResponseFilterSensitiveLog
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_SearchChannelsCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_SearchChannelsCommand)(output, context);
-      }
-    };
-    exports.SearchChannelsCommand = SearchChannelsCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/SendChannelMessageCommand.js
-var require_SendChannelMessageCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/SendChannelMessageCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.SendChannelMessageCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var SendChannelMessageCommand = class _SendChannelMessageCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _SendChannelMessageCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "SendChannelMessageCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.SendChannelMessageRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_SendChannelMessageCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_SendChannelMessageCommand)(output, context);
-      }
-    };
-    exports.SendChannelMessageCommand = SendChannelMessageCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/TagResourceCommand.js
-var require_TagResourceCommand2 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/TagResourceCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.TagResourceCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var TagResourceCommand = class _TagResourceCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _TagResourceCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "TagResourceCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.TagResourceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_TagResourceCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_TagResourceCommand)(output, context);
-      }
-    };
-    exports.TagResourceCommand = TagResourceCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UntagResourceCommand.js
-var require_UntagResourceCommand2 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UntagResourceCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UntagResourceCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var UntagResourceCommand = class _UntagResourceCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UntagResourceCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "UntagResourceCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UntagResourceRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UntagResourceCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UntagResourceCommand)(output, context);
-      }
-    };
-    exports.UntagResourceCommand = UntagResourceCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelCommand.js
-var require_UpdateChannelCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateChannelCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var UpdateChannelCommand = class _UpdateChannelCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateChannelCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "UpdateChannelCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateChannelRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateChannelCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateChannelCommand)(output, context);
-      }
-    };
-    exports.UpdateChannelCommand = UpdateChannelCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelFlowCommand.js
-var require_UpdateChannelFlowCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelFlowCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateChannelFlowCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var UpdateChannelFlowCommand2 = class _UpdateChannelFlowCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateChannelFlowCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "UpdateChannelFlowCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateChannelFlowRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateChannelFlowCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateChannelFlowCommand)(output, context);
-      }
-    };
-    exports.UpdateChannelFlowCommand = UpdateChannelFlowCommand2;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelMessageCommand.js
-var require_UpdateChannelMessageCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelMessageCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateChannelMessageCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var models_0_1 = require_models_05();
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var UpdateChannelMessageCommand = class _UpdateChannelMessageCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateChannelMessageCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "UpdateChannelMessageCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: models_0_1.UpdateChannelMessageRequestFilterSensitiveLog,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateChannelMessageCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateChannelMessageCommand)(output, context);
-      }
-    };
-    exports.UpdateChannelMessageCommand = UpdateChannelMessageCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelReadMarkerCommand.js
-var require_UpdateChannelReadMarkerCommand = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/UpdateChannelReadMarkerCommand.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UpdateChannelReadMarkerCommand = exports.$Command = void 0;
-    var middleware_endpoint_1 = require_dist_cjs26();
-    var middleware_serde_1 = require_dist_cjs25();
-    var smithy_client_1 = require_dist_cjs35();
-    Object.defineProperty(exports, "$Command", { enumerable: true, get: function() {
-      return smithy_client_1.Command;
-    } });
-    var Aws_restJson1_1 = require_Aws_restJson13();
-    var UpdateChannelReadMarkerCommand = class _UpdateChannelReadMarkerCommand extends smithy_client_1.Command {
-      static getEndpointParameterInstructions() {
-        return {
-          UseFIPS: { type: "builtInParams", name: "useFipsEndpoint" },
-          Endpoint: { type: "builtInParams", name: "endpoint" },
-          Region: { type: "builtInParams", name: "region" },
-          UseDualStack: { type: "builtInParams", name: "useDualstackEndpoint" }
-        };
-      }
-      constructor(input) {
-        super();
-        this.input = input;
-      }
-      resolveMiddleware(clientStack, configuration, options) {
-        this.middlewareStack.use((0, middleware_serde_1.getSerdePlugin)(configuration, this.serialize, this.deserialize));
-        this.middlewareStack.use((0, middleware_endpoint_1.getEndpointPlugin)(configuration, _UpdateChannelReadMarkerCommand.getEndpointParameterInstructions()));
-        const stack = clientStack.concat(this.middlewareStack);
-        const { logger } = configuration;
-        const clientName = "ChimeSDKMessagingClient";
-        const commandName = "UpdateChannelReadMarkerCommand";
-        const handlerExecutionContext = {
-          logger,
-          clientName,
-          commandName,
-          inputFilterSensitiveLog: (_) => _,
-          outputFilterSensitiveLog: (_) => _
-        };
-        const { requestHandler } = configuration;
-        return stack.resolve((request) => requestHandler.handle(request.request, options || {}), handlerExecutionContext);
-      }
-      serialize(input, context) {
-        return (0, Aws_restJson1_1.se_UpdateChannelReadMarkerCommand)(input, context);
-      }
-      deserialize(output, context) {
-        return (0, Aws_restJson1_1.de_UpdateChannelReadMarkerCommand)(output, context);
-      }
-    };
-    exports.UpdateChannelReadMarkerCommand = UpdateChannelReadMarkerCommand;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/ChimeSDKMessaging.js
-var require_ChimeSDKMessaging = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/ChimeSDKMessaging.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKMessaging = void 0;
-    var smithy_client_1 = require_dist_cjs35();
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var AssociateChannelFlowCommand_1 = require_AssociateChannelFlowCommand();
-    var BatchCreateChannelMembershipCommand_1 = require_BatchCreateChannelMembershipCommand();
-    var ChannelFlowCallbackCommand_1 = require_ChannelFlowCallbackCommand();
-    var CreateChannelBanCommand_1 = require_CreateChannelBanCommand();
-    var CreateChannelCommand_1 = require_CreateChannelCommand();
-    var CreateChannelFlowCommand_1 = require_CreateChannelFlowCommand();
-    var CreateChannelMembershipCommand_1 = require_CreateChannelMembershipCommand();
-    var CreateChannelModeratorCommand_1 = require_CreateChannelModeratorCommand();
-    var DeleteChannelBanCommand_1 = require_DeleteChannelBanCommand();
-    var DeleteChannelCommand_1 = require_DeleteChannelCommand();
-    var DeleteChannelFlowCommand_1 = require_DeleteChannelFlowCommand();
-    var DeleteChannelMembershipCommand_1 = require_DeleteChannelMembershipCommand();
-    var DeleteChannelMessageCommand_1 = require_DeleteChannelMessageCommand();
-    var DeleteChannelModeratorCommand_1 = require_DeleteChannelModeratorCommand();
-    var DeleteMessagingStreamingConfigurationsCommand_1 = require_DeleteMessagingStreamingConfigurationsCommand();
-    var DescribeChannelBanCommand_1 = require_DescribeChannelBanCommand();
-    var DescribeChannelCommand_1 = require_DescribeChannelCommand();
-    var DescribeChannelFlowCommand_1 = require_DescribeChannelFlowCommand();
-    var DescribeChannelMembershipCommand_1 = require_DescribeChannelMembershipCommand();
-    var DescribeChannelMembershipForAppInstanceUserCommand_1 = require_DescribeChannelMembershipForAppInstanceUserCommand();
-    var DescribeChannelModeratedByAppInstanceUserCommand_1 = require_DescribeChannelModeratedByAppInstanceUserCommand();
-    var DescribeChannelModeratorCommand_1 = require_DescribeChannelModeratorCommand();
-    var DisassociateChannelFlowCommand_1 = require_DisassociateChannelFlowCommand();
-    var GetChannelMembershipPreferencesCommand_1 = require_GetChannelMembershipPreferencesCommand();
-    var GetChannelMessageCommand_1 = require_GetChannelMessageCommand();
-    var GetChannelMessageStatusCommand_1 = require_GetChannelMessageStatusCommand();
-    var GetMessagingSessionEndpointCommand_1 = require_GetMessagingSessionEndpointCommand();
-    var GetMessagingStreamingConfigurationsCommand_1 = require_GetMessagingStreamingConfigurationsCommand();
-    var ListChannelBansCommand_1 = require_ListChannelBansCommand();
-    var ListChannelFlowsCommand_1 = require_ListChannelFlowsCommand();
-    var ListChannelMembershipsCommand_1 = require_ListChannelMembershipsCommand();
-    var ListChannelMembershipsForAppInstanceUserCommand_1 = require_ListChannelMembershipsForAppInstanceUserCommand();
-    var ListChannelMessagesCommand_1 = require_ListChannelMessagesCommand();
-    var ListChannelModeratorsCommand_1 = require_ListChannelModeratorsCommand();
-    var ListChannelsAssociatedWithChannelFlowCommand_1 = require_ListChannelsAssociatedWithChannelFlowCommand();
-    var ListChannelsCommand_1 = require_ListChannelsCommand();
-    var ListChannelsModeratedByAppInstanceUserCommand_1 = require_ListChannelsModeratedByAppInstanceUserCommand();
-    var ListSubChannelsCommand_1 = require_ListSubChannelsCommand();
-    var ListTagsForResourceCommand_1 = require_ListTagsForResourceCommand3();
-    var PutChannelExpirationSettingsCommand_1 = require_PutChannelExpirationSettingsCommand();
-    var PutChannelMembershipPreferencesCommand_1 = require_PutChannelMembershipPreferencesCommand();
-    var PutMessagingStreamingConfigurationsCommand_1 = require_PutMessagingStreamingConfigurationsCommand();
-    var RedactChannelMessageCommand_1 = require_RedactChannelMessageCommand();
-    var SearchChannelsCommand_1 = require_SearchChannelsCommand();
-    var SendChannelMessageCommand_1 = require_SendChannelMessageCommand();
-    var TagResourceCommand_1 = require_TagResourceCommand2();
-    var UntagResourceCommand_1 = require_UntagResourceCommand2();
-    var UpdateChannelCommand_1 = require_UpdateChannelCommand();
-    var UpdateChannelFlowCommand_1 = require_UpdateChannelFlowCommand();
-    var UpdateChannelMessageCommand_1 = require_UpdateChannelMessageCommand();
-    var UpdateChannelReadMarkerCommand_1 = require_UpdateChannelReadMarkerCommand();
-    var commands = {
-      AssociateChannelFlowCommand: AssociateChannelFlowCommand_1.AssociateChannelFlowCommand,
-      BatchCreateChannelMembershipCommand: BatchCreateChannelMembershipCommand_1.BatchCreateChannelMembershipCommand,
-      ChannelFlowCallbackCommand: ChannelFlowCallbackCommand_1.ChannelFlowCallbackCommand,
-      CreateChannelCommand: CreateChannelCommand_1.CreateChannelCommand,
-      CreateChannelBanCommand: CreateChannelBanCommand_1.CreateChannelBanCommand,
-      CreateChannelFlowCommand: CreateChannelFlowCommand_1.CreateChannelFlowCommand,
-      CreateChannelMembershipCommand: CreateChannelMembershipCommand_1.CreateChannelMembershipCommand,
-      CreateChannelModeratorCommand: CreateChannelModeratorCommand_1.CreateChannelModeratorCommand,
-      DeleteChannelCommand: DeleteChannelCommand_1.DeleteChannelCommand,
-      DeleteChannelBanCommand: DeleteChannelBanCommand_1.DeleteChannelBanCommand,
-      DeleteChannelFlowCommand: DeleteChannelFlowCommand_1.DeleteChannelFlowCommand,
-      DeleteChannelMembershipCommand: DeleteChannelMembershipCommand_1.DeleteChannelMembershipCommand,
-      DeleteChannelMessageCommand: DeleteChannelMessageCommand_1.DeleteChannelMessageCommand,
-      DeleteChannelModeratorCommand: DeleteChannelModeratorCommand_1.DeleteChannelModeratorCommand,
-      DeleteMessagingStreamingConfigurationsCommand: DeleteMessagingStreamingConfigurationsCommand_1.DeleteMessagingStreamingConfigurationsCommand,
-      DescribeChannelCommand: DescribeChannelCommand_1.DescribeChannelCommand,
-      DescribeChannelBanCommand: DescribeChannelBanCommand_1.DescribeChannelBanCommand,
-      DescribeChannelFlowCommand: DescribeChannelFlowCommand_1.DescribeChannelFlowCommand,
-      DescribeChannelMembershipCommand: DescribeChannelMembershipCommand_1.DescribeChannelMembershipCommand,
-      DescribeChannelMembershipForAppInstanceUserCommand: DescribeChannelMembershipForAppInstanceUserCommand_1.DescribeChannelMembershipForAppInstanceUserCommand,
-      DescribeChannelModeratedByAppInstanceUserCommand: DescribeChannelModeratedByAppInstanceUserCommand_1.DescribeChannelModeratedByAppInstanceUserCommand,
-      DescribeChannelModeratorCommand: DescribeChannelModeratorCommand_1.DescribeChannelModeratorCommand,
-      DisassociateChannelFlowCommand: DisassociateChannelFlowCommand_1.DisassociateChannelFlowCommand,
-      GetChannelMembershipPreferencesCommand: GetChannelMembershipPreferencesCommand_1.GetChannelMembershipPreferencesCommand,
-      GetChannelMessageCommand: GetChannelMessageCommand_1.GetChannelMessageCommand,
-      GetChannelMessageStatusCommand: GetChannelMessageStatusCommand_1.GetChannelMessageStatusCommand,
-      GetMessagingSessionEndpointCommand: GetMessagingSessionEndpointCommand_1.GetMessagingSessionEndpointCommand,
-      GetMessagingStreamingConfigurationsCommand: GetMessagingStreamingConfigurationsCommand_1.GetMessagingStreamingConfigurationsCommand,
-      ListChannelBansCommand: ListChannelBansCommand_1.ListChannelBansCommand,
-      ListChannelFlowsCommand: ListChannelFlowsCommand_1.ListChannelFlowsCommand,
-      ListChannelMembershipsCommand: ListChannelMembershipsCommand_1.ListChannelMembershipsCommand,
-      ListChannelMembershipsForAppInstanceUserCommand: ListChannelMembershipsForAppInstanceUserCommand_1.ListChannelMembershipsForAppInstanceUserCommand,
-      ListChannelMessagesCommand: ListChannelMessagesCommand_1.ListChannelMessagesCommand,
-      ListChannelModeratorsCommand: ListChannelModeratorsCommand_1.ListChannelModeratorsCommand,
-      ListChannelsCommand: ListChannelsCommand_1.ListChannelsCommand,
-      ListChannelsAssociatedWithChannelFlowCommand: ListChannelsAssociatedWithChannelFlowCommand_1.ListChannelsAssociatedWithChannelFlowCommand,
-      ListChannelsModeratedByAppInstanceUserCommand: ListChannelsModeratedByAppInstanceUserCommand_1.ListChannelsModeratedByAppInstanceUserCommand,
-      ListSubChannelsCommand: ListSubChannelsCommand_1.ListSubChannelsCommand,
-      ListTagsForResourceCommand: ListTagsForResourceCommand_1.ListTagsForResourceCommand,
-      PutChannelExpirationSettingsCommand: PutChannelExpirationSettingsCommand_1.PutChannelExpirationSettingsCommand,
-      PutChannelMembershipPreferencesCommand: PutChannelMembershipPreferencesCommand_1.PutChannelMembershipPreferencesCommand,
-      PutMessagingStreamingConfigurationsCommand: PutMessagingStreamingConfigurationsCommand_1.PutMessagingStreamingConfigurationsCommand,
-      RedactChannelMessageCommand: RedactChannelMessageCommand_1.RedactChannelMessageCommand,
-      SearchChannelsCommand: SearchChannelsCommand_1.SearchChannelsCommand,
-      SendChannelMessageCommand: SendChannelMessageCommand_1.SendChannelMessageCommand,
-      TagResourceCommand: TagResourceCommand_1.TagResourceCommand,
-      UntagResourceCommand: UntagResourceCommand_1.UntagResourceCommand,
-      UpdateChannelCommand: UpdateChannelCommand_1.UpdateChannelCommand,
-      UpdateChannelFlowCommand: UpdateChannelFlowCommand_1.UpdateChannelFlowCommand,
-      UpdateChannelMessageCommand: UpdateChannelMessageCommand_1.UpdateChannelMessageCommand,
-      UpdateChannelReadMarkerCommand: UpdateChannelReadMarkerCommand_1.UpdateChannelReadMarkerCommand
-    };
-    var ChimeSDKMessaging = class extends ChimeSDKMessagingClient_1.ChimeSDKMessagingClient {
-    };
-    exports.ChimeSDKMessaging = ChimeSDKMessaging;
-    (0, smithy_client_1.createAggregatedClient)(commands, ChimeSDKMessaging);
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/index.js
-var require_commands5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/commands/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_AssociateChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_BatchCreateChannelMembershipCommand(), exports);
-    tslib_1.__exportStar(require_ChannelFlowCallbackCommand(), exports);
-    tslib_1.__exportStar(require_CreateChannelBanCommand(), exports);
-    tslib_1.__exportStar(require_CreateChannelCommand(), exports);
-    tslib_1.__exportStar(require_CreateChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_CreateChannelMembershipCommand(), exports);
-    tslib_1.__exportStar(require_CreateChannelModeratorCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelBanCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelMembershipCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelMessageCommand(), exports);
-    tslib_1.__exportStar(require_DeleteChannelModeratorCommand(), exports);
-    tslib_1.__exportStar(require_DeleteMessagingStreamingConfigurationsCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelBanCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelMembershipCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelMembershipForAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelModeratedByAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_DescribeChannelModeratorCommand(), exports);
-    tslib_1.__exportStar(require_DisassociateChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_GetChannelMembershipPreferencesCommand(), exports);
-    tslib_1.__exportStar(require_GetChannelMessageCommand(), exports);
-    tslib_1.__exportStar(require_GetChannelMessageStatusCommand(), exports);
-    tslib_1.__exportStar(require_GetMessagingSessionEndpointCommand(), exports);
-    tslib_1.__exportStar(require_GetMessagingStreamingConfigurationsCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelBansCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelFlowsCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelMembershipsCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelMembershipsForAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelMessagesCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelModeratorsCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelsAssociatedWithChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelsCommand(), exports);
-    tslib_1.__exportStar(require_ListChannelsModeratedByAppInstanceUserCommand(), exports);
-    tslib_1.__exportStar(require_ListSubChannelsCommand(), exports);
-    tslib_1.__exportStar(require_ListTagsForResourceCommand3(), exports);
-    tslib_1.__exportStar(require_PutChannelExpirationSettingsCommand(), exports);
-    tslib_1.__exportStar(require_PutChannelMembershipPreferencesCommand(), exports);
-    tslib_1.__exportStar(require_PutMessagingStreamingConfigurationsCommand(), exports);
-    tslib_1.__exportStar(require_RedactChannelMessageCommand(), exports);
-    tslib_1.__exportStar(require_SearchChannelsCommand(), exports);
-    tslib_1.__exportStar(require_SendChannelMessageCommand(), exports);
-    tslib_1.__exportStar(require_TagResourceCommand2(), exports);
-    tslib_1.__exportStar(require_UntagResourceCommand2(), exports);
-    tslib_1.__exportStar(require_UpdateChannelCommand(), exports);
-    tslib_1.__exportStar(require_UpdateChannelFlowCommand(), exports);
-    tslib_1.__exportStar(require_UpdateChannelMessageCommand(), exports);
-    tslib_1.__exportStar(require_UpdateChannelReadMarkerCommand(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/Interfaces.js
-var require_Interfaces4 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/Interfaces.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelBansPaginator.js
-var require_ListChannelBansPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelBansPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelBans = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelBansCommand_1 = require_ListChannelBansCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelBansCommand_1.ListChannelBansCommand(input), ...args);
-    };
-    async function* paginateListChannelBans(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelBans = paginateListChannelBans;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelFlowsPaginator.js
-var require_ListChannelFlowsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelFlowsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelFlows = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelFlowsCommand_1 = require_ListChannelFlowsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelFlowsCommand_1.ListChannelFlowsCommand(input), ...args);
-    };
-    async function* paginateListChannelFlows(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelFlows = paginateListChannelFlows;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMembershipsForAppInstanceUserPaginator.js
-var require_ListChannelMembershipsForAppInstanceUserPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMembershipsForAppInstanceUserPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelMembershipsForAppInstanceUser = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelMembershipsForAppInstanceUserCommand_1 = require_ListChannelMembershipsForAppInstanceUserCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelMembershipsForAppInstanceUserCommand_1.ListChannelMembershipsForAppInstanceUserCommand(input), ...args);
-    };
-    async function* paginateListChannelMembershipsForAppInstanceUser(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelMembershipsForAppInstanceUser = paginateListChannelMembershipsForAppInstanceUser;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMembershipsPaginator.js
-var require_ListChannelMembershipsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMembershipsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelMemberships = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelMembershipsCommand_1 = require_ListChannelMembershipsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelMembershipsCommand_1.ListChannelMembershipsCommand(input), ...args);
-    };
-    async function* paginateListChannelMemberships(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelMemberships = paginateListChannelMemberships;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMessagesPaginator.js
-var require_ListChannelMessagesPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelMessagesPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelMessages = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelMessagesCommand_1 = require_ListChannelMessagesCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelMessagesCommand_1.ListChannelMessagesCommand(input), ...args);
-    };
-    async function* paginateListChannelMessages(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelMessages = paginateListChannelMessages;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelModeratorsPaginator.js
-var require_ListChannelModeratorsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelModeratorsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelModerators = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelModeratorsCommand_1 = require_ListChannelModeratorsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelModeratorsCommand_1.ListChannelModeratorsCommand(input), ...args);
-    };
-    async function* paginateListChannelModerators(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelModerators = paginateListChannelModerators;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsAssociatedWithChannelFlowPaginator.js
-var require_ListChannelsAssociatedWithChannelFlowPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsAssociatedWithChannelFlowPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelsAssociatedWithChannelFlow = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelsAssociatedWithChannelFlowCommand_1 = require_ListChannelsAssociatedWithChannelFlowCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelsAssociatedWithChannelFlowCommand_1.ListChannelsAssociatedWithChannelFlowCommand(input), ...args);
-    };
-    async function* paginateListChannelsAssociatedWithChannelFlow(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelsAssociatedWithChannelFlow = paginateListChannelsAssociatedWithChannelFlow;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsModeratedByAppInstanceUserPaginator.js
-var require_ListChannelsModeratedByAppInstanceUserPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsModeratedByAppInstanceUserPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannelsModeratedByAppInstanceUser = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelsModeratedByAppInstanceUserCommand_1 = require_ListChannelsModeratedByAppInstanceUserCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelsModeratedByAppInstanceUserCommand_1.ListChannelsModeratedByAppInstanceUserCommand(input), ...args);
-    };
-    async function* paginateListChannelsModeratedByAppInstanceUser(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannelsModeratedByAppInstanceUser = paginateListChannelsModeratedByAppInstanceUser;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsPaginator.js
-var require_ListChannelsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListChannelsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListChannels = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListChannelsCommand_1 = require_ListChannelsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListChannelsCommand_1.ListChannelsCommand(input), ...args);
-    };
-    async function* paginateListChannels(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListChannels = paginateListChannels;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListSubChannelsPaginator.js
-var require_ListSubChannelsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/ListSubChannelsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateListSubChannels = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var ListSubChannelsCommand_1 = require_ListSubChannelsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new ListSubChannelsCommand_1.ListSubChannelsCommand(input), ...args);
-    };
-    async function* paginateListSubChannels(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateListSubChannels = paginateListSubChannels;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/SearchChannelsPaginator.js
-var require_SearchChannelsPaginator = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/SearchChannelsPaginator.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.paginateSearchChannels = void 0;
-    var ChimeSDKMessagingClient_1 = require_ChimeSDKMessagingClient();
-    var SearchChannelsCommand_1 = require_SearchChannelsCommand();
-    var makePagedClientRequest = async (client, input, ...args) => {
-      return await client.send(new SearchChannelsCommand_1.SearchChannelsCommand(input), ...args);
-    };
-    async function* paginateSearchChannels(config, input, ...additionalArguments) {
-      let token = config.startingToken || void 0;
-      let hasNext = true;
-      let page;
-      while (hasNext) {
-        input.NextToken = token;
-        input["MaxResults"] = config.pageSize;
-        if (config.client instanceof ChimeSDKMessagingClient_1.ChimeSDKMessagingClient) {
-          page = await makePagedClientRequest(config.client, input, ...additionalArguments);
-        } else {
-          throw new Error("Invalid client, expected ChimeSDKMessaging | ChimeSDKMessagingClient");
-        }
-        yield page;
-        const prevToken = token;
-        token = page.NextToken;
-        hasNext = !!(token && (!config.stopOnSameToken || token !== prevToken));
-      }
-      return void 0;
-    }
-    exports.paginateSearchChannels = paginateSearchChannels;
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/index.js
-var require_pagination6 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/pagination/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_Interfaces4(), exports);
-    tslib_1.__exportStar(require_ListChannelBansPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelFlowsPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelMembershipsForAppInstanceUserPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelMembershipsPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelMessagesPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelModeratorsPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelsAssociatedWithChannelFlowPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelsModeratedByAppInstanceUserPaginator(), exports);
-    tslib_1.__exportStar(require_ListChannelsPaginator(), exports);
-    tslib_1.__exportStar(require_ListSubChannelsPaginator(), exports);
-    tslib_1.__exportStar(require_SearchChannelsPaginator(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/index.js
-var require_models5 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/models/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_models_05(), exports);
-  }
-});
-
-// node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/index.js
-var require_dist_cjs56 = __commonJS({
-  "node_modules/@aws-sdk/client-chime-sdk-messaging/dist-cjs/index.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ChimeSDKMessagingServiceException = void 0;
-    var tslib_1 = (init_tslib_es6(), __toCommonJS(tslib_es6_exports));
-    tslib_1.__exportStar(require_ChimeSDKMessagingClient(), exports);
-    tslib_1.__exportStar(require_ChimeSDKMessaging(), exports);
-    tslib_1.__exportStar(require_commands5(), exports);
-    tslib_1.__exportStar(require_pagination6(), exports);
-    tslib_1.__exportStar(require_models5(), exports);
-    var ChimeSDKMessagingServiceException_1 = require_ChimeSDKMessagingServiceException();
-    Object.defineProperty(exports, "ChimeSDKMessagingServiceException", { enumerable: true, get: function() {
-      return ChimeSDKMessagingServiceException_1.ChimeSDKMessagingServiceException;
-    } });
-  }
-});
-
-// src/resources/messaging/messaging.lambda.ts
-var messaging_lambda_exports = {};
-__export(messaging_lambda_exports, {
+// src/resources/media-pipelines/media-pipelines.lambda.ts
+var media_pipelines_lambda_exports = {};
+__export(media_pipelines_lambda_exports, {
   handler: () => handler
 });
-module.exports = __toCommonJS(messaging_lambda_exports);
+module.exports = __toCommonJS(media_pipelines_lambda_exports);
 
-// src/resources/messaging/appInstance.ts
-var import_client_chime_sdk_identity = __toESM(require_dist_cjs53());
+// src/resources/media-pipelines/mediaInsightsPipeline.ts
+var import_client_chime_sdk_media_pipelines = __toESM(require_dist_cjs53());
 var import_client_ssm = __toESM(require_dist_cjs55());
-var chimeClient = new import_client_chime_sdk_identity.ChimeSDKIdentityClient({
+var ssmClient = new import_client_ssm.SSMClient({ region: process.env.AWS_REGION });
+var chimeSDKMediaPipelineClient = new import_client_chime_sdk_media_pipelines.ChimeSDKMediaPipelinesClient({
   region: process.env.AWS_REGION
 });
-var ssmClient = new import_client_ssm.SSMClient({ region: process.env.AWS_REGION });
-var createAppInstanceCommandParams;
-var createAppInstanceCommandResponse;
-var getParameterCommandOutput;
-var updatedTags;
-var CreateAppInstance = async (uid, props) => {
-  updatedTags = [];
-  if (props.tags) {
-    props.tags.forEach((tag) => {
-      updatedTags.push({ Key: tag.key, Value: tag.value });
-    });
+function capitalizeKeys(obj) {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => capitalizeKeys(item));
   }
-  createAppInstanceCommandParams = {
-    Name: props.name,
-    ...props.metadata && { Metadata: props.metadata },
+  if (typeof obj === "object") {
+    const capitalizedObj = {};
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1);
+        const value = obj[key];
+        capitalizedObj[capitalizedKey] = typeof value === "string" && !isNaN(parseFloat(value)) ? parseFloat(value) : capitalizeKeys(value);
+      }
+    }
+    return capitalizedObj;
+  }
+  return obj;
+}
+function capitalizeElementsKeys(elements) {
+  return capitalizeKeys(elements);
+}
+var createMediaInsightsPipelineConfigurationResponse;
+var createMediaInsightsPipelineConfigurationParams;
+var formatProps = (props) => {
+  let formattedElements = [];
+  let formattedTags = [];
+  let formattedRealTimeAlertConfiguration = {};
+  let formattedRealTimeAlertRules = [];
+  console.info(`Formatting Props: ${JSON.stringify(props)}`);
+  if (props.elements) {
+    console.info(`Formatting Elements: ${JSON.stringify(props.elements)}`);
+    console.log(`Current formattedElements: ${formattedElements}`);
+    props.elements.forEach((element) => {
+      formattedElements.push(capitalizeElementsKeys(element));
+    });
+    console.info(`Formatted Elements: ${JSON.stringify(formattedElements)}`);
+  }
+  console.log(`New formattedElements: ${formattedElements}`);
+  console.log(`Current formattedTags: ${formattedTags}`);
+  if (props.tags) {
+    console.info(`Formatting Tags: ${JSON.stringify(props.tags)}`);
+    props.tags.forEach((tag) => {
+      formattedTags.push(capitalizeKeys(tag));
+    });
+    console.info(`Formatted Tags: ${JSON.stringify(formattedTags)}`);
+  }
+  console.log(`New formattedTags: ${formattedTags}`);
+  if (props.realTimeAlertConfiguration) {
+    console.info(
+      `Formatting Real Time Alert Configuration: ${JSON.stringify(
+        props.realTimeAlertConfiguration
+      )}`
+    );
+    props.realTimeAlertConfiguration.rules.forEach((rule) => {
+      formattedRealTimeAlertRules.push(capitalizeKeys(rule));
+    });
+    formattedRealTimeAlertConfiguration = {
+      Disabled: props.realTimeAlertConfiguration.disabled,
+      Rules: formattedRealTimeAlertRules
+    };
+    console.info(
+      `Formatted Real Time Alert Configuration: ${JSON.stringify(
+        formattedRealTimeAlertConfiguration
+      )}`
+    );
+  }
+  const mediaInsightsPipelineConfigurationParams = {
+    ResourceAccessRoleArn: props.resourceAccessRoleArn,
+    MediaInsightsPipelineConfigurationName: props.mediaInsightsPipelineConfigurationName,
+    ...props.tags && { Tags: formattedTags },
     ...props.clientRequestToken && {
       ClientRequestToken: props.clientRequestToken
     },
-    ...updatedTags.length > 0 && { Tags: updatedTags }
+    ...props.elements && {
+      Elements: formattedElements
+    },
+    ...props.realTimeAlertConfiguration && {
+      RealTimeAlertConfiguration: formattedRealTimeAlertConfiguration
+    }
   };
+  console.info(
+    `mediaInsightsPipelineConfigurationParams: ${JSON.stringify(
+      mediaInsightsPipelineConfigurationParams
+    )}`
+  );
+  return mediaInsightsPipelineConfigurationParams;
+};
+var CreateMediaInsightsPipelineConfiguration = async (uid, props) => {
+  console.log(`Creating Media Insights Pipeline Configuration: ${uid}`);
+  console.log(
+    `Create Media Insights Pipeline Configuration props: ${JSON.stringify(
+      props
+    )}`
+  );
+  createMediaInsightsPipelineConfigurationParams = formatProps(props);
+  console.log(
+    `Create Media Insights Pipeline Configuration params: ${JSON.stringify(
+      createMediaInsightsPipelineConfigurationParams
+    )}`
+  );
   try {
-    createAppInstanceCommandResponse = await chimeClient.send(
-      new import_client_chime_sdk_identity.CreateAppInstanceCommand(createAppInstanceCommandParams)
+    createMediaInsightsPipelineConfigurationResponse = await chimeSDKMediaPipelineClient.send(
+      new import_client_chime_sdk_media_pipelines.CreateMediaInsightsPipelineConfigurationCommand(
+        createMediaInsightsPipelineConfigurationParams
+      )
+    );
+    console.log(
+      `createMediaInsightsPipelineConfigurationResponse: ${JSON.stringify(
+        createMediaInsightsPipelineConfigurationResponse
+      )}`
     );
   } catch (error) {
     if (error instanceof Error) {
@@ -53819,9 +44176,9 @@ var CreateAppInstance = async (uid, props) => {
   try {
     await ssmClient.send(
       new import_client_ssm.PutParameterCommand({
-        Name: `/chime/appInstanceArn/${uid}`,
-        Description: "App Instance Arn",
-        Value: createAppInstanceCommandResponse.AppInstanceArn,
+        Name: "/chime/MediaInsightsPipelineConfigurationArn" + uid,
+        Value: createMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration.MediaInsightsPipelineConfigurationArn,
+        Description: "Media Insight Pipeline Configuration ARN" + uid,
         Overwrite: true,
         Type: "String"
       })
@@ -53832,14 +44189,24 @@ var CreateAppInstance = async (uid, props) => {
       throw error;
     }
   }
-  return {
-    appInstanceArn: createAppInstanceCommandResponse.AppInstanceArn
-  };
+  return createMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration;
 };
-var DeleteAppInstance = async (uid) => {
+var updateMediaInsightsPipelineConfigurationParams;
+var updateMediaInsightsPipelineConfigurationResponse;
+var updateMediaInsightsPipelineIdentifier;
+var getParameterCommandOutput;
+var UpdateMediaInsightsPipelineConfiguration = async (uid, props) => {
+  console.log(`Updating Media Insights Pipeline Configuration: ${uid}`);
+  console.log(
+    `Updating Media Insights Pipeline Configuration props: ${JSON.stringify(
+      props
+    )}`
+  );
   try {
     getParameterCommandOutput = await ssmClient.send(
-      new import_client_ssm.GetParameterCommand({ Name: `/chime/appInstanceArn/${uid}` })
+      new import_client_ssm.GetParameterCommand({
+        Name: "/chime/MediaInsightsPipelineConfigurationArn" + uid
+      })
     );
   } catch (error) {
     if (error instanceof Error) {
@@ -53847,410 +44214,82 @@ var DeleteAppInstance = async (uid) => {
       throw error;
     }
   }
-  try {
-    await chimeClient.send(
-      new import_client_chime_sdk_identity.DeleteAppInstanceCommand({
-        AppInstanceArn: getParameterCommandOutput.Parameter.Value
-      })
-    );
-    await ssmClient.send(
-      new import_client_ssm.DeleteParameterCommand({ Name: `/chime/appInstanceArn/${uid}` })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-
-// src/resources/messaging/channelFlow.ts
-var import_client_chime_sdk_messaging = __toESM(require_dist_cjs56());
-var import_client_ssm2 = __toESM(require_dist_cjs55());
-var chimeSDKMessagingClient = new import_client_chime_sdk_messaging.ChimeSDKMessagingClient({
-  region: process.env.AWS_REGION
-});
-var ssmClient2 = new import_client_ssm2.SSMClient({ region: process.env.AWS_REGION });
-var CreateChannelFlow = async (uid, props) => {
-  try {
-    const createChannelFlowCommandOutput = await chimeSDKMessagingClient.send(
-      new import_client_chime_sdk_messaging.CreateChannelFlowCommand({
-        AppInstanceArn: props.appInstanceArn,
-        Name: props.name,
-        ClientRequestToken: props.clientRequestToken,
-        Tags: getUpdatedTags(props.tags),
-        Processors: getUpdatedProcessors(props.processors)
-      })
-    );
-    await saveChannelFlowArnToSsm(uid, createChannelFlowCommandOutput.ChannelFlowArn);
-    return {
-      channelFlowArn: createChannelFlowCommandOutput.ChannelFlowArn
-    };
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  return {};
-};
-var UpdateChannelFlow = async (uid, props) => {
-  try {
-    const channelFlowArn = await getExistingChannelFlowArnFromSsm(uid);
-    const updateChannelFlowCommandOutput = await chimeSDKMessagingClient.send(
-      new import_client_chime_sdk_messaging.UpdateChannelFlowCommand({
-        ChannelFlowArn: channelFlowArn,
-        Name: props.name,
-        Processors: getUpdatedProcessors(props.processors)
-      })
-    );
-    return {
-      channelFlowArn: updateChannelFlowCommandOutput.ChannelFlowArn
-    };
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-var DeleteChannelFlow = async (uid) => {
-  try {
-    const channelFlowArn = await getExistingChannelFlowArnFromSsm(uid);
-    await chimeSDKMessagingClient.send(
-      new import_client_chime_sdk_messaging.DeleteChannelFlowCommand({
-        ChannelFlowArn: channelFlowArn
-      })
-    );
-    await deleteChannelFlowArnFromSsm(uid);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-var saveChannelFlowArnToSsm = async (uid, channelFlowArn) => {
-  return ssmClient2.send(
-    new import_client_ssm2.PutParameterCommand({
-      Name: `/chime/channelFlowArn/${uid}`,
-      Description: "channelFlowArn",
-      Value: channelFlowArn,
-      Overwrite: true,
-      Type: "String"
-    })
+  updateMediaInsightsPipelineIdentifier = getParameterCommandOutput.Parameter.Value;
+  updateMediaInsightsPipelineConfigurationParams = {
+    ...formatProps(props),
+    Identifier: updateMediaInsightsPipelineIdentifier
+  };
+  console.log(
+    `Update Media Insights Pipeline Configuration params: ${JSON.stringify(
+      updateMediaInsightsPipelineConfigurationParams
+    )}`
   );
-};
-var getExistingChannelFlowArnFromSsm = async (uid) => {
-  const getParameterCommandOutput2 = await ssmClient2.send(
-    new import_client_ssm2.GetParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
-  );
-  return getParameterCommandOutput2.Parameter?.Value;
-};
-var deleteChannelFlowArnFromSsm = async (uid) => {
-  return ssmClient2.send(
-    new import_client_ssm2.DeleteParameterCommand({ Name: `/chime/channelFlowArn/${uid}` })
-  );
-};
-var getUpdatedProcessors = (processors) => {
-  return processors?.map(getUpdatedProcessor) || [];
-};
-var getUpdatedProcessor = (processor) => {
-  return {
-    Name: processor.name,
-    ExecutionOrder: parseInt(processor.executionOrder),
-    FallbackAction: processor.fallbackAction,
-    Configuration: {
-      Lambda: {
-        ResourceArn: processor.configuration.lambda.resourceArn,
-        InvocationType: processor.configuration.lambda.invocationType
-      }
-    }
-  };
-};
-var getUpdatedTags = (tags) => {
-  return tags?.map(getUpdatedTag);
-};
-var getUpdatedTag = (tag) => {
-  return { Key: tag.key, Value: tag.value };
-};
-
-// src/resources/messaging/dataRetention.ts
-var import_client_chime_sdk_identity2 = __toESM(require_dist_cjs53());
-var chimeClient2 = new import_client_chime_sdk_identity2.ChimeSDKIdentityClient({
-  region: process.env.AWS_REGION
-});
-var putDataRetentionOutput;
-var putDataRetentionInput;
-var PutDataRetention = async (props) => {
-  putDataRetentionInput = {
-    AppInstanceArn: props.appInstanceArn,
-    AppInstanceRetentionSettings: {
-      ChannelRetentionSettings: {
-        RetentionDays: parseInt(props.dataRetention)
-      }
-    }
-  };
   try {
-    putDataRetentionOutput = await chimeClient2.send(
-      new import_client_chime_sdk_identity2.PutAppInstanceRetentionSettingsCommand(putDataRetentionInput)
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  return {
-    appInstanceRetentionSettings: putDataRetentionOutput.AppInstanceRetentionSettings
-  };
-};
-
-// src/resources/messaging/instanceAdmin.ts
-var import_client_chime_sdk_identity3 = __toESM(require_dist_cjs53());
-var import_client_ssm3 = __toESM(require_dist_cjs55());
-var chimeClient3 = new import_client_chime_sdk_identity3.ChimeSDKIdentityClient({
-  region: process.env.AWS_REGION
-});
-var ssmClient3 = new import_client_ssm3.SSMClient({ region: process.env.AWS_REGION });
-var createAppInstanceAdminCommandInput;
-var createAppInstanceAdminCommandOutput;
-var CreateAppInstanceAdmin = async (uid, props) => {
-  createAppInstanceAdminCommandInput = {
-    AppInstanceArn: props.appInstanceArn,
-    AppInstanceAdminArn: props.appInstanceAdminArn
-  };
-  try {
-    createAppInstanceAdminCommandOutput = await chimeClient3.send(
-      new import_client_chime_sdk_identity3.CreateAppInstanceAdminCommand(createAppInstanceAdminCommandInput)
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  try {
-    await ssmClient3.send(
-      new import_client_ssm3.PutParameterCommand({
-        Name: `/chime/appInstanceAdminArn/${uid}`,
-        Description: "appInstanceAdminArn",
-        Value: createAppInstanceAdminCommandOutput.AppInstanceAdmin?.Arn,
-        Overwrite: true,
-        Type: "String"
-      })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  return {
-    AppInstanceAdminArn: createAppInstanceAdminCommandOutput.AppInstanceAdmin?.Arn,
-    AppInstanceAdminName: createAppInstanceAdminCommandOutput.AppInstanceAdmin?.Name
-  };
-};
-var DeleteAppInstanceAdmin = async (uid) => {
-  try {
-    await ssmClient3.send(
-      new import_client_ssm3.DeleteParameterCommand({ Name: `/chime/appInstanceAdminArn/${uid}` })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-
-// src/resources/messaging/instanceBot.ts
-var import_client_chime_sdk_identity4 = __toESM(require_dist_cjs53());
-var import_client_ssm4 = __toESM(require_dist_cjs55());
-var chimeClient4 = new import_client_chime_sdk_identity4.ChimeSDKIdentityClient({
-  region: process.env.AWS_REGION
-});
-var ssmClient4 = new import_client_ssm4.SSMClient({ region: process.env.AWS_REGION });
-var createAppInstanceBotCommandInput;
-var createAppInstanceBotCommandOutput;
-var updatedTags2;
-var CreateAppInstanceBot = async (uid, props) => {
-  updatedTags2 = [];
-  if (props.tags) {
-    props.tags.forEach((tag) => {
-      updatedTags2.push({ Key: tag.key, Value: tag.value });
-    });
-  }
-  createAppInstanceBotCommandInput = {
-    Configuration: {
-      Lex: {
-        LexBotAliasArn: props.configuration?.lex?.lexBotAliasArn,
-        LocaleId: props.configuration?.lex?.localeId,
-        RespondsTo: "STANDARD_MESSAGES",
-        // default for now since only option
-        ...props.configuration?.lex?.welcomeIntent && {
-          WelcomeIntent: props.configuration?.lex?.welcomeIntent
-        }
-      }
-    },
-    Name: props.name,
-    AppInstanceArn: props.appInstanceArn,
-    ...props.metadata && { Metadata: props.metadata },
-    ...props.clientRequestToken && {
-      ClientRequestToken: props.clientRequestToken
-    },
-    ...updatedTags2.length > 0 && { Tags: updatedTags2 }
-  };
-  try {
-    createAppInstanceBotCommandOutput = await chimeClient4.send(
-      new import_client_chime_sdk_identity4.CreateAppInstanceBotCommand(createAppInstanceBotCommandInput)
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  try {
-    await ssmClient4.send(
-      new import_client_ssm4.PutParameterCommand({
-        Name: `/chime/appInstanceBotId/${uid}`,
-        Description: "appInstanceBotId",
-        Value: createAppInstanceBotCommandOutput.AppInstanceBotArn,
-        Overwrite: true,
-        Type: "String"
-      })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  return {
-    appInstanceBot: createAppInstanceBotCommandOutput.AppInstanceBotArn
-  };
-};
-var DeleteAppInstanceBot = async (uid) => {
-  try {
-    await ssmClient4.send(
-      new import_client_ssm4.DeleteParameterCommand({ Name: `/chime/appInstanceBotId/${uid}` })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-
-// src/resources/messaging/instanceUser.ts
-var import_client_chime_sdk_identity5 = __toESM(require_dist_cjs53());
-var import_client_ssm5 = __toESM(require_dist_cjs55());
-var chimeClient5 = new import_client_chime_sdk_identity5.ChimeSDKIdentityClient({
-  region: process.env.AWS_REGION
-});
-var ssmClient5 = new import_client_ssm5.SSMClient({ region: process.env.AWS_REGION });
-var createAppInstanceUserCommandInput;
-var createAppInstanceUserCommandOutput;
-var updatedTags3;
-var CreateAppInstanceUser = async (uid, props) => {
-  updatedTags3 = [];
-  if (props.tags) {
-    props.tags.forEach((tag) => {
-      updatedTags3.push({ Key: tag.key, Value: tag.value });
-    });
-  }
-  createAppInstanceUserCommandInput = {
-    Name: props.name,
-    AppInstanceArn: props.appInstanceArn,
-    AppInstanceUserId: props.appInstanceUserId,
-    ...props.metadata && { Metadata: props.metadata },
-    ...props.clientRequestToken && {
-      ClientRequestToken: props.clientRequestToken
-    },
-    ...updatedTags3.length > 0 && { Tags: updatedTags3 }
-  };
-  try {
-    createAppInstanceUserCommandOutput = await chimeClient5.send(
-      new import_client_chime_sdk_identity5.CreateAppInstanceUserCommand(createAppInstanceUserCommandInput)
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  try {
-    await ssmClient5.send(
-      new import_client_ssm5.PutParameterCommand({
-        Name: `/chime/appInstanceUserId/${uid}`,
-        Description: "appInstanceUserId",
-        Value: createAppInstanceUserCommandOutput.AppInstanceUserArn,
-        Overwrite: true,
-        Type: "String"
-      })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-  return {
-    appInstanceUser: createAppInstanceUserCommandOutput.AppInstanceUserArn
-  };
-};
-var DeleteAppInstanceUser = async (uid) => {
-  try {
-    await ssmClient5.send(
-      new import_client_ssm5.DeleteParameterCommand({ Name: `/chime/appInstanceUserId/${uid}` })
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
-};
-
-// src/resources/messaging/streamingConfig.ts
-var import_client_chime_sdk_messaging2 = __toESM(require_dist_cjs56());
-var chimeClient6 = new import_client_chime_sdk_messaging2.ChimeSDKMessagingClient({
-  region: process.env.AWS_REGION
-});
-var putStreamingConfigurationOutput;
-var putStreamingConfigurationInput;
-var updatedConfiguration;
-var PutStreamingConfiguration = async (props) => {
-  updatedConfiguration = [];
-  props.streamingConfigs?.forEach((streamingConfig) => {
-    updatedConfiguration.push({
-      DataType: streamingConfig.dataType,
-      ResourceArn: streamingConfig.resourceArn
-    });
-  });
-  putStreamingConfigurationInput = {
-    AppInstanceArn: props.appInstanceArn,
-    StreamingConfigurations: updatedConfiguration
-  };
-  console.log("putStreamingConfigurationInput", putStreamingConfigurationInput);
-  try {
-    putStreamingConfigurationOutput = await chimeClient6.send(
-      new import_client_chime_sdk_messaging2.PutMessagingStreamingConfigurationsCommand(
-        putStreamingConfigurationInput
+    updateMediaInsightsPipelineConfigurationResponse = await chimeSDKMediaPipelineClient.send(
+      new import_client_chime_sdk_media_pipelines.UpdateMediaInsightsPipelineConfigurationCommand(
+        updateMediaInsightsPipelineConfigurationParams
       )
     );
+    console.log(
+      `createMediaInsightsPipelineConfigurationResponse: ${JSON.stringify(
+        createMediaInsightsPipelineConfigurationResponse
+      )}`
+    );
   } catch (error) {
     if (error instanceof Error) {
       console.error(error);
       throw error;
     }
   }
-  return {
-    appInstanceStreamingConfiguration: putStreamingConfigurationOutput.StreamingConfigurations
-  };
+  return updateMediaInsightsPipelineConfigurationResponse.MediaInsightsPipelineConfiguration;
+};
+var deleteMediaInsightsPipelineIdentifier;
+var DeleteMediaInsightsPipelineConfiguration = async (uid) => {
+  console.log(`Deleting Media Insights Pipeline Configuration: ${uid}`);
+  try {
+    getParameterCommandOutput = await ssmClient.send(
+      new import_client_ssm.GetParameterCommand({
+        Name: "/chime/MediaInsightsPipelineConfigurationArn" + uid
+      })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  try {
+    await ssmClient.send(
+      new import_client_ssm.DeleteParameterCommand({
+        Name: "/chime/MediaInsightsPipelineConfigurationArn" + uid
+      })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  deleteMediaInsightsPipelineIdentifier = getParameterCommandOutput.Parameter.Value;
+  console.info(
+    `deleteMediaInsightsPipelineIdentifier: ${deleteMediaInsightsPipelineIdentifier}`
+  );
+  try {
+    await chimeSDKMediaPipelineClient.send(
+      new import_client_chime_sdk_media_pipelines.DeleteMediaInsightsPipelineConfigurationCommand({
+        Identifier: deleteMediaInsightsPipelineIdentifier
+      })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  return;
 };
 
-// src/resources/messaging/messaging.lambda.ts
+// src/resources/media-pipelines/media-pipelines.lambda.ts
 var response = {};
 var resourcePropertiesUid;
 var requestProperties;
@@ -54265,139 +44304,30 @@ var handler = async (event, context) => {
   response.LogicalResourceId = event.LogicalResourceId;
   response.PhysicalResourceId = context.logGroupName;
   switch (resourceType) {
-    case "AppInstance":
+    case "MediaPipelineInsights":
       switch (requestType) {
         case "Create":
-          response.Data = await CreateAppInstance(
+          response.Data = await CreateMediaInsightsPipelineConfiguration(
             resourcePropertiesUid,
             requestProperties
           );
           response.Status = "SUCCESS";
-          response.Reason = "CreateAppInstance successful";
+          response.Reason = "CreateMediaInsightsPipelineConfiguration successful";
           break;
         case "Update":
+          response.Data = await UpdateMediaInsightsPipelineConfiguration(
+            resourcePropertiesUid,
+            requestProperties
+          );
           response.Status = "SUCCESS";
+          response.Reason = "UpdateMediaInsightsPipelineConfiguration successful";
           break;
         case "Delete":
-          await DeleteAppInstance(resourcePropertiesUid);
+          await DeleteMediaInsightsPipelineConfiguration(resourcePropertiesUid);
           response.Status = "SUCCESS";
-          response.Reason = "DeleteAppInstance successful";
+          response.Reason = "DeleteMediaInsightsPipelineConfiguration successful";
           break;
       }
-      break;
-    case "ChannelFlow":
-      switch (requestType) {
-        case "Create":
-          response.Data = await CreateChannelFlow(
-            resourcePropertiesUid,
-            requestProperties
-          );
-          response.Status = "SUCCESS";
-          response.Reason = "CreateChannelFlow successful";
-          break;
-        case "Update":
-          response.Data = await UpdateChannelFlow(
-            resourcePropertiesUid,
-            requestProperties
-          );
-          response.Status = "SUCCESS";
-          response.Reason = "UpdateChannelFlow successful";
-          break;
-        case "Delete":
-          await DeleteChannelFlow(resourcePropertiesUid);
-          response.Status = "SUCCESS";
-          response.Reason = "DeleteChannelFlow successful";
-          break;
-      }
-      break;
-    case "DataRetention":
-      switch (requestType) {
-        case "Create":
-          response.Data = await PutDataRetention(requestProperties);
-          response.Status = "SUCCESS";
-          response.Reason = "PutDataRetention successful";
-          break;
-        case "Update":
-          response.Data = await PutDataRetention(requestProperties);
-          response.Status = "SUCCESS";
-          response.Reason = "PutDataRetention successful";
-          break;
-      }
-      break;
-    case "AppInstanceAdmin":
-      switch (requestType) {
-        case "Create":
-          response.Data = await CreateAppInstanceAdmin(
-            resourcePropertiesUid,
-            requestProperties
-          );
-          response.Status = "SUCCESS";
-          response.Reason = "CreateAppInstanceAdmin successful";
-          break;
-        case "Update":
-          response.Status = "SUCCESS";
-          break;
-        case "Delete":
-          await DeleteAppInstanceAdmin(resourcePropertiesUid);
-          response.Status = "SUCCESS";
-          response.Reason = "DeleteAppInstanceAdmin successful";
-          break;
-      }
-      break;
-    case "AppInstanceUser":
-      switch (requestType) {
-        case "Create":
-          response.Data = await CreateAppInstanceUser(
-            resourcePropertiesUid,
-            requestProperties
-          );
-          response.Status = "SUCCESS";
-          response.Reason = "CreateAppInstanceUser successful";
-          break;
-        case "Update":
-          response.Status = "SUCCESS";
-          break;
-        case "Delete":
-          await DeleteAppInstanceUser(resourcePropertiesUid);
-          response.Status = "SUCCESS";
-          response.Reason = "DeleteAppInstanceUser successful";
-          break;
-      }
-      break;
-    case "AppInstanceBot":
-      switch (requestType) {
-        case "Create":
-          response.Data = await CreateAppInstanceBot(
-            resourcePropertiesUid,
-            requestProperties
-          );
-          response.Status = "SUCCESS";
-          response.Reason = "CreateAppInstanceBot successful";
-          break;
-        case "Update":
-          response.Status = "SUCCESS";
-          break;
-        case "Delete":
-          await DeleteAppInstanceBot(resourcePropertiesUid);
-          response.Status = "SUCCESS";
-          response.Reason = "DeleteAppInstanceUser successful";
-          break;
-      }
-      break;
-    case "StreamingConfig":
-      switch (requestType) {
-        case "Create":
-          response.Data = await PutStreamingConfiguration(requestProperties);
-          response.Status = "SUCCESS";
-          response.Reason = "PutStreamingConfiguration successful";
-          break;
-        case "Update":
-          response.Data = await PutStreamingConfiguration(requestProperties);
-          response.Status = "SUCCESS";
-          response.Reason = "PutStreamingConfiguration successful";
-          break;
-      }
-      break;
   }
   console.log(`Response: ${JSON.stringify(response)}`);
   return response;

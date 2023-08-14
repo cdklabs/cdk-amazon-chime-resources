@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="75" failures="2" errors="0" time="9.173">
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="7.956" tests="1">
+    <testcase classname=" InstanceStreamingConfig" name=" InstanceStreamingConfig" time="0.058">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="7.914" tests="1">
+    <testcase classname=" BasicAppInstanceAdmin" name=" BasicAppInstanceAdmin" time="0.03">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="7.971" tests="13">
+    <testcase classname=" BasicChannelFlow" name=" BasicChannelFlow" time="0.022">
+    </testcase>
+    <testcase classname=" BasicChannelFlowWithoutName" name=" BasicChannelFlowWithoutName" time="0.002">
+    </testcase>
+    <testcase classname=" BadChannelFlowName" name=" BadChannelFlowName" time="0.011">
+    </testcase>
+    <testcase classname=" TooLongChannelFlowName" name=" TooLongChannelFlowName" time="0.001">
+    </testcase>
+    <testcase classname=" TooFewProcessors" name=" TooFewProcessors" time="0.001">
+    </testcase>
+    <testcase classname=" TooManyProcessors" name=" TooManyProcessors" time="0">
+    </testcase>
+    <testcase classname=" TooShortCRT" name=" TooShortCRT" time="0">
+    </testcase>
+    <testcase classname=" TooLongCRT" name=" TooLongCRT" time="0">
+    </testcase>
+    <testcase classname=" BadCharactersCRT" name=" BadCharactersCRT" time="0.001">
+    </testcase>
+    <testcase classname=" BadExecutionOrder" name=" BadExecutionOrder" time="0">
+    </testcase>
+    <testcase classname=" BadProcessorName" name=" BadProcessorName" time="0.012">
+    </testcase>
+    <testcase classname=" TooShortProcessorName" name=" TooShortProcessorName" time="0.001">
+    </testcase>
+    <testcase classname=" TooLongProcessorName" name=" TooLongProcessorName" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="7.97" tests="10">
+    <testcase classname=" BasicAppInstance" name=" BasicAppInstance" time="0.022">
+    </testcase>
+    <testcase classname=" TooLongName" name=" TooLongName" time="0.007">
+    </testcase>
+    <testcase classname=" TooShortName" name=" TooShortName" time="0">
+    </testcase>
+    <testcase classname=" BadNameCharacters" name=" BadNameCharacters" time="0.001">
+    </testcase>
+    <testcase classname=" BadMetadata" name=" BadMetadata" time="0">
+    </testcase>
+    <testcase classname=" TooShortCRT" name=" TooShortCRT" time="0.001">
+    </testcase>
+    <testcase classname=" TooLongCRT" name=" TooLongCRT" time="0">
+    </testcase>
+    <testcase classname=" BadCharactersCRT" name=" BadCharactersCRT" time="0">
+    </testcase>
+    <testcase classname=" Retention" name=" Retention" time="0.003">
+    </testcase>
+    <testcase classname=" Streaming" name=" Streaming" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="1" skipped="0" timestamp="2023-08-14T00:37:51" time="7.997" tests="12">
+    <testcase classname=" StateOnly" name=" StateOnly" time="0.001">
+      <failure>Error: cannot find node_modules/cdk-amazon-chime-resources/assets/resources/pstn/pstn.lambda/index.js
+    at new CustomResourceProvider (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/aws-cdk-lib/core/lib/custom-resource-provider/custom-resource-provider.js:1:3288)
+    at Function.getOrCreateProvider (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/aws-cdk-lib/core/lib/custom-resource-provider/custom-resource-provider.js:1:2734)
+    at new PSTNResources (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/src/pstn/pstnCustomResources.ts:37:55)
+    at new ChimePhoneNumber (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/src/pstn/phoneNumber.ts:109:32)
+    at Object.&lt;anonymous&gt; (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/test/pstn/chimePhone.test.ts:18:3)
+    at Promise.then.completed (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname=" AreaCodeOnly" name=" AreaCodeOnly" time="0.002">
+    </testcase>
+    <testcase classname=" USandAreaCode" name=" USandAreaCode" time="0">
+    </testcase>
+    <testcase classname=" USOnly" name=" USOnly" time="0.002">
+    </testcase>
+    <testcase classname=" CityAndState" name=" CityAndState" time="0">
+    </testcase>
+    <testcase classname=" CityOnly" name=" CityOnly" time="0.001">
+    </testcase>
+    <testcase classname=" NonUSCountryWithNumberType" name=" NonUSCountryWithNumberType" time="0">
+    </testcase>
+    <testcase classname=" NonUSCountryWithoutNumberType" name=" NonUSCountryWithoutNumberType" time="0">
+    </testcase>
+    <testcase classname=" Test No Properties" name=" Test No Properties" time="0.001">
+    </testcase>
+    <testcase classname=" NonUSNumberVoiceConnector" name=" NonUSNumberVoiceConnector" time="0">
+    </testcase>
+    <testcase classname=" 123" name=" 123" time="0">
+    </testcase>
+    <testcase classname=" TollFree123" name=" TollFree123" time="0.004">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="8.005" tests="17">
+    <testcase classname=" BasicMediaInsightsPipeline" name=" BasicMediaInsightsPipeline" time="0.03">
+    </testcase>
+    <testcase classname=" BasicMediaInsightsPipelineWithName" name=" BasicMediaInsightsPipelineWithName" time="0.002">
+    </testcase>
+    <testcase classname=" BasicMediaInsightsPipelineWithS3RecordingSink" name=" BasicMediaInsightsPipelineWithS3RecordingSink" time="0.001">
+    </testcase>
+    <testcase classname=" BasicMediaInsightsPipelineWithVoiceAnalyticsProcessor" name=" BasicMediaInsightsPipelineWithVoiceAnalyticsProcessor" time="0.001">
+    </testcase>
+    <testcase classname=" NoElement" name=" NoElement" time="0.014">
+    </testcase>
+    <testcase classname=" BothTranscribeAndTranscribeCallAnalytics" name=" BothTranscribeAndTranscribeCallAnalytics" time="0">
+    </testcase>
+    <testcase classname=" BasicMediaInsightsPipelineWithRealTimeAlerts" name=" BasicMediaInsightsPipelineWithRealTimeAlerts" time="0.009">
+    </testcase>
+    <testcase classname=" TranscribeProcessWithSentimentAnalysis" name=" TranscribeProcessWithSentimentAnalysis" time="0.011">
+    </testcase>
+    <testcase classname=" S3SinkAndTranscribe" name=" S3SinkAndTranscribe" time="0">
+    </testcase>
+    <testcase classname=" S3AndRealTimeAlerts" name=" S3AndRealTimeAlerts" time="0.001">
+    </testcase>
+    <testcase classname=" TooManyRealTimeAlerts" name=" TooManyRealTimeAlerts" time="0">
+    </testcase>
+    <testcase classname=" WrongRulesConfigurationTypeKeyWordMatch" name=" WrongRulesConfigurationTypeKeyWordMatch" time="0">
+    </testcase>
+    <testcase classname=" WrongRulesConfigurationTypeSentiment" name=" WrongRulesConfigurationTypeSentiment" time="0.001">
+    </testcase>
+    <testcase classname=" WrongRulesConfigurationTypeIssue" name=" WrongRulesConfigurationTypeIssue" time="0">
+    </testcase>
+    <testcase classname=" MissingRulesConfiguration" name=" MissingRulesConfiguration" time="0">
+    </testcase>
+    <testcase classname=" RealTimeAlertWithoutTranscribeOrTranscribeCallAnalytics" name=" RealTimeAlertWithoutTranscribeOrTranscribeCallAnalytics" time="0">
+    </testcase>
+    <testcase classname=" MissingKDSSink" name=" MissingKDSSink" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="8.013" tests="7">
+    <testcase classname=" BasicAppInstanceBot" name=" BasicAppInstanceBot" time="0.041">
+    </testcase>
+    <testcase classname=" TooLongName" name=" TooLongName" time="0.006">
+    </testcase>
+    <testcase classname=" TooShortName" name=" TooShortName" time="0">
+    </testcase>
+    <testcase classname=" BadNameCharacters" name=" BadNameCharacters" time="0.001">
+    </testcase>
+    <testcase classname=" TooShortCRT" name=" TooShortCRT" time="0">
+    </testcase>
+    <testcase classname=" TooLongCRT" name=" TooLongCRT" time="0">
+    </testcase>
+    <testcase classname=" BadCharactersCRT" name=" BadCharactersCRT" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="0" skipped="0" timestamp="2023-08-14T00:37:51" time="8.011" tests="7">
+    <testcase classname=" BasicAppInstanceUser" name=" BasicAppInstanceUser" time="0.046">
+    </testcase>
+    <testcase classname=" TooLongName" name=" TooLongName" time="0.011">
+    </testcase>
+    <testcase classname=" TooShortName" name=" TooShortName" time="0">
+    </testcase>
+    <testcase classname=" BadNameCharacters" name=" BadNameCharacters" time="0.001">
+    </testcase>
+    <testcase classname=" TooShortCRT" name=" TooShortCRT" time="0.001">
+    </testcase>
+    <testcase classname=" TooLongCRT" name=" TooLongCRT" time="0">
+    </testcase>
+    <testcase classname=" BadCharactersCRT" name=" BadCharactersCRT" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="undefined" errors="0" failures="1" skipped="0" timestamp="2023-08-14T00:37:51" time="8.113" tests="7">
+    <testcase classname=" Normal" name=" Normal" time="0.004">
+      <failure>Error: cannot find node_modules/cdk-amazon-chime-resources/assets/resources/pstn/pstn.lambda/index.js
+    at new CustomResourceProvider (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/aws-cdk-lib/core/lib/custom-resource-provider/custom-resource-provider.js:1:3288)
+    at Function.getOrCreateProvider (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/aws-cdk-lib/core/lib/custom-resource-provider/custom-resource-provider.js:1:2734)
+    at new PSTNResources (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/src/pstn/pstnCustomResources.ts:37:55)
+    at new ChimeSipMediaApp (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/src/pstn/sipMediaApplication.ts:70:32)
+    at Object.&lt;anonymous&gt; (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/test/pstn/chimeSipMediaApp.test.ts:18:3)
+    at Promise.then.completed (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/utils.js:391:28)
+    at new Promise (&lt;anonymous&gt;)
+    at callAsyncCircusFn (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/utils.js:316:10)
+    at _callCircusTest (/Users/courtschuett/Documents/GitHub/cdklabs/cdk-amazon-chime-resources/node_modules/jest-circus/build/run.js:218:40)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)</failure>
+    </testcase>
+    <testcase classname=" NoRegion" name=" NoRegion" time="0.002">
+    </testcase>
+    <testcase classname=" NormalWithName" name=" NormalWithName" time="0.001">
+    </testcase>
+    <testcase classname=" BadRegion" name=" BadRegion" time="0.003">
+    </testcase>
+    <testcase classname=" Logging" name=" Logging" time="0">
+    </testcase>
+    <testcase classname=" AlexaSkill" name=" AlexaSkill" time="0.001">
+    </testcase>
+    <testcase classname=" BadAlexaSkill" name=" BadAlexaSkill" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -10,8 +10,9 @@ Amazon Chime resources (Amazon Chime Messaging and Amazon Chime PSTN resources) 
 
 ## Resources
 
-- [Amazon Chime PSTN Resources](PSTNRESOURCES.MD)
-- [Amazon Chime Messaging Resources](MESSAGINGRESOURCES.MD)
+- [Amazon Chime SDK PSTN Resources](PSTNRESOURCES.MD)
+- [Amazon Chime SDK Messaging Resources](MESSAGINGRESOURCES.MD)
+- [Amazon Chime SDK Media Insights Resources][MEDIAINSIGHTS.MD]
 
 ## Installing
 
@@ -20,6 +21,10 @@ To add to your AWS CDK package.json file:
 ```
 yarn add cdk-amazon-chime-resources
 ```
+
+## Version 3 Upgrade
+
+Version 3.0 is a potentially breaking change that involves multiple upgrades and changes. Version 3.0 revises the deployment to streamline and make more efficient the multiple configurations. This should result in an increased speed of deployment. All namespaces were updated to the current `chime-sdk-voice`, `chime-sdk-messaging`, `chime-sdk-identity`, or `chime-sdk-media-pipelines` namespace. Along with these changes, IAM policies were reduced as possible. If you encounter issues, please open an Issue.
 
 ## Version 2 Upgrade
 
@@ -32,7 +37,6 @@ This is a work in progress.
 Features that are not supported yet:
 
 - [ ] Amazon Chime Voice Connector Groups
-- ~~[X] Amazon Chime Voice Connector Logging~~
 - [ ] Amazon Chime Voice Connector Emergency Calling
 - [ ] Updates to created resources
 
