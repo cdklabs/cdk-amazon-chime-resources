@@ -7,12 +7,12 @@
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
-      "version": "^5",
+      "version": "^6",
       "type": "build"
     },
     {
@@ -91,22 +91,18 @@
     },
     {
       "name": "@aws-sdk/client-chime-sdk-identity",
-      "version": "latest",
       "type": "bundled"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-media-pipelines",
-      "version": "latest",
       "type": "bundled"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-messaging",
-      "version": "latest",
       "type": "bundled"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-voice",
-      "version": "latest",
       "type": "bundled"
     },
     {
@@ -147,22 +143,18 @@
     },
     {
       "name": "@aws-sdk/client-chime-sdk-identity",
-      "version": "latest",
       "type": "runtime"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-media-pipelines",
-      "version": "latest",
       "type": "runtime"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-messaging",
-      "version": "latest",
       "type": "runtime"
     },
     {
       "name": "@aws-sdk/client-chime-sdk-voice",
-      "version": "latest",
       "type": "runtime"
     },
     {

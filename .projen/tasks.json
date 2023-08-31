@@ -265,13 +265,13 @@
           "exec": "yarn upgrade npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter=@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,projen,standard-version,ts-node,typescript,yalc,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,fs-extra,aws-cdk-lib,constructs"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,esbuild,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint,jsii-diff,jsii-docgen,jsii-pacmak,npm-check-updates,projen,standard-version,ts-node,typescript,yalc,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,fs-extra,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jsii-diff jsii-docgen jsii-pacmak npm-check-updates projen standard-version ts-node typescript yalc @aws-sdk/client-ssm @types/aws-lambda aws-lambda fs-extra aws-cdk-lib constructs"
+          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint jsii-diff jsii-docgen jsii-pacmak npm-check-updates projen standard-version ts-node typescript yalc @aws-sdk/client-chime-sdk-identity @aws-sdk/client-chime-sdk-media-pipelines @aws-sdk/client-chime-sdk-messaging @aws-sdk/client-chime-sdk-voice @aws-sdk/client-ssm @types/aws-lambda aws-lambda fs-extra aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
