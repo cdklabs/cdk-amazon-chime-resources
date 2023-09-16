@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import {
   ChimeSDKVoiceClient,
   CreatePhoneNumberOrderCommand,
@@ -12,6 +11,7 @@ import {
   SearchAvailablePhoneNumbersCommandInput,
   SearchAvailablePhoneNumbersCommandOutput,
   UpdateSipRuleCommand,
+  ChimeSDKVoiceServiceException,
 } from '@aws-sdk/client-chime-sdk-voice';
 
 import {
@@ -31,9 +31,10 @@ const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 let searchAvailableNumbersParam: SearchAvailablePhoneNumbersCommandInput;
 let searchAvailablePhoneNumberResponse: SearchAvailablePhoneNumbersCommandOutput;
 let createPhoneNumberOrderResponse: CreatePhoneNumberOrderCommandOutput;
-let checkPhoneNumberOrderCount = 0;
 let getParameterCommandOutput: GetParameterCommandOutput;
 let getPhoneNumberResponse: GetPhoneNumberCommandOutput;
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export interface CreatePhoneNumberProps {
   phoneState?: string;
@@ -63,54 +64,100 @@ export const CreatePhoneNumber = async (
     `Search Available Numbers: ${JSON.stringify(searchAvailableNumbersParam)}`,
   );
 
-  try {
-    searchAvailablePhoneNumberResponse = await chimeSDKVoiceClient.send(
-      new SearchAvailablePhoneNumbersCommand(searchAvailableNumbersParam),
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
-    }
-  }
+  let orderSuccessful: boolean = false;
+  let searchAttempts = 1;
 
-  if (
-    searchAvailablePhoneNumberResponse &&
-    searchAvailablePhoneNumberResponse.E164PhoneNumbers &&
-    searchAvailablePhoneNumberResponse.E164PhoneNumbers.length === 0
-  ) {
-    throw new Error(
-      'No numbers were found with this search parameters.  Please try a different search.',
-    );
-  }
-  try {
-    createPhoneNumberOrderResponse = await chimeSDKVoiceClient.send(
-      new CreatePhoneNumberOrderCommand({
-        ProductType: props.phoneProductType,
-        E164PhoneNumbers: [
-          searchAvailablePhoneNumberResponse.E164PhoneNumbers![0],
-        ],
-      }),
-    );
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
+  while (searchAttempts < 5) {
+    try {
+      console.log(
+        `Searching for available numbers.  Search # ${searchAttempts}`,
+      );
+      searchAvailablePhoneNumberResponse = await chimeSDKVoiceClient.send(
+        new SearchAvailablePhoneNumbersCommand(searchAvailableNumbersParam),
+      );
+      console.log(
+        `Search Available Numbers Response: ${JSON.stringify(
+          searchAvailablePhoneNumberResponse,
+        )}`,
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error);
+        throw error;
+      }
     }
-  }
 
-  while (
-    (await checkPhoneNumber(
-      createPhoneNumberOrderResponse.PhoneNumberOrder!.PhoneNumberOrderId!,
-    )) !== 'Successful'
-  ) {
-    checkPhoneNumberOrderCount++;
-    if (checkPhoneNumberOrderCount > 10) {
+    if (
+      searchAvailablePhoneNumberResponse &&
+      searchAvailablePhoneNumberResponse.E164PhoneNumbers &&
+      searchAvailablePhoneNumberResponse.E164PhoneNumbers.length === 0
+    ) {
       throw new Error(
-        'Could not get a valid phone number from Amazon Chime SDK',
+        'No numbers were found with this search parameters.  Please try a different search.',
       );
     }
-    await sleep(10000);
+    try {
+      console.log('Creating New Phone Number Order');
+      createPhoneNumberOrderResponse = await chimeSDKVoiceClient.send(
+        new CreatePhoneNumberOrderCommand({
+          ProductType: props.phoneProductType,
+          E164PhoneNumbers: [
+            searchAvailablePhoneNumberResponse.E164PhoneNumbers![0],
+          ],
+        }),
+      );
+      console.log(
+        `CreatePhoneNumberOrder Response: ${JSON.stringify(
+          createPhoneNumberOrderResponse,
+        )}`,
+      );
+    } catch (error) {
+      if (error instanceof ChimeSDKVoiceServiceException) {
+        if (error.name === 'BadRequestException') {
+          console.log('Bad Request Exception.  Retrying');
+          console.error(error);
+          searchAttempts++;
+          await sleep(10000);
+          continue;
+        } else {
+          console.error(error);
+          throw error;
+        }
+      }
+    }
+    let orderAttempts = 0;
+    let orderResults: string | undefined = '';
+    while (orderAttempts < 20) {
+      orderResults = await checkPhoneNumber(
+        createPhoneNumberOrderResponse.PhoneNumberOrder!.PhoneNumberOrderId!,
+      );
+
+      if (orderResults === 'Processing') {
+        orderAttempts++;
+        await sleep(10000);
+        console.log('Still processing phone number order.  Looping');
+        continue;
+      } else if (orderResults === 'Failed') {
+        console.log('Phone number order failed');
+        break;
+      } else if (orderResults === 'Successful') {
+        orderSuccessful = true;
+        console.log('Phone number order successful');
+        break;
+      } else {
+        console.log('Unknown phone number order status');
+        break;
+      }
+    }
+    if (orderSuccessful) {
+      break;
+    }
+  }
+
+  if (!orderSuccessful) {
+    throw new Error(
+      'The phone number order failed to process.  Please try again.',
+    );
   }
 
   try {
@@ -224,8 +271,6 @@ async function checkPhoneNumber(phoneOrderId: string) {
       console.error(error);
       throw error;
     }
-    return false;
+    return;
   }
 }
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));

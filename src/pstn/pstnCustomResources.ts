@@ -4,15 +4,9 @@ import {
   CustomResource,
   ResourceProps,
   Stack,
-  Names,
   CustomResourceProvider,
   CustomResourceProviderRuntime,
 } from 'aws-cdk-lib';
-import {
-  AwsCustomResource,
-  AwsCustomResourcePolicy,
-  PhysicalResourceId,
-} from 'aws-cdk-lib/custom-resources';
 import { Construct } from 'constructs';
 
 export interface PSTNResourceProps extends ResourceProps {
@@ -25,7 +19,8 @@ export interface PSTNResourceProps extends ResourceProps {
     | 'SMAAlexaSkill'
     | 'SMARule'
     | 'PhoneAssociation'
-    | 'VoiceProfileDomain';
+    | 'VoiceProfileDomain'
+    | 'PhoneAssociation';
   readonly uid: string;
 }
 
@@ -39,7 +34,7 @@ export class PSTNResources extends Construct {
       'Custom::PSTNResources',
       {
         codeDirectory:
-          'node_modules/cdk-amazon-chime-resources/assets/resources/pstn/pstn.lambda',
+          'node_modules/cdk-amazon-chime-resources/assets/resources/pstn',
         runtime: CustomResourceProviderRuntime.NODEJS_18_X,
         timeout: Duration.seconds(300),
         policyStatements: [
@@ -67,6 +62,8 @@ export class PSTNResources extends Construct {
               'chime:*MediaInsightsPipelineConfiguration',
               'chime:SearchAvailablePhoneNumbers',
               'chime:UpdateSipRule',
+              'chime:AssociatePhoneNumbersWithVoiceConnector',
+              'chime:DisassociatePhoneNumbersFromVoiceConnector',
             ],
             Resource: '*',
             Effect: 'Allow',
@@ -121,68 +118,10 @@ export class PSTNResources extends Construct {
       });
     }
 
-    // if (props.resourceType === 'SMA' && props.properties.endpoint) {
-    //   pstnCustomResource.addToRolePolicy({
-    //     Action: 'lambda:GetPolicy',
-    //     Resource: props.properties.endpoint,
-    //     Effect: 'Allow',
-    //   });
-
-    //   pstnCustomResource.addToRolePolicy({
-    //     Action: 'lambda:AddPermission',
-    //     Resource: props.properties.endpoint,
-    //     Effect: 'Allow',
-    //   });
-    // }
-
     this.pstnCustomResource = new CustomResource(this, 'pstnCustomResource', {
       resourceType: 'Custom::PSTNResources',
       serviceToken: pstnCustomResource.serviceToken,
       properties: { ...props },
     });
-  }
-}
-
-export interface PhoneAssociationProps extends ResourceProps {
-  readonly voiceConnectorId: string;
-  readonly e164PhoneNumber: string;
-}
-export class PhoneAssociation extends Construct {
-  public readonly phoneAssociationResource: AwsCustomResource;
-
-  constructor(scope: Construct, id: string, props: PhoneAssociationProps) {
-    super(scope, id);
-
-    this.phoneAssociationResource = new AwsCustomResource(
-      this,
-      'phoneAssociation',
-      {
-        onCreate: {
-          service: 'Chime',
-          action: 'associatePhoneNumbersWithVoiceConnector',
-          region: 'us-east-1',
-          parameters: {
-            E164PhoneNumbers: [props.e164PhoneNumber],
-            VoiceConnectorId: props.voiceConnectorId,
-            ForceAssociate: true,
-          },
-          physicalResourceId: PhysicalResourceId.of(Names.uniqueId(this)),
-        },
-        onDelete: {
-          service: 'Chime',
-          action: 'disassociatePhoneNumbersFromVoiceConnector',
-          region: 'us-east-1',
-          parameters: {
-            E164PhoneNumbers: [props.e164PhoneNumber],
-            VoiceConnectorId: props.voiceConnectorId,
-          },
-          physicalResourceId: PhysicalResourceId.of(Names.uniqueId(this)),
-        },
-        installLatestAwsSdk: false,
-        policy: AwsCustomResourcePolicy.fromSdkCalls({
-          resources: AwsCustomResourcePolicy.ANY_RESOURCE,
-        }),
-      },
-    );
   }
 }

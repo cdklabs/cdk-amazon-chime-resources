@@ -12,7 +12,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
   majorVersion: 3,
   eslintOptions: {
     dirs: ['src', 'test', 'projenrc', '.projenrc.ts'],
-    ignorePatterns: ['example/**'],
   },
   lambdaAutoDiscover: false,
   deps: [
@@ -58,40 +57,19 @@ const project = new awscdk.AwsCdkConstructLibrary({
   repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
 });
 
-// const externals: string[] = [
-//   // Previously wrong configuration means this has never been used
-//   // '@aws-sdk/client-ssm',
-//   // '@aws-sdk/client-chime-sdk-messaging@latest',
-//   // 'aws-lambda',
-//   // '@types/aws-lambda',
-// ];
+project.bundler.addBundle('./src/resources/pstn/', {
+  platform: 'node',
+  target: 'node18',
+});
 
-// new awscdk.LambdaFunction(project, {
-//   cdkDeps: project.cdkDeps,
-//   bundlingOptions: {
-//     externals,
-//   },
-//   entrypoint: 'src/resources/pstn/pstn.lambda.ts',
-//   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
-// });
-
-// new awscdk.LambdaFunction(project, {
-//   cdkDeps: project.cdkDeps,
-//   entrypoint: 'src/resources/messaging/messaging.lambda.ts',
-//   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
-//   bundlingOptions: {
-//     externals,
-//   },
-// });
-
-// new awscdk.LambdaFunction(project, {
-//   cdkDeps: project.cdkDeps,
-//   entrypoint: 'src/resources/media-pipelines/media-pipelines.lambda.ts',
-//   runtime: awscdk.LambdaRuntime.NODEJS_18_X,
-//   bundlingOptions: {
-//     externals,
-//   },
-// });
+project.bundler.addBundle('./src/resources/messaging/', {
+  platform: 'node',
+  target: 'node18',
+});
+project.bundler.addBundle('./src/resources/media-pipelines/', {
+  platform: 'node',
+  target: 'node18',
+});
 
 const common_exclude = [
   'cdk.out',

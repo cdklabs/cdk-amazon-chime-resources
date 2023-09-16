@@ -2,7 +2,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { phoneNumberValidator } from './phoneNumberValidator';
-import { PSTNResources, PhoneAssociation } from './pstnCustomResources';
+import { PSTNResources } from './pstnCustomResources';
 import { ChimeVoiceConnector } from './voiceConnector';
 
 export enum PhoneNumberType {
@@ -125,17 +125,14 @@ export class ChimePhoneNumber extends Construct {
   }
 
   associateWithVoiceConnector(voiceConnectorId: ChimeVoiceConnector) {
-    return this.associateNumber(
-      voiceConnectorId.voiceConnectorId,
-      this.phoneNumber,
-    );
-  }
-
-  private associateNumber(voiceConnectorId: string, e164PhoneNumber: string) {
-    const result = new PhoneAssociation(this, 'phoneAssociation', {
-      voiceConnectorId,
-      e164PhoneNumber,
+    new PSTNResources(this, 'phoneAssociation', {
+      resourceType: 'PhoneAssociation',
+      uid: cdk.Names.uniqueId(this),
+      properties: {
+        voiceConnectorId: voiceConnectorId.voiceConnectorId,
+        e164PhoneNumber: this.phoneNumber,
+      },
     });
-    return result;
+    return;
   }
 }

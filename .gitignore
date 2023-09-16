@@ -49,6 +49,7 @@ jspm_packages/
 .jsii
 tsconfig.json
 !/API.md
+/assets/
 cdk.out
 cdk.context.json
 yarn-error.log

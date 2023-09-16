@@ -35,7 +35,7 @@ export class MessagingResources extends Construct {
       'Custom:MessagingResources',
       {
         codeDirectory:
-          'node_modules/cdk-amazon-chime-resources/assets/resources/messaging/messaging.lambda',
+          'node_modules/cdk-amazon-chime-resources/assets/resources/messaging',
         runtime: CustomResourceProviderRuntime.NODEJS_18_X,
         timeout: Duration.seconds(300),
         policyStatements: [

@@ -1,0 +1,12 @@
+{
+  "name": "pstn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-chime-sdk-voice": "^3.413.0",
+    "@aws-sdk/client-ssm": "^3.413.0",
+    "@types/aws-lambda": "^8.10.121",
+    "aws-lambda": "^1.0.7"
+  }
+}

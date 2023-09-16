@@ -28,7 +28,7 @@ export class MediaPipelineResources extends Construct {
         'Custom::MediaPipelineResources',
         {
           codeDirectory:
-            'node_modules/cdk-amazon-chime-resources/assets/resources/media-pipelines/media-pipelines.lambda',
+            'node_modules/cdk-amazon-chime-resources/assets/resources/media-pipelines',
           runtime: CustomResourceProviderRuntime.NODEJS_18_X,
           timeout: Duration.seconds(300),
           policyStatements: [
