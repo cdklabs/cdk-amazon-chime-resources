@@ -67,7 +67,7 @@ export const CreatePhoneNumber = async (
   let orderSuccessful: boolean = false;
   let searchAttempts = 1;
 
-  while (searchAttempts < 5) {
+  while (searchAttempts < 16) {
     try {
       console.log(
         `Searching for available numbers.  Search # ${searchAttempts}`,
