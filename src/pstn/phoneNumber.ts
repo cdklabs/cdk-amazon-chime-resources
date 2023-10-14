@@ -24,7 +24,7 @@ export enum PhoneCountry {
   KR = 'KR',
   SE = 'SE',
   CH = 'CH',
-  UK = 'UK',
+  GB = 'GB',
   US = 'US',
 }
 

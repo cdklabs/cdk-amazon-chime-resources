@@ -4348,7 +4348,7 @@ Props for `Configuration` when Configuration is for Lex.
 | [`KR`](#cdkamazonchimeresourcesphonecountrykr) | *No description.* |
 | [`SE`](#cdkamazonchimeresourcesphonecountryse) | *No description.* |
 | [`CH`](#cdkamazonchimeresourcesphonecountrych) | *No description.* |
-| [`UK`](#cdkamazonchimeresourcesphonecountryuk) | *No description.* |
+| [`GB`](#cdkamazonchimeresourcesphonecountrygb) | *No description.* |
 | [`US`](#cdkamazonchimeresourcesphonecountryus) | *No description.* |
 
 ---
@@ -4418,7 +4418,7 @@ Props for `Configuration` when Configuration is for Lex.
 ---
 
 
-#### `UK` <a name="cdk-amazon-chime-resources.PhoneCountry.UK" id="cdkamazonchimeresourcesphonecountryuk"></a>
+#### `GB` <a name="cdk-amazon-chime-resources.PhoneCountry.GB" id="cdkamazonchimeresourcesphonecountrygb"></a>
 
 ---
 
