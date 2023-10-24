@@ -26,6 +26,8 @@ const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: 'us-east-1',
 });
 
+import { PhoneNumberType, PhoneProductType } from '../../pstn/phoneNumber';
+
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
 let searchAvailableNumbersParam: SearchAvailablePhoneNumbersCommandInput;
@@ -42,8 +44,8 @@ export interface CreatePhoneNumberProps {
   phoneCity?: string;
   phoneCountry?: string;
   phoneNumberTollFreePrefix?: string;
-  phoneProductType?: string;
-  phoneNumberType?: string;
+  phoneProductType?: PhoneProductType;
+  phoneNumberType?: PhoneNumberType;
 }
 
 export const CreatePhoneNumber = async (
@@ -223,7 +225,7 @@ export const DeletePhoneNumber = async (uid: string) => {
         );
       } else if (
         getPhoneNumberResponse.PhoneNumber!.ProductType! ===
-        'SipMediaApplication'
+        'SipMediaApplicationDialIn'
       ) {
         await chimeSDKVoiceClient.send(
           new UpdateSipRuleCommand({
