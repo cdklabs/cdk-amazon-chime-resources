@@ -26,8 +26,23 @@ import {
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
 
-import { MediaInsightsConfiguration } from '../../pstn/voiceConnector';
+import {
+  MediaInsightsConfiguration,
+  Protocol,
+} from '../../pstn/voiceConnector';
 
+enum VoiceConnectorRegion {
+  US_EAST_1 = 'us-east-1',
+  US_WEST_2 = 'us-west-2',
+  CA_CENTRAL_1 = 'ca-central-1',
+  AP_NORTHEAST_1 = 'ap-northeast-1',
+  AP_NORTHEAST_2 = 'ap-northeast-2',
+  AP_SOUTHEAST_1 = 'ap-southeast-1',
+  AP_SOUTHEAST_2 = 'ap-southeast-2',
+  EU_WEST_1 = 'eu-west-1',
+  EU_WEST_2 = 'eu-west-2',
+  EU_CENTRAL_1 = 'eu-central-1',
+}
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: process.env.AWS_REGION,
 });
@@ -47,7 +62,7 @@ let loggingConfiguration: LoggingConfiguration;
 let deleteVoiceConnectorResponse: DeleteVoiceConnectorCommandOutput;
 
 interface Routes {
-  protocol: string;
+  protocol: Protocol;
   host: string;
   port: string;
   priority: string;
@@ -74,7 +89,7 @@ interface LoggingProps {
 
 export interface CreateVoiceConnectorProps {
   name?: string;
-  region?: string;
+  region?: VoiceConnectorRegion;
   encryption?: boolean;
   termination?: TerminationProps;
   origination?: Routes[];
@@ -163,7 +178,7 @@ export const CreateVoiceConnector = async (
 
 export interface UpdateVoiceConnectorProps {
   name?: string;
-  region?: string;
+  region?: VoiceConnectorRegion;
   encryption?: boolean;
   termination?: TerminationProps;
   origination?: Routes[];
@@ -298,7 +313,7 @@ export const DeleteVoiceConnector = async (uid: string) => {
 const putOrigination = async (
   originationVoiceConnectorId: string,
   originations: {
-    protocol: string;
+    protocol: Protocol;
     host: string;
     port: string;
     priority: string;
