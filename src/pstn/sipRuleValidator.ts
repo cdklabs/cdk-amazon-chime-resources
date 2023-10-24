@@ -1,6 +1,6 @@
 import { SipRuleProps } from './sipRule';
 
-var E164_NUMBER = /^\+[1-9]\d{10,14}$/;
+var E164_NUMBER = /^\+[1-9]\d{1,14}$/;
 
 var URI_HOSTNAME = /^[0-9a-z]{22}.voiceconnector.chime.aws$/;
 
