@@ -12,3 +12,4 @@ export * from './messaging/instanceUser';
 export * from './messaging/instanceBot';
 export * from './messaging/instanceStreamingConfiguration';
 export * from './media-pipelines/mediaInsightsPipeline';
+export * from './media-pipelines/kinesisVideoStreamPool';

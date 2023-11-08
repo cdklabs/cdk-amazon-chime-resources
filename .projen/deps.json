@@ -101,6 +101,10 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-sdk/client-kinesis-video",
+      "type": "bundled"
+    },
+    {
       "name": "@aws-sdk/client-ssm",
       "type": "bundled"
     },

@@ -12,7 +12,7 @@ import { Construct } from 'constructs';
 
 export interface MediaPipelineResourceProps extends ResourceProps {
   readonly properties: { [propname: string]: any };
-  readonly resourceType: 'MediaPipelineInsights';
+  readonly resourceType: 'MediaPipelineInsights' | 'KinesisVideoStreamPool';
   readonly uid: string;
 }
 
@@ -35,6 +35,7 @@ export class MediaPipelineResources extends Construct {
             {
               Action: [
                 'chime:*MediaInsightsPipelineConfiguration',
+                'chime:*MediaPipelineKinesisVideoStreamPool',
                 'chime:ListVoiceConnectors',
                 'chime:tagResource',
                 's3:ListBucket',
@@ -78,6 +79,21 @@ export class MediaPipelineResources extends Construct {
           ],
         },
       );
+
+    if (props.resourceType === 'KinesisVideoStreamPool') {
+      mediaPipelineCustomResource.addToRolePolicy({
+        Action: ['kinesisvideo:ListStreams'],
+        Resource: '*',
+        Effect: 'Allow',
+      });
+      mediaPipelineCustomResource.addToRolePolicy({
+        Action: ['kinesisvideo:DeleteStream'],
+        Resource: `arn:aws:kinesisvideo:${Stack.of(this).region}:${
+          Stack.of(this).account
+        }:stream/ChimeMediaPipelines-${props.properties.poolName}*`,
+        Effect: 'Allow',
+      });
+    }
 
     this.mediaPipelineCustomResource = new CustomResource(
       this,
