@@ -32,6 +32,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@aws-sdk/client-chime-sdk-identity',
     '@aws-sdk/client-chime-sdk-media-pipelines',
     '@aws-sdk/client-ssm',
+    '@aws-sdk/client-kinesis-video',
     'aws-lambda',
     '@types/aws-lambda',
     'fs-extra',

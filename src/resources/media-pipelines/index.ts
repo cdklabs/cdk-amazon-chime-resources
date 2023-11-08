@@ -5,11 +5,17 @@ import {
 } from 'aws-lambda';
 
 import {
+  CreateKinesisVideoStreamPool,
+  UpdateKinesisVideoStreamPool,
+  DeleteKinesisVideoStreamPool,
+} from './kinesisVideoStreamPool';
+import {
   CreateMediaInsightsPipelineConfiguration,
   UpdateMediaInsightsPipelineConfiguration,
   DeleteMediaInsightsPipelineConfiguration,
 } from './mediaInsightsPipeline';
 
+import { KinesisVideoStreamPoolProps } from '../../media-pipelines/kinesisVideoStreamPool';
 import { MediaInsightsPipelineProps } from '../../media-pipelines/mediaInsightsPipeline';
 
 const response: CdkCustomResourceResponse = {};
@@ -62,6 +68,36 @@ export const handler = async (
             'DeleteMediaInsightsPipelineConfiguration successful';
           break;
       }
+      break;
+    case 'KinesisVideoStreamPool':
+      switch (requestType) {
+        case 'Create':
+          response.Data = await CreateKinesisVideoStreamPool(
+            resourcePropertiesUid,
+            requestProperties as KinesisVideoStreamPoolProps,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'CreateKinesisVideoStreamPool successful';
+          break;
+        case 'Update':
+          response.Data = await UpdateKinesisVideoStreamPool(
+            resourcePropertiesUid,
+            requestProperties as KinesisVideoStreamPoolProps,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'UpdateKinesisVideoStreamPool successful';
+
+          break;
+        case 'Delete':
+          await DeleteKinesisVideoStreamPool(
+            resourcePropertiesUid,
+            requestProperties as KinesisVideoStreamPoolProps,
+          );
+          response.Status = 'SUCCESS';
+          response.Reason = 'DeleteKinesisVideoStreamPool successful';
+          break;
+      }
+      break;
   }
   console.log(`Response: ${JSON.stringify(response)}`);
   return response;

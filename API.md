@@ -474,6 +474,118 @@ public readonly voiceProfileDomainName: string;
 ---
 
 
+### KinesisVideoStreamPool <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool" id="cdkamazonchimeresourceskinesisvideostreampool"></a>
+
+#### Initializers <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.Initializer" id="cdkamazonchimeresourceskinesisvideostreampoolinitializer"></a>
+
+```typescript
+import { KinesisVideoStreamPool } from 'cdk-amazon-chime-resources'
+
+new KinesisVideoStreamPool(scope: Construct, id: string, props: KinesisVideoStreamPoolProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`scope`](#cdkamazonchimeresourceskinesisvideostreampoolparameterscope)<span title="Required">*</span> | [`constructs.Construct`](#constructs.Construct) | *No description.* |
+| [`id`](#cdkamazonchimeresourceskinesisvideostreampoolparameterid)<span title="Required">*</span> | `string` | *No description.* |
+| [`props`](#cdkamazonchimeresourceskinesisvideostreampoolparameterprops)<span title="Required">*</span> | [`cdk-amazon-chime-resources.KinesisVideoStreamPoolProps`](#cdk-amazon-chime-resources.KinesisVideoStreamPoolProps) | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.parameter.scope" id="cdkamazonchimeresourceskinesisvideostreampoolparameterscope"></a>
+
+- *Type:* [`constructs.Construct`](#constructs.Construct)
+
+---
+
+##### `id`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.parameter.id" id="cdkamazonchimeresourceskinesisvideostreampoolparameterid"></a>
+
+- *Type:* `string`
+
+---
+
+##### `props`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.parameter.props" id="cdkamazonchimeresourceskinesisvideostreampoolparameterprops"></a>
+
+- *Type:* [`cdk-amazon-chime-resources.KinesisVideoStreamPoolProps`](#cdk-amazon-chime-resources.KinesisVideoStreamPoolProps)
+
+---
+
+
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`createdTimestamp`](#cdkamazonchimeresourceskinesisvideostreampoolpropertycreatedtimestamp)<span title="Required">*</span> | `string` | *No description.* |
+| [`poolArn`](#cdkamazonchimeresourceskinesisvideostreampoolpropertypoolarn)<span title="Required">*</span> | `string` | *No description.* |
+| [`poolId`](#cdkamazonchimeresourceskinesisvideostreampoolpropertypoolid)<span title="Required">*</span> | `string` | *No description.* |
+| [`poolName`](#cdkamazonchimeresourceskinesisvideostreampoolpropertypoolname)<span title="Required">*</span> | `string` | *No description.* |
+| [`poolStatus`](#cdkamazonchimeresourceskinesisvideostreampoolpropertypoolstatus)<span title="Required">*</span> | `string` | *No description.* |
+| [`updatedTimestamp`](#cdkamazonchimeresourceskinesisvideostreampoolpropertyupdatedtimestamp)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `createdTimestamp`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.createdTimestamp" id="cdkamazonchimeresourceskinesisvideostreampoolpropertycreatedtimestamp"></a>
+
+```typescript
+public readonly createdTimestamp: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `poolArn`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.poolArn" id="cdkamazonchimeresourceskinesisvideostreampoolpropertypoolarn"></a>
+
+```typescript
+public readonly poolArn: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `poolId`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.poolId" id="cdkamazonchimeresourceskinesisvideostreampoolpropertypoolid"></a>
+
+```typescript
+public readonly poolId: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `poolName`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.poolName" id="cdkamazonchimeresourceskinesisvideostreampoolpropertypoolname"></a>
+
+```typescript
+public readonly poolName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `poolStatus`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.poolStatus" id="cdkamazonchimeresourceskinesisvideostreampoolpropertypoolstatus"></a>
+
+```typescript
+public readonly poolStatus: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `updatedTimestamp`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPool.property.updatedTimestamp" id="cdkamazonchimeresourceskinesisvideostreampoolpropertyupdatedtimestamp"></a>
+
+```typescript
+public readonly updatedTimestamp: string;
+```
+
+- *Type:* `string`
+
+---
+
+
 ### MediaInsightsPipeline <a name="cdk-amazon-chime-resources.MediaInsightsPipeline" id="cdkamazonchimeresourcesmediainsightspipeline"></a>
 
 #### Initializers <a name="cdk-amazon-chime-resources.MediaInsightsPipeline.Initializer" id="cdkamazonchimeresourcesmediainsightspipelineinitializer"></a>
@@ -2193,6 +2305,145 @@ const kinesisDataStreamSinkConfiguration: KinesisDataStreamSinkConfiguration = {
 
 ```typescript
 public readonly insightsTarget: string;
+```
+
+- *Type:* `string`
+
+---
+
+### KinesisVideoStreamConfiguration <a name="cdk-amazon-chime-resources.KinesisVideoStreamConfiguration" id="cdkamazonchimeresourceskinesisvideostreamconfiguration"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { KinesisVideoStreamConfiguration } from 'cdk-amazon-chime-resources'
+
+const kinesisVideoStreamConfiguration: KinesisVideoStreamConfiguration = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`region`](#cdkamazonchimeresourceskinesisvideostreamconfigurationpropertyregion)<span title="Required">*</span> | `string` | *No description.* |
+| [`dataRetentionInHours`](#cdkamazonchimeresourceskinesisvideostreamconfigurationpropertydataretentioninhours) | `number` | *No description.* |
+
+---
+
+##### `region`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamConfiguration.property.region" id="cdkamazonchimeresourceskinesisvideostreamconfigurationpropertyregion"></a>
+
+```typescript
+public readonly region: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `dataRetentionInHours`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamConfiguration.property.dataRetentionInHours" id="cdkamazonchimeresourceskinesisvideostreamconfigurationpropertydataretentioninhours"></a>
+
+```typescript
+public readonly dataRetentionInHours: number;
+```
+
+- *Type:* `number`
+
+---
+
+### KinesisVideoStreamPoolProps <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolProps" id="cdkamazonchimeresourceskinesisvideostreampoolprops"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { KinesisVideoStreamPoolProps } from 'cdk-amazon-chime-resources'
+
+const kinesisVideoStreamPoolProps: KinesisVideoStreamPoolProps = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`streamConfiguration`](#cdkamazonchimeresourceskinesisvideostreampoolpropspropertystreamconfiguration)<span title="Required">*</span> | [`cdk-amazon-chime-resources.KinesisVideoStreamConfiguration`](#cdk-amazon-chime-resources.KinesisVideoStreamConfiguration) | *No description.* |
+| [`clientRequestToken`](#cdkamazonchimeresourceskinesisvideostreampoolpropspropertyclientrequesttoken) | `string` | *No description.* |
+| [`poolName`](#cdkamazonchimeresourceskinesisvideostreampoolpropspropertypoolname) | `string` | *No description.* |
+| [`tags`](#cdkamazonchimeresourceskinesisvideostreampoolpropspropertytags) | [`cdk-amazon-chime-resources.KinesisVideoStreamPoolTag`](#cdk-amazon-chime-resources.KinesisVideoStreamPoolTag)[] | *No description.* |
+
+---
+
+##### `streamConfiguration`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolProps.property.streamConfiguration" id="cdkamazonchimeresourceskinesisvideostreampoolpropspropertystreamconfiguration"></a>
+
+```typescript
+public readonly streamConfiguration: KinesisVideoStreamConfiguration;
+```
+
+- *Type:* [`cdk-amazon-chime-resources.KinesisVideoStreamConfiguration`](#cdk-amazon-chime-resources.KinesisVideoStreamConfiguration)
+
+---
+
+##### `clientRequestToken`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolProps.property.clientRequestToken" id="cdkamazonchimeresourceskinesisvideostreampoolpropspropertyclientrequesttoken"></a>
+
+```typescript
+public readonly clientRequestToken: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `poolName`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolProps.property.poolName" id="cdkamazonchimeresourceskinesisvideostreampoolpropspropertypoolname"></a>
+
+```typescript
+public readonly poolName: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `tags`<sup>Optional</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolProps.property.tags" id="cdkamazonchimeresourceskinesisvideostreampoolpropspropertytags"></a>
+
+```typescript
+public readonly tags: KinesisVideoStreamPoolTag[];
+```
+
+- *Type:* [`cdk-amazon-chime-resources.KinesisVideoStreamPoolTag`](#cdk-amazon-chime-resources.KinesisVideoStreamPoolTag)[]
+
+---
+
+### KinesisVideoStreamPoolTag <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolTag" id="cdkamazonchimeresourceskinesisvideostreampooltag"></a>
+
+#### Initializer <a name="[object Object].Initializer" id="object-objectinitializer"></a>
+
+```typescript
+import { KinesisVideoStreamPoolTag } from 'cdk-amazon-chime-resources'
+
+const kinesisVideoStreamPoolTag: KinesisVideoStreamPoolTag = { ... }
+```
+
+#### Properties <a name="Properties" id="properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| [`key`](#cdkamazonchimeresourceskinesisvideostreampooltagpropertykey)<span title="Required">*</span> | `string` | *No description.* |
+| [`value`](#cdkamazonchimeresourceskinesisvideostreampooltagpropertyvalue)<span title="Required">*</span> | `string` | *No description.* |
+
+---
+
+##### `key`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolTag.property.key" id="cdkamazonchimeresourceskinesisvideostreampooltagpropertykey"></a>
+
+```typescript
+public readonly key: string;
+```
+
+- *Type:* `string`
+
+---
+
+##### `value`<sup>Required</sup> <a name="cdk-amazon-chime-resources.KinesisVideoStreamPoolTag.property.value" id="cdkamazonchimeresourceskinesisvideostreampooltagpropertyvalue"></a>
+
+```typescript
+public readonly value: string;
 ```
 
 - *Type:* `string`
