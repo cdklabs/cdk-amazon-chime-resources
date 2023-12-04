@@ -54,7 +54,7 @@
     "jsii-docgen": "^4.2.44",
     "jsii-pacmak": "^1.92.0",
     "jsii-rosetta": "1.x",
-    "projen": "^0.77.2",
+    "projen": "^0.77.4",
     "standard-version": "^9",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5",
@@ -65,16 +65,16 @@
     "constructs": "^10.0.5"
   },
   "dependencies": {
-    "@aws-sdk/client-chime-sdk-identity": "^3.454.0",
-    "@aws-sdk/client-chime-sdk-media-pipelines": "^3.454.0",
-    "@aws-sdk/client-chime-sdk-messaging": "^3.454.0",
-    "@aws-sdk/client-chime-sdk-voice": "^3.454.0",
-    "@aws-sdk/client-kinesis-video": "^3.454.0",
-    "@aws-sdk/client-ssm": "^3.454.0",
-    "@types/aws-lambda": "^8.10.129",
+    "@aws-sdk/client-chime-sdk-identity": "^3.465.0",
+    "@aws-sdk/client-chime-sdk-media-pipelines": "^3.465.0",
+    "@aws-sdk/client-chime-sdk-messaging": "^3.465.0",
+    "@aws-sdk/client-chime-sdk-voice": "^3.465.0",
+    "@aws-sdk/client-kinesis-video": "^3.465.0",
+    "@aws-sdk/client-ssm": "^3.465.0",
+    "@types/aws-lambda": "^8.10.130",
     "aws-cdk-lib": "^2.93.0",
     "aws-lambda": "^1.0.7",
-    "fs-extra": "^11.1.1"
+    "fs-extra": "^11.2.0"
   },
   "bundledDependencies": [
     "@aws-sdk/client-chime-sdk-identity",
