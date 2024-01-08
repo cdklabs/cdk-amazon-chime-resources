@@ -31,7 +31,6 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
-!/.projenrc.js
 !/.github/workflows/build.yml
 /dist/changelog.md
 /dist/version.txt
@@ -54,3 +53,4 @@ cdk.context.json
 yarn-error.log
 dependabot.yml
 !example
+!/.projenrc.ts
