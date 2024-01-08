@@ -24,3 +24,5 @@ cdk.out
 cdk.context.json
 yarn-error.log
 dependabot.yml
+/.gitattributes
+/.projenrc.ts
