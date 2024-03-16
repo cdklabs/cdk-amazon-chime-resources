@@ -1,4 +1,3 @@
-import { PhoneNumberType, PhoneProductType } from '../../pstn/phoneNumber';
 
 import {
   ChimeSDKVoiceClient,
@@ -23,6 +22,7 @@ import {
   GetParameterCommandOutput,
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
+import { PhoneNumberType, PhoneProductType } from '../../pstn/phoneNumber';
 
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: 'us-east-1',
