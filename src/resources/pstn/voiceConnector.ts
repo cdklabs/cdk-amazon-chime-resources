@@ -1,4 +1,14 @@
 import {
+  CloudWatchLogsClient,
+  PutResourcePolicyCommand,
+} from '@aws-sdk/client-cloudwatch-logs';
+
+import {
+  MediaInsightsConfiguration,
+  Protocol,
+} from '../../pstn/voiceConnector';
+
+import {
   ChimeSDKVoiceClient,
   CreateVoiceConnectorCommand,
   PutVoiceConnectorLoggingConfigurationCommand,
@@ -26,11 +36,6 @@ import {
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
 
-import {
-  MediaInsightsConfiguration,
-  Protocol,
-} from '../../pstn/voiceConnector';
-
 enum VoiceConnectorRegion {
   US_EAST_1 = 'us-east-1',
   US_WEST_2 = 'us-west-2',
@@ -48,6 +53,7 @@ const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
 });
 
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
+const logClient = new CloudWatchLogsClient({ region: process.env.AWS_REGION });
 
 let createVoiceConnectorResponse: CreateVoiceConnectorCommandOutput;
 let createVoiceConnectorParams: CreateVoiceConnectorCommandInput;
@@ -405,6 +411,7 @@ const putStreaming = async (
   console.log(
     `streamingConfiguration:  ${JSON.stringify(streamingConfiguration)}`,
   );
+
   try {
     await chimeSDKVoiceClient.send(
       new PutVoiceConnectorStreamingConfigurationCommand({
@@ -426,6 +433,34 @@ const putLogging = async (
 ) => {
   console.log(`logging:  ${JSON.stringify(logging)}`);
   console.info(`voiceConnectorId: ${loggingVoiceConnectorId}`);
+
+  try {
+    console.log('Updating Resource Policy');
+    const policyDocument = JSON.stringify({
+      Version: '2012-10-17',
+      Statement: [
+        {
+          Sid: 'AWSLogDeliveryWrite',
+          Effect: 'Allow',
+          Principal: { Service: 'delivery.logs.amazonaws.com' },
+          Action: ['logs:CreateLogStream', 'logs:PutLogEvents'],
+          Resource: ['*'],
+        },
+      ],
+    });
+    await logClient.send(
+      new PutResourcePolicyCommand({
+        policyName: 'msk',
+        policyDocument: policyDocument,
+      }),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error);
+      throw error;
+    }
+  }
+
   loggingConfiguration = {
     ...(logging.enableSIPLogs && { EnableSIPLogs: logging.enableSIPLogs }),
     ...(logging.enableMediaMetricLogs && {

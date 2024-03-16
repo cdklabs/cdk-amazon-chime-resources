@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@types/node",
-      "version": "^16 <= 16.18.78",
+      "version": "^18",
       "type": "build"
     },
     {
@@ -13,6 +13,10 @@
     {
       "name": "@typescript-eslint/parser",
       "version": "^6",
+      "type": "build"
+    },
+    {
+      "name": "aws-cdk-lib",
       "type": "build"
     },
     {
@@ -46,12 +50,12 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "1.x",
+      "version": "~5.3.0",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "1.x",
+      "version": "~5.3.0",
       "type": "build"
     },
     {
@@ -69,6 +73,7 @@
     },
     {
       "name": "typescript",
+      "version": "~5.3.0",
       "type": "build"
     },
     {
@@ -92,6 +97,10 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-sdk/client-cloudwatch-logs",
+      "type": "bundled"
+    },
+    {
       "name": "@aws-sdk/client-kinesis-video",
       "type": "bundled"
     },
@@ -112,18 +121,8 @@
       "type": "bundled"
     },
     {
-      "name": "@types/babel__traverse",
-      "version": "7.18.2",
-      "type": "override"
-    },
-    {
-      "name": "@types/prettier",
-      "version": "2.6.0",
-      "type": "override"
-    },
-    {
       "name": "aws-cdk-lib",
-      "version": "^2.91.0",
+      "version": "^2.133.0",
       "type": "peer"
     },
     {
@@ -145,6 +144,10 @@
     },
     {
       "name": "@aws-sdk/client-chime-sdk-voice",
+      "type": "runtime"
+    },
+    {
+      "name": "@aws-sdk/client-cloudwatch-logs",
       "type": "runtime"
     },
     {

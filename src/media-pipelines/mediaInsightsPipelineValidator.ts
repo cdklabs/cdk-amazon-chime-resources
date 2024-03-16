@@ -48,28 +48,28 @@ export function mediaPipelinesInsightValidator(
       );
     }
 
-    if (
-      props.elements.some((element) => element.s3RecordingSinkConfiguration) &&
-      props.elements.some(
-        (element) =>
-          element.amazonTranscribeProcessorConfiguration ||
-          element.amazonTranscribeCallAnalyticsProcessorConfiguration ||
-          element.voiceAnalyticsProcessorConfiguration,
-      )
-    ) {
-      throw new Error(
-        's3RecordingSinkConfiguration cannot be used with amazonTranscribeProcessorConfiguration, amazonTranscribeCallAnalyticsProcessorConfiguration, or voiceAnalyticsProcessorConfiguration',
-      );
-    }
+    // if (
+    //   props.elements.some((element) => element.s3RecordingSinkConfiguration) &&
+    //   props.elements.some(
+    //     (element) =>
+    //       element.amazonTranscribeProcessorConfiguration ||
+    //       element.amazonTranscribeCallAnalyticsProcessorConfiguration ||
+    //       element.voiceAnalyticsProcessorConfiguration,
+    //   )
+    // ) {
+    //   throw new Error(
+    //     's3RecordingSinkConfiguration cannot be used with amazonTranscribeProcessorConfiguration, amazonTranscribeCallAnalyticsProcessorConfiguration, or voiceAnalyticsProcessorConfiguration',
+    //   );
+    // }
 
-    if (
-      props.elements.some((element) => element.s3RecordingSinkConfiguration) &&
-      props.realTimeAlertConfiguration
-    ) {
-      throw new Error(
-        's3RecordingSinkConfiguration cannot be used with realTimeAlertConfiguration',
-      );
-    }
+    // if (
+    //   props.elements.some((element) => element.s3RecordingSinkConfiguration) &&
+    //   props.realTimeAlertConfiguration
+    // ) {
+    //   throw new Error(
+    //     's3RecordingSinkConfiguration cannot be used with realTimeAlertConfiguration',
+    //   );
+    // }
   }
 
   if (props.realTimeAlertConfiguration) {

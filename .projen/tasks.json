@@ -337,13 +337,13 @@
       },
       "steps": [
         {
-          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,jsii,projen,ts-node,typescript,yalc,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice,@aws-sdk/client-kinesis-video,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,fs-extra,aws-cdk-lib"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=aws-cdk-lib,esbuild,eslint-import-resolver-typescript,eslint-plugin-import,jsii-diff,jsii-docgen,jsii-pacmak,jsii-rosetta,jsii,projen,ts-node,typescript,yalc,@aws-sdk/client-chime-sdk-identity,@aws-sdk/client-chime-sdk-media-pipelines,@aws-sdk/client-chime-sdk-messaging,@aws-sdk/client-chime-sdk-voice,@aws-sdk/client-cloudwatch-logs,@aws-sdk/client-kinesis-video,@aws-sdk/client-ssm,@types/aws-lambda,aws-lambda,fs-extra"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen standard-version ts-node typescript yalc @aws-sdk/client-chime-sdk-identity @aws-sdk/client-chime-sdk-media-pipelines @aws-sdk/client-chime-sdk-messaging @aws-sdk/client-chime-sdk-voice @aws-sdk/client-kinesis-video @aws-sdk/client-ssm @types/aws-lambda aws-lambda fs-extra aws-cdk-lib constructs"
+          "exec": "yarn upgrade @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib esbuild eslint-import-resolver-typescript eslint-plugin-import eslint jsii-diff jsii-docgen jsii-pacmak jsii-rosetta jsii projen standard-version ts-node typescript yalc @aws-sdk/client-chime-sdk-identity @aws-sdk/client-chime-sdk-media-pipelines @aws-sdk/client-chime-sdk-messaging @aws-sdk/client-chime-sdk-voice @aws-sdk/client-cloudwatch-logs @aws-sdk/client-kinesis-video @aws-sdk/client-ssm @types/aws-lambda aws-lambda fs-extra constructs"
         },
         {
           "exec": "npx projen"

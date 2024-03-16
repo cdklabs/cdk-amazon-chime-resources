@@ -77,6 +77,7 @@ export class PSTNResources extends Construct {
               'logs:CreateLogDelivery',
               'logs:GetLogDelivery',
               'logs:DeleteLogDelivery',
+              'logs:PutResourcePolicy',
             ],
             Resource: '*',
             Effect: 'Allow',

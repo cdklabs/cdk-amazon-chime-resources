@@ -1,3 +1,5 @@
+import { PhoneNumberType, PhoneProductType } from '../../pstn/phoneNumber';
+
 import {
   ChimeSDKVoiceClient,
   CreatePhoneNumberOrderCommand,
@@ -25,8 +27,6 @@ import {
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: 'us-east-1',
 });
-
-import { PhoneNumberType, PhoneProductType } from '../../pstn/phoneNumber';
 
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
