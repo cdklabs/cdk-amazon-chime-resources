@@ -1,5 +1,10 @@
 
 import {
+  CdkCustomResourceEvent,
+  CdkCustomResourceResponse,
+  Context,
+} from 'aws-lambda';
+import {
   CreatePhoneAssociation,
   DeletePhoneAssociation,
   UpdatePhoneAssociation,
@@ -29,11 +34,6 @@ import {
 } from './voiceProfileDomain';
 
 import { VoiceProfileDomainProps } from '../../pstn/voiceProfileDomain';
-import {
-  CdkCustomResourceEvent,
-  CdkCustomResourceResponse,
-  Context,
-} from 'aws-lambda';
 
 const response: CdkCustomResourceResponse = {};
 let resourcePropertiesUid: string;
