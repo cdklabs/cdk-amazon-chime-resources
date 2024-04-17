@@ -8,6 +8,7 @@ import {
   CreateSipRuleCommandOutput,
   SipRuleTargetApplication,
   SipRuleTriggerType,
+  ChimeSDKVoiceServiceException,
 } from '@aws-sdk/client-chime-sdk-voice';
 
 import {
@@ -25,7 +26,7 @@ const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
 const ssmClient = new SSMClient({ region: process.env.AWS_REGION });
 
 let createSipRuleParams: CreateSipRuleCommandInput;
-let createSipRuleResponse: CreateSipRuleCommandOutput;
+let createSipRuleResponse: CreateSipRuleCommandOutput | undefined;
 let getParameterCommandOutput: GetParameterCommandOutput;
 let sipRuleToDelete: string;
 let sipRuleTargetApplications: SipRuleTargetApplication[];
@@ -63,16 +64,35 @@ export const CreateSIPRule = async (uid: string, props: CreateSIPRuleProps) => {
       createSipRuleParams,
     )}`,
   );
-  try {
-    createSipRuleResponse = await chimeSDKVoiceClient.send(
-      new CreateSipRuleCommand(createSipRuleParams),
-    );
-    console.log(createSipRuleResponse);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error);
-      throw error;
+
+  let attempt = 0;
+
+  while (attempt < 10) {
+    try {
+      console.log(`Attempt ${attempt + 1}: Creating SIP rule`);
+      createSipRuleResponse = await chimeSDKVoiceClient.send(
+        new CreateSipRuleCommand(createSipRuleParams),
+      );
+      console.log(`SIP rule created: ${JSON.stringify(createSipRuleResponse)}`);
+      break;
+    } catch (error) {
+      if (
+        error instanceof ChimeSDKVoiceServiceException &&
+        error.name === 'BadRequestException'
+      ) {
+        console.error('Bad Request Exception, retrying...', error);
+        attempt++;
+        await sleep(10000);
+        continue;
+      } else {
+        console.error('An unexpected error occurred:', error);
+        throw error;
+      }
     }
+  }
+
+  if (!createSipRuleResponse) {
+    throw new Error('Failed to create SIP rule after 3 attempts.');
   }
 
   try {

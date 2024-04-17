@@ -1,4 +1,12 @@
 import {
+  CloudWatchLogsClient,
+  PutResourcePolicyCommand,
+} from '@aws-sdk/client-cloudwatch-logs';
+import {
+  MediaInsightsConfiguration,
+  Protocol,
+} from '../../pstn/voiceConnector';
+import {
   ChimeSDKVoiceClient,
   CreateVoiceConnectorCommand,
   PutVoiceConnectorLoggingConfigurationCommand,
@@ -17,10 +25,6 @@ import {
   ListPhoneNumbersCommand,
   StreamingNotificationTarget,
 } from '@aws-sdk/client-chime-sdk-voice';
-import {
-  CloudWatchLogsClient,
-  PutResourcePolicyCommand,
-} from '@aws-sdk/client-cloudwatch-logs';
 
 import {
   SSMClient,
@@ -29,10 +33,6 @@ import {
   GetParameterCommandOutput,
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
-import {
-  MediaInsightsConfiguration,
-  Protocol,
-} from '../../pstn/voiceConnector';
 
 
 enum VoiceConnectorRegion {

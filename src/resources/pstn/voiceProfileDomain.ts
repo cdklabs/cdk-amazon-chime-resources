@@ -1,3 +1,4 @@
+import { VoiceProfileDomainProps } from '../../pstn/voiceProfileDomain';
 import {
   ChimeSDKVoiceClient,
   CreateVoiceProfileDomainCommand,
@@ -18,7 +19,6 @@ import {
   GetParameterCommandOutput,
   PutParameterCommand,
 } from '@aws-sdk/client-ssm';
-import { VoiceProfileDomainProps } from '../../pstn/voiceProfileDomain';
 
 const chimeSDKVoiceClient = new ChimeSDKVoiceClient({
   region: process.env.AWS_REGION,
