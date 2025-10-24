@@ -1,20 +1,20 @@
-import { awscdk } from 'projen';
-const { UpgradeDependenciesSchedule } = require('projen/lib/javascript');
+import * as cdklabs from 'cdklabs-projen-project-types';
 
-const project = new awscdk.AwsCdkConstructLibrary({
+const project = new cdklabs.CdklabsConstructLibrary({
+  name: 'cdk-amazon-chime-resources',
+  private: false,
+  projenrcTs: true,
   author: 'Amazon Web Services',
   authorAddress: 'https://aws.amazon.com',
+  repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
   cdkVersion: '2.133.0',
   defaultReleaseBranch: 'main',
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
-  releaseToNpm: true,
   jest: false,
-  jsiiVersion: '~5.3.0',
-  typescriptVersion: '~5.3.0',
+  jsiiVersion: '~5.9.0',
+  typescriptVersion: '~5.9.0',
   majorVersion: 3,
-  eslintOptions: {
-    dirs: ['src', 'test', 'projenrc', '.projenrc.ts'],
-  },
+  enablePRAutoMerge: true,
   lambdaAutoDiscover: false,
   deps: [
     '@aws-sdk/client-chime-sdk-voice',
@@ -23,12 +23,16 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@aws-sdk/client-chime-sdk-media-pipelines',
     '@aws-sdk/client-cloudwatch-logs',
     '@aws-sdk/client-ssm',
-    'aws-cdk-lib',
     'aws-lambda',
     '@types/aws-lambda',
     'fs-extra',
   ],
-  devDeps: ['yalc', 'esbuild', 'aws-cdk-lib'],
+  devDeps: [
+    'cdklabs-projen-project-types',
+    'yalc',
+    'esbuild',
+    'aws-cdk-lib',
+  ],
   bundledDeps: [
     '@aws-sdk/client-chime-sdk-voice',
     '@aws-sdk/client-chime-sdk-messaging',
@@ -41,25 +45,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@types/aws-lambda',
     'fs-extra',
   ],
-  workflowNodeVersion: '18.x',
-  depsUpgradeOptions: {
-    workflowOptions: {
-      labels: ['auto-approve', 'auto-merge'],
-      schedule: UpgradeDependenciesSchedule.WEEKLY,
-    },
-  },
-  autoApproveOptions: {
-    secret: 'GITHUB_TOKEN',
-    allowedUsernames: ['schuettc', 'cdklabs-automation'],
-  },
-  autoApproveUpgrades: true,
-  name: 'cdk-amazon-chime-resources',
-  projenrcTs: true,
-  python: {
+  jsiiTargetLanguages: [cdklabs.JsiiLanguage.PYTHON],
+  publishToPypi: {
     distName: 'cdk-amazon-chime-resources',
     module: 'cdk_amazon_chime_resources',
   },
-  repositoryUrl: 'https://github.com/cdklabs/cdk-amazon-chime-resources.git',
 });
 
 project.bundler.addBundle('./src/resources/pstn/', {

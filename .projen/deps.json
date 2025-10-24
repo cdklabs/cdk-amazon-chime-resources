@@ -1,22 +1,36 @@
 {
   "dependencies": [
     {
+      "name": "@stylistic/eslint-plugin",
+      "version": "^2",
+      "type": "build"
+    },
+    {
       "name": "@types/node",
       "version": "^18",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/eslint-plugin",
-      "version": "^7",
+      "version": "^8",
       "type": "build"
     },
     {
       "name": "@typescript-eslint/parser",
-      "version": "^7",
+      "version": "^8",
       "type": "build"
     },
     {
       "name": "aws-cdk-lib",
+      "type": "build"
+    },
+    {
+      "name": "cdklabs-projen-project-types",
+      "type": "build"
+    },
+    {
+      "name": "commit-and-tag-version",
+      "version": "^12",
       "type": "build"
     },
     {
@@ -33,7 +47,7 @@
     },
     {
       "name": "eslint",
-      "version": "^8",
+      "version": "^9",
       "type": "build"
     },
     {
@@ -42,6 +56,7 @@
     },
     {
       "name": "jsii-docgen",
+      "version": "^10.5.0",
       "type": "build"
     },
     {
@@ -50,21 +65,15 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "~5.3.0",
       "type": "build"
     },
     {
       "name": "jsii",
-      "version": "~5.3.0",
+      "version": "~5.9.0",
       "type": "build"
     },
     {
       "name": "projen",
-      "type": "build"
-    },
-    {
-      "name": "standard-version",
-      "version": "^9",
       "type": "build"
     },
     {
@@ -73,7 +82,7 @@
     },
     {
       "name": "typescript",
-      "version": "~5.3.0",
+      "version": "~5.9.0",
       "type": "build"
     },
     {
@@ -121,6 +130,16 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-cdk/integ-runner",
+      "version": "latest",
+      "type": "devenv"
+    },
+    {
+      "name": "@aws-cdk/integ-tests-alpha",
+      "version": "latest",
+      "type": "devenv"
+    },
+    {
       "name": "aws-cdk-lib",
       "version": "^2.133.0",
       "type": "peer"
@@ -156,10 +175,6 @@
     },
     {
       "name": "@types/aws-lambda",
-      "type": "runtime"
-    },
-    {
-      "name": "aws-cdk-lib",
       "type": "runtime"
     },
     {
