@@ -7,7 +7,7 @@
     },
     {
       "name": "@types/node",
-      "version": "ts5.9",
+      "version": "^18",
       "type": "build"
     },
     {
@@ -65,7 +65,6 @@
     },
     {
       "name": "jsii-rosetta",
-      "version": "~5.9.0",
       "type": "build"
     },
     {
@@ -131,6 +130,16 @@
       "type": "bundled"
     },
     {
+      "name": "@aws-cdk/integ-runner",
+      "version": "latest",
+      "type": "devenv"
+    },
+    {
+      "name": "@aws-cdk/integ-tests-alpha",
+      "version": "latest",
+      "type": "devenv"
+    },
+    {
       "name": "aws-cdk-lib",
       "version": "^2.133.0",
       "type": "peer"
@@ -166,10 +175,6 @@
     },
     {
       "name": "@types/aws-lambda",
-      "type": "runtime"
-    },
-    {
-      "name": "aws-cdk-lib",
       "type": "runtime"
     },
     {

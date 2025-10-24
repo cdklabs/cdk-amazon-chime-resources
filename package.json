@@ -21,6 +21,8 @@
     "docgen": "npx projen docgen",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
+    "integ": "npx projen integ",
+    "integ:update": "npx projen integ:update",
     "package": "npx projen package",
     "package-all": "npx projen package-all",
     "package:js": "npx projen package:js",
@@ -29,20 +31,25 @@
     "post-upgrade": "npx projen post-upgrade",
     "pre-compile": "npx projen pre-compile",
     "release": "npx projen release",
+    "rosetta:extract": "npx projen rosetta:extract",
     "test": "npx projen test",
     "unbump": "npx projen unbump",
     "upgrade": "npx projen upgrade",
+    "upgrade-cdklabs-projen-project-types": "npx projen upgrade-cdklabs-projen-project-types",
+    "upgrade-dev-deps": "npx projen upgrade-dev-deps",
     "watch": "npx projen watch",
     "projen": "npx projen"
   },
   "author": {
     "name": "Amazon Web Services",
-    "url": "https://aws.amazon.com",
-    "organization": false
+    "email": "aws-cdk-dev@amazon.com",
+    "organization": true
   },
   "devDependencies": {
+    "@aws-cdk/integ-runner": "latest",
+    "@aws-cdk/integ-tests-alpha": "latest",
     "@stylistic/eslint-plugin": "^2",
-    "@types/node": "ts5.9",
+    "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.133.0",
@@ -76,7 +83,6 @@
     "@aws-sdk/client-kinesis-video": "^3.916.0",
     "@aws-sdk/client-ssm": "^3.916.0",
     "@types/aws-lambda": "^8.10.156",
-    "aws-cdk-lib": "^2.134.0",
     "aws-lambda": "^1.0.7",
     "fs-extra": "^11.3.2"
   },
@@ -98,6 +104,9 @@
     "meetings",
     "messaging"
   ],
+  "engines": {
+    "node": ">= 18.12.0"
+  },
   "main": "lib/index.js",
   "license": "Apache-2.0",
   "publishConfig": {
@@ -105,7 +114,7 @@
   },
   "version": "0.0.0",
   "types": "lib/index.d.ts",
-  "stability": "stable",
+  "stability": "experimental",
   "jsii": {
     "outdir": "dist",
     "targets": {
