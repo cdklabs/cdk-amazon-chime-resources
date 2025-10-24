@@ -9,8 +9,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   keywords: ['cdk', 'chime', 'meetings', 'messaging'],
   releaseToNpm: true,
   jest: false,
-  jsiiVersion: '~5.3.0',
-  typescriptVersion: '~5.3.0',
+  jsiiVersion: '~5.9.0',
+  typescriptVersion: '~5.9.0',
   majorVersion: 3,
   eslintOptions: {
     dirs: ['src', 'test', 'projenrc', '.projenrc.ts'],
@@ -28,7 +28,12 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@types/aws-lambda',
     'fs-extra',
   ],
-  devDeps: ['yalc', 'esbuild', 'aws-cdk-lib'],
+  devDeps: [
+    'cdklabs-projen-project-types',
+    'yalc',
+    'esbuild',
+    'aws-cdk-lib',
+  ],
   bundledDeps: [
     '@aws-sdk/client-chime-sdk-voice',
     '@aws-sdk/client-chime-sdk-messaging',
@@ -41,7 +46,6 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '@types/aws-lambda',
     'fs-extra',
   ],
-  workflowNodeVersion: '18.x',
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve', 'auto-merge'],

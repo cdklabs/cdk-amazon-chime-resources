@@ -276,6 +276,7 @@ export const DeleteVoiceConnector = async (uid: string) => {
       phoneNumbersAssociated.PhoneNumbers &&
       phoneNumbersAssociated.PhoneNumbers.length > 0
     ) {
+      phoneNumbersToDisassociate ??= [];
       phoneNumbersAssociated.PhoneNumbers.forEach(async (phoneNumber) => {
         phoneNumbersToDisassociate.push(phoneNumber.PhoneNumberId!);
       });
