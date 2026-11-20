@@ -5,40 +5,41 @@
     "url": "https://github.com/cdklabs/cdk-amazon-chime-resources.git"
   },
   "scripts": {
-    "build": "npx projen build",
-    "bump": "npx projen bump",
-    "bundle": "npx projen bundle",
-    "bundle:resources/media-pipelines": "npx projen bundle:resources/media-pipelines",
-    "bundle:resources/media-pipelines:watch": "npx projen bundle:resources/media-pipelines:watch",
-    "bundle:resources/messaging": "npx projen bundle:resources/messaging",
-    "bundle:resources/messaging:watch": "npx projen bundle:resources/messaging:watch",
-    "bundle:resources/pstn": "npx projen bundle:resources/pstn",
-    "bundle:resources/pstn:watch": "npx projen bundle:resources/pstn:watch",
-    "clobber": "npx projen clobber",
-    "compat": "npx projen compat",
-    "compile": "npx projen compile",
-    "default": "npx projen default",
-    "docgen": "npx projen docgen",
-    "eject": "npx projen eject",
-    "eslint": "npx projen eslint",
-    "integ": "npx projen integ",
-    "integ:update": "npx projen integ:update",
-    "package": "npx projen package",
-    "package-all": "npx projen package-all",
-    "package:js": "npx projen package:js",
-    "package:python": "npx projen package:python",
-    "post-compile": "npx projen post-compile",
-    "post-upgrade": "npx projen post-upgrade",
-    "pre-compile": "npx projen pre-compile",
-    "release": "npx projen release",
-    "rosetta:extract": "npx projen rosetta:extract",
-    "test": "npx projen test",
-    "unbump": "npx projen unbump",
-    "upgrade": "npx projen upgrade",
-    "upgrade-cdklabs-projen-project-types": "npx projen upgrade-cdklabs-projen-project-types",
-    "upgrade-dev-deps": "npx projen upgrade-dev-deps",
-    "watch": "npx projen watch",
-    "projen": "npx projen"
+    "build": "projen build",
+    "bump": "projen bump",
+    "bump:releasable-commits": "projen bump:releasable-commits",
+    "bundle": "projen bundle",
+    "bundle:resources/media-pipelines": "projen bundle:resources/media-pipelines",
+    "bundle:resources/media-pipelines:watch": "projen bundle:resources/media-pipelines:watch",
+    "bundle:resources/messaging": "projen bundle:resources/messaging",
+    "bundle:resources/messaging:watch": "projen bundle:resources/messaging:watch",
+    "bundle:resources/pstn": "projen bundle:resources/pstn",
+    "bundle:resources/pstn:watch": "projen bundle:resources/pstn:watch",
+    "clobber": "projen clobber",
+    "compat": "projen compat",
+    "compile": "projen compile",
+    "default": "projen default",
+    "docgen": "projen docgen",
+    "eject": "projen eject",
+    "eslint": "projen eslint",
+    "integ": "projen integ",
+    "integ:update": "projen integ:update",
+    "package": "projen package",
+    "package-all": "projen package-all",
+    "package:js": "projen package:js",
+    "package:python": "projen package:python",
+    "post-compile": "projen post-compile",
+    "post-upgrade": "projen post-upgrade",
+    "pre-compile": "projen pre-compile",
+    "release": "projen release",
+    "rosetta:extract": "projen rosetta:extract",
+    "test": "projen test",
+    "unbump": "projen unbump",
+    "upgrade": "projen upgrade",
+    "upgrade-cdklabs-projen-project-types": "projen upgrade-cdklabs-projen-project-types",
+    "upgrade-dev-deps": "projen upgrade-dev-deps",
+    "watch": "projen watch",
+    "projen": "projen"
   },
   "author": {
     "name": "Amazon Web Services",
@@ -53,9 +54,9 @@
     "@typescript-eslint/eslint-plugin": "^8",
     "@typescript-eslint/parser": "^8",
     "aws-cdk-lib": "2.133.0",
-    "cdklabs-projen-project-types": "^0.3.7",
-    "commit-and-tag-version": "^12",
-    "constructs": "10.0.5",
+    "cdklabs-projen-project-types": "^0.6.23",
+    "commit-and-tag-version": "^13",
+    "constructs": "10.5.1",
     "esbuild": "^0.25.11",
     "eslint": "^9",
     "eslint-import-resolver-typescript": "^2.7.1",
@@ -63,16 +64,16 @@
     "jsii": "~5.9.0",
     "jsii-diff": "^1.117.0",
     "jsii-docgen": "^10.5.0",
-    "jsii-pacmak": "^1.117.0",
+    "jsii-pacmak": "^1.143.0",
     "jsii-rosetta": "~5.9.0",
-    "projen": "^0.98.4",
+    "projen": "^0.105.6",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.0",
     "yalc": "^1.0.0-pre.53"
   },
   "peerDependencies": {
     "aws-cdk-lib": "^2.133.0",
-    "constructs": "^10.0.5"
+    "constructs": "^10.5.1"
   },
   "dependencies": {
     "@aws-sdk/client-chime-sdk-identity": "^3.916.0",
@@ -109,12 +110,12 @@
   },
   "main": "lib/index.js",
   "license": "Apache-2.0",
+  "stability": "experimental",
   "publishConfig": {
     "access": "public"
   },
   "version": "0.0.0",
   "types": "lib/index.d.ts",
-  "stability": "experimental",
   "jsii": {
     "outdir": "dist",
     "targets": {
@@ -123,10 +124,8 @@
         "module": "cdk_amazon_chime_resources"
       }
     },
-    "tsc": {
-      "outDir": "lib",
-      "rootDir": "src"
-    }
+    "tsconfig": "tsconfig.json",
+    "validateTsconfig": "strict"
   },
   "//": "~~ Generated by projen. To modify, edit .projenrc.ts and run \"npx projen\"."
 }
