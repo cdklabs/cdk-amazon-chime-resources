@@ -43,6 +43,7 @@ new AppInstanceStreamingConfigurations(scope: Construct, id: string, props: Stre
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -54,6 +55,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -62,7 +84,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.isConstruct"></a>
 
 ```typescript
 import { AppInstanceStreamingConfigurations } from 'cdk-amazon-chime-resources'
@@ -71,6 +93,20 @@ AppInstanceStreamingConfigurations.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.AppInstanceStreamingConfigurations.isConstruct.parameter.x"></a>
 
@@ -153,6 +189,7 @@ new ChannelFlow(scope: Construct, id: string, props: ChannelFlowProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChannelFlow.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChannelFlow.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -164,6 +201,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChannelFlow.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChannelFlow.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -172,7 +230,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChannelFlow.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChannelFlow.isConstruct"></a>
 
 ```typescript
 import { ChannelFlow } from 'cdk-amazon-chime-resources'
@@ -181,6 +239,20 @@ ChannelFlow.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChannelFlow.isConstruct.parameter.x"></a>
 
@@ -263,6 +335,7 @@ new ChimePhoneNumber(scope: Construct, id: string, props: PhoneNumberProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChimePhoneNumber.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChimePhoneNumber.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk-amazon-chime-resources.ChimePhoneNumber.associateWithVoiceConnector">associateWithVoiceConnector</a></code> | *No description.* |
 
 ---
@@ -274,6 +347,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChimePhoneNumber.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChimePhoneNumber.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `associateWithVoiceConnector` <a name="associateWithVoiceConnector" id="cdk-amazon-chime-resources.ChimePhoneNumber.associateWithVoiceConnector"></a>
 
@@ -295,7 +389,7 @@ public associateWithVoiceConnector(voiceConnectorId: ChimeVoiceConnector): void
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChimePhoneNumber.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChimePhoneNumber.isConstruct"></a>
 
 ```typescript
 import { ChimePhoneNumber } from 'cdk-amazon-chime-resources'
@@ -304,6 +398,20 @@ ChimePhoneNumber.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChimePhoneNumber.isConstruct.parameter.x"></a>
 
@@ -386,6 +494,7 @@ new ChimeSipMediaApp(scope: Construct, id: string, props: SipMediaAppProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChimeSipMediaApp.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChimeSipMediaApp.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk-amazon-chime-resources.ChimeSipMediaApp.alexaSkill">alexaSkill</a></code> | *No description.* |
 | <code><a href="#cdk-amazon-chime-resources.ChimeSipMediaApp.logging">logging</a></code> | *No description.* |
 
@@ -398,6 +507,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChimeSipMediaApp.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChimeSipMediaApp.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `alexaSkill` <a name="alexaSkill" id="cdk-amazon-chime-resources.ChimeSipMediaApp.alexaSkill"></a>
 
@@ -431,7 +561,7 @@ public logging(sipMediaApplicationLoggingConfiguration: SipMediaApplicationLoggi
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeSipMediaApp.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeSipMediaApp.isConstruct"></a>
 
 ```typescript
 import { ChimeSipMediaApp } from 'cdk-amazon-chime-resources'
@@ -440,6 +570,20 @@ ChimeSipMediaApp.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChimeSipMediaApp.isConstruct.parameter.x"></a>
 
@@ -522,6 +666,7 @@ new ChimeSipRule(scope: Construct, id: string, props: SipRuleProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChimeSipRule.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChimeSipRule.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -533,6 +678,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChimeSipRule.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChimeSipRule.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -541,7 +707,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeSipRule.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeSipRule.isConstruct"></a>
 
 ```typescript
 import { ChimeSipRule } from 'cdk-amazon-chime-resources'
@@ -550,6 +716,20 @@ ChimeSipRule.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChimeSipRule.isConstruct.parameter.x"></a>
 
@@ -632,6 +812,7 @@ new ChimeVoiceConnector(scope: Construct, id: string, props: VoiceConnectorProps
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChimeVoiceConnector.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChimeVoiceConnector.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -643,6 +824,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChimeVoiceConnector.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChimeVoiceConnector.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -651,7 +853,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeVoiceConnector.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeVoiceConnector.isConstruct"></a>
 
 ```typescript
 import { ChimeVoiceConnector } from 'cdk-amazon-chime-resources'
@@ -660,6 +862,20 @@ ChimeVoiceConnector.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChimeVoiceConnector.isConstruct.parameter.x"></a>
 
@@ -742,6 +958,7 @@ new ChimeVoiceProfileDomain(scope: Construct, id: string, props: VoiceProfileDom
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.ChimeVoiceProfileDomain.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.ChimeVoiceProfileDomain.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -753,6 +970,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -761,7 +999,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.isConstruct"></a>
 
 ```typescript
 import { ChimeVoiceProfileDomain } from 'cdk-amazon-chime-resources'
@@ -770,6 +1008,20 @@ ChimeVoiceProfileDomain.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.ChimeVoiceProfileDomain.isConstruct.parameter.x"></a>
 
@@ -874,6 +1126,7 @@ new KinesisVideoStreamPool(scope: Construct, id: string, props: KinesisVideoStre
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.KinesisVideoStreamPool.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.KinesisVideoStreamPool.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -885,6 +1138,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.KinesisVideoStreamPool.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.KinesisVideoStreamPool.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -893,7 +1167,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.KinesisVideoStreamPool.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.KinesisVideoStreamPool.isConstruct"></a>
 
 ```typescript
 import { KinesisVideoStreamPool } from 'cdk-amazon-chime-resources'
@@ -902,6 +1176,20 @@ KinesisVideoStreamPool.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.KinesisVideoStreamPool.isConstruct.parameter.x"></a>
 
@@ -1039,6 +1327,7 @@ new MediaInsightsPipeline(scope: Construct, id: string, props: MediaInsightsPipe
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MediaInsightsPipeline.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MediaInsightsPipeline.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1050,6 +1339,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MediaInsightsPipeline.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MediaInsightsPipeline.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1058,7 +1368,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MediaInsightsPipeline.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MediaInsightsPipeline.isConstruct"></a>
 
 ```typescript
 import { MediaInsightsPipeline } from 'cdk-amazon-chime-resources'
@@ -1067,6 +1377,20 @@ MediaInsightsPipeline.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MediaInsightsPipeline.isConstruct.parameter.x"></a>
 
@@ -1171,6 +1495,7 @@ new MessagingAppInstance(scope: Construct, id: string, props: AppInstanceProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstance.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MessagingAppInstance.with">with</a></code> | Applies one or more mixins to this construct. |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstance.retention">retention</a></code> | *No description.* |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstance.streaming">streaming</a></code> | *No description.* |
 
@@ -1183,6 +1508,27 @@ public toString(): string
 ```
 
 Returns a string representation of this construct.
+
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MessagingAppInstance.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MessagingAppInstance.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
 
 ##### `retention` <a name="retention" id="cdk-amazon-chime-resources.MessagingAppInstance.retention"></a>
 
@@ -1216,7 +1562,7 @@ public streaming(streamingConfigs: StreamingConfig[]): MessagingResources
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstance.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstance.isConstruct"></a>
 
 ```typescript
 import { MessagingAppInstance } from 'cdk-amazon-chime-resources'
@@ -1225,6 +1571,20 @@ MessagingAppInstance.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MessagingAppInstance.isConstruct.parameter.x"></a>
 
@@ -1307,6 +1667,7 @@ new MessagingAppInstanceAdmin(scope: Construct, id: string, props: AppInstanceAd
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceAdmin.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceAdmin.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1318,6 +1679,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1326,7 +1708,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.isConstruct"></a>
 
 ```typescript
 import { MessagingAppInstanceAdmin } from 'cdk-amazon-chime-resources'
@@ -1335,6 +1717,20 @@ MessagingAppInstanceAdmin.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MessagingAppInstanceAdmin.isConstruct.parameter.x"></a>
 
@@ -1428,6 +1824,7 @@ new MessagingAppInstanceBot(scope: Construct, id: string, props: AppInstanceBotP
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceBot.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceBot.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1439,6 +1836,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MessagingAppInstanceBot.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MessagingAppInstanceBot.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1447,7 +1865,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceBot.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceBot.isConstruct"></a>
 
 ```typescript
 import { MessagingAppInstanceBot } from 'cdk-amazon-chime-resources'
@@ -1456,6 +1874,20 @@ MessagingAppInstanceBot.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MessagingAppInstanceBot.isConstruct.parameter.x"></a>
 
@@ -1538,6 +1970,7 @@ new MessagingAppInstanceUser(scope: Construct, id: string, props: AppInstanceUse
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceUser.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MessagingAppInstanceUser.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1549,6 +1982,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MessagingAppInstanceUser.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MessagingAppInstanceUser.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1557,7 +2011,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceUser.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingAppInstanceUser.isConstruct"></a>
 
 ```typescript
 import { MessagingAppInstanceUser } from 'cdk-amazon-chime-resources'
@@ -1566,6 +2020,20 @@ MessagingAppInstanceUser.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MessagingAppInstanceUser.isConstruct.parameter.x"></a>
 
@@ -1648,6 +2116,7 @@ new MessagingResources(scope: Construct, id: string, props: MessagingResourcePro
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.MessagingResources.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.MessagingResources.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1659,6 +2128,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.MessagingResources.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.MessagingResources.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1667,7 +2157,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingResources.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.MessagingResources.isConstruct"></a>
 
 ```typescript
 import { MessagingResources } from 'cdk-amazon-chime-resources'
@@ -1676,6 +2166,20 @@ MessagingResources.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.MessagingResources.isConstruct.parameter.x"></a>
 
@@ -1758,6 +2262,7 @@ new PSTNResources(scope: Construct, id: string, props: PSTNResourceProps)
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#cdk-amazon-chime-resources.PSTNResources.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#cdk-amazon-chime-resources.PSTNResources.with">with</a></code> | Applies one or more mixins to this construct. |
 
 ---
 
@@ -1769,6 +2274,27 @@ public toString(): string
 
 Returns a string representation of this construct.
 
+##### `with` <a name="with" id="cdk-amazon-chime-resources.PSTNResources.with"></a>
+
+```typescript
+public with(mixins: ...IMixin[]): IConstruct
+```
+
+Applies one or more mixins to this construct.
+
+Mixins are applied in order. The list of constructs is captured at the
+start of the call, so constructs added by a mixin will not be visited.
+Use multiple `with()` calls if subsequent mixins should apply to added
+constructs.
+
+###### `mixins`<sup>Required</sup> <a name="mixins" id="cdk-amazon-chime-resources.PSTNResources.with.parameter.mixins"></a>
+
+- *Type:* ...constructs.IMixin[]
+
+The mixins to apply.
+
+---
+
 #### Static Functions <a name="Static Functions" id="Static Functions"></a>
 
 | **Name** | **Description** |
@@ -1777,7 +2303,7 @@ Returns a string representation of this construct.
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="cdk-amazon-chime-resources.PSTNResources.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="cdk-amazon-chime-resources.PSTNResources.isConstruct"></a>
 
 ```typescript
 import { PSTNResources } from 'cdk-amazon-chime-resources'
@@ -1786,6 +2312,20 @@ PSTNResources.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
+
+Use this method instead of `instanceof` to properly detect `Construct`
+instances, even when the construct library is symlinked.
+
+Explanation: in JavaScript, multiple copies of the `constructs` library on
+disk are seen as independent, completely different libraries. As a
+consequence, the class `Construct` in each copy of the `constructs` library
+is seen as a different class, and an instance of one class will not test as
+`instanceof` the other class. `npm install` will not create installations
+like this, but users may manually symlink construct libraries together or
+use a monorepo tool: in those cases, multiple copies of the `constructs`
+library can be accidentally installed, and `instanceof` will behave
+unpredictably. It is safest to avoid using `instanceof`, and using
+this type-testing method instead.
 
 ###### `x`<sup>Required</sup> <a name="x" id="cdk-amazon-chime-resources.PSTNResources.isConstruct.parameter.x"></a>
 
